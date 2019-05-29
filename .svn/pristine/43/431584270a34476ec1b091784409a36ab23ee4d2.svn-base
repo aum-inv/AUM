@@ -1,0 +1,185 @@
+﻿namespace OM.Vikala.Chakra.App.Mains
+{
+    partial class BasicMainForm
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BasicMainForm));
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.flowTable = new System.Windows.Forms.TableLayoutPanel();
+            this.flowTab = new System.Windows.Forms.TabControl();
+            this.flowList = new System.Windows.Forms.TableLayoutPanel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.userToolStrip1 = new OM.Vikala.Chakra.App.Mains.UserToolStrip();
+            this.flowTab.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // flowTable
+            // 
+            this.flowTable.ColumnCount = 2;
+            this.flowTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.flowTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.flowTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowTable.Location = new System.Drawing.Point(0, 43);
+            this.flowTable.Name = "flowTable";
+            this.flowTable.RowCount = 2;
+            this.flowTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.flowTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.flowTable.Size = new System.Drawing.Size(1404, 614);
+            this.flowTable.TabIndex = 1;
+            // 
+            // flowTab
+            // 
+            this.flowTab.Controls.Add(this.tabPage1);
+            this.flowTab.Controls.Add(this.tabPage2);
+            this.flowTab.Controls.Add(this.tabPage3);
+            this.flowTab.Controls.Add(this.tabPage4);
+            this.flowTab.Location = new System.Drawing.Point(896, 66);
+            this.flowTab.Name = "flowTab";
+            this.flowTab.SelectedIndex = 0;
+            this.flowTab.Size = new System.Drawing.Size(431, 355);
+            this.flowTab.TabIndex = 2;
+            this.flowTab.Visible = false;
+            // 
+            // flowList
+            // 
+            this.flowList.ColumnCount = 1;
+            this.flowList.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.flowList.Location = new System.Drawing.Point(462, 66);
+            this.flowList.Name = "flowList";
+            this.flowList.RowCount = 4;
+            this.flowList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.flowList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.flowList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.flowList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.flowList.Size = new System.Drawing.Size(398, 355);
+            this.flowList.TabIndex = 3;
+            this.flowList.Visible = false;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(3, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(423, 326);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(423, 326);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(423, 326);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Location = new System.Drawing.Point(4, 25);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(423, 326);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "tabPage4";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // userToolStrip1
+            // 
+            this.userToolStrip1.AutoSize = true;
+            this.userToolStrip1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.userToolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.userToolStrip1.Margin = new System.Windows.Forms.Padding(2);
+            this.userToolStrip1.Name = "userToolStrip1";
+            this.userToolStrip1.Size = new System.Drawing.Size(1404, 43);
+            this.userToolStrip1.TabIndex = 0;
+            // 
+            // BasicMainForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(1404, 657);
+            this.Controls.Add(this.flowList);
+            this.Controls.Add(this.flowTab);
+            this.Controls.Add(this.flowTable);
+            this.Controls.Add(this.userToolStrip1);
+            this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Name = "BasicMainForm";
+            this.Text = "VIKALA CHAKRA";
+            this.flowTab.ResumeLayout(false);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private UserToolStrip userToolStrip1;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.TableLayoutPanel flowTable;
+        private System.Windows.Forms.TabControl flowTab;
+        private System.Windows.Forms.TableLayoutPanel flowList;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage4;
+    }
+}

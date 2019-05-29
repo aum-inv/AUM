@@ -1,0 +1,141 @@
+﻿namespace OM.Vikala.Chakra.App
+{
+    partial class MainForm
+    {
+        /// <summary>
+        /// 필수 디자이너 변수입니다.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// 사용 중인 모든 리소스를 정리합니다.
+        /// </summary>
+        /// <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form 디자이너에서 생성한 코드
+
+        /// <summary>
+        /// 디자이너 지원에 필요한 메서드입니다. 
+        /// 이 메서드의 내용을 코드 편집기로 수정하지 마세요.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnLoadData = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.chartCS = new OM.Vikala.Controls.Charts.BasicCandleChart();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.numericUpDown1);
+            this.panel1.Controls.Add(this.btnLoadData);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(33, 83);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1267, 52);
+            this.panel1.TabIndex = 0;
+            // 
+            // btnLoadData
+            // 
+            this.btnLoadData.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnLoadData.Location = new System.Drawing.Point(0, 0);
+            this.btnLoadData.Name = "btnLoadData";
+            this.btnLoadData.Size = new System.Drawing.Size(134, 52);
+            this.btnLoadData.TabIndex = 0;
+            this.btnLoadData.Text = "LoadData";
+            this.btnLoadData.UseVisualStyleBackColor = true;
+            this.btnLoadData.Click += new System.EventHandler(this.btnLoadData_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.chartCS);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(33, 135);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1267, 460);
+            this.panel2.TabIndex = 1;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Location = new System.Drawing.Point(151, 15);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 28);
+            this.numericUpDown1.TabIndex = 1;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
+            // chartCS
+            // 
+            this.chartCS.ChartData = null;
+            this.chartCS.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chartCS.IsAutoScrollX = true;
+            this.chartCS.Location = new System.Drawing.Point(0, 0);
+            this.chartCS.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.chartCS.MaximumDisplayItemCount = 30;
+            this.chartCS.Name = "chartCS";
+            this.chartCS.Size = new System.Drawing.Size(1267, 460);
+            this.chartCS.TabIndex = 1;
+            // 
+            // MainForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
+            this.ClientSize = new System.Drawing.Size(1333, 623);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.Name = "MainForm";
+            this.Padding = new System.Windows.Forms.Padding(33, 83, 33, 28);
+            this.Style = MetroFramework.MetroColorStyle.Red;
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private Controls.Charts.BasicCandleChart chartCS;
+        private System.Windows.Forms.Button btnLoadData;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+    }
+}
+

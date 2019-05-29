@@ -1,0 +1,68 @@
+﻿using MetroFramework.Forms;
+using OM.Lib.Base.Enums;
+using OM.Lib.Base.Utils;
+using OM.PP.Chakra;
+using OM.PP.Chakra.Ctx;
+using OM.Vikala.Controls.Charts;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Configuration;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Vikala.Chakra.App
+{
+    public partial class LineMainForm : Form
+    {
+        ChartEvents chartEvent = new ChartEvents();
+
+        public LineMainForm()
+        {
+            InitializeComponent();
+
+            chartLS1.InitializeControl();
+            chartLS1.InitializeEvent(chartEvent);
+            chartLS1.ChartType = LineChartTypeEnum.기본;
+
+            chartLS2.InitializeControl();
+            chartLS2.InitializeEvent(chartEvent);
+            chartLS2.IsAutoScrollX = false;
+            chartLS2.ChartType = LineChartTypeEnum.기본;
+
+            tbDT_E.Text = DateTime.Now.ToString("yyyy-MM-dd");
+        }
+
+        private void btnLoadData_Click(object sender, EventArgs e)
+        {
+            string itemCode = ItemCodeSet.GetItemCode(ItemCode.선물_해외_WTI);
+
+            var list = PPContext.Instance.ClientContext.GetSourceData( 
+                  itemCode
+                , Lib.Base.Enums.TimeIntervalEnum.Day
+                , null
+                , tbDT_E.Text
+                , 120);
+
+            int round = ItemCodeUtil.GetItemCodeRoundNum(itemCode);
+            List<S_LineItemData> sourceDatas = new List<S_LineItemData>();
+            foreach (var m in list)
+            {
+                S_LineItemData sourceData = new S_LineItemData(
+                       (Single)Math.Round(m.CloseVal, round)
+                    ,   m.Volume
+                    ,   m.DT
+                    );
+
+                sourceDatas.Add(sourceData);
+            }
+          
+            chartLS1.LoadData(itemCode, sourceDatas);
+            chartLS2.LoadData(itemCode, sourceDatas);
+        }
+    }
+}

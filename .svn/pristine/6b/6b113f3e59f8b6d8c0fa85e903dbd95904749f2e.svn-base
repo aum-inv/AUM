@@ -1,0 +1,84 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Vikala.Chakra.App.Mains
+{
+    public partial class MainForm : Form
+    {
+        public MainForm()
+        {
+            InitializeComponent();
+        }
+
+        private void tsbMC1_Click(object sender, EventArgs e)
+        {
+            BasicMainForm bmf = new BasicMainForm();
+            bmf.WindowState = FormWindowState.Maximized;
+            bmf.MdiParent = this;
+            
+            TabPage tp = new TabPage(bmf.Text);
+            tp.Controls.Add(bmf);
+            tabPage.TabPages.Add(tp);
+
+
+            bmf.Show();
+        }
+
+        private void toolStripButton8_Click(object sender, EventArgs e)
+        {
+            this.LayoutMdi(MdiLayout.Cascade);
+        }
+
+        private void toolStripButton10_Click(object sender, EventArgs e)
+        {
+            this.LayoutMdi(MdiLayout.TileHorizontal);
+        }
+
+        private void toolStripButton9_Click(object sender, EventArgs e)
+        {
+            this.LayoutMdi(MdiLayout.TileVertical);
+        }
+
+        private void tabPage_DrawItem(object sender, DrawItemEventArgs e)
+        {            
+            try
+            {
+                Rectangle r = e.Bounds;
+                r = tabPage.GetTabRect(e.Index);
+                r.Offset(2, 2);
+                Brush TitleBrush = new SolidBrush(Color.Black);
+                Font f = this.Font;
+                string title = tabPage.TabPages[e.Index].Text;
+
+                e.Graphics.DrawString(title, f, TitleBrush, new PointF(r.X, r.Y + 2));
+
+                e.Graphics.DrawString("X", f, TitleBrush, new Point(r.X + (tabPage.GetTabRect(e.Index).Width - 16), 7));                
+            }
+            catch (Exception) { }
+        }
+
+        private void tabPage_MouseClick(object sender, MouseEventArgs e)
+        {
+            TabControl tc = (TabControl)sender;
+            Point p = e.Location;
+            int _tabWidth = 0;
+            _tabWidth = tabPage.GetTabRect(tc.SelectedIndex).Width - 16;
+            Rectangle r = tabPage.GetTabRect(tc.SelectedIndex);
+            r.Offset(_tabWidth, 7);
+            r.Width = 16;
+            r.Height = 16;
+            if (r.Contains(p))
+            {
+                TabPage TabP = (TabPage)tc.TabPages[tc.SelectedIndex];
+                tc.TabPages.Remove(TabP);
+            }
+        }
+    }
+}

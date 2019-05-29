@@ -1,0 +1,181 @@
+﻿using OM.Lib.Base.Enums;
+using OM.Lib.Base.Utils;
+using OM.PP.Chakra;
+using OM.PP.Chakra.Ctx;
+using OM.Vikala.Controls.Charts;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Vikala.Chakra.App.Mains
+{
+    public partial class SingleChartForm : Form
+    {
+        bool autoReload = true;
+
+        int itemCnt = 120;
+
+        TimeIntervalEnum timeInterval = TimeIntervalEnum.Day;
+        FlowDirectionTypeEnum flowDirection = FlowDirectionTypeEnum.TABLE;
+
+        ChartEvents chartEvent = new ChartEvents();
+
+        BaseChartControl ChartControl
+        {
+            get;
+            set;
+        } = null;
+
+
+        ItemData SelectedItemData
+        {
+            get; set;
+        }
+
+        public void SetChartControl(CandleChartTypeEnum candleChartType)
+        {
+            pnlContent.Controls.Clear();
+            ChartControl = null;
+
+            if (candleChartType == CandleChartTypeEnum.기본)
+            {
+                ChartControl = new BasicCandleChart();
+                ChartControl.InitializeControl();
+            }
+        }
+
+        public SingleChartForm()
+        {
+            InitializeComponent();
+            InitializeControls();
+        }
+
+        private void InitializeControls()
+        {
+            this.userToolStrip1.ItemCodeChangedEvent += UserToolStrip1_ItemCodeChangedEvent;
+            this.userToolStrip1.TimerIntervalChangedEvent += UserToolStrip1_TimerIntervalChangedEvent;
+            this.userToolStrip1.FlowDirectionChangedEvent += UserToolStrip1_FlowDirectionChangedEvent;
+            this.userToolStrip1.AutoReloadChangedEvent += UserToolStrip1_AutoReloadChangedEvent;
+            this.userToolStrip1.ReloadEvent += UserToolStrip1_ReloadEvent;
+            this.userToolStrip1.ItemCountChangedEvent += UserToolStrip1_ItemCountChangedEvent;
+            this.userToolStrip1.ScreenCaptureEvent += UserToolStrip1_ScreenCaptureEvent;
+            loadChartControls();
+
+            setTimer();
+        }
+
+        private void UserToolStrip1_ScreenCaptureEvent(object sender, EventArgs e)
+        {
+            Bitmap bmp = new Bitmap(this.pnlContent.Width, this.pnlContent.Height);
+            this.pnlContent.DrawToBitmap(bmp, new Rectangle(0, 0, this.pnlContent.Width, this.pnlContent.Height));
+
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif";
+            saveFileDialog1.Title = "Save an Image File";
+            saveFileDialog1.ShowDialog();
+
+            if (saveFileDialog1.FileName != "")
+            {
+                bmp.Save(saveFileDialog1.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+            }
+        }
+
+        private void UserToolStrip1_ItemCountChangedEvent(object sender, EventArgs e)
+        {
+            itemCnt = Convert.ToInt32(sender);
+        }
+
+        private void UserToolStrip1_ReloadEvent(object sender, EventArgs e)
+        {
+            loadData();
+        }
+
+        private void UserToolStrip1_AutoReloadChangedEvent(object sender, EventArgs e)
+        {
+            autoReload = (bool)sender;
+        }
+
+        private void UserToolStrip1_FlowDirectionChangedEvent(object sender, EventArgs e)
+        {
+            flowDirection = (FlowDirectionTypeEnum)sender;            
+        }
+
+        private void UserToolStrip1_TimerIntervalChangedEvent(object sender, EventArgs e)
+        {
+            timeInterval = (TimeIntervalEnum)sender;
+        }
+
+        private void UserToolStrip1_ItemCodeChangedEvent(object sender, EventArgs e)
+        {
+            ItemData itemData = (ItemData)sender;
+            SelectedItemData = itemData;
+
+            this.Text = "VIKALA CHAKRA - " + itemData.Name;
+        }
+
+        private void loadChartControls()
+        {
+        }
+
+        private void loadData()
+        {
+            userToolStrip1.setProgressValue(0);
+
+            string itemCode = ItemCodeSet.GetItemCode(ItemCode.선물_해외_WTI);
+            var list = PPContext.Instance.ClientContext.GetSourceData(
+                  itemCode
+                , Lib.Base.Enums.TimeIntervalEnum.Day
+                , null
+                , null
+                , itemCnt);
+
+            userToolStrip1.setProgressValue(50);
+            int round = ItemCodeUtil.GetItemCodeRoundNum(itemCode);
+            List<S_CandleItemData> sourceDatas = new List<S_CandleItemData>();
+            foreach (var m in list)
+            {
+                S_CandleItemData sourceData = new S_CandleItemData(
+                        (Single)Math.Round(m.OpenVal, round)
+                    , (Single)Math.Round(m.HighVal, round)
+                    , (Single)Math.Round(m.LowVal, round)
+                    , (Single)Math.Round(m.CloseVal, round)
+                    , m.Volume
+                    , m.DT
+                    );
+                sourceDatas.Add(sourceData);
+            }
+            //c_bcc.LoadData(itemCode, sourceDatas);
+           
+           
+            userToolStrip1.setProgressValue(100);
+        }
+
+        int timerCnt = (60 - DateTime.Now.Second);
+        private void setTimer()
+        {
+            timer1.Interval = 1000;
+            timer1.Enabled = true;
+            timer1.Start();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            timerCnt--;
+
+            if (autoReload && timerCnt == 0)
+            {
+                timerCnt = 60;
+
+                loadData();
+            }
+
+            userToolStrip1.setTimeValue(timerCnt);
+        }
+    }
+}

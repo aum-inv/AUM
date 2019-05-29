@@ -1,0 +1,51 @@
+﻿using OM.Lib.Base.Utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.PP.Chakra
+{
+    public abstract class A_HLOC
+    {
+        public string ItemCode
+        {
+            get;
+            set;
+        } = "";
+
+        public int RoundLength
+        {
+            get
+            {
+                return ItemCodeUtil.GetItemCodeRoundNum(ItemCode);
+            }
+        }
+
+        public Single OpenPrice { get; set; } = 0;
+        public Single HighPrice { get; set; } = 0;
+        public Single LowPrice { get; set; } = 0;
+        public Single ClosePrice { get; set; } = 0;
+        public Single Volume { get; set; } = 0;
+         
+        public Single CenterPrice
+        {
+            get
+            {
+                return (HighPrice + LowPrice) / 2.0f;
+            }
+        }
+
+        public Single MiddlePrice
+        {
+            get
+            {
+                return (OpenPrice + ClosePrice) / 2.0f;
+            }
+        }
+        public DateTime DTime { get; set; }
+
+      
+    }
+}

@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleTest
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine(Math.Ceiling(0.9));
+            Console.WriteLine(Math.Ceiling(1.0));
+            Console.WriteLine(Math.Ceiling(1.1));
+            Console.ReadLine();
+        }
+    }
+}

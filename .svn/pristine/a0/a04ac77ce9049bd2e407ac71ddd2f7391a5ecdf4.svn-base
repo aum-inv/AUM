@@ -1,0 +1,71 @@
+﻿using OM.Lib.Base.Enums;
+using OM.Lib.Base.Utils;
+using OM.PP.Chakra;
+using OM.PP.Chakra.Ctx;
+using OM.Vikala.Controls.Charts;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Vikala.Chakra.App.Mains.ChartForm
+{
+    public partial class AtomChartForm : BaseForm
+    {
+        public AtomChartForm()
+        {
+            InitializeComponent();
+            base.setToolStrip(userToolStrip1);
+            InitializeControls();
+        }
+
+        private void InitializeControls()
+        {           
+            loadChartControls();
+            setTimer();
+            userToolStrip.IsVisibleAlignmentButton = false;
+        }
+
+        public override void loadChartControls()
+        {
+            chart.InitializeControl();
+        }
+
+        public override void loadData()
+        {
+            userToolStrip1.setProgressValue(0);
+
+            string itemCode = ItemCodeSet.GetItemCode(ItemCode.선물_해외_WTI);
+            var list = PPContext.Instance.ClientContext.GetSourceData(                 
+                  itemCode
+                , Lib.Base.Enums.TimeIntervalEnum.Day
+                , null
+                , null
+                , itemCnt);
+
+            userToolStrip1.setProgressValue(50);
+            int round = ItemCodeUtil.GetItemCodeRoundNum(itemCode);
+            List<S_CandleItemData> sourceDatas = new List<S_CandleItemData>();
+            foreach (var m in list)
+            {
+                S_CandleItemData sourceData = new S_CandleItemData(
+                    itemCode
+                    , (Single)Math.Round(m.OpenVal, round)
+                    , (Single)Math.Round(m.HighVal, round)
+                    , (Single)Math.Round(m.LowVal, round)
+                    , (Single)Math.Round(m.CloseVal, round)
+                    , m.Volume
+                    , m.DT
+                    );
+                sourceDatas.Add(sourceData);
+            }
+           
+            userToolStrip1.setProgressValue(100);
+        }
+    }
+}

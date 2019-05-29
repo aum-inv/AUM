@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Vikala.Controls.Charts
+{
+    public class BaseChartControl : UserControl
+    {
+        public virtual string Title
+        {
+            get;
+            set;
+        }
+    }
+}

@@ -1,0 +1,60 @@
+﻿using OM.Lib.Base;
+using OM.Lib.Base.Utils;
+using OM.PP.Chakra;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleTest
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            LimitedList<double> list = new LimitedList<double>(100);
+            double upPrice1 = 4;
+            double upPrice2 = 5;
+            double upPrice3 = 6;
+
+            double downPrice1 = 2;
+            double downPrice2 = 3;
+            double downPrice3 = 4;
+            list.Insert(1);
+            list.Insert(2);
+            list.Insert(3);
+            list.Insert(4);
+            list.Insert(5);
+            list.Insert(3);
+            list.Insert(2);
+            list.Insert(4);
+            list.Insert(5);
+            list.Insert(6);
+            list.Insert(5);
+            list.Insert(6);
+            list.Insert(5);
+            list.Insert(3);
+            list.Insert(4);
+            list.Insert(5);
+            list.Insert(6);
+            list.Insert(4);
+            list.Insert(3);
+            list.Insert(6);
+
+            List<double> upPrices = new List<double>();
+            List<double> downPrices = new List<double>();
+            upPrices.Add(upPrice1);
+            upPrices.Add(upPrice2);
+            upPrices.Add(upPrice3);
+
+            downPrices.Add(downPrice1);
+            downPrices.Add(downPrice2);
+            downPrices.Add(downPrice3);
+
+            Console.WriteLine(PointsUtil.GetUpDownPattern(list, upPrices, downPrices));
+            Console.ReadLine();
+
+        }
+    }
+}

@@ -1,0 +1,34 @@
+﻿using OM.Lib.Base.Data;
+using OM.Lib.Base.Enums;
+using OM.Lib.Entity;
+using OM.Lib.Framework.Base;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.ServiceModel;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.PP.Chakra.Ctx
+{
+    [ServiceContract]
+    public interface IPPService : IWService
+    {       
+        [OperationContract]
+        List<ISourceData> GetSourceData(
+                FinancialClassificationEnum financialClassification
+            ,   string itemCode
+            ,   TimeIntervalEnum timeInterval
+            ,   DateTime? startDate = null
+            ,   DateTime? endDate = null
+            ,   int cnt = 0);
+
+        [OperationContract]
+        void SetSourceData(
+                FinancialClassificationEnum financialClassification
+            ,   string itemCode
+            ,   TimeIntervalEnum timeInterval
+            ,   LitePurushaPrakriti data);
+    }
+
+}

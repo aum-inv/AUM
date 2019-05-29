@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <startup> 
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.7.2"/>
+    </startup>
+  <appSettings>
+    <add key="SPNameingRule" value="MSSQL"/>
+    <add key="DBParameterLog" value="False"/>
+    <add key="EntityLog" value="False"/>
+    <add key="WEBMemoryLog" value="False"/>
+    <add key="WEBParamLog" value="False"/>
+    <add key="ExceptionType" value="TEXT"/>
+    <add key="QueryFormat" value="dbo.USP_{0}_{1}"/>
+    <add key="EnableCacheParameter" value="True"/>    
+
+    <add key="PPService_IP" value="192.168.1.3"/>
+    <add key="PPService_Port" value="9001"/>
+
+  </appSettings>
+</configuration>

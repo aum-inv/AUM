@@ -1,0 +1,49 @@
+﻿using OM.Lib.Base.Enums;
+using OM.PP.Chakra;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Atman.Chakra.App
+{
+    public partial class CandleSignalForm : Form
+    {
+        public CandleSignalForm()
+        {
+            InitializeComponent();
+
+            PPEvents.Instance.CandleOccurHandler += Instance_CandleOccurHandler;
+
+            this.Load += CandleSignalForm_Load;
+        }
+
+        private void CandleSignalForm_Load(object sender, EventArgs e)
+        {
+            ShowNotifyIcon("sdfasdf1");
+
+            ShowNotifyIcon("sdfasdf2");
+        }
+
+        private void Instance_CandleOccurHandler(string itemCode, Lib.Base.Enums.TimeIntervalEnum timeInterval, int occurCount)
+        {
+            dgv.Rows.Insert(0, DateTime.Now.ToString("HH:mm:ss"), itemCode, EnumUtil.GetTimeIntervalText(timeInterval), occurCount);
+
+            string msg = $"{itemCode}::{EnumUtil.GetTimeIntervalText(timeInterval)}::{occurCount}";
+
+            ShowNotifyIcon(msg);
+        }
+
+        private void ShowNotifyIcon(string message)
+        {           
+            nIcon.BalloonTipIcon = ToolTipIcon.Info;
+            nIcon.BalloonTipTitle = message;
+            nIcon.ShowBalloonTip(5000);
+        }
+    }
+}

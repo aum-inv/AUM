@@ -1,0 +1,354 @@
+﻿using OM.Lib.Base.Enums;
+using OM.Lib.Base.Utils;
+using OM.PP.Chakra;
+using OM.PP.Chakra.Ctx;
+using OM.Vikala.Chakra.App.Chakra;
+using OM.Vikala.Controls.Charts;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Vikala.Chakra.App.Mains
+{
+    public partial class MultiChartForm2 : BaseForm
+    {
+        List<BaseChartControl> charts = new List<BaseChartControl>();
+
+        BaseChartControl qMin5 = new AtomChart();
+        BaseChartControl qMin10 = new AtomChart();
+        BaseChartControl qMin30 = new AtomChart();
+        BaseChartControl qMin60 = new AtomChart();
+        BaseChartControl qMin120 = new AtomChart();
+        BaseChartControl qDay = new AtomChart();
+
+        public MultiChartForm2()
+        {
+            InitializeComponent();
+            base.setToolStrip(userToolStrip1);
+            InitializeControls();
+        }
+
+        private void InitializeControls()
+        {
+            loadChartControls();
+            setTimer();
+        }
+
+        public override void loadChartControls()
+        {
+            charts.Clear();
+
+            charts.Add(qDay);
+            charts.Add(qMin120);
+            charts.Add(qMin60);
+            charts.Add(qMin30);
+            charts.Add(qMin10);
+            charts.Add(qMin5);
+            
+            qMin5.Title = "원자챠트 5분";
+            qMin10.Title = "원자챠트 10분";
+            qMin30.Title = "원자챠트 30분";
+            qMin60.Title = "원자챠트 60분";
+            qMin120.Title = "원자챠트 120분";
+            qDay.Title = "원자챠트 일";
+
+            qMin5.TimeInterval = TimeIntervalEnum.Minute_05;
+            qMin10.TimeInterval = TimeIntervalEnum.Minute_10;
+            qMin30.TimeInterval = TimeIntervalEnum.Minute_30;
+            qMin60.TimeInterval = TimeIntervalEnum.Minute_60;
+            qMin120.TimeInterval = TimeIntervalEnum.Minute_120;
+            qDay.TimeInterval = TimeIntervalEnum.Day;
+
+            foreach (var c in charts)
+            {
+                c.IsAutoScrollX = true;
+                c.IsShowXLine = false;
+                c.InitializeControl();
+                c.InitializeEvent(null);
+                c.DisplayPointCount = 30;
+                ((AtomChart)c).IsShowLine = false;
+                ((AtomChart)c).IsShowCandle = false;
+            }
+
+            this.flowTable.Dock = DockStyle.Top;
+            this.flowList.Dock = DockStyle.Top;
+            this.flowTab.Dock = DockStyle.Fill;
+
+            setFlow();
+        }
+
+        public override void setFlow()
+        {
+            flowTable.Visible = false;
+            flowList.Visible = false;
+            flowTab.Visible = false;
+
+            flowTable.Controls.Clear();
+            flowList.Controls.Clear();
+            for (int i = 0; i < flowTab.TabPages.Count; i++)
+                flowTab.TabPages[i].Controls.Clear();
+
+            if (flowDirection == FlowDirectionTypeEnum.TABLE)
+            {
+                flowTable.Controls.Add(charts[0], 0, 0);
+                flowTable.Controls.Add(charts[1], 1, 0);
+                flowTable.Controls.Add(charts[2], 0, 1);
+                flowTable.Controls.Add(charts[3], 1, 1);
+                flowTable.Controls.Add(charts[4], 0, 2);
+                flowTable.Controls.Add(charts[5], 1, 2);
+                flowTable.Height = 300 * 3;
+                flowTable.Visible = true;
+            }
+            else if (flowDirection == FlowDirectionTypeEnum.LIST)
+            {
+                flowList.Controls.Add(charts[0], 0, 0);
+                flowList.Controls.Add(charts[1], 0, 1);
+                flowList.Controls.Add(charts[2], 0, 2);
+                flowList.Controls.Add(charts[3], 0, 3);
+                flowList.Controls.Add(charts[4], 0, 4);
+                flowList.Controls.Add(charts[5], 0, 5);
+                flowList.Height = 300 * 6;
+                flowList.Visible = true;
+            }
+            else if (flowDirection == FlowDirectionTypeEnum.TAB)
+            {
+                flowTab.TabPages[0].Controls.Add(charts[0]);
+                flowTab.TabPages[0].Text = charts[0].Title;
+                flowTab.TabPages[1].Controls.Add(charts[1]);
+                flowTab.TabPages[1].Text = charts[1].Title;
+                flowTab.TabPages[2].Controls.Add(charts[2]);
+                flowTab.TabPages[2].Text = charts[2].Title;
+                flowTab.TabPages[3].Controls.Add(charts[3]);
+                flowTab.TabPages[3].Text = charts[3].Title;
+                flowTab.TabPages[4].Controls.Add(charts[4]);
+                flowTab.TabPages[4].Text = charts[4].Title;
+                flowTab.TabPages[5].Controls.Add(charts[5]);
+                flowTab.TabPages[5].Text = charts[5].Title;
+                flowTab.Visible = true;
+            }
+
+            foreach (var c in charts)
+            {
+                c.Height = 290;
+                c.Dock = DockStyle.Fill;
+                c.BorderStyle = BorderStyle.None;
+            }
+        }
+
+        public override void loadData()
+        {
+            if (base.SelectedItemData == null) return;
+            if (string.IsNullOrEmpty(base.SelectedItemData.Code)) return;
+
+            string itemCode = base.SelectedItemData.Code;
+            base.loadCnt = 300;
+
+            var list1 = PPContext.Instance.ClientContext.GetSourceData(
+                  base.SelectedItemData.Code
+                , TimeIntervalEnum.Minute_05
+                , null
+                , null
+                , base.loadCnt);
+
+            var list2 = PPContext.Instance.ClientContext.GetSourceData(
+                  base.SelectedItemData.Code
+                , TimeIntervalEnum.Minute_10
+                , null
+                , null
+                , base.loadCnt);
+
+            var list3 = PPContext.Instance.ClientContext.GetSourceData(
+                  base.SelectedItemData.Code
+                , TimeIntervalEnum.Minute_30
+                , null
+                , null
+                , base.loadCnt);
+
+            var list4 = PPContext.Instance.ClientContext.GetSourceData(
+                  base.SelectedItemData.Code
+                , TimeIntervalEnum.Minute_60
+                , null
+                , null
+                , base.loadCnt);
+
+            var list5 = PPContext.Instance.ClientContext.GetSourceData(
+                  base.SelectedItemData.Code
+                , TimeIntervalEnum.Minute_120
+                , null
+                , null
+                , base.loadCnt);
+
+            var list6 = PPContext.Instance.ClientContext.GetSourceData(
+                  base.SelectedItemData.Code
+                , TimeIntervalEnum.Day
+                , null
+                , null
+                , base.loadCnt);
+
+            int round = ItemCodeUtil.GetItemCodeRoundNum(itemCode);
+
+            List<S_CandleItemData> sourceDatas1 = new List<S_CandleItemData>();
+            foreach (var m in list1)
+            {
+                S_CandleItemData sourceData = new S_CandleItemData(
+                      itemCode
+                    , (Single)Math.Round(m.OpenVal, round)
+                    , (Single)Math.Round(m.HighVal, round)
+                    , (Single)Math.Round(m.LowVal, round)
+                    , (Single)Math.Round(m.CloseVal, round)
+                    , m.Volume
+                    , m.DT
+                    );
+                sourceDatas1.Add(sourceData);
+            }
+
+            List<S_CandleItemData> sourceDatas2 = new List<S_CandleItemData>();
+            foreach (var m in list2)
+            {
+                S_CandleItemData sourceData = new S_CandleItemData(
+                      itemCode
+                    , (Single)Math.Round(m.OpenVal, round)
+                    , (Single)Math.Round(m.HighVal, round)
+                    , (Single)Math.Round(m.LowVal, round)
+                    , (Single)Math.Round(m.CloseVal, round)
+                    , m.Volume
+                    , m.DT
+                    );
+                sourceDatas2.Add(sourceData);
+            }
+
+            List<S_CandleItemData> sourceDatas3 = new List<S_CandleItemData>();
+            foreach (var m in list3)
+            {
+                S_CandleItemData sourceData = new S_CandleItemData(
+                      itemCode
+                    , (Single)Math.Round(m.OpenVal, round)
+                    , (Single)Math.Round(m.HighVal, round)
+                    , (Single)Math.Round(m.LowVal, round)
+                    , (Single)Math.Round(m.CloseVal, round)
+                    , m.Volume
+                    , m.DT
+                    );
+                sourceDatas3.Add(sourceData);
+            }
+
+            List<S_CandleItemData> sourceDatas4 = new List<S_CandleItemData>();
+            foreach (var m in list4)
+            {
+                S_CandleItemData sourceData = new S_CandleItemData(
+                      itemCode
+                    , (Single)Math.Round(m.OpenVal, round)
+                    , (Single)Math.Round(m.HighVal, round)
+                    , (Single)Math.Round(m.LowVal, round)
+                    , (Single)Math.Round(m.CloseVal, round)
+                    , m.Volume
+                    , m.DT
+                    );
+                sourceDatas4.Add(sourceData);
+            }
+
+            List<S_CandleItemData> sourceDatas5 = new List<S_CandleItemData>();
+            foreach (var m in list5)
+            {
+                S_CandleItemData sourceData = new S_CandleItemData(
+                      itemCode
+                    , (Single)Math.Round(m.OpenVal, round)
+                    , (Single)Math.Round(m.HighVal, round)
+                    , (Single)Math.Round(m.LowVal, round)
+                    , (Single)Math.Round(m.CloseVal, round)
+                    , m.Volume
+                    , m.DT
+                    );
+                sourceDatas5.Add(sourceData);
+            }
+
+            List<S_CandleItemData> sourceDatas6 = new List<S_CandleItemData>();
+            foreach (var m in list6)
+            {
+                S_CandleItemData sourceData = new S_CandleItemData(
+                      itemCode
+                    , (Single)Math.Round(m.OpenVal, round)
+                    , (Single)Math.Round(m.HighVal, round)
+                    , (Single)Math.Round(m.LowVal, round)
+                    , (Single)Math.Round(m.CloseVal, round)
+                    , m.Volume
+                    , m.DT
+                    );
+                sourceDatas6.Add(sourceData);
+            }
+
+            qMin5.LoadDataAndApply(itemCode, sourceDatas1, TimeIntervalEnum.Minute_05, 3);
+            qMin10.LoadDataAndApply(itemCode, sourceDatas2, TimeIntervalEnum.Minute_10, 3);
+            qMin30.LoadDataAndApply(itemCode, sourceDatas3, TimeIntervalEnum.Minute_30, 3);
+            qMin60.LoadDataAndApply(itemCode, sourceDatas4, TimeIntervalEnum.Minute_60, 3);
+            qMin120.LoadDataAndApply(itemCode, sourceDatas5, TimeIntervalEnum.Minute_120, 3);
+            qDay.LoadDataAndApply(itemCode, sourceDatas6, TimeIntervalEnum.Day, 3);
+
+            Summary(itemCode, (AtomChart)qMin5);
+            Summary(itemCode, (AtomChart)qMin10);
+            Summary(itemCode, (AtomChart)qMin30);
+            Summary(itemCode, (AtomChart)qMin60);
+            Summary(itemCode, (AtomChart)qMin120);
+            Summary(itemCode, (AtomChart)qDay);
+        }
+
+        public void Summary(string itemCode, AtomChart c)
+        {
+            var atomData2 = c.ChartData[c.ChartData.Count - 2];
+            var atomData1 = c.ChartData[c.ChartData.Count - 1];
+
+            double highLinePoint = Math.Round(atomData2.T_HighPrice, RoundLength);
+            double lowLinePoint = Math.Round(atomData2.T_LowPrice, RoundLength);
+
+            PlusMinusTypeEnum plusMinusType = atomData2.PlusMinusType;
+
+            //atomData1.ClosePrice
+            if (plusMinusType == PlusMinusTypeEnum.양)
+            {
+                Lib.Base.Enums.UpDownEnum upDown1 = Lib.Base.Enums.UpDownEnum.None;
+                if (atomData2.OpenPrice < atomData1.OpenPrice && atomData2.ClosePrice < atomData1.ClosePrice)
+                    upDown1 = Lib.Base.Enums.UpDownEnum.StrongUp;
+                else if (atomData2.OpenPrice < atomData1.OpenPrice && atomData2.ClosePrice >= atomData1.ClosePrice)
+                    upDown1 = Lib.Base.Enums.UpDownEnum.WeakUp;
+                else if (atomData2.OpenPrice >= atomData1.OpenPrice && atomData2.ClosePrice >= atomData1.ClosePrice)
+                    upDown1 = Lib.Base.Enums.UpDownEnum.None;
+                CandleSummary.Instance.UpdateSummaryBaseLine(itemCode, c.TimeInterval, "매수", upDown1);
+
+                Lib.Base.Enums.UpDownEnum upDown2 = Lib.Base.Enums.UpDownEnum.None;
+                if (lowLinePoint >= atomData1.ClosePrice && lowLinePoint >= atomData1.LowPrice)
+                    upDown2 = Lib.Base.Enums.UpDownEnum.StrongDown;
+                else if (lowLinePoint < atomData1.ClosePrice && lowLinePoint >= atomData1.LowPrice)
+                    upDown2 = Lib.Base.Enums.UpDownEnum.WeakDown;
+                else if (lowLinePoint < atomData1.ClosePrice && lowLinePoint < atomData1.LowPrice)
+                    upDown2 = Lib.Base.Enums.UpDownEnum.None;
+                CandleSummary.Instance.UpdateSummaryBaseLine(itemCode, c.TimeInterval, "매도", upDown2);
+            }
+            if (plusMinusType == PlusMinusTypeEnum.음)
+            {
+                Lib.Base.Enums.UpDownEnum upDown1 = Lib.Base.Enums.UpDownEnum.None;
+                if (highLinePoint <= atomData1.ClosePrice && highLinePoint <= atomData1.HighPrice)
+                    upDown1 = Lib.Base.Enums.UpDownEnum.StrongUp;
+                else if (highLinePoint > atomData1.ClosePrice && highLinePoint <= atomData1.HighPrice)
+                    upDown1 = Lib.Base.Enums.UpDownEnum.WeakUp;
+                else if (highLinePoint > atomData1.ClosePrice && highLinePoint > atomData1.HighPrice)
+                    upDown1 = Lib.Base.Enums.UpDownEnum.None;
+                CandleSummary.Instance.UpdateSummaryBaseLine(itemCode, c.TimeInterval, "매수", upDown1);
+
+                Lib.Base.Enums.UpDownEnum upDown2 = Lib.Base.Enums.UpDownEnum.None;
+                if (atomData2.OpenPrice > atomData1.OpenPrice && atomData2.ClosePrice > atomData1.ClosePrice)
+                    upDown2 = Lib.Base.Enums.UpDownEnum.StrongDown;
+                else if (atomData2.OpenPrice > atomData1.OpenPrice && atomData2.ClosePrice <= atomData1.ClosePrice)
+                    upDown2 = Lib.Base.Enums.UpDownEnum.WeakDown;
+                else if (atomData2.OpenPrice <= atomData1.OpenPrice && atomData2.ClosePrice <= atomData1.ClosePrice)
+                    upDown2 = Lib.Base.Enums.UpDownEnum.None;
+                CandleSummary.Instance.UpdateSummaryBaseLine(itemCode, c.TimeInterval, "매도", upDown2);
+            }
+        }
+    }
+}

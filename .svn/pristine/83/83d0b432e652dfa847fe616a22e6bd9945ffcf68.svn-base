@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.Lib.Base.Data
+{
+    public interface ITransformedData
+    {
+        ISourceData SourceData { get; }
+
+        List<ISourceData> SourceDataArray { get; }
+
+        double OpenPrice { get; }
+        double HighPrice { get; }
+        double LowPrice { get; }
+        double ClosePrice { get; }
+        double Volume { get; }
+
+        DateTime DTime { get; }
+
+        ITransformedData Transform();
+
+        ITransformedData TransformedData { get; }
+    }
+}

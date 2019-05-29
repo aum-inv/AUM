@@ -1,0 +1,52 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.Lib.Base.Enums
+{
+    public static class EnumUtil
+    {
+        public static string GetFinancialClassificationName(FinancialClassificationEnum financialClassification)
+        {
+            string name = string.Empty;
+
+            switch (financialClassification)
+            {
+                case FinancialClassificationEnum.Commodities:
+                    name = "COMMODITIES";
+                    break;
+                case FinancialClassificationEnum.Crypto:
+                    name = "CRYPTO";
+                    break;
+                case FinancialClassificationEnum.Forex:
+                    name = "FOREX";
+                    break;
+                case FinancialClassificationEnum.Indices:
+                    name = "INDICES";
+                    break;
+                case FinancialClassificationEnum.Stocks:
+                    name = "STOCKS";
+                    break;
+            }
+
+            return name;
+        }
+
+        public static TimeIntervalEnum GetTimeIntervalValue(string gubun, string ncnt)
+        {
+
+            if (gubun == "1" && ncnt == "1") return TimeIntervalEnum.Minute_01;
+            if (gubun == "1" && ncnt == "5") return TimeIntervalEnum.Minute_05;
+            if (gubun == "1" && ncnt == "10") return TimeIntervalEnum.Minute_10;
+            if (gubun == "1" && ncnt == "30") return TimeIntervalEnum.Minute_30;
+            if (gubun == "1" && ncnt == "60") return TimeIntervalEnum.Minute_60;
+            if (gubun == "1" && ncnt == "120") return TimeIntervalEnum.Minute_120;
+            if (gubun == "2") return TimeIntervalEnum.Day;
+            if (gubun == "3") return TimeIntervalEnum.Week;
+            if (gubun == "4") return TimeIntervalEnum.Month;
+            return TimeIntervalEnum.Tick;
+        }
+    }
+}

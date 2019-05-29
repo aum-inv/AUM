@@ -1,0 +1,661 @@
+﻿using OM.Lib.Base.Enums;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.Lib.Base.Utils
+{
+    public static class PointsUtil
+    {
+        public static double GetDistance(double x1, double y1, double x2, double y2)
+        {
+            return Math.Sqrt(Math.Pow((x2 - x1), 2) + Math.Pow((y2 - y1), 2));
+        }
+        
+        public static double GetSlope(double x1, double y1, double x2, double y2)
+        {
+            double slope = (y2 - y1) / (x2 - x1);
+            return slope;
+        }
+        public static double GetAngle(double x1, double y1, double x2, double y2)
+        {
+            double xDiff = x2 - x1;
+            double yDiff = y2 - y1;
+            return Math.Atan2(yDiff, xDiff) * 180.0 / Math.PI;
+        }
+
+        public static bool IsBreakThroughUp(double basePrice, double cPrice, double y2, double y3)
+        {
+            bool isThrough = false;
+            try
+            {
+                if (y2 <= basePrice && y3 <= basePrice)
+                {
+                    if (cPrice >= y2 && cPrice >= y3 && basePrice <= cPrice) isThrough = true;
+                }
+            }
+            catch (Exception) { }
+            return isThrough;
+        }
+        public static bool IsBreakThroughDown(double basePrice, double cPrice, double y2, double y3)
+        {
+            bool isThrough = false;
+            try
+            {
+                if (y2 >= basePrice && y3 >= basePrice)
+                {
+                    if (cPrice <= y2 && cPrice <= y3 && basePrice >= cPrice) isThrough = true;
+                }
+            }
+            catch (Exception) { }
+            return isThrough;
+        }
+        public static bool IsBreakThroughUp(double basePrice, LimitedList<double> yList)
+        {
+            var list = yList.ToList();
+            if (list.Count < 3) return false;
+
+            var cPrice = list[0];
+            var y2 = list[1];
+            var y3 = list[2];
+         
+            return IsBreakThroughUp(basePrice, cPrice, y2, y3);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="basePrice1">큰값</param>
+        /// <param name="basePrice2">작은값</param>
+        /// <param name="yList"></param>
+        /// <returns></returns>
+        public static bool IsBreakThroughUp(double basePrice1, double basePrice2, LimitedList<double> yList)
+        {
+            var list = yList.ToList();
+            if (list.Count < 3) return false;
+
+            var cPrice = list[0];
+            if (basePrice1 > cPrice) return false;
+            if (basePrice2 > cPrice) return false;
+
+            bool isUp1 = false;
+            bool isUp2 = false;
+
+            try
+            {
+                int idx = 0;
+                for (; idx < list.Count - 2; idx++)
+                {
+                    if (IsBreakThroughUp(basePrice1, list[idx], list[idx + 1], list[idx + 2])) { isUp1 = true; break; }
+                }
+                for (; idx < list.Count - 2; idx++)
+                {
+                    if (IsBreakThroughUp(basePrice2, list[idx], list[idx + 1], list[idx + 2])) { isUp2 = true; break; }
+                }
+                if (isUp1 && isUp2) return true;
+            }
+            catch (Exception) { }
+
+            return false;
+        }
+        public static bool IsBreakThroughDown(double basePrice, LimitedList<double> yList)
+        {
+            var list = yList.ToList();
+            if (list.Count < 3) return false;
+
+            var cPrice = list[0];
+            var y2 = list[1];
+            var y3 = list[2];
+
+            return IsBreakThroughDown(basePrice, cPrice, y2, y3);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="basePrice1">작은값</param>
+        /// <param name="basePrice2">큰값</param>
+        /// <param name="yList"></param>
+        /// <returns></returns>
+        public static bool IsBreakThroughDown(double basePrice1, double basePrice2, LimitedList<double> yList)
+        {
+            var list = yList.ToList();
+            if (list.Count < 3) return false;
+
+            var cPrice = list[0];
+            if (basePrice1 < cPrice) return false;
+            if (basePrice2 < cPrice) return false;
+
+            bool isDown1 = false;
+            bool isDown2 = false;
+
+            try
+            {
+                int idx = 0;
+                for (; idx < list.Count - 2; idx++)
+                {
+                    if (IsBreakThroughDown(basePrice1, list[idx], list[idx + 1], list[idx + 2])) { isDown1 = true; break; }
+                }
+                for (; idx < list.Count - 2; idx++)
+                {
+                    if (IsBreakThroughDown(basePrice2, list[idx], list[idx + 1], list[idx + 2])) { isDown2 = true; break; }
+                }
+                if (isDown1 && isDown2) return true;
+            }
+            catch (Exception) { }
+
+            return false;
+        }
+
+        public static bool IsBreakThroughDownUp(double basePrice, LimitedList<double> yList)
+        {
+            var list = yList.ToList();
+            if (list.Count < 3) return false;
+
+            var cPrice = list[0];
+            if (basePrice > cPrice) return false;
+
+            try
+            {
+                bool isDown = false;
+                bool isUp = false;
+                int idx = 0;
+                for (; idx < list.Count; idx++)
+                {
+                    if (basePrice <= list[idx]) { isUp = true; break; }
+                }
+                for (; idx < list.Count; idx++)
+                {
+                    if (basePrice >= list[idx]) { isDown = true; break; }
+                }
+
+                if (isDown && isUp) return true;
+            }
+            catch (Exception) { }
+
+            return false;
+        }
+        public static bool IsBreakThroughUpDown(double basePrice, LimitedList<double> yList)
+        {
+            var list = yList.ToList();
+            if (list.Count < 3) return false;
+
+            var cPrice = list[0];
+            if (basePrice < cPrice) return false;
+
+            try
+            {
+                bool isDown = false;
+                bool isUp = false;
+                int idx = 0;
+                for (; idx < list.Count; idx++)
+                {
+                    if (basePrice >= list[idx]) { isDown = true; break; }
+                }
+
+                for (; idx < list.Count; idx++)
+                {
+                    if (basePrice <= list[idx]) { isUp = true; break; }
+                }
+
+                if (isDown && isUp) return true;
+            }
+            catch (Exception) { }
+
+            return false;
+        }
+
+        public static bool IsBreakThrough(PricePatternEnum pricePattern, double price, LimitedList<double> list)
+        {
+            if (pricePattern == PricePatternEnum.UP)
+            {
+                return IsBreakThroughUp(price, list);
+            }
+            else if (pricePattern == PricePatternEnum.DOWN)
+            {
+                return IsBreakThroughDown(price, list);
+            }
+            else if (pricePattern == PricePatternEnum.UPDOWN)
+            {
+                return IsBreakThroughUpDown(price, list);
+            }
+            else if (pricePattern == PricePatternEnum.DOWNUP)
+            {
+                return IsBreakThroughDownUp(price, list);
+            }
+
+            return false;
+        }
+
+        public static UpDownPatternEnum GetUpDownPattern(LimitedList<double> yList, double basePrice)
+        {
+            UpDownPatternEnum upDownPattern = UpDownPatternEnum.None;
+
+            var list = yList.ToList();
+            if (list.Count < 3) return upDownPattern;
+          
+            string result = "";
+            string lastResult = "";
+
+            int idx = 0;
+
+            try
+            {
+                for (; idx < list.Count; idx++)
+                {
+                    if (basePrice <= list[idx] && lastResult != "U")
+                    {
+                        result += "U";
+                        lastResult = "U";
+                    }
+                    if (basePrice >= list[idx] && lastResult != "D")
+                    {
+                        result += "D";
+                        lastResult = "D";
+                    }
+
+                    if (result.Length == 7) break;
+                }
+
+                result = ReverseXor(result);
+
+                if (result == "UDUDUDU") upDownPattern = UpDownPatternEnum.UpDownUpDownUpDownUp;
+                else if (result == "DUDUDUD") upDownPattern = UpDownPatternEnum.DownUpDownUpDownUpDown;
+                else if (result == "UDUDUD") upDownPattern = UpDownPatternEnum.UpDownUpDownUpDown;
+                else if (result == "DUDUDU") upDownPattern = UpDownPatternEnum.DownUpDownUpDownUp;
+                else if (result == "UDUDU") upDownPattern = UpDownPatternEnum.UpDownUpDownUp;
+                else if (result == "DUDUD") upDownPattern = UpDownPatternEnum.DownUpDownUpDown;
+                else if (result == "UDUD") upDownPattern = UpDownPatternEnum.UpDownUpDown;
+                else if (result == "DUDU") upDownPattern = UpDownPatternEnum.DownUpDownUp;
+                //else if (result == "UDU") upDownPattern = UpDownPatternEnum.UpDownUp;
+                //else if (result == "DUD") upDownPattern = UpDownPatternEnum.DownUpDown;
+                //else if (result == "UD") upDownPattern = UpDownPatternEnum.UpDown;
+                //else if (result == "DU") upDownPattern = UpDownPatternEnum.DownUp;
+                //else if (result == "U") upDownPattern = UpDownPatternEnum.Up;
+                //else if (result == "D") upDownPattern = UpDownPatternEnum.Down;
+            }
+            catch (Exception)
+            {
+            }
+            return upDownPattern;
+        }
+
+        public static UpDownPatternEnum GetUpDownPattern(LimitedList<double> yList, double upPrice, double downPrice)
+        {
+            UpDownPatternEnum upDownPattern = UpDownPatternEnum.None;
+
+            var list = yList.ToList();
+            if (list.Count < 3) return upDownPattern;
+
+            string result = "";
+            string lastResult = "";
+
+            int idx = 0;
+
+            try
+            {
+                for (; idx < list.Count; idx++)
+                {
+                    if (upPrice <= list[idx] && lastResult != "U")
+                    {
+                        result += "U";
+                        lastResult = "U";
+                    }
+                    if (downPrice >= list[idx] && lastResult != "D")
+                    {
+                        result += "D";
+                        lastResult = "D";
+                    }
+
+                    if (result.Length == 7) break;
+                }
+
+                result = ReverseXor(result);
+
+                if (result == "UDUDUDU") upDownPattern = UpDownPatternEnum.UpDownUpDownUpDownUp;
+                else if (result == "DUDUDUD") upDownPattern = UpDownPatternEnum.DownUpDownUpDownUpDown;
+                else if (result == "UDUDUD") upDownPattern = UpDownPatternEnum.UpDownUpDownUpDown;
+                else if (result == "DUDUDU") upDownPattern = UpDownPatternEnum.DownUpDownUpDownUp;
+                else if (result == "UDUDU") upDownPattern = UpDownPatternEnum.UpDownUpDownUp;
+                else if (result == "DUDUD") upDownPattern = UpDownPatternEnum.DownUpDownUpDown;
+                else if (result == "UDUD") upDownPattern = UpDownPatternEnum.UpDownUpDown;
+                else if (result == "DUDU") upDownPattern = UpDownPatternEnum.DownUpDownUp;
+                //else if (result == "UDU") upDownPattern = UpDownPatternEnum.UpDownUp;
+                //else if (result == "DUD") upDownPattern = UpDownPatternEnum.DownUpDown;
+                //else if (result == "UD") upDownPattern = UpDownPatternEnum.UpDown;
+                //else if (result == "DU") upDownPattern = UpDownPatternEnum.DownUp;
+                //else if (result == "U") upDownPattern = UpDownPatternEnum.Up;
+                //else if (result == "D") upDownPattern = UpDownPatternEnum.Down;
+            }
+            catch (Exception)
+            {
+            }
+            return upDownPattern;
+        }
+
+        public static UpDownPatternEnum GetUpDownPattern(LimitedList<double> yList, List<double> basePrices)
+        {
+            UpDownPatternEnum upDownPattern = UpDownPatternEnum.None;
+
+            var list = yList.ToList();
+            if (list.Count < 3) return upDownPattern;
+
+            string result = "";
+            string lastResult = "";
+
+            int idx = 0;
+            int pIdx = basePrices.Count - 1;
+            int totalMatched = 0;
+            try
+            {
+                for (; pIdx >= 0; pIdx--)
+                {
+                    double basePrice = basePrices[pIdx];
+                    int matched = 0;
+                    for (; idx < list.Count; idx++)
+                    {
+                        if (basePrice <= list[idx] && lastResult != "U")
+                        {
+                            result += "U";
+                            lastResult = "U";
+                            matched++;
+                        }
+                        if (basePrice >= list[idx] && lastResult != "D")
+                        {
+                            result += "D";
+                            lastResult = "D";
+                            matched++;
+                        }
+                        if (matched == 2)
+                        {
+                            totalMatched++;
+                            break;
+                        }
+                    }
+                    if (result.Length == (basePrices.Count * 2) + 1) break;
+                }
+                if (totalMatched == basePrices.Count)
+                {
+                    result = ReverseXor(result);
+
+                    if (result == "UDUDUDU") upDownPattern = UpDownPatternEnum.UpDownUpDownUpDownUp;
+                    else if (result == "DUDUDUD") upDownPattern = UpDownPatternEnum.DownUpDownUpDownUpDown;
+                    else if (result == "UDUDUD") upDownPattern = UpDownPatternEnum.UpDownUpDownUpDown;
+                    else if (result == "DUDUDU") upDownPattern = UpDownPatternEnum.DownUpDownUpDownUp;
+                    else if (result == "UDUDU") upDownPattern = UpDownPatternEnum.UpDownUpDownUp;
+                    else if (result == "DUDUD") upDownPattern = UpDownPatternEnum.DownUpDownUpDown;
+                    else if (result == "UDUD") upDownPattern = UpDownPatternEnum.UpDownUpDown;
+                    else if (result == "DUDU") upDownPattern = UpDownPatternEnum.DownUpDownUp;
+                    //else if (result == "UDU") upDownPattern = UpDownPatternEnum.UpDownUp;
+                    //else if (result == "DUD") upDownPattern = UpDownPatternEnum.DownUpDown;
+                    //else if (result == "UD") upDownPattern = UpDownPatternEnum.UpDown;
+                    //else if (result == "DU") upDownPattern = UpDownPatternEnum.DownUp;
+                    //else if (result == "U") upDownPattern = UpDownPatternEnum.Up;
+                    //else if (result == "D") upDownPattern = UpDownPatternEnum.Down;
+                }
+            }
+            catch (Exception)
+            {
+            }
+            return upDownPattern;
+        }
+
+        public static UpDownPatternEnum GetUpDownPattern(LimitedList<double> yList, List<double> upPrices, List<double> downPrices)
+        {
+            UpDownPatternEnum upDownPattern = UpDownPatternEnum.None;
+
+            var list = yList.ToList();
+            if (list.Count < 3) return upDownPattern;
+
+            string result = "";
+            string lastResult = "";
+
+            int idx = 0;
+            int pIdx = upPrices.Count - 1;
+            int totalMatched = 0;
+            try
+            {
+                for (; pIdx >= 0; pIdx--)
+                {
+                    double upPrice = upPrices[pIdx];
+                    double downPrice = downPrices[pIdx];
+                    int matched = 0;
+                    for (; idx < list.Count; idx++)
+                    {
+                        if (upPrice <= list[idx] && lastResult != "U")
+                        {
+                            result += "U";
+                            lastResult = "U";
+                            matched++;
+                        }
+                        if (downPrice >= list[idx] && lastResult != "D")
+                        {
+                            result += "D";
+                            lastResult = "D";
+                            matched++;
+                        }
+                        if (matched == 2)
+                        {
+                            totalMatched++;
+                            break;
+                        }
+                    }
+                    if (result.Length == (upPrices.Count * 2) + 1) break;                
+                }
+                if (pIdx == -1)
+                {
+                    result = ReverseXor(result);
+
+                    if (result == "UDUDUDU") upDownPattern = UpDownPatternEnum.UpDownUpDownUpDownUp;
+                    else if (result == "DUDUDUD") upDownPattern = UpDownPatternEnum.DownUpDownUpDownUpDown;
+                    else if (result == "UDUDUD") upDownPattern = UpDownPatternEnum.UpDownUpDownUpDown;
+                    else if (result == "DUDUDU") upDownPattern = UpDownPatternEnum.DownUpDownUpDownUp;
+                    else if (result == "UDUDU") upDownPattern = UpDownPatternEnum.UpDownUpDownUp;
+                    else if (result == "DUDUD") upDownPattern = UpDownPatternEnum.DownUpDownUpDown;
+                    else if (result == "UDUD") upDownPattern = UpDownPatternEnum.UpDownUpDown;
+                    else if (result == "DUDU") upDownPattern = UpDownPatternEnum.DownUpDownUp;
+                    //else if (result == "UDU") upDownPattern = UpDownPatternEnum.UpDownUp;
+                    //else if (result == "DUD") upDownPattern = UpDownPatternEnum.DownUpDown;
+                    //else if (result == "UD") upDownPattern = UpDownPatternEnum.UpDown;
+                    //else if (result == "DU") upDownPattern = UpDownPatternEnum.DownUp;
+                    //else if (result == "U") upDownPattern = UpDownPatternEnum.Up;
+                    //else if (result == "D") upDownPattern = UpDownPatternEnum.Down;
+                }
+            }
+            catch (Exception)
+            {
+            }
+            return upDownPattern;
+        }
+
+        public static TickLineChartPatternEnum GetTwoLinePattern(LimitedList<double> yList)
+        {
+            TickLineChartPatternEnum upDownPattern = TickLineChartPatternEnum.None;
+            var list = yList.ToList();
+            if (list.Count < 100) return upDownPattern;
+
+            double avgPoint = list.Average();
+            double highAvgPoint = (list.Max() + avgPoint) / 2.0;
+            double lowAvgPoint = (list.Min() + avgPoint) / 2.0;
+
+            string result = "";
+            string lastResult = "";
+
+            int idx = 0;
+            try
+            {
+                for (; idx < list.Count; idx++)
+                {
+                    if (highAvgPoint <= list[idx] && lastResult != "H")
+                    {
+                        result += "H";
+                        lastResult = "H";
+                    }
+                    if (lowAvgPoint >= list[idx] && lastResult != "L")
+                    {
+                        result += "L";
+                        lastResult = "L";
+                    }
+
+                    if (result.Length == 3) break;
+                }
+
+                result = ReverseXor(result);
+
+                if (result == "HLH") upDownPattern = TickLineChartPatternEnum.HLH;
+                else if (result == "LHL") upDownPattern = TickLineChartPatternEnum.LHL;                
+            }
+            catch (Exception)
+            {
+            }
+            return upDownPattern;
+        }
+
+        public static TickLineChartPatternEnum GetThreeLinePattern(LimitedList<double> yList)
+        {
+            TickLineChartPatternEnum upDownPattern = TickLineChartPatternEnum.None;
+            var list = yList.ToList();
+            if (list.Count < 100) return upDownPattern;
+
+            double avgPoint = list.Average();
+            double highAvgPoint = (list.Max() + avgPoint) / 2.0;
+            double lowAvgPoint = (list.Min() + avgPoint) / 2.0;
+
+            string result = "";
+            string lastResult = "";
+
+            int idx = 0;
+            try
+            {
+                for (; idx < list.Count; idx++)
+                {
+                    if (highAvgPoint <= list[idx] && lastResult != "H")
+                    {
+                        result += "H";
+                        lastResult = "H";
+                    }
+                    else if (lowAvgPoint >= list[idx] && lastResult != "L")
+                    {
+                        result += "L";
+                        lastResult = "L";
+                    }
+
+                    else if ((highAvgPoint > list[idx] && avgPoint < list[idx]) && lastResult != "M")
+                    {
+                        result += "M";
+                        lastResult = "M";
+                    }
+                    else if ((lowAvgPoint < list[idx] && avgPoint < list[idx]) && lastResult != "M")
+                    {
+                        result += "M";
+                        lastResult = "M";
+                    }
+
+                    if (result.Length == 7) break;
+                }
+                result = ReverseXor(result);
+
+                //Header And Shoulder
+                if (result == "LMLMHML")
+                    upDownPattern = TickLineChartPatternEnum.LMLMHML;
+                //Inversal Header And Shoulder
+                else if (result == "HMHMLMH")
+                    upDownPattern = TickLineChartPatternEnum.HMHMLMH;
+            }
+            catch (Exception)
+            {
+            }
+            return upDownPattern;
+        }
+
+        public static UpDownPatternEnum GetOneLineUpDownPatternH(LimitedList<double> yList)
+        {
+            UpDownPatternEnum upDownPattern = UpDownPatternEnum.None;
+            var list = yList.ToList();
+            if (list.Count < 100) return upDownPattern;
+
+            double avgPoint = list.Average();
+            double highAvgPoint = (list.Max() + avgPoint) / 2.0;
+            double lowAvgPoint = (list.Min() + avgPoint) / 2.0;
+
+            return GetUpDownPattern(yList, highAvgPoint);
+          
+        }
+        public static UpDownPatternEnum GetOneLineUpDownPatternM(LimitedList<double> yList)
+        {
+            UpDownPatternEnum upDownPattern = UpDownPatternEnum.None;
+            var list = yList.ToList();
+            if (list.Count < 100) return upDownPattern;
+
+            double avgPoint = list.Average();
+            double highAvgPoint = (list.Max() + avgPoint) / 2.0;
+            double lowAvgPoint = (list.Min() + avgPoint) / 2.0;
+
+            return GetUpDownPattern(yList, avgPoint);        
+        }
+        public static UpDownPatternEnum GetOneLineUpDownPatternL(LimitedList<double> yList)
+        {
+            UpDownPatternEnum upDownPattern = UpDownPatternEnum.None;
+            var list = yList.ToList();
+            if (list.Count < 100) return upDownPattern;
+
+            double avgPoint = list.Average();
+            double highAvgPoint = (list.Max() + avgPoint) / 2.0;
+            double lowAvgPoint = (list.Min() + avgPoint) / 2.0;
+
+            return GetUpDownPattern(yList, lowAvgPoint);           
+        }
+
+        public static UpDownPatternEnum GetTwoLineUpDownPatternHL(LimitedList<double> yList)
+        {
+            UpDownPatternEnum upDownPattern = UpDownPatternEnum.None;
+            var list = yList.ToList();
+            if (list.Count < 100) return upDownPattern;
+
+            double avgPoint = list.Average();
+            double highAvgPoint = (list.Max() + avgPoint) / 2.0;
+            double lowAvgPoint = (list.Min() + avgPoint) / 2.0;
+
+            return GetUpDownPattern(yList, highAvgPoint, lowAvgPoint);
+        }
+        public static UpDownPatternEnum GetTwoLineUpDownPatternHM(LimitedList<double> yList)
+        {
+            UpDownPatternEnum upDownPattern = UpDownPatternEnum.None;
+            var list = yList.ToList();
+            if (list.Count < 100) return upDownPattern;
+
+            double avgPoint = list.Average();
+            double highAvgPoint = (list.Max() + avgPoint) / 2.0;
+            double lowAvgPoint = (list.Min() + avgPoint) / 2.0;
+
+            return GetUpDownPattern(yList, highAvgPoint, avgPoint);
+        }
+        public static UpDownPatternEnum GetTwoLineUpDownPatternLM(LimitedList<double> yList)
+        {
+            UpDownPatternEnum upDownPattern = UpDownPatternEnum.None;
+            var list = yList.ToList();
+            if (list.Count < 100) return upDownPattern;
+
+            double avgPoint = list.Average();
+            double highAvgPoint = (list.Max() + avgPoint) / 2.0;
+            double lowAvgPoint = (list.Min() + avgPoint) / 2.0;
+
+            return GetUpDownPattern(yList, avgPoint, lowAvgPoint);
+        }
+
+        public static string ReverseXor(string s)
+        {
+            char[] charArray = s.ToCharArray();
+            int len = s.Length - 1;
+
+            for (int i = 0; i < len; i++, len--)
+            {
+                charArray[i] ^= charArray[len];
+                charArray[len] ^= charArray[i];
+                charArray[i] ^= charArray[len];
+            }
+
+            return new string(charArray);
+        }
+    }
+}

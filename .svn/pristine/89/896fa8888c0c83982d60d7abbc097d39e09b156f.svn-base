@@ -1,0 +1,35 @@
+﻿using OM.Lib.Base.Utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.PP.Chakra
+{
+    public abstract class A_CLOSE
+    {
+        public string ItemCode
+        {
+            get;
+            set;
+        } = "";
+
+        public int RoundLength
+        {
+            get
+            {
+                return ItemCodeUtil.GetItemCodeRoundNum(ItemCode);
+            }
+        }
+
+        public Single ClosePrice1 { get; set; } = 0;
+        public Single ClosePrice2 { get; set; } = 0;
+        public Single ClosePrice3 { get; set; } = 0;
+        public Single ClosePrice4 { get; set; } = 0;
+     
+        public Single Volume { get; set; } = 0;
+
+        public DateTime DTime { get; set; }
+    }
+}

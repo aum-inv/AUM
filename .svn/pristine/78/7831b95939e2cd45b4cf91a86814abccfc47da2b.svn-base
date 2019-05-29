@@ -1,0 +1,174 @@
+﻿using OM.Lib.Base.Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.PP.Chakra
+{
+    /// <summary>
+    /// 천지인 데이터
+    /// </summary>
+    public class T_SLHItemData : ITransformedData
+    {
+        private ISourceData sourceData = null;
+
+        public T_SLHItemData(ISourceData sourceData)
+        {
+            this.sourceData = sourceData;
+        }
+     
+        public Single open = 0;
+        public Single high = 0;
+        public Single low = 0;
+        public Single close = 0;
+        public Single volume = 0;
+        public DateTime dt;
+        public Single OpenPrice { get { return open; } }
+        public Single HighPrice { get { return high; } }
+        public Single LowPrice { get { return low; } }
+        public Single ClosePrice { get { return close; } }
+        public Single Volume { get { return volume; } }
+        public DateTime DTime { get { return dt; } }
+
+        public Single t_open = 0;
+        public Single t_high = 0;
+        public Single t_low = 0;
+        public Single t_close = 0;
+        public Single T_OpenPrice { get { return t_open; } }
+        public Single T_HighPrice { get { return t_high; } }
+        public Single T_LowPrice { get { return t_low; } }
+        public Single T_ClosePrice { get { return t_close; } }
+
+        public SLHTypeEnum slhType =  SLHTypeEnum.없음;
+
+        public SLHTypeEnum SLHType { get { return slhType; } }
+
+        public ISourceData SourceData { get { return sourceData; } }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public void Transform()
+        {
+            try
+            {
+                if (sourceData != null)
+                {
+                    open = sourceData.OpenPrice;
+                    high = sourceData.HighPrice;
+                    low = sourceData.LowPrice;
+                    close = sourceData.ClosePrice;
+                    dt = sourceData.DTime;
+                    
+                    t_open = sourceData.OpenPrice;
+                    t_high = sourceData.HighPrice;
+                    t_low = sourceData.LowPrice;
+                    t_close = sourceData.ClosePrice;
+                    
+                    Single cOpen = open < close ? open : close;
+                    Single cClose = open < close ? close : open;
+                    Single cHigh = open < close ? high : high;
+                    Single cLow = open < close ? low : low;
+
+                    Single totalLength = cHigh - cLow;
+                    Single headLegth = cHigh - cClose;
+                    Single bodyLength = cClose - cOpen;
+                    Single legLength = cOpen - cLow;
+
+                    int headLengthRate = (int)(headLegth / totalLength * 100.0);
+                    int bodyLengthRate = (int)(bodyLength / totalLength * 100.0);
+                    int legLengthRate = (int)(legLength / totalLength * 100.0);
+                   
+                    if (무극여부(headLengthRate, bodyLengthRate, legLengthRate)) slhType = SLHTypeEnum.무극;
+                    else if (태양여부(headLengthRate, bodyLengthRate, legLengthRate)) slhType = SLHTypeEnum.태양;
+                    else if (양명여부(headLengthRate, bodyLengthRate, legLengthRate)) slhType = SLHTypeEnum.양명;
+                    else if (소양여부(headLengthRate, bodyLengthRate, legLengthRate)) slhType = SLHTypeEnum.소양;
+                    else if (태음여부(headLengthRate, bodyLengthRate, legLengthRate)) slhType = SLHTypeEnum.태음;
+                    else if (소음여부(headLengthRate, bodyLengthRate, legLengthRate)) slhType = SLHTypeEnum.소음;
+                    else if (궐음여부(headLengthRate, bodyLengthRate, legLengthRate)) slhType = SLHTypeEnum.궐음;
+                }                
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        private bool 무극여부(int headLengthRate, int bodyLengthRate, int legLengthRate)
+        {  
+            bool isTrue = (headLengthRate >= 30.0 && bodyLengthRate >= 30.0 && legLengthRate >= 30.0) ;
+
+            return isTrue;
+        }
+
+        private bool 태양여부(int headLengthRate, int bodyLengthRate, int legLengthRate)
+        {
+            if (open > close) return false;
+            bool isTrue = false;
+            if ((headLengthRate + bodyLengthRate) >= 70.0 && headLengthRate == bodyLengthRate)
+            {
+                isTrue = true;
+            }
+
+            return isTrue;
+        }
+        private bool 양명여부(int headLengthRate, int bodyLengthRate, int legLengthRate)
+        {
+            if (open > close) return false;
+
+            bool isTrue = false;
+            if ((headLengthRate + bodyLengthRate) >= 70.0 && headLengthRate > bodyLengthRate)
+            {
+                isTrue = true;
+            }
+
+            return isTrue;
+        }
+        private bool 소양여부(int headLengthRate, int bodyLengthRate, int legLengthRate)
+        {
+            if (open > close) return false;
+            bool isTrue = false;
+            if ((headLengthRate + bodyLengthRate) >= 70 && headLengthRate < bodyLengthRate)
+            {
+                isTrue = true;
+            }
+            return isTrue;
+        }
+
+        private bool 태음여부(int headLengthRate, int bodyLengthRate, int legLengthRate)
+        {
+            if (open < close) return false;
+            bool isTrue = false;
+            if ((legLengthRate + bodyLengthRate) >= 70 && legLengthRate == bodyLengthRate)
+            {
+                isTrue = true;
+            }
+            return isTrue;
+        }
+        private bool 소음여부(int headLengthRate, int bodyLengthRate, int legLengthRate)
+        {
+            if (open < close) return false;
+
+            bool isTrue = false;
+            if ((legLengthRate + bodyLengthRate) >= 70 && legLengthRate > bodyLengthRate)
+            {
+                isTrue = true;
+            }
+            return isTrue;
+        }
+        private bool 궐음여부(int headLengthRate, int bodyLengthRate, int legLengthRate)
+        {
+            if (open < close) return false;
+
+            bool isTrue = false;
+            if ((legLengthRate + bodyLengthRate) >= 70 && legLengthRate < bodyLengthRate)
+            {
+                isTrue = true;
+            }
+            return isTrue;
+        }
+
+    }
+}

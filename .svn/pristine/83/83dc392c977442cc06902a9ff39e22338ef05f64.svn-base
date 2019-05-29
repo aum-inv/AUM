@@ -1,0 +1,131 @@
+﻿using OM.Lib.Base.Utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.PP.Chakra
+{
+    public abstract class A_HLOC
+    {
+        public string ItemCode
+        {
+            get;
+            set;
+        } = "";
+
+        public int RoundLength
+        {
+            get
+            {
+                return ItemCodeUtil.GetItemCodeRoundNum(ItemCode);
+            }
+        }
+
+        public Single OpenPrice { get; set; } = 0;
+        public Single HighPrice { get; set; } = 0;
+        public Single LowPrice { get; set; } = 0;
+        
+        public Single ClosePrice { get; set; } = 0;
+        public Single Volume { get; set; } = 0;
+         
+        public Single CenterPrice
+        {
+            get
+            {
+                return (HighPrice + LowPrice) / 2.0f;
+            }
+        }
+
+        public Single MiddlePrice
+        {
+            get
+            {
+                return (OpenPrice + ClosePrice) / 2.0f;
+            }
+        }
+        
+        public Single QuantumPrice
+        {
+            get
+            {
+                if (PlusMinusType == PlusMinusTypeEnum.양)
+                {
+                    return OpenPrice - Math.Abs(OpenPrice - ClosePrice);
+                }
+                else if (PlusMinusType == PlusMinusTypeEnum.음)
+                {
+                    return OpenPrice + Math.Abs(OpenPrice - ClosePrice);
+                }
+                else
+                    return OpenPrice;
+            }
+        }
+
+        public DateTime DTime { get; set; }
+
+
+        public PlusMinusTypeEnum PlusMinusType
+        {
+            get
+            {
+                if (OpenPrice < ClosePrice) return PlusMinusTypeEnum.양;
+                else if (OpenPrice > ClosePrice) return PlusMinusTypeEnum.음;
+                else return PlusMinusTypeEnum.무;
+            }
+        }
+
+        public PlusMinusTypeEnum PlusMinusType2
+        {
+            get
+            {
+                if (CenterPrice < MiddlePrice) return PlusMinusTypeEnum.양;
+                else if (CenterPrice > MiddlePrice) return PlusMinusTypeEnum.음;
+                else return PlusMinusTypeEnum.무;
+            }
+        }
+
+        public Single GetPlusMass(A_HLOC b)
+        {
+            //전종 – 현종
+            //전시 – 현시
+            //전시 – 고
+            //현시 - 고
+            //전종 – 고
+            //현종 – 고
+
+            Single h = b.HighPrice > HighPrice ? b.HighPrice : HighPrice;
+
+            Single m1 = Math.Abs(b.ClosePrice - this.ClosePrice);
+            Single m2 = Math.Abs(b.OpenPrice - this.OpenPrice);
+            Single m3 = Math.Abs(b.OpenPrice - h);
+            Single m4 = Math.Abs(this.OpenPrice - h);
+            Single m5 = Math.Abs(b.ClosePrice - h);
+            Single m6 = Math.Abs(this.ClosePrice - h);
+
+            return (m1 + m2 + m3 + m4 + m5 + m6);
+        }
+
+        public Single GetMinusMass(A_HLOC b)
+        {
+            //전종 – 현종
+            //전시 – 현시
+            //전시 – 고
+            //현시 - 고
+            //전종 – 고
+            //현종 – 고
+
+            Single l = b.LowPrice < LowPrice ? b.LowPrice : LowPrice;
+
+            Single m1 = Math.Abs(b.ClosePrice - this.ClosePrice);
+            Single m2 = Math.Abs(b.OpenPrice - this.OpenPrice);
+            Single m3 = Math.Abs(b.OpenPrice - l);
+            Single m4 = Math.Abs(this.OpenPrice - l);
+            Single m5 = Math.Abs(b.ClosePrice - l);
+            Single m6 = Math.Abs(this.ClosePrice - l);
+
+            return (m1 + m2 + m3 + m4 + m5 + m6);
+        }
+    }
+}

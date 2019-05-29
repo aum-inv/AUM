@@ -1,0 +1,237 @@
+﻿namespace OM.Vikala.Chakra.App.Mains
+{
+    partial class MainForm
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsbMC1 = new System.Windows.Forms.ToolStripButton();
+            this.tsbMC2 = new System.Windows.Forms.ToolStripButton();
+            this.tsbMC3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripSplitButton();
+            this.aTOM원자챠트ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripButton5 = new System.Windows.Forms.ToolStripSplitButton();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripButton6 = new System.Windows.Forms.ToolStripSplitButton();
+            this.기본라인챠트ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton7 = new System.Windows.Forms.ToolStripSplitButton();
+            this.오색챠트ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabPage = new System.Windows.Forms.TabControl();
+            this.toolStrip1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.AutoSize = false;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(40, 40);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbMC1,
+            this.tsbMC2,
+            this.tsbMC3,
+            this.toolStripSeparator1,
+            this.toolStripButton4,
+            this.toolStripButton5,
+            this.toolStripButton6,
+            this.toolStripSeparator2,
+            this.toolStripButton7});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1151, 40);
+            this.toolStrip1.TabIndex = 0;
+            // 
+            // tsbMC1
+            // 
+            this.tsbMC1.Image = ((System.Drawing.Image)(resources.GetObject("tsbMC1.Image")));
+            this.tsbMC1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbMC1.Name = "tsbMC1";
+            this.tsbMC1.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
+            this.tsbMC1.Size = new System.Drawing.Size(119, 37);
+            this.tsbMC1.Text = "멀티챠트";
+            this.tsbMC1.Click += new System.EventHandler(this.tsbMC1_Click);
+            // 
+            // tsbMC2
+            // 
+            this.tsbMC2.Image = ((System.Drawing.Image)(resources.GetObject("tsbMC2.Image")));
+            this.tsbMC2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbMC2.Name = "tsbMC2";
+            this.tsbMC2.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
+            this.tsbMC2.Size = new System.Drawing.Size(126, 37);
+            this.tsbMC2.Text = "멀티챠트2";
+            // 
+            // tsbMC3
+            // 
+            this.tsbMC3.Image = ((System.Drawing.Image)(resources.GetObject("tsbMC3.Image")));
+            this.tsbMC3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbMC3.Name = "tsbMC3";
+            this.tsbMC3.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
+            this.tsbMC3.Size = new System.Drawing.Size(126, 37);
+            this.tsbMC3.Text = "멀티챠트3";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 40);
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.DropDownButtonWidth = 30;
+            this.toolStripButton4.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aTOM원자챠트ToolStripMenuItem});
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(166, 37);
+            this.toolStripButton4.Text = "캔들라인형챠트";
+            // 
+            // aTOM원자챠트ToolStripMenuItem
+            // 
+            this.aTOM원자챠트ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("aTOM원자챠트ToolStripMenuItem.Image")));
+            this.aTOM원자챠트ToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.aTOM원자챠트ToolStripMenuItem.Name = "aTOM원자챠트ToolStripMenuItem";
+            this.aTOM원자챠트ToolStripMenuItem.Size = new System.Drawing.Size(174, 24);
+            this.aTOM원자챠트ToolStripMenuItem.Text = "ATOM(원자) 챠트";
+            // 
+            // toolStripButton5
+            // 
+            this.toolStripButton5.DropDownButtonWidth = 30;
+            this.toolStripButton5.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
+            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton5.Name = "toolStripButton5";
+            this.toolStripButton5.Size = new System.Drawing.Size(142, 37);
+            this.toolStripButton5.Text = "캔들형챠트";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem1.Image")));
+            this.toolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 24);
+            this.toolStripMenuItem1.Text = "기본캔들챠트";
+            // 
+            // toolStripButton6
+            // 
+            this.toolStripButton6.DropDownButtonWidth = 30;
+            this.toolStripButton6.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.기본라인챠트ToolStripMenuItem});
+            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
+            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton6.Name = "toolStripButton6";
+            this.toolStripButton6.Size = new System.Drawing.Size(142, 37);
+            this.toolStripButton6.Text = "라인형챠트";
+            // 
+            // 기본라인챠트ToolStripMenuItem
+            // 
+            this.기본라인챠트ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("기본라인챠트ToolStripMenuItem.Image")));
+            this.기본라인챠트ToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.기본라인챠트ToolStripMenuItem.Name = "기본라인챠트ToolStripMenuItem";
+            this.기본라인챠트ToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.기본라인챠트ToolStripMenuItem.Text = "기본라인챠트";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 40);
+            // 
+            // toolStripButton7
+            // 
+            this.toolStripButton7.DropDownButtonWidth = 30;
+            this.toolStripButton7.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.오색챠트ToolStripMenuItem});
+            this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
+            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton7.Name = "toolStripButton7";
+            this.toolStripButton7.Size = new System.Drawing.Size(142, 37);
+            this.toolStripButton7.Text = "기타형챠트";
+            // 
+            // 오색챠트ToolStripMenuItem
+            // 
+            this.오색챠트ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("오색챠트ToolStripMenuItem.Image")));
+            this.오색챠트ToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.오색챠트ToolStripMenuItem.Name = "오색챠트ToolStripMenuItem";
+            this.오색챠트ToolStripMenuItem.Size = new System.Drawing.Size(128, 24);
+            this.오색챠트ToolStripMenuItem.Text = "오색챠트";
+            // 
+            // tabPage
+            // 
+            this.tabPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabPage.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.tabPage.ItemSize = new System.Drawing.Size(200, 20);
+            this.tabPage.Location = new System.Drawing.Point(0, 40);
+            this.tabPage.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage.Name = "tabPage";
+            this.tabPage.SelectedIndex = 0;
+            this.tabPage.Size = new System.Drawing.Size(1151, 713);
+            this.tabPage.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.tabPage.TabIndex = 2;
+            this.tabPage.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabPage_DrawItem);
+            this.tabPage.SelectedIndexChanged += new System.EventHandler(this.tabPage_SelectedIndexChanged);
+            this.tabPage.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tabPage_MouseClick);
+            // 
+            // MainForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1151, 753);
+            this.Controls.Add(this.tabPage);
+            this.Controls.Add(this.toolStrip1);
+            this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IsMdiContainer = true;
+            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.Name = "MainForm";
+            this.Text = "OM.VIKALA APPLICATION";
+            this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton tsbMC1;
+        private System.Windows.Forms.ToolStripButton tsbMC2;
+        private System.Windows.Forms.ToolStripButton tsbMC3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.TabControl tabPage;
+        private System.Windows.Forms.ToolStripSplitButton toolStripButton4;
+        private System.Windows.Forms.ToolStripSplitButton toolStripButton5;
+        private System.Windows.Forms.ToolStripSplitButton toolStripButton6;
+        private System.Windows.Forms.ToolStripSplitButton toolStripButton7;
+        private System.Windows.Forms.ToolStripMenuItem aTOM원자챠트ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 기본라인챠트ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 오색챠트ToolStripMenuItem;
+    }
+}

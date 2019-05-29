@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.Atman.Chakra.App.Config
+{
+    public static class LosscutConfig
+    {
+        public const int LOW_LIMIT_TICKS = 20;
+        public const int MIDDLE_LIMIT_TICKS = 40;
+        public const int HIGH_LIMIT_TICKS = 80;
+    }
+}

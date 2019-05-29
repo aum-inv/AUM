@@ -1,0 +1,526 @@
+﻿using OM.Lib.Base;
+using OM.Lib.Base.Enums;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.PP.Chakra
+{
+    public static class PPUtils
+    {
+        public static List<S_CandleItemData> GetAverageDatas(string itemCode, List<S_CandleItemData> sourceDatas, int averageCnt)
+        {
+            List<S_CandleItemData> averageDatas = new List<S_CandleItemData>();
+            try
+            {               
+                for (int i = averageCnt; i <= sourceDatas.Count; i++)
+                {
+                    S_CandleItemData transData = new S_CandleItemData(itemCode, sourceDatas.GetRange(i - averageCnt, averageCnt));
+                    averageDatas.Add(transData);
+                }                
+            }
+            catch (Exception ex)
+            {
+            }
+            return averageDatas;
+        }
+        public static List<S_CandleItemData> GetCutDatas(List<S_CandleItemData> sourceDatas, DateTime dt)
+        {            
+            List<S_CandleItemData> sourceDatasNew = new List<S_CandleItemData>();
+            try
+            {
+                foreach(var m in sourceDatas)
+                {
+                    if (m.DTime < dt) continue;
+
+                    sourceDatasNew.Add(m);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return sourceDatasNew;
+        }
+        public static List<S_LineItemData> GetAverageDatas(string itemCode, List<S_LineItemData> sourceDatas, int averageCnt)
+        {
+            List<S_LineItemData> averageDatas = new List<S_LineItemData>();
+            try
+            {
+                for (int i = averageCnt; i <= sourceDatas.Count; i++)
+                {
+                    S_LineItemData transData = new S_LineItemData(itemCode, sourceDatas.GetRange(i - averageCnt, averageCnt));
+                    averageDatas.Add(transData);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return averageDatas;
+        }
+        public static List<S_LineItemData> GetCutDatas(List<S_LineItemData> sourceDatas, DateTime dt)
+        {
+            List<S_LineItemData> sourceDatasNew = new List<S_LineItemData>();
+            try
+            {
+                foreach (var m in sourceDatas)
+                {
+                    if (m.DTime < dt) continue;
+
+                    sourceDatasNew.Add(m);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return sourceDatasNew;
+        }
+
+        #region Candle Pattern Util
+        public static int GetSameUpDownCount(LimitedList<S_CandleItemData> sourceDatas)
+        {
+            try
+            {
+                int cnt = GetSameUpDownCount(sourceDatas, PlusMinusTypeEnum.양);
+
+                if (cnt >= 3) return cnt;
+
+                cnt = GetSameUpDownCount(sourceDatas, PlusMinusTypeEnum.음);
+                if (cnt >= 3) return cnt;
+
+                return 0;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
+        public static int GetSameUpDownCount(LimitedList<S_CandleItemData> sourceDatas, PlusMinusTypeEnum plusMinusType)
+        {   
+            try
+            {
+                List<int> rListUpDown = new List<int>();
+
+                for (int i = 0; i < sourceDatas.Count; i++)
+                {
+                    var m = sourceDatas[i];
+                    if (m.PlusMinusType == plusMinusType) rListUpDown.Add(1);
+                    else break;
+                }
+                return rListUpDown.Sum();
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
+        
+        #endregion
+
+        #region GetSameUpDown
+        public static UpDownEnum GetSameUpDown2(LimitedList<S_CandleItemData> sourceDatas)
+        {
+            return GetSameUpDown(sourceDatas, 2);
+        }
+        public static UpDownEnum GetSameUpDown4(LimitedList<S_CandleItemData> sourceDatas)
+        {
+            return GetSameUpDown(sourceDatas, 4);
+        }
+        public static UpDownEnum GetSameUpDown5(LimitedList<S_CandleItemData> sourceDatas)
+        {
+            return GetSameUpDown(sourceDatas, 5);
+        }
+        public static UpDownEnum GetSameUpDown6(LimitedList<S_CandleItemData> sourceDatas)
+        {
+            return GetSameUpDown(sourceDatas, 6);
+        }
+        public static UpDownEnum GetSameUpDown(LimitedList<S_CandleItemData> sourceDatas, int cnt)
+        {
+            UpDownEnum upDown = UpDownEnum.None;
+            try
+            {
+                List<S_CandleItemData> list = sourceDatas.GetRange(0, cnt);
+
+                List<int> rListUpDown = new List<int>();
+              
+                if (list[0].PlusMinusType == PlusMinusTypeEnum.양)
+                {
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        var m = list[i];
+                        if (m.PlusMinusType == PlusMinusTypeEnum.양) rListUpDown.Add(1);
+                    }
+                    if (cnt == rListUpDown.Sum()) upDown = UpDownEnum.Up;
+                }
+                else if (list[0].PlusMinusType == PlusMinusTypeEnum.음)
+                {
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        var m = list[i];
+                        if (m.PlusMinusType == PlusMinusTypeEnum.음) rListUpDown.Add(1);
+                    }
+                    if (cnt == rListUpDown.Sum()) upDown = UpDownEnum.Down;
+                }
+            }
+            catch (Exception)
+            {
+            }
+            return upDown;
+        }
+        #endregion
+
+        #region GetUpDown
+        public static UpDownEnum GetUpDown3(LimitedList<S_CandleItemData> sourceDatas)
+        {
+            return GetUpDown(sourceDatas, 3);
+        }
+        public static UpDownEnum GetUpDown4(LimitedList<S_CandleItemData> sourceDatas)
+        {
+            return GetUpDown(sourceDatas, 4);
+        }
+        public static UpDownEnum GetUpDown5(LimitedList<S_CandleItemData> sourceDatas)
+        {
+            return GetUpDown(sourceDatas, 5);
+        }
+        public static UpDownEnum GetUpDown6(LimitedList<S_CandleItemData> sourceDatas)
+        {
+            return GetUpDown(sourceDatas, 6);
+        }
+        public static UpDownEnum GetUpDown(LimitedList<S_CandleItemData> sourceDatas, int cnt)
+        {
+            UpDownEnum upDown = UpDownEnum.None;
+
+            try
+            {
+                List<S_CandleItemData> list = sourceDatas.GetRange(0, cnt);
+
+                List<int> rListUpDown = new List<int>();
+                List<int> rListOpen = new List<int>();
+                List<int> rListHigh = new List<int>();
+                List<int> rListLow = new List<int>();
+                List<int> rListClose = new List<int>();
+                List<int> rListMass = new List<int>();
+                
+                if (list[0].PlusMinusType == PlusMinusTypeEnum.양)
+                {
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        var m = list[i];                        
+                        if (m.PlusMinusType == PlusMinusTypeEnum.양) rListUpDown.Add(1);                        
+                    }
+                    rListOpen.Add(1);
+                    rListHigh.Add(1);
+                    rListLow.Add(1);
+                    rListClose.Add(1);
+                    rListMass.Add(1);
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        var m = list[i];
+                        var m2 = list[i + 1];
+                        if (m.OpenPrice < m2.OpenPrice) rListOpen.Add(1);
+                        if (m.HighPrice < m2.HighPrice) rListHigh.Add(1);
+                        if (m.LowPrice < m2.LowPrice) rListLow.Add(1);
+                        if (m.ClosePrice < m2.ClosePrice) rListClose.Add(1);
+                        if (m.MassPrice < m2.MassPrice) rListMass.Add(1);
+                    }
+
+                    //if (cnt == rListUpDown.Sum()
+                    //    && cnt == rListOpen.Sum()
+                    //    && cnt == rListHigh.Sum()
+                    //    && cnt == rListLow.Sum()
+                    //    && cnt == rListClose.Sum()
+                    //    && cnt == rListMass.Sum())
+                    //    upDown = UpDownEnum.StrongUp;
+
+                    if (  ( cnt == rListUpDown.Sum()|| cnt == rListUpDown.Sum() - 1)
+                       && ( cnt == rListOpen.Sum()  || cnt == rListOpen.Sum() - 1)
+                       && ( cnt == rListHigh.Sum()  || cnt == rListHigh.Sum() - 1)
+                       && ( cnt == rListLow.Sum()   || cnt == rListLow.Sum() - 1)
+                       && ( cnt == rListClose.Sum() || cnt == rListClose.Sum() - 1)
+                       && ( cnt == rListMass.Sum()  || cnt == rListMass.Sum() - 1))
+                        upDown = UpDownEnum.StrongUp;
+                    else if ((cnt == rListUpDown.Sum() || cnt == rListUpDown.Sum() - 1)
+                      && (cnt == rListMass.Sum() || cnt == rListMass.Sum() - 1))
+                        upDown = UpDownEnum.WeakUp;
+
+                }
+                else if (list[0].PlusMinusType == PlusMinusTypeEnum.음)
+                {
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        var m = list[i];
+                        if (m.PlusMinusType == PlusMinusTypeEnum.음) rListUpDown.Add(1);
+                    }
+                    rListOpen.Add(1);
+                    rListHigh.Add(1);
+                    rListLow.Add(1);
+                    rListClose.Add(1);
+                    rListMass.Add(1);
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        var m = list[i];
+                        var m2 = list[i + 1];
+                        if (m.OpenPrice > m2.OpenPrice) rListOpen.Add(1);
+                        if (m.HighPrice > m2.HighPrice) rListHigh.Add(1);
+                        if (m.LowPrice > m2.LowPrice) rListLow.Add(1);
+                        if (m.ClosePrice > m2.ClosePrice) rListClose.Add(1);
+                        if (m.MassPrice > m2.MassPrice) rListMass.Add(1);
+                    }
+
+                    if ((cnt == rListUpDown.Sum() || cnt == rListUpDown.Sum() - 1)
+                       && (cnt == rListOpen.Sum() || cnt == rListOpen.Sum() - 1)
+                       && (cnt == rListHigh.Sum() || cnt == rListHigh.Sum() - 1)
+                       && (cnt == rListLow.Sum() || cnt == rListLow.Sum() - 1)
+                       && (cnt == rListClose.Sum() || cnt == rListClose.Sum() - 1)
+                       && (cnt == rListMass.Sum() || cnt == rListMass.Sum() - 1))
+                        upDown = UpDownEnum.StrongDown;
+                    else if ((cnt == rListUpDown.Sum() || cnt == rListUpDown.Sum() - 1)
+                      && (cnt == rListMass.Sum() || cnt == rListMass.Sum() - 1))
+                        upDown = UpDownEnum.WeakDown;
+                }
+            }
+            catch (Exception)
+            {
+            }
+            return upDown;
+        }
+        #endregion
+
+        #region Mass Pattern
+        public static CandleChartPatternEnum GetMassPattern(LimitedList<S_CandleItemData> sourceDatas)
+        {
+            CandleChartPatternEnum upDown = CandleChartPatternEnum.None;
+
+            if (sourceDatas.Count < 3) return upDown;
+
+            try
+            {
+                var m0 = sourceDatas[0];
+                var m1 = sourceDatas[1];
+                var m2 = sourceDatas[2];
+
+                if (m2.QuantumPrice > m2.MassPrice
+                    && m1.QuantumPrice > m1.MassPrice
+                    && m0.QuantumPrice < m0.MassPrice
+                    )
+                    upDown = CandleChartPatternEnum.MassDownUp;
+                else if (m2.QuantumPrice < m2.MassPrice
+                   && m1.QuantumPrice < m1.MassPrice
+                   && m0.QuantumPrice > m0.MassPrice
+                   )
+                    upDown = CandleChartPatternEnum.MassUpDown;
+            }
+            catch (Exception) { }
+            return upDown;
+        }
+        #endregion
+
+        #region CandleChart Pattern
+        public static CandleChartPatternEnum GetCandleChartPattern(LimitedList<S_CandleItemData> sourceDatas, int cnt = 6)
+        {
+            CandleChartPatternEnum upDown = CandleChartPatternEnum.None;
+
+            try
+            {
+                List<S_CandleItemData> list = sourceDatas.GetRange(0, cnt);
+
+                List<int> rListUpDown = new List<int>();
+                List<int> rListOpen = new List<int>();
+                List<int> rListHigh = new List<int>();
+                List<int> rListLow = new List<int>();
+                List<int> rListClose = new List<int>();
+                List<int> rListMass = new List<int>();
+
+                if (list[0].PlusMinusType == PlusMinusTypeEnum.양)
+                {
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        var m = list[i];
+                        if (m.PlusMinusType == PlusMinusTypeEnum.양) rListUpDown.Add(1);
+                    }
+                    rListOpen.Add(1);
+                    rListHigh.Add(1);
+                    rListLow.Add(1);
+                    rListClose.Add(1);
+                    rListMass.Add(1);
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        var m = list[i];
+                        var m2 = list[i + 1];
+                        if (m.OpenPrice < m2.OpenPrice) rListOpen.Add(1);
+                        if (m.HighPrice < m2.HighPrice) rListHigh.Add(1);
+                        if (m.LowPrice < m2.LowPrice) rListLow.Add(1);
+                        if (m.ClosePrice < m2.ClosePrice) rListClose.Add(1);
+                        if (m.MassPrice < m2.MassPrice) rListMass.Add(1);
+                    }
+                    if (cnt == 6)
+                    {
+                        if (cnt == rListUpDown.Sum()
+                           && cnt == rListOpen.Sum()
+                           && cnt == rListHigh.Sum()
+                           && cnt == rListLow.Sum()
+                           && cnt == rListClose.Sum()
+                           && cnt == rListMass.Sum())
+                            upDown = CandleChartPatternEnum.SixStrongUp;
+                        else if ((cnt == rListUpDown.Sum() || cnt == rListUpDown.Sum() - 1)
+                           && (cnt == rListOpen.Sum() || cnt == rListOpen.Sum() - 1)
+                           && (cnt == rListHigh.Sum() || cnt == rListHigh.Sum() - 1)
+                           && (cnt == rListLow.Sum() || cnt == rListLow.Sum() - 1)
+                           && (cnt == rListClose.Sum() || cnt == rListClose.Sum() - 1)
+                           && (cnt == rListMass.Sum() || cnt == rListMass.Sum() - 1))
+                            upDown = CandleChartPatternEnum.SixWeakUp;
+                    }
+                    if (cnt == 5)
+                    {
+                        if (cnt == rListUpDown.Sum()
+                           && cnt == rListOpen.Sum()
+                           && cnt == rListHigh.Sum()
+                           && cnt == rListLow.Sum()
+                           && cnt == rListClose.Sum()
+                           && cnt == rListMass.Sum())
+                            upDown = CandleChartPatternEnum.FiveStrongUp;
+                        else if ((cnt == rListUpDown.Sum() || cnt == rListUpDown.Sum() - 1)
+                           && (cnt == rListOpen.Sum() || cnt == rListOpen.Sum() - 1)
+                           && (cnt == rListHigh.Sum() || cnt == rListHigh.Sum() - 1)
+                           && (cnt == rListLow.Sum() || cnt == rListLow.Sum() - 1)
+                           && (cnt == rListClose.Sum() || cnt == rListClose.Sum() - 1)
+                           && (cnt == rListMass.Sum() || cnt == rListMass.Sum() - 1))
+                            upDown = CandleChartPatternEnum.FiveWeakUp;
+                    }
+                    if (cnt == 4)
+                    {
+                        if (cnt == rListUpDown.Sum()
+                           && cnt == rListOpen.Sum()
+                           && cnt == rListHigh.Sum()
+                           && cnt == rListLow.Sum()
+                           && cnt == rListClose.Sum()
+                           && cnt == rListMass.Sum())
+                            upDown = CandleChartPatternEnum.FourStrongUp;
+                        else if ((cnt == rListUpDown.Sum() || cnt == rListUpDown.Sum() - 1)
+                           && (cnt == rListOpen.Sum() || cnt == rListOpen.Sum() - 1)
+                           && (cnt == rListHigh.Sum() || cnt == rListHigh.Sum() - 1)
+                           && (cnt == rListLow.Sum() || cnt == rListLow.Sum() - 1)
+                           && (cnt == rListClose.Sum() || cnt == rListClose.Sum() - 1)
+                           && (cnt == rListMass.Sum() || cnt == rListMass.Sum() - 1))
+                            upDown = CandleChartPatternEnum.FourWeakUp;
+                    }
+                    if (cnt == 3)
+                    {
+                        if (cnt == rListUpDown.Sum()
+                           && cnt == rListOpen.Sum()
+                           && cnt == rListHigh.Sum()
+                           && cnt == rListLow.Sum()
+                           && cnt == rListClose.Sum()
+                           && cnt == rListMass.Sum())
+                            upDown = CandleChartPatternEnum.ThreeStrongUp;
+                        else if ((cnt == rListUpDown.Sum() || cnt == rListUpDown.Sum() - 1)
+                           && (cnt == rListOpen.Sum() || cnt == rListOpen.Sum() - 1)
+                           && (cnt == rListHigh.Sum() || cnt == rListHigh.Sum() - 1)
+                           && (cnt == rListLow.Sum() || cnt == rListLow.Sum() - 1)
+                           && (cnt == rListClose.Sum() || cnt == rListClose.Sum() - 1)
+                           && (cnt == rListMass.Sum() || cnt == rListMass.Sum() - 1))
+                            upDown = CandleChartPatternEnum.ThreeWeakUp;
+                    }
+                }
+                else if (list[0].PlusMinusType == PlusMinusTypeEnum.음)
+                {
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        var m = list[i];
+                        if (m.PlusMinusType == PlusMinusTypeEnum.음) rListUpDown.Add(1);
+                    }
+                    rListOpen.Add(1);
+                    rListHigh.Add(1);
+                    rListLow.Add(1);
+                    rListClose.Add(1);
+                    rListMass.Add(1);
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        var m = list[i];
+                        var m2 = list[i + 1];
+                        if (m.OpenPrice > m2.OpenPrice) rListOpen.Add(1);
+                        if (m.HighPrice > m2.HighPrice) rListHigh.Add(1);
+                        if (m.LowPrice > m2.LowPrice) rListLow.Add(1);
+                        if (m.ClosePrice > m2.ClosePrice) rListClose.Add(1);
+                        if (m.MassPrice > m2.MassPrice) rListMass.Add(1);
+                    }
+
+                    if (cnt == 6)
+                    {
+                        if (cnt == rListUpDown.Sum()
+                           && cnt == rListOpen.Sum()
+                           && cnt == rListHigh.Sum()
+                           && cnt == rListLow.Sum()
+                           && cnt == rListClose.Sum()
+                           && cnt == rListMass.Sum())
+                            upDown = CandleChartPatternEnum.SixStrongDown;
+                        else if ((cnt == rListUpDown.Sum() || cnt == rListUpDown.Sum() - 1)
+                           && (cnt == rListOpen.Sum() || cnt == rListOpen.Sum() - 1)
+                           && (cnt == rListHigh.Sum() || cnt == rListHigh.Sum() - 1)
+                           && (cnt == rListLow.Sum() || cnt == rListLow.Sum() - 1)
+                           && (cnt == rListClose.Sum() || cnt == rListClose.Sum() - 1)
+                           && (cnt == rListMass.Sum() || cnt == rListMass.Sum() - 1))
+                            upDown = CandleChartPatternEnum.SixWeakDown;
+                    }
+                    if (cnt == 5)
+                    {
+                        if (cnt == rListUpDown.Sum()
+                           && cnt == rListOpen.Sum()
+                           && cnt == rListHigh.Sum()
+                           && cnt == rListLow.Sum()
+                           && cnt == rListClose.Sum()
+                           && cnt == rListMass.Sum())
+                            upDown = CandleChartPatternEnum.FiveStrongDown;
+                        else if ((cnt == rListUpDown.Sum() || cnt == rListUpDown.Sum() - 1)
+                           && (cnt == rListOpen.Sum() || cnt == rListOpen.Sum() - 1)
+                           && (cnt == rListHigh.Sum() || cnt == rListHigh.Sum() - 1)
+                           && (cnt == rListLow.Sum() || cnt == rListLow.Sum() - 1)
+                           && (cnt == rListClose.Sum() || cnt == rListClose.Sum() - 1)
+                           && (cnt == rListMass.Sum() || cnt == rListMass.Sum() - 1))
+                            upDown = CandleChartPatternEnum.FiveWeakDown;
+                    }
+                    if (cnt == 4)
+                    {
+                        if (cnt == rListUpDown.Sum()
+                           && cnt == rListOpen.Sum()
+                           && cnt == rListHigh.Sum()
+                           && cnt == rListLow.Sum()
+                           && cnt == rListClose.Sum()
+                           && cnt == rListMass.Sum())
+                            upDown = CandleChartPatternEnum.FourStrongDown;
+                        else if ((cnt == rListUpDown.Sum() || cnt == rListUpDown.Sum() - 1)
+                           && (cnt == rListOpen.Sum() || cnt == rListOpen.Sum() - 1)
+                           && (cnt == rListHigh.Sum() || cnt == rListHigh.Sum() - 1)
+                           && (cnt == rListLow.Sum() || cnt == rListLow.Sum() - 1)
+                           && (cnt == rListClose.Sum() || cnt == rListClose.Sum() - 1)
+                           && (cnt == rListMass.Sum() || cnt == rListMass.Sum() - 1))
+                            upDown = CandleChartPatternEnum.FourWeakDown;
+                    }
+                    if (cnt == 3)
+                    {
+                        if (cnt == rListUpDown.Sum()
+                           && cnt == rListOpen.Sum()
+                           && cnt == rListHigh.Sum()
+                           && cnt == rListLow.Sum()
+                           && cnt == rListClose.Sum()
+                           && cnt == rListMass.Sum())
+                            upDown = CandleChartPatternEnum.ThreeStrongDown;
+                        else if ((cnt == rListUpDown.Sum() || cnt == rListUpDown.Sum() - 1)
+                           && (cnt == rListOpen.Sum() || cnt == rListOpen.Sum() - 1)
+                           && (cnt == rListHigh.Sum() || cnt == rListHigh.Sum() - 1)
+                           && (cnt == rListLow.Sum() || cnt == rListLow.Sum() - 1)
+                           && (cnt == rListClose.Sum() || cnt == rListClose.Sum() - 1)
+                           && (cnt == rListMass.Sum() || cnt == rListMass.Sum() - 1))
+                            upDown = CandleChartPatternEnum.ThreeWeakDown;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+            return upDown;
+        }
+        #endregion
+    }
+}

@@ -1,0 +1,34 @@
+﻿using OM.Lib.Base.Enums;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.Atman.Chakra
+{
+    public class TradeForecastInfo
+    {
+        public string Item { get; set; }
+        public TimeIntervalEnum TimeInterval { get; set; }
+        public string Position { get; set; }
+        
+        //추세
+        public UpDownEnum Trend { get; set; } = UpDownEnum.None;
+
+        //지저저항
+        public UpDownEnum BaseLine { get; set; } = UpDownEnum.None;
+
+        //추세강도
+        public int TrendOfStrength { get; set; } = 0;
+
+        //보조지표1
+        //public int SecondaryIndicator_
+        public int ForcastOfStrength { get; set; } = 0;
+
+        public static UpDownEnum GetTrend() { return UpDownEnum.None; }
+        public static UpDownEnum GetBaseLine() { return UpDownEnum.None; }
+        public static int GetTrendOfStrength() { return 0; }
+        public static int GetForcastOfStrength(TradeForecastInfo info) { return 0; }
+    }
+}

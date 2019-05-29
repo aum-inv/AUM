@@ -1,0 +1,288 @@
+﻿namespace OM.Vikala.Chakra.App
+{
+    partial class MainForm
+    {
+        /// <summary>
+        /// 필수 디자이너 변수입니다.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// 사용 중인 모든 리소스를 정리합니다.
+        /// </summary>
+        /// <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form 디자이너에서 생성한 코드
+
+        /// <summary>
+        /// 디자이너 지원에 필요한 메서드입니다. 
+        /// 이 메서드의 내용을 코드 편집기로 수정하지 마세요.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnCandle1 = new System.Windows.Forms.Button();
+            this.btnLine1 = new System.Windows.Forms.Button();
+            this.btnLoadData = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnThaChi = new System.Windows.Forms.Button();
+            this.btnFiveColor = new System.Windows.Forms.Button();
+            this.btnMass = new System.Windows.Forms.Button();
+            this.btnSampleAtom = new System.Windows.Forms.Button();
+            this.btnSampleCandle = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.button6 = new System.Windows.Forms.Button();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.btnVelocity = new System.Windows.Forms.Button();
+            this.btnQuantum = new System.Windows.Forms.Button();
+            this.btnReverse = new System.Windows.Forms.Button();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnCandle1);
+            this.panel1.Controls.Add(this.btnLine1);
+            this.panel1.Controls.Add(this.btnLoadData);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(5, 6);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(740, 60);
+            this.panel1.TabIndex = 0;
+            // 
+            // btnCandle1
+            // 
+            this.btnCandle1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnCandle1.Location = new System.Drawing.Point(404, 0);
+            this.btnCandle1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnCandle1.Name = "btnCandle1";
+            this.btnCandle1.Size = new System.Drawing.Size(185, 60);
+            this.btnCandle1.TabIndex = 2;
+            this.btnCandle1.Text = "ShowCandleChart";
+            this.btnCandle1.UseVisualStyleBackColor = true;
+            this.btnCandle1.Click += new System.EventHandler(this.btnCandle1_Click);
+            // 
+            // btnLine1
+            // 
+            this.btnLine1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnLine1.Location = new System.Drawing.Point(589, 0);
+            this.btnLine1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnLine1.Name = "btnLine1";
+            this.btnLine1.Size = new System.Drawing.Size(151, 60);
+            this.btnLine1.TabIndex = 1;
+            this.btnLine1.Text = "ShowLineChart";
+            this.btnLine1.UseVisualStyleBackColor = true;
+            this.btnLine1.Click += new System.EventHandler(this.btnLine1_Click);
+            // 
+            // btnLoadData
+            // 
+            this.btnLoadData.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnLoadData.Location = new System.Drawing.Point(0, 0);
+            this.btnLoadData.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnLoadData.Name = "btnLoadData";
+            this.btnLoadData.Size = new System.Drawing.Size(134, 60);
+            this.btnLoadData.TabIndex = 0;
+            this.btnLoadData.Text = "LoadData";
+            this.btnLoadData.UseVisualStyleBackColor = true;
+            this.btnLoadData.Click += new System.EventHandler(this.btnLoadData_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.btnReverse);
+            this.panel2.Controls.Add(this.btnThaChi);
+            this.panel2.Controls.Add(this.btnFiveColor);
+            this.panel2.Controls.Add(this.btnMass);
+            this.panel2.Controls.Add(this.btnSampleAtom);
+            this.panel2.Controls.Add(this.btnSampleCandle);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(5, 66);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(740, 60);
+            this.panel2.TabIndex = 1;
+            // 
+            // btnThaChi
+            // 
+            this.btnThaChi.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnThaChi.Location = new System.Drawing.Point(178, 0);
+            this.btnThaChi.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnThaChi.Name = "btnThaChi";
+            this.btnThaChi.Size = new System.Drawing.Size(110, 60);
+            this.btnThaChi.TabIndex = 7;
+            this.btnThaChi.Text = "Sample ThaChi";
+            this.btnThaChi.UseVisualStyleBackColor = true;
+            this.btnThaChi.Click += new System.EventHandler(this.btnThaChi_Click);
+            // 
+            // btnFiveColor
+            // 
+            this.btnFiveColor.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnFiveColor.Location = new System.Drawing.Point(288, 0);
+            this.btnFiveColor.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnFiveColor.Name = "btnFiveColor";
+            this.btnFiveColor.Size = new System.Drawing.Size(110, 60);
+            this.btnFiveColor.TabIndex = 6;
+            this.btnFiveColor.Text = "Sample FiveColor";
+            this.btnFiveColor.UseVisualStyleBackColor = true;
+            this.btnFiveColor.Click += new System.EventHandler(this.btnFiveColor_Click);
+            // 
+            // btnMass
+            // 
+            this.btnMass.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnMass.Location = new System.Drawing.Point(398, 0);
+            this.btnMass.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnMass.Name = "btnMass";
+            this.btnMass.Size = new System.Drawing.Size(96, 60);
+            this.btnMass.TabIndex = 5;
+            this.btnMass.Text = "Sample Mass";
+            this.btnMass.UseVisualStyleBackColor = true;
+            this.btnMass.Click += new System.EventHandler(this.btnMass_Click);
+            // 
+            // btnSampleAtom
+            // 
+            this.btnSampleAtom.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnSampleAtom.Location = new System.Drawing.Point(494, 0);
+            this.btnSampleAtom.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnSampleAtom.Name = "btnSampleAtom";
+            this.btnSampleAtom.Size = new System.Drawing.Size(120, 60);
+            this.btnSampleAtom.TabIndex = 4;
+            this.btnSampleAtom.Text = "Sample Atom";
+            this.btnSampleAtom.UseVisualStyleBackColor = true;
+            this.btnSampleAtom.Click += new System.EventHandler(this.btnSampleAtom_Click);
+            // 
+            // btnSampleCandle
+            // 
+            this.btnSampleCandle.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnSampleCandle.Location = new System.Drawing.Point(614, 0);
+            this.btnSampleCandle.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnSampleCandle.Name = "btnSampleCandle";
+            this.btnSampleCandle.Size = new System.Drawing.Size(126, 60);
+            this.btnSampleCandle.TabIndex = 3;
+            this.btnSampleCandle.Text = "Sample Candle";
+            this.btnSampleCandle.UseVisualStyleBackColor = true;
+            this.btnSampleCandle.Click += new System.EventHandler(this.btnSampleCandle_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.button6);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(5, 186);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(740, 60);
+            this.panel3.TabIndex = 2;
+            // 
+            // button6
+            // 
+            this.button6.Dock = System.Windows.Forms.DockStyle.Right;
+            this.button6.Location = new System.Drawing.Point(560, 0);
+            this.button6.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(180, 60);
+            this.button6.TabIndex = 3;
+            this.button6.Text = "BasicMainForm";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.btnVelocity);
+            this.panel4.Controls.Add(this.btnQuantum);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(5, 126);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(740, 60);
+            this.panel4.TabIndex = 3;
+            // 
+            // btnVelocity
+            // 
+            this.btnVelocity.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnVelocity.Location = new System.Drawing.Point(520, 0);
+            this.btnVelocity.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnVelocity.Name = "btnVelocity";
+            this.btnVelocity.Size = new System.Drawing.Size(110, 60);
+            this.btnVelocity.TabIndex = 9;
+            this.btnVelocity.Text = "Sample Velociy";
+            this.btnVelocity.UseVisualStyleBackColor = true;
+            this.btnVelocity.Click += new System.EventHandler(this.btnVelocity_Click);
+            // 
+            // btnQuantum
+            // 
+            this.btnQuantum.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnQuantum.Location = new System.Drawing.Point(630, 0);
+            this.btnQuantum.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnQuantum.Name = "btnQuantum";
+            this.btnQuantum.Size = new System.Drawing.Size(110, 60);
+            this.btnQuantum.TabIndex = 8;
+            this.btnQuantum.Text = "Sample Quantum";
+            this.btnQuantum.UseVisualStyleBackColor = true;
+            this.btnQuantum.Click += new System.EventHandler(this.btnQuantum_Click);
+            // 
+            // btnReverse
+            // 
+            this.btnReverse.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnReverse.Location = new System.Drawing.Point(52, 0);
+            this.btnReverse.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnReverse.Name = "btnReverse";
+            this.btnReverse.Size = new System.Drawing.Size(126, 60);
+            this.btnReverse.TabIndex = 8;
+            this.btnReverse.Text = "Sample Reverse";
+            this.btnReverse.UseVisualStyleBackColor = true;
+            this.btnReverse.Click += new System.EventHandler(this.btnReverse_Click);
+            // 
+            // MainForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(750, 251);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.Name = "MainForm";
+            this.Padding = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.Text = "메인폼";
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnLoadData;
+        private System.Windows.Forms.Button btnLine1;
+        private System.Windows.Forms.Button btnCandle1;
+        private System.Windows.Forms.Button btnSampleCandle;
+        private System.Windows.Forms.Button btnSampleAtom;
+        private System.Windows.Forms.Button btnMass;
+        private System.Windows.Forms.Button btnFiveColor;
+        private System.Windows.Forms.Button btnThaChi;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Button btnVelocity;
+        private System.Windows.Forms.Button btnQuantum;
+        private System.Windows.Forms.Button btnReverse;
+    }
+}
+

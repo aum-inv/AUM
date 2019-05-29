@@ -1,0 +1,76 @@
+﻿using MetroFramework.Forms;
+using OM.Lib.Base.Enums;
+using OM.Lib.Base.Utils;
+using OM.PP.Chakra;
+using OM.PP.Chakra.Ctx;
+using OM.Vikala.Controls.Charts;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Configuration;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Vikala.Chakra.App
+{
+    public partial class MassMainForm_Sample : Form
+    {
+        ChartEvents chartEvent = new ChartEvents();
+
+        public MassMainForm_Sample()
+        {
+            InitializeComponent();
+
+            chartMC1.InitializeControl();
+            chartMC1.InitializeEvent(chartEvent);
+            chartMC1.MaximumDisplayItemCount = 30;
+        }
+        private void btnLoadData_Click(object sender, EventArgs e)
+        {
+            string itemCode = ItemCodeSet.GetItemCode(ItemCode.선물_해외_WTI);
+
+            var list = PPContext.Instance.ClientContext.GetSourceData(Lib.Base.Enums.FinancialClassificationEnum.Indices
+                , itemCode
+                , Lib.Base.Enums.TimeIntervalEnum.Day
+                , null
+                , null
+                , 150);
+
+            int round = ItemCodeUtil.GetItemCodeRoundNum(itemCode);
+
+            List<T_MassItemData> transformedDatas = new List<T_MassItemData>();
+
+            foreach (var m in list)
+            {
+                S_CandleItemData sourceData = new S_CandleItemData(
+                        (Single)Math.Round(m.OpenVal, round)
+                    , (Single)Math.Round(m.HighVal, round)
+                    , (Single)Math.Round(m.LowVal, round)
+                    , (Single)Math.Round(m.CloseVal, round)
+                    , m.Volume
+                    , m.DT
+                    );
+                T_MassItemData transData = new T_MassItemData(sourceData);
+                transData.Transform();
+                transformedDatas.Add(transData);
+            }
+
+            List<T_MassItemData> transformedDatas2 = new List<T_MassItemData>();
+            int itemsCnt = 9;
+            for (int i = itemsCnt; i < transformedDatas.Count; i++)
+            {
+                var tmp = new T_MassItemData(transformedDatas[i].SourceData);
+                tmp.Transform();
+                var tmpList = transformedDatas.GetRange(i - itemsCnt, itemsCnt);
+                tmp.t_Mass = (Single)tmpList.Average(t => t.T_Mass);
+                tmp.t_CenterMass = (Single)tmpList.Average(t => t.T_CenterMass);
+                transformedDatas2.Add(tmp);
+            }
+            chartMC1.LoadData(itemCode, transformedDatas2);
+        }
+    }
+}

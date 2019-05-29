@@ -1,0 +1,36 @@
+﻿using OM.Lib.Base;
+using OM.Lib.Base.Utils;
+using OM.Lib.Entity;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.Atman.Chakra
+{    
+    public abstract class BaseTradeRule
+    {
+        protected LimitedList<double> PriceList = new LimitedList<double>(365);
+
+        protected int RoundNum
+        {
+            get
+            {
+                return ItemCodeUtil.GetItemCodeRoundNum(ItemCode);
+            }
+        }
+        protected abstract string AtmanName { get; }
+        protected string ItemCode { get; set; } = "";
+        protected double CPrice { get; set; } = 0;
+
+        protected double BPrice { get; set; } = 0;
+        protected double HPrice { get; set; } = 0;
+        protected double LPrice { get; set; } = 9999999;
+
+        public abstract void AnalysisAsync(CurrentPrice price);
+        public abstract void Analysis(CurrentPrice price);
+
+        protected abstract void InitRule();
+    }
+}

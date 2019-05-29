@@ -1,0 +1,69 @@
+﻿using OM.Lib.Base.Enums;
+using OM.Lib.Base.Utils;
+using OM.Lib.Entity;
+using OM.Lib.Framework.Db;
+using OM.PP.Chakra;
+using OM.PP.Chakra.Ctx;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.Atman.Chakra
+{
+    public class TwoLineTradeRule2 : BaseTradeRule
+    {
+        public override string AtmanName => "TICK PATTERN";
+
+        string priceType;
+        public TwoLineTradeRule2(string itemCode, string priceType)
+        {
+            ItemCode = itemCode;
+            this.priceType = priceType;
+        }
+        
+        public override void InitRule()
+        {
+        }
+        public override void Analysis(CurrentPrice price)
+        {
+            try
+            {
+                switch (priceType)
+                {
+                    case "0":
+                        CPrice = Math.Round(Convert.ToDouble(price.price), RoundNum);
+                        break;
+                    case "1":
+                        CPrice = Math.Round(price.price3, RoundNum);
+                        break;
+                    case "2":
+                        CPrice = Math.Round(price.price5, RoundNum);
+                        break;
+                    case "3":
+                        CPrice = Math.Round(price.price7, RoundNum);
+                        break;
+                    default:
+                        CPrice = Math.Round(Convert.ToDouble(price.price), RoundNum);
+                        break;
+                }
+                if (BPrice == CPrice) return;
+
+                PriceList.Insert(CPrice);
+
+                var lineChartPattern = PointsUtil.GetLineChartPattern(PriceList);
+
+                if (lineChartPattern != LineChartPatternEnum.None)
+                    PPEvents.Instance.OnLineChartPatternHandler(ItemCode, TimeIntervalEnum.Tick, lineChartPattern);
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                BPrice = CPrice;
+            }
+        }
+    }
+}

@@ -1,0 +1,75 @@
+﻿using MetroFramework.Forms;
+using OM.Lib.Base.Enums;
+using OM.Lib.Base.Utils;
+using OM.PP.Chakra;
+using OM.PP.Chakra.Ctx;
+using OM.Vikala.Controls.Charts;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Configuration;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Vikala.Chakra.App
+{
+    public partial class ReverseCandleMainForm_Sample : Form
+    {
+        ChartEvents chartEvent = new ChartEvents();
+
+        public ReverseCandleMainForm_Sample()
+        {
+            InitializeComponent();
+
+            chartCS1.InitializeControl();
+            chartCS1.InitializeEvent(chartEvent);
+            chartCS1.MaximumDisplayItemCount = 30;
+        }
+        private void btnLoadData_Click(object sender, EventArgs e)
+        {
+            string itemCode = ItemCodeSet.GetItemCode(ItemCode.선물_해외_WTI);
+
+            var list = PPContext.Instance.ClientContext.GetSourceData(
+                  Lib.Base.Enums.FinancialClassificationEnum.Commodities
+                , itemCode
+                , Lib.Base.Enums.TimeIntervalEnum.Day
+                , null
+                , null
+                , 120);
+
+            int round = ItemCodeUtil.GetItemCodeRoundNum(itemCode);
+            List<S_CandleItemData> sourceDatas = new List<S_CandleItemData>();
+            List<S_CandleItemData> reverseDatas = new List<S_CandleItemData>();
+            foreach (var m in list)
+            {
+                S_CandleItemData sourceData = new S_CandleItemData(
+                        (Single)Math.Round(m.OpenVal, round)
+                    , (Single)Math.Round(m.HighVal, round)
+                    , (Single)Math.Round(m.LowVal, round)
+                    , (Single)Math.Round(m.CloseVal, round)
+                    , m.Volume
+                    , m.DT
+                    );
+                sourceDatas.Add(sourceData);
+            }
+            for(int i = 0, j = sourceDatas.Count - 1; i < sourceDatas.Count; i++, j--)
+            {
+                S_CandleItemData reverseData = new S_CandleItemData(
+                        sourceDatas[j].ClosePrice
+                      , sourceDatas[j].HighPrice
+                      , sourceDatas[j].LowPrice
+                      , sourceDatas[j].OpenPrice
+                      , 0
+                      , sourceDatas[i].DTime
+                    );
+                reverseDatas.Add(reverseData);
+            }
+
+            chartCS1.LoadData(itemCode, sourceDatas, reverseDatas);
+        }
+    }
+}

@@ -1,0 +1,35 @@
+﻿using EasyTabs;
+using OM.Vikala.Chakra.App.Contains;
+using System;
+
+namespace OM.Vikala.Chakra.App.Mains
+{
+    public partial class SampleMain : TitleBarTabs
+    {
+        public SampleMain()
+        {
+            InitializeComponent();
+            AeroPeekEnabled = true;
+            TabRenderer = new ChromeTabRenderer(this);
+        }
+
+        public override TitleBarTab CreateTab()
+        {
+            return new TitleBarTab(this)
+            {
+                Content = new Contains.ContainsSample
+                {
+                    Text = "New Tab"
+                }
+            };
+        }
+
+        private void 연결ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ContainsSample containsSample =  new ContainsSample();
+            containsSample.Text = DateTime.Now.ToShortTimeString();
+            containsSample.MdiParent = this;
+            containsSample.Show();
+        }
+    }
+}

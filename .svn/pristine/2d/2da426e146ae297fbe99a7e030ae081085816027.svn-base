@@ -1,0 +1,213 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.ServiceModel;
+using System.Text;
+using System.Threading.Tasks;
+using OM.Lib.Base;
+using OM.Lib.Base.Enums;
+using OM.Lib.Entity;
+using OM.Lib.Framework.Base;
+using OM.Lib.Framework.Db;
+
+namespace OM.PP.Chakra.Ctx
+{
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall
+        , ConcurrencyMode = ConcurrencyMode.Multiple
+        , UseSynchronizationContext = false)]
+    public class PPService : IPPService
+    {
+        static object sync = new object();
+
+        public string ServiceName => PPServerConfigData.ServiceName;
+
+        public void Noop() { }
+
+        public void InitSourceData(string item)
+        {
+            PPStorage.Instance.Init(item);
+        }
+        public void InitSourceTickData(string item)
+        {
+            PPStorage.Instance.InitTick(item);
+        }
+
+        public List<LitePurushaPrakriti> GetSourceData(
+                string itemCode
+            ,   TimeIntervalEnum timeInterval
+            ,   string startDate = null
+            ,   string endDate = null
+            ,   int cnt = 0)
+        {
+            List<LitePurushaPrakriti> list = new List<LitePurushaPrakriti>();
+
+            PurushaPrakriti pp = new PurushaPrakriti();
+            pp.Item = itemCode;
+            pp.Interval = (int)timeInterval;
+            pp.StartDate = startDate == null ? "" : startDate;
+            pp.EndDate = endDate == null ? "" : endDate;
+            pp.DisplayCount = cnt;
+            try
+            {
+                Entities entities = (Entities)pp.Collect();
+
+                foreach (var m in entities.Cast<PurushaPrakriti>())
+                {
+                    var n = new LitePurushaPrakriti(
+                            m.OpenVal, m.HighVal, m.LowVal, m.CloseVal, m.Volume, m.DT
+                        );
+
+                    list.Add(n);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return list;
+        }
+
+        public void SetSourceData(
+                string itemCode
+            ,   TimeIntervalEnum timeInterval
+            ,   LitePurushaPrakriti entity)
+        {
+            Task.Factory.StartNew(() =>
+            {
+                PurushaPrakriti pp = new PurushaPrakriti();
+                pp.MappingProperty(entity);
+
+                try
+                {
+                    pp.Interval = (int)timeInterval;
+                    pp.Create();
+                }
+                catch (Exception ex)
+                {
+                    //error
+                }
+            });
+        }
+
+        public List<S_CandleItemData> GetCandleSourceDataOrderByDesc(string itemCode, TimeIntervalEnum timeInterval)
+        {
+            var list = GetCandleSourceData(itemCode, timeInterval);
+            if (list == null) return new List<S_CandleItemData>();
+
+            return list.ToList();
+        }
+        public List<S_CandleItemData> GetCandleSourceDataOrderByAsc(string itemCode, TimeIntervalEnum timeInterval)
+        {
+            var list = GetCandleSourceData(itemCode, timeInterval);
+            if (list == null) return new List<S_CandleItemData>();
+
+            return list.OrderBy(t => t.DTime).ToList();
+        }
+        public List<S_CandleItemData> GetCandleSourceData(string itemCode, TimeIntervalEnum timeInterval)
+        {
+            try
+            {
+                List<S_CandleItemData> list = null;
+                switch (timeInterval)
+                {
+                    case TimeIntervalEnum.Minute_05:
+                        list = PPStorage.Instance. StorageMin05[itemCode];
+                        break;
+                    case TimeIntervalEnum.Minute_10:
+                        list = PPStorage.Instance.StorageMin10[itemCode];
+                        break;
+                    case TimeIntervalEnum.Minute_30:
+                        list = PPStorage.Instance.StorageMin30[itemCode];
+                        break;
+                    case TimeIntervalEnum.Minute_60:
+                        list = PPStorage.Instance.StorageMin60[itemCode];
+                        break;
+                    case TimeIntervalEnum.Minute_120:
+                        list = PPStorage.Instance.StorageMin120[itemCode];
+                        break;
+                    case TimeIntervalEnum.Day:
+                        list = PPStorage.Instance.StorageDay[itemCode];
+                        break;
+                    case TimeIntervalEnum.Tick_180:
+                        list = PPStorage.Instance.StorageTick180[itemCode];
+                        break;
+                    case TimeIntervalEnum.Tick_360:
+                        list = PPStorage.Instance.StorageTick360[itemCode];
+                        break;
+                    case TimeIntervalEnum.Tick_720:
+                        list = PPStorage.Instance.StorageTick720[itemCode];
+                        break;
+                    case TimeIntervalEnum.Tick_1080:
+                        list = PPStorage.Instance.StorageTick1080[itemCode];
+                        break;
+                    case TimeIntervalEnum.Tick_1440:
+                        list = PPStorage.Instance.StorageTick1440[itemCode];
+                        break;
+                }
+                return list;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public void SetCandleSourceData(string itemCode , TimeIntervalEnum timeInterval, S_CandleItemData entity)
+        {
+            try
+            {
+                LimitedList<S_CandleItemData> list = null;
+                switch (timeInterval)
+                {
+                    case TimeIntervalEnum.Minute_05:
+                        list = PPStorage.Instance.StorageMin05[itemCode];
+                        break;
+                    case TimeIntervalEnum.Minute_10:
+                        list = PPStorage.Instance.StorageMin10[itemCode];
+                        break;
+                    case TimeIntervalEnum.Minute_30:
+                        list = PPStorage.Instance.StorageMin30[itemCode];
+                        break;
+                    case TimeIntervalEnum.Minute_60:
+                        list = PPStorage.Instance.StorageMin60[itemCode];
+                        break;
+                    case TimeIntervalEnum.Minute_120:
+                        list = PPStorage.Instance.StorageMin120[itemCode];
+                        break;
+                    case TimeIntervalEnum.Day:
+                        list = PPStorage.Instance.StorageDay[itemCode];
+                        break;
+                    case TimeIntervalEnum.Tick_180:
+                        list = PPStorage.Instance.StorageTick180[itemCode];
+                        break;
+                    case TimeIntervalEnum.Tick_360:
+                        list = PPStorage.Instance.StorageTick360[itemCode];
+                        break;
+                    case TimeIntervalEnum.Tick_720:
+                        list = PPStorage.Instance.StorageTick720[itemCode];
+                        break;
+                    case TimeIntervalEnum.Tick_1080:
+                        list = PPStorage.Instance.StorageTick1080[itemCode];
+                        break;
+                    case TimeIntervalEnum.Tick_1440:
+                        list = PPStorage.Instance.StorageTick1440[itemCode];
+                        break;
+                }
+                if (list == null) return;
+
+                var m = list.Find(t => t.DTime == entity.DTime);
+                if (m != null)
+                {
+                    m.OpenPrice =  entity.OpenPrice;
+                    m.HighPrice = entity.HighPrice;
+                    m.LowPrice = entity.LowPrice;
+                    m.ClosePrice = entity.ClosePrice;
+                }
+                else
+                    list.Insert(entity);
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+    }
+}

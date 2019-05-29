@@ -1,0 +1,153 @@
+﻿using OM.Lib.Base.Enums;
+using OM.Lib.Base.Utils;
+using OM.Lib.Entity;
+using OM.Lib.Framework.Db;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Atman.Chakra.App
+{
+    public partial class TradeRuleForm2 : Form
+    {
+        BasicTradeRule rule = new BasicTradeRule();
+
+        public TradeRuleForm2()
+        {
+            InitializeComponent();
+            this.Load += TradeRuleForm_Load;
+            SiseEvents.Instance.SiseHandler += Instance_SiseHandler;
+            TradeEvents.Instance.TradeRuleHandler += Instance_TradeRuleHandler;
+        }
+
+        private void TradeRuleForm_Load(object sender, EventArgs e)
+        {
+            rule.Item = tbItem.Text;
+        }
+
+        private void Instance_TradeRuleHandler(string atmanName, string itemCode, string message)
+        {
+            if (atmanName != "TRADE") return;
+            tbLog.Invoke(new MethodInvoker(() =>
+               {
+                   tbLog.AppendText(itemCode + "=>" + message);
+                   tbLog.AppendText(Environment.NewLine);
+               }));
+        }
+        private void Instance_SiseHandler(string itemCode, CurrentPrice price)
+        {
+            try
+            {
+                if (!rule.IsUse) return;
+
+                if (rule.Item != itemCode) return;
+
+                rule.Analysis(price);
+            }
+            catch (Exception ex)
+            {
+                tbLog.Invoke(new MethodInvoker(() =>
+                {
+                    tbLog.AppendText(itemCode + "=>" + ex.Message);
+                    tbLog.AppendText(Environment.NewLine);
+                }));
+            }
+        }
+
+        private void tbItem_TextChanged(object sender, EventArgs e)
+        {
+            rule.Item = tbItem.Text;
+        }
+
+        private void cbTimeType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            rule.TimeType = cbTimeType.SelectedItem.ToString();
+        }
+
+        private void chkIsUse_CheckedChanged(object sender, EventArgs e)
+        {
+            rule.IsUse = chkIsUse.Checked;
+        }
+
+        private void tbP2BuyPrice1_TextChanged(object sender, EventArgs e)
+        {
+            rule.P2BuyPrice1 = Convert.ToDouble(tbP2BuyPrice1.Text);
+        }
+
+        private void cbP2Pattern1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            rule.P2BuyPattern1 = (PricePatternEnum)cbP2Pattern1.SelectedIndex;
+        }
+
+        private void tbP2BuyPrice2_TextChanged(object sender, EventArgs e)
+        {
+            rule.P2BuyPrice2 = Convert.ToDouble(tbP2BuyPrice2.Text);
+        }
+
+        private void cbP2Pattern2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            rule.P2BuyPattern2 = (PricePatternEnum)cbP2Pattern2.SelectedIndex;
+        }
+
+        private void tbP2LossPrice_TextChanged(object sender, EventArgs e)
+        {
+            rule.P2LosscutPrice1 = Convert.ToDouble(tbP2LossPrice.Text);
+        }
+
+        private void chkIsUseP2_CheckedChanged(object sender, EventArgs e)
+        {
+            rule.IsUseP2 = chkIsUseP2.Checked;
+        }
+
+        private void tbP1BuyPrice1_TextChanged(object sender, EventArgs e)
+        {
+            rule.P1BuyPrice1 = Convert.ToDouble(tbP1BuyPrice1.Text);
+        }
+
+        private void cbP1Pattern1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            rule.P1BuyPattern1 = (PricePatternEnum)cbP1Pattern1.SelectedIndex;
+        }
+
+        private void tbP1BuyPrice2_TextChanged(object sender, EventArgs e)
+        {
+            rule.P1BuyPrice2 = Convert.ToDouble(tbP1BuyPrice2.Text);
+        }
+
+        private void cbP1Pattern2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            rule.P1BuyPattern2 = (PricePatternEnum)cbP1Pattern2.SelectedIndex;
+        }
+
+        private void tbP1LossPrice_TextChanged(object sender, EventArgs e)
+        {
+            rule.P1LosscutPrice1 = Convert.ToDouble(tbP1LossPrice.Text);
+        }
+
+        private void chkIsUseP1_CheckedChanged(object sender, EventArgs e)
+        {
+            rule.IsUseP1 = chkIsUseP1.Checked;
+        }
+
+        private void tbRevenuePrice_TextChanged(object sender, EventArgs e)
+        {
+            rule.RevenuePrice = Convert.ToDouble(tbRevenuePrice.Text);
+        }
+
+        private void tbRevenueRate_TextChanged(object sender, EventArgs e)
+        {
+            rule.RevenueRate = Convert.ToDouble(tbRevenueRate.Text);
+        }
+
+        private void chkIsUseRevenue_CheckedChanged(object sender, EventArgs e)
+        {
+            rule.IsUseRevenue1 = chkIsUseRevenue.Checked;
+        }
+    }
+}

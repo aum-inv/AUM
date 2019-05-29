@@ -1,0 +1,179 @@
+﻿namespace OM.Vikala.Chakra.App
+{
+    partial class QuantumMainForm_Sample
+    {
+        /// <summary>
+        /// 필수 디자이너 변수입니다.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// 사용 중인 모든 리소스를 정리합니다.
+        /// </summary>
+        /// <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form 디자이너에서 생성한 코드
+
+        /// <summary>
+        /// 디자이너 지원에 필요한 메서드입니다. 
+        /// 이 메서드의 내용을 코드 편집기로 수정하지 마세요.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuantumMainForm_Sample));
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnLoadData = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.chartAT1 = new OM.Vikala.Controls.Charts.AtomChart();
+            this.chartQL1 = new OM.Vikala.Controls.Charts.QuantumLineChart();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.tbDT_E = new System.Windows.Forms.TextBox();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.numericUpDown1);
+            this.panel1.Controls.Add(this.tbDT_E);
+            this.panel1.Controls.Add(this.btnLoadData);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(5, 6);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1455, 30);
+            this.panel1.TabIndex = 0;
+            // 
+            // btnLoadData
+            // 
+            this.btnLoadData.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnLoadData.Location = new System.Drawing.Point(0, 0);
+            this.btnLoadData.Name = "btnLoadData";
+            this.btnLoadData.Size = new System.Drawing.Size(133, 30);
+            this.btnLoadData.TabIndex = 0;
+            this.btnLoadData.Text = "LoadData";
+            this.btnLoadData.UseVisualStyleBackColor = true;
+            this.btnLoadData.Click += new System.EventHandler(this.btnLoadData_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.tableLayoutPanel1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(5, 36);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1455, 560);
+            this.panel2.TabIndex = 1;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.chartAT1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.chartQL1, 0, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1455, 560);
+            this.tableLayoutPanel1.TabIndex = 2;
+            // 
+            // chartAT1
+            // 
+            this.chartAT1.ChartData = null;
+            this.chartAT1.ChartEventInstance = null;
+            this.chartAT1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chartAT1.IsAutoScrollX = true;
+            this.chartAT1.IsLoaded = false;
+            this.chartAT1.ItemCode = "";
+            this.chartAT1.Location = new System.Drawing.Point(8, 6);
+            this.chartAT1.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.chartAT1.MaximumDisplayItemCount = 30;
+            this.chartAT1.Name = "chartAT1";
+            this.chartAT1.Size = new System.Drawing.Size(1439, 268);
+            this.chartAT1.SpaceMaxMin = 0.01D;
+            this.chartAT1.TabIndex = 2;
+            this.chartAT1.Title = null;
+            // 
+            // chartQL1
+            // 
+            this.chartQL1.ChartData = null;
+            this.chartQL1.ChartEventInstance = null;
+            this.chartQL1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chartQL1.IsAutoScrollX = true;
+            this.chartQL1.IsLoaded = false;
+            this.chartQL1.ItemCode = "";
+            this.chartQL1.LineChartType = OM.Vikala.Controls.Charts.LineChartTypeEnum.전일양자라인;
+            this.chartQL1.Location = new System.Drawing.Point(8, 286);
+            this.chartQL1.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.chartQL1.MaximumDisplayItemCount = 30;
+            this.chartQL1.Name = "chartQL1";
+            this.chartQL1.Size = new System.Drawing.Size(1439, 268);
+            this.chartQL1.SpaceMaxMin = 0.01D;
+            this.chartQL1.TabIndex = 3;
+            this.chartQL1.Title = null;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.numericUpDown1.Location = new System.Drawing.Point(304, 0);
+            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(171, 28);
+            this.numericUpDown1.TabIndex = 4;
+            // 
+            // tbDT_E
+            // 
+            this.tbDT_E.Dock = System.Windows.Forms.DockStyle.Left;
+            this.tbDT_E.Location = new System.Drawing.Point(133, 0);
+            this.tbDT_E.Name = "tbDT_E";
+            this.tbDT_E.Size = new System.Drawing.Size(171, 28);
+            this.tbDT_E.TabIndex = 3;
+            this.tbDT_E.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // QuantumMainForm_Sample
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1465, 602);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.Name = "QuantumMainForm_Sample";
+            this.Padding = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.Text = "퀀텀(양자)챠트 테스트 폼";
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnLoadData;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private Controls.Charts.AtomChart chartAT1;
+        private Controls.Charts.QuantumLineChart chartQL1;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.TextBox tbDT_E;
+    }
+}
+

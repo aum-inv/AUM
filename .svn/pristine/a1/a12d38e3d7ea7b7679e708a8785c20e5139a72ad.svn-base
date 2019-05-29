@@ -1,0 +1,370 @@
+﻿namespace OM.Vikala.Chakra.App.Mains
+{
+    partial class BasicMainForm
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BasicMainForm));
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton11 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.tsbFD2 = new System.Windows.Forms.ToolStripButton();
+            this.flpMain = new System.Windows.Forms.FlowLayoutPanel();
+            this.atomChart1 = new OM.Vikala.Controls.Charts.AtomChart();
+            this.atomChart2 = new OM.Vikala.Controls.Charts.AtomChart();
+            this.atomChart3 = new OM.Vikala.Controls.Charts.AtomChart();
+            this.atomChart4 = new OM.Vikala.Controls.Charts.AtomChart();
+            this.tsbFD1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStrip1.SuspendLayout();
+            this.flpMain.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1,
+            this.toolStripComboBox1,
+            this.toolStripLabel2,
+            this.toolStripButton6,
+            this.toolStripButton1,
+            this.toolStripButton5,
+            this.toolStripButton4,
+            this.toolStripButton3,
+            this.toolStripButton2,
+            this.toolStripButton9,
+            this.toolStripButton8,
+            this.toolStripButton7,
+            this.toolStripSeparator2,
+            this.toolStripButton11,
+            this.toolStripProgressBar1,
+            this.tsbFD2,
+            this.tsbFD1});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.toolStrip1.Size = new System.Drawing.Size(1125, 40);
+            this.toolStrip1.TabIndex = 4;
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel1.Image")));
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(90, 37);
+            this.toolStripLabel1.Text = "상품선택 : ";
+            // 
+            // toolStripComboBox1
+            // 
+            this.toolStripComboBox1.AutoSize = false;
+            this.toolStripComboBox1.Items.AddRange(new object[] {
+            "지수-국내-코스피",
+            "지수-해외-다우",
+            "지수-해외-나스닥",
+            "지수-해외-홍콩",
+            "지수-해외-상해종합",
+            "지수-해외-니케이225",
+            "지수-해외-니케이225",
+            "-",
+            "해외선물-WTI",
+            "해외선물-NG",
+            "해외선물-GOLD",
+            "해외선물-SILVER",
+            "-",
+            "환율-EUR/USD",
+            "환율-USD/JPY",
+            "-",
+            "주식-국내-삼성전자",
+            "주식-해외-Apple",
+            "주식-해외-Amazon",
+            "주식-해외-Netflix",
+            "주식-해외-Facebook",
+            "-",
+            "CRYPTO-BTC/USD",
+            "CRYPTO-ETH/USD"});
+            this.toolStripComboBox1.Name = "toolStripComboBox1";
+            this.toolStripComboBox1.Size = new System.Drawing.Size(201, 23);
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(6, 40);
+            // 
+            // toolStripButton6
+            // 
+            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
+            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton6.Name = "toolStripButton6";
+            this.toolStripButton6.Size = new System.Drawing.Size(30, 37);
+            this.toolStripButton6.Text = "1분";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(30, 37);
+            this.toolStripButton1.Text = "5분";
+            // 
+            // toolStripButton5
+            // 
+            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
+            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton5.Name = "toolStripButton5";
+            this.toolStripButton5.Size = new System.Drawing.Size(37, 37);
+            this.toolStripButton5.Text = "10분";
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(37, 37);
+            this.toolStripButton4.Text = "30분";
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(37, 37);
+            this.toolStripButton3.Text = "60분";
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(44, 37);
+            this.toolStripButton2.Text = "120분";
+            // 
+            // toolStripButton9
+            // 
+            this.toolStripButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton9.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton9.Image")));
+            this.toolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton9.Name = "toolStripButton9";
+            this.toolStripButton9.Size = new System.Drawing.Size(23, 37);
+            this.toolStripButton9.Text = "일";
+            // 
+            // toolStripButton8
+            // 
+            this.toolStripButton8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton8.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton8.Image")));
+            this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton8.Name = "toolStripButton8";
+            this.toolStripButton8.Size = new System.Drawing.Size(23, 37);
+            this.toolStripButton8.Text = "주";
+            // 
+            // toolStripButton7
+            // 
+            this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
+            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton7.Name = "toolStripButton7";
+            this.toolStripButton7.Size = new System.Drawing.Size(23, 37);
+            this.toolStripButton7.Text = "월";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 40);
+            // 
+            // toolStripButton11
+            // 
+            this.toolStripButton11.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripButton11.AutoSize = false;
+            this.toolStripButton11.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton11.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton11.Image")));
+            this.toolStripButton11.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton11.Name = "toolStripButton11";
+            this.toolStripButton11.Size = new System.Drawing.Size(100, 37);
+            this.toolStripButton11.Text = "Reload";
+            // 
+            // toolStripProgressBar1
+            // 
+            this.toolStripProgressBar1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
+            this.toolStripProgressBar1.Size = new System.Drawing.Size(133, 37);
+            // 
+            // tsbFD2
+            // 
+            this.tsbFD2.AutoSize = false;
+            this.tsbFD2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbFD2.Image = ((System.Drawing.Image)(resources.GetObject("tsbFD2.Image")));
+            this.tsbFD2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbFD2.Name = "tsbFD2";
+            this.tsbFD2.Size = new System.Drawing.Size(32, 37);
+            this.tsbFD2.Text = "toolStripButton13";
+            this.tsbFD2.Click += new System.EventHandler(this.tsbFD2_Click);
+            // 
+            // flpMain
+            // 
+            this.flpMain.AutoScroll = true;
+            this.flpMain.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.flpMain.Controls.Add(this.atomChart1);
+            this.flpMain.Controls.Add(this.atomChart2);
+            this.flpMain.Controls.Add(this.atomChart3);
+            this.flpMain.Controls.Add(this.atomChart4);
+            this.flpMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpMain.Location = new System.Drawing.Point(0, 40);
+            this.flpMain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flpMain.Name = "flpMain";
+            this.flpMain.Padding = new System.Windows.Forms.Padding(1);
+            this.flpMain.Size = new System.Drawing.Size(1125, 394);
+            this.flpMain.TabIndex = 5;
+            // 
+            // atomChart1
+            // 
+            this.atomChart1.ChartData = null;
+            this.atomChart1.ChartEventInstance = null;
+            this.atomChart1.IsAutoScrollX = true;
+            this.atomChart1.IsLoaded = false;
+            this.atomChart1.ItemCode = "";
+            this.atomChart1.Location = new System.Drawing.Point(4, 4);
+            this.atomChart1.MaximumDisplayItemCount = 30;
+            this.atomChart1.Name = "atomChart1";
+            this.atomChart1.Size = new System.Drawing.Size(517, 313);
+            this.atomChart1.TabIndex = 0;
+            // 
+            // atomChart2
+            // 
+            this.atomChart2.ChartData = null;
+            this.atomChart2.ChartEventInstance = null;
+            this.atomChart2.IsAutoScrollX = true;
+            this.atomChart2.IsLoaded = false;
+            this.atomChart2.ItemCode = "";
+            this.atomChart2.Location = new System.Drawing.Point(4, 323);
+            this.atomChart2.MaximumDisplayItemCount = 30;
+            this.atomChart2.Name = "atomChart2";
+            this.atomChart2.Size = new System.Drawing.Size(638, 313);
+            this.atomChart2.TabIndex = 1;
+            // 
+            // atomChart3
+            // 
+            this.atomChart3.ChartData = null;
+            this.atomChart3.ChartEventInstance = null;
+            this.atomChart3.IsAutoScrollX = true;
+            this.atomChart3.IsLoaded = false;
+            this.atomChart3.ItemCode = "";
+            this.atomChart3.Location = new System.Drawing.Point(4, 642);
+            this.atomChart3.MaximumDisplayItemCount = 30;
+            this.atomChart3.Name = "atomChart3";
+            this.atomChart3.Size = new System.Drawing.Size(638, 313);
+            this.atomChart3.TabIndex = 2;
+            // 
+            // atomChart4
+            // 
+            this.atomChart4.ChartData = null;
+            this.atomChart4.ChartEventInstance = null;
+            this.atomChart4.IsAutoScrollX = true;
+            this.atomChart4.IsLoaded = false;
+            this.atomChart4.ItemCode = "";
+            this.atomChart4.Location = new System.Drawing.Point(4, 961);
+            this.atomChart4.MaximumDisplayItemCount = 30;
+            this.atomChart4.Name = "atomChart4";
+            this.atomChart4.Size = new System.Drawing.Size(638, 313);
+            this.atomChart4.TabIndex = 3;
+            // 
+            // tsbFD1
+            // 
+            this.tsbFD1.AutoSize = false;
+            this.tsbFD1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbFD1.Image = ((System.Drawing.Image)(resources.GetObject("tsbFD1.Image")));
+            this.tsbFD1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbFD1.Name = "tsbFD1";
+            this.tsbFD1.Size = new System.Drawing.Size(32, 37);
+            this.tsbFD1.Text = "toolStripButton12";
+            this.tsbFD1.Click += new System.EventHandler(this.tsbFD1_Click);
+            // 
+            // BasicMainForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(1125, 434);
+            this.Controls.Add(this.flpMain);
+            this.Controls.Add(this.toolStrip1);
+            this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Name = "BasicMainForm";
+            this.Text = "VIKALA CHAKRA";
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            this.flpMain.ResumeLayout(false);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
+        private System.Windows.Forms.ToolStripSeparator toolStripLabel2;
+        private System.Windows.Forms.ToolStripButton toolStripButton6;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton toolStripButton5;
+        private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton toolStripButton9;
+        private System.Windows.Forms.ToolStripButton toolStripButton8;
+        private System.Windows.Forms.ToolStripButton toolStripButton7;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton toolStripButton11;
+        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
+        private System.Windows.Forms.ToolStripButton tsbFD2;
+        private System.Windows.Forms.FlowLayoutPanel flpMain;
+        private Controls.Charts.AtomChart atomChart1;
+        private Controls.Charts.AtomChart atomChart2;
+        private Controls.Charts.AtomChart atomChart3;
+        private Controls.Charts.AtomChart atomChart4;
+        private System.Windows.Forms.ToolStripButton tsbFD1;
+    }
+}

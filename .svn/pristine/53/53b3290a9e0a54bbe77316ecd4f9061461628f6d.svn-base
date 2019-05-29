@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4B46F2A2-8E30-487D-A77E-DAF014D8F1D7}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>OM.Atman.Chakra.App</RootNamespace>
+    <AssemblyName>OM.Atman.Chakra.App</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>atman.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PatternTradeRuleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatternTradeRuleForm.Designer.cs">
+      <DependentUpon>PatternTradeRuleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TradeRuleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TradeRuleForm.Designer.cs">
+      <DependentUpon>TradeRuleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TwoLineRuleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TwoLineRuleForm.Designer.cs">
+      <DependentUpon>TwoLineRuleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MessRuleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MessRuleForm.Designer.cs">
+      <DependentUpon>MessRuleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AtomRuleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AtomRuleForm.Designer.cs">
+      <DependentUpon>AtomRuleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SiseEvents.cs" />
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatternTradeRuleForm.resx">
+      <DependentUpon>PatternTradeRuleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TradeRuleForm.resx">
+      <DependentUpon>TradeRuleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TwoLineRuleForm.resx">
+      <DependentUpon>TwoLineRuleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MessRuleForm.resx">
+      <DependentUpon>MessRuleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AtomRuleForm.resx">
+      <DependentUpon>AtomRuleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="atman.ico" />
+    <None Include="AtomRuleForm.txt" />
+    <Content Include="feed-icon-pink.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\OM.PP\OM.PP.Chakra\OM.PP.Chakra.csproj">
+      <Project>{2c4aa241-5c13-4abf-9eb3-5903308cb439}</Project>
+      <Name>OM.PP.Chakra</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OM\OM.Lib.Base\OM.Lib.Base.csproj">
+      <Project>{1796ffd0-4eaf-4f72-8db2-923345b88c7e}</Project>
+      <Name>OM.Lib.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OM\OM.Lib.Entity\OM.Lib.Entity.csproj">
+      <Project>{d981e9a6-93e8-4369-8126-857c61678516}</Project>
+      <Name>OM.Lib.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OM\OM.Lib.Framework\OM.Lib.Framework.csproj">
+      <Project>{5a86d37b-e9a0-4cfd-bc4a-fa53cd0edc61}</Project>
+      <Name>OM.Lib.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OM.Atman.Chakra\OM.Atman.Chakra.csproj">
+      <Project>{a4ff7895-81a8-459a-adba-a4d7a91995bf}</Project>
+      <Name>OM.Atman.Chakra</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

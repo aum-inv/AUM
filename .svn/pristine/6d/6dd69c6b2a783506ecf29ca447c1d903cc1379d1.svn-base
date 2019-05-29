@@ -1,0 +1,28 @@
+﻿using OM.Lib.Base;
+using OM.Lib.Base.Enums;
+using OM.Lib.Base.Utils;
+using OM.PP.Chakra;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleTest
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            TimeSpan t = TimeSpan.FromMinutes(10);
+            Console.WriteLine($"{t.Hours.ToString("00")}:{t.Minutes.ToString("00")}:{t.Seconds.ToString("00")}");
+            TimeSpan t2 = TimeSpan.FromSeconds(1);
+            t = t.Subtract(t2);
+            Console.WriteLine($"{t.Hours.ToString("00")}:{t.Minutes.ToString("00")}:{t.Seconds.ToString("00")}");
+            t2 = TimeSpan.FromSeconds(1);
+            t = t.Subtract(t2);
+            Console.WriteLine($"{t.Hours.ToString("00")}:{t.Minutes.ToString("00")}:{t.Seconds.ToString("00")}");
+            Console.ReadLine();
+        }
+    }
+}

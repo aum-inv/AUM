@@ -1,0 +1,83 @@
+﻿using OM.Lib.Base.Utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.PP.Chakra
+{
+    public class S_CandleItemData : A_HLOC
+    {
+        public S_CandleItemData() { }
+
+        public S_CandleItemData(
+                Single open
+            ,   Single high
+            ,   Single low
+            ,   Single close
+            ,   Single volume
+            ,   DateTime dt)
+        {
+            base.OpenPrice = open;
+            base.HighPrice = high;
+            base.LowPrice = low;
+            base.ClosePrice = close;
+            base.Volume = volume;
+            base.DTime = dt;
+        }
+
+        public void SetQuantum(S_CandleItemData bData = null)
+        {
+            //전일데이터를 바탕으로 양자가격을 만든다.
+            //전일중심값을 기준으로 한다.
+            if (bData != null)
+            {
+                Single basePrice = bData.CenterPrice;
+
+                if (basePrice < OpenPrice) Q_OpenPrice_T = basePrice - Math.Abs(basePrice - OpenPrice);
+                else Q_OpenPrice_T = basePrice + Math.Abs(basePrice - OpenPrice);
+
+                if (basePrice < ClosePrice) Q_ClosePrice_T = basePrice - Math.Abs(basePrice - ClosePrice);
+                else Q_ClosePrice_T = basePrice + Math.Abs(basePrice - ClosePrice);
+
+                if (basePrice < HighPrice) Q_HighPrice_T = basePrice - Math.Abs(basePrice - HighPrice);
+                else Q_HighPrice_T = basePrice + Math.Abs(basePrice - HighPrice);
+
+                if (basePrice < LowPrice) Q_LowPrice_T = basePrice - Math.Abs(basePrice - LowPrice);
+                else Q_LowPrice_T = basePrice + Math.Abs(basePrice - LowPrice);
+
+                var tmpH = new[] { Q_OpenPrice_T, Q_ClosePrice_T, Q_HighPrice_T, Q_LowPrice_T }.Max();
+                var tmpL = new[] { Q_OpenPrice_T, Q_ClosePrice_T, Q_HighPrice_T, Q_LowPrice_T }.Min();
+
+                Q_HighPrice_T = tmpH;
+                Q_LowPrice_T = tmpL;
+            }
+            else
+            {
+                //당일데이터를 바탕으로 양자가격을 만든다.
+                //당일시가를 기준으로 한다.
+
+                Single basePrice = OpenPrice;
+
+                if (basePrice < OpenPrice) Q_OpenPrice_S = basePrice - Math.Abs(basePrice - OpenPrice);
+                else Q_OpenPrice_S = basePrice + Math.Abs(basePrice - OpenPrice);
+
+                if (basePrice < ClosePrice) Q_ClosePrice_S = basePrice - Math.Abs(basePrice - ClosePrice);
+                else Q_ClosePrice_S = basePrice + Math.Abs(basePrice - ClosePrice);
+
+                if (basePrice < HighPrice) Q_HighPrice_S = basePrice - Math.Abs(basePrice - HighPrice);
+                else Q_HighPrice_S = basePrice + Math.Abs(basePrice - HighPrice);
+
+                if (basePrice < LowPrice) Q_LowPrice_S = basePrice - Math.Abs(basePrice - LowPrice);
+                else Q_LowPrice_S = basePrice + Math.Abs(basePrice - LowPrice);
+
+                var tmpH = new[] { Q_OpenPrice_S, Q_ClosePrice_S, Q_HighPrice_S, Q_LowPrice_S }.Max();
+                var tmpL = new[] { Q_OpenPrice_S, Q_ClosePrice_S, Q_HighPrice_S, Q_LowPrice_S }.Min();
+
+                Q_HighPrice_S = tmpH;
+                Q_LowPrice_S = tmpL;
+            }
+        }
+    }
+}

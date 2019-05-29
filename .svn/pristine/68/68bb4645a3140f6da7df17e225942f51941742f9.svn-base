@@ -1,0 +1,546 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using OM.PP.Chakra;
+using System.Windows.Forms.DataVisualization.Charting;
+using OM.Lib.Base.Utils;
+
+namespace OM.Vikala.Controls.Charts
+{
+    public partial class BasicCandleChart : BaseChartControl
+    {
+        public override CandleChartTypeEnum CandleChartType
+        {
+            get;
+            set;
+        } = CandleChartTypeEnum.기본;
+                
+        public override bool IsAutoScrollX
+        {
+            get { return pnlScroll.Visible; }
+            set { pnlScroll.Visible = value; }
+        }
+
+        public List<S_CandleItemData> ChartData
+        {
+            get;
+            set;
+        }
+
+        public void LoadData(string itemCode = ""
+            , List <S_CandleItemData> chartData = null
+            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day)
+        {
+            TimeInterval = timeInterval;
+            ItemCode = itemCode;
+            ChartData = chartData;
+            Reset();
+            View();
+        }
+        
+        public BasicCandleChart() 
+        {
+            InitializeComponent();
+            base.SetChartControl(chart, hScrollBar, trackBar);
+        }
+
+        public override void View()
+        {
+            pnlScroll.Visible = IsAutoScrollX;
+            if (ChartData == null) return;
+            foreach (var item in ChartData)
+            {
+                int idx = chart.Series[0].Points.AddXY(item.DTime, item.HighPrice, item.LowPrice, item.OpenPrice, item.ClosePrice);
+                var dataPoint = chart.Series[0].Points[idx];
+                dataPoint.Tag = item;
+
+                switch (CandleChartType)
+                {
+                    case CandleChartTypeEnum.삼태극 : 삼태극(item, dataPoint); break;
+                    case CandleChartTypeEnum.진동주파수 : 진동주파수(item, dataPoint); break;
+                    case CandleChartTypeEnum.천지인 : 천지인(item, dataPoint); break;
+                    case CandleChartTypeEnum.쿼크: 쿼크(item, dataPoint); break;
+                    case CandleChartTypeEnum.음양오행 : 음양오행(item, dataPoint); break;
+                    case CandleChartTypeEnum.삼양삼음: 삼양삼음(item, dataPoint); break;
+                }
+            }
+
+            double maxPrice = ChartData.Max(m => m.HighPrice);
+            double minPrice = ChartData.Min(m => m.LowPrice);
+            if (CandleChartType == CandleChartTypeEnum.천지인)
+            {
+                double maxPrice2 = ChartData.Max(m => m.QuantumPrice);
+                double minPrice2 = ChartData.Min(m => m.QuantumPrice);
+                if (maxPrice < maxPrice2) maxPrice = maxPrice2;
+                if (minPrice > minPrice2) minPrice = minPrice2;
+            }
+            maxPrice = maxPrice + SpaceMaxMin;
+            minPrice = minPrice - SpaceMaxMin;
+            chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
+            chart.ChartAreas[0].AxisY2.Minimum = minPrice;
+
+            chart.ChartAreas[0].AxisY2.LabelStyle.Format = "{N2}";
+
+            SetScrollBar();
+            SetTrackBar();
+            DisplayView();
+
+            IsLoaded = true;
+
+            base.View();
+        }
+
+        public void SetScrollBar()
+        {
+            int trackView = trackBar.Value;
+            int displayItemCount = MaximumDisplayItemCount * trackView;
+
+            int maxScrollValue = (int)Math.Ceiling((Convert.ToDouble(ChartData.Count) / Convert.ToDouble(displayItemCount))) ;
+            int minScrollValue = 1;
+
+            hScrollBar.Minimum = minScrollValue;
+            hScrollBar.Maximum = maxScrollValue;
+            hScrollBar.Value = maxScrollValue;
+            hScrollBar.LargeChange = 1;
+            hScrollBar.SmallChange = 1;
+        }
+
+        public void SetTrackBar()
+        {
+            pnlScroll.Visible = IsAutoScrollX;
+            int maxScrollValue = (int)Math.Ceiling((Convert.ToDouble(ChartData.Count) / Convert.ToDouble(MaximumDisplayItemCount)));
+            int minScrollValue = 1;
+
+            trackBar.Minimum = minScrollValue;
+            trackBar.Maximum = maxScrollValue;
+            trackBar.Value = minScrollValue;
+            trackBar.LargeChange = 1;
+            trackBar.SmallChange = 1;
+        }
+
+        public void DisplayView()
+        {
+            chart.Update();
+
+            int scrollVal = hScrollBar.Value;
+            if (scrollVal < hScrollBar.Minimum) scrollVal = hScrollBar.Minimum;
+            if (scrollVal > hScrollBar.Maximum) scrollVal = hScrollBar.Maximum;
+
+            int trackView = trackBar.Value;
+            int displayItemCount = MaximumDisplayItemCount * trackView;
+
+            List<S_CandleItemData> viewLists = null;
+            int maxDisplayIndex = 0;
+            int minDisplayIndex = 0;
+            if (scrollVal == hScrollBar.Minimum)
+            {
+                int maxIndex = ChartData.Count > displayItemCount ? displayItemCount - 1 : ChartData.Count;
+                if (displayItemCount > ChartData.Count) displayItemCount = ChartData.Count;
+                viewLists = ChartData.GetRange(0, maxIndex);
+                maxDisplayIndex = displayItemCount;
+                minDisplayIndex = 0;
+            }
+            else if (scrollVal == hScrollBar.Maximum)
+            {
+                int minIndex = ChartData.Count < displayItemCount ? 0 : ChartData.Count - displayItemCount;
+                if (displayItemCount > ChartData.Count) displayItemCount = ChartData.Count;
+                viewLists = ChartData.GetRange(minIndex, ChartData.Count < displayItemCount ? ChartData.Count : displayItemCount);
+                maxDisplayIndex = ChartData.Count;
+                minDisplayIndex = minIndex;
+            }
+            else
+            {
+                int currentIndex = (scrollVal - 1) * displayItemCount;
+                if (ChartData.Count < currentIndex + displayItemCount)
+                    displayItemCount = ChartData.Count - currentIndex;
+
+                viewLists = ChartData.GetRange(currentIndex, displayItemCount);
+
+                maxDisplayIndex = currentIndex + displayItemCount;
+                minDisplayIndex = currentIndex;
+            }
+            if (viewLists != null)
+            {
+                chart.ChartAreas[0].AxisX.Maximum = maxDisplayIndex + 1;
+                chart.ChartAreas[0].AxisX.Minimum = minDisplayIndex - 1;
+
+                double maxPrice = viewLists.Max(m => m.HighPrice);
+                double minPrice = viewLists.Min(m => m.LowPrice);
+                if (CandleChartType == CandleChartTypeEnum.천지인)
+                {
+                    double maxPrice2 = viewLists.Max(m => m.QuantumPrice);
+                    double minPrice2 = viewLists.Min(m => m.QuantumPrice);
+                    if (maxPrice < maxPrice2) maxPrice = maxPrice2;
+                    if (minPrice > minPrice2) minPrice = minPrice2;
+                }
+                maxPrice = maxPrice + SpaceMaxMin;
+                minPrice = minPrice - SpaceMaxMin;
+                chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
+                chart.ChartAreas[0].AxisY2.Minimum = minPrice;              
+            }
+        }
+
+        private void hScrollBar_ValueChanged(object sender, EventArgs e)
+        {
+            if (!IsLoaded) return;
+            DisplayView();
+            if (ChartEventInstance != null)
+                ChartEventInstance.OnChangeChartScrollBarHandler(this.chart, hScrollBar.Value);
+        }
+
+        private void trackBar_ValueChanged(object sender, EventArgs e)
+        {
+            if (!IsLoaded) return;
+          
+            SetScrollBar();
+            DisplayView();
+            if (ChartEventInstance != null)
+                ChartEventInstance.OnChangeChartTrackBarHandler(this.chart, trackBar.Value);
+
+            SelectedTrackBarValue = (int)trackBar.Value;
+        }
+
+        DataPoint prevDataPoint = null;
+        ToolTip tooltip = new ToolTip();
+        private void Chart_MouseDown(object sender, MouseEventArgs e)
+        {
+            var pos = e.Location;    
+            var results = chart.HitTest(pos.X, pos.Y, false, ChartElementType.DataPoint);
+
+            foreach (var result in results)
+            {
+                if (result.ChartElementType == ChartElementType.DataPoint)
+                {
+                    var prop = result.Object as DataPoint;
+
+                    if (prop != null && (prevDataPoint != null && prevDataPoint != prop))
+                    {
+                        tooltip.RemoveAll();
+
+                        var dTIme = DateTime.FromOADate(prop.XValue);
+                        var high = Math.Round(prop.YValues[0], ItemCodeUtil.GetItemCodeRoundNum(ItemCode));
+                        var low = Math.Round(prop.YValues[1], ItemCodeUtil.GetItemCodeRoundNum(ItemCode));
+                        var open = Math.Round(prop.YValues[2], ItemCodeUtil.GetItemCodeRoundNum(ItemCode));
+                        var close = Math.Round(prop.YValues[3], ItemCodeUtil.GetItemCodeRoundNum(ItemCode));
+
+                        tooltip.Show($"날짜:{dTIme.ToString("yy-MM-dd HH:mm")}, 시가:{open}, 고가:{high}, 저가:{low}, 종가:{close}", this.chart, 2, 2);
+                    }
+
+                    prevDataPoint = prop;
+                }
+                else
+                {
+                }
+            }
+        }
+        private void chart_PostPaint(object sender, ChartPaintEventArgs e)
+        {
+            DrawChartTitle(e);
+
+            /*
+            ChartArea ca = chart.ChartAreas[0];
+            Series s = chart.Series[0];
+            s.BorderWidth = 0;
+            if (e.ChartElement == s)
+            {
+                foreach (DataPoint dp in s.Points)
+                {
+                    //if (dp.XValue < chart.ChartAreas[0].AxisX.Minimum
+                    //    || dp.XValue > chart.ChartAreas[0].AxisX.Maximum)
+                    //    continue;
+
+                    if (dp.Tag == null) continue;
+
+                    var colors = dp.Tag as Color[];
+
+                    Pen hiPen = new Pen(colors[0], 2);
+                    Pen loPen = new Pen(colors[2], 2);
+
+                    dp.Color = colors[1];
+
+                    float x = (float)ca.AxisX.ValueToPixelPosition(dp.XValue);
+                    float y_hi = (float)ca.AxisY2.ValueToPixelPosition(dp.YValues[0]);
+                    float y_low = (float)ca.AxisY2.ValueToPixelPosition(dp.YValues[1]);
+                    float y_open = (float)ca.AxisY2.ValueToPixelPosition(dp.YValues[2]);
+                    float y_close = (float)ca.AxisY2.ValueToPixelPosition(dp.YValues[3]);
+
+                    e.ChartGraphics.Graphics.DrawLine(hiPen, x, y_hi, x, Math.Min(y_close, y_open));
+                    e.ChartGraphics.Graphics.DrawLine(loPen, x, y_low, x, Math.Max(y_close, y_open) - 1);
+                }
+            }
+            */
+        }
+
+        #region CandleChartType
+        private void 삼태극(S_CandleItemData item, DataPoint dataPoint)
+        {
+            try
+            {
+                int round = item.RoundLength; 
+                //무극 : 고저중심과 시종중심이 같다. 
+                //       고저중심과 고가의 중심값이 종가(시가)와 같다 
+                //       고저중심과 저가의 중심값이 시가(종가)와 같다
+                //       혹은
+                //       가격의 편차가 30:40:30 이다.
+                //순양 : 종가가 고저중심과 고가의 중심값과 크다.
+                //순음 : 종가가 고저중심과 저가의 중심값과 작다.
+
+                //고저중심(중앙가)
+                double hl = Math.Round((item.HighPrice + item.LowPrice) / 2.0f, round);
+                //시종중심(중심가)
+                double oc = Math.Round((item.OpenPrice + item.ClosePrice) / 2.0f, round);
+                //중앙가+고가의 중앙
+                double hlh = Math.Round((hl + item.HighPrice) / 2.0f, round);
+                //중앙가+저가의 중앙
+                double hll = Math.Round((hl + item.LowPrice) / 2.0f, round);
+
+                double hlA = Math.Round(item.HighPrice - item.LowPrice, round);
+                double hA = Math.Round(item.OpenPrice < item.ClosePrice ? item.HighPrice - item.ClosePrice : item.HighPrice - item.OpenPrice, round);
+                double ocA = Math.Round(item.OpenPrice < item.ClosePrice ? item.ClosePrice - item.OpenPrice : item.OpenPrice - item.ClosePrice, round);
+                double lA = Math.Round(item.OpenPrice > item.ClosePrice ? item.ClosePrice - item.LowPrice : item.OpenPrice - item.LowPrice, round);
+
+                int hR = Convert.ToInt32(Math.Round(hA / hlA * 100, 0));
+                int lR = Convert.ToInt32(Math.Round(lA / hlA * 100, 0));
+                int ocR = Convert.ToInt32(Math.Round(ocA / hlA * 100, 0));
+
+                
+                //무극1
+                if (hR > 30 && lR > 30 && ocR > 30)
+                {
+                    SetDataPointColor(dataPoint, Color.Gold, Color.Gold, Color.Gold, 1);
+                    return;
+                }
+                //무극2
+                if (hl == oc && (hlh == item.OpenPrice || hlh == item.ClosePrice) && (hll == item.OpenPrice || hll == item.ClosePrice))
+                {
+                    SetDataPointColor(dataPoint, Color.DarkGoldenrod, Color.DarkGoldenrod, Color.DarkGoldenrod, 1);
+                    return;
+                }
+                //순양
+                if (ocR >= 40 && hR < 30 && oc > item.OpenPrice && oc < item.ClosePrice && hl > item.OpenPrice && hl < item.ClosePrice && hlh < item.ClosePrice)
+                {
+                    SetDataPointColor(dataPoint, Color.Red, Color.Red, Color.Red, 1);
+                    return;
+                }
+                //순음
+                if (ocR >= 40 && lR < 30 && oc < item.OpenPrice && oc > item.ClosePrice && hl < item.OpenPrice && hl > item.ClosePrice && hll > item.ClosePrice)
+                {
+                    SetDataPointColor(dataPoint, Color.Blue, Color.Blue, Color.Blue, 1);
+                    return;
+                }
+
+                SetDataPointColor(dataPoint, Color.Black, Color.Black, Color.White);
+                dataPoint.BorderDashStyle = ChartDashStyle.Dot;
+            }
+            catch (Exception)
+            {
+            }
+        }
+        private void 진동주파수(S_CandleItemData item, DataPoint dataPoint)
+        {
+            try
+            {
+                Single headLen = 0f, bodyLen = 0f, legLen = 0f;
+
+                //if (item.OpenPrice < item.ClosePrice)
+                //{
+                //    headLen = (Single)Math.Round(Math.Abs(item.HighPrice - item.ClosePrice), ItemCodeUtil.GetItemCodeRoundNum(ItemCode));
+                //    bodyLen = (Single)Math.Round(Math.Abs(item.OpenPrice - item.ClosePrice), ItemCodeUtil.GetItemCodeRoundNum(ItemCode));
+                //    legLen = (Single)Math.Round(Math.Abs(item.LowPrice - item.OpenPrice), ItemCodeUtil.GetItemCodeRoundNum(ItemCode));
+                //}
+                //else if (item.OpenPrice > item.ClosePrice)
+                //{
+                //    headLen = (Single)Math.Round(Math.Abs(item.HighPrice - item.OpenPrice), ItemCodeUtil.GetItemCodeRoundNum(ItemCode));
+                //    bodyLen = (Single)Math.Round(Math.Abs(item.OpenPrice - item.ClosePrice), ItemCodeUtil.GetItemCodeRoundNum(ItemCode));
+                //    legLen = (Single)Math.Round(Math.Abs(item.LowPrice - item.ClosePrice), ItemCodeUtil.GetItemCodeRoundNum(ItemCode));
+                //}
+
+                headLen = (Single)Math.Round(Math.Abs(item.HighPrice - item.OpenPrice), ItemCodeUtil.GetItemCodeRoundNum(ItemCode));
+                bodyLen = (Single)Math.Round(Math.Abs(item.HighPrice - item.LowPrice), ItemCodeUtil.GetItemCodeRoundNum(ItemCode));
+                legLen = (Single)Math.Round(Math.Abs(item.LowPrice - item.ClosePrice), ItemCodeUtil.GetItemCodeRoundNum(ItemCode));
+
+                //if (headLen == 0f || bodyLen == 0f || legLen == 0f)
+                //{
+                //    return;
+                //}
+
+                var rainbow = ChartUtil.GetRainbowType(headLen, bodyLen, legLen);
+                Color[] colors = new Color[3] { Color.Black, Color.Black, Color.Black };
+
+               
+                if (rainbow.head == RainbowTypeEnum._1_빨) colors[0] = Color.Red;
+                if (rainbow.head == RainbowTypeEnum._2_주) colors[0] = Color.Orange;
+                if (rainbow.head == RainbowTypeEnum._3_노) colors[0] = Color.Yellow;
+                if (rainbow.head == RainbowTypeEnum._4_초) colors[0] = Color.Green;
+                if (rainbow.head == RainbowTypeEnum._5_파) colors[0] = Color.Blue;
+                if (rainbow.head == RainbowTypeEnum._6_남) colors[0] = Color.DarkBlue;
+                if (rainbow.head == RainbowTypeEnum._7_보) colors[0] = Color.Purple;
+                if (rainbow.head == RainbowTypeEnum._8_금) colors[0] = Color.Gold;
+                if (rainbow.head == RainbowTypeEnum._9_흑) colors[0] = Color.Black;
+
+                if (rainbow.body == RainbowTypeEnum._1_빨) colors[1] = Color.Red;
+                if (rainbow.body == RainbowTypeEnum._2_주) colors[1] = Color.Orange;
+                if (rainbow.body == RainbowTypeEnum._3_노) colors[1] = Color.Yellow;
+                if (rainbow.body == RainbowTypeEnum._4_초) colors[1] = Color.Green;
+                if (rainbow.body == RainbowTypeEnum._5_파) colors[1] = Color.Blue;
+                if (rainbow.body == RainbowTypeEnum._6_남) colors[1] = Color.DarkBlue;
+                if (rainbow.body == RainbowTypeEnum._7_보) colors[1] = Color.Purple;
+                if (rainbow.body == RainbowTypeEnum._8_금) colors[1] = Color.Gold;
+                if (rainbow.body == RainbowTypeEnum._9_흑) colors[1] = Color.Black;
+
+                if (rainbow.leg == RainbowTypeEnum._1_빨) colors[2] = Color.Red;
+                if (rainbow.leg == RainbowTypeEnum._2_주) colors[2] = Color.Orange;
+                if (rainbow.leg == RainbowTypeEnum._3_노) colors[2] = Color.Yellow;
+                if (rainbow.leg == RainbowTypeEnum._4_초) colors[2] = Color.Green;
+                if (rainbow.leg == RainbowTypeEnum._5_파) colors[2] = Color.Blue;
+                if (rainbow.leg == RainbowTypeEnum._6_남) colors[2] = Color.DarkBlue;
+                if (rainbow.leg == RainbowTypeEnum._7_보) colors[2] = Color.Purple;
+                if (rainbow.leg == RainbowTypeEnum._8_금) colors[2] = Color.Gold;
+                if (rainbow.leg == RainbowTypeEnum._9_흑) colors[2] = Color.Black;
+
+                if(colors[0] ==  colors[1] && colors[1] ==colors[2])
+                    SetDataPointColor(dataPoint, colors[0], colors[1], colors[2], 3);
+                else
+                    SetDataPointColor(dataPoint, Color.WhiteSmoke, Color.WhiteSmoke, Color.WhiteSmoke, 1);
+            }
+            catch (Exception)
+            {
+            }
+        }
+        private void 천지인(S_CandleItemData item, DataPoint dataPoint)
+        {
+            try
+            {
+                T_SLHItemData t_SLH = new T_SLHItemData(item);
+                t_SLH.Transform();
+                //dataPoint.YValues[0] = t_SLH.T_HighPrice;
+                //dataPoint.YValues[1] = t_SLH.T_LowPrice;
+                //dataPoint.YValues[2] = t_SLH.T_OpenPrice;
+                //dataPoint.YValues[3] = t_SLH.T_ClosePrice;
+
+                if (t_SLH.SLHType == SLHTypeEnum.천)
+                    SetDataPointColor(dataPoint, Color.Red, Color.Red, Color.Red);
+                else if (t_SLH.SLHType == SLHTypeEnum.지)
+                    SetDataPointColor(dataPoint, Color.Blue, Color.Blue, Color.Blue);
+                else if (t_SLH.SLHType == SLHTypeEnum.인)
+                    SetDataPointColor(dataPoint, Color.Yellow, Color.Yellow, Color.Yellow);
+
+                else if (t_SLH.SLHType == SLHTypeEnum.무)
+                    SetDataPointColor(dataPoint, Color.Black, Color.Black, Color.Black);
+                else 
+                    SetDataPointColor(dataPoint, Color.Gray, Color.Gray, Color.White);
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void 쿼크(S_CandleItemData item, DataPoint dataPoint)
+        {
+            try
+            {
+                T_QuarkItemData t_Quark = new T_QuarkItemData(item);
+                t_Quark.Transform();
+                //dataPoint.YValues[0] = t_Quark.T_HighPrice;
+                //dataPoint.YValues[1] = t_Quark.T_LowPrice;
+                //dataPoint.YValues[2] = t_Quark.T_OpenPrice;
+                //dataPoint.YValues[3] = t_Quark.T_ClosePrice;
+
+                if (t_Quark.QuarkType == QuarkTypeEnum.빨쿼크_양)
+                    SetDataPointColor(dataPoint, Color.Red, Color.Red, Color.Red);
+                else if (t_Quark.QuarkType == QuarkTypeEnum.빨쿼크_음)
+                    SetDataPointColor(dataPoint, Color.Red, Color.Red, Color.Red);
+                else if (t_Quark.QuarkType == QuarkTypeEnum.빨쿼크_무)
+                    SetDataPointColor(dataPoint, Color.Yellow, Color.Yellow, Color.Yellow);
+
+                else if (t_Quark.QuarkType == QuarkTypeEnum.파쿼크_양)
+                    SetDataPointColor(dataPoint, Color.Blue, Color.Blue, Color.Blue);
+                else if (t_Quark.QuarkType == QuarkTypeEnum.파쿼크_음)
+                    SetDataPointColor(dataPoint, Color.Blue, Color.Blue, Color.Blue);
+                else if (t_Quark.QuarkType == QuarkTypeEnum.파쿼크_무)
+                    SetDataPointColor(dataPoint, Color.Yellow, Color.Yellow, Color.Yellow);
+
+                else if (t_Quark.QuarkType == QuarkTypeEnum.초쿼크_양)
+                    SetDataPointColor(dataPoint, Color.Green, Color.Green, Color.Green);
+                else if (t_Quark.QuarkType == QuarkTypeEnum.초쿼크_음)
+                    SetDataPointColor(dataPoint, Color.Green, Color.Green, Color.Green);
+                else if (t_Quark.QuarkType == QuarkTypeEnum.초쿼크_무)
+                    SetDataPointColor(dataPoint, Color.Yellow, Color.Yellow, Color.Yellow);
+
+                else if (t_Quark.QuarkType == QuarkTypeEnum.무)
+                    SetDataPointColor(dataPoint, Color.Yellow, Color.Yellow, Color.Yellow);
+                else
+                    SetDataPointColor(dataPoint, Color.WhiteSmoke, Color.WhiteSmoke, Color.WhiteSmoke);
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void 삼양삼음(S_CandleItemData item, DataPoint dataPoint)
+        {
+            try
+            {
+                T_ThreeThreeItemData t_tt = new T_ThreeThreeItemData(item);
+                t_tt.Transform();
+                if (t_tt.TTType == ThreeThreeTypeEnum.무극)
+                    SetDataPointColor(dataPoint, Color.Black, Color.Black, Color.Black);
+                else if (t_tt.TTType == ThreeThreeTypeEnum.소양)
+                    SetDataPointColor(dataPoint, Color.Black, Color.Red, Color.White);
+                else if (t_tt.TTType == ThreeThreeTypeEnum.양명)
+                    SetDataPointColor(dataPoint, Color.Black, Color.Red, Color.Red);
+                else if (t_tt.TTType == ThreeThreeTypeEnum.태양)
+                    SetDataPointColor(dataPoint, Color.Red, Color.Red, Color.Red);
+                else if (t_tt.TTType == ThreeThreeTypeEnum.궐음)
+                    SetDataPointColor(dataPoint, Color.Black, Color.Blue, Color.White);
+                else if (t_tt.TTType == ThreeThreeTypeEnum.소음)
+                    SetDataPointColor(dataPoint, Color.Black, Color.Blue, Color.Blue);
+                else if (t_tt.TTType == ThreeThreeTypeEnum.태음)
+                    SetDataPointColor(dataPoint, Color.Blue, Color.Blue, Color.Blue);
+                else
+                    SetDataPointColor(dataPoint, Color.LightGray, Color.LightGray, Color.LightGray);
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void 음양오행(S_CandleItemData item, DataPoint dataPoint)
+        {
+            try
+            {
+                int lineWidth = 1;
+
+                if (item.WuXingType == WuXingTypeEnum.무극)
+                    SetDataPointColor(dataPoint, Color.Yellow, Color.Yellow, Color.Yellow, lineWidth);            
+                else if (item.WuXingType == WuXingTypeEnum.태양)
+                    SetDataPointColor(dataPoint, Color.Red, Color.Red, Color.Red, lineWidth);
+                else if (item.WuXingType == WuXingTypeEnum.태음)
+                    SetDataPointColor(dataPoint, Color.Blue, Color.Blue, Color.Blue, lineWidth);
+                else if (item.WuXingType == WuXingTypeEnum.소양)
+                    SetDataPointColor(dataPoint, Color.Green, Color.Green, Color.Green, lineWidth);
+                else if (item.WuXingType == WuXingTypeEnum.소음)
+                    SetDataPointColor(dataPoint, Color.Gray, Color.Gray, Color.Gray, lineWidth);
+                else
+                {
+                    SetDataPointColor(dataPoint, Color.Yellow, Color.Yellow, Color.Yellow, lineWidth);
+                    dataPoint.BorderDashStyle = ChartDashStyle.Dot;
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+        #endregion
+
+        #region Chart Util
+       
+        #endregion
+    }
+}

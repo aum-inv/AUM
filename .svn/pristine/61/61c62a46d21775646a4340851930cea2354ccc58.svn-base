@@ -1,0 +1,205 @@
+﻿using OM.Lib.Base.Enums;
+using OM.Lib.Base.Utils;
+using OM.PP.Chakra;
+using OM.PP.Chakra.Ctx;
+using OM.Vikala.Controls.Charts;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Vikala.Chakra.App.Mains
+{
+    public partial class BasicMainForm : Form
+    {
+        bool autoReload = true;
+
+        TimeIntervalEnum timeInterval = TimeIntervalEnum.Day;
+        FlowDirection flowDirection = FlowDirection.RightToLeft;
+
+        ChartEvents chartEvent = new ChartEvents();
+
+        List<UserControl> charts = new List<UserControl>();
+        BasicCandleChart c_bcc = new BasicCandleChart();
+        AtomChart c_ac = new AtomChart();
+        QuantumLineChart c_qlc = new QuantumLineChart();
+        ItemData SelectedItemData
+        {
+            get;set;
+        }
+        public BasicMainForm()
+        {
+            InitializeComponent();           
+            InitializeControls();
+        }
+
+        private void InitializeControls()
+        {
+            this.userToolStrip1.ItemCodeChangedEvent += UserToolStrip1_ItemCodeChangedEvent;
+            this.userToolStrip1.TimerIntervalChangedEvent += UserToolStrip1_TimerIntervalChangedEvent;
+            this.userToolStrip1.FlowDirectionChangedEvent += UserToolStrip1_FlowDirectionChangedEvent;
+            this.userToolStrip1.AutoReloadChangedEvent += UserToolStrip1_AutoReloadChangedEvent;
+            this.userToolStrip1.ReloadEvent += UserToolStrip1_ReloadEvent;
+
+            flpMain.FlowDirection = flowDirection;
+
+            loadChartControls();
+
+            setTimer();
+        }
+
+        private void UserToolStrip1_ReloadEvent(object sender, EventArgs e)
+        {
+            loadData();
+        }
+
+        private void UserToolStrip1_AutoReloadChangedEvent(object sender, EventArgs e)
+        {
+            autoReload = (bool)sender;
+        }
+
+        private void UserToolStrip1_FlowDirectionChangedEvent(object sender, EventArgs e)
+        {
+            flpMain.FlowDirection = flowDirection = (FlowDirection)sender;
+            sizingChartControls();
+        }
+
+        private void UserToolStrip1_TimerIntervalChangedEvent(object sender, EventArgs e)
+        {
+            timeInterval = (TimeIntervalEnum)sender;
+        }
+
+        private void UserToolStrip1_ItemCodeChangedEvent(object sender, EventArgs e)
+        {
+            ItemData itemData = (ItemData)sender;
+            SelectedItemData = itemData;
+
+            this.Text = "VIKALA CHAKRA - " + itemData.Name;
+        }
+
+        private void loadChartControls()
+        {
+            flpMain.Controls.Clear();
+            charts.Clear();
+
+            c_bcc.InitializeControl();
+            c_bcc.InitializeEvent(chartEvent);
+            c_bcc.CandleChartType = CandleChartTypeEnum.기본;
+            c_bcc.MaximumDisplayItemCount = 30;
+            c_bcc.Height = 300;      
+            charts.Add(c_bcc);
+
+            c_ac.InitializeControl();
+            c_ac.IsAutoScrollX = false;
+            c_ac.InitializeEvent(chartEvent);           
+            c_ac.MaximumDisplayItemCount = 30;
+            c_ac.Height = 300;
+            charts.Add(c_ac);
+
+            c_qlc.InitializeControl();
+            c_qlc.IsAutoScrollX = false;
+            c_qlc.InitializeEvent(chartEvent);
+            c_qlc.MaximumDisplayItemCount = 30;
+            c_qlc.Height = 300;
+            charts.Add(c_qlc);
+
+            foreach (var c in charts)
+            {
+                flpMain.Controls.Add(c);            
+            }
+            sizingChartControls();
+        }
+
+        private void sizingChartControls()
+        {
+            int fWidth = flpMain.Width;
+
+            if (flowDirection == FlowDirection.TopDown)
+            {
+                foreach (Control control in flpMain.Controls)
+                {
+                    if (control.Height > 10)
+                        control.Size = new Size(flpMain.Width - control.Margin.Horizontal - 20, control.Height);
+                }
+            }
+            else if (flowDirection == FlowDirection.LeftToRight)
+            {
+                foreach (var c in charts)
+                {
+                    c.Width = (fWidth  / 2) - 30;
+                }
+            }          
+        }
+
+        private void loadData()
+        {
+            string itemCode = ItemCodeSet.GetItemCode(ItemCode.선물_해외_WTI);
+            var list = PPContext.Instance.ClientContext.GetSourceData(
+                  Lib.Base.Enums.FinancialClassificationEnum.Commodities
+                , itemCode
+                , Lib.Base.Enums.TimeIntervalEnum.Day
+                , null
+                , null
+                , 120);
+
+            int round = ItemCodeUtil.GetItemCodeRoundNum(itemCode);
+            List<S_CandleItemData> sourceDatas = new List<S_CandleItemData>();
+            foreach (var m in list)
+            {
+                S_CandleItemData sourceData = new S_CandleItemData(
+                        (Single)Math.Round(m.OpenVal, round)
+                    , (Single)Math.Round(m.HighVal, round)
+                    , (Single)Math.Round(m.LowVal, round)
+                    , (Single)Math.Round(m.CloseVal, round)
+                    , m.Volume
+                    , m.DT
+                    );
+                sourceDatas.Add(sourceData);
+            }
+            c_bcc.LoadData(itemCode, sourceDatas);
+
+            List<T_AtomItemData> atomTransformedDatas = new List<T_AtomItemData>();
+            int itemsCnt = 9;
+            for (int i = itemsCnt; i < sourceDatas.Count; i++)
+            {
+                T_AtomItemData transData = new T_AtomItemData(sourceDatas[i], sourceDatas.GetRange(i - itemsCnt, itemsCnt));
+                transData.Transform();
+                atomTransformedDatas.Add(transData);
+            }
+            c_ac.LoadData(itemCode, atomTransformedDatas);
+
+            List<T_QuantumItemData> quantumTransformedDatas = new List<T_QuantumItemData>();
+            itemsCnt = 9;
+            for (int i = itemsCnt; i < sourceDatas.Count; i++)
+            {
+                T_QuantumItemData transData = new T_QuantumItemData(sourceDatas[i], sourceDatas.GetRange(i - itemsCnt, itemsCnt));
+                transData.Transform();
+                quantumTransformedDatas.Add(transData);
+            }
+            c_qlc.LoadData(itemCode, quantumTransformedDatas);
+        }
+
+        private void setTimer()
+        {
+            timer1.Interval = 1000 * 60;
+            timer1.Enabled = true;
+            timer1.Start();
+        }
+        
+        private void flpMain_SizeChanged(object sender, EventArgs e)
+        {
+            sizingChartControls();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (autoReload)
+                loadData();
+        }
+    }
+}

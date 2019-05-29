@@ -1,0 +1,116 @@
+﻿using OM.Lib.Base.Enums;
+using OM.Lib.Base.Utils;
+using OM.PP.Chakra;
+using OM.PP.Chakra.Ctx;
+using OM.Vikala.Chakra.App.Chakra;
+using OM.Vikala.Controls.Charts;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Vikala.Chakra.App.Mains.ChartForm
+{
+    public partial class QuantumChartForm : BaseForm
+    {
+        public bool IsShowCandle
+        {
+            set
+            {
+                chart.IsShowCandle = chart2.IsShowCandle = value;
+            }
+        }
+
+        public QuantumChartForm()
+        {
+            InitializeComponent();
+            base.setToolStrip(userToolStrip1);
+            InitializeControls();
+        }
+
+        private void InitializeControls()
+        {           
+            loadChartControls();
+            setTimer();
+            userToolStrip.IsVisibleAlignmentButton = false;
+        }
+
+        public override void loadChartControls()
+        {
+            chart.InitializeControl();
+            chart.InitializeEvent(chartEvent);
+            chart.DisplayPointCount = itemCnt;
+
+            chart2.InitializeControl();
+            chart2.InitializeEvent(chartEvent);
+            chart2.DisplayPointCount = itemCnt;
+        }
+
+        public override void loadData()
+        {
+            if (base.SelectedItemData == null) return;
+            if (string.IsNullOrEmpty(base.SelectedItemData.Code)) return;
+
+            string itemCode = base.SelectedItemData.Code;
+
+            var list = PPContext.Instance.ClientContext.GetSourceData(                 
+                  itemCode
+                , base.timeInterval
+                , null
+                , null
+                , base.loadCnt);
+
+            int round = ItemCodeUtil.GetItemCodeRoundNum(itemCode);
+            List<S_CandleItemData> sourceDatas = new List<S_CandleItemData>();
+            foreach (var m in list)
+            {
+                S_CandleItemData sourceData = new S_CandleItemData(
+                    itemCode
+                    , (Single)Math.Round(m.OpenVal, round)
+                    , (Single)Math.Round(m.HighVal, round)
+                    , (Single)Math.Round(m.LowVal, round)
+                    , (Single)Math.Round(m.CloseVal, round)
+                    , m.Volume
+                    , m.DT
+                    );
+                sourceDatas.Add(sourceData);
+            }                        
+            var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas, 7);
+            sourceDatas = PPUtils.GetCutDatas(sourceDatas, averageDatas[0].DTime);
+
+            chart.LoadDataAndApply(itemCode, sourceDatas, base.timeInterval, 7);
+            chart2.LoadDataAndApply(itemCode, averageDatas, base.timeInterval, 7);
+
+            Summary(itemCode, (QuantumLineChart)chart, "");
+            Summary(itemCode, (QuantumLineChart)chart2, "평균");
+        }
+
+        public void Summary(string itemCode, QuantumLineChart c, string average)
+        {
+            var data2 = c.ChartData[c.ChartData.Count - 2];
+            var data1 = c.ChartData[c.ChartData.Count - 1];
+
+            Lib.Base.Enums.UpDownEnum upDown1 = Lib.Base.Enums.UpDownEnum.None;
+            if (data2.T_QuantumAvg < data2.T_MassAvg && data1.T_QuantumAvg < data1.T_MassAvg) upDown1 = UpDownEnum.StrongUp;
+            else if (data2.T_QuantumAvg < data2.T_MassAvg && data1.T_QuantumAvg >= data1.T_MassAvg) upDown1 = UpDownEnum.WeakUp;
+            CandleSummary.Instance.UpdateSummaryTrend(itemCode, c.TimeInterval, "매수" + average, upDown1);
+
+            Lib.Base.Enums.UpDownEnum upDown2 = Lib.Base.Enums.UpDownEnum.None;
+            if (data2.T_QuantumAvg > data2.T_MassAvg && data1.T_QuantumAvg > data1.T_MassAvg) upDown1 = UpDownEnum.StrongDown;
+            else if (data2.T_QuantumAvg < data2.T_MassAvg && data1.T_QuantumAvg <= data1.T_MassAvg) upDown1 = UpDownEnum.WeakDown;
+            CandleSummary.Instance.UpdateSummaryTrend(itemCode, c.TimeInterval, "매도" + average, upDown2);
+
+
+            int tick2 = PriceTick.GetTickDiff(itemCode, data2.MassPrice, data2.QuantumPrice);
+            int tick1 = PriceTick.GetTickDiff(itemCode, data1.MassPrice, data1.QuantumPrice);
+
+            CandleSummary.Instance.UpdateSummaryTrendOfStrength(itemCode, c.TimeInterval, "매수" + average, tick2);
+            CandleSummary.Instance.UpdateSummaryTrendOfStrength(itemCode, c.TimeInterval, "매도" + average, tick2);
+        }
+    }
+}

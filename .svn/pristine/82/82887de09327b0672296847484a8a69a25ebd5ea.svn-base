@@ -1,0 +1,104 @@
+﻿using OM.Lib.Base.Enums;
+using OM.Lib.Base.Utils;
+using OM.Lib.Entity;
+using OM.Lib.Framework.Db;
+using OM.PP.Chakra;
+using OM.PP.Chakra.Ctx;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.Atman.Chakra
+{
+    public class TickLineTradeRule : BaseTradeRule
+    {
+        protected override string AtmanName => "TICK PATTERN";
+
+        string priceType;
+        public TickLineTradeRule(string itemCode, string priceType)
+        {
+            ItemCode = itemCode;
+            this.priceType = priceType;
+        }
+
+        protected override void InitRule()
+        {
+        }
+        public override void AnalysisAsync(CurrentPrice price)
+        {
+            Task.Factory.StartNew(() =>
+            {
+                Analysis(price);
+            });
+        }
+        public override void Analysis(CurrentPrice price)
+        {
+            try
+            {
+                switch (priceType)
+                {
+                    case "0":
+                        CPrice = Math.Round(Convert.ToDouble(price.price), RoundNum);
+                        break;
+                    case "1":
+                        CPrice = Math.Round(price.price3, RoundNum);
+                        break;
+                    case "2":
+                        CPrice = Math.Round(price.price5, RoundNum);
+                        break;
+                    case "3":
+                        CPrice = Math.Round(price.price7, RoundNum);
+                        break;
+                    default:
+                        CPrice = Math.Round(Convert.ToDouble(price.price), RoundNum);
+                        break;
+                }
+                if (BPrice == CPrice) return;
+
+                PriceList.Insert(CPrice);
+                
+                var lineChartPattern2 = PointsUtil.GetTwoLinePattern(PriceList);
+                if (lineChartPattern2 != TickLineChartPatternEnum.None)
+                    PPEvents.Instance.OnTickLineChartPatternHandler(ItemCode, TimeIntervalEnum.Tick, lineChartPattern2);
+
+                var lineChartPattern3 = PointsUtil.GetThreeLinePattern(PriceList);
+                if (lineChartPattern3 != TickLineChartPatternEnum.None)
+                    PPEvents.Instance.OnTickLineChartPatternHandler(ItemCode, TimeIntervalEnum.Tick, lineChartPattern3);
+
+                var upDownH = PointsUtil.GetOneLineUpDownPatternH(PriceList);
+                if (upDownH != UpDownPatternEnum.None)
+                    PPEvents.Instance.OnTickLineUpDownPatternHandler(ItemCode, TimeIntervalEnum.Tick, upDownH);
+
+                var upDownM = PointsUtil.GetOneLineUpDownPatternM(PriceList);
+                if (upDownM != UpDownPatternEnum.None)
+                    PPEvents.Instance.OnTickLineUpDownPatternHandler(ItemCode, TimeIntervalEnum.Tick, upDownM);
+
+                var upDownL = PointsUtil.GetOneLineUpDownPatternL(PriceList);
+                if (upDownL != UpDownPatternEnum.None)
+                    PPEvents.Instance.OnTickLineUpDownPatternHandler(ItemCode, TimeIntervalEnum.Tick, upDownL);
+
+                var upDownHL = PointsUtil.GetTwoLineUpDownPatternHL(PriceList);
+                if (upDownHL != UpDownPatternEnum.None)
+                    PPEvents.Instance.OnTickLineUpDownPatternHandler(ItemCode, TimeIntervalEnum.Tick, upDownHL);
+
+                var upDownHM = PointsUtil.GetTwoLineUpDownPatternHM(PriceList);
+                if (upDownHM != UpDownPatternEnum.None)
+                    PPEvents.Instance.OnTickLineUpDownPatternHandler(ItemCode, TimeIntervalEnum.Tick, upDownHM);
+
+                var upDownLM = PointsUtil.GetTwoLineUpDownPatternLM(PriceList);
+                if (upDownLM != UpDownPatternEnum.None)
+                    PPEvents.Instance.OnTickLineUpDownPatternHandler(ItemCode, TimeIntervalEnum.Tick, upDownLM);
+
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                BPrice = CPrice;
+            }
+        }
+    }
+}

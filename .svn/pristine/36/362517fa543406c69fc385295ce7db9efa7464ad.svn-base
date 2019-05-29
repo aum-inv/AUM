@@ -1,0 +1,33 @@
+﻿using OM.Lib.Base.Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.PP.Chakra
+{
+    public class S_LineItemData : ISourceData
+    {
+        public S_LineItemData() { }
+
+        public S_LineItemData(double close, double volume, DateTime dt)
+        {
+            this.close = close;
+            this.volume = volume;
+            this.dt = dt;
+        }
+
+        private double close = 0;
+        private double volume = 0;
+        private DateTime dt;
+
+        public double OpenPrice { get { return 0; }  }
+        public double HighPrice { get { return 0; } }
+        public double LowPrice { get { return 0; } }
+        public double ClosePrice { get { return close; } }
+
+        public double Volume { get { return volume; } }
+        public DateTime DTime { get { return dt; } }
+    }
+}

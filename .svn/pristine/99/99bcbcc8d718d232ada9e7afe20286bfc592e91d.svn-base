@@ -1,0 +1,370 @@
+﻿using OM.PP.Chakra;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.Vikala.Controls.Charts
+{
+    public static class ChartDataLoads
+    {       
+        public static void loadDataAndApply(this BasicCandleChart c
+            , string itemCode
+            , List<S_CandleItemData> sourceDatas
+            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+            , int itemCnt = 7)
+        {
+            try
+            {               
+                c.LoadData(itemCode, sourceDatas, timeInterval);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static void loadDataAndApply(this AtomChart c
+            , string itemCode, List<S_CandleItemData> sourceDatas            
+            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+            , int itemCnt = 7)
+        {
+            try
+            {
+                List<T_AtomItemData> transformedDatas = new List<T_AtomItemData>();
+
+                for (int i = itemCnt; i <= sourceDatas.Count; i++)
+                {
+                    T_AtomItemData transData = new T_AtomItemData(sourceDatas[i-1], sourceDatas.GetRange(i - itemCnt, itemCnt));
+                    transData.Transform();
+                    transformedDatas.Add(transData);
+                }
+                c.LoadData(itemCode, transformedDatas, timeInterval);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static void loadDataAndApply(this BasicLineChart c
+            , string itemCode
+            , List<S_CandleItemData> sourceDatas            
+            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+            , int itemCnt = 7)
+        {
+            try
+            {
+                List<S_LineItemData> sourceLineDatas = new List<S_LineItemData>();
+                foreach (var m in sourceDatas)
+                {
+                    S_LineItemData sourceData = new S_LineItemData(
+                           m.ClosePrice
+                            , m.Volume
+                            , m.DTime
+                        );
+
+                    sourceLineDatas.Add(sourceData);
+                }
+
+                c.LoadData(itemCode, sourceLineDatas, timeInterval);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static void loadDataAndApply(this BasicVolumeChart c
+            , string itemCode
+            , List<S_CandleItemData> sourceDatas           
+            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+             , int itemCnt = 7)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static void loadDataAndApply(this Candlestick c
+            , string itemCode
+            , List<S_CandleItemData> sourceDatas            
+            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+            , int itemCnt = 7)
+        {
+            try
+            {
+                c.LoadData(sourceDatas, timeInterval);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static void loadDataAndApply(this FiveColorChart c
+            , string itemCode
+            , List<S_CandleItemData> sourceDatas            
+            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+            , int itemsCnt = 7)
+        {
+            try
+            {
+                List<T_FiveColorItemData> transformedDatas = new List<T_FiveColorItemData>();
+
+                for (int i = itemsCnt; i <= sourceDatas.Count; i++)
+                {
+                    T_FiveColorItemData transData = new T_FiveColorItemData(sourceDatas[i-1], sourceDatas.GetRange(i - itemsCnt, itemsCnt));
+                    transData.Transform();
+                    transformedDatas.Add(transData);
+                }
+
+                c.LoadData(itemCode, transformedDatas, timeInterval);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+       
+        public static void loadDataAndApply(this PrimeNumCandleChart c
+            , string itemCode
+            , List<S_CandleItemData> sourceDatas            
+            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+            , int itemCnt = 7)
+        {
+            try
+            {
+                List<T_PrimeNumItemData> transformedDatas = new List<T_PrimeNumItemData>();
+                DateTime? dtime = null;
+                foreach (var m in sourceDatas.OrderByDescending(t => t.DTime))
+                {
+                    if (dtime != null && dtime.Value <= m.DTime) continue;
+
+                    T_PrimeNumItemData tData = new T_PrimeNumItemData(m, sourceDatas);
+                    tData.Transform();
+                    transformedDatas.Add(tData);
+
+                    dtime = tData.DTimeS;
+                }
+                c.LoadData(itemCode, transformedDatas.OrderBy(t => t.DTime).ToList(), timeInterval);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static void loadDataAndApply(this QuantumLineChart c
+            , string itemCode
+            , List<S_CandleItemData> sourceDatas            
+            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+            , int itemsCnt = 7)
+        {
+            try
+            {
+                List<T_QuantumItemData> transformedDatas = new List<T_QuantumItemData>();             
+               
+                for (int i = itemsCnt; i <= sourceDatas.Count; i++)
+                {
+                    T_QuantumItemData transData = new T_QuantumItemData(sourceDatas[i-1], sourceDatas.GetRange(i - itemsCnt, itemsCnt));
+                    transData.Transform();
+                    transformedDatas.Add(transData);
+                }
+                c.LoadData(itemCode, transformedDatas, timeInterval);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static void loadDataAndApply(this ReverseCandleChart c
+            , string itemCode
+            , List<S_CandleItemData> sourceDatas            
+            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+            , int itemCnt = 7)
+        {
+            try
+            {
+                List<S_CandleItemData> reverseDatas = new List<S_CandleItemData>();                
+                for (int i = 0, j = sourceDatas.Count - 1; i < sourceDatas.Count; i++, j--)
+                {
+                    S_CandleItemData reverseData = new S_CandleItemData(
+                          itemCode
+                          , sourceDatas[j].ClosePrice
+                          , sourceDatas[j].HighPrice
+                          , sourceDatas[j].LowPrice
+                          , sourceDatas[j].OpenPrice
+                          , 0
+                          , sourceDatas[i].DTime
+                        );
+                    reverseDatas.Add(reverseData);
+                }
+                c.LoadData(itemCode, sourceDatas, reverseDatas, timeInterval);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static void loadDataAndApply(this SpeedLineChart c
+            , string itemCode
+            , List<S_CandleItemData> sourceDatas            
+            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+            , int itemsCnt = 7)
+        {
+            try
+            {
+                List<T_SpeedItemData> transformedDatas1 = new List<T_SpeedItemData>();
+                List<T_SpeedItemData> transformedDatas2 = new List<T_SpeedItemData>();
+                               
+                for (int i = itemsCnt; i <= sourceDatas.Count; i++)
+                {
+                    T_SpeedItemData transData =
+                        new T_SpeedItemData(sourceDatas[i-1], sourceDatas.GetRange(i - itemsCnt, itemsCnt));
+                    transData.Transform();
+                    transformedDatas1.Add(transData);
+                }
+
+                for (int i = itemsCnt; i <= transformedDatas1.Count; i++)
+                {
+                    T_SpeedItemData transData =
+                        new T_SpeedItemData(transformedDatas1[i-1], transformedDatas1.GetRange(i - itemsCnt, itemsCnt));
+                    transData.Transform();
+                    transformedDatas2.Add(transData);
+                }
+                c.LoadData(itemCode, transformedDatas2, timeInterval);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static void loadDataAndApply(this ThreeThaChiChart c
+            , string itemCode
+            , List<S_CandleItemData> sourceDatas            
+            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+            , int itemsCnt = 7)
+        {
+            try
+            {
+                List<T_ThaChiItemData> transformedDatas = new List<T_ThaChiItemData>();
+
+                for (int i = itemsCnt; i <= sourceDatas.Count; i++)
+                {
+                    T_ThaChiItemData transData = new T_ThaChiItemData(sourceDatas[i-1], sourceDatas.GetRange(i - itemsCnt, itemsCnt));
+                    transData.Transform();
+                    transformedDatas.Add(transData);
+                }
+
+                c.LoadData(itemCode, transformedDatas, timeInterval);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static void loadDataAndApply(this VelocityLineChart c
+            , string itemCode
+            , List<S_CandleItemData> sourceDatas            
+            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+            , int itemsCnt = 7)
+        {
+            try
+            {
+                List<T_VelocityItemData> transformedDatas = new List<T_VelocityItemData>();
+
+                for (int i = itemsCnt; i <= sourceDatas.Count; i++)
+                {
+                    T_VelocityItemData transData =
+                        new T_VelocityItemData(sourceDatas[i-1], sourceDatas.GetRange(i - itemsCnt, itemsCnt));
+                    transData.Transform();
+                    transformedDatas.Add(transData);
+                }
+                c.LoadData(itemCode, transformedDatas, timeInterval);
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static void loadDataAndApply(this WuXingCandleChart c
+            , string itemCode
+            , List<S_CandleItemData> sourceDatas            
+            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+            , int itemCnt = 7)
+        {
+            try
+            {
+                List<T_WuXingItemData> transformedDatas = new List<T_WuXingItemData>();
+                DateTime? dtime = null;
+                foreach (var m in sourceDatas.OrderByDescending(t => t.DTime))
+                {
+                    if (dtime != null && dtime.Value <= m.DTime) continue;
+
+                    T_WuXingItemData tData = new T_WuXingItemData(m, sourceDatas);
+                    tData.Transform();
+                    transformedDatas.Add(tData);
+
+                    dtime = tData.DTimeS;
+                }
+                c.LoadData(itemCode, transformedDatas.OrderBy(t => t.DTime).ToList(), timeInterval);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static void loadDataAndApply(this QuarkCandleChart c
+           , string itemCode
+           , List<S_CandleItemData> sourceDatas
+           , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+           , int itemCnt = 7)
+        {
+            try
+            {
+                List<T_QuarkItemData> transformedDatas = new List<T_QuarkItemData>();
+                DateTime? dtime = null;
+                foreach (var m in sourceDatas.OrderByDescending(t => t.DTime))
+                {
+                    if (dtime != null && dtime.Value <= m.DTime) continue;
+
+                    T_QuarkItemData tData = new T_QuarkItemData(m, sourceDatas);
+                    tData.Transform();
+                    transformedDatas.Add(tData);
+
+                    dtime = tData.DTimeS;
+                }
+                c.LoadData(itemCode, transformedDatas.OrderBy(t => t.DTime).ToList(), timeInterval);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static void LoadDataAndApply(this BaseChartControl c
+            , string itemCode
+            , List<S_CandleItemData> sourceDatas            
+            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+            , int itemsCnt = 10)
+        {
+            if (sourceDatas.Count == 0) return;
+
+            if (c is BasicCandleChart) ((BasicCandleChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
+            else if (c is AtomChart) ((AtomChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
+            else if (c is BasicLineChart) ((BasicLineChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
+            else if (c is BasicVolumeChart) ((BasicVolumeChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
+            else if (c is Candlestick) ((Candlestick)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
+            else if (c is FiveColorChart) ((FiveColorChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
+            else if (c is PrimeNumCandleChart) ((PrimeNumCandleChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
+            else if (c is QuantumLineChart) ((QuantumLineChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
+            else if (c is ReverseCandleChart) ((ReverseCandleChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
+            else if (c is SpeedLineChart) ((SpeedLineChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
+            else if (c is ThreeThaChiChart) ((ThreeThaChiChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
+            else if (c is VelocityLineChart) ((VelocityLineChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
+            else if (c is WuXingCandleChart) ((WuXingCandleChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
+            else if (c is QuarkCandleChart) ((QuarkCandleChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
+        }
+    }
+}

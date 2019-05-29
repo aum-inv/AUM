@@ -1,0 +1,350 @@
+﻿using OM.Lib.Base.Enums;
+using OM.Lib.Base.Utils;
+using OM.Lib.Entity;
+using OM.Lib.Framework.Db;
+using OM.PP.Chakra.Ctx;
+using OM.Vikala.Controls.Charts;
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Atman.Chakra.App
+{
+    public partial class StrategyAutoTradeRuleForm : Form
+    {
+        StrategyAutoTradeRule rule = new StrategyAutoTradeRule();
+        ConcurrentQueue<CurrentPrice> currentPrices = new ConcurrentQueue<CurrentPrice>();
+        bool isRun = true;
+        bool isStart = false;
+        string strategyType = "1";
+        
+        public StrategyAutoTradeRuleForm()
+        {
+            InitializeComponent();
+            this.Load += TradeRuleForm_Load;
+            this.FormClosing += StrategyTradeRuleForm_FormClosing;
+            SiseEvents.Instance.SiseHandler += Instance_SiseHandler;
+            rule.StrategyTradeRuleEventHandler += Rule_TradeRuleEventHandler;
+         
+            System.Threading.Thread tCL = new System.Threading.Thread(new System.Threading.ThreadStart(Run));
+            tCL.Start();
+        }
+
+        private void Rule_TradeRuleEventHandler(string type, string desc)
+        {
+            tbLog.Invoke(new MethodInvoker(() =>
+            {
+                tbLog.AppendText(type + "=>" + desc);
+                tbLog.AppendText(Environment.NewLine);
+
+                if (type == "주문")
+                {
+                    lblBuyPosition.Text = desc.Substring(0, 2);
+                    tbBuyPrice.Text = desc.Replace("매수", "").Replace("매도", "").Replace("진입::현재가", "");
+                }
+            }));
+        }
+
+        private void Run()
+        {
+            while (isRun)
+            {
+                try
+                {
+                    var priceQueue = currentPrices;
+                    if (priceQueue.Count == 0)
+                    {
+                        System.Threading.Thread.Sleep(10);
+                        continue;
+                    }
+                    CurrentPrice price;
+                    var isDequeue = priceQueue.TryDequeue(out price);
+                    if (isDequeue && isStart)
+                    {
+                        rule.Analysis(price);
+
+                        displayCurrentPrice(price);
+                        calculateLosscutTick(price.price);
+                        calculateRevenueTick(price.price);
+                    }
+                }
+                catch (Exception ex) { }
+            }
+        }
+        private void TradeRuleForm_Load(object sender, EventArgs e)
+        {
+            rule.Item = tbItem.Text;           
+            cbPriceType.SelectedIndex = Convert.ToInt32(rule.PriceType);
+        }
+        private void StrategyTradeRuleForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            isRun = false;
+            SiseEvents.Instance.SiseHandler -= Instance_SiseHandler;          
+            rule.Close();
+        }
+       
+        private void Instance_SiseHandler(string itemCode, CurrentPrice price)
+        {
+            try
+            {
+                if (rule.Item != itemCode) return;
+                if (!rule.IsUse) return;
+
+                currentPrices.Enqueue(price);
+                
+                //rule.Analysis(price);
+            }
+            catch (Exception ex)
+            {
+                tbLog.Invoke(new MethodInvoker(() =>
+                {
+                    tbLog.AppendText(itemCode + "=>" + ex.Message);
+                    tbLog.AppendText(Environment.NewLine);
+                }));
+            }
+        }
+        private void displayCurrentPrice(CurrentPrice price)
+        {
+            this.Invoke(new MethodInvoker(() => 
+            {
+                tbCPrice.Text = $"{price.price} | {price.price3} | {price.price5} | {price.price7}";
+            }));
+        }
+        private void calculateLosscutTick(string price)
+        {
+            try
+            {
+                if (rule.LosscutPrice > 0)
+                {
+                    double p = Convert.ToDouble(price);
+                    int tick = PriceTick.GetTickDiff(rule.Item, rule.LosscutPrice, p);
+                    this.Invoke(new MethodInvoker(() =>
+                    {
+                        tbLosscutPriceTick.Text = tick.ToString();
+
+                        int losscutTick = Config.LosscutConfig.LOSSCUT_LOW_LIMIT_TICKS;
+                        if (strategyType == "2") losscutTick = Config.LosscutConfig.LOSSCUT_MIDDLE_LIMIT_TICKS;
+                        else if (strategyType == "3") losscutTick = Config.LosscutConfig.LOSSCUT_HIGH_LIMIT_TICKS;
+
+                        if (tick > losscutTick)
+                        {
+                            if (rule.Position == "1")
+                                tbLosscutPrice.Text = Math.Round(PriceTick.GetUpPriceOfTick(rule.Item, p, losscutTick), rule.RoundNum).ToString();
+                            else if (rule.Position == "2")
+                                tbLosscutPrice.Text = Math.Round(PriceTick.GetDownPriceOfTick(rule.Item, p, losscutTick), rule.RoundNum).ToString();
+                        }
+                    }));
+                }
+            }
+            catch (Exception) { }
+        }
+        private void calculateRevenueTick(string price)
+        {
+            try
+            {
+                if (rule.RevenuePrice > 0)
+                {
+                    double p = Convert.ToDouble(price);
+                    int tick = PriceTick.GetTickDiff(rule.Item, rule.RevenuePrice, p);
+                    this.Invoke(new MethodInvoker(() =>
+                    {
+                        tbRevenuePriceTick.Text = tick.ToString();
+                    }));
+                }
+            }
+            catch (Exception) { }
+        }
+        private void tbItem_TextChanged(object sender, EventArgs e)
+        {
+            if (tbItem.Text.Length == 0) return;
+            rule.Item = tbItem.Text;
+        }
+        private void rdoSType1_CheckedChanged(object sender, EventArgs e)
+        {
+            //this.Text = "단기 전략투자 시나리오";
+            strategyType = "1";
+            tbTime.Text = "60";
+        }
+        private void rdoSType2_CheckedChanged(object sender, EventArgs e)
+        {
+            //this.Text = "중기 전략투자 시나리오";
+            strategyType = "2";
+            tbTime.Text = "120";
+        }
+        private void rdoSType3_CheckedChanged(object sender, EventArgs e)
+        {
+            //this.Text = "장기 전략투자 시나리오";
+            strategyType = "3";
+            tbTime.Text = "240";
+        }
+
+        private void cbPriceType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            rule.PriceType = cbPriceType.SelectedIndex.ToString();
+        }
+        
+        private void TbTime_TextChanged(object sender, EventArgs e)
+        {
+            if (tbTime.Text.Length == 0) return;
+            int ts = Convert.ToInt32(tbTime.Text);
+            rule.ValidTimeSpan = TimeSpan.FromMinutes(ts);
+        }
+        private void chkIsUse_CheckedChanged(object sender, EventArgs e)
+        {
+            rule.IsUse = chkIsUse.Checked;
+        }     
+        private void rdoPosition1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdoStrategy1.Checked) rule.StrategyDirection = "1";
+        }
+        private void rdoPosition2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdoStrategy2.Checked) rule.StrategyDirection = "2";
+        }
+        private void tbQty_TextChanged(object sender, EventArgs e)
+        {
+            if (tbQty.Text.Length == 0) return;
+            rule.Quantity = Convert.ToInt32(tbQty.Text);
+        }     
+        private void tbBuyPrice_TextChanged(object sender, EventArgs e)
+        {
+            if (tbBuyPrice.Text.Length == 0) return;
+            rule.BuyPrice = Convert.ToDouble(tbBuyPrice.Text);
+            calculateLosscutPrice();
+            calculateRevenuePrice();
+        }       
+        private void calculateLosscutPrice()
+        {
+            try
+            {
+                int tick = Config.LosscutConfig.LOSSCUT_LOW_LIMIT_TICKS;
+                if (strategyType == "2") tick = Config.LosscutConfig.LOSSCUT_MIDDLE_LIMIT_TICKS;
+                else if (strategyType == "3") tick = Config.LosscutConfig.LOSSCUT_HIGH_LIMIT_TICKS;
+
+                if (rule.BuyPrice > 0)
+                {
+                    if (rule.Position == "1")//매도
+                    {
+                        tbLosscutPrice.Text = PriceTick.GetUpPriceOfTick(rule.Item, rule.BuyPrice, tick).ToString();
+                    }
+                    else if (rule.Position == "2")//매수
+                    {
+                        tbLosscutPrice.Text = PriceTick.GetDownPriceOfTick(rule.Item, rule.BuyPrice, tick).ToString();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+        private void calculateRevenuePrice()
+        {
+            try
+            {
+                int tick = Config.RevenueConfig.REVENUE_LOW_LIMIT_TICKS;
+                if (strategyType == "2") tick = Config.RevenueConfig.REVENUE_MIDDLE_LIMIT_TICKS;
+                else if (strategyType == "3") tick = Config.RevenueConfig.REVENUE_HIGH_LIMIT_TICKS;
+
+                if (rule.BuyPrice > 0)
+                {
+                    if (rule.Position == "1")//매도
+                    {
+                        tbRevenuePrice.Text = PriceTick.GetDownPriceOfTick(rule.Item, rule.BuyPrice, tick).ToString();
+                    }
+                    else if (rule.Position == "2")//매수
+                    {
+                        tbRevenuePrice.Text = PriceTick.GetUpPriceOfTick(rule.Item, rule.BuyPrice, tick).ToString();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+    
+        private void tbLosscutPrice_TextChanged(object sender, EventArgs e)
+        {
+            if (tbLosscutPrice.Text.Length == 0) return;
+            rule.LosscutPrice = Convert.ToDouble(tbLosscutPrice.Text);
+        }
+        private void tbRevenuePrice_TextChanged(object sender, EventArgs e)
+        {
+            if (tbRevenuePrice.Text.Length == 0) return;
+            rule.RevenuePrice = Convert.ToDouble(tbRevenuePrice.Text);
+        }
+        private void chkIsUseLosscut_CheckedChanged(object sender, EventArgs e)
+        {
+            rule.IsUseLosscut = chkIsUseLosscut.Checked;
+            if (rule.IsUseLosscut) rule.IsLosscuted = false;
+        }
+        private void chkIsUseRevenue_CheckedChanged(object sender, EventArgs e)
+        {
+            rule.IsUseRevenue = chkIsUseRevenue.Checked;
+            if (rule.IsUseRevenue) rule.IsRevenued = false;
+        }
+
+        private void btnStartStop_Click(object sender, EventArgs e)
+        {
+            string txt = btnStartStop.Text;
+            if (txt == "Start")
+            {
+                isStart = true;
+                btnStartStop.Text = "Stop";
+                timer1.Enabled = isStart;
+                timer1.Start();
+            }
+            else if (txt == "Stop")
+            {
+                isStart = false;
+                btnStartStop.Text = "Start";
+                timer1.Enabled = isStart;
+            }
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            if (isStart)
+            {
+                if (rule.ValidTimeSpan.TotalSeconds > 0)
+                {
+                    TimeSpan t2 = TimeSpan.FromSeconds(1);
+                    rule.ValidTimeSpan = rule.ValidTimeSpan.Subtract(t2);
+                    lbRemainTime.Text = $"{rule.ValidTimeSpan.Hours.ToString("00")}:{rule.ValidTimeSpan.Minutes.ToString("00")}:{rule.ValidTimeSpan.Seconds.ToString("00")}";
+
+                    if (rule.ValidTimeSpan.TotalMinutes == 0)
+                    {
+                        if (!rule.IsBuyed)
+                        {
+                            isStart = false;
+                            chkIsUse.Checked = false;
+                            timer1.Enabled = false;
+                        }
+                    }
+                }
+            }
+        }
+        private void BtnLoadCandle_Click(object sender, EventArgs e)
+        {
+            TimeIntervalEnum timeInterval = TimeIntervalEnum.Minute_30;
+            if (strategyType == "2") timeInterval = TimeIntervalEnum.Minute_60;
+            else if (strategyType == "3") timeInterval = TimeIntervalEnum.Minute_120;
+
+            var list = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(rule.Item, timeInterval);
+            var newList = list.GetRange(list.Count - 6, 6);
+            var newItem = PP.Chakra.PPUtils.GetMergeCandles(newList);
+            var newList2 = new List<PP.Chakra.S_CandleItemData>();
+            newList2.Add(newItem);
+            rule.BaseCandleItem = newItem;
+
+            chart1.LoadDataAndApply(rule.Item, newList, timeInterval, 0);
+            chart2.LoadDataAndApply(rule.Item, newList2, timeInterval, 0);
+        }
+    }
+}

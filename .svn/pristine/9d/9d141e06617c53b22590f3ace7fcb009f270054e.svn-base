@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Telegram.Bot;
+
+namespace OM.Atman.Chakra.App.Alerts
+{
+    public class TelegramUtil
+    {
+        //https://api.telegram.org/bot665602561:AAGU6eBLDeGhWFhd2KpacjDAoSdT8J2Pf04/getUpdates
+        public static async Task SendMessageAsync(string msg)
+        {
+            try
+            {
+                //var bot = new TelegramBotClient("690049:7dd9517017a16854ddaaa23852711407");
+                var bot = new TelegramBotClient("665602561:AAGU6eBLDeGhWFhd2KpacjDAoSdT8J2Pf04");
+
+                var me = bot.GetMeAsync();
+
+                var result = await bot.SendTextMessageAsync(new Telegram.Bot.Types.ChatId(729502769), msg);
+            }
+            catch (Exception ex) { }
+        }       
+    }
+}

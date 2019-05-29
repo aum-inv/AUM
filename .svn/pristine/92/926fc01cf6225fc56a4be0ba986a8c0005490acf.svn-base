@@ -1,0 +1,86 @@
+﻿using OM.Lib.Base.Enums;
+using OM.PP.Chakra;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Tulpep.NotificationWindow;
+
+namespace OM.Atman.Chakra.App
+{
+    public partial class CandleSignalForm : Form
+    {
+        public CandleSignalForm()
+        {
+            InitializeComponent();
+
+            PPEvents.Instance.CandleOccurHandler += Instance_CandleOccurHandler;
+            PPEvents.Instance.CandleMassHandler += Instance_CandleMassHandler;
+
+            this.Load += CandleSignalForm_Load;
+        }
+
+        private void CandleSignalForm_Load(object sender, EventArgs e)
+        {
+            ShowNotifyIcon("", "");
+        }
+
+        private void Instance_CandleMassHandler(string itemCode, TimeIntervalEnum timeInterval, UpDownEnum updown)
+        {
+            dgv.Rows.Insert(0, "질량", DateTime.Now.ToString("HH:mm:ss"), itemCode, EnumUtil.GetTimeIntervalText(timeInterval), updown);
+
+            string title = "질량 시그널";
+            string msg = $"{itemCode}::{EnumUtil.GetTimeIntervalText(timeInterval)}::{updown}";
+
+            ShowNotifyIcon(title, msg);
+        }
+
+        private void Instance_CandleOccurHandler(string itemCode, Lib.Base.Enums.TimeIntervalEnum timeInterval, int occurCount)
+        {
+            dgv.Rows.Insert(0, "캔들갯수",  DateTime.Now.ToString("HH:mm:ss"), itemCode, EnumUtil.GetTimeIntervalText(timeInterval), occurCount);
+
+            string title = "캔들갯수 시그널";
+            string msg = $"{itemCode}::{EnumUtil.GetTimeIntervalText(timeInterval)}::{occurCount}";
+
+            ShowNotifyIcon(title, msg);
+        }
+
+        private void ShowNotifyIcon(string title, string message)
+        {
+            //nIcon.BalloonTipIcon = ToolTipIcon.Info;
+            //nIcon.BalloonTipTitle = title;
+            //nIcon.BalloonTipText= message;
+            //nIcon.ShowBalloonTip(5000);
+
+            try
+            {
+                PopupNotifier popup = new PopupNotifier();
+                popup.ShowGrip = true;
+                popup.HeaderColor = Color.DarkBlue;
+                popup.BodyColor = Color.DarkRed;
+                popup.TitleColor = Color.White;
+                popup.ContentColor = Color.WhiteSmoke;
+                popup.TitleFont = new Font("고딕", 24.0f);
+                popup.ContentFont = new Font("굴림", 12.0f);
+                popup.TitleText = title;
+                popup.ContentText = message;
+                popup.Image = global::OM.Atman.Chakra.App.Properties.Resources.signal;
+                popup.ImageSize = new Size(50, 40);
+                popup.Delay = 1000 * 60;
+                popup.Popup();// show  
+
+                var player = new System.Media.SoundPlayer();
+                player.Stream = Properties.Resources.money;
+                player.Play();
+            }
+            catch (Exception)
+            {
+            }
+        }
+    }
+}

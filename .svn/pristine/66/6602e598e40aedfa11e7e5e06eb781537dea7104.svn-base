@@ -1,0 +1,177 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.PP.Chakra
+{
+    /// <summary>
+    /// 
+    /// </summary>
+    public class T_SpeedItemData : S_CandleItemData, ITransform
+    {
+        private S_CandleItemData sourceData = null;    
+        private List<S_CandleItemData> sourceDataArray = null;
+
+        private T_SpeedItemData transData = null;
+        private List<T_SpeedItemData> transDataArray = null;
+        public T_SpeedItemData(
+            S_CandleItemData sourceData
+            , List<S_CandleItemData> sourceDataArray)
+        {
+            this.sourceData = sourceData;            
+            this.sourceDataArray = sourceDataArray;            
+        }
+        public T_SpeedItemData(
+           T_SpeedItemData transData
+           , List<T_SpeedItemData> transDataArray)
+        {
+            this.transData = transData;
+            this.transDataArray = transDataArray;
+        }
+        private Single t_speed = 0;
+        private Single t_speedAvg = 0;
+        public Single T_Speed { get { return t_speed; } }
+        public Single T_SpeedAvg { get { return t_speedAvg; } }
+
+        private Single t_openP = 0;
+        private Single t_highP = 0;
+        private Single t_lowP = 0;
+        private Single t_closeP = 0;
+        private Single t_speedP = 0;
+        private Single t_speedPAvg = 0;
+        public Single T_OpenPriceP { get { return (Single)Math.Round(t_openP, RoundLength); } }
+        public Single T_HighPriceP { get { return (Single)Math.Round(t_highP, RoundLength); } }
+        public Single T_LowPriceP { get { return (Single)Math.Round(t_lowP, RoundLength); } }
+        public Single T_ClosePriceP { get { return (Single)Math.Round(t_closeP, RoundLength); } }
+
+        public Single T_SpeedP { get { return (Single)Math.Round(t_speedP, RoundLength); } }
+        public Single T_SpeedPAvg { get { return (Single)Math.Round(t_speedPAvg, RoundLength); } }
+
+        private Single t_openM = 0;
+        private Single t_highM = 0;
+        private Single t_lowM = 0;
+        private Single t_closeM = 0;
+        private Single t_speedM   = 0;
+        private Single t_speedMAvg = 0;
+        public Single T_OpenPriceM { get { return (Single)Math.Round(t_openM, RoundLength); } }
+        public Single T_HighPriceM { get { return (Single)Math.Round(t_highM, RoundLength); } }
+        public Single T_LowPriceM { get { return (Single)Math.Round(t_lowM, RoundLength); } }
+        public Single T_ClosePriceM { get { return (Single)Math.Round(t_closeM, RoundLength); } }
+        public Single T_SpeedM { get { return (Single)Math.Round(t_speedM, RoundLength); } }
+        public Single T_SpeedMAvg { get { return (Single)Math.Round(t_speedMAvg, RoundLength); } }
+
+        public void Transform()
+        {
+            try
+            {
+                if (sourceData != null)
+                {
+                    ItemCode = sourceData.ItemCode;
+                    OpenPrice = sourceData.OpenPrice;
+                    HighPrice = sourceData.HighPrice;
+                    LowPrice = sourceData.LowPrice;
+                    ClosePrice = sourceData.ClosePrice;
+                    DTime = sourceData.DTime;
+                }
+                if (sourceDataArray != null)
+                {
+                    if (PlusMinusType == PlusMinusTypeEnum.양)
+                    {
+                        t_openP = sourceData.OpenPrice;
+                        t_highP = sourceData.HighPrice;
+                        t_lowP = sourceData.LowPrice;
+                        t_closeP = sourceData.QuantumPrice;
+
+                        var item = sourceDataArray.Where(t => (t.DTime < DTime && t.PlusMinusType == PlusMinusTypeEnum.음)).OrderByDescending(t => t.DTime).First();
+                        t_openM = item.OpenPrice;
+                        t_highM = item.HighPrice;
+                        t_lowM = item.LowPrice;
+                        t_closeM = item.QuantumPrice;
+                    }
+                    else if (PlusMinusType == PlusMinusTypeEnum.음)
+                    {
+                        t_openM = sourceData.OpenPrice;
+                        t_highM = sourceData.HighPrice;
+                        t_lowM = sourceData.LowPrice;
+                        t_closeM = sourceData.QuantumPrice;
+
+                        var item = sourceDataArray.Where(t => (t.DTime < DTime && t.PlusMinusType == PlusMinusTypeEnum.양)).OrderByDescending(t => t.DTime).First();
+                        t_openP = item.OpenPrice;
+                        t_highP = item.HighPrice;
+                        t_lowP = item.LowPrice;
+                        t_closeP = item.QuantumPrice;
+                    }
+                    else
+                    {
+                        t_openP = sourceData.OpenPrice;
+                        t_highP = sourceData.HighPrice;
+                        t_lowP = sourceData.LowPrice;
+                        t_closeP = sourceData.QuantumPrice;
+
+                        t_openM = sourceData.OpenPrice;
+                        t_highM = sourceData.HighPrice;
+                        t_lowM = sourceData.LowPrice;
+                        t_closeM = sourceData.QuantumPrice;
+                    }
+                }
+                if (transData != null)
+                {
+                    ItemCode = transData.ItemCode;
+                    OpenPrice = transData.OpenPrice;
+                    HighPrice = transData.HighPrice;
+                    LowPrice = transData.LowPrice;
+                    ClosePrice = transData.ClosePrice;
+                    DTime = transData.DTime;
+
+                    t_speed = transData.ClosePrice;
+                    t_speedP = transData.T_ClosePriceP;
+                    t_speedM = transData.T_ClosePriceM;
+                }
+                if (transDataArray != null)
+                {
+                    List<float> tOpenListP = new List<float>();
+                    List<float> tCloseListP = new List<float>();
+                    List<float> tHighListP = new List<float>();
+                    List<float> tLowListP = new List<float>();
+
+                    List<float> tOpenListM = new List<float>();
+                    List<float> tCloseListM = new List<float>();
+                    List<float> tHighListM = new List<float>();
+                    List<float> tLowListM = new List<float>();
+
+                    List<float> tOpenList = new List<float>();
+                    List<float> tCloseList = new List<float>();
+                    List<float> tHighList = new List<float>();
+                    List<float> tLowList = new List<float>();
+                    foreach (var item in transDataArray)
+                    {
+                        tOpenList.Add(item.OpenPrice);
+                        tOpenListP.Add(item.T_OpenPriceP);
+                        tOpenListM.Add(item.T_OpenPriceM);
+
+                        tCloseList.Add(item.ClosePrice);
+                        tCloseListP.Add(item.T_ClosePriceP);
+                        tCloseListM.Add(item.T_ClosePriceM);
+
+                        tHighList.Add(item.HighPrice);
+                        tHighListP.Add(item.T_HighPriceP);
+                        tHighListM.Add(item.T_HighPriceM);
+
+                        tLowList.Add(item.LowPrice);
+                        tLowListP.Add(item.T_LowPriceP);
+                        tLowListM.Add(item.T_LowPriceM);
+                    }
+                    t_speedAvg = (Single)Math.Round(tCloseList.Average(), RoundLength);
+                    t_speedPAvg = (Single)Math.Round(tCloseListP.Average(), RoundLength);
+                    t_speedMAvg = (Single)Math.Round(tCloseListM.Average(), RoundLength);
+                }
+
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+    }
+}

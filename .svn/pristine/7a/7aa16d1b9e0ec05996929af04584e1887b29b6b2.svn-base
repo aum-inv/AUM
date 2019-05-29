@@ -1,0 +1,49 @@
+﻿using OM.Lib.Base.Enums;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.PP.Chakra
+{
+    public delegate void CandleOccurDelegate(string itemCode, TimeIntervalEnum timeInterval, int occurCount);
+    public delegate void CandleChartPatternDelegate(string itemCode, TimeIntervalEnum timeInterval, CandleChartPatternEnum updown);
+    public delegate void LineChartPatternDelegate(string itemCode, TimeIntervalEnum timeInterval, TwoMiddleLinePatternEnum updown);
+    public class PPEvents
+    {
+        private static PPEvents instance = new PPEvents();
+
+        public static PPEvents Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
+        public event CandleOccurDelegate CandleOccurHandler;
+        
+        public void OnCandleOccurHandler(string itemCode, TimeIntervalEnum timeInterval, int occurCount)
+        {
+            if (CandleOccurHandler != null)
+                CandleOccurHandler(itemCode, timeInterval, occurCount);
+        }
+
+        public event CandleChartPatternDelegate CandleChartPatternHandler;
+
+        public void OnCandleChartPatternHandler(string itemCode, TimeIntervalEnum timeInterval, CandleChartPatternEnum updown)
+        {
+            if (CandleChartPatternHandler != null)
+                CandleChartPatternHandler(itemCode, timeInterval, updown);
+        }
+
+        public event LineChartPatternDelegate LineChartPatternHandler;
+
+        public void OnLineChartPatternHandler(string itemCode, TimeIntervalEnum timeInterval, TwoMiddleLinePatternEnum updown)
+        {
+            if (LineChartPatternHandler != null)
+                LineChartPatternHandler(itemCode, timeInterval, updown);
+        }
+    }
+}

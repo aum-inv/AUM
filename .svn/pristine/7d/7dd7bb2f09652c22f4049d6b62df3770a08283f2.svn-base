@@ -1,0 +1,155 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+
+namespace OM.Vikala.Controls.Charts
+{
+    public class BaseChartControl : UserControl
+    {
+        private Chart chart;
+        private HScrollBar hScrollBar;
+        private TrackBar trackBar;
+
+        public virtual double SpaceMaxMin
+        {
+            get;
+            set;
+        } = 0.01;
+
+        public virtual string Title
+        {
+            get;
+            set;
+        }
+        public ChartEvents ChartEventInstance
+        {
+            get;
+            set;
+        } = null;
+
+        public int MaximumDisplayItemCount
+        {
+            get;
+            set;
+        } = 30;
+        
+        public string ItemCode
+        {
+            get;
+            set;
+        } = "";
+
+        public bool IsLoaded
+        {
+            get;
+            set;
+        } = false;
+
+
+        public System.Windows.Forms.DataVisualization.Charting.ChartArea CurrentChartArea
+        {
+            get
+            {
+                return chart.ChartAreas[0];
+            }
+        }
+
+        public System.Windows.Forms.DataVisualization.Charting.Series CurrentSeries
+        {
+            get
+            {
+                return chart.Series[0];
+            }
+        }
+
+        public void SetChartControl(Chart chart, HScrollBar hScrollBar, TrackBar trackBar)
+        {
+            this.chart = chart;
+            this.hScrollBar = hScrollBar;
+            this.trackBar = trackBar;
+        }
+
+        
+
+        public virtual void InitializeControl()
+        {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea = chart.ChartAreas[0];
+      
+            chartArea.AxisX.IsLabelAutoFit = true;
+            chartArea.AxisX.LabelStyle.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea.AxisX.LabelStyle.IsEndLabelVisible = false;
+            chartArea.AxisX.LineColor = System.Drawing.Color.DimGray;
+            chartArea.AxisX.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+
+            chartArea.AxisY2.IsLabelAutoFit = true;
+            chartArea.AxisY2.LabelStyle.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            chartArea.AxisY2.LabelStyle.ForeColor = System.Drawing.Color.DimGray;
+            chartArea.AxisY2.LineColor = System.Drawing.Color.DimGray;
+
+            chartArea.BackColor = Color.White; //System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(165)))), ((int)(((byte)(191)))), ((int)(((byte)(228)))));
+            chartArea.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.None;
+            chartArea.BackSecondaryColor = System.Drawing.Color.White;
+            chartArea.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            chartArea.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
+
+            chartArea.InnerPlotPosition.Auto = false;
+            chartArea.InnerPlotPosition.Height = 90F;
+            chartArea.InnerPlotPosition.Width = 93F;
+            chartArea.InnerPlotPosition.X = 2F;
+            chartArea.Name = "chartArea";
+
+            chartArea.Position.Auto = false;
+            chartArea.Position.Height = 95F;
+            chartArea.Position.Width = 98F;
+            chartArea.Position.Y = 5F;
+            chartArea.ShadowColor = System.Drawing.Color.Transparent;
+        }
+        public virtual void InitializeEvent(ChartEvents chartEvents)
+        {
+            ChartEventInstance = chartEvents;
+            ChartEventInstance.ChangeChartScrollBarHandler += (e, v) => {
+                if (!IsLoaded) return;
+                if (this.chart == e) return;
+                if (this.hScrollBar.Maximum < v) this.hScrollBar.Maximum = v;
+                this.hScrollBar.Value = v;
+            };
+            ChartEventInstance.ChangeChartTrackBarHandler += (e, v) => {
+                if (!IsLoaded) return;
+                if (this.chart == e) return;
+                this.trackBar.Value = v;
+            };
+        }
+        public void Reset()
+        {
+            foreach(var s in chart.Series)
+                s.Points.Clear();
+
+            IsLoaded = false;
+            hScrollBar.Minimum = hScrollBar.Maximum = hScrollBar.Value = 1;
+            trackBar.Minimum = trackBar.Maximum = trackBar.Value = 1;
+        }
+
+        public virtual void View() {            
+        }
+
+        public void DrawChartTitle(ChartPaintEventArgs e)
+        {
+            string drawString = $"{Title}";
+            System.Drawing.Font drawFont = new System.Drawing.Font("Arial", 8);
+            System.Drawing.SolidBrush drawBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);                     
+            float x = 1.0F;
+            float y = 0.0F;
+            System.Drawing.StringFormat drawFormat = new System.Drawing.StringFormat();
+            drawFormat.FormatFlags = System.Drawing.StringFormatFlags.NoWrap;
+            e.ChartGraphics.Graphics.DrawString(drawString, drawFont, drawBrush, x, y, drawFormat);
+
+            drawFont.Dispose();
+            drawBrush.Dispose();
+        }
+    }
+}

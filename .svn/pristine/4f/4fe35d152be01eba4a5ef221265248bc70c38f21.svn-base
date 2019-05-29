@@ -1,0 +1,47 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.Lib.Base.Enums
+{
+    public enum UpDownPatternEnum
+    {
+            None
+        ,   DownUpDownUpDownUpDown
+        ,   UpDownUpDownUpDownUp
+        ,   DownUpDownUpDownUp
+        ,   UpDownUpDownUpDown
+        ,   DownUpDownUpDown
+        ,   UpDownUpDownUp
+        ,   DownUpDownUp
+        ,   UpDownUpDown
+        ,   DownUpDown
+        ,   UpDownUp
+        ,   DownUp
+        ,   UpDown
+        ,   Down
+        ,   Up
+    }
+
+    public enum UpDownSimplePatternEnum
+    {
+        None
+        , DownUpDownUpDownUpDown
+        , UpDownUpDownUpDownUp
+        , DownUpDownUpDownUp
+        , UpDownUpDownUpDown
+        , DownUpDownUpDown
+        , UpDownUpDownUp
+        , DownUpDownUp
+        , UpDownUpDown
+        , DownUpDown
+        , UpDownUp
+        , DownUp
+        , UpDown
+        , Down
+        , Up
+    }
+
+}

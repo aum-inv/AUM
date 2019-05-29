@@ -1,0 +1,31 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Vikala.Controls.Charts
+{
+    public partial class Candlestick_B : UserControl
+    {
+        System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+        System.Windows.Forms.DataVisualization.Charting.Series series = new System.Windows.Forms.DataVisualization.Charting.Series();
+
+        public Candlestick_B()
+        {
+            InitializeComponent();
+
+            InitializeControl();
+        }
+
+        private void InitializeControl()
+        {
+            
+
+        }
+    }
+}

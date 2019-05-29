@@ -1,0 +1,78 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.PP.Chakra
+{
+    public class T_MassItemData : S_CandleItemData, ITransform
+    {
+        private A_HLOC sourceData = null;
+
+        public T_MassItemData(A_HLOC sourceData)
+        {
+            this.sourceData = sourceData;
+        }
+     
+        public Single t_open = 0;
+        public Single t_high = 0;
+        public Single t_low = 0;
+        public Single t_close = 0;
+        public Single T_OpenPrice { get { return t_open; } }
+        public Single T_HighPrice { get { return t_high; } }
+        public Single T_LowPrice { get { return t_low; } }
+        public Single T_ClosePrice { get { return t_close; } }
+
+        public Single t_Mass = 0;
+        public Single t_CenterMass = 0;
+
+        public Single T_Mass { get { return t_Mass; } }
+        public Single T_CenterMass { get { return t_CenterMass; } }
+
+        public A_HLOC SourceData { get { return sourceData; } }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public void Transform()
+        {
+            try
+            {
+                if (sourceData != null)
+                {
+                    calMass();
+                    calCenterMass();
+
+                    OpenPrice = sourceData.OpenPrice;
+                    HighPrice = sourceData.HighPrice;
+                    LowPrice = sourceData.LowPrice;
+                    ClosePrice = sourceData.ClosePrice;
+                    DTime = sourceData.DTime;
+
+                    t_open = sourceData.OpenPrice;
+                    t_high = sourceData.HighPrice;
+                    t_low = sourceData.LowPrice;
+                    t_close = sourceData.ClosePrice;
+                }                
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        private void calMass()
+        {
+            double x = Math.Abs(sourceData.OpenPrice - sourceData.ClosePrice) / 2.0 * 3.0;
+            double y = Math.Abs(sourceData.HighPrice - sourceData.LowPrice) / 2.0;
+            this.t_Mass = Convert.ToSingle(x * y);
+        }
+
+        private void calCenterMass()
+        {
+            double x = Math.Abs(sourceData.OpenPrice - sourceData.ClosePrice) / 2.0 * 3.0;
+            this.t_CenterMass = Convert.ToSingle(x * x);
+        }
+    }
+}

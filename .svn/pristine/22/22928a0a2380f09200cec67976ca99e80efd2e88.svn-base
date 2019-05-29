@@ -1,0 +1,396 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using OM.PP.Chakra;
+using System.Windows.Forms.DataVisualization.Charting;
+using OM.Lib.Base.Utils;
+
+namespace OM.Vikala.Controls.Charts
+{
+    public partial class AtomChart : UserControl
+    {      
+        public ChartEvents ChartEventInstance
+        {
+            get;
+            set;
+        } = null;
+
+        public int MaximumDisplayItemCount
+        {
+            get;
+            set;
+        } = 30;
+        public bool IsAutoScrollX
+        {
+            get { return pnlScroll.Visible; }
+            set { pnlScroll.Visible = value; }
+        }
+
+        public string ItemCode
+        {
+            get;
+            set;
+        } = "";
+        public List<T_AtomItemData> ChartData
+        {
+            get;
+            set;
+        }
+
+        public void LoadData(string itemCode = "", List <T_AtomItemData> chartData = null)
+        {
+            ItemCode = itemCode;
+            ChartData = chartData;
+            Reset();
+            View();
+        }
+        
+        public AtomChart()
+        {
+            InitializeComponent();         
+        }
+
+        public bool IsLoaded
+        {
+            get;
+            set;
+        } = false;
+
+        public void InitializeControl()
+        {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea = chart.ChartAreas[0];
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = chart.Series[0];
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = chart.Series[1];
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = chart.Series[2];
+
+            chartArea.AxisX.IsLabelAutoFit = true;
+            chartArea.AxisX.LabelStyle.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea.AxisX.LabelStyle.IsEndLabelVisible = false;
+            chartArea.AxisX.LineColor = System.Drawing.Color.DimGray;
+            chartArea.AxisX.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+
+            chartArea.AxisY.LabelStyle.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            chartArea.AxisY.LabelStyle.ForeColor = System.Drawing.Color.DimGray;
+            chartArea.AxisY.LineColor = System.Drawing.Color.DimGray;
+
+            chartArea.AxisY2.IsLabelAutoFit = true;
+            chartArea.AxisY2.LabelStyle.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            chartArea.AxisY2.LabelStyle.ForeColor = System.Drawing.Color.DimGray;
+            chartArea.AxisY2.LineColor = System.Drawing.Color.DimGray;
+
+            chartArea.BackColor = Color.White; //System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(165)))), ((int)(((byte)(191)))), ((int)(((byte)(228)))));
+            chartArea.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.None;
+            chartArea.BackSecondaryColor = System.Drawing.Color.White;
+            chartArea.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            chartArea.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
+
+            chartArea.InnerPlotPosition.Auto = false;
+            chartArea.InnerPlotPosition.Height = 90F;
+            chartArea.InnerPlotPosition.Width = 93F;
+            chartArea.InnerPlotPosition.X = 2F;
+           
+            chartArea.Position.Auto = false;
+            chartArea.Position.Height = 95F;
+            chartArea.Position.Width = 98F;
+            chartArea.Position.Y = 5F;
+            chartArea.ShadowColor = System.Drawing.Color.Transparent;
+
+            series1.IsXValueIndexed = true;
+            series1.BorderColor = System.Drawing.Color.Transparent;
+            series1.BorderWidth = 1;
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Candlestick;
+            series1.Color = System.Drawing.Color.Black;
+            series1.CustomProperties = "PriceDownColor=Blue, PriceUpColor=Red";
+            series1.IsVisibleInLegend = false;
+            series1.ShadowColor = System.Drawing.Color.Transparent;
+            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            series1.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
+            series1.YValuesPerPoint = 4;
+            series1.XValueType = ChartValueType.Date;
+            series1.SetCustomProperty("PriceUpColor", "Red");
+            series1.SetCustomProperty("PriceDownColor", "Blue");
+
+            series2.IsXValueIndexed = true;
+            series2.BorderColor = System.Drawing.Color.Transparent;
+            series2.BorderWidth = 1;            
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Candlestick;
+            series2.Color = System.Drawing.Color.Black;
+            series2.CustomProperties = "PriceDownColor=Blue, PriceUpColor=Red";
+            series2.IsVisibleInLegend = false;            
+            series2.ShadowColor = System.Drawing.Color.Transparent;
+            series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            series2.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
+            series2.YValuesPerPoint = 4;
+            series2.XValueType = ChartValueType.Date;
+            series2.SetCustomProperty("PriceUpColor", "DarkRed");
+            series2.SetCustomProperty("PriceDownColor", "DarkBlue");
+        }
+
+        public void InitializeEvent(ChartEvents chartEvents)
+        {
+            ChartEventInstance = chartEvents;
+            ChartEventInstance.ChangeChartScrollBarHandler += (e, v) => {
+                if (!IsLoaded) return;
+                if (this.chart == e) return;
+                if (this.hScrollBar.Maximum < v) this.hScrollBar.Maximum = v;
+                this.hScrollBar.Value = v;
+            };
+            ChartEventInstance.ChangeChartTrackBarHandler += (e, v) => {
+                if (!IsLoaded) return;
+                if (this.chart == e) return;                
+                this.trackBar.Value = v;
+            };
+        }
+      
+        public void Reset()
+        {
+            chart.Series[0].Points.Clear();
+            chart.Series[1].Points.Clear();
+            chart.Series[2].Points.Clear();
+            chart.Series[3].Points.Clear();
+            chart.Series[4].Points.Clear();
+            chart.Series[5].Points.Clear();
+
+            IsLoaded = false;
+            hScrollBar.Minimum = hScrollBar.Maximum = hScrollBar.Value = 1;
+            trackBar.Minimum = trackBar.Maximum = trackBar.Value = 1;
+        }
+
+        public void View()
+        {
+            pnlScroll.Visible = IsAutoScrollX;
+            if (ChartData == null) return;
+            foreach (T_AtomItemData item in ChartData)
+            {
+                int idx = chart.Series[0].Points.AddXY(item.DTime, item.HighPrice, item.LowPrice, item.OpenPrice, item.ClosePrice);
+
+                chart.Series[1].Points.AddXY(item.DTime, item.T_HighPrice, item.T_LowPrice, item.T_OpenPrice, item.T_ClosePrice);
+
+                chart.Series[2].Points.AddXY(item.DTime, item.T_TotalPower);
+
+                chart.Series[3].Points.AddXY(item.DTime, item.T_PlusPower);
+
+                chart.Series[4].Points.AddXY(item.DTime, item.T_MinusPower);
+                chart.Series[5].Points.AddXY(item.DTime, 0);
+                //var dataPoint = chart.Series[0].Points[idx];                
+            }
+
+            double maxPrice1 = ChartData.Max(m => m.HighPrice);
+            double minPrice1 = ChartData.Min(m => m.LowPrice);
+
+            double maxPrice2 = ChartData.Max(m => m.T_HighPrice);
+            double minPrice2 = ChartData.Min(m => m.T_LowPrice);
+
+            double maxPrice = maxPrice1 > maxPrice2 ? maxPrice1 : maxPrice2;
+            double minPrice = minPrice1 < minPrice2 ? minPrice1 : minPrice2;
+
+            maxPrice = maxPrice + (maxPrice * 0.01);
+            minPrice = minPrice - (minPrice * 0.01);
+
+            chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
+            chart.ChartAreas[0].AxisY2.Minimum = minPrice;
+            
+            double maxPower = ChartData.Max(m => m.T_PlusPower);
+            double minPower = ChartData.Min(m => m.T_MinusPower);
+            if (maxPower < 0) maxPower = 0;
+            if (minPower > 0) minPower = 0;
+
+            if (Math.Abs(maxPower) < Math.Abs(minPower))
+                maxPower = Math.Abs(minPower);
+            
+            maxPower = maxPower + (maxPower * 0.01);
+            minPower = maxPower * -1;
+
+            chart.ChartAreas[0].AxisY.Maximum = maxPower;
+            chart.ChartAreas[0].AxisY.Minimum = minPower;
+
+            chart.ChartAreas[0].AxisY2.LabelStyle.Format = "{N2}";
+            chart.ChartAreas[0].AxisY.LabelStyle.Format = "{N2}";
+
+            SetScrollBar();
+            SetTrackBar();
+            DisplayView();
+
+            IsLoaded = true;
+        }
+        
+        public void SetScrollBar()
+        {
+            int trackView = trackBar.Value;
+            int displayItemCount = MaximumDisplayItemCount * trackView;
+
+            int maxScrollValue = (int)Math.Ceiling((Convert.ToDouble(ChartData.Count) / Convert.ToDouble(displayItemCount))) ;
+            int minScrollValue = 1;
+
+            hScrollBar.Minimum = minScrollValue;
+            hScrollBar.Maximum = maxScrollValue;
+            hScrollBar.Value = maxScrollValue;
+            hScrollBar.LargeChange = 1;
+            hScrollBar.SmallChange = 1;
+        }
+
+        public void SetTrackBar()
+        {
+            pnlScroll.Visible = IsAutoScrollX;
+            int maxScrollValue = (int)Math.Ceiling((Convert.ToDouble(ChartData.Count) / Convert.ToDouble(MaximumDisplayItemCount)));
+            int minScrollValue = 1;
+
+            trackBar.Minimum = minScrollValue;
+            trackBar.Maximum = maxScrollValue;
+            trackBar.Value = minScrollValue;
+            trackBar.LargeChange = 1;
+            trackBar.SmallChange = 1;
+        }
+
+        public void DisplayView()
+        {
+            chart.Update();
+
+            int scrollVal = hScrollBar.Value;
+
+            if (scrollVal < hScrollBar.Minimum) scrollVal = hScrollBar.Minimum;
+            if (scrollVal > hScrollBar.Maximum) scrollVal = hScrollBar.Maximum;
+
+            int trackView = trackBar.Value;
+            int displayItemCount = MaximumDisplayItemCount * trackView;
+
+            List<T_AtomItemData> viewLists = null;
+            int maxDisplayIndex = 0;
+            int minDisplayIndex = 0;
+            if (scrollVal == hScrollBar.Minimum)
+            {
+                int maxIndex = ChartData.Count > displayItemCount ? displayItemCount - 1 : ChartData.Count;
+                viewLists = ChartData.GetRange(0, maxIndex);
+                maxDisplayIndex = displayItemCount;
+                minDisplayIndex = 0;
+            }
+            else if (scrollVal == hScrollBar.Maximum)
+            {
+                int minIndex = ChartData.Count < displayItemCount ? 0 : ChartData.Count - displayItemCount;
+                if (displayItemCount > ChartData.Count) displayItemCount = ChartData.Count;
+                viewLists = ChartData.GetRange(minIndex, displayItemCount);
+                maxDisplayIndex = ChartData.Count;
+                minDisplayIndex = minIndex;
+            }
+            else
+            {
+                int currentIndex = (scrollVal - 1) * displayItemCount;
+                if (ChartData.Count < currentIndex + displayItemCount)
+                    displayItemCount = ChartData.Count - currentIndex;
+
+                viewLists = ChartData.GetRange(currentIndex, displayItemCount);
+
+                maxDisplayIndex = currentIndex + displayItemCount;
+                minDisplayIndex = currentIndex;
+            }
+            if (viewLists != null)
+            {                
+                double maxPrice1 = viewLists.Max(m => m.HighPrice);
+                double minPrice1 = viewLists.Min(m => m.LowPrice);
+                double maxPrice2 = viewLists.Max(m => m.T_HighPrice);
+                double minPrice2 = viewLists.Min(m => m.T_LowPrice);
+
+                double maxPrice = maxPrice1 > maxPrice2 ? maxPrice1 : maxPrice2;
+                double minPrice = minPrice1 < minPrice2 ? minPrice1 : minPrice2;
+
+                maxPrice = maxPrice + (maxPrice * 0.01);
+                minPrice = minPrice - (minPrice * 0.01);
+
+                chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
+                chart.ChartAreas[0].AxisY2.Minimum = minPrice;
+
+                double maxPower = viewLists.Max(m => m.T_PlusPower);
+                double minPower = viewLists.Min(m => m.T_MinusPower);
+                if (maxPower < 0) maxPower = 0;
+                if (minPower > 0) minPower = 0;
+
+                if (Math.Abs(maxPower) < Math.Abs(minPower))
+                    maxPower = Math.Abs(minPower);
+
+                maxPower = maxPower + (maxPower * 0.01);
+                minPower = maxPower * -1;
+
+                chart.ChartAreas[0].AxisY.Maximum = maxPower;
+                chart.ChartAreas[0].AxisY.Minimum = minPower; 
+
+                chart.ChartAreas[0].AxisX.Maximum = maxDisplayIndex + 1;
+                chart.ChartAreas[0].AxisX.Minimum = minDisplayIndex - 1;
+            }
+        }
+
+        private void hScrollBar_ValueChanged(object sender, EventArgs e)
+        {
+            if (!IsLoaded) return;
+            DisplayView();
+            if (ChartEventInstance != null)
+                ChartEventInstance.OnChangeChartScrollBarHandler(this.chart, hScrollBar.Value);
+        }
+
+        private void trackBar_ValueChanged(object sender, EventArgs e)
+        {
+            if (!IsLoaded) return;
+            SetScrollBar();
+            DisplayView();
+            if (ChartEventInstance != null)
+                ChartEventInstance.OnChangeChartTrackBarHandler(this.chart, trackBar.Value);
+        }
+
+        #region Chart Util
+
+        #endregion
+
+        private void chart_MouseDown(object sender, MouseEventArgs e)
+        {
+            HitTestResult result = chart.HitTest(e.X, e.Y);           
+            if (result.ChartElementType == ChartElementType.DataPoint
+                && result.Series == chart.Series[1])
+            {
+                //result.Series.Points[result.PointIndex].Color = Color.Green;
+                setLineAnnotation(result.PointIndex);
+            }
+        }
+
+        private void setLineAnnotation(int index)
+        {
+            chart.Annotations.Clear();
+            double highPoint = 0;
+            double lowPoint = 0;
+
+            highPoint = ChartData[index].T_HighPrice;
+            lowPoint = ChartData[index].T_LowPrice;
+
+            if (ChartData[index].T_OpenPrice < ChartData[index].T_ClosePrice)
+            {
+                HorizontalLineAnnotation annH = new HorizontalLineAnnotation();
+                annH.AxisX = chart.ChartAreas[0].AxisX;
+                annH.AxisY = chart.ChartAreas[0].AxisY2;
+                annH.IsSizeAlwaysRelative = false;
+                annH.AnchorY = highPoint;
+                annH.IsInfinitive = true;
+                annH.ClipToChartArea = chart.ChartAreas[0].Name;
+                annH.LineColor = Color.Red;
+                annH.LineWidth = 2;
+                chart.Annotations.Add(annH);
+            }
+            if (ChartData[index].T_OpenPrice > ChartData[index].T_ClosePrice)
+            {
+                HorizontalLineAnnotation annL = new HorizontalLineAnnotation();
+                annL.AxisX = chart.ChartAreas[0].AxisX;
+                annL.AxisY = chart.ChartAreas[0].AxisY2;
+                annL.IsSizeAlwaysRelative = false;
+                annL.AnchorY = lowPoint;
+                annL.IsInfinitive = true;
+                annL.ClipToChartArea = chart.ChartAreas[0].Name;
+                annL.LineColor = Color.Blue;
+                annL.LineWidth = 2;
+                chart.Annotations.Add(annL);
+            }
+        }
+    }
+}

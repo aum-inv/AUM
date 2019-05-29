@@ -1,0 +1,134 @@
+﻿using OM.Lib.Base.Enums;
+using OM.Lib.Base.Utils;
+using OM.PP.Chakra;
+using OM.PP.Chakra.Ctx;
+using OM.Vikala.Controls.Charts;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Vikala.Chakra.App.Mains.ChartForm
+{
+    public partial class ReverseChartForm : BaseForm
+    {
+        public ReverseChartForm()
+        {
+            InitializeComponent();
+            base.setToolStrip(userToolStrip1);
+            InitializeControls();
+        }
+
+        private void InitializeControls()
+        {           
+            loadChartControls();
+            setTimer();
+            userToolStrip.IsVisibleAlignmentButton = false;
+            userToolStrip.TableViewChangedEvent += UserToolStrip_TableViewChangedEvent;
+        }
+        private void UserToolStrip_TableViewChangedEvent(object sender, EventArgs e)
+        {
+            if (sender.ToString() == "1")
+            {
+                tableLayoutPanel1.RowStyles[0].Height = 100.0f;
+                tableLayoutPanel1.RowStyles[1].Height = 0f;
+            }
+            if (sender.ToString() == "2")
+            {
+                tableLayoutPanel1.RowStyles[1].Height = 100.0f;
+                tableLayoutPanel1.RowStyles[0].Height = 0f;
+            }
+            if (sender.ToString() == "3")
+            {
+                tableLayoutPanel1.RowStyles[0].Height = 50.0f;
+                tableLayoutPanel1.RowStyles[1].Height = 50.0f;
+            }
+        }
+        public override void loadChartControls()
+        {
+            chart1.InitializeControl();
+            chart1.InitializeEvent(chartEvent);
+            chart1.DisplayPointCount = itemCnt;
+            chart1.IsAutoScrollX = false;
+
+            chart2.InitializeControl();
+            chart2.InitializeEvent(chartEvent);
+            chart2.DisplayPointCount = itemCnt;
+            chart2.IsAutoScrollX = false;
+
+            chart3.InitializeControl();
+            chart3.InitializeEvent(chartEvent);
+            chart3.DisplayPointCount = 90;
+            chart3.IsAutoScrollX = false;
+
+            chart4.InitializeControl();
+            chart4.InitializeEvent(chartEvent);
+            chart4.DisplayPointCount = 120;
+            chart4.IsAutoScrollX = false;
+
+            chart5.InitializeControl();
+            chart5.InitializeEvent(chartEvent);
+            chart5.DisplayPointCount = itemCnt;
+            chart5.IsAutoScrollX = false;
+
+            chart6.InitializeControl();
+            chart6.InitializeEvent(chartEvent);
+            chart6.DisplayPointCount = itemCnt;
+            chart6.IsAutoScrollX = false;
+
+            chart7.InitializeControl();
+            chart7.InitializeEvent(chartEvent);
+            chart7.DisplayPointCount = 90;
+            chart7.IsAutoScrollX = false;
+
+            chart8.InitializeControl();
+            chart8.InitializeEvent(chartEvent);
+            chart8.DisplayPointCount = 120;
+            chart8.IsAutoScrollX = false;
+        }
+
+        public override void loadData()
+        {
+            if (base.SelectedItemData == null) return;
+            if (string.IsNullOrEmpty(base.SelectedItemData.Code)) return;
+
+            string itemCode = base.SelectedItemData.Code;
+
+            var sourceDatas = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(                 
+                  itemCode
+                , base.timeInterval);
+            if (sourceDatas == null || sourceDatas.Count == 0) return;
+            int cnt = 7;
+            List<S_CandleItemData> sourceDatas1 = sourceDatas.GetRange(sourceDatas.Count - cnt, cnt);
+            chart1.LoadDataAndApply(itemCode, sourceDatas1, base.timeInterval);
+            cnt = 19;
+            List<S_CandleItemData> sourceDatas2 = sourceDatas.GetRange(sourceDatas.Count - cnt, cnt);
+            chart2.LoadDataAndApply(itemCode, sourceDatas2, base.timeInterval);
+            cnt = 29;
+            List<S_CandleItemData> sourceDatas3 = sourceDatas.GetRange(sourceDatas.Count - cnt, cnt);
+            chart3.LoadDataAndApply(itemCode, sourceDatas3, base.timeInterval);
+            cnt = 37;
+            List<S_CandleItemData> sourceDatas4 = sourceDatas.GetRange(sourceDatas.Count - cnt, cnt);
+            chart4.LoadDataAndApply(itemCode, sourceDatas4, base.timeInterval);            
+
+            var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas, 7);
+            cnt = 7;
+            List<S_CandleItemData> sourceDatas5 = averageDatas.GetRange(averageDatas.Count - cnt, cnt);
+            chart5.LoadDataAndApply(itemCode, sourceDatas5, base.timeInterval);
+            cnt = 19;
+            List<S_CandleItemData> sourceDatas6 = averageDatas.GetRange(averageDatas.Count - cnt, cnt);
+            chart6.LoadDataAndApply(itemCode, sourceDatas6, base.timeInterval);
+            cnt = 29;
+            List<S_CandleItemData> sourceDatas7 = averageDatas.GetRange(averageDatas.Count - cnt, cnt);
+            chart7.LoadDataAndApply(itemCode, sourceDatas7, base.timeInterval);
+            cnt = 37;
+            List<S_CandleItemData> sourceDatas8 = averageDatas.GetRange(averageDatas.Count - cnt, cnt);
+            chart8.LoadDataAndApply(itemCode, sourceDatas8, base.timeInterval);
+        }
+    }
+}

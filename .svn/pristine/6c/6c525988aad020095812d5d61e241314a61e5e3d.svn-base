@@ -1,0 +1,156 @@
+﻿using OM.Lib.Base.Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.PP.Chakra
+{
+    /// <summary>
+    /// 
+    /// </summary>
+    public class T_MassCenterItemData : ITransformedData
+    {
+        private ISourceData source1Data = null;
+        private ISourceData source2Data = null;
+        private List<ISourceData> sourceDataArray = null;
+        
+        /// <summary>
+        /// 당일 가격만 가지고 퀀텀데이터 만든다.
+        /// </summary>
+        /// <param name="sourceData"></param>
+        public T_MassCenterItemData(S_CandleItemData sourceData)
+        {
+            this.source1Data = sourceData;
+            this.source2Data = null;
+            this.sourceDataArray = null;
+        }
+        /// <summary>
+        /// 전일가격 및 당일가격으로 퀀텀데이터 만든다.
+        /// </summary>
+        /// <param name="sourceBData"></param>
+        /// <param name="sourceCData"></param>
+        public T_MassCenterItemData(S_CandleItemData sourceBData, S_CandleItemData sourceCData)
+        {
+            this.source1Data = sourceBData;
+            this.source2Data = sourceCData;
+            this.sourceDataArray = null;
+        }
+        /// <summary>
+        /// 최근 시고저종을 찾고, 거기에서 퀀텀을 만든다.
+        /// </summary>
+        /// <param name="sourceDataArray"></param>
+        public T_MassCenterItemData(List<ISourceData> sourceDataArray)
+        {
+            this.source1Data = null;
+            this.source2Data = null;
+            this.sourceDataArray = sourceDataArray;
+        }
+
+        public Single open = 0;
+        public Single high = 0;
+        public Single low = 0;
+        public Single close = 0;
+        public Single volume = 0;
+        public DateTime dt;
+        public Single OpenPrice { get { return open; }  }
+        public Single HighPrice { get { return high; } }
+        public Single LowPrice { get { return low; } }
+        public Single ClosePrice { get { return close; } }
+        public Single Volume { get { return volume; } }
+        public DateTime DTime { get { return dt; } }
+
+        public Single t_open = 0;
+        public Single t_high = 0;
+        public Single t_low = 0;
+        public Single t_close = 0;
+        public Single T_OpenPrice { get { return t_open; } }
+        public Single T_HighPrice { get { return t_high; } }
+        public Single T_LowPrice { get { return t_low; } }
+        public Single T_ClosePrice { get { return t_close; } }
+
+        public ISourceData Source1Data { get { return source1Data; } }
+        public ISourceData Source2Data { get { return source2Data; } }
+        public List<ISourceData> SourceDataArray { get { return sourceDataArray; } }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public void Transform()
+        {
+            try
+            {
+                //로직추가        
+                if (sourceDataArray != null)
+                {
+                }
+                //source1 = Yesterday     source2 = Today
+                else if (source1Data != null && source2Data != null)
+                {
+                }
+                else if (source1Data != null && source2Data == null)
+                {
+                    Single point1 = 0;
+                    Single point2 = 0;
+                    Single point3 = 0;
+                    Single point4 = 0;
+                    Single point5 = 0;
+                    Single point6 = 0;
+                    Single point7 = 0;
+                    Single point8 = 0;
+                    Single point9 = 0;
+                    Single point10 = 0;
+
+                    if (source1Data.OpenPrice < source1Data.ClosePrice)
+                    {
+                        point1 = source1Data.HighPrice;
+                        point2 = (source1Data.HighPrice + source1Data.ClosePrice) / 2.0f;
+                        point3 = source1Data.ClosePrice;
+                        point4 = (source1Data.HighPrice + source1Data.OpenPrice) / 2.0f;
+                        point5 = (source1Data.HighPrice + source1Data.LowPrice) / 2.0f;
+                        point6 = (source1Data.OpenPrice + source1Data.ClosePrice) / 2.0f;
+                        point7 = (source1Data.LowPrice + source1Data.ClosePrice) / 2.0f;
+                        point8 = source1Data.OpenPrice;
+                        point9 = (source1Data.LowPrice + source1Data.OpenPrice) / 2.0f;
+                        point10 = source1Data.LowPrice;
+                    }
+                    else if (source1Data.OpenPrice > source1Data.ClosePrice)
+                    {
+                        point1 = source1Data.HighPrice;
+                        point2 = (source1Data.HighPrice + source1Data.OpenPrice) / 2.0f;
+                        point3 = source1Data.OpenPrice;
+                        point4 = (source1Data.HighPrice + source1Data.ClosePrice) / 2.0f;
+                        point5 = (source1Data.HighPrice + source1Data.LowPrice) / 2.0f;
+                        point6 = (source1Data.OpenPrice + source1Data.ClosePrice) / 2.0f;
+                        point7 = (source1Data.LowPrice + source1Data.OpenPrice) / 2.0f;
+                        point8 = source1Data.ClosePrice;
+                        point9 = (source1Data.LowPrice + source1Data.OpenPrice) / 2.0f;
+                        point10 = source1Data.LowPrice;
+                    }
+                    else
+                    {
+                        point1 = source1Data.HighPrice;
+                        point2 = (source1Data.HighPrice + source1Data.OpenPrice) / 2.0f;
+                        point3 = source1Data.OpenPrice;
+                        point4 = (source1Data.HighPrice + source1Data.OpenPrice) / 2.0f;
+                        point5 = (source1Data.HighPrice + source1Data.LowPrice) / 2.0f;
+                        point6 = (source1Data.OpenPrice + source1Data.OpenPrice) / 2.0f;
+                        point7 = (source1Data.LowPrice + source1Data.OpenPrice) / 2.0f;
+                        point8 = source1Data.OpenPrice;
+                        point9 = (source1Data.LowPrice + source1Data.OpenPrice) / 2.0f;
+                        point10 = source1Data.LowPrice;
+                    }
+
+                    this.close = (point1 + point2 + point3 + point4 + point5 + point6 + point7 + point8 + point9 + point10) / 10.0f;
+                    this.dt = source1Data.DTime;
+                    this.volume = source1Data.Volume;
+                }               
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+    }
+}

@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.PP.Chakra
+{
+    public class S_LineItemData : A_CLOSE
+    {
+        public S_LineItemData() { }
+
+        public S_LineItemData(Single close, Single volume, DateTime dt)
+        {
+            base.ClosePrice = close;
+            base.Volume = volume;
+            base.DTime = dt;
+        }
+    }
+}

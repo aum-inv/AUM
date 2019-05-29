@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.Lib.Base.Data
+{
+    /// <summary>
+    /// 원천 데이터
+    /// </summary>
+    public interface ISourceData
+    {
+        double OpenPrice { get; }
+        double HighPrice { get; }
+        double LowPrice { get; }
+        double ClosePrice { get; }
+        double Volume { get; }
+
+        DateTime DTime { get; }
+    }
+}

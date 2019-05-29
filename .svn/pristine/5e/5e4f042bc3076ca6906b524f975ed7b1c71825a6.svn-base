@@ -1,0 +1,225 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using OM.PP.Chakra;
+using System.Windows.Forms.DataVisualization.Charting;
+using OM.Lib.Base.Utils;
+
+namespace OM.Vikala.Controls.Charts
+{
+    /// <summary>
+    /// 삼태극 챠트
+    /// 음양의 에너지의 흐름과 태극의 흐름을 비교해본다. 
+    /// 전제 – 에너지는 언제나 찰나를 보면 치우치는 듯 싶으나, 흐름으로 보면 언제나 중도를 지키기 위해 노력한다.
+    /// 3의 원리(시봉이라면 20분봉과 비교),  찰나의 치우침은 반대의 흐름을 만든다.
+    /// </summary>
+    public partial class ThreeThaChiChart : BaseChartControl
+    {
+        public override bool IsAutoScrollX
+        {
+            get { return pnlScroll.Visible; }
+            set { pnlScroll.Visible = value; }
+        }
+
+        public List<T_ThaChiItemData> ChartData
+        {
+            get;
+            set;
+        }
+
+        public void LoadData(string itemCode = ""
+            , List <T_ThaChiItemData> chartData = null
+            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day)
+        {
+            TimeInterval = timeInterval;
+            ItemCode = itemCode;
+            ChartData = chartData;
+            Reset();
+            View();
+        }
+        
+        public ThreeThaChiChart()
+        {
+            InitializeComponent();
+            base.SetChartControl(chart, hScrollBar, trackBar);
+        }
+
+        public override void View()
+        {
+            pnlScroll.Visible = IsAutoScrollX;
+            if (ChartData == null) return;
+            foreach (T_ThaChiItemData item in ChartData)
+            {
+                int idx = chart.Series[0].Points.AddXY(item.DTime
+                    , item.T_HighPrice, item.T_LowPrice, item.T_OpenPrice, item.T_ClosePrice);
+
+                chart.Series[1].Points.AddXY(item.DTime, item.T_TotalAvg);
+                chart.Series[2].Points.AddXY(item.DTime, item.T_PlusAvg);
+                chart.Series[3].Points.AddXY(item.DTime, item.T_MinusAvg);  
+            }
+
+            double maxPrice = ChartData.Max(m => m.T_HighPrice);
+            double minPrice = ChartData.Min(m => m.T_LowPrice);
+
+            double maxPrice2 = ChartData.Max(m => m.T_TotalAvg);
+            double maxPrice3 = ChartData.Max(m => m.T_PlusAvg);
+            double maxPrice4 = ChartData.Max(m => m.T_MinusAvg);
+            double minPrice2 = ChartData.Min(m => m.T_TotalAvg);
+            double minPrice3 = ChartData.Min(m => m.T_PlusAvg);
+            double minPrice4 = ChartData.Min(m => m.T_MinusAvg);
+
+            if (maxPrice < maxPrice2) maxPrice = maxPrice2;
+            if (maxPrice < maxPrice3) maxPrice = maxPrice3;
+            if (maxPrice < maxPrice4) maxPrice = maxPrice4;
+            if (minPrice > maxPrice2) minPrice = minPrice2;
+            if (minPrice > maxPrice3) minPrice = minPrice3;
+            if (minPrice > maxPrice4) minPrice = minPrice4;
+
+            maxPrice = maxPrice + SpaceMaxMin;
+            minPrice = minPrice - SpaceMaxMin;
+            chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
+            chart.ChartAreas[0].AxisY2.Minimum = minPrice;
+
+            chart.ChartAreas[0].AxisY2.LabelStyle.Format = "{N2}";
+            chart.ChartAreas[0].AxisY.LabelStyle.Format = "{N2}";
+
+            SetScrollBar();
+            SetTrackBar();
+            DisplayView();
+
+            IsLoaded = true;
+
+            base.View();
+        }
+        
+        public void SetScrollBar()
+        {
+            int trackView = trackBar.Value;
+            int displayItemCount = MaximumDisplayItemCount * trackView;
+
+            int maxScrollValue = (int)Math.Ceiling((Convert.ToDouble(ChartData.Count) / Convert.ToDouble(displayItemCount))) ;
+            int minScrollValue = 1;
+
+            hScrollBar.Minimum = minScrollValue;
+            hScrollBar.Maximum = maxScrollValue;
+            hScrollBar.Value = maxScrollValue;
+            hScrollBar.LargeChange = 1;
+            hScrollBar.SmallChange = 1;
+        }
+
+        public void SetTrackBar()
+        {
+            pnlScroll.Visible = IsAutoScrollX;
+            int maxScrollValue = (int)Math.Ceiling((Convert.ToDouble(ChartData.Count) / Convert.ToDouble(MaximumDisplayItemCount)));
+            int minScrollValue = 1;
+
+            trackBar.Minimum = minScrollValue;
+            trackBar.Maximum = maxScrollValue;
+            trackBar.Value = minScrollValue;
+            trackBar.LargeChange = 1;
+            trackBar.SmallChange = 1;
+        }
+
+        public void DisplayView()
+        {
+            chart.Update();
+
+            int scrollVal = hScrollBar.Value;
+
+            if (scrollVal < hScrollBar.Minimum) scrollVal = hScrollBar.Minimum;
+            if (scrollVal > hScrollBar.Maximum) scrollVal = hScrollBar.Maximum;
+
+            int trackView = trackBar.Value;
+            int displayItemCount = MaximumDisplayItemCount * trackView;
+
+            List<T_ThaChiItemData> viewLists = null;
+            int maxDisplayIndex = 0;
+            int minDisplayIndex = 0;
+            if (scrollVal == hScrollBar.Minimum)
+            {
+                int maxIndex = ChartData.Count > displayItemCount ? displayItemCount - 1 : ChartData.Count;
+                if (displayItemCount > ChartData.Count) displayItemCount = ChartData.Count;
+                viewLists = ChartData.GetRange(0, maxIndex);
+                maxDisplayIndex = displayItemCount;
+                minDisplayIndex = 0;
+            }
+            else if (scrollVal == hScrollBar.Maximum)
+            {
+                int minIndex = ChartData.Count < displayItemCount ? 0 : ChartData.Count - displayItemCount;
+                viewLists = ChartData.GetRange(minIndex, ChartData.Count < displayItemCount ? ChartData.Count : displayItemCount);
+                maxDisplayIndex = ChartData.Count;
+                minDisplayIndex = minIndex;
+            }
+            else
+            {
+                int currentIndex = (scrollVal - 1) * displayItemCount;
+                if (ChartData.Count < currentIndex + displayItemCount)
+                    displayItemCount = ChartData.Count - currentIndex;
+
+                viewLists = ChartData.GetRange(currentIndex, displayItemCount);
+
+                maxDisplayIndex = currentIndex + displayItemCount;
+                minDisplayIndex = currentIndex;
+            }
+            if (viewLists != null)
+            {                
+                double maxPrice = viewLists.Max(m => m.T_HighPrice);
+                double minPrice = viewLists.Min(m => m.T_LowPrice);
+                double maxPrice2 = viewLists.Max(m => m.T_TotalAvg);
+                double maxPrice3 = viewLists.Max(m => m.T_PlusAvg);
+                double maxPrice4 = viewLists.Max(m => m.T_MinusAvg);
+                double minPrice2 = viewLists.Min(m => m.T_TotalAvg);
+                double minPrice3 = viewLists.Min(m => m.T_PlusAvg);
+                double minPrice4 = viewLists.Min(m => m.T_MinusAvg);
+
+                if (maxPrice < maxPrice2) maxPrice = maxPrice2;
+                if (maxPrice < maxPrice3) maxPrice = maxPrice3;
+                if (maxPrice < maxPrice4) maxPrice = maxPrice4;
+                if (minPrice > maxPrice2) minPrice = minPrice2;
+                if (minPrice > maxPrice3) minPrice = minPrice3;
+                if (minPrice > maxPrice4) minPrice = minPrice4;
+
+                maxPrice = maxPrice + SpaceMaxMin;
+                minPrice = minPrice - SpaceMaxMin;
+                chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
+                chart.ChartAreas[0].AxisY2.Minimum = minPrice;
+
+                chart.ChartAreas[0].AxisX.Maximum = maxDisplayIndex + 1;
+                chart.ChartAreas[0].AxisX.Minimum = minDisplayIndex - 1;
+            }
+        }
+
+        private void hScrollBar_ValueChanged(object sender, EventArgs e)
+        {
+            if (!IsLoaded) return;
+            DisplayView();
+            if (ChartEventInstance != null)
+                ChartEventInstance.OnChangeChartScrollBarHandler(this.chart, hScrollBar.Value);
+        }
+
+        private void trackBar_ValueChanged(object sender, EventArgs e)
+        {
+            if (!IsLoaded) return;
+            SelectedTrackBarValue = (int)trackBar.Value;
+            SetScrollBar();
+            DisplayView();
+            if (ChartEventInstance != null)
+                ChartEventInstance.OnChangeChartTrackBarHandler(this.chart, trackBar.Value);
+        }
+
+        #region Chart Util
+
+        #endregion
+
+        private void chart_PostPaint(object sender, ChartPaintEventArgs e)
+        {
+            DrawChartTitle(e);
+        }
+    }
+}

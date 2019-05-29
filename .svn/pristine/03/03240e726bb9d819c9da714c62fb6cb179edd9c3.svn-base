@@ -1,0 +1,125 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.ServiceModel;
+using System.Text;
+using System.Threading.Tasks;
+using OM.Lib.Base.Enums;
+using OM.Lib.Entity;
+using OM.Lib.Framework.Base;
+using OM.Lib.Framework.Db;
+
+namespace OM.PP.Chakra.Ctx
+{
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall
+        , ConcurrencyMode = ConcurrencyMode.Multiple
+        , UseSynchronizationContext = false)]
+    public class PPService : IPPService
+    {
+        static object sync = new object();
+
+        public string ServiceName => PPServerConfigData.ServiceName;
+
+        public void Noop() { }
+       
+      
+        public List<LitePurushaPrakriti> GetSourceData(
+                string itemCode
+            ,   TimeIntervalEnum timeInterval
+            ,   string startDate = null
+            ,   string endDate = null
+            ,   int cnt = 0)
+        {
+            List<LitePurushaPrakriti> list = new List<LitePurushaPrakriti>();
+
+            PurushaPrakriti pp = new PurushaPrakriti();
+            pp.Item = itemCode;
+            pp.Interval = (int)timeInterval;
+            pp.StartDate = startDate == null ? "" : startDate;
+            pp.EndDate = endDate == null ? "" : endDate;
+            pp.DisplayCount = cnt;
+            try
+            {
+                Entities entities = (Entities)pp.Collect();
+
+                foreach (var m in entities.Cast<PurushaPrakriti>())
+                {
+                    var n = new LitePurushaPrakriti(
+                            m.OpenVal, m.HighVal, m.LowVal, m.CloseVal, m.Volume, m.DT
+                        );
+
+                    list.Add(n);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return list;
+        }
+
+        public void SetSourceData(
+                string itemCode
+            ,   TimeIntervalEnum timeInterval
+            ,   LitePurushaPrakriti entity)
+        {
+            Task.Factory.StartNew(() =>
+            {
+                PurushaPrakriti pp = new PurushaPrakriti();
+                pp.MappingProperty(entity);
+
+                try
+                {
+                    pp.Interval = (int)timeInterval;
+                    pp.Create();
+                }
+                catch (Exception ex)
+                {
+                    //error
+                }
+            });
+        }
+
+        //public Dictionary<string, CurrentPrice> GetCurrentPrice()
+        //{
+        //   return CurrentPriceStorage.PriceList;           
+        //}
+        //public void SetCurrentPrice(string itemCode, CurrentPrice price)
+        //{
+        //    CurrentPriceStorage.SetPrice(itemCode, price);
+        //}
+
+        //public List<PriceMonitoring> GetPriceMonitoring()
+        //{
+        //    PriceMonitoring pp = new PriceMonitoring();           
+        //    try
+        //    {
+        //        Entities entities = (Entities)pp.Collect();
+
+        //        return entities.Cast<PriceMonitoring>().ToList();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return null;
+        //    }
+        //}
+
+        //public void SetPriceMonitoring(PriceMonitoring priceMonitoring)
+        //{
+        //    Task.Factory.StartNew(() =>
+        //    {
+        //        PriceMonitoring pp = new PriceMonitoring();
+        //        pp.MappingProperty(priceMonitoring);
+
+        //        try
+        //        {
+        //            pp.Update();
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            //error
+        //        }
+        //    });
+        //}
+    }
+}

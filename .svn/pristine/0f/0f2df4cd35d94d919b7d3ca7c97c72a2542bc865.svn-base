@@ -1,0 +1,32 @@
+﻿using OM.Lib.Framework.Db;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.Lib.Entity
+{
+    [Serializable]
+    public class PurushaPrakriti : DomainBase
+    {
+        public PurushaPrakriti(string entityeName, string domainName = "OM_PP") 
+            : base(entityeName, domainName) { }
+
+        public string Item { get; set; }
+
+        public int Interval { get; set; }
+
+        public DateTime DT { get; set; }
+
+        public Single OpenVal { get; set; }
+
+        public Single HighVal { get; set; }
+
+        public Single LowVal { get; set; }
+
+        public Single CloseVal { get; set; }
+
+        public Int64 Volume { get; set; }
+    }
+}

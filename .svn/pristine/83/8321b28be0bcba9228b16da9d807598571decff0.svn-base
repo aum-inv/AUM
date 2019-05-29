@@ -1,0 +1,99 @@
+﻿using MetroFramework.Forms;
+using OM.Lib.Base.Enums;
+using OM.Lib.Base.Utils;
+using OM.PP.Chakra;
+using OM.PP.Chakra.Ctx;
+using OM.Vikala.Controls.Charts;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Configuration;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Vikala.Chakra.App
+{
+    public partial class ReverseCandleMainForm_Sample : Form
+    {
+        ChartEvents chartEvent1 = new ChartEvents();
+        ChartEvents chartEvent2 = new ChartEvents();
+        ChartEvents chartEvent3 = new ChartEvents();
+        ChartEvents chartEvent4 = new ChartEvents();
+
+        public ReverseCandleMainForm_Sample()
+        {
+            InitializeComponent();
+
+            chartRS1.InitializeControl();
+            chartRS1.InitializeEvent(chartEvent1);
+            chartRS1.MaximumDisplayItemCount = 10;
+
+            chartRS2.InitializeControl();
+            chartRS2.InitializeEvent(chartEvent2);
+            chartRS2.MaximumDisplayItemCount = 20;
+
+            chartRS3.InitializeControl();
+            chartRS3.InitializeEvent(chartEvent3);
+            chartRS3.MaximumDisplayItemCount = 60;
+
+            chartRS4.InitializeControl();
+            chartRS4.InitializeEvent(chartEvent4);
+            chartRS4.MaximumDisplayItemCount = 120;
+
+            tbDT_E.Text = DateTime.Now.ToString("yyyy-MM-dd");
+        }
+        private void btnLoadData_Click(object sender, EventArgs e)
+        {
+            BindData(10, chartRS1);
+            BindData(20, chartRS2);
+            BindData(60, chartRS3);
+            BindData(120, chartRS4);
+        }
+
+        private void BindData(int cnt, ReverseCandleChart chart)
+        {
+            string itemCode = ItemCodeSet.GetItemCode(ItemCode.선물_해외_WTI);
+            int round = ItemCodeUtil.GetItemCodeRoundNum(itemCode);
+
+            var list = PPContext.Instance.ClientContext.GetSourceData(
+                  itemCode
+                , Lib.Base.Enums.TimeIntervalEnum.Day
+                , null
+                , tbDT_E.Text
+                , cnt);
+            List<S_CandleItemData> sourceDatas = new List<S_CandleItemData>();
+            List<S_CandleItemData> reverseDatas = new List<S_CandleItemData>();
+            foreach (var m in list)
+            {
+                S_CandleItemData sourceData = new S_CandleItemData(
+                      itemCode
+                    , (Single)Math.Round(m.OpenVal, round)
+                    , (Single)Math.Round(m.HighVal, round)
+                    , (Single)Math.Round(m.LowVal, round)
+                    , (Single)Math.Round(m.CloseVal, round)
+                    , m.Volume
+                    , m.DT
+                    );
+                sourceDatas.Add(sourceData);
+            }
+            for (int i = 0, j = sourceDatas.Count - 1; i < sourceDatas.Count; i++, j--)
+            {
+                S_CandleItemData reverseData = new S_CandleItemData(
+                      itemCode
+                      , sourceDatas[j].ClosePrice
+                      , sourceDatas[j].HighPrice
+                      , sourceDatas[j].LowPrice
+                      , sourceDatas[j].OpenPrice
+                      , 0
+                      , sourceDatas[i].DTime
+                    );
+                reverseDatas.Add(reverseData);
+            }
+            chart.LoadData(itemCode, sourceDatas, reverseDatas);
+        }
+    }
+}

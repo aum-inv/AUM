@@ -1,0 +1,140 @@
+﻿using OM.Lib.Base.Enums;
+using OM.Lib.Base.Utils;
+using OM.PP.Chakra;
+using OM.PP.Chakra.Ctx;
+using OM.Vikala.Chakra.App.Chakra;
+using OM.Vikala.Controls.Charts;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Vikala.Chakra.App.Mains.ChartForm
+{
+    public partial class AtomChartForm : BaseForm
+    {
+        public AtomChartForm()
+        {
+            InitializeComponent();
+            base.setToolStrip(userToolStrip1);
+            InitializeControls();
+        }
+
+        private void InitializeControls()
+        {           
+            loadChartControls();
+            setTimer();
+            userToolStrip.IsVisibleAlignmentButton = false;
+        }
+
+        public override void loadChartControls()
+        {
+            chart.InitializeControl();
+            chart.InitializeEvent(chartEvent);
+            chart.DisplayPointCount = itemCnt;
+
+            chart2.InitializeControl();
+            chart2.InitializeEvent(chartEvent);
+            chart2.DisplayPointCount = itemCnt;
+
+            chart.IsShowLine = true;
+            chart2.IsShowLine = true;
+        }
+
+        public override void loadData()
+        {
+            if (base.SelectedItemData == null) return;
+            if (string.IsNullOrEmpty(base.SelectedItemData.Code)) return;
+
+            string itemCode = base.SelectedItemData.Code;
+
+            var list = PPContext.Instance.ClientContext.GetSourceData(                 
+                  itemCode
+                , base.timeInterval
+                , null
+                , null
+                , base.loadCnt);
+
+            int round = ItemCodeUtil.GetItemCodeRoundNum(itemCode);
+            List<S_CandleItemData> sourceDatas = new List<S_CandleItemData>();
+            foreach (var m in list)
+            {
+                S_CandleItemData sourceData = new S_CandleItemData(
+                    itemCode
+                    , (Single)Math.Round(m.OpenVal, round)
+                    , (Single)Math.Round(m.HighVal, round)
+                    , (Single)Math.Round(m.LowVal, round)
+                    , (Single)Math.Round(m.CloseVal, round)
+                    , m.Volume
+                    , m.DT
+                    );
+                sourceDatas.Add(sourceData);
+            }            
+            var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas, 7);
+            sourceDatas = PPUtils.GetCutDatas(sourceDatas, averageDatas[0].DTime);
+            chart.LoadDataAndApply(itemCode, sourceDatas, base.timeInterval, 7);
+            chart2.LoadDataAndApply(itemCode, averageDatas, base.timeInterval, 7);
+
+            Summary(itemCode, (AtomChart)chart, "");
+            Summary(itemCode, (AtomChart)chart2, "평균");
+        }
+
+        public void Summary(string itemCode, AtomChart c, string average)
+        {
+            var atomData2 = c.ChartData[c.ChartData.Count - 2];
+            var atomData1 = c.ChartData[c.ChartData.Count - 1];
+
+            double highLinePoint = Math.Round(atomData2.T_HighPrice, RoundLength);
+            double lowLinePoint = Math.Round(atomData2.T_LowPrice, RoundLength);
+
+            PlusMinusTypeEnum plusMinusType = atomData2.PlusMinusType;
+
+            //atomData1.ClosePrice
+            if (plusMinusType == PlusMinusTypeEnum.양)
+            {
+                Lib.Base.Enums.UpDownEnum upDown1 = Lib.Base.Enums.UpDownEnum.None;
+                if (atomData2.OpenPrice < atomData1.OpenPrice && atomData2.ClosePrice < atomData1.ClosePrice)
+                    upDown1 = Lib.Base.Enums.UpDownEnum.StrongUp;
+                else if (atomData2.OpenPrice < atomData1.OpenPrice && atomData2.ClosePrice >= atomData1.ClosePrice)
+                    upDown1 = Lib.Base.Enums.UpDownEnum.WeakUp;
+                else if (atomData2.OpenPrice >= atomData1.OpenPrice && atomData2.ClosePrice >= atomData1.ClosePrice)
+                    upDown1 = Lib.Base.Enums.UpDownEnum.None;
+                CandleSummary.Instance.UpdateSummaryBaseLine(itemCode, c.TimeInterval, "매수" + average, upDown1);
+
+                Lib.Base.Enums.UpDownEnum upDown2 = Lib.Base.Enums.UpDownEnum.None;
+                if (lowLinePoint >= atomData1.ClosePrice && lowLinePoint >= atomData1.LowPrice)
+                    upDown2 = Lib.Base.Enums.UpDownEnum.StrongDown;
+                else if (lowLinePoint < atomData1.ClosePrice && lowLinePoint >= atomData1.LowPrice)
+                    upDown2 = Lib.Base.Enums.UpDownEnum.WeakDown;
+                else if (lowLinePoint < atomData1.ClosePrice && lowLinePoint < atomData1.LowPrice)
+                    upDown2 = Lib.Base.Enums.UpDownEnum.None;
+                CandleSummary.Instance.UpdateSummaryBaseLine(itemCode, c.TimeInterval, "매도" + average, upDown2);
+            }
+            if (plusMinusType == PlusMinusTypeEnum.음)
+            {
+                Lib.Base.Enums.UpDownEnum upDown1 = Lib.Base.Enums.UpDownEnum.None;
+                if (highLinePoint <= atomData1.ClosePrice && highLinePoint <= atomData1.HighPrice)
+                    upDown1 = Lib.Base.Enums.UpDownEnum.StrongUp;
+                else if (highLinePoint > atomData1.ClosePrice && highLinePoint <= atomData1.HighPrice)
+                    upDown1 = Lib.Base.Enums.UpDownEnum.WeakUp;
+                else if (highLinePoint > atomData1.ClosePrice && highLinePoint > atomData1.HighPrice)
+                    upDown1 = Lib.Base.Enums.UpDownEnum.None;
+                CandleSummary.Instance.UpdateSummaryBaseLine(itemCode, c.TimeInterval, "매수" + average, upDown1);
+
+                Lib.Base.Enums.UpDownEnum upDown2 = Lib.Base.Enums.UpDownEnum.None;
+                if (atomData2.OpenPrice > atomData1.OpenPrice && atomData2.ClosePrice > atomData1.ClosePrice)
+                    upDown2 = Lib.Base.Enums.UpDownEnum.StrongDown;
+                else if (atomData2.OpenPrice > atomData1.OpenPrice && atomData2.ClosePrice <= atomData1.ClosePrice)
+                    upDown2 = Lib.Base.Enums.UpDownEnum.WeakDown;
+                else if (atomData2.OpenPrice <= atomData1.OpenPrice && atomData2.ClosePrice <= atomData1.ClosePrice)
+                    upDown2 = Lib.Base.Enums.UpDownEnum.None;
+                CandleSummary.Instance.UpdateSummaryBaseLine(itemCode, c.TimeInterval, "매도" + average, upDown2);
+            }
+        }
+    }
+}

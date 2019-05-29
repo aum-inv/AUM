@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.PP.Chakra
+{
+    public enum SLHTypeEnum
+    {
+            없음        
+        ,   태양
+        ,   태음
+        ,   소양
+        ,   양명
+        ,   궐음 
+        ,   소음
+        ,   무극
+    }
+}

@@ -1,0 +1,46 @@
+﻿using OM.Lib.Base.Enums;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Vikala.Chakra.App.Mains
+{
+    public partial class BasicMainForm : Form
+    {
+        public BasicMainForm()
+        {
+            InitializeComponent();
+            this.Load += BasicMainForm_Load;
+        }
+
+        private void BasicMainForm_Load(object sender, EventArgs e)
+        {
+            //Load Items
+            tscbItem.ComboBox.DataSource = ItemCodeSet.Items;
+            tscbItem.ComboBox.DisplayMember = "Name";
+            tscbItem.ComboBox.ValueMember = "Code";
+            tscbItem.SelectedIndex = 0;
+        }
+
+        private void tsbFD1_Click(object sender, EventArgs e)
+        {
+            flpMain.FlowDirection = FlowDirection.TopDown;
+        }
+
+        private void tsbFD2_Click(object sender, EventArgs e)
+        {
+            flpMain.FlowDirection = FlowDirection.LeftToRight;
+        }
+
+        private void tscbItem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show((tscbItem.SelectedItem as ItemData).Name.ToString());
+        }
+    }
+}

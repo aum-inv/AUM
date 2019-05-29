@@ -1,0 +1,97 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.PP.Chakra
+{
+    /// <summary>
+    /// 
+    /// </summary>
+    public class T_QuantumItemData : A_HLOC, ITransform
+    {
+        private S_CandleItemData sourceData = null;
+        List<S_CandleItemData> sourceDataArray = null;
+
+        private Single t_openAvgQS = 0;
+        private Single t_closeAvgQS = 0;
+        private Single t_highAvgQS = 0;
+        private Single t_lowAvgQS = 0;
+        private Single t_openAvgQT = 0;
+        private Single t_closeAvgQT = 0;
+        private Single t_highAvgQT = 0;
+        private Single t_lowAvgQT = 0;
+
+        public Single T_OpenAvgQS { get { return t_openAvgQS; } }
+        public Single T_CloseAvgQS { get { return t_closeAvgQS; } }
+        public Single T_HighAvgQS { get { return t_highAvgQS; } }
+        public Single T_LowAvgQS { get { return t_lowAvgQS; } }
+
+        public Single T_OpenAvgQT { get { return t_openAvgQT; } }
+        public Single T_CloseAvgQT { get { return t_closeAvgQT; } }
+        public Single T_HighAvgQT { get { return t_highAvgQT; } }
+        public Single T_LowAvgQT { get { return t_lowAvgQT; } }
+
+        /// <summary>
+        /// 당일 가격만 가지고 퀀텀데이터 만든다.
+        /// </summary>
+        /// <param name="sourceData"></param>
+        public T_QuantumItemData(S_CandleItemData sourceData)
+        {
+            this.sourceData = sourceData;
+        }
+        /// <summary>
+        /// 전일가격 및 당일가격으로 퀀텀데이터 만든다.
+        /// </summary>
+        /// <param name="sourceBData"></param>
+        /// <param name="sourceCData"></param>
+        public T_QuantumItemData(S_CandleItemData sourceData, List<S_CandleItemData> sourceDataArray)
+        {
+            this.sourceData = sourceData;
+            this.sourceDataArray = sourceDataArray;
+        }
+        
+        public S_CandleItemData Source1Data { get { return sourceData; } }
+        public List<S_CandleItemData> SourceDataArray { get { return sourceDataArray; } }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public void Transform()
+        {
+            try
+            {
+                OpenPrice = sourceData.OpenPrice;
+                HighPrice = sourceData.HighPrice;
+                LowPrice = sourceData.LowPrice;
+                ClosePrice = sourceData.ClosePrice;
+                DTime = sourceData.DTime;
+
+                Q_ClosePrice_S = sourceData.Q_ClosePrice_S;
+                Q_ClosePrice_T = sourceData.Q_ClosePrice_T;
+                Q_HighPrice_S = sourceData.Q_HighPrice_S;
+                Q_HighPrice_T = sourceData.Q_HighPrice_T;
+                Q_LowPrice_S = sourceData.Q_LowPrice_S;
+                Q_LowPrice_T = sourceData.Q_LowPrice_T;
+                Q_OpenPrice_S = sourceData.Q_OpenPrice_S;
+                Q_OpenPrice_T = sourceData.Q_OpenPrice_T;
+
+                t_openAvgQS = (Single)sourceDataArray.Average(t => t.Q_OpenPrice_S);
+                t_closeAvgQS = (Single)sourceDataArray.Average(t => t.Q_ClosePrice_S);
+                t_highAvgQS = (Single)sourceDataArray.Average(t => t.Q_HighPrice_S);
+                t_lowAvgQS = (Single)sourceDataArray.Average(t => t.Q_LowPrice_S);
+                
+                t_openAvgQT = (Single)sourceDataArray.Average(t => t.Q_OpenPrice_T);
+                t_closeAvgQT = (Single)sourceDataArray.Average(t => t.Q_ClosePrice_T);
+                t_highAvgQT = (Single)sourceDataArray.Average(t => t.Q_HighPrice_T);
+                t_lowAvgQT = (Single)sourceDataArray.Average(t => t.Q_LowPrice_T);
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+    }
+}
+

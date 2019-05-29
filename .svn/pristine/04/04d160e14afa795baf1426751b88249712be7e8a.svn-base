@@ -1,0 +1,307 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Vikala.Chakra.App.Mains
+{
+    public partial class MainForm : Form
+    {
+        List<Form> formList = new List<Form>();
+
+        public TabControl MdiTabControl
+        {
+            get
+            {
+                return this.tabPage;
+            }
+        }
+
+        public MainForm()
+        {
+            InitializeComponent();
+        }
+
+        public void AddTab(BaseForm bmf)
+        {
+            bmf.WindowState = FormWindowState.Maximized;
+            bmf.MdiParent = this;
+            bmf.MdiForm = this;
+
+            TabPage tp = new TabPage(bmf.Text);
+            tp.Controls.Add(bmf);
+            tabPage.TabPages.Add(tp);
+            bmf.Show();
+            formList.Add(bmf);
+        }
+        public void RemoveTab(BaseForm bmf)
+        {
+            TabPage sP = null;
+            foreach (TabPage p in tabPage.TabPages)
+            {
+                if (p.Controls.Count > 0)
+                {
+                    if (p.Controls[0] == bmf)
+                    {
+                        sP = p;
+                        break;
+                    }
+                }
+            }
+            if (sP != null)
+                tabPage.TabPages.Remove(sP);
+
+            formList.Remove(bmf);
+        }
+      
+        private void tabPage_DrawItem(object sender, DrawItemEventArgs e)
+        {            
+            try
+            {
+                Rectangle r = e.Bounds;
+                r = tabPage.GetTabRect(e.Index);
+                r.Offset(2, 2);
+                Brush TitleBrush = new SolidBrush(Color.Black);
+                Font f = this.Font;
+                string title = tabPage.TabPages[e.Index].Text;
+
+                e.Graphics.DrawString(title, f, TitleBrush, new PointF(r.X, r.Y + 2));
+
+                e.Graphics.DrawString("X", f, TitleBrush, new Point(r.X + (tabPage.GetTabRect(e.Index).Width - 16), 7));                
+            }
+            catch (Exception) { }
+        }
+
+        private void tabPage_MouseClick(object sender, MouseEventArgs e)
+        {
+            TabControl tc = (TabControl)sender;
+            Point p = e.Location;
+            int _tabWidth = 0;
+            _tabWidth = tabPage.GetTabRect(tc.SelectedIndex).Width - 16;
+            Rectangle r = tabPage.GetTabRect(tc.SelectedIndex);
+            r.Offset(_tabWidth, 7);
+            r.Width = 16;
+            r.Height = 16;
+            if (r.Contains(p))
+            {
+                TabPage TabP = (TabPage)tc.TabPages[tc.SelectedIndex];
+                tc.TabPages.Remove(TabP);
+
+                if(TabP.Controls.Count > 0)
+                    RemoveTab((BaseForm)TabP.Controls[0]);
+            }
+        }
+
+        private void MainForm_SizeChanged(object sender, EventArgs e)
+        {
+            foreach (var f in formList)
+            {
+                f.WindowState = FormWindowState.Normal;
+                f.WindowState = FormWindowState.Maximized;
+            }
+        }
+
+        private void tabPage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabPage.SelectedIndex < 0) return;
+            if (tabPage.SelectedTab == null) return;
+
+            if (tabPage.SelectedTab.Controls.Count > 0)
+            {
+                Form f = (Form)tabPage.SelectedTab.Controls[0];
+
+                f.WindowState = FormWindowState.Normal;
+                f.WindowState = FormWindowState.Maximized;
+            }
+        }
+
+        private void tsb_MouseDown(object sender, MouseEventArgs e)
+        {
+            ToolStripSplitButton tsb = sender as ToolStripSplitButton;
+            tsb.ShowDropDown();
+        }
+
+        private void tsb_Click(object sender, EventArgs e)
+        {
+            if (sender is ToolStripButton)
+            {
+                ToolStripButton menu = sender as ToolStripButton;
+                string menuText = menu.Text;
+                switch (menuText)
+                {
+                    case "추세챠트":
+                        createMultiChart1(menuText);
+                        break;
+                    case "지지저항챠트":
+                        createMultiChart2(menuText);
+                        break;
+                    case "원리챠트":
+                        createMultiChart3(menuText);
+                        break;
+                }
+            }
+            else if (sender is ToolStripMenuItem)
+            {
+                ToolStripMenuItem menu = sender as ToolStripMenuItem;                
+                string pMenuText = menu.OwnerItem.Text;
+                string menuText = pMenuText + ":" + menu.Text;
+                switch (menuText)
+                {
+                    #region 캔들라인형
+                    //원자 양자 질량 삼태극 리버스
+                    case "캔들라인형:원자챠트":
+                        createCandleLineTypeChart_Atom(menuText);
+                        break;
+                    case "캔들라인형:양자챠트":
+                        createCandleLineTypeChart_Quantum(menuText);
+                        break;
+                    case "캔들라인형:질량챠트":
+                        createCandleLineTypeChart_Mass(menuText);
+                        break;
+                    case "캔들라인형:삼태극챠트":
+                        createCandleLineTypeChart_Wuxing(menuText);
+                        break;
+                    case "캔들라인형:리버스챠트":
+                        createCandleLineTypeChart_Reverse(menuText);
+                        break;
+                    #endregion
+
+                    #region 캔들형
+                    //기본 음양오행 음양오행(누적) 진동주파수 삼태극 미러
+                    case "캔들형:기본챠트":
+                        createCandleTypeChart_Basic(menuText);
+                        break;
+                    case "캔들형:천지인챠트":
+                        createCandleTypeChart_Slh(menuText);
+                        break;
+                    case "캔들형:쿼크챠트":
+                        createCandleTypeChart_Quark(menuText);
+                        break;
+                    case "캔들형:음양오행챠트":
+                        createCandleTypeChart_Five(menuText);
+                        break;
+                    case "캔들형:음양오행(누적)챠트":
+                        createCandleTypeChart_FiveAccur(menuText);
+                        break;
+                    case "캔들형:음양오행(소수)챠트":
+                        createCandleTypeChart_FivePrimeNum(menuText);
+                        break;
+                    case "캔들형:진동주파수챠트":
+                        createCandleTypeChart_Frequency(menuText);
+                        break;
+                    case "캔들형:삼태극챠트":
+                        createCandleTypeChart_Wuxing(menuText);
+                        break;
+                    case "캔들형:미러챠트":
+                        createCandleTypeChart_Mirror(menuText);
+                        break;
+                    case "캔들형:샴양삼음챠트":
+                        createCandleTypeChart_TT(menuText);
+                        break;
+                    
+                    #endregion
+
+                    #region 라인형
+                    //기본 변화
+                    case "라인형:기본챠트":
+                        createLineTypeChart_Basic(menuText);
+                        break;
+                    case "라인형:변화챠트":
+                        createLineTypeChart_Velocity(menuText);
+                        break;
+                    #endregion
+
+                    #region 기타형
+                    //오색
+                    case "기타형:오색챠트":
+                        createEtcTypeChart_FiveColor(menuText);
+                        break;
+                    #endregion
+                                          
+
+                    #region 챠크라
+                    case "챠크라:엘리어트오행":
+                        createChakra(menuText);
+                        break;
+                    case "챠크라:오행마운틴":
+                        createChakra(menuText);
+                        break;
+                   #endregion
+                }
+            }
+        }
+        #region 멀티챠트
+        private void createMultiChart1(string title)
+        {
+            BaseForm bmf = new MultiChartForm1();
+            bmf.Text = title;
+            AddTab(bmf);
+        }
+        private void createMultiChart2(string title)
+        {
+            BaseForm bmf = new MultiChartForm2();
+            bmf.Text = title;
+            AddTab(bmf);
+        }
+        private void createMultiChart3(string title)
+        {
+            BaseForm bmf = new MultiChartForm3();
+            bmf.Text = title;
+            AddTab(bmf);
+        }
+        #endregion
+
+        #region 캔들라인형챠트
+        private void createCandleLineTypeChart_Atom(string title) { }
+        private void createCandleLineTypeChart_Quantum(string title) { }
+        private void createCandleLineTypeChart_Mass(string title) { }
+        private void createCandleLineTypeChart_Wuxing(string title) { }
+        private void createCandleLineTypeChart_Reverse(string title) { }
+        #endregion
+
+        #region 캔들형챠트
+        private void createCandleTypeChart_Basic(string title) { }
+        private void createCandleTypeChart_Slh(string title) { }
+        private void createCandleTypeChart_Quark(string title) { }
+        private void createCandleTypeChart_Five(string title) { }
+        private void createCandleTypeChart_FiveAccur(string title)
+        {
+            BaseForm bmf = new BasicMainForm();
+            bmf.Text = title;
+            AddTab(bmf);
+        }
+        private void createCandleTypeChart_FivePrimeNum(string title)
+        {
+            BaseForm bmf = new BasicMainForm();
+            bmf.Text = title;
+            AddTab(bmf);
+        }        
+        private void createCandleTypeChart_Frequency(string title) { }
+        private void createCandleTypeChart_Wuxing(string title) { }
+        private void createCandleTypeChart_Mirror(string title) { }
+        private void createCandleTypeChart_TT(string title) { }
+        #endregion
+
+        #region 라인형챠트
+        private void createLineTypeChart_Basic(string title) { }
+        private void createLineTypeChart_Velocity(string title) { }      
+        #endregion
+
+        #region 기타형챠트
+        private void createEtcTypeChart_FiveColor(string title) { }
+
+        #endregion
+
+        #region 챠크라
+        private void createChakra(string title)
+        {
+
+        }
+        #endregion
+    }
+}

@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.Atman.Chakra.App.Alerts
+{
+    public class TelegramUtil
+    {
+        public static async Task SendMessageAsync()
+        {
+            //var bot = new TelegramBotClient("690049:7dd9517017a16854ddaaa23852711407");
+
+          
+                
+        }
+       
+    }
+}

@@ -1,0 +1,642 @@
+﻿namespace OM.Vikala.Chakra.App.Mains
+{
+    partial class MainForm
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsbMC1 = new System.Windows.Forms.ToolStripButton();
+            this.tsbMC2 = new System.Windows.Forms.ToolStripButton();
+            this.tsbMC3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbCL = new System.Windows.Forms.ToolStripSplitButton();
+            this.tsbCL_ATOM = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbCL_Quantum = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbCL_Mass = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbCL_Wuxing = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbCL_Reverse = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.챠크라챠트ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbC = new System.Windows.Forms.ToolStripSplitButton();
+            this.tsbC_Basic = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbC_SLH = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbC_Quark = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbC_Five = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbC_Five2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbC_Five3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.천지인ToolStripMenuItem = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbC_Freq = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbC_Wuxing = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbC_Mirror = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbC_TT = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbL = new System.Windows.Forms.ToolStripSplitButton();
+            this.tsbL_Basic = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem13 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbL_Velocity = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbE = new System.Windows.Forms.ToolStripSplitButton();
+            this.오색챠트ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbChakra = new System.Windows.Forms.ToolStripSplitButton();
+            this.tsbChakra_1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbChakra_2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.tabPage = new System.Windows.Forms.TabControl();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbAutoReloadStart = new System.Windows.Forms.ToolStripButton();
+            this.tsbAutoReloadStop = new System.Windows.Forms.ToolStripButton();
+            this.toolStrip1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.AutoSize = false;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(40, 40);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbMC1,
+            this.tsbMC2,
+            this.tsbMC3,
+            this.toolStripSeparator1,
+            this.tsbCL,
+            this.tsbC,
+            this.tsbL,
+            this.tsbE,
+            this.toolStripSeparator2,
+            this.tsbChakra,
+            this.toolStripSeparator9,
+            this.tsbAutoReloadStart,
+            this.tsbAutoReloadStop});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1259, 40);
+            this.toolStrip1.TabIndex = 0;
+            // 
+            // tsbMC1
+            // 
+            this.tsbMC1.AutoToolTip = false;
+            this.tsbMC1.Image = ((System.Drawing.Image)(resources.GetObject("tsbMC1.Image")));
+            this.tsbMC1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbMC1.Name = "tsbMC1";
+            this.tsbMC1.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.tsbMC1.Size = new System.Drawing.Size(104, 37);
+            this.tsbMC1.Text = "추세챠트";
+            this.tsbMC1.ToolTipText = "추세챠트";
+            this.tsbMC1.Click += new System.EventHandler(this.tsb_Click);
+            // 
+            // tsbMC2
+            // 
+            this.tsbMC2.AutoToolTip = false;
+            this.tsbMC2.Image = ((System.Drawing.Image)(resources.GetObject("tsbMC2.Image")));
+            this.tsbMC2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbMC2.Name = "tsbMC2";
+            this.tsbMC2.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.tsbMC2.Size = new System.Drawing.Size(128, 37);
+            this.tsbMC2.Text = "지지저항챠트";
+            this.tsbMC2.Click += new System.EventHandler(this.tsb_Click);
+            // 
+            // tsbMC3
+            // 
+            this.tsbMC3.AutoToolTip = false;
+            this.tsbMC3.Image = ((System.Drawing.Image)(resources.GetObject("tsbMC3.Image")));
+            this.tsbMC3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbMC3.Name = "tsbMC3";
+            this.tsbMC3.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.tsbMC3.Size = new System.Drawing.Size(104, 37);
+            this.tsbMC3.Text = "원리챠트";
+            this.tsbMC3.Click += new System.EventHandler(this.tsb_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 40);
+            // 
+            // tsbCL
+            // 
+            this.tsbCL.AutoToolTip = false;
+            this.tsbCL.DropDownButtonWidth = 20;
+            this.tsbCL.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbCL_ATOM,
+            this.toolStripSeparator4,
+            this.tsbCL_Quantum,
+            this.toolStripMenuItem6,
+            this.tsbCL_Mass,
+            this.toolStripSeparator3,
+            this.tsbCL_Wuxing,
+            this.toolStripMenuItem3,
+            this.tsbCL_Reverse,
+            this.toolStripMenuItem2,
+            this.챠크라챠트ToolStripMenuItem});
+            this.tsbCL.Image = ((System.Drawing.Image)(resources.GetObject("tsbCL.Image")));
+            this.tsbCL.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbCL.Name = "tsbCL";
+            this.tsbCL.Size = new System.Drawing.Size(132, 37);
+            this.tsbCL.Text = "캔들라인형";
+            this.tsbCL.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tsb_MouseDown);
+            // 
+            // tsbCL_ATOM
+            // 
+            this.tsbCL_ATOM.Image = ((System.Drawing.Image)(resources.GetObject("tsbCL_ATOM.Image")));
+            this.tsbCL_ATOM.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbCL_ATOM.Name = "tsbCL_ATOM";
+            this.tsbCL_ATOM.Size = new System.Drawing.Size(186, 24);
+            this.tsbCL_ATOM.Text = "원자챠트";
+            this.tsbCL_ATOM.Click += new System.EventHandler(this.tsb_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(183, 6);
+            // 
+            // tsbCL_Quantum
+            // 
+            this.tsbCL_Quantum.Image = ((System.Drawing.Image)(resources.GetObject("tsbCL_Quantum.Image")));
+            this.tsbCL_Quantum.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbCL_Quantum.Name = "tsbCL_Quantum";
+            this.tsbCL_Quantum.Size = new System.Drawing.Size(186, 24);
+            this.tsbCL_Quantum.Text = "양자챠트";
+            this.tsbCL_Quantum.Click += new System.EventHandler(this.tsb_Click);
+            // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(183, 6);
+            // 
+            // tsbCL_Mass
+            // 
+            this.tsbCL_Mass.Image = ((System.Drawing.Image)(resources.GetObject("tsbCL_Mass.Image")));
+            this.tsbCL_Mass.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbCL_Mass.Name = "tsbCL_Mass";
+            this.tsbCL_Mass.Size = new System.Drawing.Size(186, 24);
+            this.tsbCL_Mass.Text = "질량챠트";
+            this.tsbCL_Mass.Click += new System.EventHandler(this.tsb_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(183, 6);
+            // 
+            // tsbCL_Wuxing
+            // 
+            this.tsbCL_Wuxing.Image = ((System.Drawing.Image)(resources.GetObject("tsbCL_Wuxing.Image")));
+            this.tsbCL_Wuxing.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbCL_Wuxing.Name = "tsbCL_Wuxing";
+            this.tsbCL_Wuxing.Size = new System.Drawing.Size(186, 24);
+            this.tsbCL_Wuxing.Text = "삼태극챠트";
+            this.tsbCL_Wuxing.Click += new System.EventHandler(this.tsb_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(183, 6);
+            // 
+            // tsbCL_Reverse
+            // 
+            this.tsbCL_Reverse.Image = ((System.Drawing.Image)(resources.GetObject("tsbCL_Reverse.Image")));
+            this.tsbCL_Reverse.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbCL_Reverse.Name = "tsbCL_Reverse";
+            this.tsbCL_Reverse.Size = new System.Drawing.Size(186, 24);
+            this.tsbCL_Reverse.Text = "리버스챠트";
+            this.tsbCL_Reverse.Click += new System.EventHandler(this.tsb_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(183, 6);
+            // 
+            // 챠크라챠트ToolStripMenuItem
+            // 
+            this.챠크라챠트ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("챠크라챠트ToolStripMenuItem.Image")));
+            this.챠크라챠트ToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.챠크라챠트ToolStripMenuItem.Name = "챠크라챠트ToolStripMenuItem";
+            this.챠크라챠트ToolStripMenuItem.Size = new System.Drawing.Size(186, 24);
+            this.챠크라챠트ToolStripMenuItem.Text = "챠크라챠트";
+            // 
+            // tsbC
+            // 
+            this.tsbC.AutoToolTip = false;
+            this.tsbC.DropDownButtonWidth = 20;
+            this.tsbC.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbC_Basic,
+            this.toolStripMenuItem8,
+            this.tsbC_SLH,
+            this.toolStripSeparator5,
+            this.tsbC_Quark,
+            this.toolStripSeparator8,
+            this.tsbC_Five,
+            this.toolStripMenuItem9,
+            this.tsbC_Five2,
+            this.toolStripSeparator6,
+            this.tsbC_Five3,
+            this.천지인ToolStripMenuItem,
+            this.tsbC_Freq,
+            this.toolStripMenuItem11,
+            this.tsbC_Wuxing,
+            this.toolStripMenuItem12,
+            this.tsbC_Mirror,
+            this.toolStripMenuItem1,
+            this.tsbC_TT});
+            this.tsbC.Image = ((System.Drawing.Image)(resources.GetObject("tsbC.Image")));
+            this.tsbC.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbC.Name = "tsbC";
+            this.tsbC.Size = new System.Drawing.Size(108, 37);
+            this.tsbC.Text = "캔들형";
+            this.tsbC.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tsb_MouseDown);
+            // 
+            // tsbC_Basic
+            // 
+            this.tsbC_Basic.Image = ((System.Drawing.Image)(resources.GetObject("tsbC_Basic.Image")));
+            this.tsbC_Basic.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbC_Basic.Name = "tsbC_Basic";
+            this.tsbC_Basic.Size = new System.Drawing.Size(186, 24);
+            this.tsbC_Basic.Text = "기본챠트";
+            this.tsbC_Basic.Click += new System.EventHandler(this.tsb_Click);
+            // 
+            // toolStripMenuItem8
+            // 
+            this.toolStripMenuItem8.Name = "toolStripMenuItem8";
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(183, 6);
+            // 
+            // tsbC_SLH
+            // 
+            this.tsbC_SLH.Image = ((System.Drawing.Image)(resources.GetObject("tsbC_SLH.Image")));
+            this.tsbC_SLH.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbC_SLH.Name = "tsbC_SLH";
+            this.tsbC_SLH.Size = new System.Drawing.Size(186, 24);
+            this.tsbC_SLH.Text = "천지인챠트";
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(183, 6);
+            // 
+            // tsbC_Quark
+            // 
+            this.tsbC_Quark.Image = ((System.Drawing.Image)(resources.GetObject("tsbC_Quark.Image")));
+            this.tsbC_Quark.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbC_Quark.Name = "tsbC_Quark";
+            this.tsbC_Quark.Size = new System.Drawing.Size(186, 24);
+            this.tsbC_Quark.Text = "쿼크챠트";
+            this.tsbC_Quark.Click += new System.EventHandler(this.tsb_Click);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(183, 6);
+            // 
+            // tsbC_Five
+            // 
+            this.tsbC_Five.Image = ((System.Drawing.Image)(resources.GetObject("tsbC_Five.Image")));
+            this.tsbC_Five.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbC_Five.Name = "tsbC_Five";
+            this.tsbC_Five.Size = new System.Drawing.Size(186, 24);
+            this.tsbC_Five.Text = "음양오행챠트";
+            this.tsbC_Five.Click += new System.EventHandler(this.tsb_Click);
+            // 
+            // toolStripMenuItem9
+            // 
+            this.toolStripMenuItem9.Name = "toolStripMenuItem9";
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(183, 6);
+            // 
+            // tsbC_Five2
+            // 
+            this.tsbC_Five2.Image = ((System.Drawing.Image)(resources.GetObject("tsbC_Five2.Image")));
+            this.tsbC_Five2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbC_Five2.Name = "tsbC_Five2";
+            this.tsbC_Five2.Size = new System.Drawing.Size(186, 24);
+            this.tsbC_Five2.Text = "음양오행(누적)챠트";
+            this.tsbC_Five2.Click += new System.EventHandler(this.tsb_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(183, 6);
+            // 
+            // tsbC_Five3
+            // 
+            this.tsbC_Five3.Image = ((System.Drawing.Image)(resources.GetObject("tsbC_Five3.Image")));
+            this.tsbC_Five3.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbC_Five3.Name = "tsbC_Five3";
+            this.tsbC_Five3.Size = new System.Drawing.Size(186, 24);
+            this.tsbC_Five3.Text = "음양오행(소수)챠트";
+            this.tsbC_Five3.Click += new System.EventHandler(this.tsb_Click);
+            // 
+            // 천지인ToolStripMenuItem
+            // 
+            this.천지인ToolStripMenuItem.Name = "천지인ToolStripMenuItem";
+            this.천지인ToolStripMenuItem.Size = new System.Drawing.Size(183, 6);
+            // 
+            // tsbC_Freq
+            // 
+            this.tsbC_Freq.Image = ((System.Drawing.Image)(resources.GetObject("tsbC_Freq.Image")));
+            this.tsbC_Freq.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbC_Freq.Name = "tsbC_Freq";
+            this.tsbC_Freq.Size = new System.Drawing.Size(186, 24);
+            this.tsbC_Freq.Text = "진동주파수챠트";
+            this.tsbC_Freq.Click += new System.EventHandler(this.tsb_Click);
+            // 
+            // toolStripMenuItem11
+            // 
+            this.toolStripMenuItem11.Name = "toolStripMenuItem11";
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(183, 6);
+            // 
+            // tsbC_Wuxing
+            // 
+            this.tsbC_Wuxing.Image = ((System.Drawing.Image)(resources.GetObject("tsbC_Wuxing.Image")));
+            this.tsbC_Wuxing.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbC_Wuxing.Name = "tsbC_Wuxing";
+            this.tsbC_Wuxing.Size = new System.Drawing.Size(186, 24);
+            this.tsbC_Wuxing.Text = "삼태극챠트";
+            this.tsbC_Wuxing.Click += new System.EventHandler(this.tsb_Click);
+            // 
+            // toolStripMenuItem12
+            // 
+            this.toolStripMenuItem12.Name = "toolStripMenuItem12";
+            this.toolStripMenuItem12.Size = new System.Drawing.Size(183, 6);
+            // 
+            // tsbC_Mirror
+            // 
+            this.tsbC_Mirror.Image = ((System.Drawing.Image)(resources.GetObject("tsbC_Mirror.Image")));
+            this.tsbC_Mirror.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbC_Mirror.Name = "tsbC_Mirror";
+            this.tsbC_Mirror.Size = new System.Drawing.Size(186, 24);
+            this.tsbC_Mirror.Text = "미러챠트";
+            this.tsbC_Mirror.Click += new System.EventHandler(this.tsb_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(183, 6);
+            // 
+            // tsbC_TT
+            // 
+            this.tsbC_TT.Image = ((System.Drawing.Image)(resources.GetObject("tsbC_TT.Image")));
+            this.tsbC_TT.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbC_TT.Name = "tsbC_TT";
+            this.tsbC_TT.Size = new System.Drawing.Size(186, 24);
+            this.tsbC_TT.Text = "삼양삼음챠트";
+            // 
+            // tsbL
+            // 
+            this.tsbL.AutoToolTip = false;
+            this.tsbL.DropDownButtonWidth = 20;
+            this.tsbL.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbL_Basic,
+            this.toolStripMenuItem13,
+            this.tsbL_Velocity});
+            this.tsbL.Image = ((System.Drawing.Image)(resources.GetObject("tsbL.Image")));
+            this.tsbL.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbL.Name = "tsbL";
+            this.tsbL.Size = new System.Drawing.Size(108, 37);
+            this.tsbL.Text = "라인형";
+            this.tsbL.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tsb_MouseDown);
+            // 
+            // tsbL_Basic
+            // 
+            this.tsbL_Basic.Image = ((System.Drawing.Image)(resources.GetObject("tsbL_Basic.Image")));
+            this.tsbL_Basic.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbL_Basic.Name = "tsbL_Basic";
+            this.tsbL_Basic.Size = new System.Drawing.Size(128, 24);
+            this.tsbL_Basic.Text = "기본챠트";
+            this.tsbL_Basic.Click += new System.EventHandler(this.tsb_Click);
+            // 
+            // toolStripMenuItem13
+            // 
+            this.toolStripMenuItem13.Name = "toolStripMenuItem13";
+            this.toolStripMenuItem13.Size = new System.Drawing.Size(125, 6);
+            // 
+            // tsbL_Velocity
+            // 
+            this.tsbL_Velocity.Image = ((System.Drawing.Image)(resources.GetObject("tsbL_Velocity.Image")));
+            this.tsbL_Velocity.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbL_Velocity.Name = "tsbL_Velocity";
+            this.tsbL_Velocity.Size = new System.Drawing.Size(128, 24);
+            this.tsbL_Velocity.Text = "변화챠트";
+            this.tsbL_Velocity.Click += new System.EventHandler(this.tsb_Click);
+            // 
+            // tsbE
+            // 
+            this.tsbE.AutoToolTip = false;
+            this.tsbE.DropDownButtonWidth = 20;
+            this.tsbE.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.오색챠트ToolStripMenuItem});
+            this.tsbE.Image = ((System.Drawing.Image)(resources.GetObject("tsbE.Image")));
+            this.tsbE.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbE.Name = "tsbE";
+            this.tsbE.Size = new System.Drawing.Size(108, 37);
+            this.tsbE.Text = "기타형";
+            this.tsbE.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tsb_MouseDown);
+            // 
+            // 오색챠트ToolStripMenuItem
+            // 
+            this.오색챠트ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("오색챠트ToolStripMenuItem.Image")));
+            this.오색챠트ToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.오색챠트ToolStripMenuItem.Name = "오색챠트ToolStripMenuItem";
+            this.오색챠트ToolStripMenuItem.Size = new System.Drawing.Size(128, 24);
+            this.오색챠트ToolStripMenuItem.Text = "오색챠트";
+            this.오색챠트ToolStripMenuItem.Click += new System.EventHandler(this.tsb_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 40);
+            // 
+            // tsbChakra
+            // 
+            this.tsbChakra.AutoToolTip = false;
+            this.tsbChakra.DropDownButtonWidth = 20;
+            this.tsbChakra.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbChakra_1,
+            this.toolStripMenuItem4,
+            this.tsbChakra_2,
+            this.toolStripSeparator7});
+            this.tsbChakra.Image = ((System.Drawing.Image)(resources.GetObject("tsbChakra.Image")));
+            this.tsbChakra.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbChakra.Name = "tsbChakra";
+            this.tsbChakra.Size = new System.Drawing.Size(108, 37);
+            this.tsbChakra.Text = "챠크라";
+            this.tsbChakra.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tsb_MouseDown);
+            // 
+            // tsbChakra_1
+            // 
+            this.tsbChakra_1.Image = ((System.Drawing.Image)(resources.GetObject("tsbChakra_1.Image")));
+            this.tsbChakra_1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbChakra_1.Name = "tsbChakra_1";
+            this.tsbChakra_1.Size = new System.Drawing.Size(192, 24);
+            this.tsbChakra_1.Text = "엘리어트파동과 오행";
+            this.tsbChakra_1.Click += new System.EventHandler(this.tsb_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(189, 6);
+            // 
+            // tsbChakra_2
+            // 
+            this.tsbChakra_2.Image = ((System.Drawing.Image)(resources.GetObject("tsbChakra_2.Image")));
+            this.tsbChakra_2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbChakra_2.Name = "tsbChakra_2";
+            this.tsbChakra_2.Size = new System.Drawing.Size(192, 24);
+            this.tsbChakra_2.Text = "오행마운틴";
+            this.tsbChakra_2.Click += new System.EventHandler(this.tsb_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(189, 6);
+            // 
+            // tabPage
+            // 
+            this.tabPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabPage.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.tabPage.ItemSize = new System.Drawing.Size(150, 20);
+            this.tabPage.Location = new System.Drawing.Point(0, 40);
+            this.tabPage.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage.Name = "tabPage";
+            this.tabPage.SelectedIndex = 0;
+            this.tabPage.Size = new System.Drawing.Size(1259, 713);
+            this.tabPage.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.tabPage.TabIndex = 2;
+            this.tabPage.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabPage_DrawItem);
+            this.tabPage.SelectedIndexChanged += new System.EventHandler(this.tabPage_SelectedIndexChanged);
+            this.tabPage.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tabPage_MouseClick);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 40);
+            // 
+            // tsbAutoReloadStart
+            // 
+            this.tsbAutoReloadStart.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbAutoReloadStart.Image = ((System.Drawing.Image)(resources.GetObject("tsbAutoReloadStart.Image")));
+            this.tsbAutoReloadStart.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbAutoReloadStart.Name = "tsbAutoReloadStart";
+            this.tsbAutoReloadStart.Size = new System.Drawing.Size(44, 37);
+            this.tsbAutoReloadStart.Text = "toolStripButton1";
+            this.tsbAutoReloadStart.Click += new System.EventHandler(this.tsbAutoReloadStart_Click);
+            // 
+            // tsbAutoReloadStop
+            // 
+            this.tsbAutoReloadStop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbAutoReloadStop.Image = ((System.Drawing.Image)(resources.GetObject("tsbAutoReloadStop.Image")));
+            this.tsbAutoReloadStop.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbAutoReloadStop.Name = "tsbAutoReloadStop";
+            this.tsbAutoReloadStop.Size = new System.Drawing.Size(44, 37);
+            this.tsbAutoReloadStop.Text = "toolStripButton1";
+            this.tsbAutoReloadStop.Visible = false;
+            this.tsbAutoReloadStop.Click += new System.EventHandler(this.tsbAutoReloadStop_Click);
+            // 
+            // MainForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1259, 753);
+            this.Controls.Add(this.tabPage);
+            this.Controls.Add(this.toolStrip1);
+            this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IsMdiContainer = true;
+            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.Name = "MainForm";
+            this.Text = "OM.VIKALA APPLICATION";
+            this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton tsbMC1;
+        private System.Windows.Forms.ToolStripButton tsbMC2;
+        private System.Windows.Forms.ToolStripButton tsbMC3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.TabControl tabPage;
+        private System.Windows.Forms.ToolStripSplitButton tsbCL;
+        private System.Windows.Forms.ToolStripSplitButton tsbC;
+        private System.Windows.Forms.ToolStripSplitButton tsbL;
+        private System.Windows.Forms.ToolStripSplitButton tsbE;
+        private System.Windows.Forms.ToolStripMenuItem tsbC_Basic;
+        private System.Windows.Forms.ToolStripMenuItem 오색챠트ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsbCL_ATOM;
+        private System.Windows.Forms.ToolStripMenuItem tsbCL_Mass;
+        private System.Windows.Forms.ToolStripMenuItem tsbCL_Wuxing;
+        private System.Windows.Forms.ToolStripMenuItem tsbCL_Reverse;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem8;
+        private System.Windows.Forms.ToolStripMenuItem tsbC_Five;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem9;
+        private System.Windows.Forms.ToolStripMenuItem tsbC_Freq;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem11;
+        private System.Windows.Forms.ToolStripMenuItem tsbC_Wuxing;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem12;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem13;
+        private System.Windows.Forms.ToolStripMenuItem tsbC_Mirror;
+        private System.Windows.Forms.ToolStripMenuItem tsbL_Velocity;
+        private System.Windows.Forms.ToolStripMenuItem tsbC_Five2;
+        private System.Windows.Forms.ToolStripSeparator 천지인ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsbL_Basic;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem tsbCL_Quantum;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem tsbC_TT;
+        private System.Windows.Forms.ToolStripMenuItem tsbC_SLH;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripSplitButton tsbChakra;
+        private System.Windows.Forms.ToolStripMenuItem tsbChakra_1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripMenuItem tsbC_Five3;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem tsbChakra_2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripMenuItem tsbC_Quark;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem 챠크라챠트ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+        private System.Windows.Forms.ToolStripButton tsbAutoReloadStart;
+        private System.Windows.Forms.ToolStripButton tsbAutoReloadStop;
+    }
+}

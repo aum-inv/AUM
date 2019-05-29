@@ -1,0 +1,193 @@
+﻿using OM.Lib.Base.Utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.PP.Chakra
+{
+    public abstract class A_HLOC
+    {
+        public string ItemCode
+        {
+            get;
+            set;
+        } = "";
+
+        public int RoundLength
+        {
+            get
+            {
+                return ItemCodeUtil.GetItemCodeRoundNum(ItemCode);
+            }
+        }
+
+        private Single _OpenPrice = 0;
+        private Single _HighPrice = 0;
+        private Single _LowPrice  = 0;
+        private Single _ClosePrice = 0;
+
+        public Single OpenPrice { get { return (Single)Math.Round(_OpenPrice, RoundLength); } set { _OpenPrice = value; } }
+        public Single HighPrice { get { return (Single)Math.Round(_HighPrice, RoundLength); ; } set { _HighPrice = value; } }
+        public Single LowPrice { get { return (Single)Math.Round(_LowPrice, RoundLength); ; } set { _LowPrice = value; } }
+        public Single ClosePrice { get { return (Single)Math.Round(_ClosePrice, RoundLength); ; } set { _ClosePrice = value; } }
+
+        public Single Volume { get; set; } = 0;
+         
+        public Single CenterPrice
+        {
+            get
+            {
+                return (Single)Math.Round((HighPrice + LowPrice) / 2.0f, RoundLength);
+            }
+        }
+
+        public Single HCenterPrice
+        {
+            get
+            {
+                return (Single)Math.Round((HighPrice + CenterPrice) / 2.0f, RoundLength);
+            }
+        }
+
+        public Single LCenterPrice
+        {
+            get
+            {
+                return (Single)Math.Round((CenterPrice + LowPrice) / 2.0f, RoundLength);
+            }
+        }
+
+        public Single MiddlePrice
+        {
+            get
+            {
+                return (Single)Math.Round((OpenPrice + ClosePrice) / 2.0f, RoundLength);
+            }
+        }
+
+        public Single QuantumPrice
+        {
+            get
+            {
+                if (PlusMinusType == PlusMinusTypeEnum.양)
+                {
+                    return (Single)Math.Round(OpenPrice - Math.Abs(OpenPrice - ClosePrice), RoundLength);
+                }
+                else if (PlusMinusType == PlusMinusTypeEnum.음)
+                {
+                    return (Single)Math.Round(OpenPrice + Math.Abs(OpenPrice - ClosePrice), RoundLength);
+                }
+                else
+                    return (Single)Math.Round(OpenPrice, RoundLength);
+            }
+        }
+        public Single QuantumLowPrice
+        {
+            get
+            {
+                return (Single)Math.Round(OpenPrice - Math.Abs(OpenPrice - HighPrice), RoundLength);
+            }
+        }
+        public Single QuantumHighPrice
+        {
+            get
+            {
+                return (Single)Math.Round(OpenPrice + Math.Abs(OpenPrice - LowPrice), RoundLength);
+            }
+        }
+
+        public Single QuantumCenterPrice
+        {
+            get
+            {
+                return (Single)Math.Round((QuantumHighPrice + QuantumLowPrice) / 2.0f, RoundLength);
+            }
+        }
+
+     
+        public Single QuantumMiddlePrice
+        {
+            get
+            {
+                return (Single)Math.Round((OpenPrice + QuantumPrice) / 2.0f, RoundLength);
+            }
+        }
+
+        public Single MassPrice
+        {
+            get
+            {
+                //return (Single)Math.Round(
+                //    (OpenPrice + HighPrice + LowPrice + ClosePrice + QuantumPrice + QuantumHighPrice + QuantumLowPrice) / 7.0, RoundLength);
+                return (Single)Math.Round(
+                    (OpenPrice + ClosePrice + QuantumPrice + QuantumHighPrice + QuantumLowPrice) / 5.0, RoundLength);
+            }
+        }
+
+        public DateTime DTime { get; set; }
+
+        public virtual PlusMinusTypeEnum PlusMinusType
+        {
+            get
+            {
+                if (OpenPrice < ClosePrice) return PlusMinusTypeEnum.양;
+                else if (OpenPrice > ClosePrice) return PlusMinusTypeEnum.음;
+                else return PlusMinusTypeEnum.무;
+            }
+        }
+
+        public virtual PlusMinusTypeEnum PlusMinusType2
+        {
+            get
+            {
+                if (CenterPrice < MiddlePrice) return PlusMinusTypeEnum.양;
+                else if (CenterPrice > MiddlePrice) return PlusMinusTypeEnum.음;
+                else return PlusMinusTypeEnum.무;
+            }
+        }
+
+        //public virtual Single GetPlusMass(A_HLOC b)
+        //{
+        //    //전종 – 현종
+        //    //전시 – 현시
+        //    //전시 – 고
+        //    //현시 - 고
+        //    //전종 – 고
+        //    //현종 – 고
+
+        //    Single h = b.HighPrice > HighPrice ? b.HighPrice : HighPrice;
+
+        //    Single m1 = Math.Abs(b.ClosePrice - this.ClosePrice);
+        //    Single m2 = Math.Abs(b.OpenPrice - this.OpenPrice);
+        //    Single m3 = Math.Abs(b.OpenPrice - h);
+        //    Single m4 = Math.Abs(this.OpenPrice - h);
+        //    Single m5 = Math.Abs(b.ClosePrice - h);
+        //    Single m6 = Math.Abs(this.ClosePrice - h);
+
+        //    return (m1 + m2 + m3 + m4 + m5 + m6);
+        //}
+
+        //public virtual Single GetMinusMass(A_HLOC b)
+        //{
+        //    //전종 – 현종
+        //    //전시 – 현시
+        //    //전시 – 고
+        //    //현시 - 고
+        //    //전종 – 고
+        //    //현종 – 고
+
+        //    Single l = b.LowPrice < LowPrice ? b.LowPrice : LowPrice;
+
+        //    Single m1 = Math.Abs(b.ClosePrice - this.ClosePrice);
+        //    Single m2 = Math.Abs(b.OpenPrice - this.OpenPrice);
+        //    Single m3 = Math.Abs(b.OpenPrice - l);
+        //    Single m4 = Math.Abs(this.OpenPrice - l);
+        //    Single m5 = Math.Abs(b.ClosePrice - l);
+        //    Single m6 = Math.Abs(this.ClosePrice - l);
+
+        //    return (m1 + m2 + m3 + m4 + m5 + m6);
+        //}
+    }
+}

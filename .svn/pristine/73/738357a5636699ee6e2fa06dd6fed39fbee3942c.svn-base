@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.Vikala.Controls.Charts
+{
+    public delegate void ChangeChartScrollBarDelegate(int changedValue);
+    public delegate void ChangeChartTrackBarDelegate(int changedValue);
+    public class ChartEvents
+    {
+        public event ChangeChartScrollBarDelegate ChangeChartScrollBarHandler;
+
+        public event ChangeChartTrackBarDelegate ChangeChartTrackBarHandler;
+
+        public void OnChangeChartScrollBarHandler(int changedValue)
+        {
+            if (ChangeChartScrollBarHandler != null)
+                ChangeChartScrollBarHandler(changedValue);
+        }
+
+        public void OnChangeChartTrackBarHandler(int changedValue)
+        {
+            if (ChangeChartTrackBarHandler != null)
+                ChangeChartTrackBarHandler(changedValue);
+        }
+    }
+}

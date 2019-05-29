@@ -1,0 +1,130 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.PP.Chakra
+{
+    /// <summary>
+    /// 
+    /// </summary>
+    public class T_AtomItemData : A_HLOC, ITransform
+    {
+        private S_CandleItemData sourceData = null;
+    
+        private List<S_CandleItemData> sourceDataArray = null;
+              
+        public T_AtomItemData(S_CandleItemData sourceData)
+        {
+            this.sourceData = sourceData;
+            this.sourceDataArray = null;
+        }      
+        /// <summary>
+        /// 최근 시고저종을 찾고, 거기에서 퀀텀을 만든다.
+        /// </summary>
+        /// <param name="sourceDataArray"></param>
+        public T_AtomItemData(S_CandleItemData sourceData, List<S_CandleItemData> sourceDataArray)
+        {
+            this.sourceData = sourceData;            
+            this.sourceDataArray = sourceDataArray;
+        }
+
+        public Single t_open = 0;
+        public Single t_high = 0;
+        public Single t_low = 0;
+        public Single t_close = 0;        
+        public Single T_OpenPrice { get { return t_open; } }
+        public Single T_HighPrice { get { return t_high; } }
+        public Single T_LowPrice { get { return t_low; } }
+        public Single T_ClosePrice { get { return t_close; } }
+               
+        public Single t_plusPower = 0;
+        public Single t_minusPower = 0;
+        public Single t_totalPower = 0;
+        public Single T_PlusPower { get { return t_plusPower; } }
+        public Single T_MinusPower { get { return t_minusPower; } }
+        public Single T_TotalPower { get { return t_totalPower; } }
+
+        public A_HLOC Source1Data { get { return sourceData; } }
+        public List<S_CandleItemData> SourceDataArray { get { return sourceDataArray; } }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public void Transform()
+        {
+            try
+            {
+                if (sourceData != null)
+                {
+                    Single cdiff = Math.Abs(sourceData.OpenPrice - sourceData.ClosePrice);
+                    //양봉
+                    if (sourceData.OpenPrice < sourceData.ClosePrice)
+                    {
+                        t_open = sourceData.OpenPrice;
+                        t_high = sourceData.OpenPrice;
+                        t_low = t_close = sourceData.OpenPrice - cdiff;
+                    }
+                    else if (sourceData.OpenPrice > sourceData.ClosePrice)
+                    {
+                        t_open = sourceData.OpenPrice;
+                        t_low = sourceData.OpenPrice;
+                        t_high = t_close = sourceData.OpenPrice + cdiff;
+                    }
+                    else
+                    {
+                        t_open = sourceData.OpenPrice;
+                        t_high = sourceData.OpenPrice;
+                        t_low = t_close = sourceData.OpenPrice;
+                    }
+
+                    OpenPrice = sourceData.OpenPrice;
+                    HighPrice = sourceData.HighPrice;
+                    LowPrice = sourceData.LowPrice;
+                    ClosePrice = sourceData.ClosePrice;
+                    DTime = sourceData.DTime;
+                }
+
+                if (sourceDataArray != null)
+                {
+                    List<double> hList = new List<double>();
+                    List<double> lList = new List<double>();
+                    List<double> tList = new List<double>();
+                    foreach (var item in sourceDataArray)
+                    {
+                        Single hdiff = 0;
+                        Single ldiff = 0;
+
+                        if (item.OpenPrice < item.ClosePrice)
+                        {
+                            hdiff = Math.Abs(item.HighPrice - item.ClosePrice);
+                            ldiff = Math.Abs(item.OpenPrice - item.LowPrice);
+                            //hList.Add(hdiff + ldiff);
+                            hList.Add(hdiff);
+                        }
+                        else if (item.OpenPrice > item.ClosePrice)
+                        {
+                            hdiff = Math.Abs(item.HighPrice - item.OpenPrice);
+                            ldiff = Math.Abs(item.ClosePrice - item.LowPrice);
+                            //lList.Add((ldiff + hdiff) * -1);
+                            lList.Add(ldiff * -1);
+                        }
+                        else
+                        {                            
+                        }
+                        tList.Add(hdiff - ldiff);
+                    }
+
+                    t_plusPower = hList.Count == 0 ? 0 : (Single)Math.Round(hList.Average(), 2);
+                    t_minusPower = lList.Count == 0 ? 0 : (Single)Math.Round(lList.Average(), 2);
+                    t_totalPower = tList.Count == 0 ? 0 : (Single)Math.Round(tList.Average(), 2);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+    }
+}

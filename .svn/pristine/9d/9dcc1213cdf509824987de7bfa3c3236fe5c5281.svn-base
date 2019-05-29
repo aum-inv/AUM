@@ -1,0 +1,45 @@
+﻿using MetroFramework.Forms;
+using OM.PP.Chakra.Ctx;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Configuration;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Vikala.Chakra.App
+{
+    public partial class MainForm : MetroForm
+    {
+        public MainForm()
+        {
+            InitializeComponent();
+
+            serverInfo();
+        }
+
+        private void serverInfo()
+        {
+            PPServerConfigData.IP = ConfigurationManager.AppSettings["PPService_IP"];
+            PPServerConfigData.Port = Convert.ToInt32(ConfigurationManager.AppSettings["PPService_Port"]);
+
+            PPContext.Instance.OnCreateClient();
+        }
+
+        private void btnLoadData_Click(object sender, EventArgs e)
+        {
+            var list = PPContext.Instance.ClientContext.GetSourceData(Lib.Base.Enums.FinancialClassificationEnum.Indices
+                , Lib.Base.Enums.ItemCode.Indices.Kospi200
+                , Lib.Base.Enums.TimeIntervalEnum.Day
+                , null
+                , null
+                , 30);
+
+            chartCS.Display(list);
+        }
+    }
+}

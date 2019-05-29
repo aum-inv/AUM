@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.ServiceModel;
+using System.Text;
+using System.Threading.Tasks;
+using OM.Lib.Base.Enums;
+using OM.Lib.Entity;
+using OM.Lib.Framework.Base;
+using OM.Lib.Framework.Db;
+
+namespace OM.PP.Chakra.Ctx
+{
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall
+        , ConcurrencyMode = ConcurrencyMode.Multiple
+        , UseSynchronizationContext = false)]
+    public class XingService : IXingService
+    {
+        static object sync = new object();
+
+        public string ServiceName => PPServerConfigData.ServiceName;
+
+        public void Noop() { }
+       
+        public void OrderBuySell()
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+    }
+}

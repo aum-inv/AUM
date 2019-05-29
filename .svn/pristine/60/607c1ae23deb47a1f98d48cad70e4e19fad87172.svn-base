@@ -1,0 +1,95 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using OM.PP.Chakra;
+
+namespace OM.Vikala.Controls.Ucs
+{
+    public partial class CandlePriceInfo : UserControl
+    {
+        List<Label> labels = new List<Label>();
+        List<TextBox> textBoxes = new List<TextBox>();
+
+        public CandlePriceInfo()
+        {
+            InitializeComponent();
+            InitControls();
+        }
+
+        private void InitControls()
+        {
+            labels.Add(label1);
+            labels.Add(label2);
+            labels.Add(label3);
+            labels.Add(label4);
+            labels.Add(label5);
+            labels.Add(label6);
+            labels.Add(label7);
+            labels.Add(label8);
+            labels.Add(label9);
+            labels.Add(label10);
+            labels.Add(label11);
+            labels.Add(label12);
+
+            textBoxes.Add(textBox1);
+            textBoxes.Add(textBox2);
+            textBoxes.Add(textBox3);
+            textBoxes.Add(textBox4);
+            textBoxes.Add(textBox5);
+            textBoxes.Add(textBox6);
+            textBoxes.Add(textBox7);
+            textBoxes.Add(textBox8);
+            textBoxes.Add(textBox9);
+            textBoxes.Add(textBox10);
+            textBoxes.Add(textBox11);
+            textBoxes.Add(textBox12);
+        }
+
+        public void Bind(A_HLOC hloc)
+        {
+            lblTime.Text = hloc.DTime.ToString("yyyy-MM-dd HH:mm");
+
+            Dictionary<string, float> abc = new Dictionary<string, float>();
+
+            abc.Add("시가", hloc.OpenPrice);
+            abc.Add("고가", hloc.HighPrice);
+            abc.Add("저가", hloc.LowPrice);
+            abc.Add("종가", hloc.ClosePrice);
+
+            abc.Add("중앙가", hloc.CenterPrice);
+            abc.Add("중심가", hloc.MiddlePrice);
+            abc.Add("양중앙가", hloc.QuantumCenterPrice);
+            abc.Add("양중심가", hloc.QuantumMiddlePrice);
+
+            abc.Add("양고가", hloc.QuantumHighPrice);
+            abc.Add("양저가", hloc.QuantumLowPrice);
+            abc.Add("양종가", hloc.QuantumPrice);
+
+            abc.Add("질량가", hloc.MassPrice);
+
+            int idx = 0;
+            foreach (var m in abc.OrderByDescending(t => t.Value))
+            {
+                labels[idx].Text = m.Key;
+                textBoxes[idx].Text = m.Value.ToString();
+                idx++;
+            }
+        }
+
+        public void Init()
+        {
+            lblTime.Text = "";
+            foreach (var c in labels)
+                c.Text = "";
+
+            foreach (var c in textBoxes)
+                c.Text = "";
+        }
+    }
+}

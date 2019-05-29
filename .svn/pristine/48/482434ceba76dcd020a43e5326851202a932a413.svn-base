@@ -1,0 +1,255 @@
+﻿using OM.Lib.Base.Enums;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.Lib.Base.Utils
+{
+    public static class PointsUtil
+    {
+        public static double GetDistance(double x1, double y1, double x2, double y2)
+        {
+            return Math.Sqrt(Math.Pow((x2 - x1), 2) + Math.Pow((y2 - y1), 2));
+        }
+        
+        public static double GetSlope(double x1, double y1, double x2, double y2)
+        {
+            double slope = (y2 - y1) / (x2 - x1);
+            return slope;
+        }
+        public static double GetAngle(double x1, double y1, double x2, double y2)
+        {
+            double xDiff = x2 - x1;
+            double yDiff = y2 - y1;
+            return Math.Atan2(yDiff, xDiff) * 180.0 / Math.PI;
+        }
+
+        public static bool IsBreakThroughUp(double basePrice, double cPrice, double y2, double y3)
+        {
+            bool isThrough = false;
+            if (y2 <= basePrice && y3 <= basePrice)
+            {
+                if (cPrice >= y2 && cPrice >= y3 && basePrice <= cPrice) isThrough = true;
+            }
+            return isThrough;
+        }
+        public static bool IsBreakThroughDown(double basePrice, double cPrice, double y2, double y3)
+        {
+            bool isThrough = false;
+            if (y2 >= basePrice && y3 >= basePrice)
+            {
+                if (cPrice <= y2 && cPrice <= y3 && basePrice >= cPrice) isThrough = true;
+            }
+            return isThrough;
+        }
+        public static bool IsBreakThroughUp(double basePrice, LimitedList<double> yList)
+        {
+            var list = yList.ToList();
+            if (list.Count < 3) return false;
+
+            var cPrice = list[0];
+            var y2 = list[1];
+            var y3 = list[2];
+         
+            return IsBreakThroughUp(basePrice, cPrice, y2, y3);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="basePrice1">큰값</param>
+        /// <param name="basePrice2">작은값</param>
+        /// <param name="yList"></param>
+        /// <returns></returns>
+        public static bool IsBreakThroughUp(double basePrice1, double basePrice2, LimitedList<double> yList)
+        {
+            var list = yList.ToList();
+            if (list.Count < 3) return false;
+
+            var cPrice = list[0];
+            if (basePrice1 > cPrice) return false;
+            if (basePrice2 > cPrice) return false;
+
+            bool isUp1 = false;
+            bool isUp2 = false;
+
+            int idx = 0;
+            for (; idx < list.Count - 2; idx++)
+            {                
+                if (IsBreakThroughUp(basePrice1, list[idx], list[idx + 1], list[idx + 2])) { isUp1 = true; break; }
+            }
+            for (; idx < list.Count - 2; idx++)
+            {
+                if (IsBreakThroughUp(basePrice2, list[idx], list[idx + 1], list[idx + 2])) { isUp2 = true; break; }
+            }
+            if (isUp1 && isUp2) return true;
+
+            return false;
+        }
+        public static bool IsBreakThroughDown(double basePrice, LimitedList<double> yList)
+        {
+            var list = yList.ToList();
+            if (list.Count < 3) return false;
+
+            var cPrice = list[0];
+            var y2 = list[1];
+            var y3 = list[2];
+
+            return IsBreakThroughDown(basePrice, cPrice, y2, y3);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="basePrice1">작은값</param>
+        /// <param name="basePrice2">큰값</param>
+        /// <param name="yList"></param>
+        /// <returns></returns>
+        public static bool IsBreakThroughDown(double basePrice1, double basePrice2, LimitedList<double> yList)
+        {
+            var list = yList.ToList();
+            if (list.Count < 3) return false;
+
+            var cPrice = list[0];
+            if (basePrice1 < cPrice) return false;
+            if (basePrice2 < cPrice) return false;
+
+            bool isDown1 = false;
+            bool isDown2 = false;
+
+            int idx = 0;
+            for (; idx < list.Count - 2; idx++)
+            {
+                if (IsBreakThroughDown(basePrice1, list[idx], list[idx + 1], list[idx + 2])) { isDown1 = true; break; }
+            }
+            for (; idx < list.Count - 2; idx++)
+            {
+                if (IsBreakThroughDown(basePrice2, list[idx], list[idx + 1], list[idx + 2])) { isDown2 = true; break; }
+            }
+            if (isDown1 && isDown2) return true;
+
+            return false;
+        }
+
+        public static bool IsBreakThroughDownUp(double basePrice, LimitedList<double> yList)
+        {
+            var list = yList.ToList();
+            if (list.Count < 3) return false;
+
+            var cPrice = list[0];
+            if (basePrice > cPrice) return false;
+
+            bool isDown = false;
+            bool isUp = false;
+            int idx = 0;
+            for (; idx < list.Count; idx++)
+            {
+                if (basePrice <= list[idx]) { isUp = true; break; }
+            }
+            for (; idx < list.Count; idx++)
+            {
+                if (basePrice >= list[idx]) { isDown = true;  break; }
+            }
+            
+            if (isDown && isUp) return true;
+            
+            return false;
+        }
+        public static bool IsBreakThroughUpDown(double basePrice, LimitedList<double> yList)
+        {
+            var list = yList.ToList();
+            if (list.Count < 3) return false;
+
+            var cPrice = list[0];
+            if (basePrice < cPrice) return false;
+
+            bool isDown = false;
+            bool isUp = false;
+            int idx = 0;
+            for (; idx < list.Count; idx++)
+            {
+                if (basePrice >= list[idx]) { isDown = true; break; }
+            }
+
+            for (; idx < list.Count; idx++)
+            {
+                if (basePrice <= list[idx]) { isUp = true; break; }
+            }
+           
+            if (isDown && isUp) return true;
+
+            return false;
+        }
+
+        public static bool IsBreakThrough(PricePatternEnum pricePattern, double price, LimitedList<double> list)
+        {
+            if (pricePattern == PricePatternEnum.UP)
+            {
+                return IsBreakThroughUp(price, list);
+            }
+            else if (pricePattern == PricePatternEnum.DOWN)
+            {
+                return IsBreakThroughDown(price, list);
+            }
+            else if (pricePattern == PricePatternEnum.UPDOWN)
+            {
+                return IsBreakThroughUpDown(price, list);
+            }
+            else if (pricePattern == PricePatternEnum.DOWNUP)
+            {
+                return IsBreakThroughDownUp(price, list);
+            }
+
+            return false;
+        }
+
+        public static UpDownPatternEnum GetUpDownPattern(double basePrice, LimitedList<double> yList)
+        {
+            UpDownPatternEnum upDownPattern = UpDownPatternEnum.None;
+
+            var list = yList.ToList();
+            if (list.Count < 3) return upDownPattern;
+          
+            string result = "";
+            string lastResult = "";
+
+            int idx = 0;
+
+            try
+            {
+                for (; idx < list.Count; idx++)
+                {
+                    if (basePrice < list[idx] && lastResult != "U")
+                    {
+                        result += "U";
+                        lastResult = "U";
+                    }
+                    if (basePrice > list[idx] && lastResult != "D")
+                    {
+                        result += "D";
+                        lastResult = "D";
+                    }
+
+                    if (result.Length == 6) break;
+                }
+
+                if (result == "UDUDUD") upDownPattern = UpDownPatternEnum.UpDownUpDownUpDown;
+                else if (result == "DUDUDU") upDownPattern = UpDownPatternEnum.DownUpDownUpDownUp;
+                else if (result == "UDUDU") upDownPattern = UpDownPatternEnum.UpDownUpDownUp;
+                else if (result == "DUDUD") upDownPattern = UpDownPatternEnum.DownUpDownUpDown;
+                else if (result == "UDUD") upDownPattern = UpDownPatternEnum.UpDownUpDown;
+                else if (result == "DUDU") upDownPattern = UpDownPatternEnum.DownUpDownUp;
+                else if (result == "UDU") upDownPattern = UpDownPatternEnum.UpDownUp;
+                else if (result == "DUD") upDownPattern = UpDownPatternEnum.DownUpDown;
+                else if (result == "UD") upDownPattern = UpDownPatternEnum.UpDown;
+                else if (result == "DU") upDownPattern = UpDownPatternEnum.DownUp;
+                else if (result == "U") upDownPattern = UpDownPatternEnum.Up;
+                else if (result == "D") upDownPattern = UpDownPatternEnum.Down;
+            }
+            catch (Exception)
+            {
+            }
+            return upDownPattern;
+        }
+    }
+}

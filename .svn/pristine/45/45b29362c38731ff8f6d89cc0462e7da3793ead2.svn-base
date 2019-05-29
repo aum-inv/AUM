@@ -1,0 +1,189 @@
+﻿using OM.Lib.Base.Utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.PP.Chakra
+{
+    public class S_CandleItemData : A_HLOC
+    {
+        public S_CandleItemData() { }
+
+        public S_CandleItemData(
+                Single open
+            ,   Single high
+            ,   Single low
+            ,   Single close
+            ,   Single volume
+            ,   DateTime dt)
+        {
+            base.OpenPrice = open;
+            base.HighPrice = high;
+            base.LowPrice = low;
+            base.ClosePrice = close;
+            base.Volume = volume;
+            base.DTime = dt;
+        }
+
+        public S_CandleItemData(
+             string itemCode
+           , Single open
+           , Single high
+           , Single low
+           , Single close
+           , Single volume
+           , DateTime dt)
+        {
+            base.ItemCode = itemCode;
+            base.OpenPrice = open;
+            base.HighPrice = high;
+            base.LowPrice = low;
+            base.ClosePrice = close;
+            base.Volume = volume;
+            base.DTime = dt;
+        }
+
+        public Single Q_OpenPrice_S { get; set; } = 0;
+        public Single Q_HighPrice_S { get; set; } = 0;
+        public Single Q_LowPrice_S { get; set; } = 0;
+        public Single Q_ClosePrice_S { get; set; } = 0;
+
+        public Single Q_OpenPrice_T { get; set; } = 0;
+        public Single Q_HighPrice_T { get; set; } = 0;
+        public Single Q_LowPrice_T { get; set; } = 0;
+        public Single Q_ClosePrice_T { get; set; } = 0;
+
+        public void SetQuantum(S_CandleItemData bData = null)
+        {
+            if (bData != null)
+            {
+                //전일데이터를 바탕으로 양자가격을 만든다.
+                //전일중심값을 기준으로 한다.
+
+                Single basePrice = bData.CenterPrice;
+             
+                basePrice = bData.OpenPrice;
+                if (basePrice < OpenPrice) Q_OpenPrice_T = basePrice - Math.Abs(basePrice - OpenPrice);
+                else Q_OpenPrice_T = basePrice + Math.Abs(basePrice - OpenPrice);
+
+                basePrice = bData.ClosePrice;
+                if (basePrice < ClosePrice) Q_ClosePrice_T = basePrice - Math.Abs(basePrice - ClosePrice);
+                else Q_ClosePrice_T = basePrice + Math.Abs(basePrice - ClosePrice);
+
+                basePrice = bData.HighPrice;
+                if (basePrice < HighPrice) Q_HighPrice_T = basePrice - Math.Abs(basePrice - HighPrice);
+                else Q_HighPrice_T = basePrice + Math.Abs(basePrice - HighPrice);
+
+                basePrice = bData.LowPrice;
+                if (basePrice < LowPrice) Q_LowPrice_T = basePrice - Math.Abs(basePrice - LowPrice);
+                else Q_LowPrice_T = basePrice + Math.Abs(basePrice - LowPrice);
+
+                var tmpH = new[] { Q_OpenPrice_T, Q_ClosePrice_T, Q_HighPrice_T, Q_LowPrice_T }.Max();
+                var tmpL = new[] { Q_OpenPrice_T, Q_ClosePrice_T, Q_HighPrice_T, Q_LowPrice_T }.Min();
+
+                Q_HighPrice_T = tmpH;
+                Q_LowPrice_T = tmpL;
+            }
+            else
+            {
+                //당일데이터를 바탕으로 양자가격을 만든다.
+                //당일시가를 기준으로 한다.
+
+                Single basePrice = OpenPrice;
+
+                if (basePrice < OpenPrice) Q_OpenPrice_S = basePrice - Math.Abs(basePrice - OpenPrice);
+                else Q_OpenPrice_S = basePrice + Math.Abs(basePrice - OpenPrice);
+
+                if (basePrice < ClosePrice) Q_ClosePrice_S = basePrice - Math.Abs(basePrice - ClosePrice);
+                else Q_ClosePrice_S = basePrice + Math.Abs(basePrice - ClosePrice);
+
+                if (basePrice < HighPrice) Q_HighPrice_S = basePrice - Math.Abs(basePrice - HighPrice);
+                else Q_HighPrice_S = basePrice + Math.Abs(basePrice - HighPrice);
+
+                if (basePrice < LowPrice) Q_LowPrice_S = basePrice - Math.Abs(basePrice - LowPrice);
+                else Q_LowPrice_S = basePrice + Math.Abs(basePrice - LowPrice);
+
+                var tmpH = new[] { Q_OpenPrice_S, Q_ClosePrice_S, Q_HighPrice_S, Q_LowPrice_S }.Max();
+                var tmpL = new[] { Q_OpenPrice_S, Q_ClosePrice_S, Q_HighPrice_S, Q_LowPrice_S }.Min();
+
+                Q_HighPrice_S = tmpH;
+                Q_LowPrice_S = tmpL;
+            }
+        }
+
+        public WuXingTypeEnum WuXingType
+        {           
+            get
+            {
+                WuXingTypeEnum type = WuXingTypeEnum.없음;
+
+                Single cOpen = OpenPrice < ClosePrice ? OpenPrice : ClosePrice;
+                Single cClose = OpenPrice < ClosePrice ? ClosePrice : OpenPrice;
+                Single cHigh = OpenPrice < ClosePrice ? HighPrice : HighPrice;
+                Single cLow = OpenPrice < ClosePrice ? LowPrice : LowPrice;
+
+                Single totalLength = cHigh - cLow;
+                Single headLength = cHigh - cClose;
+                Single bodyLength = cClose - cOpen;
+                Single legLength = cOpen - cLow;
+                Single upBodyLength = cClose - MiddlePrice;
+                Single downBodyLength = MiddlePrice - cOpen;
+
+                int headLengthRate = (int)(headLength / totalLength * 100.0);
+                int bodyLengthRate = (int)(bodyLength / totalLength * 100.0);
+                int legLengthRate = (int)(legLength / totalLength * 100.0);
+
+                if ((headLengthRate >= 30.0 && bodyLengthRate >= 30.0 && legLengthRate >= 30.0))
+                    type = WuXingTypeEnum.무극_토;
+                else if (Math.Round(MiddlePrice, RoundLength) == Math.Round(CenterPrice, RoundLength))
+                    type = WuXingTypeEnum.무극_토;
+                else if (Math.Round(headLength, RoundLength) == Math.Round(upBodyLength, RoundLength))
+                    type = WuXingTypeEnum.양명;
+                else if (Math.Round(legLength, RoundLength) == Math.Round(downBodyLength, RoundLength))
+                    type = WuXingTypeEnum.궐음;
+
+                if (PlusMinusType == PlusMinusTypeEnum.양
+                  && PlusMinusType2 == PlusMinusTypeEnum.양
+                  && bodyLengthRate >= 70
+                  && headLength < legLength
+                  && legLength > 0
+                  && QuantumPrice < LowPrice
+                  )
+                    type = WuXingTypeEnum.태양_화;
+
+                if (PlusMinusType == PlusMinusTypeEnum.음
+                   && PlusMinusType2 == PlusMinusTypeEnum.음
+                   && bodyLengthRate >= 70
+                   && headLength > legLength
+                   && headLength > 0
+                   && QuantumPrice > HighPrice
+                   )
+                    type = WuXingTypeEnum.태음_수;
+
+                if ( PlusMinusType == PlusMinusTypeEnum.양
+                  && PlusMinusType2 == PlusMinusTypeEnum.음
+                  && bodyLengthRate >= 70
+                  && headLength > legLength
+                  && headLength > 0
+                  && legLength > 0
+                  && QuantumPrice < LowPrice
+                  )
+                    type = WuXingTypeEnum.소양_목;
+
+                if (PlusMinusType == PlusMinusTypeEnum.음
+                  && PlusMinusType2 == PlusMinusTypeEnum.양
+                  && bodyLengthRate >= 70
+                  && headLength < legLength
+                  && headLength > 0
+                  && legLength > 0
+                  && QuantumPrice > HighPrice
+                  )
+                    type = WuXingTypeEnum.소음_금;
+
+                return type;
+            }
+        }
+    }
+}

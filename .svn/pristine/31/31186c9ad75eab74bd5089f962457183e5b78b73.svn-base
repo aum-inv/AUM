@@ -1,0 +1,389 @@
+﻿using OM.Lib.Base.Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.PP.Chakra
+{
+    /// <summary>
+    /// 천지인 데이터
+    /// </summary>
+    public class T_SLHItemData : ITransformedData
+    {
+        private ISourceData sourceData = null;
+
+        public T_SLHItemData(ISourceData sourceData)
+        {
+            this.sourceData = sourceData;
+        }
+     
+        public Single open = 0;
+        public Single high = 0;
+        public Single low = 0;
+        public Single close = 0;
+        public Single volume = 0;
+        public DateTime dt;
+        public Single OpenPrice { get { return open; } }
+        public Single HighPrice { get { return high; } }
+        public Single LowPrice { get { return low; } }
+        public Single ClosePrice { get { return close; } }
+        public Single Volume { get { return volume; } }
+        public DateTime DTime { get { return dt; } }
+
+        public Single t_open = 0;
+        public Single t_high = 0;
+        public Single t_low = 0;
+        public Single t_close = 0;
+        public Single T_OpenPrice { get { return t_open; } }
+        public Single T_HighPrice { get { return t_high; } }
+        public Single T_LowPrice { get { return t_low; } }
+        public Single T_ClosePrice { get { return t_close; } }
+
+        public SLHTypeEnum slhType =  SLHTypeEnum.없음;
+
+        public SLHTypeEnum SLH { get { return slhType; } }
+
+        public ISourceData SourceData { get { return sourceData; } }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public void Transform()
+        {
+            try
+            {
+                if (sourceData != null)
+                {
+                    open = sourceData.OpenPrice;
+                    high = sourceData.HighPrice;
+                    low = sourceData.LowPrice;
+                    close = sourceData.ClosePrice;
+                    dt = sourceData.DTime;
+                    
+                    t_open = sourceData.OpenPrice;
+                    t_high = sourceData.HighPrice;
+                    t_low = sourceData.LowPrice;
+                    t_close = sourceData.ClosePrice;
+
+                    if (무극여부()) slhType = SLHTypeEnum.무극;
+                    else if (태양여부()) slhType = SLHTypeEnum.태양;
+                    else if (양명여부()) slhType = SLHTypeEnum.양명;
+                    else if (소양여부()) slhType = SLHTypeEnum.소양;
+                    else if (태음여부()) slhType = SLHTypeEnum.태음;
+                    else if (소음여부()) slhType = SLHTypeEnum.소음;
+                    else if (궐음여부()) slhType = SLHTypeEnum.궐음;
+                }                
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        private bool 무극여부()
+        {  
+            Single cOpen = open < close ? open : close;
+            Single cClose = open < close ? close : open;
+            Single cHigh = open < close ? high : high;
+            Single cLow = open < close ? low : low;
+
+            Single centerPoint = (cHigh + cLow) / 2.0f;
+            Single upCenterPoint = (cHigh + centerPoint) / 2.0f;
+            Single downCenterPoint = (centerPoint + cLow) / 2.0f;
+
+            Single totalLength = cHigh - cLow;
+            Single headLegth = cHigh - upCenterPoint;
+            Single bodyLength = upCenterPoint - downCenterPoint;
+            Single legLength = downCenterPoint - cLow;
+
+            Single headLengthRate = headLegth / totalLength * 100.0f;
+            Single bodyLengthRate = bodyLength / totalLength * 100.0f;
+            Single legLengthRate = legLength / totalLength * 100.0f;
+
+            bool isTrue = (headLengthRate >= 30.0f 
+                            && bodyLengthRate >= 30.0f 
+                            && legLengthRate >= 30.0f) ;
+
+            return isTrue;
+        }
+
+        private bool 태양여부()
+        {
+            if (open > close) return false;
+
+            Single cOpen = open < close ? open : close;
+            Single cClose = open < close ? close : open;
+            Single cHigh = open < close ? high : high;
+            Single cLow = open < close ? low : low;
+
+            Single centerPoint = (cHigh + cLow) / 2.0f;
+            Single upCenterPoint = (cHigh + centerPoint) / 2.0f;
+            Single downCenterPoint = (centerPoint + cLow) / 2.0f;
+
+            Single totalLength = cHigh - cLow;
+            Single headLegth = cHigh - upCenterPoint;
+            Single bodyLength = upCenterPoint - downCenterPoint;
+            Single legLength = downCenterPoint - cLow;
+
+            Single headLengthRate = headLegth / totalLength * 100.0f;
+            Single bodyLengthRate = bodyLength / totalLength * 100.0f;
+            Single legLengthRate = legLength / totalLength * 100.0f;
+
+            bool isTrue = false;
+            if ((headLengthRate + bodyLengthRate) >= 70.0f)
+            {
+                cLow = open < close ? open : close;
+
+                centerPoint = (cHigh + cLow) / 2.0f;
+                upCenterPoint = (cHigh + centerPoint) / 2.0f;
+                downCenterPoint = (centerPoint + cLow) / 2.0f;
+
+                totalLength = cHigh - cLow;
+                headLegth = cHigh - upCenterPoint;
+                bodyLength = upCenterPoint - downCenterPoint;
+                legLength = downCenterPoint - cLow;
+
+                headLengthRate = headLegth / totalLength * 100.0f;
+                bodyLengthRate = bodyLength / totalLength * 100.0f;
+                legLengthRate = legLength / totalLength * 100.0f;
+
+                isTrue = (headLengthRate >= 30.0f
+                           && bodyLengthRate >= 30.0f
+                           && legLengthRate >= 30.0f);
+            }
+
+            return isTrue;
+        }
+        private bool 양명여부()
+        {
+            if (open > close) return false;
+
+            Single cOpen = open < close ? open : close;
+            Single cClose = open < close ? close : open;
+            Single cHigh = open < close ? high : high;
+            Single cLow = open < close ? low : low;
+
+            Single centerPoint = (cHigh + cLow) / 2.0f;
+            Single upCenterPoint = (cHigh + centerPoint) / 2.0f;
+            Single downCenterPoint = (centerPoint + cLow) / 2.0f;
+
+            Single totalLength = cHigh - cLow;
+            Single headLegth = cHigh - upCenterPoint;
+            Single bodyLength = upCenterPoint - downCenterPoint;
+            Single legLength = downCenterPoint - cLow;
+
+            Single headLengthRate = headLegth / totalLength * 100.0f;
+            Single bodyLengthRate = bodyLength / totalLength * 100.0f;
+            Single legLengthRate = legLength / totalLength * 100.0f;
+
+            bool isTrue = false;
+            if ((headLengthRate + bodyLengthRate) >= 70.0f)
+            {
+                cLow = open < close ? open : close;
+
+                centerPoint = (cHigh + cLow) / 2.0f;
+                upCenterPoint = (cHigh + centerPoint) / 2.0f;
+                downCenterPoint = (centerPoint + cLow) / 2.0f;
+
+                totalLength = cHigh - cLow;
+                headLegth = cHigh - upCenterPoint;
+                bodyLength = upCenterPoint - downCenterPoint;
+                legLength = downCenterPoint - cLow;
+
+                headLengthRate = headLegth / totalLength * 100.0f;
+                bodyLengthRate = bodyLength / totalLength * 100.0f;
+                legLengthRate = legLength / totalLength * 100.0f;
+
+                isTrue = (headLengthRate >= 30.0f);
+            }
+
+            return isTrue;
+        }
+        private bool 소양여부()
+        {
+            if (open > close) return false;
+
+            Single cOpen = open < close ? open : close;
+            Single cClose = open < close ? close : open;
+            Single cHigh = open < close ? high : high;
+            Single cLow = open < close ? low : low;
+
+            Single centerPoint = (cHigh + cLow) / 2.0f;
+            Single upCenterPoint = (cHigh + centerPoint) / 2.0f;
+            Single downCenterPoint = (centerPoint + cLow) / 2.0f;
+
+            Single totalLength = cHigh - cLow;
+            Single headLegth = cHigh - upCenterPoint;
+            Single bodyLength = upCenterPoint - downCenterPoint;
+            Single legLength = downCenterPoint - cLow;
+
+            Single headLengthRate = headLegth / totalLength * 100.0f;
+            Single bodyLengthRate = bodyLength / totalLength * 100.0f;
+            Single legLengthRate = legLength / totalLength * 100.0f;
+
+            bool isTrue = false;
+            if ((headLengthRate + bodyLengthRate) >= 70.0f)
+            {
+                cLow = open < close ? open : close;
+
+                centerPoint = (cHigh + cLow) / 2.0f;
+                upCenterPoint = (cHigh + centerPoint) / 2.0f;
+                downCenterPoint = (centerPoint + cLow) / 2.0f;
+
+                totalLength = cHigh - cLow;
+                headLegth = cHigh - upCenterPoint;
+                bodyLength = upCenterPoint - downCenterPoint;
+                legLength = downCenterPoint - cLow;
+
+                headLengthRate = headLegth / totalLength * 100.0f;
+                bodyLengthRate = bodyLength / totalLength * 100.0f;
+                legLengthRate = legLength / totalLength * 100.0f;
+
+                isTrue = (legLengthRate >= 30.0f);
+            }
+
+            return isTrue;
+        }
+
+        private bool 태음여부()
+        {
+            if (open < close) return false;
+
+            Single cOpen = open < close ? open : close;
+            Single cClose = open < close ? close : open;
+            Single cHigh = open < close ? high : high;
+            Single cLow = open < close ? low : low;
+
+            Single centerPoint = (cHigh + cLow) / 2.0f;
+            Single upCenterPoint = (cHigh + centerPoint) / 2.0f;
+            Single downCenterPoint = (centerPoint + cLow) / 2.0f;
+
+            Single totalLength = cHigh - cLow;
+            Single headLegth = cHigh - upCenterPoint;
+            Single bodyLength = upCenterPoint - downCenterPoint;
+            Single legLength = downCenterPoint - cLow;
+
+            Single headLengthRate = headLegth / totalLength * 100.0f;
+            Single bodyLengthRate = bodyLength / totalLength * 100.0f;
+            Single legLengthRate = legLength / totalLength * 100.0f;
+
+            bool isTrue = false;
+            if ((legLengthRate + bodyLengthRate) >= 70.0f)
+            {
+                cHigh = open < close ? close : open;
+
+                centerPoint = (cHigh + cLow) / 2.0f;
+                upCenterPoint = (cHigh + centerPoint) / 2.0f;
+                downCenterPoint = (centerPoint + cLow) / 2.0f;
+
+                totalLength = cHigh - cLow;
+                headLegth = cHigh - upCenterPoint;
+                bodyLength = upCenterPoint - downCenterPoint;
+                legLength = downCenterPoint - cLow;
+
+                headLengthRate = headLegth / totalLength * 100.0f;
+                bodyLengthRate = bodyLength / totalLength * 100.0f;
+                legLengthRate = legLength / totalLength * 100.0f;
+
+                isTrue = (headLengthRate >= 30.0f
+                           && bodyLengthRate >= 30.0f
+                           && legLengthRate >= 30.0f);
+            }
+
+            return isTrue;
+        }
+        private bool 소음여부()
+        {
+            if (open < close) return false;
+
+            Single cOpen = open < close ? open : close;
+            Single cClose = open < close ? close : open;
+            Single cHigh = open < close ? high : high;
+            Single cLow = open < close ? low : low;
+
+            Single centerPoint = (cHigh + cLow) / 2.0f;
+            Single upCenterPoint = (cHigh + centerPoint) / 2.0f;
+            Single downCenterPoint = (centerPoint + cLow) / 2.0f;
+
+            Single totalLength = cHigh - cLow;
+            Single headLegth = cHigh - upCenterPoint;
+            Single bodyLength = upCenterPoint - downCenterPoint;
+            Single legLength = downCenterPoint - cLow;
+
+            Single headLengthRate = headLegth / totalLength * 100.0f;
+            Single bodyLengthRate = bodyLength / totalLength * 100.0f;
+            Single legLengthRate = legLength / totalLength * 100.0f;
+
+            bool isTrue = false;
+            if ((legLengthRate + bodyLengthRate) >= 70.0f)
+            {
+                cHigh = open < close ? close : open;
+
+                centerPoint = (cHigh + cLow) / 2.0f;
+                upCenterPoint = (cHigh + centerPoint) / 2.0f;
+                downCenterPoint = (centerPoint + cLow) / 2.0f;
+
+                totalLength = cHigh - cLow;
+                headLegth = cHigh - upCenterPoint;
+                bodyLength = upCenterPoint - downCenterPoint;
+                legLength = downCenterPoint - cLow;
+
+                headLengthRate = headLegth / totalLength * 100.0f;
+                bodyLengthRate = bodyLength / totalLength * 100.0f;
+                legLengthRate = legLength / totalLength * 100.0f;
+
+                isTrue = (legLengthRate >= 30.0f);
+            }
+
+            return isTrue;
+        }
+        private bool 궐음여부()
+        {
+            if (open < close) return false;
+
+            Single cOpen = open < close ? open : close;
+            Single cClose = open < close ? close : open;
+            Single cHigh = open < close ? high : high;
+            Single cLow = open < close ? low : low;
+
+            Single centerPoint = (cHigh + cLow) / 2.0f;
+            Single upCenterPoint = (cHigh + centerPoint) / 2.0f;
+            Single downCenterPoint = (centerPoint + cLow) / 2.0f;
+
+            Single totalLength = cHigh - cLow;
+            Single headLegth = cHigh - upCenterPoint;
+            Single bodyLength = upCenterPoint - downCenterPoint;
+            Single legLength = downCenterPoint - cLow;
+
+            Single headLengthRate = headLegth / totalLength * 100.0f;
+            Single bodyLengthRate = bodyLength / totalLength * 100.0f;
+            Single legLengthRate = legLength / totalLength * 100.0f;
+
+            bool isTrue = false;
+            if ((legLengthRate + bodyLengthRate) >= 70.0f)
+            {
+                cHigh = open < close ? close : open;
+
+                centerPoint = (cHigh + cLow) / 2.0f;
+                upCenterPoint = (cHigh + centerPoint) / 2.0f;
+                downCenterPoint = (centerPoint + cLow) / 2.0f;
+
+                totalLength = cHigh - cLow;
+                headLegth = cHigh - upCenterPoint;
+                bodyLength = upCenterPoint - downCenterPoint;
+                legLength = downCenterPoint - cLow;
+
+                headLengthRate = headLegth / totalLength * 100.0f;
+                bodyLengthRate = bodyLength / totalLength * 100.0f;
+                legLengthRate = legLength / totalLength * 100.0f;
+
+                isTrue = (headLengthRate >= 30.0f);
+            }
+
+            return isTrue;
+        }
+
+    }
+}

@@ -1,0 +1,53 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.Vikala.Controls.Charts
+{
+    public class ChartUtil
+    {
+        const string VF_1 = "396";
+        const string VF_2 = "417";
+        const string VF_3 = "528";
+        const string VF_4 = "639";
+        const string VF_5 = "741";
+        const string VF_6 = "852";
+        const string VF_7 = "963";
+
+        public static int SumOfEachDigit(Single price)
+        {
+
+        }
+        public static (ChakraTypeEnum head, ChakraTypeEnum body, ChakraTypeEnum leg) GetChakraType(int a, int b, int c)
+        {
+            ChakraTypeEnum headType = ChakraTypeEnum._0_무_없음;
+            ChakraTypeEnum bodyType = ChakraTypeEnum._0_무_없음;
+            ChakraTypeEnum legType = ChakraTypeEnum._0_무_없음;
+
+            try
+            {
+
+            }
+            catch (Exception ex) { }
+
+            return (headType, bodyType, legType);
+        }
+
+        public static (RainbowTypeEnum head, RainbowTypeEnum body, RainbowTypeEnum leg) GetRainbowType(int a, int b, int c)
+        {
+            RainbowTypeEnum headType = RainbowTypeEnum._0_무;
+            RainbowTypeEnum bodyType = RainbowTypeEnum._0_무;
+            RainbowTypeEnum legType = RainbowTypeEnum._0_무;
+
+            try
+            {
+
+            }
+            catch (Exception ex) { }
+
+            return (headType, bodyType, legType);
+        }
+    }
+}

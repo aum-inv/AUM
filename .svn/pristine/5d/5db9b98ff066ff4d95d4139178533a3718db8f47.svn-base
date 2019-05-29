@@ -1,0 +1,36 @@
+﻿using OM.Lib.Base;
+using OM.Lib.Base.Utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleTest
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            LimitedList<double> list = new LimitedList<double>(100);
+            list.Insert(10);
+            list.Insert(11);
+            list.Insert(12);
+            list.Insert(13);
+            Console.WriteLine(PointsUtil.IsBreakThroughUp(14, 11, list));
+            list.Insert(14);
+            list.Insert(15);
+            Console.WriteLine(PointsUtil.IsBreakThroughUp(14, 11, list));
+            list.Insert(14);
+            list.Insert(12);
+            list.Insert(11);
+            list.Insert(10);           
+            Console.WriteLine(PointsUtil.IsBreakThroughDown(10, 12, list));
+
+
+
+
+            Console.ReadLine();
+        }
+    }
+}

@@ -1,0 +1,39 @@
+﻿using OM.Lib.Base;
+using OM.Lib.Base.Utils;
+using OM.PP.Chakra;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleTest
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            DateTime dt = new DateTime(2019, 10, 10, 22, 22, 2);
+            Console.WriteLine(GetTime(dt, 30));
+            Console.ReadLine();
+        }
+
+
+        static DateTime GetTime(DateTime dt, int min)
+        {
+            int year = dt.Year;
+            int month = dt.Month;
+            int day = dt.Day;
+            int hour = dt.Hour;
+            int minute = dt.Minute;
+            int newMin = (min * ((minute / min) + 1));
+
+            DateTime dateTime = new DateTime(year, month, day, hour, 0, 0);
+
+            if (newMin == 60) dateTime = dateTime.AddHours(1);
+            else dateTime = dateTime.AddMinutes(newMin);
+            
+            return dateTime;
+        }
+    }
+}

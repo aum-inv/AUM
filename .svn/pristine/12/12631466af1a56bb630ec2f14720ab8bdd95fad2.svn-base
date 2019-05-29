@@ -1,0 +1,229 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using OM.PP.Chakra;
+using System.Windows.Forms.DataVisualization.Charting;
+using OM.Lib.Base.Utils;
+using OM.Vikala.Controls.Properties;
+using OM.Lib.Base.Enums;
+
+namespace OM.Vikala.Controls.Charts
+{
+    public partial class RealCandleChart : BaseChartControl
+    {
+        public List<S_CandleItemData> ChartData
+        {
+            get;
+            set;
+        }
+
+        public void LoadData(string itemCode = ""
+            , List<S_CandleItemData> chartData = null
+            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day)
+        {
+            TimeInterval = timeInterval;
+            ItemCode = itemCode;
+            ChartData = chartData;
+            Reset();
+            View();
+        }
+
+        public RealCandleChart()
+        {
+            InitializeComponent();
+            base.SetChartControl(chart, hScrollBar, trackBar);
+        }
+
+        public override void View()
+        {
+            pnlScroll.Visible = false;
+            if (ChartData == null) return;
+            if (ChartData.Count > 1)
+                ChartData = ChartData.GetRange(ChartData.Count - 2, 1);
+
+            foreach (var item in ChartData)
+            {
+                int idx = chart.Series[0].Points.AddXY(item.DTime, item.HighPrice, item.LowPrice, item.OpenPrice, item.ClosePrice);
+                var dataPoint = chart.Series[0].Points[idx];
+                dataPoint.Tag = item;
+            }
+
+            double maxPrice = ChartData.Max(m => m.HighPrice);
+            double minPrice = ChartData.Min(m => m.LowPrice);
+            maxPrice = maxPrice + SpaceMaxMin;
+            minPrice = minPrice - SpaceMaxMin;
+
+            chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
+            chart.ChartAreas[0].AxisY2.Minimum = minPrice;
+
+            SetScrollBar();
+            SetTrackBar();
+            DisplayView();
+
+            IsLoaded = true;
+
+            base.View();
+
+            CreatePriceLineAnnotation(0);
+        }
+
+        public void SetScrollBar()
+        {
+            int trackView = trackBar.Value;
+            int displayItemCount = DisplayPointCount * trackView;
+
+            int maxScrollValue = (int)Math.Ceiling((Convert.ToDouble(ChartData.Count) / Convert.ToDouble(displayItemCount)));
+            int minScrollValue = 1;
+
+            hScrollBar.Minimum = minScrollValue;
+            hScrollBar.Maximum = maxScrollValue;
+            hScrollBar.Value = maxScrollValue;
+            hScrollBar.LargeChange = 1;
+            hScrollBar.SmallChange = 1;
+        }
+
+        public void SetTrackBar()
+        {
+            pnlScroll.Visible = IsAutoScrollX;
+            int maxScrollValue = (int)Math.Ceiling((Convert.ToDouble(ChartData.Count) / Convert.ToDouble(DisplayPointCount)));
+            int minScrollValue = 1;
+
+            trackBar.Minimum = minScrollValue;
+            trackBar.Maximum = maxScrollValue;
+            trackBar.Value = minScrollValue;
+            trackBar.LargeChange = 1;
+            trackBar.SmallChange = 1;
+        }
+
+        public void DisplayView()
+        {
+            chart.Update();
+
+            int scrollVal = hScrollBar.Value;
+            if (scrollVal < hScrollBar.Minimum) scrollVal = hScrollBar.Minimum;
+            if (scrollVal > hScrollBar.Maximum) scrollVal = hScrollBar.Maximum;
+
+            int trackView = trackBar.Value;
+            int displayItemCount = DisplayPointCount * trackView;
+
+            List<S_CandleItemData> viewLists = null;
+            int maxDisplayIndex = 0;
+            int minDisplayIndex = 0;
+
+            if (scrollVal == hScrollBar.Minimum)
+            {
+                int maxIndex = ChartData.Count > displayItemCount ? displayItemCount : ChartData.Count;
+                if (displayItemCount > ChartData.Count) displayItemCount = ChartData.Count;
+                viewLists = ChartData.GetRange(0, maxIndex);
+                maxDisplayIndex = displayItemCount;
+                minDisplayIndex = 0;
+            }
+            else if (scrollVal == hScrollBar.Maximum)
+            {
+                int minIndex = ChartData.Count < displayItemCount ? 0 : ChartData.Count - displayItemCount;
+                if (displayItemCount > ChartData.Count) displayItemCount = ChartData.Count;
+                viewLists = ChartData.GetRange(minIndex, ChartData.Count < displayItemCount ? ChartData.Count : displayItemCount);
+                maxDisplayIndex = ChartData.Count;
+                minDisplayIndex = minIndex;
+            }
+            else
+            {
+                int currentIndex = (scrollVal - 1) * displayItemCount;
+                if (ChartData.Count < currentIndex + displayItemCount)
+                    displayItemCount = ChartData.Count - currentIndex;
+
+                viewLists = ChartData.GetRange(currentIndex, displayItemCount);
+
+                maxDisplayIndex = currentIndex + displayItemCount;
+                minDisplayIndex = currentIndex;
+            }
+            if (viewLists != null)
+            {
+                //chart.ChartAreas[0].AxisX.Maximum = maxDisplayIndex;
+                //chart.ChartAreas[0].AxisX.Minimum = minDisplayIndex - 1;
+
+                double maxPrice = viewLists.Max(m => m.HighPrice);
+                double minPrice = viewLists.Min(m => m.LowPrice);
+                
+                maxPrice = maxPrice + SpaceMaxMin;
+                minPrice = minPrice - SpaceMaxMin;
+                chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
+                chart.ChartAreas[0].AxisY2.Minimum = minPrice;
+            }
+        }
+
+        private void hScrollBar_ValueChanged(object sender, EventArgs e)
+        {
+            if (!IsLoaded) return;
+            DisplayView();
+            if (ChartEventInstance != null)
+                ChartEventInstance.OnChangeChartScrollBarHandler(this.chart, hScrollBar.Value);
+        }
+
+        private void trackBar_ValueChanged(object sender, EventArgs e)
+        {
+            if (!IsLoaded) return;
+
+            SetScrollBar();
+            DisplayView();
+            if (ChartEventInstance != null)
+                ChartEventInstance.OnChangeChartTrackBarHandler(this.chart, trackBar.Value);
+
+            SelectedTrackBarValue = (int)trackBar.Value;
+        }
+
+        private void chart_PostPaint(object sender, ChartPaintEventArgs e)
+        {
+            DrawChartTitle(e);
+        }
+
+        #region Chart Util
+        HorizontalLineAnnotation hPrice = null;
+        private void CreatePriceLineAnnotation(double price)
+        {
+            hPrice = new HorizontalLineAnnotation();
+            hPrice.AxisX = chart.ChartAreas[0].AxisX;
+            hPrice.AxisY = chart.ChartAreas[0].AxisY2;
+            hPrice.IsSizeAlwaysRelative = false;
+            hPrice.IsInfinitive = true;
+            hPrice.ClipToChartArea = chart.ChartAreas[0].Name;
+            hPrice.LineColor = Color.Black;
+            hPrice.LineWidth = 1;
+            hPrice.Visible = true;
+            hPrice.AnchorY = price;
+            chart.Annotations.Add(hPrice);
+        }
+        private void SetPriceLineAnnotation(double price)
+        {
+            hPrice.AnchorY = price;
+        }
+        public void SummaryPrice(double cPrice)
+        {
+            if (ChartData != null && ChartData.Count == 1)
+            {
+                this.Invoke(new Action(() =>
+                {
+                    SetPriceLineAnnotation(cPrice);
+
+                    var s = chart.Series[0];
+
+                    ChartData[ChartData.Count - 1].ClosePrice = (Single)cPrice;
+
+                    s.Points[s.Points.Count - 1].YValues = new double[] {
+                        ChartData[ChartData.Count - 1].HighPrice
+                    ,   ChartData[ChartData.Count - 1].LowPrice
+                    ,   ChartData[ChartData.Count - 1].OpenPrice
+                    ,   ChartData[ChartData.Count - 1].ClosePrice
+                    };
+                }));
+            }
+        }
+        #endregion
+    }
+}

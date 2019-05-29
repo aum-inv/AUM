@@ -1,0 +1,69 @@
+﻿using MetroFramework.Forms;
+using OM.Lib.Base.Data;
+using OM.Lib.Base.Utils;
+using OM.PP.Chakra;
+using OM.PP.Chakra.Ctx;
+using OM.Vikala.Controls.Charts;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Configuration;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Vikala.Chakra.App
+{
+    public partial class MainForm : Form
+    {
+        
+        public MainForm()
+        {
+            InitializeComponent();
+
+            serverInfo();
+        }
+
+        private void serverInfo()
+        {
+            PPServerConfigData.IP = ConfigurationManager.AppSettings["PPService_IP"];
+            PPServerConfigData.Port = Convert.ToInt32(ConfigurationManager.AppSettings["PPService_Port"]);
+
+            PPContext.Instance.OnCreateClient();
+        }
+
+        private void btnLoadData_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btnLine1_Click(object sender, EventArgs e)
+        {
+            LineMainForm lineMainForm = new LineMainForm();
+            lineMainForm.Show();
+        }
+
+        private void btnCandle1_Click(object sender, EventArgs e)
+        {
+            CandleMainForm candleMainForm = new CandleMainForm();
+            candleMainForm.Show();
+        }
+
+        private void btnSampleCandle_Click(object sender, EventArgs e)
+        {
+            new CandleMainForm_Sample().Show();
+        }
+
+        private void btnSampleAtom_Click(object sender, EventArgs e)
+        {
+            new AtomMainForm_Sample().Show();
+        }
+
+        private void btnMass_Click(object sender, EventArgs e)
+        {
+            new MassMainForm_Sample().Show();
+        }
+    }
+}

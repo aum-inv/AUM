@@ -1,0 +1,83 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.Lib.Base.Enums
+{
+    public static class ItemCodeSet
+    {
+        public static ItemData[] Items = new ItemData[]
+        {
+              new ItemData(){ Name = "지수-국내-코스피" , Code = "KS11", Length = 2}
+            , new ItemData(){ Name = "지수-국내-코스피200" , Code = "KS200", Length = 2}
+            , new ItemData(){ Name = "지수-해외-다우" , Code = "DJI", Length = 2}
+            , new ItemData(){ Name = "지수-해외-나스닥" , Code = "NAS", Length = 2}
+            , new ItemData(){ Name = "지수-해외-홍콩" , Code = "HSI", Length = 2}
+            , new ItemData(){ Name = "지수-해외-상해종합" , Code = "SHS", Length = 2}
+            , new ItemData(){ Name = "지수-해외-니케이225" , Code = "NII", Length = 2}
+            , new ItemData(){ Name = "-" , Code = ""}
+            , new ItemData(){ Name = "선물-국내-코스피200" , Code = "KS", Length = 2}
+            , new ItemData(){ Name = "선물-해외-WTI" , Code = "CL", Length = 2}
+            , new ItemData(){ Name = "선물-해외-NG" , Code = "NG", Length = 2}
+            , new ItemData(){ Name = "선물-해외-GOLD" , Code = "GC", Length = 2}
+            , new ItemData(){ Name = "선물-해외-SILVER" , Code = "SI", Length = 2}
+            , new ItemData(){ Name = "-" , Code = ""}
+            , new ItemData(){ Name = "환율-EUR/USD" , Code = "EURUSD", Length = 2}
+            , new ItemData(){ Name = "환율-USD/JPY" , Code = "USDJPY", Length = 2}
+            , new ItemData(){ Name = "-" , Code = ""}
+            , new ItemData(){ Name = "CRYPTO-BTC/USD" , Code = "BTCUSD", Length = 2}
+            , new ItemData(){ Name = "CRYPTO-ETH/USD" , Code = "ETHUSD", Length = 2}
+            , new ItemData(){ Name = "-" , Code = ""}
+            , new ItemData(){ Name = "주식-국내-삼성전자" , Code = ""}
+            , new ItemData(){ Name = "주식-국내-SK하이닉스" , Code = ""}
+            , new ItemData(){ Name = "주식-국내-현대차" , Code = ""}
+            , new ItemData(){ Name = "주식-국내-삼성바이오로직스" , Code = ""}
+            , new ItemData(){ Name = "주식-국내-LG화학" , Code = ""}
+            , new ItemData(){ Name = "주식-국내-셀트리온" , Code = ""}
+            , new ItemData(){ Name = "주식-국내-POSCO" , Code = ""}
+            , new ItemData(){ Name = "주식-국내-삼성물산" , Code = ""}
+            , new ItemData(){ Name = "주식-국내-한국전력" , Code = ""}
+            , new ItemData(){ Name = "주식-국내-현대모비스" , Code = ""}
+            , new ItemData(){ Name = "-" , Code = ""}
+            , new ItemData(){ Name = "주식-해외-Apple" , Code = "", Length = 2}
+            , new ItemData(){ Name = "주식-해외-Amazon" , Code = "", Length = 2}
+            , new ItemData(){ Name = "주식-해외-Netflix" , Code = "", Length = 2}
+            , new ItemData(){ Name = "주식-해외-Facebook" , Code = "", Length = 2}
+        };
+        public static List<ItemData> GetItems(string group)
+        {
+            List<ItemData> list = new List<ItemData>();
+            foreach (var m in Items)
+            {
+                if (m.Name.StartsWith(group)) list.Add(m);
+            }
+            return list;
+        }
+        public static string GetItemCode(string name)
+        {
+            foreach (var m in Items)
+            {
+                if (m.Name == name) return m.Code;
+            }
+
+            return "";
+        }
+        public static string GetItemName(string code)
+        {
+            foreach (var m in Items)
+            {
+                if (m.Code == code) return m.Name;
+            }
+
+            return "";
+        }
+    }
+    public class ItemData
+    {
+        public string Name { get; set; }
+        public string Code { get; set; }
+        public int Length { get; set; } = 0;
+    }
+}

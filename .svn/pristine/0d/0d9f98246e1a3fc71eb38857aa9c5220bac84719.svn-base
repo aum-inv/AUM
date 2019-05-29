@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.PP.Chakra
+{
+    public class CurrentPrice
+    {
+        public static Dictionary<string, double> PriceList = new Dictionary<string, double>();
+
+        public static void SetPrice(string itemCode, double price)
+        {
+            try
+            {
+                if (PriceList.ContainsKey(itemCode))
+                {
+                    PriceList[itemCode] = price;
+                }
+                else
+                {
+                    PriceList.Add(itemCode, price);
+                }
+            }
+            catch (Exception ex) { }
+        }
+    }
+}

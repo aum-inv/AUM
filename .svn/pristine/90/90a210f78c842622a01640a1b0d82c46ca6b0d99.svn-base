@@ -1,0 +1,73 @@
+﻿using OM.Lib.Base;
+using OM.Lib.Base.Utils;
+using OM.PP.Chakra;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleTest
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //LimitedList<double> list = new LimitedList<double>(100);
+            //double upPrice = 7;
+            //double downPrice = 4;
+            //list.Insert(8);
+            //list.Insert(6);
+            //list.Insert(3);
+            //list.Insert(6);
+            //list.Insert(7);
+            //list.Insert(8);
+            //list.Insert(5);
+            //list.Insert(4);
+            //list.Insert(3);
+            //list.Insert(4);
+            //list.Insert(5);
+            //list.Insert(6);
+            //list.Insert(5);
+            //list.Insert(8);
+            //list.Insert(4);
+            //list.Insert(5);
+            //list.Insert(6);
+            //list.Insert(4);
+            //list.Insert(5);
+            //list.Insert(6);
+            //Console.WriteLine(PointsUtil.GetUpDownPattern(list, upPrice, downPrice));
+
+            //Console.ReadLine();
+
+            S_CandleItemData s1 = new S_CandleItemData("", 3, 4, 1, 2, 0, DateTime.Now);
+            S_CandleItemData s2 = new S_CandleItemData("", 4, 5, 2, 3, 0, DateTime.Now);
+            S_CandleItemData s3 = new S_CandleItemData("", 5, 6, 3, 4, 0, DateTime.Now);
+            S_CandleItemData s4 = new S_CandleItemData("", 6, 7, 4, 5, 0, DateTime.Now);
+            S_CandleItemData s5 = new S_CandleItemData("", 7, 8, 5, 6, 0, DateTime.Now);
+            S_CandleItemData s6 = new S_CandleItemData("", 8, 9, 6, 7, 0, DateTime.Now);
+            List<S_CandleItemData> list = new List<S_CandleItemData>();
+            //list.Add(s1);
+            //list.Add(s2);
+            //list.Add(s3);
+            //list.Add(s4);
+            //list.Add(s5);
+            //list.Add(s6);
+
+            list.Add(s6);
+            list.Add(s5);
+            list.Add(s4);
+            list.Add(s3);
+            list.Add(s2);
+            list.Add(s1);
+
+            //Console.WriteLine(PPUtils.GetUpDown(list, 6));       
+            //Console.WriteLine(PPUtils.GetUpDown3(list));
+            //Console.WriteLine(PPUtils.GetUpDown4(list));
+            //Console.WriteLine(PPUtils.GetUpDown5(list));
+
+            Console.WriteLine(PPUtils.GetSameUpDownCount(list, PlusMinusTypeEnum.음));
+            Console.ReadLine();
+        }
+    }
+}

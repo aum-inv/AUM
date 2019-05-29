@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <startup> 
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.7.2" />
+    </startup>
+  <connectionStrings>
+    <!--<add name="AUM" connectionString="server=DESKTOP-9E0313V\OMDB,1433;database=AUM;user id=sa;password=qawsedrf;" providerName="MSSQL"/>-->
+    <add name="AUM" connectionString="server=localhost;database=AUM;user id=sa;password=qawsedrf;" providerName="MSSQL"/>
+  </connectionStrings>
+  <appSettings>
+    <add key="SPNameingRule" value="MSSQL"/>
+    <add key="DBParameterLog" value="False"/>
+    <add key="EntityLog" value="False"/>
+    <add key="WEBMemoryLog" value="False"/>
+    <add key="WEBParamLog" value="False"/>
+    <add key="ExceptionType" value="TEXT"/>
+    <add key="QueryFormat" value="dbo.USP_{0}_{1}"/>
+    <add key="EnableCacheParameter" value="True"/>
+    
+    <add key="AtmanService_IP" value="127.0.0.1"/>
+    <add key="AtmanService_Port" value="9002"/>
+
+    <add key="XingService_IP" value="127.0.0.1"/>
+    <add key="XingService_Port" value="9003"/>
+    
+  </appSettings>
+</configuration>

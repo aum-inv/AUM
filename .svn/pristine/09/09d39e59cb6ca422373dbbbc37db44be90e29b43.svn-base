@@ -1,0 +1,264 @@
+﻿using OM.Lib.Base.Utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.PP.Chakra
+{
+    public class S_CandleItemData : A_HLOC
+    {
+        List<S_CandleItemData> sourceItems;
+        public S_CandleItemData() { }
+        
+        public S_CandleItemData(
+             string itemCode
+           , Single open
+           , Single high
+           , Single low
+           , Single close
+           , Single volume
+           , DateTime dt)
+        {
+            base.ItemCode = itemCode;
+            base.OpenPrice = open;
+            base.HighPrice = high;
+            base.LowPrice = low;
+            base.ClosePrice = close;
+            base.Volume = volume;
+            base.DTime = dt;
+        }
+        public S_CandleItemData(
+             string itemCode
+           , List<S_CandleItemData> sourceItems)
+        {
+            base.ItemCode = itemCode;
+            this.sourceItems = sourceItems;
+            calculateAvg();
+        }
+        private void calculateAvg()
+        {
+            if (this.sourceItems == null) return;
+
+            base.OpenPrice = (Single)Math.Round(sourceItems.Average(t => t.OpenPrice), RoundLength);
+            base.ClosePrice = (Single)Math.Round(sourceItems.Average(t => t.ClosePrice), RoundLength);
+            base.HighPrice = (Single)Math.Round(sourceItems.Average(t => t.HighPrice), RoundLength);
+            base.LowPrice = (Single)Math.Round(sourceItems.Average(t => t.LowPrice), RoundLength);
+            base.DTime = sourceItems.Max(t => t.DTime);
+            base.Volume = sourceItems.Sum(t => t.Volume);
+        }
+
+        public virtual WuXingTypeEnum WuXingType
+        {
+            get
+            {
+                WuXingTypeEnum type = WuXingTypeEnum.없음;
+
+                if (QuantumHighPrice > HighPrice
+                    && HighPrice > ClosePrice
+                    && ClosePrice > OpenPrice
+                    && OpenPrice > QuantumPrice
+                    && QuantumPrice > QuantumLowPrice
+                    && QuantumLowPrice > LowPrice)
+                    type = WuXingTypeEnum.소양;
+
+                if (HighPrice > ClosePrice
+                    && ClosePrice > QuantumHighPrice
+                    && QuantumHighPrice > OpenPrice
+                    && OpenPrice > LowPrice
+                    && LowPrice > QuantumPrice
+                    && QuantumPrice > QuantumLowPrice)
+                    type = WuXingTypeEnum.태양;
+
+                if (QuantumHighPrice > QuantumPrice
+                    && QuantumPrice > HighPrice
+                    && HighPrice > OpenPrice
+                    && OpenPrice > QuantumLowPrice
+                    && QuantumLowPrice > ClosePrice
+                    && ClosePrice > LowPrice)
+                    type = WuXingTypeEnum.태음;
+
+                if (HighPrice > QuantumHighPrice
+                    && QuantumHighPrice > QuantumPrice
+                    && QuantumPrice > OpenPrice
+                    && OpenPrice > ClosePrice
+                    && ClosePrice > LowPrice
+                    && LowPrice > QuantumLowPrice)
+                    type = WuXingTypeEnum.소음;
+
+                return type;
+            }
+        }
+
+        public virtual EightRuleTypeEnum EightRuleType
+        {
+            get
+            {
+                double totalLength = HighPrice - LowPrice;
+                double bodyLength = Math.Round(Math.Abs(ClosePrice - OpenPrice), RoundLength);
+                double headLength = Math.Round(PlusMinusType == PlusMinusTypeEnum.양 ? 
+                    (HighPrice - ClosePrice) : (HighPrice - OpenPrice), RoundLength);
+                double legLength = Math.Round(PlusMinusType == PlusMinusTypeEnum.양 ? 
+                    (OpenPrice - LowPrice) : (ClosePrice - LowPrice), RoundLength);
+
+                int headLengthRate = (int)(headLength / totalLength * 100.0);
+                int bodyLengthRate = (int)(bodyLength / totalLength * 100.0);
+                int legLengthRate = (int)(legLength / totalLength * 100.0);
+
+                string type = "";
+
+                if (headLengthRate > 30) type += "1";
+                else type += "0";
+                if (bodyLengthRate > 30) type += "1";
+                else type += "0";
+                if (legLengthRate > 30) type += "1";
+                else type += "0";
+                              
+                if (type == "000" && PlusMinusType == PlusMinusTypeEnum.양)
+                    type = "111";
+                if (type == "111" && PlusMinusType == PlusMinusTypeEnum.음)
+                    type = "000";
+
+                EightRuleTypeEnum eightRuleType = EightRuleTypeEnum.무_0_없음;
+                if (PlusMinusType == PlusMinusTypeEnum.양)
+                {
+                    switch (type)
+                    {
+                        case "111":
+                            eightRuleType = EightRuleTypeEnum.건_1_111_양_태양;
+                            break;
+                        case "110":
+                            eightRuleType = EightRuleTypeEnum.손_5_110_양_소양;
+                            break;
+                        case "101":
+                            eightRuleType = EightRuleTypeEnum.리_3_101_양_소음;
+                            break;
+                        case "100":
+                            eightRuleType = EightRuleTypeEnum.간_7_100_양_태음;
+                            break;                       
+                    }
+                }
+                if (PlusMinusType == PlusMinusTypeEnum.음)
+                {
+                    switch (type)
+                    {
+                        case "000":
+                            eightRuleType = EightRuleTypeEnum.곤_8_000_음_태음;
+                            break;
+                        case "001":
+                            eightRuleType = EightRuleTypeEnum.진_4_001_음_소음;
+                            break;
+                        case "010":
+                            eightRuleType = EightRuleTypeEnum.감_6_010_음_소양;
+                            break;
+                        case "011":
+                            eightRuleType = EightRuleTypeEnum.태_2_011_음_태양;
+                            break;
+                    }
+                }
+                //switch (type)
+                //{
+                //    case "111":
+                //        eightRuleType = EightRuleTypeEnum.건_1_111_양_태양;
+                //        break;
+                //    case "000":
+                //        eightRuleType = EightRuleTypeEnum.곤_8_000_음_태음;
+                //        break;
+                //    case "001":
+                //        eightRuleType = EightRuleTypeEnum.진_4_001_음_소음;
+                //        break;
+                //    case "110":
+                //        eightRuleType = EightRuleTypeEnum.손_5_110_양_소양;
+                //        break;
+                //    case "010":
+                //        eightRuleType = EightRuleTypeEnum.감_6_010_음_소양;
+                //        break;
+                //    case "101":
+                //        eightRuleType = EightRuleTypeEnum.리_3_101_양_소음;
+                //        break;
+                //    case "100":
+                //        eightRuleType = EightRuleTypeEnum.간_7_100_양_태음;
+                //        break;
+                //    case "011":
+                //        eightRuleType = EightRuleTypeEnum.곤_8_000_음_태음;
+                //        break;
+                //}
+                return eightRuleType;
+            }
+        }
+
+        //public virtual  WuXingTypeEnum WuXingChakraType
+        //{
+        //    get
+        //    {
+        //        WuXingTypeEnum type = WuXingTypeEnum.없음;
+
+        //        Single cOpen = OpenPrice < ClosePrice ? OpenPrice : ClosePrice;
+        //        Single cClose = OpenPrice < ClosePrice ? ClosePrice : OpenPrice;
+        //        Single cHigh = OpenPrice < ClosePrice ? HighPrice : HighPrice;
+        //        Single cLow = OpenPrice < ClosePrice ? LowPrice : LowPrice;
+
+        //        Single totalLength = cHigh - cLow;
+        //        Single headLength = cHigh - cClose;
+        //        Single bodyLength = cClose - cOpen;
+        //        Single legLength = cOpen - cLow;
+        //        Single upBodyLength = cClose - MiddlePrice;
+        //        Single downBodyLength = MiddlePrice - cOpen;
+
+        //        int headLengthRate = (int)(headLength / totalLength * 100.0);
+        //        int bodyLengthRate = (int)(bodyLength / totalLength * 100.0);
+        //        int legLengthRate = (int)(legLength / totalLength * 100.0);
+
+        //        if ((headLengthRate >= 30.0 && bodyLengthRate >= 30.0 && legLengthRate >= 30.0))
+        //            type = WuXingTypeEnum.무극_토;
+        //        else if (Math.Round(MiddlePrice, RoundLength) == Math.Round(CenterPrice, RoundLength))
+        //            type = WuXingTypeEnum.무극_토;
+        //        else if (Math.Round(headLength, RoundLength) == Math.Round(upBodyLength, RoundLength))
+        //            type = WuXingTypeEnum.양명;
+        //        else if (Math.Round(legLength, RoundLength) == Math.Round(downBodyLength, RoundLength))
+        //            type = WuXingTypeEnum.궐음;
+
+        //        if (PlusMinusType == PlusMinusTypeEnum.양
+        //          && PlusMinusType2 == PlusMinusTypeEnum.양
+        //          && bodyLengthRate >= 70
+        //          && headLength < legLength
+        //          && legLength > 0
+        //          && QuantumPrice < LowPrice
+        //          )
+        //            type = WuXingTypeEnum.태양_화;
+
+        //        if (PlusMinusType == PlusMinusTypeEnum.음
+        //           && PlusMinusType2 == PlusMinusTypeEnum.음
+        //           && bodyLengthRate >= 70
+        //           && headLength > legLength
+        //           && headLength > 0
+        //           && QuantumPrice > HighPrice
+        //           )
+        //            type = WuXingTypeEnum.태음_수;
+
+        //        if (PlusMinusType == PlusMinusTypeEnum.양
+        //          && PlusMinusType2 == PlusMinusTypeEnum.음
+        //          && bodyLengthRate >= 70
+        //          && headLength > legLength
+        //          && headLength > 0
+        //          && legLength > 0
+        //          && QuantumPrice < LowPrice
+        //          )
+        //            type = WuXingTypeEnum.소양_목;
+
+        //        if (PlusMinusType == PlusMinusTypeEnum.음
+        //          && PlusMinusType2 == PlusMinusTypeEnum.양
+        //          && bodyLengthRate >= 70
+        //          && headLength < legLength
+        //          && headLength > 0
+        //          && legLength > 0
+        //          && QuantumPrice > HighPrice
+        //          )
+        //            type = WuXingTypeEnum.소음_금;
+
+        //        return type;
+        //    }
+        //}
+    }
+}

@@ -1,0 +1,798 @@
+﻿namespace OM.Atman.Chakra.App
+{
+    partial class StrategyAutoTradeRuleForm
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StrategyAutoTradeRuleForm));
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lblBuyPosition = new System.Windows.Forms.Label();
+            this.tbBuyPrice = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.tbItem = new System.Windows.Forms.TextBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.tbLog = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tbCPrice = new System.Windows.Forms.TextBox();
+            this.chkIsUseRevenue = new System.Windows.Forms.CheckBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tbRevenuePriceTick = new System.Windows.Forms.TextBox();
+            this.tbLosscutPriceTick = new System.Windows.Forms.TextBox();
+            this.chkIsUseLosscut = new System.Windows.Forms.CheckBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tbRevenuePrice = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tbLosscutPrice = new System.Windows.Forms.TextBox();
+            this.chkIsUse = new System.Windows.Forms.CheckBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.cbPriceType = new System.Windows.Forms.ComboBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.rdoSType3 = new System.Windows.Forms.RadioButton();
+            this.rdoSType2 = new System.Windows.Forms.RadioButton();
+            this.rdoSType1 = new System.Windows.Forms.RadioButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.chkIsUseLastCandle = new System.Windows.Forms.CheckBox();
+            this.btnLoadCandle = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.tbQty = new System.Windows.Forms.TextBox();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.lbRemainTime = new System.Windows.Forms.Label();
+            this.btnStartStop = new System.Windows.Forms.Button();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.tbTime = new System.Windows.Forms.TextBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.rdoStrategy2 = new System.Windows.Forms.RadioButton();
+            this.rdoStrategy1 = new System.Windows.Forms.RadioButton();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.chart1 = new OM.Vikala.Controls.Charts.ChakraChart();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.chart2 = new OM.Vikala.Controls.Charts.ChakraChart();
+            this.cbxTime = new System.Windows.Forms.ComboBox();
+            this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.groupBox11.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox12.SuspendLayout();
+            this.groupBox10.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.lblBuyPosition);
+            this.groupBox3.Controls.Add(this.tbBuyPrice);
+            this.groupBox3.Location = new System.Drawing.Point(153, 119);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.groupBox3.Size = new System.Drawing.Size(143, 59);
+            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "진입정보";
+            // 
+            // lblBuyPosition
+            // 
+            this.lblBuyPosition.AutoSize = true;
+            this.lblBuyPosition.Location = new System.Drawing.Point(14, 29);
+            this.lblBuyPosition.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblBuyPosition.Name = "lblBuyPosition";
+            this.lblBuyPosition.Size = new System.Drawing.Size(21, 15);
+            this.lblBuyPosition.TabIndex = 24;
+            this.lblBuyPosition.Text = "^^";
+            // 
+            // tbBuyPrice
+            // 
+            this.tbBuyPrice.Location = new System.Drawing.Point(56, 24);
+            this.tbBuyPrice.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
+            this.tbBuyPrice.Name = "tbBuyPrice";
+            this.tbBuyPrice.ReadOnly = true;
+            this.tbBuyPrice.Size = new System.Drawing.Size(79, 25);
+            this.tbBuyPrice.TabIndex = 20;
+            this.tbBuyPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbBuyPrice.TextChanged += new System.EventHandler(this.tbBuyPrice_TextChanged);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.tbItem);
+            this.groupBox2.Location = new System.Drawing.Point(7, 6);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.groupBox2.Size = new System.Drawing.Size(104, 51);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "상품코드";
+            // 
+            // tbItem
+            // 
+            this.tbItem.Location = new System.Drawing.Point(16, 19);
+            this.tbItem.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
+            this.tbItem.Name = "tbItem";
+            this.tbItem.Size = new System.Drawing.Size(79, 25);
+            this.tbItem.TabIndex = 0;
+            this.tbItem.Text = "CL";
+            this.tbItem.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbItem.TextChanged += new System.EventHandler(this.tbItem_TextChanged);
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.tbLog);
+            this.groupBox7.Location = new System.Drawing.Point(8, 515);
+            this.groupBox7.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Padding = new System.Windows.Forms.Padding(11, 12, 11, 12);
+            this.groupBox7.Size = new System.Drawing.Size(358, 110);
+            this.groupBox7.TabIndex = 13;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Log";
+            // 
+            // tbLog
+            // 
+            this.tbLog.BackColor = System.Drawing.Color.Black;
+            this.tbLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbLog.ForeColor = System.Drawing.Color.White;
+            this.tbLog.Location = new System.Drawing.Point(11, 30);
+            this.tbLog.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
+            this.tbLog.Multiline = true;
+            this.tbLog.Name = "tbLog";
+            this.tbLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.tbLog.Size = new System.Drawing.Size(336, 68);
+            this.tbLog.TabIndex = 0;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.tbCPrice);
+            this.groupBox1.Controls.Add(this.chkIsUseRevenue);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.tbRevenuePriceTick);
+            this.groupBox1.Controls.Add(this.tbLosscutPriceTick);
+            this.groupBox1.Controls.Add(this.chkIsUseLosscut);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.tbRevenuePrice);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.tbLosscutPrice);
+            this.groupBox1.Location = new System.Drawing.Point(8, 182);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.groupBox1.Size = new System.Drawing.Size(358, 191);
+            this.groupBox1.TabIndex = 17;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "수익-손실설정";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(72, 22);
+            this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(62, 15);
+            this.label4.TabIndex = 23;
+            this.label4.Text = "현재가 :";
+            // 
+            // tbCPrice
+            // 
+            this.tbCPrice.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbCPrice.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbCPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.tbCPrice.Location = new System.Drawing.Point(149, 15);
+            this.tbCPrice.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
+            this.tbCPrice.Name = "tbCPrice";
+            this.tbCPrice.Size = new System.Drawing.Size(198, 20);
+            this.tbCPrice.TabIndex = 22;
+            this.tbCPrice.Text = "0";
+            this.tbCPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // chkIsUseRevenue
+            // 
+            this.chkIsUseRevenue.AutoSize = true;
+            this.chkIsUseRevenue.Location = new System.Drawing.Point(191, 166);
+            this.chkIsUseRevenue.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkIsUseRevenue.Name = "chkIsUseRevenue";
+            this.chkIsUseRevenue.Size = new System.Drawing.Size(154, 19);
+            this.chkIsUseRevenue.TabIndex = 19;
+            this.chkIsUseRevenue.Text = "수익규칙 사용여부";
+            this.chkIsUseRevenue.UseVisualStyleBackColor = true;
+            this.chkIsUseRevenue.CheckedChanged += new System.EventHandler(this.chkIsUseRevenue_CheckedChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(7, 139);
+            this.label9.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(132, 15);
+            this.label9.TabIndex = 21;
+            this.label9.Text = "현재가대비 틱수 : ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 80);
+            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(132, 15);
+            this.label3.TabIndex = 21;
+            this.label3.Text = "현재가대비 틱수 : ";
+            // 
+            // tbRevenuePriceTick
+            // 
+            this.tbRevenuePriceTick.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbRevenuePriceTick.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbRevenuePriceTick.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.tbRevenuePriceTick.Location = new System.Drawing.Point(149, 132);
+            this.tbRevenuePriceTick.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
+            this.tbRevenuePriceTick.Name = "tbRevenuePriceTick";
+            this.tbRevenuePriceTick.Size = new System.Drawing.Size(198, 23);
+            this.tbRevenuePriceTick.TabIndex = 20;
+            this.tbRevenuePriceTick.Text = "0";
+            this.tbRevenuePriceTick.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbLosscutPriceTick
+            // 
+            this.tbLosscutPriceTick.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbLosscutPriceTick.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbLosscutPriceTick.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.tbLosscutPriceTick.Location = new System.Drawing.Point(149, 74);
+            this.tbLosscutPriceTick.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
+            this.tbLosscutPriceTick.Name = "tbLosscutPriceTick";
+            this.tbLosscutPriceTick.Size = new System.Drawing.Size(198, 23);
+            this.tbLosscutPriceTick.TabIndex = 20;
+            this.tbLosscutPriceTick.Text = "0";
+            this.tbLosscutPriceTick.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // chkIsUseLosscut
+            // 
+            this.chkIsUseLosscut.AutoSize = true;
+            this.chkIsUseLosscut.Location = new System.Drawing.Point(17, 166);
+            this.chkIsUseLosscut.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkIsUseLosscut.Name = "chkIsUseLosscut";
+            this.chkIsUseLosscut.Size = new System.Drawing.Size(154, 19);
+            this.chkIsUseLosscut.TabIndex = 19;
+            this.chkIsUseLosscut.Text = "손실규칙 사용여부";
+            this.chkIsUseLosscut.UseVisualStyleBackColor = true;
+            this.chkIsUseLosscut.CheckedChanged += new System.EventHandler(this.chkIsUseLosscut_CheckedChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(37, 110);
+            this.label10.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(102, 15);
+            this.label10.TabIndex = 11;
+            this.label10.Text = "수익컷 가격 : ";
+            // 
+            // tbRevenuePrice
+            // 
+            this.tbRevenuePrice.Location = new System.Drawing.Point(149, 102);
+            this.tbRevenuePrice.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
+            this.tbRevenuePrice.Name = "tbRevenuePrice";
+            this.tbRevenuePrice.Size = new System.Drawing.Size(202, 25);
+            this.tbRevenuePrice.TabIndex = 10;
+            this.tbRevenuePrice.Text = "0";
+            this.tbRevenuePrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbRevenuePrice.TextChanged += new System.EventHandler(this.tbRevenuePrice_TextChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(37, 51);
+            this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(102, 15);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "손실컷 가격 : ";
+            // 
+            // tbLosscutPrice
+            // 
+            this.tbLosscutPrice.Location = new System.Drawing.Point(149, 44);
+            this.tbLosscutPrice.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
+            this.tbLosscutPrice.Name = "tbLosscutPrice";
+            this.tbLosscutPrice.Size = new System.Drawing.Size(202, 25);
+            this.tbLosscutPrice.TabIndex = 10;
+            this.tbLosscutPrice.Text = "0";
+            this.tbLosscutPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbLosscutPrice.TextChanged += new System.EventHandler(this.tbLosscutPrice_TextChanged);
+            // 
+            // chkIsUse
+            // 
+            this.chkIsUse.AutoSize = true;
+            this.chkIsUse.Location = new System.Drawing.Point(17, 22);
+            this.chkIsUse.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkIsUse.Name = "chkIsUse";
+            this.chkIsUse.Size = new System.Drawing.Size(89, 19);
+            this.chkIsUse.TabIndex = 21;
+            this.chkIsUse.Text = "규칙사용";
+            this.chkIsUse.UseVisualStyleBackColor = true;
+            this.chkIsUse.CheckedChanged += new System.EventHandler(this.chkIsUse_CheckedChanged);
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.chkIsUse);
+            this.groupBox6.Location = new System.Drawing.Point(7, 64);
+            this.groupBox6.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.groupBox6.Size = new System.Drawing.Size(115, 50);
+            this.groupBox6.TabIndex = 22;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "규칙코드";
+            // 
+            // cbPriceType
+            // 
+            this.cbPriceType.FormattingEnabled = true;
+            this.cbPriceType.Items.AddRange(new object[] {
+            "기본",
+            "평균-3",
+            "평균-5",
+            "평균-7"});
+            this.cbPriceType.Location = new System.Drawing.Point(17, 19);
+            this.cbPriceType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbPriceType.Name = "cbPriceType";
+            this.cbPriceType.Size = new System.Drawing.Size(97, 23);
+            this.cbPriceType.TabIndex = 23;
+            this.cbPriceType.SelectedIndexChanged += new System.EventHandler(this.cbPriceType_SelectedIndexChanged);
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.rdoSType3);
+            this.groupBox8.Controls.Add(this.rdoSType2);
+            this.groupBox8.Controls.Add(this.rdoSType1);
+            this.groupBox8.Location = new System.Drawing.Point(114, 6);
+            this.groupBox8.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.groupBox8.Size = new System.Drawing.Size(251, 50);
+            this.groupBox8.TabIndex = 25;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "시나리오타입";
+            // 
+            // rdoSType3
+            // 
+            this.rdoSType3.AutoSize = true;
+            this.rdoSType3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.rdoSType3.Location = new System.Drawing.Point(166, 20);
+            this.rdoSType3.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
+            this.rdoSType3.Name = "rdoSType3";
+            this.rdoSType3.Size = new System.Drawing.Size(73, 19);
+            this.rdoSType3.TabIndex = 2;
+            this.rdoSType3.Text = "장기형";
+            this.rdoSType3.UseVisualStyleBackColor = true;
+            this.rdoSType3.CheckedChanged += new System.EventHandler(this.rdoSType3_CheckedChanged);
+            // 
+            // rdoSType2
+            // 
+            this.rdoSType2.AutoSize = true;
+            this.rdoSType2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.rdoSType2.Location = new System.Drawing.Point(90, 20);
+            this.rdoSType2.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
+            this.rdoSType2.Name = "rdoSType2";
+            this.rdoSType2.Size = new System.Drawing.Size(73, 19);
+            this.rdoSType2.TabIndex = 1;
+            this.rdoSType2.Text = "중기형";
+            this.rdoSType2.UseVisualStyleBackColor = true;
+            this.rdoSType2.CheckedChanged += new System.EventHandler(this.rdoSType2_CheckedChanged);
+            // 
+            // rdoSType1
+            // 
+            this.rdoSType1.AutoSize = true;
+            this.rdoSType1.Checked = true;
+            this.rdoSType1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.rdoSType1.Location = new System.Drawing.Point(13, 20);
+            this.rdoSType1.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
+            this.rdoSType1.Name = "rdoSType1";
+            this.rdoSType1.Size = new System.Drawing.Size(73, 19);
+            this.rdoSType1.TabIndex = 0;
+            this.rdoSType1.TabStop = true;
+            this.rdoSType1.Text = "단기형";
+            this.rdoSType1.UseVisualStyleBackColor = true;
+            this.rdoSType1.CheckedChanged += new System.EventHandler(this.rdoSType1_CheckedChanged);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.groupBox11);
+            this.panel1.Controls.Add(this.groupBox5);
+            this.panel1.Controls.Add(this.groupBox12);
+            this.panel1.Controls.Add(this.groupBox7);
+            this.panel1.Controls.Add(this.groupBox10);
+            this.panel1.Controls.Add(this.groupBox4);
+            this.panel1.Controls.Add(this.groupBox9);
+            this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Controls.Add(this.groupBox8);
+            this.panel1.Controls.Add(this.groupBox6);
+            this.panel1.Controls.Add(this.groupBox2);
+            this.panel1.Controls.Add(this.groupBox3);
+            this.panel1.Location = new System.Drawing.Point(5, 6);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(379, 631);
+            this.panel1.TabIndex = 26;
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.cbxTime);
+            this.groupBox11.Controls.Add(this.chkIsUseLastCandle);
+            this.groupBox11.Controls.Add(this.btnLoadCandle);
+            this.groupBox11.Location = new System.Drawing.Point(8, 380);
+            this.groupBox11.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.groupBox11.Size = new System.Drawing.Size(358, 59);
+            this.groupBox11.TabIndex = 32;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "시나리오 시작-종료-남은시간";
+            // 
+            // chkIsUseLastCandle
+            // 
+            this.chkIsUseLastCandle.AutoSize = true;
+            this.chkIsUseLastCandle.Location = new System.Drawing.Point(242, 28);
+            this.chkIsUseLastCandle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkIsUseLastCandle.Name = "chkIsUseLastCandle";
+            this.chkIsUseLastCandle.Size = new System.Drawing.Size(109, 19);
+            this.chkIsUseLastCandle.TabIndex = 24;
+            this.chkIsUseLastCandle.Text = "마지막 캔들";
+            this.chkIsUseLastCandle.UseVisualStyleBackColor = true;
+            // 
+            // btnLoadCandle
+            // 
+            this.btnLoadCandle.Location = new System.Drawing.Point(14, 19);
+            this.btnLoadCandle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnLoadCandle.Name = "btnLoadCandle";
+            this.btnLoadCandle.Size = new System.Drawing.Size(122, 35);
+            this.btnLoadCandle.TabIndex = 23;
+            this.btnLoadCandle.Text = "Candle";
+            this.btnLoadCandle.UseVisualStyleBackColor = true;
+            this.btnLoadCandle.Click += new System.EventHandler(this.BtnLoadCandle_Click);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.tbQty);
+            this.groupBox5.Location = new System.Drawing.Point(299, 119);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.groupBox5.Size = new System.Drawing.Size(66, 59);
+            this.groupBox5.TabIndex = 31;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "수량";
+            // 
+            // tbQty
+            // 
+            this.tbQty.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbQty.Location = new System.Drawing.Point(7, 24);
+            this.tbQty.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbQty.Name = "tbQty";
+            this.tbQty.Size = new System.Drawing.Size(52, 25);
+            this.tbQty.TabIndex = 0;
+            this.tbQty.Text = "1";
+            this.tbQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbQty.TextChanged += new System.EventHandler(this.tbQty_TextChanged);
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.lbRemainTime);
+            this.groupBox12.Controls.Add(this.btnStartStop);
+            this.groupBox12.Location = new System.Drawing.Point(8, 442);
+            this.groupBox12.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.groupBox12.Size = new System.Drawing.Size(358, 70);
+            this.groupBox12.TabIndex = 30;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "시나리오 시작-종료-남은시간";
+            // 
+            // lbRemainTime
+            // 
+            this.lbRemainTime.AutoSize = true;
+            this.lbRemainTime.Font = new System.Drawing.Font("굴림", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbRemainTime.Location = new System.Drawing.Point(166, 20);
+            this.lbRemainTime.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lbRemainTime.Name = "lbRemainTime";
+            this.lbRemainTime.Size = new System.Drawing.Size(189, 40);
+            this.lbRemainTime.TabIndex = 22;
+            this.lbRemainTime.Text = "00:00:00";
+            // 
+            // btnStartStop
+            // 
+            this.btnStartStop.Location = new System.Drawing.Point(14, 22);
+            this.btnStartStop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnStartStop.Name = "btnStartStop";
+            this.btnStartStop.Size = new System.Drawing.Size(122, 38);
+            this.btnStartStop.TabIndex = 0;
+            this.btnStartStop.Text = "Start";
+            this.btnStartStop.UseVisualStyleBackColor = true;
+            this.btnStartStop.Click += new System.EventHandler(this.btnStartStop_Click);
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.tbTime);
+            this.groupBox10.Location = new System.Drawing.Point(254, 62);
+            this.groupBox10.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.groupBox10.Size = new System.Drawing.Size(112, 51);
+            this.groupBox10.TabIndex = 28;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "시간설정(분)";
+            // 
+            // tbTime
+            // 
+            this.tbTime.Location = new System.Drawing.Point(19, 19);
+            this.tbTime.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbTime.Name = "tbTime";
+            this.tbTime.Size = new System.Drawing.Size(85, 25);
+            this.tbTime.TabIndex = 1;
+            this.tbTime.Text = "0";
+            this.tbTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbTime.TextChanged += new System.EventHandler(this.TbTime_TextChanged);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.rdoStrategy2);
+            this.groupBox4.Controls.Add(this.rdoStrategy1);
+            this.groupBox4.Location = new System.Drawing.Point(8, 119);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.groupBox4.Size = new System.Drawing.Size(136, 59);
+            this.groupBox4.TabIndex = 27;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "방향";
+            // 
+            // rdoStrategy2
+            // 
+            this.rdoStrategy2.AutoSize = true;
+            this.rdoStrategy2.ForeColor = System.Drawing.Color.Red;
+            this.rdoStrategy2.Location = new System.Drawing.Point(73, 26);
+            this.rdoStrategy2.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
+            this.rdoStrategy2.Name = "rdoStrategy2";
+            this.rdoStrategy2.Size = new System.Drawing.Size(58, 19);
+            this.rdoStrategy2.TabIndex = 1;
+            this.rdoStrategy2.Text = "횡보";
+            this.rdoStrategy2.UseVisualStyleBackColor = true;
+            this.rdoStrategy2.CheckedChanged += new System.EventHandler(this.rdoPosition2_CheckedChanged);
+            // 
+            // rdoStrategy1
+            // 
+            this.rdoStrategy1.AutoSize = true;
+            this.rdoStrategy1.Checked = true;
+            this.rdoStrategy1.ForeColor = System.Drawing.Color.Blue;
+            this.rdoStrategy1.Location = new System.Drawing.Point(13, 26);
+            this.rdoStrategy1.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
+            this.rdoStrategy1.Name = "rdoStrategy1";
+            this.rdoStrategy1.Size = new System.Drawing.Size(58, 19);
+            this.rdoStrategy1.TabIndex = 0;
+            this.rdoStrategy1.TabStop = true;
+            this.rdoStrategy1.Text = "추세";
+            this.rdoStrategy1.UseVisualStyleBackColor = true;
+            this.rdoStrategy1.CheckedChanged += new System.EventHandler(this.rdoPosition1_CheckedChanged);
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.cbPriceType);
+            this.groupBox9.Location = new System.Drawing.Point(126, 64);
+            this.groupBox9.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.groupBox9.Size = new System.Drawing.Size(125, 50);
+            this.groupBox9.TabIndex = 26;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "현재가 설정";
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.chart1);
+            this.panel2.Location = new System.Drawing.Point(391, 6);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(574, 388);
+            this.panel2.TabIndex = 27;
+            // 
+            // chart1
+            // 
+            this.chart1.CandleChartType = OM.Vikala.Controls.Charts.CandleChartTypeEnum.기본;
+            this.chart1.ChartData = null;
+            this.chart1.ChartEventInstance = null;
+            this.chart1.DisplayPointCount = 60;
+            this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chart1.IsAutoScrollX = false;
+            this.chart1.IsLoaded = false;
+            this.chart1.IsShowXLine = true;
+            this.chart1.ItemCode = "";
+            this.chart1.LineChartType = OM.Vikala.Controls.Charts.LineChartTypeEnum.기본;
+            this.chart1.Location = new System.Drawing.Point(0, 0);
+            this.chart1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.chart1.Name = "chart1";
+            this.chart1.SelectedTrackBarValue = 1;
+            this.chart1.Size = new System.Drawing.Size(574, 388);
+            this.chart1.TabIndex = 0;
+            this.chart1.TimeInterval = OM.Lib.Base.Enums.TimeIntervalEnum.Minute_30;
+            this.chart1.Title = null;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.chart2);
+            this.panel3.Location = new System.Drawing.Point(391, 401);
+            this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(574, 230);
+            this.panel3.TabIndex = 28;
+            // 
+            // chart2
+            // 
+            this.chart2.CandleChartType = OM.Vikala.Controls.Charts.CandleChartTypeEnum.기본;
+            this.chart2.ChartData = null;
+            this.chart2.ChartEventInstance = null;
+            this.chart2.DisplayPointCount = 60;
+            this.chart2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chart2.IsAutoScrollX = false;
+            this.chart2.IsLoaded = false;
+            this.chart2.IsShowXLine = true;
+            this.chart2.ItemCode = "";
+            this.chart2.LineChartType = OM.Vikala.Controls.Charts.LineChartTypeEnum.기본;
+            this.chart2.Location = new System.Drawing.Point(0, 0);
+            this.chart2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.chart2.Name = "chart2";
+            this.chart2.SelectedTrackBarValue = 1;
+            this.chart2.Size = new System.Drawing.Size(574, 230);
+            this.chart2.TabIndex = 1;
+            this.chart2.TimeInterval = OM.Lib.Base.Enums.TimeIntervalEnum.Minute_30;
+            this.chart2.Title = null;
+            // 
+            // cbxTime
+            // 
+            this.cbxTime.FormattingEnabled = true;
+            this.cbxTime.Items.AddRange(new object[] {
+            "5분",
+            "10분",
+            "30분",
+            "60분",
+            "120분"});
+            this.cbxTime.Location = new System.Drawing.Point(142, 25);
+            this.cbxTime.Name = "cbxTime";
+            this.cbxTime.Size = new System.Drawing.Size(87, 23);
+            this.cbxTime.TabIndex = 25;
+            // 
+            // StrategyAutoTradeRuleForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(968, 638);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
+            this.MaximizeBox = false;
+            this.Name = "StrategyAutoTradeRuleForm";
+            this.Text = "전략투자 시나리오(AUTO)";
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox tbItem;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.TextBox tbLog;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox tbLosscutPrice;
+        private System.Windows.Forms.CheckBox chkIsUseLosscut;
+        private System.Windows.Forms.CheckBox chkIsUse;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.ComboBox cbPriceType;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.RadioButton rdoSType1;
+        private System.Windows.Forms.RadioButton rdoSType2;
+        private System.Windows.Forms.RadioButton rdoSType3;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.RadioButton rdoStrategy2;
+        private System.Windows.Forms.RadioButton rdoStrategy1;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.TextBox tbBuyPrice;
+        private System.Windows.Forms.TextBox tbLosscutPriceTick;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox tbRevenuePriceTick;
+        private System.Windows.Forms.CheckBox chkIsUseRevenue;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox tbRevenuePrice;
+        private System.Windows.Forms.Button btnStartStop;
+        private System.Windows.Forms.Label lbRemainTime;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.TextBox tbQty;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tbCPrice;
+        private System.Windows.Forms.TextBox tbTime;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label lblBuyPosition;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
+        private Vikala.Controls.Charts.ChakraChart chart1;
+        private Vikala.Controls.Charts.ChakraChart chart2;
+        private System.Windows.Forms.Button btnLoadCandle;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.CheckBox chkIsUseLastCandle;
+        private System.Windows.Forms.ComboBox cbxTime;
+    }
+}

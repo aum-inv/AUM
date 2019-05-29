@@ -1,0 +1,68 @@
+﻿using OM.Lib.Base.Utils;
+using OM.Lib.Entity;
+using OM.PP.Chakra.Ctx;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Atman.Chakra.App
+{
+    public partial class OrderMITForm : Form
+    {
+        OrderMITRule rule = new OrderMITRule();
+
+        public OrderMITForm()
+        {
+            InitializeComponent();
+            this.Load += TradeRuleForm_Load;
+            SiseEvents.Instance.SiseHandler += Instance_SiseHandler;
+        }
+        private void TradeRuleForm_Load(object sender, EventArgs e)
+        {
+            rule.Item = tbItem.Text;
+        }
+        private void Instance_SiseHandler(string itemCode, CurrentPrice price)
+        {
+            try
+            {
+                if (rule.Item != itemCode) return;
+                tbCurPrice.Text = price.price;
+                if (chkCurPrice.Checked) tbOrderPrice.Text = price.price;
+                rule.Analysis(price);
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        private void tbItem_TextChanged(object sender, EventArgs e)
+        {
+            if (tbItem.Text.Length == 0) return;
+            rule.Item = tbItem.Text;
+        }
+
+        private void tbQty_TextChanged(object sender, EventArgs e)
+        {
+            if (tbQty.Text.Length == 0) return;
+            rule.Quantity = Convert.ToInt32(tbQty.Text);
+        }
+
+        private void rdoTradeType1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdoTradeType1.Checked) rule.TradeType = "1";
+        }
+
+        private void rdoTradeType2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdoTradeType2.Checked) rule.TradeType = "2";
+        }   
+
+    }
+}

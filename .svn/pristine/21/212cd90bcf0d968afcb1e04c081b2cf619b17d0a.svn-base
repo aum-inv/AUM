@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2C4AA241-5C13-4ABF-9EB3-5903308CB439}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OM.PP.Chakra</RootNamespace>
+    <AssemblyName>OM.PP.Chakra</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="A_CLOSE.cs" />
+    <Compile Include="Ctx\IXingService.cs" />
+    <Compile Include="Ctx\IPPService.cs" />
+    <Compile Include="Ctx\XingContext.cs" />
+    <Compile Include="Ctx\PPContext.cs" />
+    <Compile Include="Ctx\XingService.cs" />
+    <Compile Include="Ctx\PPService.cs" />
+    <Compile Include="A_HLOC.cs" />
+    <Compile Include="ItemTypeEnums.cs" />
+    <Compile Include="ITransform.cs" />
+    <Compile Include="PPStorage.cs" />
+    <Compile Include="PPUtils.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="S_VolumeItemData.cs" />
+    <Compile Include="S_LineItemData.cs" />
+    <Compile Include="T_MirrorItemData.cs" />
+    <Compile Include="T_QuarkItemData.cs" />
+    <Compile Include="T_ThreeThreeItemData.cs" />
+    <Compile Include="T_PrimeNumItemData.cs" />
+    <Compile Include="T_WuXingItemData.cs" />
+    <Compile Include="T_VelocityItemData.cs" />
+    <Compile Include="T_ThaChiItemData.cs" />
+    <Compile Include="T_FiveColorItemData.cs" />
+    <Compile Include="T_AtomItemData.cs" />
+    <Compile Include="T_SLHItemData.cs" />
+    <Compile Include="T_QuantumItemData.cs" />
+    <Compile Include="S_CandleItemData.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\OM\OM.Lib.Base\OM.Lib.Base.csproj">
+      <Project>{1796ffd0-4eaf-4f72-8db2-923345b88c7e}</Project>
+      <Name>OM.Lib.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OM\OM.Lib.Entity\OM.Lib.Entity.csproj">
+      <Project>{d981e9a6-93e8-4369-8126-857c61678516}</Project>
+      <Name>OM.Lib.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OM\OM.Lib.Framework\OM.Lib.Framework.csproj">
+      <Project>{5a86d37b-e9a0-4cfd-bc4a-fa53cd0edc61}</Project>
+      <Name>OM.Lib.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
