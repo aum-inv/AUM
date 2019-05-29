@@ -1,0 +1,78 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.PP.Chakra
+{
+    public static class PPUtils
+    {
+        public static List<S_CandleItemData> GetAverageDatas(string itemCode, List<S_CandleItemData> sourceDatas, int averageCnt)
+        {
+            List<S_CandleItemData> averageDatas = new List<S_CandleItemData>();
+            try
+            {               
+                for (int i = averageCnt; i <= sourceDatas.Count; i++)
+                {
+                    S_CandleItemData transData = new S_CandleItemData(itemCode, sourceDatas.GetRange(i - averageCnt, averageCnt));
+                    averageDatas.Add(transData);
+                }                
+            }
+            catch (Exception ex)
+            {
+            }
+            return averageDatas;
+        }
+        public static List<S_CandleItemData> GetCutDatas(List<S_CandleItemData> sourceDatas, DateTime dt)
+        {            
+            List<S_CandleItemData> sourceDatasNew = new List<S_CandleItemData>();
+            try
+            {
+                foreach(var m in sourceDatas)
+                {
+                    if (m.DTime < dt) continue;
+
+                    sourceDatasNew.Add(m);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return sourceDatasNew;
+        }
+        public static List<S_LineItemData> GetAverageDatas(string itemCode, List<S_LineItemData> sourceDatas, int averageCnt)
+        {
+            List<S_LineItemData> averageDatas = new List<S_LineItemData>();
+            try
+            {
+                for (int i = averageCnt; i <= sourceDatas.Count; i++)
+                {
+                    S_LineItemData transData = new S_LineItemData(itemCode, sourceDatas.GetRange(i - averageCnt, averageCnt));
+                    averageDatas.Add(transData);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return averageDatas;
+        }
+        public static List<S_LineItemData> GetCutDatas(List<S_LineItemData> sourceDatas, DateTime dt)
+        {
+            List<S_LineItemData> sourceDatasNew = new List<S_LineItemData>();
+            try
+            {
+                foreach (var m in sourceDatas)
+                {
+                    if (m.DTime < dt) continue;
+
+                    sourceDatasNew.Add(m);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return sourceDatasNew;
+        }
+    }
+}

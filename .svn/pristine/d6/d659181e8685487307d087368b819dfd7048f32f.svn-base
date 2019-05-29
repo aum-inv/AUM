@@ -1,0 +1,338 @@
+﻿namespace OM.Atman.Chakra.App
+{
+    partial class OrderMITForm
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrderMITForm));
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.tbItem = new System.Windows.Forms.TextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tbQty = new System.Windows.Forms.TextBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.tbCurPrice = new System.Windows.Forms.TextBox();
+            this.chkCurPrice = new System.Windows.Forms.CheckBox();
+            this.tbOrderPrice = new System.Windows.Forms.TextBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.rdoTradeType2 = new System.Windows.Forms.RadioButton();
+            this.rdoTradeType1 = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.tbItem);
+            this.groupBox2.Location = new System.Drawing.Point(14, 12);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.groupBox2.Size = new System.Drawing.Size(91, 50);
+            this.groupBox2.TabIndex = 2;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "상품코드";
+            // 
+            // tbItem
+            // 
+            this.tbItem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbItem.Location = new System.Drawing.Point(6, 19);
+            this.tbItem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbItem.Name = "tbItem";
+            this.tbItem.Size = new System.Drawing.Size(79, 21);
+            this.tbItem.TabIndex = 0;
+            this.tbItem.Text = "CL";
+            this.tbItem.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbItem.TextChanged += new System.EventHandler(this.tbItem_TextChanged);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.tbQty);
+            this.groupBox3.Location = new System.Drawing.Point(122, 12);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.groupBox3.Size = new System.Drawing.Size(91, 50);
+            this.groupBox3.TabIndex = 4;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "수량";
+            // 
+            // tbQty
+            // 
+            this.tbQty.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbQty.Location = new System.Drawing.Point(6, 19);
+            this.tbQty.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbQty.Name = "tbQty";
+            this.tbQty.Size = new System.Drawing.Size(79, 21);
+            this.tbQty.TabIndex = 0;
+            this.tbQty.Text = "0";
+            this.tbQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbQty.TextChanged += new System.EventHandler(this.tbQty_TextChanged);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.tbCurPrice);
+            this.groupBox5.Controls.Add(this.chkCurPrice);
+            this.groupBox5.Controls.Add(this.tbOrderPrice);
+            this.groupBox5.Location = new System.Drawing.Point(14, 121);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.groupBox5.Size = new System.Drawing.Size(199, 48);
+            this.groupBox5.TabIndex = 6;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "현재가";
+            // 
+            // tbCurPrice
+            // 
+            this.tbCurPrice.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbCurPrice.Location = new System.Drawing.Point(111, 22);
+            this.tbCurPrice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbCurPrice.Name = "tbCurPrice";
+            this.tbCurPrice.ReadOnly = true;
+            this.tbCurPrice.Size = new System.Drawing.Size(80, 14);
+            this.tbCurPrice.TabIndex = 22;
+            this.tbCurPrice.Text = "000.00";
+            this.tbCurPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // chkCurPrice
+            // 
+            this.chkCurPrice.AutoSize = true;
+            this.chkCurPrice.Location = new System.Drawing.Point(92, 23);
+            this.chkCurPrice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkCurPrice.Name = "chkCurPrice";
+            this.chkCurPrice.Size = new System.Drawing.Size(15, 14);
+            this.chkCurPrice.TabIndex = 21;
+            this.chkCurPrice.UseVisualStyleBackColor = true;
+            // 
+            // tbOrderPrice
+            // 
+            this.tbOrderPrice.Dock = System.Windows.Forms.DockStyle.Left;
+            this.tbOrderPrice.Location = new System.Drawing.Point(6, 19);
+            this.tbOrderPrice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbOrderPrice.Name = "tbOrderPrice";
+            this.tbOrderPrice.Size = new System.Drawing.Size(77, 21);
+            this.tbOrderPrice.TabIndex = 0;
+            this.tbOrderPrice.Text = "000.00";
+            this.tbOrderPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.rdoTradeType2);
+            this.groupBox6.Controls.Add(this.rdoTradeType1);
+            this.groupBox6.Location = new System.Drawing.Point(14, 71);
+            this.groupBox6.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Padding = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.groupBox6.Size = new System.Drawing.Size(199, 46);
+            this.groupBox6.TabIndex = 7;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "주문타입";
+            // 
+            // rdoTradeType2
+            // 
+            this.rdoTradeType2.AutoSize = true;
+            this.rdoTradeType2.Location = new System.Drawing.Point(113, 20);
+            this.rdoTradeType2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rdoTradeType2.Name = "rdoTradeType2";
+            this.rdoTradeType2.Size = new System.Drawing.Size(59, 16);
+            this.rdoTradeType2.TabIndex = 1;
+            this.rdoTradeType2.Text = "지정가";
+            this.rdoTradeType2.UseVisualStyleBackColor = true;
+            this.rdoTradeType2.CheckedChanged += new System.EventHandler(this.rdoTradeType2_CheckedChanged);
+            // 
+            // rdoTradeType1
+            // 
+            this.rdoTradeType1.AutoSize = true;
+            this.rdoTradeType1.Checked = true;
+            this.rdoTradeType1.Location = new System.Drawing.Point(10, 20);
+            this.rdoTradeType1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rdoTradeType1.Name = "rdoTradeType1";
+            this.rdoTradeType1.Size = new System.Drawing.Size(59, 16);
+            this.rdoTradeType1.TabIndex = 0;
+            this.rdoTradeType1.TabStop = true;
+            this.rdoTradeType1.Text = "시장가";
+            this.rdoTradeType1.UseVisualStyleBackColor = true;
+            this.rdoTradeType1.CheckedChanged += new System.EventHandler(this.rdoTradeType1_CheckedChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.checkBox1);
+            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Location = new System.Drawing.Point(14, 189);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.groupBox1.Size = new System.Drawing.Size(199, 81);
+            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "진입주문";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(10, 21);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(126, 16);
+            this.checkBox1.TabIndex = 21;
+            this.checkBox1.Text = "진입주문 MIT 사용";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(9, 50);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(77, 21);
+            this.textBox2.TabIndex = 0;
+            this.textBox2.Text = "000.00";
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(113, 50);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(77, 21);
+            this.textBox1.TabIndex = 22;
+            this.textBox1.Text = "000.00";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.textBox3);
+            this.groupBox4.Controls.Add(this.checkBox2);
+            this.groupBox4.Controls.Add(this.textBox4);
+            this.groupBox4.Location = new System.Drawing.Point(14, 280);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.groupBox4.Size = new System.Drawing.Size(199, 81);
+            this.groupBox4.TabIndex = 9;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "청산주문";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(113, 50);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(77, 21);
+            this.textBox3.TabIndex = 22;
+            this.textBox3.Text = "000.00";
+            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(10, 21);
+            this.checkBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(126, 16);
+            this.checkBox2.TabIndex = 21;
+            this.checkBox2.Text = "청산주문 MIT 사용";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(9, 50);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(77, 21);
+            this.textBox4.TabIndex = 0;
+            this.textBox4.Text = "000.00";
+            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // OrderMITForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(226, 369);
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox6);
+            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaximizeBox = false;
+            this.Name = "OrderMITForm";
+            this.Text = "MIT 주문창";
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox tbItem;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox tbQty;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.TextBox tbOrderPrice;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.RadioButton rdoTradeType1;
+        private System.Windows.Forms.RadioButton rdoTradeType2;
+        private System.Windows.Forms.CheckBox chkCurPrice;
+        private System.Windows.Forms.TextBox tbCurPrice;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.TextBox textBox4;
+    }
+}

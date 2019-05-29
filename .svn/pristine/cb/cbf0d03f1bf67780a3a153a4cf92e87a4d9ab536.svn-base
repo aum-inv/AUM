@@ -1,0 +1,72 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.PP.Chakra
+{
+    public enum SLHTypeEnum
+    {
+        없음
+        , 천
+        , 지
+        , 인        
+        , 지인
+        , 천인
+        , 무
+    }
+    public enum ThreeThreeTypeEnum
+    {
+            없음        
+        ,   태양
+        ,   태음
+        ,   소양
+        ,   양명
+        ,   궐음 
+        ,   소음
+        ,   무극
+    }
+    public enum QuarkTypeEnum
+    {
+         없음
+        , 빨쿼크_양
+        , 빨쿼크_무
+        , 빨쿼크_음
+        , 초쿼크_양
+        , 초쿼크_무
+        , 초쿼크_음
+        , 파쿼크_양
+        , 파쿼크_무
+        , 파쿼크_음
+       , 무
+    }
+    public enum PlusMinusTypeEnum
+    {
+         양, 음, 무
+    }
+
+    public enum WuXingTypeEnum
+    {
+        없음
+        , 소양
+        , 양명
+        , 태양
+        , 무극
+        , 궐음
+        , 소음
+        , 태음     
+    }
+    public enum EightRuleTypeEnum
+    {
+        없음
+       , 건_하늘_111
+       , 곤_못_000
+       , 리_불_101
+       , 감_천둥_010
+       , 간_바람_110
+       , 진_물_001
+       , 손_선_100
+       , 태_땅_011
+    }
+}

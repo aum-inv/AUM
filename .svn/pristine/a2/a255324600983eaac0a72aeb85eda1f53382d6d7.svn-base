@@ -1,0 +1,389 @@
+﻿namespace OM.Atman.Chakra.App
+{
+    partial class CandleSignalForm3
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CandleSignalForm3));
+            this.nIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.ucSignalCL10 = new OM.Atman.Chakra.App.UC_Signal();
+            this.ucSignalCL05 = new OM.Atman.Chakra.App.UC_Signal();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.ucSignalNG10 = new OM.Atman.Chakra.App.UC_Signal();
+            this.ucSignalNG05 = new OM.Atman.Chakra.App.UC_Signal();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.ucSignalGC10 = new OM.Atman.Chakra.App.UC_Signal();
+            this.ucSignalGC05 = new OM.Atman.Chakra.App.UC_Signal();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.ucSignalSI10 = new OM.Atman.Chakra.App.UC_Signal();
+            this.ucSignalSI05 = new OM.Atman.Chakra.App.UC_Signal();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.ucSignalHSI10 = new OM.Atman.Chakra.App.UC_Signal();
+            this.ucSignalHSI05 = new OM.Atman.Chakra.App.UC_Signal();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.ucSignalNQ10 = new OM.Atman.Chakra.App.UC_Signal();
+            this.ucSignalNQ05 = new OM.Atman.Chakra.App.UC_Signal();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.ucSignalURO10 = new OM.Atman.Chakra.App.UC_Signal();
+            this.ucSignalURO05 = new OM.Atman.Chakra.App.UC_Signal();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            this.tabPage6.SuspendLayout();
+            this.tabPage7.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // nIcon
+            // 
+            this.nIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.nIcon.BalloonTipText = "CANDLE SIGNAL";
+            this.nIcon.BalloonTipTitle = "CANDLE SIGNAL";
+            this.nIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("nIcon.Icon")));
+            this.nIcon.Text = "ATMAN SIGNAL";
+            this.nIcon.Visible = true;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Controls.Add(this.tabPage6);
+            this.tabControl1.Controls.Add(this.tabPage7);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.ItemSize = new System.Drawing.Size(100, 25);
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabControl1.Multiline = true;
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(946, 449);
+            this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.tabControl1.TabIndex = 0;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.ucSignalCL10);
+            this.tabPage1.Controls.Add(this.ucSignalCL05);
+            this.tabPage1.Location = new System.Drawing.Point(4, 29);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage1.Size = new System.Drawing.Size(938, 416);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "CL";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // ucSignalCL10
+            // 
+            this.ucSignalCL10.BackColor = System.Drawing.Color.White;
+            this.ucSignalCL10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ucSignalCL10.Location = new System.Drawing.Point(470, 6);
+            this.ucSignalCL10.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.ucSignalCL10.Name = "ucSignalCL10";
+            this.ucSignalCL10.Size = new System.Drawing.Size(457, 392);
+            this.ucSignalCL10.TabIndex = 1;
+            this.ucSignalCL10.Title = "Day";
+            // 
+            // ucSignalCL05
+            // 
+            this.ucSignalCL05.BackColor = System.Drawing.Color.White;
+            this.ucSignalCL05.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ucSignalCL05.Location = new System.Drawing.Point(6, 8);
+            this.ucSignalCL05.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.ucSignalCL05.Name = "ucSignalCL05";
+            this.ucSignalCL05.Size = new System.Drawing.Size(457, 392);
+            this.ucSignalCL05.TabIndex = 0;
+            this.ucSignalCL05.Title = "120분";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.ucSignalNG10);
+            this.tabPage2.Controls.Add(this.ucSignalNG05);
+            this.tabPage2.Location = new System.Drawing.Point(4, 29);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage2.Size = new System.Drawing.Size(938, 416);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "NG";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // ucSignalNG10
+            // 
+            this.ucSignalNG10.BackColor = System.Drawing.Color.White;
+            this.ucSignalNG10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ucSignalNG10.Location = new System.Drawing.Point(473, 5);
+            this.ucSignalNG10.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.ucSignalNG10.Name = "ucSignalNG10";
+            this.ucSignalNG10.Size = new System.Drawing.Size(457, 393);
+            this.ucSignalNG10.TabIndex = 5;
+            this.ucSignalNG10.Title = "Day";
+            // 
+            // ucSignalNG05
+            // 
+            this.ucSignalNG05.BackColor = System.Drawing.Color.White;
+            this.ucSignalNG05.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ucSignalNG05.Location = new System.Drawing.Point(9, 5);
+            this.ucSignalNG05.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.ucSignalNG05.Name = "ucSignalNG05";
+            this.ucSignalNG05.Size = new System.Drawing.Size(457, 393);
+            this.ucSignalNG05.TabIndex = 4;
+            this.ucSignalNG05.Title = "120분";
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.ucSignalGC10);
+            this.tabPage3.Controls.Add(this.ucSignalGC05);
+            this.tabPage3.Location = new System.Drawing.Point(4, 29);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage3.Size = new System.Drawing.Size(938, 416);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "GC";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // ucSignalGC10
+            // 
+            this.ucSignalGC10.BackColor = System.Drawing.Color.White;
+            this.ucSignalGC10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ucSignalGC10.Location = new System.Drawing.Point(473, 5);
+            this.ucSignalGC10.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.ucSignalGC10.Name = "ucSignalGC10";
+            this.ucSignalGC10.Size = new System.Drawing.Size(457, 393);
+            this.ucSignalGC10.TabIndex = 5;
+            this.ucSignalGC10.Title = "Day";
+            // 
+            // ucSignalGC05
+            // 
+            this.ucSignalGC05.BackColor = System.Drawing.Color.White;
+            this.ucSignalGC05.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ucSignalGC05.Location = new System.Drawing.Point(9, 5);
+            this.ucSignalGC05.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.ucSignalGC05.Name = "ucSignalGC05";
+            this.ucSignalGC05.Size = new System.Drawing.Size(457, 393);
+            this.ucSignalGC05.TabIndex = 4;
+            this.ucSignalGC05.Title = "120분";
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.ucSignalSI10);
+            this.tabPage4.Controls.Add(this.ucSignalSI05);
+            this.tabPage4.Location = new System.Drawing.Point(4, 29);
+            this.tabPage4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage4.Size = new System.Drawing.Size(938, 416);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "SI";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // ucSignalSI10
+            // 
+            this.ucSignalSI10.BackColor = System.Drawing.Color.White;
+            this.ucSignalSI10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ucSignalSI10.Location = new System.Drawing.Point(473, 5);
+            this.ucSignalSI10.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.ucSignalSI10.Name = "ucSignalSI10";
+            this.ucSignalSI10.Size = new System.Drawing.Size(457, 393);
+            this.ucSignalSI10.TabIndex = 5;
+            this.ucSignalSI10.Title = "Day";
+            // 
+            // ucSignalSI05
+            // 
+            this.ucSignalSI05.BackColor = System.Drawing.Color.White;
+            this.ucSignalSI05.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ucSignalSI05.Location = new System.Drawing.Point(9, 5);
+            this.ucSignalSI05.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.ucSignalSI05.Name = "ucSignalSI05";
+            this.ucSignalSI05.Size = new System.Drawing.Size(457, 393);
+            this.ucSignalSI05.TabIndex = 4;
+            this.ucSignalSI05.Title = "120분";
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.ucSignalHSI10);
+            this.tabPage5.Controls.Add(this.ucSignalHSI05);
+            this.tabPage5.Location = new System.Drawing.Point(4, 29);
+            this.tabPage5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage5.Size = new System.Drawing.Size(938, 416);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "HMH";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // ucSignalHSI10
+            // 
+            this.ucSignalHSI10.BackColor = System.Drawing.Color.White;
+            this.ucSignalHSI10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ucSignalHSI10.Location = new System.Drawing.Point(473, 5);
+            this.ucSignalHSI10.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.ucSignalHSI10.Name = "ucSignalHSI10";
+            this.ucSignalHSI10.Size = new System.Drawing.Size(457, 393);
+            this.ucSignalHSI10.TabIndex = 5;
+            this.ucSignalHSI10.Title = "Day";
+            // 
+            // ucSignalHSI05
+            // 
+            this.ucSignalHSI05.BackColor = System.Drawing.Color.White;
+            this.ucSignalHSI05.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ucSignalHSI05.Location = new System.Drawing.Point(9, 5);
+            this.ucSignalHSI05.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.ucSignalHSI05.Name = "ucSignalHSI05";
+            this.ucSignalHSI05.Size = new System.Drawing.Size(457, 393);
+            this.ucSignalHSI05.TabIndex = 4;
+            this.ucSignalHSI05.Title = "120분";
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.ucSignalNQ10);
+            this.tabPage6.Controls.Add(this.ucSignalNQ05);
+            this.tabPage6.Location = new System.Drawing.Point(4, 29);
+            this.tabPage6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Size = new System.Drawing.Size(938, 416);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "NQ";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // ucSignalNQ10
+            // 
+            this.ucSignalNQ10.BackColor = System.Drawing.Color.White;
+            this.ucSignalNQ10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ucSignalNQ10.Location = new System.Drawing.Point(473, 5);
+            this.ucSignalNQ10.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.ucSignalNQ10.Name = "ucSignalNQ10";
+            this.ucSignalNQ10.Size = new System.Drawing.Size(457, 393);
+            this.ucSignalNQ10.TabIndex = 5;
+            this.ucSignalNQ10.Title = "Day";
+            // 
+            // ucSignalNQ05
+            // 
+            this.ucSignalNQ05.BackColor = System.Drawing.Color.White;
+            this.ucSignalNQ05.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ucSignalNQ05.Location = new System.Drawing.Point(9, 5);
+            this.ucSignalNQ05.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.ucSignalNQ05.Name = "ucSignalNQ05";
+            this.ucSignalNQ05.Size = new System.Drawing.Size(457, 393);
+            this.ucSignalNQ05.TabIndex = 4;
+            this.ucSignalNQ05.Title = "120분";
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.ucSignalURO10);
+            this.tabPage7.Controls.Add(this.ucSignalURO05);
+            this.tabPage7.Location = new System.Drawing.Point(4, 29);
+            this.tabPage7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Size = new System.Drawing.Size(938, 416);
+            this.tabPage7.TabIndex = 6;
+            this.tabPage7.Text = "URO";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // ucSignalURO10
+            // 
+            this.ucSignalURO10.BackColor = System.Drawing.Color.White;
+            this.ucSignalURO10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ucSignalURO10.Location = new System.Drawing.Point(473, 5);
+            this.ucSignalURO10.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.ucSignalURO10.Name = "ucSignalURO10";
+            this.ucSignalURO10.Size = new System.Drawing.Size(457, 393);
+            this.ucSignalURO10.TabIndex = 5;
+            this.ucSignalURO10.Title = "Day";
+            // 
+            // ucSignalURO05
+            // 
+            this.ucSignalURO05.BackColor = System.Drawing.Color.White;
+            this.ucSignalURO05.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ucSignalURO05.Location = new System.Drawing.Point(9, 5);
+            this.ucSignalURO05.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.ucSignalURO05.Name = "ucSignalURO05";
+            this.ucSignalURO05.Size = new System.Drawing.Size(457, 393);
+            this.ucSignalURO05.TabIndex = 4;
+            this.ucSignalURO05.Title = "120분";
+            // 
+            // CandleSignalForm3
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(946, 449);
+            this.Controls.Add(this.tabControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaximizeBox = false;
+            this.Name = "CandleSignalForm3";
+            this.Text = "CandleSignalForm";
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage6.ResumeLayout(false);
+            this.tabPage7.ResumeLayout(false);
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+        private System.Windows.Forms.NotifyIcon nIcon;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.TabPage tabPage7;
+        private UC_Signal ucSignalCL10;
+        private UC_Signal ucSignalCL05;
+        private UC_Signal ucSignalNG10;
+        private UC_Signal ucSignalNG05;
+        private UC_Signal ucSignalGC10;
+        private UC_Signal ucSignalGC05;
+        private UC_Signal ucSignalSI10;
+        private UC_Signal ucSignalSI05;
+        private UC_Signal ucSignalHSI10;
+        private UC_Signal ucSignalHSI05;
+        private UC_Signal ucSignalNQ10;
+        private UC_Signal ucSignalNQ05;
+        private UC_Signal ucSignalURO10;
+        private UC_Signal ucSignalURO05;
+    }
+}

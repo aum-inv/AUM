@@ -1,0 +1,101 @@
+﻿using OM.Lib.Base.Enums;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Vikala.Chakra.App.Mains
+{
+    public partial class BasicMainForm : Form
+    {
+        TimeIntervalEnum timeInterval = TimeIntervalEnum.Day;
+
+        public BasicMainForm()
+        {
+            InitializeComponent();
+           
+            InitializeControls();
+        }
+
+        private void InitializeControls()
+        {
+            setItems();
+            setInterval();
+            setTimer();
+        }
+
+        private void setItems()
+        {
+            //Load Items
+            tscbItem.ComboBox.DataSource = ItemCodeSet.Items;
+            tscbItem.ComboBox.DisplayMember = "Name";
+            tscbItem.ComboBox.ValueMember = "Code";
+            tscbItem.SelectedIndex = 0;
+        }
+        private void setInterval()
+        {
+            tsbTime1.BackColor = Color.WhiteSmoke;
+            tsbTime2.BackColor = Color.WhiteSmoke;
+            tsbTime3.BackColor = Color.WhiteSmoke;
+            tsbTime4.BackColor = Color.WhiteSmoke;
+            tsbTime5.BackColor = Color.WhiteSmoke;
+            tsbTime6.BackColor = Color.WhiteSmoke;
+            tsbTime7.BackColor = Color.WhiteSmoke;
+            tsbTime8.BackColor = Color.WhiteSmoke;
+            tsbTime9.BackColor = Color.WhiteSmoke;
+
+            if (timeInterval == TimeIntervalEnum.Minute_01) tsbTime1.BackColor = Color.Yellow;
+            if (timeInterval == TimeIntervalEnum.Minute_05) tsbTime2.BackColor = Color.Yellow;
+            if (timeInterval == TimeIntervalEnum.Minute_10) tsbTime3.BackColor = Color.Yellow;
+            if (timeInterval == TimeIntervalEnum.Minute_30) tsbTime4.BackColor = Color.Yellow;
+            if (timeInterval == TimeIntervalEnum.Minute_60) tsbTime5.BackColor = Color.Yellow;
+            if (timeInterval == TimeIntervalEnum.Minute_120) tsbTime6.BackColor = Color.Yellow;
+            if (timeInterval == TimeIntervalEnum.Day) tsbTime7.BackColor = Color.Yellow;
+            if (timeInterval == TimeIntervalEnum.Week) tsbTime8.BackColor = Color.Yellow;
+            if (timeInterval == TimeIntervalEnum.Month) tsbTime9.BackColor = Color.Yellow;
+        }
+        private void setTimer()
+        {
+
+        }
+
+        private void tsbFD1_Click(object sender, EventArgs e)
+        {
+            flpMain.FlowDirection = FlowDirection.TopDown;
+        }
+
+        private void tsbFD2_Click(object sender, EventArgs e)
+        {
+            flpMain.FlowDirection = FlowDirection.LeftToRight;
+        }
+
+        private void tscbItem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show((tscbItem.SelectedItem as ItemData).Name.ToString());
+        }
+
+        private void IntervalButton_Click(object sender, EventArgs e)
+        {
+            var b = sender as ToolStripButton;
+
+            int n = Convert.ToInt32(b.Tag);
+
+            if (n == 1) timeInterval = TimeIntervalEnum.Minute_01;
+            else if (n == 2) timeInterval = TimeIntervalEnum.Minute_05;
+            else if (n == 3) timeInterval = TimeIntervalEnum.Minute_10;
+            else if (n == 4) timeInterval = TimeIntervalEnum.Minute_30;
+            else if (n == 5) timeInterval = TimeIntervalEnum.Minute_60;
+            else if (n == 6) timeInterval = TimeIntervalEnum.Minute_120;
+            else if (n == 7) timeInterval = TimeIntervalEnum.Day;
+            else if (n == 8) timeInterval = TimeIntervalEnum.Week;
+            else if (n == 9) timeInterval = TimeIntervalEnum.Month;
+
+            setInterval();
+        }
+    }
+}

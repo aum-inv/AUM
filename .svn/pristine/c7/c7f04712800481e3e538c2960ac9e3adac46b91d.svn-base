@@ -1,0 +1,53 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.Lib.Base.Enums
+{
+    public class ItemCode
+    {
+        private ItemCode() { }
+
+        public class Indices
+        {
+            private Indices() { }
+            public const string Kospi = "001";
+            public const string Kospi200 = "101";
+            public const string Kosdaq = "301";
+
+            public const string SnP500 = "";
+            public const string Dow30 = "";
+        }
+        public class Commodities
+        {
+            private Commodities() { }
+            public const string CrudeOilWTI = "WTI";
+            public const string NaturalGas = "";
+            public const string Gold = "";
+            public const string Silver = "";
+            public const string Copper = "";
+        }
+
+        public class Forex
+        {
+            private Forex() { }
+            public const string EURUSD = "";
+            public const string USDJPY = "";         
+        }
+
+        public class Crypto
+        {
+            private Crypto() { }
+            public const string BTCUSD = "";
+            public const string ETHUSD = "";
+            public const string BCHUSD = "";
+        }
+
+        public class Stocks
+        {
+            private Stocks() { }
+        }
+    }
+}

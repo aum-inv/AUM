@@ -1,0 +1,674 @@
+﻿using OM.Lib.Base;
+using OM.Lib.Base.Enums;
+using OM.Lib.Base.Utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.PP.Chakra
+{
+    public class PPStorage
+    {
+        private static PPStorage storage = new PPStorage();
+        private PPStorage() { }
+
+        public static PPStorage Instance
+        {
+            get
+            {
+                return storage;
+            }
+        }
+        public Dictionary<string, LimitedList<S_CandleItemData>> StorageMin01 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
+        public Dictionary<string, LimitedList<S_CandleItemData>> StorageMin05 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
+        public Dictionary<string, LimitedList<S_CandleItemData>> StorageMin10 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
+        public Dictionary<string, LimitedList<S_CandleItemData>> StorageMin30 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
+        public Dictionary<string, LimitedList<S_CandleItemData>> StorageMin60 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
+
+        public Dictionary<string, LimitedList<S_CandleItemData>> StorageMin120 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
+        public Dictionary<string, LimitedList<S_CandleItemData>> StorageDay = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
+
+        public void Init(string itemCode)
+        {
+            try
+            {
+                if (!StorageMin01.ContainsKey(itemCode))
+                {
+                    StorageMin01.Add(itemCode, new LimitedList<S_CandleItemData>(30));
+                }
+
+                if (!StorageMin05.ContainsKey(itemCode))
+                {
+                    StorageMin05.Add(itemCode, new LimitedList<S_CandleItemData>(30));
+                }
+
+                if (!StorageMin10.ContainsKey(itemCode))
+                {
+                    StorageMin10.Add(itemCode, new LimitedList<S_CandleItemData>(10));
+                }
+
+                if (!StorageMin30.ContainsKey(itemCode))
+                {
+                    StorageMin30.Add(itemCode, new LimitedList<S_CandleItemData>(10));
+                }
+
+                if (!StorageMin60.ContainsKey(itemCode))
+                {
+                    StorageMin60.Add(itemCode, new LimitedList<S_CandleItemData>(10));
+                }
+
+                if (!StorageMin120.ContainsKey(itemCode))
+                {
+                    StorageMin120.Add(itemCode, new LimitedList<S_CandleItemData>(10));
+                }
+                if (!StorageDay.ContainsKey(itemCode))
+                {
+                    StorageDay.Add(itemCode, new LimitedList<S_CandleItemData>(10));
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        public void Init01(string itemCode, List<S_CandleItemData> list)
+        {
+            StorageMin01[itemCode].Clear();
+            //for (int i = list.Count -  1; i >= 0; i--)
+            foreach (var m in list)
+                StorageMin01[itemCode].Add(m);
+        }
+
+        public void Init05(string itemCode, List<S_CandleItemData> list)
+        {
+            StorageMin05[itemCode].Clear();
+            //for (int i = list.Count -  1; i >= 0; i--)
+            foreach (var m in list)
+                StorageMin05[itemCode].Add(m);
+        }
+
+        public void Init10(string itemCode, List<S_CandleItemData> list)
+        {
+            StorageMin10[itemCode].Clear();
+            //for (int i = list.Count - 1; i >= 0; i--)
+            foreach (var m in list)
+                StorageMin10[itemCode].Add(m);
+        }
+
+        public void Init30(string itemCode, List<S_CandleItemData> list)
+        {
+            StorageMin30[itemCode].Clear();
+            //for (int i = list.Count - 1; i >= 0; i--)
+            foreach (var m in list)
+                StorageMin30[itemCode].Add(m);
+        }
+
+        public void Init60(string itemCode, List<S_CandleItemData> list)
+        {
+            StorageMin60[itemCode].Clear();
+            //for (int i = list.Count - 1; i >= 0; i--)
+            foreach (var m in list)
+                StorageMin60[itemCode].Add(m);
+        }
+        public void Init120(string itemCode, List<S_CandleItemData> list)
+        {
+            StorageMin120[itemCode].Clear();
+            //for (int i = list.Count - 1; i >= 0; i--)
+            foreach (var m in list)
+                StorageMin120[itemCode].Add(m);
+        }
+
+        public void InitDay(string itemCode, List<S_CandleItemData> list)
+        {
+            StorageDay[itemCode].Clear();
+            //for (int i = list.Count - 1; i >= 0; i--)
+            foreach (var m in list)
+                StorageDay[itemCode].Add(m);
+        }
+
+        public void Add(string itemCode, DateTime dateTime, Single price)
+        {
+            try
+            {
+                //AddMin05(itemCode, dateTime, price);
+                AddMin10(itemCode, dateTime, price);
+                AddMin30(itemCode, dateTime, price);
+                AddMin60(itemCode, dateTime, price);
+
+                //AddMin120(itemCode, dateTime, price);
+                //AddDay(itemCode, dateTime, price);
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        public void AddMin05(string itemCode, DateTime dt, Single price)
+        {
+            try
+            {
+                bool isCheck = false;
+
+                var list = StorageMin05[itemCode];
+                var item = list[0];
+                DateTime newDt = GetTime(dt, 5);
+
+                if (item.DTime == newDt)
+                {
+                    if (item.HighPrice < price) { item.HighPrice = price; isCheck = true; }
+                    if (item.LowPrice > price) { item.LowPrice = price; isCheck = true; }
+                    item.ClosePrice = price;
+                }
+                if (isCheck)
+                {
+                    int tickDiff = PriceTick.GetTickDiff(itemCode, item.HighPrice, item.LowPrice);
+                    if (tickDiff <= 5) isCheck = false;
+                }
+                isCheck = false;
+                if (isCheck || item.DTime != newDt)
+                {
+                    try
+                    {
+                        LimitedList<double> priceList = PPUtils.GetLinePointByCandle(list);
+
+                        var lineChartPattern2 = PointsUtil.GetTwoLinePattern(priceList);
+                        //if (lineChartPattern2 != TickLineChartPatternEnum.None)
+                            PPEvents.Instance.OnTickLineChartPatternHandler(itemCode, TimeIntervalEnum.Minute_05, lineChartPattern2, "Line2");
+
+                        var lineChartPattern3 = PointsUtil.GetThreeLinePattern(priceList);
+                        //if (lineChartPattern3 != TickLineChartPatternEnum.None)
+                            PPEvents.Instance.OnTickLineChartPatternHandler(itemCode, TimeIntervalEnum.Minute_05, lineChartPattern3, "Line3");
+
+                        var upDownH = PointsUtil.GetOneLineUpDownPatternH(priceList);
+                        //if (upDownH != UpDownPatternEnum.None)
+                            PPEvents.Instance.OnTickLineUpDownPatternHandler(itemCode, TimeIntervalEnum.Minute_05, upDownH, "High");
+
+                        var upDownL = PointsUtil.GetOneLineUpDownPatternL(priceList);
+                        //if (upDownL != UpDownPatternEnum.None)
+                            PPEvents.Instance.OnTickLineUpDownPatternHandler(itemCode, TimeIntervalEnum.Minute_05, upDownL, "Low");
+
+                        var upDownHL = PointsUtil.GetTwoLineUpDownPatternHL(priceList);
+                        //if (upDownHL != UpDownPatternEnum.None)
+                            PPEvents.Instance.OnTickLineUpDownPatternHandler(itemCode, TimeIntervalEnum.Minute_05, upDownHL, "HL");
+                    }
+                    catch (Exception) { }
+                    try
+                    {
+                        var result = PPUtils.GetSameUpDownCount(list);
+                        int cnt = result.Item1;
+                        PlusMinusTypeEnum pmType = result.Item2;
+                        PPEvents.Instance.OnCandleOccurHandler(itemCode, Lib.Base.Enums.TimeIntervalEnum.Minute_05, cnt, pmType);                       
+                        var massUpDown = PPUtils.GetMassPattern(list);
+                        //if (massUpDown != Lib.Base.Enums.CandleChartPatternEnum.None)
+                            PPEvents.Instance.OnCandleMassPatternHandler(itemCode, Lib.Base.Enums.TimeIntervalEnum.Minute_05, massUpDown);
+
+                        var candleUpDown = PPUtils.GetCandleChartPattern(list, 6);
+                        if (candleUpDown == Lib.Base.Enums.CandleChartPatternEnum.None)
+                            candleUpDown = PPUtils.GetCandleChartPattern(list, 5);
+                        if (candleUpDown == Lib.Base.Enums.CandleChartPatternEnum.None)
+                            candleUpDown = PPUtils.GetCandleChartPattern(list, 4);
+                        if (candleUpDown == Lib.Base.Enums.CandleChartPatternEnum.None)
+                            candleUpDown = PPUtils.GetCandleChartPattern(list, 3);
+
+                        //if (candleUpDown != Lib.Base.Enums.CandleChartPatternEnum.None)
+                            PPEvents.Instance.OnCandleChartPatternHandler(itemCode, Lib.Base.Enums.TimeIntervalEnum.Minute_05, candleUpDown);
+                    }
+                    catch (Exception) { }
+                }
+
+                if(item.DTime != newDt)
+                {
+                    list.Insert(new S_CandleItemData(itemCode, price, price, price, price, 0, newDt));
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+        public void AddMin10(string itemCode, DateTime dt, Single price)
+        {
+            try
+            {
+                bool isCheck = false;
+
+                var list = StorageMin10[itemCode];
+                var item = list[0];
+                DateTime newDt = GetTime(dt, 10);
+                if (item.DTime == newDt)
+                {
+                    if (item.HighPrice < price) { item.HighPrice = price; isCheck = true; }
+                    if (item.LowPrice > price) { item.LowPrice = price; isCheck = true; }
+                    item.ClosePrice = price;
+                }
+                if (isCheck)
+                {
+                    int tickDiff = PriceTick.GetTickDiff(itemCode, item.HighPrice, item.LowPrice);
+                    if (tickDiff <= 10) isCheck = false;
+                }
+                isCheck = false;
+                if (isCheck || item.DTime != newDt)
+                {
+                    try
+                    {
+                        LimitedList<double> priceList = PPUtils.GetLinePointByCandle(list);
+
+                        var lineChartPattern2 = PointsUtil.GetTwoLinePattern(priceList);
+                        //if (lineChartPattern2 != TickLineChartPatternEnum.None)
+                            PPEvents.Instance.OnTickLineChartPatternHandler(itemCode, TimeIntervalEnum.Minute_10, lineChartPattern2, "Line2");
+
+                        var lineChartPattern3 = PointsUtil.GetThreeLinePattern(priceList);
+                        //if (lineChartPattern3 != TickLineChartPatternEnum.None)
+                            PPEvents.Instance.OnTickLineChartPatternHandler(itemCode, TimeIntervalEnum.Minute_10, lineChartPattern3, "Line3");
+
+                        var upDownH = PointsUtil.GetOneLineUpDownPatternH(priceList);
+                        //if (upDownH != UpDownPatternEnum.None)
+                            PPEvents.Instance.OnTickLineUpDownPatternHandler(itemCode, TimeIntervalEnum.Minute_10, upDownH, "High");
+
+                        var upDownL = PointsUtil.GetOneLineUpDownPatternL(priceList);
+                        //if (upDownL != UpDownPatternEnum.None)
+                            PPEvents.Instance.OnTickLineUpDownPatternHandler(itemCode, TimeIntervalEnum.Minute_10, upDownL, "Low");
+
+                        var upDownHL = PointsUtil.GetTwoLineUpDownPatternHL(priceList);
+                        //if (upDownHL != UpDownPatternEnum.None)
+                            PPEvents.Instance.OnTickLineUpDownPatternHandler(itemCode, TimeIntervalEnum.Minute_10, upDownHL, "HL");
+                    }
+                    catch (Exception) { }
+
+                    try
+                    {
+                        var result = PPUtils.GetSameUpDownCount(list);
+                        int cnt = result.Item1;
+                        PlusMinusTypeEnum pmType = result.Item2;
+                        PPEvents.Instance.OnCandleOccurHandler(itemCode, Lib.Base.Enums.TimeIntervalEnum.Minute_10, cnt, pmType);
+
+                        var massUpDown = PPUtils.GetMassPattern(list);
+                        //if (massUpDown != Lib.Base.Enums.CandleChartPatternEnum.None)
+                            PPEvents.Instance.OnCandleMassPatternHandler(itemCode, Lib.Base.Enums.TimeIntervalEnum.Minute_10, massUpDown);
+
+                        var candleUpDown = PPUtils.GetCandleChartPattern(list, 6);
+                        if (candleUpDown == Lib.Base.Enums.CandleChartPatternEnum.None)
+                            candleUpDown = PPUtils.GetCandleChartPattern(list, 5);
+                        if (candleUpDown == Lib.Base.Enums.CandleChartPatternEnum.None)
+                            candleUpDown = PPUtils.GetCandleChartPattern(list, 4);
+                        if (candleUpDown == Lib.Base.Enums.CandleChartPatternEnum.None)
+                            candleUpDown = PPUtils.GetCandleChartPattern(list, 3);
+
+                        //if (candleUpDown != Lib.Base.Enums.CandleChartPatternEnum.None)
+                            PPEvents.Instance.OnCandleChartPatternHandler(itemCode, Lib.Base.Enums.TimeIntervalEnum.Minute_10, candleUpDown);
+                    }
+                    catch (Exception) { }
+                }
+                if (item.DTime != newDt)
+                {
+                    list.Insert(new S_CandleItemData(itemCode, price, price, price, price, 0, newDt));
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+        public void AddMin30(string itemCode, DateTime dt, Single price)
+        {
+            try
+            {
+                bool isCheck = false;
+
+                var list = StorageMin30[itemCode];
+                var item = list[0];
+                DateTime newDt = GetTime(dt, 30);
+                if (item.DTime == newDt)
+                {
+                    if (item.HighPrice < price) { item.HighPrice = price; isCheck = true; }
+                    if (item.LowPrice > price) { item.LowPrice = price; isCheck = true; }
+                    item.ClosePrice = price;
+                }
+                if (isCheck)
+                {
+                    int tickDiff = PriceTick.GetTickDiff(itemCode, item.HighPrice, item.LowPrice);
+                    if (tickDiff <= 10) isCheck = false;
+                }
+                isCheck = false;
+                if (isCheck || item.DTime != newDt)
+                {
+                    try
+                    {
+                        LimitedList<double> priceList = PPUtils.GetLinePointByCandle(list);
+
+                        var lineChartPattern2 = PointsUtil.GetTwoLinePattern(priceList);
+                        //if (lineChartPattern2 != TickLineChartPatternEnum.None)
+                            PPEvents.Instance.OnTickLineChartPatternHandler(itemCode, TimeIntervalEnum.Minute_30, lineChartPattern2, "Line2");
+
+                        var lineChartPattern3 = PointsUtil.GetThreeLinePattern(priceList);
+                        //if (lineChartPattern3 != TickLineChartPatternEnum.None)
+                            PPEvents.Instance.OnTickLineChartPatternHandler(itemCode, TimeIntervalEnum.Minute_30, lineChartPattern3, "Line3");
+
+                        var upDownH = PointsUtil.GetOneLineUpDownPatternH(priceList);
+                        //if (upDownH != UpDownPatternEnum.None)
+                            PPEvents.Instance.OnTickLineUpDownPatternHandler(itemCode, TimeIntervalEnum.Minute_30, upDownH, "High");
+
+                        var upDownL = PointsUtil.GetOneLineUpDownPatternL(priceList);
+                        //if (upDownL != UpDownPatternEnum.None)
+                            PPEvents.Instance.OnTickLineUpDownPatternHandler(itemCode, TimeIntervalEnum.Minute_30, upDownL, "Low");
+
+                        var upDownHL = PointsUtil.GetTwoLineUpDownPatternHL(priceList);
+                        //if (upDownHL != UpDownPatternEnum.None)
+                            PPEvents.Instance.OnTickLineUpDownPatternHandler(itemCode, TimeIntervalEnum.Minute_30, upDownHL, "HL");
+                    }
+                    catch (Exception) { }
+
+                    try
+                    {
+                        var result = PPUtils.GetSameUpDownCount(list);
+                        int cnt = result.Item1;
+                        PlusMinusTypeEnum pmType = result.Item2;
+                        PPEvents.Instance.OnCandleOccurHandler(itemCode, Lib.Base.Enums.TimeIntervalEnum.Minute_30, cnt, pmType);
+
+                        var massUpDown = PPUtils.GetMassPattern(list);
+                        //if (massUpDown != Lib.Base.Enums.CandleChartPatternEnum.None)
+                            PPEvents.Instance.OnCandleMassPatternHandler(itemCode, Lib.Base.Enums.TimeIntervalEnum.Minute_30, massUpDown);
+
+                        var candleUpDown = PPUtils.GetCandleChartPattern(list, 6);
+                        if (candleUpDown == Lib.Base.Enums.CandleChartPatternEnum.None)
+                            candleUpDown = PPUtils.GetCandleChartPattern(list, 5);
+                        if (candleUpDown == Lib.Base.Enums.CandleChartPatternEnum.None)
+                            candleUpDown = PPUtils.GetCandleChartPattern(list, 4);
+                        if (candleUpDown == Lib.Base.Enums.CandleChartPatternEnum.None)
+                            candleUpDown = PPUtils.GetCandleChartPattern(list, 3);
+
+                        //if (candleUpDown != Lib.Base.Enums.CandleChartPatternEnum.None)
+                            PPEvents.Instance.OnCandleChartPatternHandler(itemCode, Lib.Base.Enums.TimeIntervalEnum.Minute_30, candleUpDown);
+                    }
+                    catch (Exception) { }
+                }
+                if (item.DTime != newDt)
+                {
+                    list.Insert(new S_CandleItemData(itemCode, price, price, price, price, 0, newDt));                    
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+        public void AddMin60(string itemCode, DateTime dt, Single price)
+        {
+            try
+            {
+                bool isCheck = false;
+
+                var list = StorageMin60[itemCode];
+                var item = list[0];
+                DateTime newDt = GetTime(dt, 60);
+
+                if (item.DTime == newDt)
+                {
+                    if (item.HighPrice < price) { item.HighPrice = price; isCheck = true; }
+                    if (item.LowPrice > price) { item.LowPrice = price; isCheck = true; }
+                    item.ClosePrice = price;
+                }
+                if (isCheck)
+                {
+                    int tickDiff = PriceTick.GetTickDiff(itemCode, item.HighPrice, item.LowPrice);
+                    if (tickDiff <= 10) isCheck = false;
+                }
+                isCheck = false;
+                if (isCheck || item.DTime != newDt)
+                {
+                    try
+                    {
+                        LimitedList<double> priceList = PPUtils.GetLinePointByCandle(list);
+
+                        var lineChartPattern2 = PointsUtil.GetTwoLinePattern(priceList);
+                        //if (lineChartPattern2 != TickLineChartPatternEnum.None)
+                            PPEvents.Instance.OnTickLineChartPatternHandler(itemCode, TimeIntervalEnum.Minute_60, lineChartPattern2, "Line2");
+
+                        var lineChartPattern3 = PointsUtil.GetThreeLinePattern(priceList);
+                        //if (lineChartPattern3 != TickLineChartPatternEnum.None)
+                            PPEvents.Instance.OnTickLineChartPatternHandler(itemCode, TimeIntervalEnum.Minute_60, lineChartPattern3, "Line3");
+
+                        var upDownH = PointsUtil.GetOneLineUpDownPatternH(priceList);
+                        //if (upDownH != UpDownPatternEnum.None)
+                            PPEvents.Instance.OnTickLineUpDownPatternHandler(itemCode, TimeIntervalEnum.Minute_60, upDownH, "High");
+
+                        var upDownL = PointsUtil.GetOneLineUpDownPatternL(priceList);
+                        //if (upDownL != UpDownPatternEnum.None)
+                            PPEvents.Instance.OnTickLineUpDownPatternHandler(itemCode, TimeIntervalEnum.Minute_60, upDownL, "Low");
+
+                        var upDownHL = PointsUtil.GetTwoLineUpDownPatternHL(priceList);
+                        //if (upDownHL != UpDownPatternEnum.None)
+                            PPEvents.Instance.OnTickLineUpDownPatternHandler(itemCode, TimeIntervalEnum.Minute_60, upDownHL, "HL");
+                    }
+                    catch (Exception) { }
+
+                    try
+                    {
+                        var result = PPUtils.GetSameUpDownCount(list);
+                        int cnt = result.Item1;
+                        PlusMinusTypeEnum pmType = result.Item2;
+                        PPEvents.Instance.OnCandleOccurHandler(itemCode, Lib.Base.Enums.TimeIntervalEnum.Minute_60, cnt, pmType);
+
+                        var massUpDown = PPUtils.GetMassPattern(list);
+                        //if (massUpDown != Lib.Base.Enums.CandleChartPatternEnum.None)
+                            PPEvents.Instance.OnCandleMassPatternHandler(itemCode, Lib.Base.Enums.TimeIntervalEnum.Minute_60, massUpDown);
+
+                        var candleUpDown = PPUtils.GetCandleChartPattern(list, 6);
+                        if (candleUpDown == Lib.Base.Enums.CandleChartPatternEnum.None)
+                            candleUpDown = PPUtils.GetCandleChartPattern(list, 5);
+                        if (candleUpDown == Lib.Base.Enums.CandleChartPatternEnum.None)
+                            candleUpDown = PPUtils.GetCandleChartPattern(list, 4);
+                        if (candleUpDown == Lib.Base.Enums.CandleChartPatternEnum.None)
+                            candleUpDown = PPUtils.GetCandleChartPattern(list, 3);
+
+                        //if (candleUpDown != Lib.Base.Enums.CandleChartPatternEnum.None)
+                            PPEvents.Instance.OnCandleChartPatternHandler(itemCode, Lib.Base.Enums.TimeIntervalEnum.Minute_60, candleUpDown);
+                    }
+                    catch (Exception) { }
+                }
+                if (item.DTime != newDt)
+                {
+                    list.Insert(new S_CandleItemData(itemCode, price, price, price, price, 0, newDt));
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }        
+
+        public void AddMin120(string itemCode, DateTime dt, Single price)
+        {
+            return;
+            try
+            {
+                bool isCheck = false;
+
+                var list = StorageMin120[itemCode];
+                var item = list[0];
+                DateTime newDt = GetHour(item.DTime, dt, 2);
+
+                if (item.DTime == newDt)
+                {
+                    if (item.HighPrice < price) { item.HighPrice = price; isCheck = true; }
+                    if (item.LowPrice > price) { item.LowPrice = price; isCheck = true; }
+                    item.ClosePrice = price;
+                }
+                if (isCheck)
+                {
+                    int tickDiff = PriceTick.GetTickDiff(itemCode, item.HighPrice, item.LowPrice);
+                    if (tickDiff <= 10) isCheck = false;
+                }
+                if (isCheck || item.DTime != newDt)
+                {
+                    try
+                    {
+                        LimitedList<double> priceList = PPUtils.GetLinePointByCandle(list);
+
+                        var lineChartPattern2 = PointsUtil.GetTwoLinePattern(priceList);
+                        if (lineChartPattern2 != TickLineChartPatternEnum.None)
+                            PPEvents.Instance.OnTickLineChartPatternHandler(itemCode, TimeIntervalEnum.Minute_120, lineChartPattern2, "Line2");
+
+                        var lineChartPattern3 = PointsUtil.GetThreeLinePattern(priceList);
+                        if (lineChartPattern3 != TickLineChartPatternEnum.None)
+                            PPEvents.Instance.OnTickLineChartPatternHandler(itemCode, TimeIntervalEnum.Minute_120, lineChartPattern3, "Line3");
+
+                        var upDownH = PointsUtil.GetOneLineUpDownPatternH(priceList);
+                        if (upDownH != UpDownPatternEnum.None)
+                            PPEvents.Instance.OnTickLineUpDownPatternHandler(itemCode, TimeIntervalEnum.Minute_120, upDownH, "High");
+
+                        var upDownL = PointsUtil.GetOneLineUpDownPatternL(priceList);
+                        if (upDownL != UpDownPatternEnum.None)
+                            PPEvents.Instance.OnTickLineUpDownPatternHandler(itemCode, TimeIntervalEnum.Minute_120, upDownL, "Low");
+
+                        var upDownHL = PointsUtil.GetTwoLineUpDownPatternHL(priceList);
+                        if (upDownHL != UpDownPatternEnum.None)
+                            PPEvents.Instance.OnTickLineUpDownPatternHandler(itemCode, TimeIntervalEnum.Minute_120, upDownHL, "HL");
+
+                        var result = PPUtils.GetSameUpDownCount(list);
+                        int cnt = result.Item1;
+                        PlusMinusTypeEnum pmType = result.Item2;
+
+                        if (cnt >= 3)
+                            PPEvents.Instance.OnCandleOccurHandler(itemCode, Lib.Base.Enums.TimeIntervalEnum.Minute_120, cnt, pmType);
+
+                        var massUpDown = PPUtils.GetMassPattern(list);
+                        if (massUpDown != Lib.Base.Enums.CandleMassPatternEnum.None)
+                            PPEvents.Instance.OnCandleMassPatternHandler(itemCode, Lib.Base.Enums.TimeIntervalEnum.Minute_120, massUpDown);
+
+                        var candleUpDown = PPUtils.GetCandleChartPattern(list, 6);
+                        if (candleUpDown == Lib.Base.Enums.CandleChartPatternEnum.None)
+                            candleUpDown = PPUtils.GetCandleChartPattern(list, 5);
+                        if (candleUpDown == Lib.Base.Enums.CandleChartPatternEnum.None)
+                            candleUpDown = PPUtils.GetCandleChartPattern(list, 4);
+                        if (candleUpDown == Lib.Base.Enums.CandleChartPatternEnum.None)
+                            candleUpDown = PPUtils.GetCandleChartPattern(list, 3);
+                        if (candleUpDown != Lib.Base.Enums.CandleChartPatternEnum.None)
+                            PPEvents.Instance.OnCandleChartPatternHandler(itemCode, Lib.Base.Enums.TimeIntervalEnum.Minute_120, candleUpDown);
+                    }
+                    catch (Exception)
+                    { }
+                }
+
+                if (item.DTime != newDt)
+                {
+                    list.Insert(new S_CandleItemData(itemCode, price, price, price, price, 0, newDt));                 
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        public void AddDay(string itemCode, DateTime dt, Single price)
+        {
+            return;
+            try
+            {
+                bool isCheck = false;
+
+                var list = StorageDay[itemCode];
+                var item = list[0];
+                DateTime newDt = GetDay(dt);
+                if (item.DTime == newDt)
+                {
+                    if (item.HighPrice < price) { item.HighPrice = price; isCheck = true; }
+                    if (item.LowPrice > price) { item.LowPrice = price; isCheck = true; }
+                    item.ClosePrice = price;
+                }
+                if (isCheck)
+                {
+                    int tickDiff = PriceTick.GetTickDiff(itemCode, item.HighPrice, item.LowPrice);
+                    if (tickDiff <= 10) isCheck = false;
+                }
+                if (isCheck || item.DTime != newDt)
+                {
+                    try
+                    {
+                        LimitedList<double> priceList = PPUtils.GetLinePointByCandle(list);
+
+                        var lineChartPattern2 = PointsUtil.GetTwoLinePattern(priceList);
+                        if (lineChartPattern2 != TickLineChartPatternEnum.None)
+                            PPEvents.Instance.OnTickLineChartPatternHandler(itemCode, TimeIntervalEnum.Day, lineChartPattern2, "Line2");
+
+                        var lineChartPattern3 = PointsUtil.GetThreeLinePattern(priceList);
+                        if (lineChartPattern3 != TickLineChartPatternEnum.None)
+                            PPEvents.Instance.OnTickLineChartPatternHandler(itemCode, TimeIntervalEnum.Day, lineChartPattern3, "Line3");
+
+                        var upDownH = PointsUtil.GetOneLineUpDownPatternH(priceList);
+                        if (upDownH != UpDownPatternEnum.None)
+                            PPEvents.Instance.OnTickLineUpDownPatternHandler(itemCode, TimeIntervalEnum.Day, upDownH, "High");
+
+                        var upDownL = PointsUtil.GetOneLineUpDownPatternL(priceList);
+                        if (upDownL != UpDownPatternEnum.None)
+                            PPEvents.Instance.OnTickLineUpDownPatternHandler(itemCode, TimeIntervalEnum.Day, upDownL, "Low");
+
+                        var upDownHL = PointsUtil.GetTwoLineUpDownPatternHL(priceList);
+                        if (upDownHL != UpDownPatternEnum.None)
+                            PPEvents.Instance.OnTickLineUpDownPatternHandler(itemCode, TimeIntervalEnum.Day, upDownHL, "HL");
+
+                        var result = PPUtils.GetSameUpDownCount(list);
+                        int cnt = result.Item1;
+                        PlusMinusTypeEnum pmType = result.Item2;
+
+                        if (cnt >= 3)
+                            PPEvents.Instance.OnCandleOccurHandler(itemCode, Lib.Base.Enums.TimeIntervalEnum.Day, cnt, pmType);
+
+                        var massUpDown = PPUtils.GetMassPattern(list);
+                        if (massUpDown != Lib.Base.Enums.CandleMassPatternEnum.None)
+                            PPEvents.Instance.OnCandleMassPatternHandler(itemCode, Lib.Base.Enums.TimeIntervalEnum.Day, massUpDown);
+
+                        var candleUpDown = PPUtils.GetCandleChartPattern(list, 6);
+                        if (candleUpDown == Lib.Base.Enums.CandleChartPatternEnum.None)
+                            candleUpDown = PPUtils.GetCandleChartPattern(list, 5);
+                        if (candleUpDown == Lib.Base.Enums.CandleChartPatternEnum.None)
+                            candleUpDown = PPUtils.GetCandleChartPattern(list, 4);
+                        if (candleUpDown == Lib.Base.Enums.CandleChartPatternEnum.None)
+                            candleUpDown = PPUtils.GetCandleChartPattern(list, 3);
+                        if (candleUpDown != Lib.Base.Enums.CandleChartPatternEnum.None)
+                            PPEvents.Instance.OnCandleChartPatternHandler(itemCode, Lib.Base.Enums.TimeIntervalEnum.Day, candleUpDown);
+                    }
+                    catch (Exception) { }
+                }
+                if (item.DTime != newDt)
+                {
+                    list.Insert(new S_CandleItemData(itemCode, price, price, price, price, 0, newDt));
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private DateTime GetTime(DateTime dt, int min)
+        {
+            int year = dt.Year;
+            int month = dt.Month;
+            int day = dt.Day;
+            int hour = dt.Hour;
+            int minute = dt.Minute;
+            int newMin = (min * ((minute / min) + 1));
+
+            DateTime dateTime = new DateTime(year, month, day, hour, 0, 0);
+
+            if (newMin == 60) dateTime = dateTime.AddHours(1);
+            else dateTime = dateTime.AddMinutes(newMin);
+
+            return dateTime;
+        }
+        private DateTime GetHour(DateTime oldDT, DateTime newDT, int h)
+        {
+            if (oldDT < newDT)
+                return oldDT.AddHours(h);
+            else
+                return oldDT;
+        }
+        private DateTime GetDay(DateTime dt)
+        {
+            int year = dt.Year;
+            int month = dt.Month;
+            int day = dt.Day;
+
+            DateTime dateTime = new DateTime(year, month, day, 0, 0, 0);
+            return dateTime;
+        }
+    }
+}

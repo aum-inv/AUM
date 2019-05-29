@@ -1,0 +1,44 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleTest
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            A a1 = new A();
+            A a2 = new A();
+
+            a1.EEvent += (s, e) => { Console.WriteLine("A" + e.ToString()); };
+
+            a2.EEvent += (s, e) => { Console.WriteLine("B" + e.ToString()); };
+
+            a1.Run();
+            a1.Run();
+            a1.Run();
+            a2.Run();
+            Console.ReadLine();
+        }
+    }
+
+    
+    public class A
+    {
+        public event EventHandler EEvent;
+
+        public A()
+        {            
+        }
+        public void Run()
+        {
+            if (EEvent != null)
+                EEvent(this, new EventArgs());
+        }
+       
+    }
+
+}

@@ -1,0 +1,96 @@
+﻿using MetroFramework.Forms;
+using OM.Lib.Base.Enums;
+using OM.Lib.Base.Utils;
+using OM.PP.Chakra;
+using OM.PP.Chakra.Ctx;
+using OM.Vikala.Controls.Charts;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Configuration;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Vikala.Chakra.App
+{
+    public partial class MirrorMainForm_Sample : Form
+    {
+        ChartEvents chartEvent = new ChartEvents();
+        public MirrorMainForm_Sample()
+        {
+            InitializeComponent();
+
+            chartCS1.InitializeControl();
+            chartCS1.InitializeEvent(chartEvent);
+            chartCS1.CandleChartType = CandleChartTypeEnum.기본;
+            chartCS1.DisplayPointCount = 30;
+
+            chartCS2.InitializeControl();
+            chartCS2.InitializeEvent(chartEvent);
+            chartCS2.CandleChartType = CandleChartTypeEnum.기본;
+            chartCS2.DisplayPointCount = 30;
+
+            tbDT_E.Text = DateTime.Now.ToString("yyyy-MM-dd");
+        }
+        private void btnLoadData_Click(object sender, EventArgs e)
+        {
+            string itemCode = ItemCodeSet.GetItemCode(ItemCode.선물_해외_WTI);
+
+            var list = PPContext.Instance.ClientContext.GetSourceData(
+                  itemCode
+                , Lib.Base.Enums.TimeIntervalEnum.Day
+                , null
+                , tbDT_E.Text
+                , 120);
+            
+            int round = ItemCodeUtil.GetItemCodeRoundNum(itemCode);
+
+            List<S_CandleItemData> sourceDatas = new List<S_CandleItemData>();
+            List<S_CandleItemData> sourceDatas2 = new List<S_CandleItemData>();
+            List<T_MirrorItemData> transformedDatas = new List<T_MirrorItemData>();
+
+            foreach (var m in list)
+            {
+                S_CandleItemData sourceData = new S_CandleItemData(
+                      itemCode
+                    , (Single)Math.Round(m.OpenVal, round)
+                    , (Single)Math.Round(m.HighVal, round)
+                    , (Single)Math.Round(m.LowVal, round)
+                    , (Single)Math.Round(m.CloseVal, round)
+                    , m.Volume
+                    , m.DT
+                    );
+
+                sourceDatas.Add(sourceData);
+            }
+            chartCS1.LoadData(itemCode, sourceDatas);
+                        
+            foreach (var m in sourceDatas)
+            {              
+                T_MirrorItemData tData = new T_MirrorItemData(m, sourceDatas);
+                tData.Transform();
+                transformedDatas.Add(tData);
+            }
+
+            foreach (var m in transformedDatas)
+            {
+                S_CandleItemData sourceData = new S_CandleItemData(
+                      itemCode
+                    , m.T_OpenPrice
+                    , m.T_HighPrice
+                    , m.T_LowPrice
+                    , m.T_ClosePrice
+                    , m.Volume
+                    , m.DTime
+                    );
+
+                sourceDatas2.Add(sourceData);
+            }
+            chartCS2.LoadData(itemCode, sourceDatas2);
+        }
+    }
+}

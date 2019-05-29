@@ -1,0 +1,175 @@
+﻿using MetroFramework.Forms;
+using OM.Lib.Base.Utils;
+using OM.PP.Chakra;
+using OM.PP.Chakra.Ctx;
+using OM.Vikala.Chakra.App.Mains;
+using OM.Vikala.Controls.Charts;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Configuration;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Vikala.Chakra.App
+{
+    public partial class MainForm : Form
+    {
+        
+        public MainForm()
+        {
+            InitializeComponent();
+
+            serverInfo();
+        }
+
+        private void serverInfo()
+        {
+            PPServerConfigData.IP = ConfigurationManager.AppSettings["PPService_IP"];
+            PPServerConfigData.Port = Convert.ToInt32(ConfigurationManager.AppSettings["PPService_Port"]);
+
+            PPContext.Instance.OnCreateClient();
+        }
+
+        private void btnLoadData_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btnLine1_Click(object sender, EventArgs e)
+        {
+            //LineMainForm lineMainForm = new LineMainForm();
+            //lineMainForm.Show();
+            new Mains.ChartForm.LineChartForm().Show();
+        }
+
+        private void btnCandle1_Click(object sender, EventArgs e)
+        {
+            CandleMainForm_Sample candleMainForm = new CandleMainForm_Sample();
+            candleMainForm.Show();
+        }
+
+        private void btnSampleCandle_Click(object sender, EventArgs e)
+        {
+            //new CandleMainForm_Sample().Show();
+            new Mains.ChartForm.CandleChartForm().Show();
+        }
+
+        private void btnSampleAtom_Click(object sender, EventArgs e)
+        {
+            //new AtomMainForm_Sample().Show();
+            new Mains.ChartForm.AtomChartForm().Show();
+        }
+        
+        private void btnFiveColor_Click(object sender, EventArgs e)
+        {
+            new FiveColorMainForm_Sample().Show();
+            new Mains.ChartForm.FiveColorChartForm().Show();
+        }
+
+        private void btnThaChi_Click(object sender, EventArgs e)
+        {
+            //new ThaChiMainForm_Sample().Show();
+            new Mains.ChartForm.ThaChiChartForm().Show();
+        }
+
+        private void btnQuantum_Click(object sender, EventArgs e)
+        {
+            //new QuantumMainForm_Sample().Show();
+            new Mains.ChartForm.QuantumChartForm().Show();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            new Mains.BasicMainForm().Show();
+        }
+
+        private void btnVelocity_Click(object sender, EventArgs e)
+        {
+            //new VelocityMainForm_Sample().Show();
+            new Mains.ChartForm.VelocityChartForm().Show();
+        }
+
+        private void btnReverse_Click(object sender, EventArgs e)
+        {
+            //new ReverseCandleMainForm_Sample().Show();
+            new Mains.ChartForm.ReverseChartForm().Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+         
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            new CandleMainForm_Sample(CandleChartTypeEnum.삼양삼음).Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            new CandleMainForm_Sample(CandleChartTypeEnum.진동주파수).Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            new CandleMainForm_Sample(CandleChartTypeEnum.삼태극).Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            new CandleMainForm_Sample(CandleChartTypeEnum.음양오행).Show();
+        }
+        private void button11_Click(object sender, EventArgs e)
+        {
+            new CandleMainForm_Sample(CandleChartTypeEnum.천지인).Show();
+        }
+        private void button7_Click(object sender, EventArgs e)
+        {
+            //new WuXingMainForm_Sample().Show();
+            new Mains.ChartForm.XuWingChartForm().Show();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            //new MirrorMainForm_Sample().Show();
+            new Mains.ChartForm.MirrorChartForm().Show();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            new Mains.MainForm().Show();
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            //new SpeedMainForm_Sample().Show();
+            new Mains.ChartForm.SpeedChartForm().Show();
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            //new PrimeNumMainForm_Sample().Show();
+            new Mains.ChartForm.PrimeNumChartForm().Show();
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            new CandleMainForm_Sample(CandleChartTypeEnum.쿼크).Show();
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            new QuarkMainForm_Sample().Show();
+        }
+
+        private void button14_Click_1(object sender, EventArgs e)
+        {
+            //new ShakraMainForm_Sample().Show();
+            new Mains.ChartForm.ShakraChartForm().Show();
+        }
+    }
+}

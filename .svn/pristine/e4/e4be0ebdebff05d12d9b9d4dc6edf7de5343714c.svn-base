@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.Lib.Base.Data
+{
+    public interface ITransformedData : ISourceData
+    {
+        Single T_OpenPrice { get; }
+        Single T_HighPrice { get; }
+        Single T_LowPrice { get; }
+        Single T_ClosePrice { get; }
+
+        void Transform();
+    }
+}

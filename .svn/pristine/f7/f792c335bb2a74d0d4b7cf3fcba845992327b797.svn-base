@@ -1,0 +1,66 @@
+﻿using MetroFramework.Forms;
+using OM.Lib.Base.Utils;
+using OM.PP.Chakra;
+using OM.PP.Chakra.Ctx;
+using OM.Vikala.Controls.Charts;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Configuration;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Vikala.Chakra.App
+{
+    public partial class CandleMainForm_Sample : Form
+    {
+        ChartEvents chartEvent = new ChartEvents();
+
+        public CandleMainForm_Sample()
+        {
+            InitializeComponent();
+
+            chartCS1.InitializeControl();
+            chartCS1.InitializeEvent(chartEvent);
+            chartCS1.CandleChartType = CandleChartTypeEnum.기본;
+            chartCS1.MaximumDisplayItemCount = 10;
+        }
+        private void btnLoadData_Click(object sender, EventArgs e)
+        {
+            //var list = PPContext.Instance.ClientContext.GetSourceData(Lib.Base.Enums.FinancialClassificationEnum.Commodities
+            //    , Lib.Base.Enums.ItemCode.Commodities.CrudeOilWTI
+            //    , Lib.Base.Enums.TimeIntervalEnum.Day
+            //    , null
+            //    , null
+            //    , 120);
+
+            var list = PPContext.Instance.ClientContext.GetSourceData(Lib.Base.Enums.FinancialClassificationEnum.Indices
+                , Lib.Base.Enums.ItemCode.Indices.Kospi200
+                , Lib.Base.Enums.TimeIntervalEnum.Day
+                , null
+                , null
+                , 150);
+
+            int round = ItemCodeUtil.GetItemCodeRoundNum(Lib.Base.Enums.ItemCode.Indices.Kospi200);
+            List<S_CandleItemData> sourceDatas = new List<S_CandleItemData>();
+            foreach (var m in list)
+            {
+                S_CandleItemData sourceData = new S_CandleItemData(
+                        (Single)Math.Round(m.OpenVal, round)
+                    , (Single)Math.Round(m.HighVal, round)
+                    , (Single)Math.Round(m.LowVal, round)
+                    , (Single)Math.Round(m.CloseVal, round)
+                    , m.Volume
+                    , m.DT
+                    );
+                sourceDatas.Add(sourceData);
+            }
+
+            chartCS1.LoadData(Lib.Base.Enums.ItemCode.Indices.Kospi200, sourceDatas);
+        }
+    }
+}

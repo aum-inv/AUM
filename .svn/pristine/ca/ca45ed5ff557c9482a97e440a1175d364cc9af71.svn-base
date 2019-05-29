@@ -1,0 +1,75 @@
+﻿using OM.Lib.Base.Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.PP.Chakra
+{
+    /// <summary>
+    /// 
+    /// </summary>
+    public class A_QuantumLineData : ITransformedData
+    {
+        T_QuantumItemData[] t_QuantumItems;
+
+        public A_QuantumLineData(T_QuantumItemData[] items)
+        {
+            this.t_QuantumItems = items;
+        }
+       
+        public A_QuantumLineData(List<T_QuantumItemData> sourceDataArray)
+        {
+            this.t_QuantumItems = sourceDataArray.ToArray();
+        }
+
+        public Single open = 0;
+        public Single high = 0;
+        public Single low = 0;
+        public Single close = 0;
+        public Single volume = 0;
+
+        public Single a_open = 0;
+        public Single a_high = 0;
+        public Single a_low = 0;
+        public Single a_close = 0;
+        
+
+        public DateTime dt;
+
+        public Single OpenPrice { get { return open; }  }
+        public Single HighPrice { get { return high; } }
+        public Single LowPrice { get { return low; } }
+        public Single ClosePrice { get { return close; } }
+        public Single Volume { get { return volume; } }
+        public DateTime DTime { get { return dt; } }
+
+        public Single A_OpenPrice { get { return a_open; } }
+        public Single A_HighPrice { get { return a_high; } }
+        public Single A_LowPrice { get { return a_low; } }
+        public Single A_ClosePrice { get { return a_close; } }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public void Transform()
+        {
+            try
+            {
+                //로직추가        
+                if (t_QuantumItems != null)
+                {
+                    a_open = t_QuantumItems.Average(t => t.OpenPrice);
+                    a_high = t_QuantumItems.Average(t => t.HighPrice);
+                    a_low = t_QuantumItems.Average(t => t.LowPrice);
+                    a_close = t_QuantumItems.Average(t => t.ClosePrice);
+                }                     
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+    }
+}

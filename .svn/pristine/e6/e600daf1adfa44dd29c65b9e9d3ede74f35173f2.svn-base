@@ -1,0 +1,158 @@
+﻿using OM.Lib.Base.Enums;
+using OM.Lib.Entity;
+using OM.PP.Chakra;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Tulpep.NotificationWindow;
+
+namespace OM.Atman.Chakra.App
+{
+    public partial class CandleSignalForm : Form
+    {
+        TickLineTradeRule tickLineRuleCL = new TickLineTradeRule("CL", "0");
+        TickLineTradeRule tickLineRuleNG = new TickLineTradeRule("NG", "0");
+        TickLineTradeRule tickLineRuleGC = new TickLineTradeRule("GC", "0");
+        TickLineTradeRule tickLineRuleSI = new TickLineTradeRule("SI", "0");
+        TickLineTradeRule tickLineRuleHSI = new TickLineTradeRule("HSI", "0");
+        TickLineTradeRule tickLineRuleNQ = new TickLineTradeRule("NQ", "0");
+        TickLineTradeRule tickLineRuleURO = new TickLineTradeRule("URO", "0");
+
+        TickLineTradeRule tick5LineRuleCL = new TickLineTradeRule("CL", "2");
+        TickLineTradeRule tick5LineRuleNG = new TickLineTradeRule("NG", "2");
+        TickLineTradeRule tick5LineRuleGC = new TickLineTradeRule("GC", "2");
+        TickLineTradeRule tick5LineRuleSI = new TickLineTradeRule("SI", "2");
+        TickLineTradeRule tick5LineRuleHSI = new TickLineTradeRule("HSI", "2");
+        TickLineTradeRule tick5LineRuleNQ = new TickLineTradeRule("NQ", "2");
+        TickLineTradeRule tick5LineRuleURO = new TickLineTradeRule("URO", "2");
+
+        public CandleSignalForm()
+        {
+            InitializeComponent();
+
+            PPEvents.Instance.CandleOccurHandler += Instance_CandleOccurHandler;
+            PPEvents.Instance.CandleChartPatternHandler += Instance_CandleChartPatternHandler;
+            PPEvents.Instance.TickLineChartPatternHandler += Instance_TickLineChartPatternHandler;
+            PPEvents.Instance.TickLineUpDownPatternHandler += Instance_TickLineUpDownPatternHandler;
+
+            this.Load += CandleSignalForm_Load;
+
+            SiseEvents.Instance.SiseHandler += Instance_SiseHandler;
+        }
+
+        private void Instance_SiseHandler(string itemCode, CurrentPrice price)
+        {
+            try
+            {                
+                tickLineRuleCL.Analysis(price);
+                tickLineRuleNG.Analysis(price);
+                tickLineRuleGC.Analysis(price);
+                tickLineRuleSI.Analysis(price);
+                tickLineRuleHSI.Analysis(price);
+                tickLineRuleNQ.Analysis(price);
+                tickLineRuleURO.Analysis(price);
+
+                tick5LineRuleCL.Analysis(price);
+                tick5LineRuleNG.Analysis(price);
+                tick5LineRuleGC.Analysis(price);
+                tick5LineRuleSI.Analysis(price);
+                tick5LineRuleHSI.Analysis(price);
+                tick5LineRuleNQ.Analysis(price);
+                tick5LineRuleURO.Analysis(price);
+            }
+            catch (Exception ex)
+            {   
+            }
+        }
+        private void CandleSignalForm_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Instance_TickLineUpDownPatternHandler(string itemCode, TimeIntervalEnum timeInterval, UpDownPatternEnum updown)
+        {
+            this.Invoke(new Action(() =>
+            {
+                dgv.Rows.Insert(0, "UpDown패턴 ", DateTime.Now.ToString("HH:mm:ss"), itemCode, "UpDown", updown);
+
+                string title = "UpDown패턴 시그널";
+                string msg = $"{itemCode}::UpDown::{updown}";
+
+                ShowNotifyIcon(title, msg);
+            }));
+        }
+
+        private void Instance_TickLineChartPatternHandler(string itemCode, TimeIntervalEnum timeInterval, TickLineChartPatternEnum updown)
+        {
+            this.Invoke(new Action(() =>
+            {
+                dgv.Rows.Insert(0, "Tick패턴 ", DateTime.Now.ToString("HH:mm:ss"), itemCode, "Tick", updown);
+
+                string title = "Tick패턴 시그널";
+                string msg = $"{itemCode}::Tick::{updown}";
+
+                ShowNotifyIcon(title, msg);
+            }));
+        }
+
+        private void Instance_CandleChartPatternHandler(string itemCode, TimeIntervalEnum timeInterval, CandleChartPatternEnum updown)
+        {
+            this.Invoke(new Action(() =>
+            {
+                dgv.Rows.Insert(0, "캔들패턴 ", DateTime.Now.ToString("HH:mm:ss"), itemCode, EnumUtil.GetTimeIntervalText(timeInterval), updown);
+
+                string title = "캔들패턴 시그널";
+                string msg = $"{itemCode}::{EnumUtil.GetTimeIntervalText(timeInterval)}::{updown}";
+
+                ShowNotifyIcon(title, msg);
+            }));
+        }
+
+        private void Instance_CandleOccurHandler(string itemCode, Lib.Base.Enums.TimeIntervalEnum timeInterval, int occurCount)
+        {
+            this.Invoke(new Action(() =>
+            {
+                dgv.Rows.Insert(0, "캔들갯수", DateTime.Now.ToString("HH:mm:ss"), itemCode, EnumUtil.GetTimeIntervalText(timeInterval), occurCount);
+
+                string title = "캔들갯수 시그널";
+                string msg = $"{itemCode}::{EnumUtil.GetTimeIntervalText(timeInterval)}::{occurCount}";
+
+                ShowNotifyIcon(title, msg);
+            }));
+        }
+
+        private void ShowNotifyIcon(string title, string message)
+        {
+            try
+            {
+                PopupNotifier popup = new PopupNotifier();
+                popup.ShowGrip = true;
+                popup.HeaderColor = Color.DarkBlue;
+                popup.BodyColor = Color.DarkRed;
+                popup.TitleColor = Color.White;
+                popup.ContentColor = Color.WhiteSmoke;
+                popup.TitleFont = new Font("고딕", 24.0f);
+                popup.ContentFont = new Font("굴림", 12.0f);
+                popup.TitleText = title;
+                popup.ContentText = message;
+                popup.Image = global::OM.Atman.Chakra.App.Properties.Resources.signal;
+                popup.ImageSize = new Size(50, 40);
+                popup.Delay = 1000 * 60;
+                popup.Popup();// show  
+
+                var player = new System.Media.SoundPlayer();
+                player.Stream = Properties.Resources.money;
+                player.Play();
+            }
+            catch (Exception)
+            {
+            }
+        }
+    }
+}

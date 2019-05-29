@@ -1,0 +1,84 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.ServiceModel;
+using System.Text;
+using System.Threading.Tasks;
+using OM.Lib.Base.Enums;
+using OM.Lib.Entity;
+using OM.Lib.Framework.Base;
+using OM.Lib.Framework.Db;
+
+namespace OM.PP.Chakra.Ctx
+{
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall
+        , ConcurrencyMode = ConcurrencyMode.Multiple
+        , UseSynchronizationContext = false)]
+    public class PPService : IPPService
+    {
+        static object sync = new object();
+
+        public string ServiceName => PPServerConfigData.ServiceName;
+
+        public void Noop() { }
+       
+      
+        public List<LitePurushaPrakriti> GetSourceData(
+                FinancialClassificationEnum financialClassification
+            ,   string itemCode
+            ,   TimeIntervalEnum timeInterval
+            ,   DateTime? startDate = null
+            ,   DateTime? endDate = null
+            ,   int cnt = 0)
+        {
+            List<LitePurushaPrakriti> list = new List<LitePurushaPrakriti>();
+
+            string entityeName = EnumUtil.GetFinancialClassificationName(financialClassification);
+            PurushaPrakriti pp = new PurushaPrakriti(entityeName);
+            pp.Item = itemCode;
+            pp.Interval = (int)timeInterval;
+            if (startDate != null) pp.d.DT_S = startDate.Value.ToString("yyyy-MM-dd");
+            if (endDate != null) pp.d.DT_E = endDate.Value.ToString("yyyy-MM-dd");
+            pp.d.Cnt = cnt;
+            try
+            {
+                Entities entities = (Entities)pp.Collect();
+
+                foreach (var m in entities.Cast<PurushaPrakriti>())
+                {
+                    var n = new LitePurushaPrakriti(
+                            m.OpenVal, m.HighVal, m.LowVal, m.CloseVal, m.Volume, m.DT
+                        );
+
+                    list.Add(n);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return list;
+        }
+
+        public void SetSourceData(
+                FinancialClassificationEnum financialClassification
+            ,   string itemCode
+            ,   TimeIntervalEnum timeInterval
+            ,   LitePurushaPrakriti entity)
+        {
+            string entityeName = EnumUtil.GetFinancialClassificationName(financialClassification);
+            PurushaPrakriti pp = new PurushaPrakriti(entityeName);
+            pp.MappingProperty(entity);
+
+            try
+            {
+                pp.Interval = (int)timeInterval;
+                pp.Create();
+            }
+            catch (Exception ex)
+            {
+                //error
+            }
+        }        
+    }
+}

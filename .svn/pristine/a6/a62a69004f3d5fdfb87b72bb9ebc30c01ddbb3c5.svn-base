@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.Vikala.Controls.Charts
+{
+    public class ChartUtil
+    {
+        const string VF_1 = "396";
+        const string VF_2 = "417";
+        const string VF_3 = "528";
+        const string VF_4 = "639";
+        const string VF_5 = "741";
+        const string VF_6 = "852";
+        const string VF_7 = "963";
+
+        public static 
+    }
+}

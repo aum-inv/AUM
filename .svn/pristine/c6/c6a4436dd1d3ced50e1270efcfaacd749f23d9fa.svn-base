@@ -1,0 +1,228 @@
+﻿using OM.Lib.Base.Enums;
+using OM.Lib.Base.Utils;
+using OM.PP.Chakra;
+using OM.PP.Chakra.Ctx;
+using OM.Vikala.Controls.Charts;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Vikala.Chakra.App.Mains
+{
+    public partial class BasicMainForm : BaseForm
+    {
+        List<UserControl> charts = new List<UserControl>();
+        BasicCandleChart c_bcc = new BasicCandleChart();
+        BasicCandleChart c_bcc2 = new BasicCandleChart();
+        AtomChart c_ac = new AtomChart();
+        AtomChart c_ac2 = new AtomChart();
+        QuantumLineChart c_qlc = new QuantumLineChart();
+        QuantumLineChart c_qlc2 = new QuantumLineChart();
+        
+        public BasicMainForm()
+        {
+            InitializeComponent();
+            base.setToolStrip(userToolStrip1);
+            InitializeControls();
+        }
+
+        private void InitializeControls()
+        {           
+            loadChartControls();
+            setTimer();
+        }
+
+        public override void loadChartControls()
+        {
+            charts.Clear();
+
+            c_bcc.InitializeControl();
+            c_bcc.InitializeEvent(chartEvent);
+            c_bcc.CandleChartType = CandleChartTypeEnum.기본;
+            c_bcc.MaximumDisplayItemCount = 30;
+            c_bcc.Title = "기본캔들챠트";
+            charts.Add(c_bcc);
+            c_bcc2.InitializeControl();
+            c_bcc2.InitializeEvent(chartEvent);
+            c_bcc2.CandleChartType = CandleChartTypeEnum.기본;
+            c_bcc2.IsAutoScrollX = false;
+            c_bcc2.MaximumDisplayItemCount = 30;
+            c_bcc2.Title = "기본캔들챠트";
+            charts.Add(c_bcc2);
+
+            c_ac.InitializeControl();
+            c_ac.IsAutoScrollX = false;
+            c_ac.InitializeEvent(chartEvent);
+            c_ac.MaximumDisplayItemCount = 30;
+            charts.Add(c_ac);
+            c_ac2.InitializeControl();
+            c_ac2.IsAutoScrollX = false;
+            c_ac2.InitializeEvent(chartEvent);
+            c_ac2.MaximumDisplayItemCount = 30;
+            charts.Add(c_ac2);
+
+            c_qlc.InitializeControl();
+            c_qlc.IsAutoScrollX = false;
+            c_qlc.InitializeEvent(chartEvent);
+            c_qlc.MaximumDisplayItemCount = 30;
+            charts.Add(c_qlc);
+            c_qlc2.InitializeControl();
+            c_qlc2.IsAutoScrollX = false;
+            c_qlc2.InitializeEvent(chartEvent);
+            c_qlc2.MaximumDisplayItemCount = 30;
+            charts.Add(c_qlc2);
+
+            this.flowTable.Dock = DockStyle.Top;
+            this.flowList.Dock = DockStyle.Top;
+            this.flowTab.Dock = DockStyle.Fill;
+
+            setFlow();
+        }
+
+        public override void setFlow()
+        {
+            flowTable.Visible = false;
+            flowList.Visible = false;
+            flowTab.Visible = false;
+
+            flowTable.Controls.Clear();
+            flowList.Controls.Clear();
+            for (int i = 0; i < flowTab.TabPages.Count; i++)
+                flowTab.TabPages[i].Controls.Clear();
+
+            if (flowDirection == FlowDirectionTypeEnum.TABLE)
+            {
+                flowTable.Controls.Add(c_bcc, 0, 0);
+                flowTable.Controls.Add(c_bcc2, 1, 0);
+                flowTable.Controls.Add(c_ac, 0, 1);
+                flowTable.Controls.Add(c_ac2, 1, 1);
+                flowTable.Controls.Add(c_qlc, 0, 2);
+                flowTable.Controls.Add(c_qlc2, 1, 2);
+                flowTable.Height = 300 * 3;
+                flowTable.Visible = true;
+            }
+            else if (flowDirection == FlowDirectionTypeEnum.LIST)
+            {
+                flowList.Controls.Add(c_bcc, 0, 0);
+                flowList.Controls.Add(c_bcc2, 0, 1);
+                flowList.Controls.Add(c_ac, 0, 2);
+                flowList.Controls.Add(c_ac2, 0, 3);
+                flowList.Controls.Add(c_qlc, 0, 4);
+                flowList.Controls.Add(c_qlc2, 0, 5);
+                flowList.Height = 300 * 6;
+                flowList.Visible = true;
+            }
+            else if (flowDirection == FlowDirectionTypeEnum.TAB)
+            {
+                flowTab.TabPages[0].Controls.Add(c_bcc);           
+                flowTab.TabPages[1].Controls.Add(c_bcc2);
+                flowTab.TabPages[2].Controls.Add(c_ac);
+                flowTab.TabPages[3].Controls.Add(c_ac2);
+                flowTab.TabPages[4].Controls.Add(c_qlc);
+                flowTab.TabPages[5].Controls.Add(c_qlc2);
+                flowTab.Visible = true;
+            }
+
+            foreach (var c in charts)
+            {
+                c.Height = 290;
+                c.Dock = DockStyle.Fill;
+                c.BorderStyle = BorderStyle.None;
+            }
+        }
+
+        public override void loadData()
+        {
+            userToolStrip1.setProgressValue(0);
+
+            string itemCode = ItemCodeSet.GetItemCode(ItemCode.선물_해외_WTI);
+            var list = PPContext.Instance.ClientContext.GetSourceData(                 
+                  itemCode
+                , Lib.Base.Enums.TimeIntervalEnum.Day
+                , null
+                , null
+                , itemCnt);
+
+            userToolStrip1.setProgressValue(50);
+            int round = ItemCodeUtil.GetItemCodeRoundNum(itemCode);
+            List<S_CandleItemData> sourceDatas = new List<S_CandleItemData>();
+            foreach (var m in list)
+            {
+                S_CandleItemData sourceData = new S_CandleItemData(
+                        (Single)Math.Round(m.OpenVal, round)
+                    , (Single)Math.Round(m.HighVal, round)
+                    , (Single)Math.Round(m.LowVal, round)
+                    , (Single)Math.Round(m.CloseVal, round)
+                    , m.Volume
+                    , m.DT
+                    );
+                sourceDatas.Add(sourceData);
+            }
+            c_bcc.LoadData(itemCode, sourceDatas);
+            c_bcc2.LoadData(itemCode, sourceDatas);
+
+            userToolStrip1.setProgressValue(60);
+            List<T_AtomItemData> atomTransformedDatas = new List<T_AtomItemData>();
+            int itemsCnt = 9;
+            for (int i = itemsCnt; i < sourceDatas.Count; i++)
+            {
+                T_AtomItemData transData = new T_AtomItemData(sourceDatas[i], sourceDatas.GetRange(i - itemsCnt, itemsCnt));
+                transData.Transform();
+                atomTransformedDatas.Add(transData);
+            }
+            c_ac.LoadData(itemCode, atomTransformedDatas);
+            c_ac2.LoadData(itemCode, atomTransformedDatas);
+
+            userToolStrip1.setProgressValue(70);
+            S_CandleItemData bItem = null;
+            sourceDatas.Clear();
+            foreach (var m in list)
+            {
+                S_CandleItemData sourceData = new S_CandleItemData(
+                        (Single)Math.Round(m.OpenVal, round)
+                    , (Single)Math.Round(m.HighVal, round)
+                    , (Single)Math.Round(m.LowVal, round)
+                    , (Single)Math.Round(m.CloseVal, round)
+                    , m.Volume
+                    , m.DT
+                    );
+                if (bItem != null)
+                {
+                    sourceData.SetQuantum(bItem);
+                    sourceData.SetQuantum(null);
+                    sourceDatas.Add(sourceData);
+                }
+                bItem = sourceData;
+            }
+            userToolStrip1.setProgressValue(90);
+            List<T_QuantumItemData> quantumTransformedDatas = new List<T_QuantumItemData>();
+            itemsCnt = 9;
+            for (int i = itemsCnt; i < sourceDatas.Count; i++)
+            {
+                T_QuantumItemData transData = new T_QuantumItemData(sourceDatas[i], sourceDatas.GetRange(i - itemsCnt, itemsCnt));
+                transData.Transform();
+                quantumTransformedDatas.Add(transData);
+            }
+            c_qlc.LoadData(itemCode, quantumTransformedDatas);
+            c_qlc2.LoadData(itemCode, quantumTransformedDatas);
+
+            userToolStrip1.setProgressValue(100);
+        }
+
+        private void BasicMainForm_StyleChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        private void BasicMainForm_SizeChanged(object sender, EventArgs e)
+        {
+       
+        }
+    }
+}

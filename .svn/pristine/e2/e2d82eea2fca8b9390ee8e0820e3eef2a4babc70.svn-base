@@ -1,0 +1,244 @@
+﻿using OM.Lib.Base;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.PP.Chakra
+{
+    public class PPStorage
+    {
+        private static PPStorage storage = new PPStorage();
+        private PPStorage() { }
+
+        public static PPStorage Instance
+        {
+            get
+            {
+                return storage;
+            }
+        }
+
+        //public Dictionary<string, LimitedList<S_CandleItemData>> StorageMin01 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
+        public Dictionary<string, LimitedList<S_CandleItemData>> StorageMin05 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
+        public Dictionary<string, LimitedList<S_CandleItemData>> StorageMin10 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
+        public Dictionary<string, LimitedList<S_CandleItemData>> StorageMin30 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
+        public Dictionary<string, LimitedList<S_CandleItemData>> StorageMin60 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
+        
+        public void Init(string itemCode)
+        {
+            try
+            {
+                //if (!StorageMin01.ContainsKey(itemCode))
+                //{
+                //    StorageMin01.Add(itemCode, new LimitedList<S_CandleItemData>(100));
+                //}
+
+                if (!StorageMin05.ContainsKey(itemCode))
+                {
+                    StorageMin05.Add(itemCode, new LimitedList<S_CandleItemData>(100));
+                }
+
+                if (!StorageMin10.ContainsKey(itemCode))
+                {
+                    StorageMin10.Add(itemCode, new LimitedList<S_CandleItemData>(100));
+                }
+
+                if (!StorageMin30.ContainsKey(itemCode))
+                {
+                    StorageMin30.Add(itemCode, new LimitedList<S_CandleItemData>(100));
+                }
+
+                if (!StorageMin60.ContainsKey(itemCode))
+                {
+                    StorageMin60.Add(itemCode, new LimitedList<S_CandleItemData>(100));
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+        //public void Init01(string itemCode, List<S_CandleItemData> list)
+        //{
+        //    foreach (var m in list)
+        //        StorageMin01[itemCode].Insert(m);
+        //}
+        public void Init05(string itemCode, List<S_CandleItemData> list)
+        {
+            for(int i = list.Count -  1; i >= 0; i--)
+                StorageMin05[itemCode].Insert(list[i]);
+        }
+        public void Init10(string itemCode, List<S_CandleItemData> list)
+        {
+            for (int i = list.Count - 1; i >= 0; i--)
+                StorageMin10[itemCode].Insert(list[i]);
+        }
+        public void Init30(string itemCode, List<S_CandleItemData> list)
+        {
+            for (int i = list.Count - 1; i >= 0; i--)
+                StorageMin30[itemCode].Insert(list[i]);
+        }
+        public void Init60(string itemCode, List<S_CandleItemData> list)
+        {
+            for (int i = list.Count - 1; i >= 0; i--)
+                StorageMin60[itemCode].Insert(list[i]);
+        }
+        
+        public void Add(string itemCode, DateTime dateTime, Single price)
+        {
+            try
+            {
+            //    AddMin01(itemCode, dateTime, price);
+                AddMin05(itemCode, dateTime, price);
+                AddMin10(itemCode, dateTime, price);
+                AddMin30(itemCode, dateTime, price);
+                AddMin60(itemCode, dateTime, price);
+            }
+            catch (Exception)
+            {
+            }
+        }
+        //public void AddMin01(string itemCode, DateTime dt, Single price)
+        //{
+        //    try
+        //    {
+        //        var list = StorageMin01[itemCode];
+        //        var item = list[0];
+        //        DateTime newDt = GetTime(dt, 1);
+        //        if (item.DTime == newDt)
+        //        {
+        //            if (item.HighPrice < price) item.HighPrice = price;
+        //            if (item.LowPrice > price) item.LowPrice = price;
+        //            item.ClosePrice = price;
+        //        }
+        //        else
+        //        {
+        //            int cnt = PPUtils.GetSameUpDownCount(list);
+        //            if (cnt >= 0)
+        //                PPEvents.Instance.OnCandleOccurHandler(itemCode, Lib.Base.Enums.TimeIntervalEnum.Minute_01, cnt);
+        //            list.Insert(new S_CandleItemData(itemCode, price, price, price, price, 0, newDt));
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //    }
+        //}
+        public void AddMin05(string itemCode, DateTime dt, Single price)
+        {
+            try
+            {
+                var list = StorageMin05[itemCode];
+                var item = list[0];
+                DateTime newDt = GetTime(dt, 5);
+                if (item.DTime == newDt)
+                {
+                    if (item.HighPrice < price) item.HighPrice = price;
+                    if (item.LowPrice > price) item.LowPrice = price;
+                    item.ClosePrice = price;
+                }
+                else
+                {
+                    int cnt = PPUtils.GetSameUpDownCount(list);
+                    if (cnt >= 0)
+                        PPEvents.Instance.OnCandleOccurHandler(itemCode, Lib.Base.Enums.TimeIntervalEnum.Minute_05, cnt);
+                    list.Insert(new S_CandleItemData(itemCode, price, price, price, price, 0, newDt));
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+        public void AddMin10(string itemCode, DateTime dt, Single price)
+        {
+            try
+            {
+                var list = StorageMin10[itemCode];
+                var item = list[0];
+                DateTime newDt = GetTime(dt, 10);
+                if (item.DTime == newDt)
+                {
+                    if (item.HighPrice < price) item.HighPrice = price;
+                    if (item.LowPrice > price) item.LowPrice = price;
+                    item.ClosePrice = price;
+                }
+                else
+                {
+                    int cnt = PPUtils.GetSameUpDownCount(list);
+                    if (cnt >= 0)
+                        PPEvents.Instance.OnCandleOccurHandler(itemCode, Lib.Base.Enums.TimeIntervalEnum.Minute_10, cnt);
+                    list.Insert(new S_CandleItemData(itemCode, price, price, price, price, 0, newDt));
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+        public void AddMin30(string itemCode, DateTime dt, Single price)
+        {
+            try
+            {
+                var list = StorageMin30[itemCode];
+                var item = list[0];
+                DateTime newDt = GetTime(dt, 30);
+                if (item.DTime == newDt)
+                {
+                    if (item.HighPrice < price) item.HighPrice = price;
+                    if (item.LowPrice > price) item.LowPrice = price;
+                    item.ClosePrice = price;
+                }
+                else
+                {
+                    int cnt = PPUtils.GetSameUpDownCount(list);
+                    if (cnt >= 0)
+                        PPEvents.Instance.OnCandleOccurHandler(itemCode, Lib.Base.Enums.TimeIntervalEnum.Minute_30, cnt);
+                    list.Insert(new S_CandleItemData(itemCode, price, price, price, price, 0, newDt));
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+        public void AddMin60(string itemCode, DateTime dt, Single price)
+        {
+            try
+            {
+                var list = StorageMin60[itemCode];
+                var item = list[0];
+                DateTime newDt = GetTime(dt, 60);
+                if (item.DTime == newDt)
+                {
+                    if (item.HighPrice < price) item.HighPrice = price;
+                    if (item.LowPrice > price) item.LowPrice = price;
+                    item.ClosePrice = price;
+                }
+                else
+                {
+                    int cnt = PPUtils.GetSameUpDownCount(list);
+                    if (cnt >= 0)
+                        PPEvents.Instance.OnCandleOccurHandler(itemCode, Lib.Base.Enums.TimeIntervalEnum.Minute_60, cnt);
+                    list.Insert(new S_CandleItemData(itemCode, price, price, price, price, 0, newDt));
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+        private DateTime GetTime(DateTime dt, int min)
+        {
+            int year = dt.Year;
+            int month = dt.Month;
+            int day = dt.Day;
+            int hour = dt.Hour;
+            int minute = dt.Minute;
+            int newMin = (min * ((minute / min) + 1));
+
+            DateTime dateTime = new DateTime(year, month, day, hour, 0, 0);
+
+            if (newMin == 60) dateTime = dateTime.AddHours(1);
+            else dateTime = dateTime.AddMinutes(newMin);
+
+            return dateTime;
+        }
+    }
+}

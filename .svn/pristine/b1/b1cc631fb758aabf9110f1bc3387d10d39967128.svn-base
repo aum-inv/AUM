@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.Atman.Chakra.App.Config
+{
+    public static class RevenueConfig
+    {
+        public const int REVENUE_LOW_LIMIT_TICKS = 42;
+        public const int REVENUE_MIDDLE_LIMIT_TICKS = 62;
+        public const int REVENUE_HIGH_LIMIT_TICKS = 82;
+    }
+}

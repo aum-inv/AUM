@@ -1,0 +1,20 @@
+﻿using OM.Lib.Base.Enums;
+using OM.Lib.Entity;
+using OM.Lib.Framework.Base;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.ServiceModel;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.PP.Chakra.Ctx
+{
+    [ServiceContract]
+    public interface IXingService : IWService
+    {              
+        [OperationContract]
+        void OrderBuySell(string itemCode, string position, string tradeType, string orderPrice, string quantity);
+    }
+
+}

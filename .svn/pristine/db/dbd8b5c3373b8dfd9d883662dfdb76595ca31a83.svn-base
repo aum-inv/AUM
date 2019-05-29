@@ -1,0 +1,78 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.PP.Chakra
+{
+    /// <summary>
+    /// 
+    /// </summary>
+    public class T_VelocityItemData : S_CandleItemData, ITransform
+    {
+        private S_CandleItemData sourceData = null;    
+        private List<S_CandleItemData> sourceDataArray = null;
+
+        public T_VelocityItemData(S_CandleItemData sourceData)
+        {
+            this.sourceData = sourceData;        
+        }      
+       
+        public T_VelocityItemData(
+            S_CandleItemData sourceData
+            , List<S_CandleItemData> sourceDataArray)
+        {
+            this.sourceData = sourceData;            
+            this.sourceDataArray = sourceDataArray;            
+        }       
+
+        private Single t_open = 0;
+        private Single t_high = 0;
+        private Single t_low = 0;
+        private Single t_close = 0;
+        public Single T_OpenPrice { get { return t_open; } }
+        public Single T_HighPrice { get { return t_high; } }
+        public Single T_LowPrice { get { return t_low; } }
+        public Single T_ClosePrice { get { return t_close; } }
+     
+
+        public void Transform()
+        {
+            try
+            {
+                if (sourceData != null)
+                {
+                    OpenPrice = sourceData.OpenPrice;
+                    HighPrice = sourceData.HighPrice;
+                    LowPrice = sourceData.LowPrice;
+                    ClosePrice = sourceData.ClosePrice;
+                    DTime = sourceData.DTime;
+                }
+
+                List<float> tOpenList = new List<float>();
+                List<float> tCloseList = new List<float>();
+                List<float> tHighList = new List<float>();
+                List<float> tLowList = new List<float>();
+                if (sourceDataArray != null)
+                {   
+                    foreach (var item in sourceDataArray)
+                    {
+                        tOpenList.Add(Math.Abs(ClosePrice - item.OpenPrice));
+                        tCloseList.Add(Math.Abs(ClosePrice - item.ClosePrice));
+                        tHighList.Add(Math.Abs(ClosePrice - item.HighPrice));
+                        tLowList.Add(Math.Abs(ClosePrice - item.LowPrice));
+                    }
+
+                    t_open = (Single)Math.Round(tOpenList.Average(), 2);
+                    t_close = (Single)Math.Round(tCloseList.Average(), 2);
+                    t_high = (Single)Math.Round(tHighList.Average(), 2);
+                    t_low = (Single)Math.Round(tLowList.Average(), 2);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+    }
+}

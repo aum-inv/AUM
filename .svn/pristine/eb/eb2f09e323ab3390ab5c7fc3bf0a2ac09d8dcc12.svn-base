@@ -1,0 +1,45 @@
+﻿using OM.Lib.Base.Data;
+using OM.Lib.Base.Utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.PP.Chakra
+{
+    public class S_CandleItemData : ISourceData
+    {
+        public S_CandleItemData() { }
+
+        public S_CandleItemData(
+                Single open
+            ,   Single high
+            ,   Single low
+            ,   Single close
+            ,   Single volume
+            ,   DateTime dt)
+        {
+            this.open = open;
+            this.high = high;
+            this.low = low;
+            this.close = close;
+            this.volume = volume;
+            this.dt = dt;
+        }
+
+        private Single open = 0;
+        private Single high = 0; 
+        private Single low = 0;
+        private Single close = 0;
+        private Single volume = 0;
+        private DateTime dt;
+
+        public Single OpenPrice { get { return open; }  }
+        public Single HighPrice { get { return high; } }
+        public Single LowPrice { get { return low; } }
+        public Single ClosePrice { get { return close; } }
+        public Single Volume { get { return volume; } }
+        public DateTime DTime { get { return dt; } }
+    }
+}

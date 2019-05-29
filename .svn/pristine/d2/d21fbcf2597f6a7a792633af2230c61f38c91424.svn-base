@@ -1,0 +1,30 @@
+﻿using OM.Lib.Base.Utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.PP.Chakra
+{
+    public class S_CandleItemData : A_HLOC
+    {
+        public S_CandleItemData() { }
+
+        public S_CandleItemData(
+                Single open
+            ,   Single high
+            ,   Single low
+            ,   Single close
+            ,   Single volume
+            ,   DateTime dt)
+        {
+            base.OpenPrice = open;
+            base.HighPrice = high;
+            base.LowPrice = low;
+            base.ClosePrice = close;
+            base.Volume = volume;
+            base.DTime = dt;
+        }
+    }
+}

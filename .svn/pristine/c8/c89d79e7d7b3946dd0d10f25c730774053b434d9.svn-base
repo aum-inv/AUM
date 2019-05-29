@@ -1,0 +1,142 @@
+﻿namespace OM.Vikala.Chakra.App
+{
+    partial class MainForm
+    {
+        /// <summary>
+        /// 필수 디자이너 변수입니다.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// 사용 중인 모든 리소스를 정리합니다.
+        /// </summary>
+        /// <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form 디자이너에서 생성한 코드
+
+        /// <summary>
+        /// 디자이너 지원에 필요한 메서드입니다. 
+        /// 이 메서드의 내용을 코드 편집기로 수정하지 마세요.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnLoadData = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.chartVL = new OM.Vikala.Controls.Charts.BasicVolumeChart();
+            this.chartLine = new OM.Vikala.Controls.Charts.BasicLineChart();
+            this.chartCS = new OM.Vikala.Controls.Charts.BasicCandleChart();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnLoadData);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(5, 5);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1326, 52);
+            this.panel1.TabIndex = 0;
+            // 
+            // btnLoadData
+            // 
+            this.btnLoadData.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnLoadData.Location = new System.Drawing.Point(0, 0);
+            this.btnLoadData.Name = "btnLoadData";
+            this.btnLoadData.Size = new System.Drawing.Size(134, 52);
+            this.btnLoadData.TabIndex = 0;
+            this.btnLoadData.Text = "LoadData";
+            this.btnLoadData.UseVisualStyleBackColor = true;
+            this.btnLoadData.Click += new System.EventHandler(this.btnLoadData_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.chartVL);
+            this.panel2.Controls.Add(this.chartLine);
+            this.panel2.Controls.Add(this.chartCS);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(5, 57);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1326, 682);
+            this.panel2.TabIndex = 1;
+            // 
+            // chartVL
+            // 
+            this.chartVL.ChartData = null;
+            this.chartVL.ChartEventInstance = null;
+            this.chartVL.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chartVL.IsAutoScrollX = true;
+            this.chartVL.IsLoaded = false;
+            this.chartVL.Location = new System.Drawing.Point(0, 443);
+            this.chartVL.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.chartVL.MaximumDisplayItemCount = 30;
+            this.chartVL.Name = "chartVL";
+            this.chartVL.Size = new System.Drawing.Size(1326, 239);
+            this.chartVL.TabIndex = 3;
+            // 
+            // chartLine
+            // 
+            this.chartLine.ChartData = null;
+            this.chartLine.ChartEventInstance = null;
+            this.chartLine.Dock = System.Windows.Forms.DockStyle.Top;
+            this.chartLine.IsAutoScrollX = true;
+            this.chartLine.IsLoaded = false;
+            this.chartLine.Location = new System.Drawing.Point(0, 191);
+            this.chartLine.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.chartLine.MaximumDisplayItemCount = 30;
+            this.chartLine.Name = "chartLine";
+            this.chartLine.Size = new System.Drawing.Size(1326, 252);
+            this.chartLine.TabIndex = 2;
+            // 
+            // chartCS
+            // 
+            this.chartCS.ChartData = null;
+            this.chartCS.ChartEventInstance = null;
+            this.chartCS.Dock = System.Windows.Forms.DockStyle.Top;
+            this.chartCS.IsAutoScrollX = true;
+            this.chartCS.IsLoaded = false;
+            this.chartCS.Location = new System.Drawing.Point(0, 0);
+            this.chartCS.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.chartCS.MaximumDisplayItemCount = 30;
+            this.chartCS.Name = "chartCS";
+            this.chartCS.Size = new System.Drawing.Size(1326, 191);
+            this.chartCS.TabIndex = 1;
+            // 
+            // MainForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1336, 744);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.Name = "MainForm";
+            this.Padding = new System.Windows.Forms.Padding(5);
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnLoadData;
+        private Controls.Charts.BasicCandleChart chartCS;
+        private Controls.Charts.BasicLineChart chartLine;
+        private Controls.Charts.BasicVolumeChart chartVL;
+    }
+}
+

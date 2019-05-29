@@ -1,0 +1,121 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.106
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OM", "OM", "{C6034268-1E73-41BE-A1DA-25AA576B6EED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OM.PP", "OM.PP", "{76DA3DE6-BB03-48CB-B6AA-9185A065FB99}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OM.Mantra", "OM.Mantra", "{8372456F-9F33-4F42-A778-8DC3799A0D0D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OM.Vikala", "OM.Vikala", "{539136A5-A45F-4DD3-B89B-A6212614D9B6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OM.Upaya", "OM.Upaya", "{46C860CE-4782-4537-AEEC-7F653DCB9CEA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OM.Atman", "OM.Atman", "{E3D13311-C1EF-4534-8093-DE6A8FBB0221}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OM.Jiva", "OM.Jiva", "{D5FABF8A-AB3C-4F1C-8663-1CB15E7D8496}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OM.Lib.Base", "OM\OM.Lib.Base\OM.Lib.Base.csproj", "{1796FFD0-4EAF-4F72-8DB2-923345B88C7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OM.Lib.Framework", "OM\OM.Lib.Framework\OM.Lib.Framework.csproj", "{5A86D37B-E9A0-4CFD-BC4A-FA53CD0EDC61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OM.PP.Chakra.App", "OM.PP\OM.PP.Chakra.App\OM.PP.Chakra.App.csproj", "{A80ACFC4-CE2D-4101-9EFE-C0E92FA4E3D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OM.PP.XingApp", "OM.PP\OM.PP.XingApp\OM.PP.XingApp.csproj", "{5D3CAB66-1ED4-4E29-88CF-03B02C755E3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OM.PP.Chakra", "OM.PP\OM.PP.Chakra\OM.PP.Chakra.csproj", "{2C4AA241-5C13-4ABF-9EB3-5903308CB439}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{AEDF43A8-1DB5-411D-B833-A4908ECA03EF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "icon", "icon", "{0C43121A-5291-4DF6-AD44-BFF8A1D49794}"
+	ProjectSection(SolutionItems) = preProject
+		Resources\Icon\feed-icon-blue.ico = Resources\Icon\feed-icon-blue.ico
+		Resources\Icon\feed-icon-blue.png = Resources\Icon\feed-icon-blue.png
+		Resources\Icon\feed-icon-green.ico = Resources\Icon\feed-icon-green.ico
+		Resources\Icon\feed-icon-green.png = Resources\Icon\feed-icon-green.png
+		Resources\Icon\feed-icon-orange.ico = Resources\Icon\feed-icon-orange.ico
+		Resources\Icon\feed-icon-orange.png = Resources\Icon\feed-icon-orange.png
+		Resources\Icon\feed-icon-pink.ico = Resources\Icon\feed-icon-pink.ico
+		Resources\Icon\feed-icon-pink.png = Resources\Icon\feed-icon-pink.png
+		Resources\Icon\feed-icon-purple.ico = Resources\Icon\feed-icon-purple.ico
+		Resources\Icon\feed-icon-purple.png = Resources\Icon\feed-icon-purple.png
+		Resources\Icon\feed-icon-red.ico = Resources\Icon\feed-icon-red.ico
+		Resources\Icon\feed-icon-red.png = Resources\Icon\feed-icon-red.png
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OM.Lib.Entity", "OM\OM.Lib.Entity\OM.Lib.Entity.csproj", "{D981E9A6-93E8-4369-8126-857C61678516}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OM.Vikala.Controls", "OM.Vikala\OM.Vikala.Controls\OM.Vikala.Controls.csproj", "{28E6D99C-2C15-4527-928A-A2EAB2E692B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OM.Vikala.Chakra.App", "OM.Vikala\OM.Vikala.Chakra.App\OM.Vikala.Chakra.App.csproj", "{479275C8-DEDA-4F2B-879F-6BA252861FFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{CB3AE892-267C-48B6-B24B-470F93C8A072}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1796FFD0-4EAF-4F72-8DB2-923345B88C7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1796FFD0-4EAF-4F72-8DB2-923345B88C7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1796FFD0-4EAF-4F72-8DB2-923345B88C7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1796FFD0-4EAF-4F72-8DB2-923345B88C7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A86D37B-E9A0-4CFD-BC4A-FA53CD0EDC61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A86D37B-E9A0-4CFD-BC4A-FA53CD0EDC61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A86D37B-E9A0-4CFD-BC4A-FA53CD0EDC61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A86D37B-E9A0-4CFD-BC4A-FA53CD0EDC61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A80ACFC4-CE2D-4101-9EFE-C0E92FA4E3D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A80ACFC4-CE2D-4101-9EFE-C0E92FA4E3D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A80ACFC4-CE2D-4101-9EFE-C0E92FA4E3D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A80ACFC4-CE2D-4101-9EFE-C0E92FA4E3D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D3CAB66-1ED4-4E29-88CF-03B02C755E3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D3CAB66-1ED4-4E29-88CF-03B02C755E3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D3CAB66-1ED4-4E29-88CF-03B02C755E3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D3CAB66-1ED4-4E29-88CF-03B02C755E3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C4AA241-5C13-4ABF-9EB3-5903308CB439}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C4AA241-5C13-4ABF-9EB3-5903308CB439}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C4AA241-5C13-4ABF-9EB3-5903308CB439}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C4AA241-5C13-4ABF-9EB3-5903308CB439}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D981E9A6-93E8-4369-8126-857C61678516}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D981E9A6-93E8-4369-8126-857C61678516}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D981E9A6-93E8-4369-8126-857C61678516}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D981E9A6-93E8-4369-8126-857C61678516}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28E6D99C-2C15-4527-928A-A2EAB2E692B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28E6D99C-2C15-4527-928A-A2EAB2E692B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28E6D99C-2C15-4527-928A-A2EAB2E692B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28E6D99C-2C15-4527-928A-A2EAB2E692B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{479275C8-DEDA-4F2B-879F-6BA252861FFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{479275C8-DEDA-4F2B-879F-6BA252861FFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{479275C8-DEDA-4F2B-879F-6BA252861FFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{479275C8-DEDA-4F2B-879F-6BA252861FFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB3AE892-267C-48B6-B24B-470F93C8A072}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB3AE892-267C-48B6-B24B-470F93C8A072}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB3AE892-267C-48B6-B24B-470F93C8A072}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB3AE892-267C-48B6-B24B-470F93C8A072}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1796FFD0-4EAF-4F72-8DB2-923345B88C7E} = {C6034268-1E73-41BE-A1DA-25AA576B6EED}
+		{5A86D37B-E9A0-4CFD-BC4A-FA53CD0EDC61} = {C6034268-1E73-41BE-A1DA-25AA576B6EED}
+		{A80ACFC4-CE2D-4101-9EFE-C0E92FA4E3D2} = {76DA3DE6-BB03-48CB-B6AA-9185A065FB99}
+		{5D3CAB66-1ED4-4E29-88CF-03B02C755E3C} = {76DA3DE6-BB03-48CB-B6AA-9185A065FB99}
+		{2C4AA241-5C13-4ABF-9EB3-5903308CB439} = {76DA3DE6-BB03-48CB-B6AA-9185A065FB99}
+		{0C43121A-5291-4DF6-AD44-BFF8A1D49794} = {AEDF43A8-1DB5-411D-B833-A4908ECA03EF}
+		{D981E9A6-93E8-4369-8126-857C61678516} = {C6034268-1E73-41BE-A1DA-25AA576B6EED}
+		{28E6D99C-2C15-4527-928A-A2EAB2E692B5} = {539136A5-A45F-4DD3-B89B-A6212614D9B6}
+		{479275C8-DEDA-4F2B-879F-6BA252861FFD} = {539136A5-A45F-4DD3-B89B-A6212614D9B6}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		VisualSVNWorkingCopyRoot = .
+		SolutionGuid = {52E07AD0-FB7F-4B3D-A93D-C27D36E06B4F}
+	EndGlobalSection
+EndGlobal

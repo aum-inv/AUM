@@ -1,0 +1,65 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using XA_DATASETLib;
+
+namespace OM.PP.XingApp.Api
+{
+    class Api_IndexFuture : BaseApi
+    {      
+        public Api_IndexFuture() : base("t8413")
+        {
+        }
+
+        #region Test    
+        public void 종목일별시세가져오기(string code, string cts_date)
+        {
+            if (query == null)
+            {
+                query = new XAQueryClass();
+                query.ReceiveData += query_ReceiveData;
+                query.ReceiveMessage += query_ReceiveMessage;
+                query.LoadFromResFile($".\\res\\{resName}.res");
+            }
+
+            query.SetFieldData(inBlock, "shcode", 0, code);
+            query.SetFieldData(inBlock, "gubun", 0, "2");
+            query.SetFieldData(inBlock, "qrycnt", 0, "5");
+            query.SetFieldData(inBlock, "sdate", 0, DateTime.Today.AddDays(7).ToString("yyyyMMdd"));
+            query.SetFieldData(inBlock, "edate", 0, DateTime.Today.ToString("yyyyMMdd"));
+            query.SetFieldData(inBlock, "cts_date", 0, cts_date);
+            query.SetFieldData(inBlock, "comp_yn", 0, "N");
+
+            if (string.IsNullOrEmpty(cts_date))
+                query.Request(false);
+            else
+                query.Request(true);
+        }
+
+        protected override void query_ReceiveData(string szTrCode)
+        {
+            int blockCnt = Convert.ToInt32(query.GetFieldData(outBlock, "rec_count", 0));
+
+            string 종목코드 = query.GetFieldData(inBlock, "shcode", 0);
+
+            for (int idx = 0; idx < blockCnt; idx++)
+            {
+                string 날짜 = query.GetFieldData(outBlock1, "date", idx);
+                string 시가 = query.GetFieldData(outBlock1, "open", idx);
+                string 고가 = query.GetFieldData(outBlock1, "high", idx);
+                string 저가 = query.GetFieldData(outBlock1, "low", idx);
+                string 종가 = query.GetFieldData(outBlock1, "close", idx);
+                string 거래량 = query.GetFieldData(outBlock1, "jdiff_vol", idx);
+                string 거래대금 = query.GetFieldData(outBlock1, "value", idx);
+                               
+                Insert();
+            }
+        }
+        #endregion
+
+    }
+}

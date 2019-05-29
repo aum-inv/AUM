@@ -1,0 +1,38 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.Lib.Base.Enums
+{
+    public static class ItemCodeSet
+    {
+        public const string Items = @"{
+                        ""지수-국내-코스피"" : """" ,
+                        ""지수-해외-다우"" : """" ,
+                        ""지수-해외-나스닥"" : """" ,
+                        ""지수-해외-홍콩"" : """" ,
+                        ""지수-해외-상해종합"" : """" ,
+                        ""지수-해외-니케이225"" : """" ,
+                        ""지수-해외-니케이225"" : """" ,
+                        ""-"" : """" ,
+                        ""해외선물-WTI"" : """" ,
+                        ""해외선물-NG"" : """" ,
+                        ""해외선물-GOLD"" : """" ,
+                        ""해외선물-SILVER"" : """" ,
+                        ""-"" : """" ,
+                        ""환율-EUR/USD"" : """" ,
+                        ""환율-USD/JPY"" : """" ,
+                        ""-"" : """" ,
+                        ""주식-국내-삼성전자"" : """" ,
+                        ""주식-해외-Apple"" : """" ,
+                        ""주식-해외-Amazon"" : """" ,
+                        ""주식-해외-Netflix"" : """" ,
+                        ""주식-해외-Facebook"" : """" ,
+                        ""-"" : """" ,
+                        ""CRYPTO-BTC/USD"" : """",
+                        ""CRYPTO-ETH/USD"" : """"
+            }";
+    }
+}

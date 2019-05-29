@@ -1,0 +1,204 @@
+﻿using OM.Lib.Entity;
+using OM.PP.Chakra.Ctx;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Vikala.Chakra.App.Mains.Strategy
+{
+    public partial class StrategyForm : Form
+    {
+        //PPContext.Instance
+
+        System.Threading.Timer timer = null;
+
+        Dictionary<string, Label> lblPrice = new Dictionary<string, Label>();
+        Dictionary<string, Label> lblUpDown = new Dictionary<string, Label>();
+        Dictionary<string, Label> lblDiff = new Dictionary<string, Label>();
+        Dictionary<string, Label> lblRate = new Dictionary<string, Label>();
+
+        bool isRunning = false;
+        bool isStart = false;
+        public StrategyForm()
+        {
+            InitializeComponent();
+            InitializeControls();
+            this.Load += StrategyForm_Load;
+        }
+
+        private void InitializeControls()
+        {
+            lblPrice.Add("90199999", lblPrice999);
+            lblPrice.Add("CL", lblPriceCL);
+            lblPrice.Add("NG", lblPriceNG);
+            lblPrice.Add("GC", lblPriceGC);
+            lblPrice.Add("SI", lblPriceSI);
+            lblPrice.Add("HSI",lblPriceHSI);
+            lblPrice.Add("NQ", lblPriceNQ);
+
+            lblUpDown.Add("90199999", lblUpDown999);
+            lblUpDown.Add("CL", lblUpDownCL);
+            lblUpDown.Add("NG", lblUpDownNG);
+            lblUpDown.Add("GC", lblUpDownGC);
+            lblUpDown.Add("SI", lblUpDownSI);
+            lblUpDown.Add("HSI",lblUpDownHSI);
+            lblUpDown.Add("NQ", lblUpDownNQ);
+
+            lblDiff.Add("90199999", lblDiff999);
+            lblDiff.Add("CL", lblDiffCL);
+            lblDiff.Add("NG", lblDiffNG);
+            lblDiff.Add("GC", lblDiffGC);
+            lblDiff.Add("SI", lblDiffSI);
+            lblDiff.Add("HSI",lblDiffHSI);
+            lblDiff.Add("NQ", lblDiffNQ);
+                              
+            lblRate.Add("90199999", lblRate999);
+            lblRate.Add("CL", lblRateCL);
+            lblRate.Add("NG", lblRateNG);
+            lblRate.Add("GC", lblRateGC);
+            lblRate.Add("SI", lblRateSI);
+            lblRate.Add("HSI",lblRateHSI);
+            lblRate.Add("NQ", lblRateNQ);
+        }
+
+        private void StrategyForm_Load(object sender, EventArgs e)
+        {
+            timer = new System.Threading.Timer(timer_Tick, null, TimeSpan.FromSeconds(10), TimeSpan.FromSeconds(2));
+        }
+
+        Dictionary<string, CurrentPrice> bList = null;
+        private void timer_Tick(object state)
+        {
+            if (isRunning) return;
+            if (!isStart) return;
+
+            isRunning = true;
+
+            var list = PPContext.Instance.ClientContext.GetCurrentPrice();
+            foreach (var m in list)
+            {
+                if (bList != null)
+                {
+                    if (bList.ContainsKey(m.Key) && list[m.Key].price == bList[m.Key].price)
+                    {
+                        continue;
+                    }
+                }
+
+                this.Invoke(new MethodInvoker(() =>
+                {
+                    lblPrice[m.Key].Text = m.Value.price;
+                    lblDiff[m.Key].Text = m.Value.change;
+                    lblRate[m.Key].Text = m.Value.drate + "%";
+
+                    if (m.Value.sign == "1" || m.Value.sign == "2")
+                    {
+                        lblUpDown[m.Key].Text = "▲";
+                        lblPrice[m.Key].ForeColor = Color.Red;
+                        lblUpDown[m.Key].ForeColor = Color.Red;
+                        lblDiff[m.Key].ForeColor = Color.Red;
+                        lblRate[m.Key].ForeColor = Color.Red;
+                    }
+                    else if (m.Value.sign == "4" || m.Value.sign == "5")
+                    {
+                        lblUpDown[m.Key].Text = "▼";
+                        lblPrice[m.Key].ForeColor = Color.Blue;
+                        lblUpDown[m.Key].ForeColor = Color.Blue;
+                        lblDiff[m.Key].ForeColor = Color.Blue;
+                        lblRate[m.Key].ForeColor = Color.Blue;
+                    }
+                    else
+                    {
+                        lblUpDown[m.Key].Text = "-";
+                        lblPrice[m.Key].ForeColor = Color.White;
+                        lblUpDown[m.Key].ForeColor = Color.White;
+                        lblDiff[m.Key].ForeColor = Color.White;
+                        lblRate[m.Key].ForeColor = Color.White;
+                    }
+                }));              
+            }
+
+            bList = list;
+            isRunning = false;
+        }            
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var m = new PriceMonitoring();
+                m.Item = tb상품코드.Text;
+                m.Interval = Convert.ToInt32(tb시간.Text);
+                m.UpDown = tb방향.Text;
+                m.UBuyPrice = Convert.ToDouble(tb매수진입가격.Text);
+                m.DBuyPrice = Convert.ToDouble(tb매도진입가격.Text);
+                m.URevenuePrice = Convert.ToDouble(tb매수수익가격.Text);
+                m.DRevenuePrice = Convert.ToDouble(tb매도수익가격.Text);
+                m.ULossPrice = Convert.ToDouble(tb매수손실가격.Text);
+                m.DLossPrice = Convert.ToDouble(tb매도손실가격.Text);
+
+                PPContext.Instance.ClientContext.SetPriceMonitoring(m);
+
+                MessageBox.Show("저장완료!");
+            }
+            catch (Exception ex) { }
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            var list = PPContext.Instance.ClientContext.GetPriceMonitoring();
+            dgv.Rows.Clear();
+            foreach (var m in list)
+            {
+                int idx = dgv.Rows.Add(
+                      m.Item
+                    , m.Interval
+                    , m.UpDown
+                    , m.UBuyPrice
+                    , m.DBuyPrice
+                    , m.URevenuePrice
+                    , m.DRevenuePrice
+                    , m.ULossPrice
+                    , m.DLossPrice
+                    );
+
+                dgv.Rows[idx].Tag = m;
+            }
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            isStart = true;
+            lblMonitorState.Text = "모니터링중......";
+        }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            isStart = false;
+            lblMonitorState.Text = "모니터링중지.";
+        }
+
+        private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
+
+            var m = dgv.Rows[e.RowIndex].Tag as PriceMonitoring;
+
+            tb상품코드.Text = m.Item;
+            tb시간.Text = m.Interval.ToString();
+            tb방향.Text = m.UpDown.ToString();
+            tb매수진입가격.Text = m.UBuyPrice.ToString();
+            tb매도진입가격.Text = m.DBuyPrice.ToString();
+            tb매수수익가격.Text = m.URevenuePrice.ToString();
+            tb매도수익가격.Text = m.DRevenuePrice.ToString();
+            tb매수손실가격.Text = m.ULossPrice.ToString();
+            tb매도손실가격.Text = m.DLossPrice.ToString();
+        }
+    }
+}

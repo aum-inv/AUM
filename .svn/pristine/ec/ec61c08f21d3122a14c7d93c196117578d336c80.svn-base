@@ -1,0 +1,40 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+
+namespace OM.Vikala.Controls.Charts
+{
+    public class BaseChartControl : UserControl
+    {
+        public virtual double SpaceMaxMin
+        {
+            get;
+            set;
+        } = 0.01;
+
+        public virtual string Title
+        {
+            get;
+            set;
+        }
+
+        public void DrawChartTitle(ChartPaintEventArgs e)
+        {
+            string drawString = $"{Title}";
+            System.Drawing.Font drawFont = new System.Drawing.Font("Arial", 8);
+            System.Drawing.SolidBrush drawBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);                     
+            float x = 1.0F;
+            float y = 0.0F;
+            System.Drawing.StringFormat drawFormat = new System.Drawing.StringFormat();
+            drawFormat.FormatFlags = System.Drawing.StringFormatFlags.NoWrap;
+            e.ChartGraphics.Graphics.DrawString(drawString, drawFont, drawBrush, x, y, drawFormat);
+
+            drawFont.Dispose();
+            drawBrush.Dispose();
+        }
+    }
+}

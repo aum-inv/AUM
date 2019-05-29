@@ -1,0 +1,82 @@
+﻿using OM.Lib.Base.Enums;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Vikala.Chakra.App.Mains
+{
+    public partial class BasicMainForm : Form
+    {
+        bool autoReload = true;
+        TimeIntervalEnum timeInterval = TimeIntervalEnum.Day;
+        FlowDirection flowDirection = FlowDirection.TopDown;
+
+        ItemData SelectedItemData
+        {
+            get;set;
+        }
+        public BasicMainForm()
+        {
+            InitializeComponent();           
+            InitializeControls();
+        }
+
+        private void InitializeControls()
+        {
+            this.userToolStrip1.ItemCodeChangedEvent += UserToolStrip1_ItemCodeChangedEvent;
+            this.userToolStrip1.TimerIntervalChangedEvent += UserToolStrip1_TimerIntervalChangedEvent;
+            this.userToolStrip1.FlowDirectionChangedEvent += UserToolStrip1_FlowDirectionChangedEvent;
+            this.userToolStrip1.AutoReloadChangedEvent += UserToolStrip1_AutoReloadChangedEvent;
+            this.userToolStrip1.ReloadEvent += UserToolStrip1_ReloadEvent;
+
+            loadChartControls();
+            setTimer();
+        }
+
+        private void UserToolStrip1_ReloadEvent(object sender, EventArgs e)
+        {
+            loadData();
+        }
+
+        private void UserToolStrip1_AutoReloadChangedEvent(object sender, EventArgs e)
+        {
+            autoReload = (bool)sender;
+        }
+
+        private void UserToolStrip1_FlowDirectionChangedEvent(object sender, EventArgs e)
+        {
+            flpMain.FlowDirection = (FlowDirection)sender;
+        }
+
+        private void UserToolStrip1_TimerIntervalChangedEvent(object sender, EventArgs e)
+        {
+            timeInterval = (TimeIntervalEnum)sender;
+        }
+
+        private void UserToolStrip1_ItemCodeChangedEvent(object sender, EventArgs e)
+        {
+            ItemData itemData = (ItemData)sender;
+            SelectedItemData = itemData;
+        }
+        private void loadChartControls()
+        {
+
+        }
+
+        private void loadData()
+        {
+
+        }
+
+        private void setTimer()
+        {
+
+        }
+    }
+}

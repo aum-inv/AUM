@@ -1,0 +1,42 @@
+﻿using OM.Lib.Base;
+using OM.Lib.Base.Utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleTest
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            LimitedList<double> list = new LimitedList<double>(100);
+            double basePrice = 5;
+            list.Insert(5);
+            list.Insert(4);//D
+            //list.Insert(5);
+            //list.Insert(6);//U
+            //list.Insert(7);
+            //list.Insert(8);
+            //list.Insert(5);
+            //list.Insert(4);//D
+            //list.Insert(3);
+            //list.Insert(4);
+            //list.Insert(5);
+            //list.Insert(6);//U
+            //list.Insert(4);//D
+            //list.Insert(5);
+            //list.Insert(4);
+            //list.Insert(5);
+            //list.Insert(6); //U
+            //list.Insert(4); //D
+            //list.Insert(5);
+            //list.Insert(6); // U
+            Console.WriteLine(PointsUtil.GetUpDownPattern(basePrice, list));
+
+            Console.ReadLine();
+        }
+    }
+}

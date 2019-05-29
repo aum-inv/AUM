@@ -1,0 +1,291 @@
+﻿using MaterialSkin;
+using MaterialSkin.Controls;
+using MetroFramework.Forms;
+using OM.Lib.Base.Enums;
+using OM.PP.Chakra.Ctx;
+using OM.PP.XingApp.Api;
+using OM.PP.XingApp.Config;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Configuration;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using XA_SESSIONLib;
+
+namespace OM.PP.XingApp
+{
+    public partial class XingAppForm : MetroForm
+    {
+        //xing 인증
+        private XASessionClass session = new XASessionClass();
+
+        System.Threading.Timer timer = null;
+
+        Api_Index apiIndex = new Api.Api_Index();
+        Api_WorldFuture apiFF = new Api.Api_WorldFuture();
+        Api_WorldFutureDWM apiFFDWM = new Api.Api_WorldFutureDWM();
+
+        bool isRuning = false;
+        bool isAutoKoreaIndex = false;        
+        bool isAutoFF = false;
+        
+        public XingAppForm()
+        {
+            InitializeComponent();
+           
+            Control.CheckForIllegalCrossThreadCalls = false;
+            this.Load += XingAppForm_Load;
+
+            apiIndex.ApiLogHandler += (log) => { LogWrite(log); };
+            apiFF.ApiLogHandler += (log) => { LogWrite(log); };
+            apiFFDWM.ApiLogHandler += (log) => { LogWrite(log); };
+            serverInfo();
+        }
+        private void serverInfo()
+        {
+            PPServerConfigData.IP = ConfigurationManager.AppSettings["PPService_IP"];
+            PPServerConfigData.Port = Convert.ToInt32(ConfigurationManager.AppSettings["PPService_Port"]);
+
+            PPContext.Instance.OnCreateClient();
+        }
+
+        private void InitializeTimer()
+        {
+            timer = new System.Threading.Timer(timer_Tick, null, TimeSpan.FromSeconds(10), TimeSpan.FromSeconds(10));           
+        }
+
+        private void timer_Tick(object state)
+        {
+            if (isRuning) return;
+
+            isRuning = true;
+            if (isAutoKoreaIndex)
+            {
+                queryKoreaIndexR(ItemCodeSet.GetItemCode(ItemCode.지수_국내_코스피));
+                System.Threading.Thread.Sleep(3000);
+            }
+
+            if (isAutoFF)
+            {
+                queryKoreaIndexR(ItemCodeSet.GetItemCode(ItemCode.선물_해외_GOLD));
+                System.Threading.Thread.Sleep(3000);
+                queryKoreaIndexR(ItemCodeSet.GetItemCode(ItemCode.선물_해외_NG));
+                System.Threading.Thread.Sleep(3000);
+                queryKoreaIndexR(ItemCodeSet.GetItemCode(ItemCode.선물_해외_SILVER));
+                System.Threading.Thread.Sleep(3000);
+                queryKoreaIndexR(ItemCodeSet.GetItemCode(ItemCode.선물_해외_WTI));
+                System.Threading.Thread.Sleep(3000);
+                queryKoreaIndexR(ItemCodeSet.GetItemCode(ItemCode.선물_해외_나스닥));
+                System.Threading.Thread.Sleep(3000);
+                queryKoreaIndexR(ItemCodeSet.GetItemCode(ItemCode.선물_해외_항셍));
+                System.Threading.Thread.Sleep(3000);
+            }
+            isRuning = false;
+        }
+
+        #region XingLoginLogout
+        private void XingAppForm_Load(object sender, EventArgs e)
+        {
+            session._IXASessionEvents_Event_Login += Session__IXASessionEvents_Event_Login;
+        }
+
+        private void Session__IXASessionEvents_Event_Login(string szCode, string szMsg)
+        {
+            //MessageBox.Show(szMsg);
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            bool isAliveServer = session.ConnectServer(AccountInfo.서버정보, 80);
+            LogWrite("IsAliveServer => " + isAliveServer.ToString());
+
+            bool isSuccess = session.Login(
+                AccountInfo.접속아이디
+                , AccountInfo.접속비밀번호
+                , AccountInfo.인증비밀번호
+                //, (int)XA_SESSIONLib.XA_SERVER_TYPE.XA_REAL_SERVER
+                , (int)XA_SESSIONLib.XA_SERVER_TYPE.XA_SIMUL_SERVER
+                , false);
+
+            lblLogin.BackColor = isSuccess ? Color.Blue : Color.Black;
+            LogWrite("IsConnectedServer => " + isSuccess.ToString());
+
+            btnClose.Enabled = true;
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        #endregion
+
+        void LogWrite(string log)
+        {
+            if (tbLog.InvokeRequired)
+            {
+                tbLog.Invoke(new MethodInvoker(() =>
+                {
+                    tbLog.AppendText(log);
+                    tbLog.AppendText(Environment.NewLine);
+                }));
+            }
+            else
+            {
+                tbLog.AppendText(log);
+                tbLog.AppendText(Environment.NewLine);
+            }
+        }
+
+        #region QueryButtonEvent
+        private void btnKospi200_Click(object sender, EventArgs e)
+        {
+            queryKoreaIndex(ItemCodeSet.GetItemCode(ItemCode.지수_국내_코스피200));
+        }
+        private void btnKospi_Click(object sender, EventArgs e)
+        {
+            queryKoreaIndex(ItemCodeSet.GetItemCode(ItemCode.지수_국내_코스피200));
+        }
+
+        private void btnKosdaq_Click(object sender, EventArgs e)
+        {
+            queryKoreaIndex(ItemCodeSet.GetItemCode(ItemCode.지수_국내_코스피200));
+        }
+        #endregion
+
+        private void queryKoreaIndex(string itemCode)
+        {
+            Task.Factory.StartNew(() =>
+            {
+                apiIndex.Query(itemCode, "1", "1");
+                System.Threading.Thread.Sleep(3000);
+
+                apiIndex.Query(itemCode, "1", "5");
+                System.Threading.Thread.Sleep(3000);
+
+                apiIndex.Query(itemCode, "1", "10");
+                System.Threading.Thread.Sleep(3000);
+
+                apiIndex.Query(itemCode, "1", "30");
+                System.Threading.Thread.Sleep(3000);
+
+                apiIndex.Query(itemCode, "1", "60");
+                System.Threading.Thread.Sleep(3000);
+
+                apiIndex.Query(itemCode, "1", "120");
+                System.Threading.Thread.Sleep(3000);
+
+                apiIndex.Query(itemCode, "2", "1");
+                System.Threading.Thread.Sleep(3000);
+
+                apiIndex.Query(itemCode, "3", "1");
+                System.Threading.Thread.Sleep(3000);
+
+                apiIndex.Query(itemCode, "4", "1");
+                System.Threading.Thread.Sleep(3000);
+            });
+        }
+        private void queryKoreaIndexR(string itemCode)
+        {
+            apiIndex.Query(itemCode, "1", "1", "10");
+            System.Threading.Thread.Sleep(3000);
+
+            apiIndex.Query(itemCode, "1", "5", "5");
+            System.Threading.Thread.Sleep(3000);
+
+            apiIndex.Query(itemCode, "1", "10", "3");
+            System.Threading.Thread.Sleep(3000);
+
+            apiIndex.Query(itemCode, "1", "30", "1");
+            System.Threading.Thread.Sleep(3000);
+
+            apiIndex.Query(itemCode, "1", "60", "1");
+            System.Threading.Thread.Sleep(3000);
+
+            apiIndex.Query(itemCode, "1", "120", "1");
+            System.Threading.Thread.Sleep(3000);
+
+            apiIndex.Query(itemCode, "2", "1", "1");
+            System.Threading.Thread.Sleep(3000);
+        }
+
+        private void btnFF_Click(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            queryFF(btn.Text);
+        }
+
+        private void queryFF(string itemCode)
+        {
+            //apiFF.Query(itemCode, "1", "1");
+            //apiFFDWM.Query(itemCode, "2");
+
+            Task.Factory.StartNew(() =>
+            {
+                apiFF.Query(itemCode, "1", "1");
+                System.Threading.Thread.Sleep(3000);
+
+                apiFF.Query(itemCode, "1", "5");
+                System.Threading.Thread.Sleep(3000);
+
+                apiFF.Query(itemCode, "1", "10");
+                System.Threading.Thread.Sleep(3000);
+
+                apiFF.Query(itemCode, "1", "30");
+                System.Threading.Thread.Sleep(3000);
+
+                apiFF.Query(itemCode, "1", "60");
+                System.Threading.Thread.Sleep(3000);
+
+                apiFF.Query(itemCode, "1", "120");
+                System.Threading.Thread.Sleep(3000);
+
+                apiFFDWM.Query(itemCode, "2");
+                System.Threading.Thread.Sleep(3000);
+
+                apiFFDWM.Query(itemCode, "3");
+                System.Threading.Thread.Sleep(3000);
+
+                apiFFDWM.Query(itemCode, "4");
+                System.Threading.Thread.Sleep(3000);
+            });
+        }
+        private void queryFFR(string itemCode)
+        {
+            apiFF.Query(itemCode, "1", "1", "10");
+            System.Threading.Thread.Sleep(3000);
+
+            apiFF.Query(itemCode, "1", "5", "5");
+            System.Threading.Thread.Sleep(3000);
+
+            apiFF.Query(itemCode, "1", "10", "2");
+            System.Threading.Thread.Sleep(3000);
+
+            apiFF.Query(itemCode, "1", "30", "2");
+            System.Threading.Thread.Sleep(3000);
+
+            apiFF.Query(itemCode, "1", "60", "1");
+            System.Threading.Thread.Sleep(3000);
+
+            apiFF.Query(itemCode, "1", "120", "1");
+            System.Threading.Thread.Sleep(3000);
+
+            apiFFDWM.Query(itemCode, "2", "10");
+            System.Threading.Thread.Sleep(3000);
+        }
+
+        private void chkKoreaIndex_CheckedChanged(object sender, EventArgs e)
+        {
+            isAutoKoreaIndex = chkKoreaIndex.Checked;
+        }
+
+        private void chkFF_CheckedChanged(object sender, EventArgs e)
+        {
+            isAutoFF = chkFF.Checked;
+        }
+    }
+}

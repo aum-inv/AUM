@@ -1,0 +1,421 @@
+﻿using OM.Atman.Chakra.Ctx;
+using OM.Lib.Base;
+using OM.Lib.Base.Enums;
+using OM.Lib.Entity;
+using OM.Lib.Framework.Db;
+using OM.PP.Chakra;
+using OM.PP.Chakra.Ctx;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Configuration;
+using System.Data;
+using System.Diagnostics;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Atman.Chakra.App
+{
+    public partial class MainForm : Form
+    {
+        Dictionary<string, Label> lblPrice = new Dictionary<string, Label>();
+        Dictionary<string, Label> lblUpDown = new Dictionary<string, Label>();
+        Dictionary<string, Label> lblDiff = new Dictionary<string, Label>();
+        Dictionary<string, Label> lblRate = new Dictionary<string, Label>();
+
+        public MainForm()
+        {
+            InitializeComponent();
+            InitializeControls();
+        }
+        private void InitializeControls()
+        {
+            lblPrice.Add("CL", lblPriceCL);
+            lblPrice.Add("NG", lblPriceNG);
+            lblPrice.Add("GC", lblPriceGC);
+            lblPrice.Add("SI", lblPriceSI);
+            lblPrice.Add("HMH", lblPriceHSI);
+            lblPrice.Add("NQ", lblPriceNQ);
+            lblPrice.Add("URO", lblPriceURO);
+
+            lblUpDown.Add("CL", lblUpDownCL);
+            lblUpDown.Add("NG", lblUpDownNG);
+            lblUpDown.Add("GC", lblUpDownGC);
+            lblUpDown.Add("SI", lblUpDownSI);
+            lblUpDown.Add("HMH", lblUpDownHSI);
+            lblUpDown.Add("NQ", lblUpDownNQ);
+            lblUpDown.Add("URO", lblUpDownURO);
+
+            lblDiff.Add("CL", lblDiffCL);
+            lblDiff.Add("NG", lblDiffNG);
+            lblDiff.Add("GC", lblDiffGC);
+            lblDiff.Add("SI", lblDiffSI);
+            lblDiff.Add("HMH", lblDiffHSI);
+            lblDiff.Add("NQ", lblDiffNQ);
+            lblDiff.Add("URO", lblDiffURO);
+
+            lblRate.Add("CL", lblRateCL);
+            lblRate.Add("NG", lblRateNG);
+            lblRate.Add("GC", lblRateGC);
+            lblRate.Add("SI", lblRateSI);
+            lblRate.Add("HMH", lblRateHSI);
+            lblRate.Add("NQ", lblRateNQ);
+            lblRate.Add("URO", lblRateURO);
+        }
+        private void serverInfo()
+        {
+            AtmanServerConfigData.IP = ConfigurationManager.AppSettings["AtmanService_IP"];
+            AtmanServerConfigData.Port = Convert.ToInt32(ConfigurationManager.AppSettings["AtmanService_Port"]);
+
+            XingServerConfigData.IP = ConfigurationManager.AppSettings["XingService_IP"];
+            XingServerConfigData.Port = Convert.ToInt32(ConfigurationManager.AppSettings["XingService_Port"]);
+            XingContext.Instance.OnCreateClient();
+
+            PPServerConfigData.IP = ConfigurationManager.AppSettings["PPService_IP"];
+            PPServerConfigData.Port = Convert.ToInt32(ConfigurationManager.AppSettings["PPService_Port"]);
+            PPContext.Instance.OnCreateClient();
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Process currentProcess = Process.GetCurrentProcess();
+            currentProcess.Kill();
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                serverInfo();
+
+                AtmanContext.Instance.StartServer();
+
+                btnStart.Enabled = false;
+
+                InitThread();
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Process currentProcess = Process.GetCurrentProcess();
+            currentProcess.Kill();
+        }
+        private void BindSise(string itemCode, CurrentPrice current)
+        {
+            this.Invoke(new MethodInvoker(() =>
+            {
+                try
+                {
+                    lblPrice[itemCode].Text = current.price;
+                    lblDiff[itemCode].Text = current.change;
+                    lblRate[itemCode].Text = current.drate + "%";
+
+                    if (current.sign == "1" || current.sign == "2")
+                    {
+                        lblUpDown[itemCode].Text = "▲";
+                        lblPrice[itemCode].ForeColor = Color.Red;
+                        lblUpDown[itemCode].ForeColor = Color.Red;
+                        lblDiff[itemCode].ForeColor = Color.Red;
+                        lblRate[itemCode].ForeColor = Color.Red;
+                    }
+                    else if (current.sign == "4" || current.sign == "5")
+                    {
+                        lblUpDown[itemCode].Text = "▼";
+                        lblPrice[itemCode].ForeColor = Color.Blue;
+                        lblUpDown[itemCode].ForeColor = Color.Blue;
+                        lblDiff[itemCode].ForeColor = Color.Blue;
+                        lblRate[itemCode].ForeColor = Color.Blue;
+                    }
+                    else
+                    {
+                        lblUpDown[itemCode].Text = "-";
+                        lblPrice[itemCode].ForeColor = Color.White;
+                        lblUpDown[itemCode].ForeColor = Color.White;
+                        lblDiff[itemCode].ForeColor = Color.White;
+                        lblRate[itemCode].ForeColor = Color.White;
+                    }
+                }
+                catch (Exception ex) { }
+            }));
+        }
+
+        private void LoadItem()
+        {
+            PPStorage.Instance.Init("CL");
+            PPStorage.Instance.Init("NG");
+            PPStorage.Instance.Init("GC");
+            PPStorage.Instance.Init("SI");
+            PPStorage.Instance.Init("HMH");
+            PPStorage.Instance.Init("NQ");
+            PPStorage.Instance.Init("URO");
+
+            PPStorage.Instance.InitTick("CL");
+            PPStorage.Instance.InitTick("NG");
+            PPStorage.Instance.InitTick("GC");
+            PPStorage.Instance.InitTick("SI");
+            PPStorage.Instance.InitTick("HMH");
+            PPStorage.Instance.InitTick("NQ");
+            PPStorage.Instance.InitTick("URO");
+
+            LoadCandle("CL");
+            LoadCandle("NG");
+            LoadCandle("GC");
+            LoadCandle("SI");
+            LoadCandle("HMH");
+            LoadCandle("NQ");
+            LoadCandle("URO");
+        }
+        private void LoadCandle(string itemCode)
+        {
+            try
+            {
+                //PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Minute_01
+                //    , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Minute_01));
+
+                PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Minute_05
+                    , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Minute_05));
+
+                PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Minute_10
+                    , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Minute_10));
+
+                PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Minute_30
+                    , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Minute_30));
+
+                PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Minute_60
+                    , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Minute_60));
+
+                PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Minute_120
+                    , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Minute_120));
+
+                PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Day
+                    , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(itemCode, TimeIntervalEnum.Day));
+
+                //PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Tick_180
+                //    , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Tick_180));
+
+                PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Tick_360
+                   , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Tick_360));
+
+                PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Tick_720
+                   , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Tick_720));
+
+                PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Tick_1080
+                   , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Tick_1080));
+
+                //PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Tick_1440
+                //   , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Tick_1440));
+
+                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Minute_10);
+                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Minute_30);
+                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Minute_60);
+                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Minute_120);
+                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Day);
+
+                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Tick_360);
+                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Tick_720);
+                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Tick_1080);
+                //PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Tick_1440);
+
+            }
+            catch (Exception)
+            {
+            }
+        }            
+        private void InitThread()
+        {
+            System.Threading.Thread tCL =
+                new System.Threading.Thread(new System.Threading.ParameterizedThreadStart(Run));
+            tCL.Start("CL");
+            
+            System.Threading.Thread tNG =
+                new System.Threading.Thread(new System.Threading.ParameterizedThreadStart(Run));
+            tNG.Start("NG");
+
+            System.Threading.Thread tGC =
+                new System.Threading.Thread(new System.Threading.ParameterizedThreadStart(Run));
+            tGC.Start("GC");
+
+            System.Threading.Thread tSI =
+                new System.Threading.Thread(new System.Threading.ParameterizedThreadStart(Run));
+            tSI.Start("SI");
+
+            System.Threading.Thread tHSI =
+                new System.Threading.Thread(new System.Threading.ParameterizedThreadStart(Run));
+            tHSI.Start("HMH");
+            
+            System.Threading.Thread tNQ =
+                new System.Threading.Thread(new System.Threading.ParameterizedThreadStart(Run));
+            tNQ.Start("NQ");
+
+            System.Threading.Thread tURO =
+                new System.Threading.Thread(new System.Threading.ParameterizedThreadStart(Run));
+            tURO.Start("URO");
+        }
+
+        bool isSiseBinding = false;
+        private void Run(object o)
+        {
+            string itemCode = (string)o;
+
+            string lastPrice = "";
+
+            LimitedList<double> ll3 = new LimitedList<double>(3);
+            LimitedList<double> ll5 = new LimitedList<double>(5);
+            LimitedList<double> ll7 = new LimitedList<double>(7);
+
+            int rnd = ItemCodeSet.GetItemRoundNum(itemCode);
+
+            while (true)
+            {
+                try
+                {
+                    if (!SiseStorage.Instance.Prices.ContainsKey(itemCode))
+                    {
+                        System.Threading.Thread.Sleep(1000);
+                        continue;
+                    }
+
+                    var priceQueue = SiseStorage.Instance.Prices[itemCode];
+
+                    if (priceQueue.Count == 0)
+                    {
+                        System.Threading.Thread.Sleep(100);
+                        continue;
+                    }
+                    CurrentPrice price;
+                    var isDequeue = priceQueue.TryDequeue(out price);
+                    if (isDequeue)
+                    {
+                        if (lastPrice == price.price) continue;
+                        lastPrice = price.price;
+
+                        double d = Math.Round(Convert.ToDouble(lastPrice), rnd);
+                        ll3.Insert(d);
+                        ll5.Insert(d);
+                        ll7.Insert(d);
+                        price.price3 = ll3.Count == 3 ? Math.Round(ll3.Average(), rnd) : 0;
+                        price.price5 = ll5.Count == 5 ? Math.Round(ll5.Average(), rnd) : 0;
+                        price.price7 = ll7.Count == 7 ? Math.Round(ll7.Average(), rnd) : 0;
+
+                        SiseEvents.Instance.OnSiseHandler(itemCode, price);
+
+                        if (isSiseBinding)
+                        {
+                            BindSise(itemCode, price);
+                        }
+                    }
+                }
+                catch (Exception ex) { }
+            }
+        }
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+        }
+
+        private void chkSise_CheckedChanged(object sender, EventArgs e)
+        {
+            isSiseBinding = chkSise.Checked;
+        }
+        private void btnAtomRule_Click(object sender, EventArgs e)
+        {
+            //new AtomRuleForm().Show();
+            new StrategyTradeRuleForm().Show();
+        }
+        private void btnMessRule_Click(object sender, EventArgs e)
+        {
+            new MessRuleForm().Show();
+        }
+
+        private void btnTwoLineRule_Click(object sender, EventArgs e)
+        {
+            // new TwoLineRuleForm().Show();
+            new StrategyTradeRuleForm().Show();
+        }
+
+        private void btnTradeRule_Click(object sender, EventArgs e)
+        {
+            //new TradeRuleForm().Show();
+            new StrategyTradeRuleForm().Show();
+        }
+
+        private void btnPatternTradeRule_Click(object sender, EventArgs e)
+        {
+            new PatternTradeRuleForm().Show();
+        }
+
+        private void btnPatternTradeRule2_Click(object sender, EventArgs e)
+        {
+            new PatternTradeRuleForm2().Show();
+        }
+        private void btnPatternTradeRule3_Click(object sender, EventArgs e)
+        {
+            new PatternTradeRuleForm3().Show();
+        }
+
+        private void btnPatternTradeRule4_Click(object sender, EventArgs e)
+        {
+            new PatternTradeRuleForm4().Show();
+        }
+        private void btnCandleSignal_Click(object sender, EventArgs e)
+        {
+            new CandleSignalForm2().Show();          
+        }
+        private void btnCandleSignal2_Click(object sender, EventArgs e)
+        {
+            new CandleSignalForm3().Show();
+        }
+        private void BtnCandleSignal3_Click(object sender, EventArgs e)
+        {
+            new CandleSignalForm4().Show();
+        }
+        private void btnSimpleOrder_Click(object sender, EventArgs e)
+        {
+            new OrderSimpleForm().Show();
+        }
+        private void btnMITOrder_Click(object sender, EventArgs e)
+        {
+            new OrderMITForm().Show();
+        }
+
+        private void btnLoadCandle_Click(object sender, EventArgs e)
+        {
+            LoadItem();
+        }
+
+        private void btnStrategySS_Click(object sender, EventArgs e)
+        {
+            new StrategyTradeRuleSSForm().Show();
+        }
+
+        private void btnStrategySM_Click(object sender, EventArgs e)
+        {
+            new StrategyTradeRuleSMForm().Show();
+        }
+
+        private void btnStrategyMS_Click(object sender, EventArgs e)
+        {
+            new StrategyTradeRuleMSForm().Show();
+        }
+
+        private void btnStrategyMM_Click(object sender, EventArgs e)
+        {
+            new StrategyTradeRuleMMForm().Show();
+        }
+
+        private void btnStrategy_Click(object sender, EventArgs e)
+        {
+            new StrategyTradeRuleForm().Show();
+        }
+    }
+}

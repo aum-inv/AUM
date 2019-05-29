@@ -1,0 +1,66 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.ServiceModel;
+using System.Text;
+using System.Threading.Tasks;
+using OM.Lib.Base.Data;
+using OM.Lib.Base.Enums;
+using OM.Lib.Entity;
+using OM.Lib.Framework.Base;
+
+namespace OM.PP.Chakra.Ctx
+{
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall
+        , ConcurrencyMode = ConcurrencyMode.Multiple
+        , UseSynchronizationContext = false)]
+    public class PPService : IPPService
+    {
+        static object sync = new object();
+
+        public string ServiceName => PPServerConfigData.ServiceName;
+
+        public void Noop() { }
+       
+      
+        public List<ISourceData> GetSourceData(
+                FinancialClassificationEnum financialClassification
+            ,   string itemCode
+            ,   TimeIntervalEnum timeInterval
+            ,   DateTime? startDate = null
+            ,   DateTime? endDate = null)
+        {
+            List<ISourceData> list = new List<ISourceData>();
+
+            try
+            {
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return list;
+        }
+
+        public void SetSourceData(
+                FinancialClassificationEnum financialClassification
+            ,   string itemCode
+            ,   TimeIntervalEnum timeInterval
+            ,   LitePurushaPrakriti entity)
+        {
+            string entityeName = EnumUtil.GetFinancialClassificationName(financialClassification);
+            PurushaPrakriti pp = new PurushaPrakriti(entityeName);
+            pp.MappingProperty(entity);
+
+            try
+            {
+                pp.Interval = (int)timeInterval;
+                pp.Create();
+            }
+            catch (Exception ex)
+            {
+                //error
+            }
+        }        
+    }
+}

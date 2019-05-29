@@ -1,0 +1,35 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.Lib.Base.Enums
+{
+    public enum CandleChartPatternEnum
+    {
+          None
+        , ThreeStrongUp
+        , ThreeStrongDown
+        , ThreeWeakUp
+        , ThreeWeakDown
+        
+        , FourStrongUp
+        , FourStrongDown
+        , FourWeakUp
+        , FourWeakDown
+
+        , FiveStrongUp
+        , FiveStrongDown
+        , FiveWeakUp
+        , FiveWeakDown
+
+        , SixStrongUp
+        , SixStrongDown
+        , SixWeakUp
+        , SixWeakDown
+
+        , MassDownUp
+        , MassUpDown
+    }
+}

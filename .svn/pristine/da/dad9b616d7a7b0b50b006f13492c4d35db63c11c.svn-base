@@ -1,0 +1,95 @@
+﻿using MaterialSkin;
+using OM.PP.Chakra.Ctx;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Configuration;
+using System.Data;
+using System.Diagnostics;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.PP.Chakra.App
+{
+    public partial class AppMain : MaterialSkin.Controls.MaterialForm
+    {
+        public AppMain()
+        {
+            InitializeComponent();
+
+            MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+
+            // Configure color schema
+            materialSkinManager.ColorScheme = new ColorScheme(
+                Primary.Blue400, Primary.Blue500,
+                Primary.Blue500, Accent.LightBlue200,
+                TextShade.WHITE
+            );
+        }
+
+        void LogWrite(string log)
+        {
+            if (tbLog.InvokeRequired)
+            {
+                tbLog.Invoke(new MethodInvoker(() =>
+                {
+                    tbLog.AppendText(log);
+                    tbLog.AppendText(Environment.NewLine);
+                }));
+            }
+            else
+            {
+                tbLog.AppendText(log);
+                tbLog.AppendText(Environment.NewLine);
+            }
+        }
+
+        private void serverInfo()
+        {
+            PPServerConfigData.IP = ConfigurationManager.AppSettings["PPService_IP"];
+            PPServerConfigData.Port = Convert.ToInt32(ConfigurationManager.AppSettings["PPService_Port"]);          
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Process currentProcess = Process.GetCurrentProcess();
+            currentProcess.Kill();
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                serverInfo();
+
+                PPContext.Instance.StartServer();
+
+                LogWrite("*********서비스 실행되었습니다.*********");
+             
+                lblConnect.Visible = true;
+
+                btnStart.Enabled = false;               
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Process currentProcess = Process.GetCurrentProcess();
+            currentProcess.Kill();
+        }
+    }
+}

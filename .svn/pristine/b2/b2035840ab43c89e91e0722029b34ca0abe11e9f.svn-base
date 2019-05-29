@@ -1,0 +1,227 @@
+﻿using OM.Lib.Base.Enums;
+using OM.Lib.Base.Utils;
+using OM.Lib.Entity;
+using OM.PP.Chakra.Ctx;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.Atman.Chakra
+{
+    public class OrderSimpleRule : BaseTradeRule
+    {
+        #region 속성
+
+        public string RuleID { get; set; } = "";
+        public string Item { get { return ItemCode; } set { ItemCode = value; } }
+
+        public bool IsBuyDone { get; set; } = false;
+
+        public int Quantity { get; set; } = 0;
+        public string TradeType { get; set; } = "1";
+        public string Position { get; set; } = "매도";
+
+        public double OrderPrice { get; set; } = 0;
+        public bool IsUseCurPrice { get; set; } = false;
+        public double CurPrice { get; set; } = 0;
+
+        public double AvgPrice1 { get; set; } = 0;
+        public double AvgPrice2 { get; set; } = 0;
+        public double LossPrice1 { get; set; } = 0;
+        public double LossPrice2 { get; set; } = 0;
+        public bool IsUseLossPrice { get; set; } = false;
+
+        public bool IsUseRevenue { get; set; } = false;
+        public bool IsUseRevenue1 { get; set; } = false;
+        public bool IsUseRevenue2 { get; set; } = false;
+        public bool IsMinimumRevenue1 { get; set; } = false;
+        public bool IsMinimumRevenue2 { get; set; } = false;
+        public double RevenuePrice { get; set; } = 0;
+        public double RevenueRate { get; set; } = 0;
+        public double MinimumRevenuePrice1 { get; set; } = 0;
+        public double MinimumRevenuePrice2 { get; set; } = 0;
+        #endregion
+
+        protected override string AtmanName => "ORDER";
+
+        public OrderSimpleRule()
+        {
+        }
+        protected override void InitRule()
+        {
+        }
+        public override void AnalysisAsync(CurrentPrice price)
+        {
+            Task.Factory.StartNew(() =>
+            {
+                Analysis(price);
+            });
+        }
+        public override void Analysis(CurrentPrice price)
+        {
+            try
+            {               
+                CPrice = Math.Round(Convert.ToDouble(price.price), RoundNum);            
+                
+                if (BPrice == CPrice) return;
+                if (HPrice < CPrice) HPrice = Math.Round(CPrice, RoundNum);
+                if (LPrice > CPrice) LPrice = Math.Round(CPrice, RoundNum);
+
+                if (IsBuyDone) return;
+
+                if (IsUseLossPrice)
+                {                    
+                    //손실체크
+                    if (Position == "매수")
+                    {
+                        if (LossPrice1 > 0 && LossPrice1 >= CPrice)
+                        {
+                            //SellBuy("손실청산1", "매도");
+                        }
+
+                        if (LossPrice2 > 0 && LossPrice2 >= CPrice)
+                        {
+                            IsBuyDone = true;
+                            SellBuy("손실청산2", "매도");
+                        }
+                    }
+                    if (Position == "매도")
+                    {
+                        if (LossPrice1 > 0 && LossPrice1 <= CPrice)
+                        {
+                            //SellBuy("손실청산1", "매도");
+                        }
+
+                        if (LossPrice2 > 0 && LossPrice2 <= CPrice)
+                        {
+                            IsBuyDone = true;
+                            SellBuy("손실청산2", "매도");
+                        }
+                    }
+                }
+
+
+                //수익체크
+                if (IsUseRevenue1)
+                {
+                    if (Position == "매수" && IsMinimumRevenue2 && MinimumRevenuePrice2 > 0)
+                    {
+                        if (MinimumRevenuePrice2 < CPrice) return;
+                    }
+                    if (Position == "매도" && IsMinimumRevenue1 && MinimumRevenuePrice1 > 0)
+                    {
+                        if (MinimumRevenuePrice1 > CPrice) return;
+                    }
+                    double revenuePrice = Math.Round(GetRevenuePrice1(), RoundNum);
+                    if (revenuePrice == 0) return;
+                    if (Position == "매수")
+                    {
+                        if (revenuePrice <= CPrice)
+                        {
+                            //매도진입
+                            IsBuyDone = true;
+                            SellBuy("수익청산", "매도");
+                        }
+                    }
+                    if (Position == "매도")
+                    {
+                        if (revenuePrice >= CPrice)
+                        {
+                            //매수진입
+                            IsBuyDone = true;
+                            SellBuy("수익청산", "매수");
+                        }
+                    }
+                }
+                if (IsUseRevenue2)
+                {
+                    if (Position == "매수" && IsMinimumRevenue2 && MinimumRevenuePrice2 > 0)
+                    {
+                        if (MinimumRevenuePrice2 < CPrice) return;
+                    }
+                    if (Position == "매도" && IsMinimumRevenue1 && MinimumRevenuePrice1 > 0)
+                    {
+                        if (MinimumRevenuePrice1 > CPrice) return;
+                    }
+                    double revenuePrice = Math.Round(GetRevenuePrice2(), RoundNum);
+                    if (revenuePrice == 0) return;
+                    if (Position == "매수")
+                    {
+                        if (revenuePrice <= CPrice)
+                        {
+                            //매도진입
+                            IsBuyDone = true;
+                            SellBuy("수익청산", "매도");
+                        }
+                    }
+                    if (Position == "매도")
+                    {
+                        if (revenuePrice >= CPrice)
+                        {
+                            //매수진입
+                            IsBuyDone = true;
+                            SellBuy("수익청산", "매수");
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                BPrice = CPrice;
+            }
+        }
+
+        public double GetRevenuePrice1()
+        {   
+            double revenuePrice = 0;
+            try
+            {
+                if (RevenuePrice != 0) revenuePrice = RevenuePrice;
+                if (Position == "매수" && revenuePrice < AvgPrice2) revenuePrice = 0;
+                if (Position == "매도" && revenuePrice > AvgPrice1) revenuePrice = 0;
+            }
+            catch (Exception ) { }
+
+            return revenuePrice;
+        }
+        public double GetRevenuePrice2()
+        {
+            double revenuePrice = 0;
+            try
+            {
+                if (RevenueRate != 0)
+                {
+                    if (Position == "매수")
+                        revenuePrice = PriceTick.GetDownPriceOfRate(ItemCode, HPrice, RevenueRate);
+                    if (Position == "매도")
+                        revenuePrice = PriceTick.GetUpPriceOfRate(ItemCode, LPrice, RevenueRate);
+                }
+                if (Position == "매수" && revenuePrice < AvgPrice2) revenuePrice = 0;
+                if (Position == "매도" && revenuePrice > AvgPrice1) revenuePrice = 0;
+            }
+            catch (Exception ) { }
+
+            return revenuePrice;
+        }
+
+        public void SellBuy(string type, string position)
+        {
+            try
+            {
+                //if (IsBuyDone) return;
+
+                //TradeEvents.Instance.OnTradeRuleHandler(AtmanName, RuleID, ItemCode, $"{type}::{position}::{CPrice}");
+
+                XingContext.Instance.ClientContext.OrderBuySell(Item, position, TradeType, CurPrice.ToString(), Quantity.ToString());
+            }
+            catch (Exception)
+            {
+            }
+        }
+    }
+}

@@ -1,0 +1,184 @@
+﻿using OM.Lib.Base.Enums;
+using OM.Lib.Base.Utils;
+using OM.PP.Chakra;
+using OM.PP.Chakra.Ctx;
+using OM.Vikala.Controls.Charts;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Vikala.Chakra.App.Mains
+{
+    public partial class MultiChartForm2 : BaseForm
+    {
+        List<BaseChartControl> charts = new List<BaseChartControl>();
+
+        BaseChartControl basic = new BasicCandleChart();
+        BaseChartControl atom = new AtomChart();
+        BaseChartControl quantum = new QuantumLineChart();
+        BaseChartControl mass = new MassChart();
+        BaseChartControl threeThaChi = new ThreeThaChiChart();
+        BaseChartControl reverse = new ReverseCandleChart();
+
+        public MultiChartForm2()
+        {
+            InitializeComponent();
+            base.setToolStrip(userToolStrip1);
+            InitializeControls();
+        }
+
+        private void InitializeControls()
+        {           
+            loadChartControls();
+            setTimer();
+        }
+
+        public override void loadChartControls()
+        {
+            charts.Clear();
+
+            basic.InitializeControl();
+            basic.InitializeEvent(chartEvent);
+            basic.CandleChartType = CandleChartTypeEnum.기본;
+            basic.MaximumDisplayItemCount = base.itemCnt;
+            basic.Title = "기본캔들챠트";
+            charts.Add(basic);
+            
+            atom.InitializeControl();
+            atom.InitializeEvent(chartEvent);            
+            atom.IsAutoScrollX = false;
+            atom.MaximumDisplayItemCount = base.itemCnt;
+            atom.Title = "원자챠트";
+            charts.Add(atom);
+
+            quantum.InitializeControl();
+            quantum.IsAutoScrollX = false;
+            quantum.InitializeEvent(chartEvent);
+            quantum.MaximumDisplayItemCount = base.itemCnt;
+            quantum.Title = "양자챠트";
+            charts.Add(quantum);
+
+            mass.InitializeControl();
+            mass.IsAutoScrollX = false;
+            mass.InitializeEvent(chartEvent);
+            mass.MaximumDisplayItemCount = base.itemCnt;
+            mass.Title = "질량챠트";
+            charts.Add(mass);
+
+            threeThaChi.InitializeControl();
+            threeThaChi.IsAutoScrollX = false;
+            threeThaChi.InitializeEvent(chartEvent);
+            threeThaChi.MaximumDisplayItemCount = base.itemCnt;
+            threeThaChi.Title = "삼태극챠트";
+            charts.Add(threeThaChi);
+
+            reverse.InitializeControl();
+            reverse.IsAutoScrollX = false;
+            reverse.InitializeEvent(chartEvent);
+            reverse.MaximumDisplayItemCount = base.itemCnt;
+            reverse.Title = "리버스챠트";
+            charts.Add(reverse);
+
+            this.flowTable.Dock = DockStyle.Top;
+            this.flowList.Dock = DockStyle.Top;
+            this.flowTab.Dock = DockStyle.Fill;
+
+            setFlow();
+        }
+
+        public override void setFlow()
+        {
+            flowTable.Visible = false;
+            flowList.Visible = false;
+            flowTab.Visible = false;
+
+            flowTable.Controls.Clear();
+            flowList.Controls.Clear();
+            for (int i = 0; i < flowTab.TabPages.Count; i++)
+                flowTab.TabPages[i].Controls.Clear();
+
+            if (flowDirection == FlowDirectionTypeEnum.TABLE)
+            {
+                flowTable.Controls.Add(charts[0], 0, 0);
+                flowTable.Controls.Add(charts[1], 1, 0);
+                flowTable.Controls.Add(charts[2], 0, 1);
+                flowTable.Controls.Add(charts[3], 1, 1);
+                flowTable.Controls.Add(charts[4], 0, 2);
+                flowTable.Controls.Add(charts[5], 1, 2);
+                flowTable.Height = 300 * 3;
+                flowTable.Visible = true;
+            }
+            else if (flowDirection == FlowDirectionTypeEnum.LIST)
+            {
+                flowList.Controls.Add(charts[0], 0, 0);
+                flowList.Controls.Add(charts[1], 0, 1);
+                flowList.Controls.Add(charts[2], 0, 2);
+                flowList.Controls.Add(charts[3], 0, 3);
+                flowList.Controls.Add(charts[4], 0, 4);
+                flowList.Controls.Add(charts[5], 0, 5);
+                flowList.Height = 300 * 6;
+                flowList.Visible = true;
+            }
+            else if (flowDirection == FlowDirectionTypeEnum.TAB)
+            {
+                flowTab.TabPages[0].Controls.Add(charts[0]);
+                flowTab.TabPages[0].Text = charts[0].Title;
+                flowTab.TabPages[1].Controls.Add(charts[1]);
+                flowTab.TabPages[1].Text = charts[1].Title;
+                flowTab.TabPages[2].Controls.Add(charts[2]);
+                flowTab.TabPages[2].Text = charts[2].Title;
+                flowTab.TabPages[3].Controls.Add(charts[3]);
+                flowTab.TabPages[3].Text = charts[3].Title;
+                flowTab.TabPages[4].Controls.Add(charts[4]);
+                flowTab.TabPages[4].Text = charts[4].Title;
+                flowTab.TabPages[5].Controls.Add(charts[5]);
+                flowTab.TabPages[5].Text = charts[5].Title;
+                flowTab.Visible = true;
+            }
+
+            foreach (var c in charts)
+            {
+                c.Height = 290;
+                c.Dock = DockStyle.Fill;
+                c.BorderStyle = BorderStyle.None;
+            }
+        }
+
+        public override void loadData()
+        {
+            if (base.SelectedItemData == null) return;
+            if (string.IsNullOrEmpty(base.SelectedItemData.Code)) return;
+         
+            string itemCode = base.SelectedItemData.Code;
+            var list = PPContext.Instance.ClientContext.GetSourceData(                 
+                  base.SelectedItemData.Code
+                , base.timeInterval
+                , null
+                , null
+                , base.itemCnt);
+
+            int round = ItemCodeUtil.GetItemCodeRoundNum(itemCode);
+            List<S_CandleItemData> sourceDatas = new List<S_CandleItemData>();
+            foreach (var m in list)
+            {
+                S_CandleItemData sourceData = new S_CandleItemData(
+                        (Single)Math.Round(m.OpenVal, round)
+                    , (Single)Math.Round(m.HighVal, round)
+                    , (Single)Math.Round(m.LowVal, round)
+                    , (Single)Math.Round(m.CloseVal, round)
+                    , m.Volume
+                    , m.DT
+                    );
+                sourceDatas.Add(sourceData);
+            }
+            foreach (var c in charts)
+                c.LoadDataAndApply(itemCode, sourceDatas);
+        }
+    }
+}
