@@ -75,20 +75,31 @@ namespace OM.Vikala.Controls.Charts
             pnlScroll.Visible = IsAutoScrollX;
             if (ChartData == null) return;
 
+            if(IsShowCandle)
+                chart.Series[3].Enabled = chart.Series[4].Enabled = false;
+
             double maxPrice = 0.0;
             double minPrice = 0.0;
             int bDistance = -1;
             foreach (var item in ChartData)
             {
                 int idx = chart.Series[0].Points.AddXY(item.DTime, item.HighPrice, item.LowPrice, item.OpenPrice, item.ClosePrice);
-                chart.Series[1].Points.AddXY(item.DTime, item.T_MassAvg);
-                chart.Series[2].Points.AddXY(item.DTime, item.T_QuantumAvg);
-
-                chart.Series[3].Points.AddXY(item.DTime, item.T_QuantumHighAvg);
-                chart.Series[4].Points.AddXY(item.DTime, item.T_QuantumLowAvg);
+                if (IsShowCandle)
+                {
+                    chart.Series[1].Points.AddXY(item.DTime, item.T_MassAvg);
+                    chart.Series[2].Points.AddXY(item.DTime, item.T_QuantumAvg);
+                }
+                else
+                {
+                    chart.Series[1].Points.AddXY(item.DTime, item.T_OpenAvg);
+                    chart.Series[2].Points.AddXY(item.DTime, item.T_CloseAvg);
+                    chart.Series[3].Points.AddXY(item.DTime, item.T_VikalaAvg);
+                    chart.Series[4].Points.AddXY(item.DTime, item.T_QuantumAvg);
+                }
 
                 int d = PriceTick.GetTickDiff(ItemCode, item.MassPrice, item.TotalCenterPrice);
-                chart.Series[5].Points.AddXY(item.DTime, d);                
+                chart.Series[5].Points.AddXY(item.DTime, d);             
+                
                 if (bDistance != -1)
                 {
                     if (d > bDistance) chart.Series[5].Points[idx].Color = Color.DarkRed;
@@ -111,7 +122,7 @@ namespace OM.Vikala.Controls.Charts
                 
                 var dataPoint = chart.Series[0].Points[idx];
             }
-            chart.Series[3].Enabled = chart.Series[4].Enabled = false;
+            
 
             maxPrice = ChartData.Max(m => m.HighPrice);
             minPrice = ChartData.Min(m => m.LowPrice);

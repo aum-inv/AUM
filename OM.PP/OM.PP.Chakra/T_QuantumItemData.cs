@@ -14,26 +14,31 @@ namespace OM.PP.Chakra
         private S_CandleItemData sourceData = null;
         List<S_CandleItemData> sourceDataArray = null;
 
+        private Single t_openAvg = 0;
         private Single t_closeAvg = 0;
-        private Single t_highAvg = 0;
-        private Single t_lowAvg = 0;
-              
+      
         public Single t_VikalaAvg = 0;
         public Single t_TotalCenterAvg = 0;
 
+        public Single T_OpenAvg { get { return (Single)Math.Round(t_openAvg, RoundLength); } }
         public Single T_CloseAvg { get { return (Single)Math.Round(t_closeAvg, RoundLength); } }
-        public Single T_HighAvg { get { return (Single)Math.Round(t_highAvg, RoundLength); } }
-        public Single T_LowAvg { get { return (Single)Math.Round(t_lowAvg, RoundLength); } }
+   
 
         private Single t_massAvg = 0;
-        private Single t_quantunAvg = 0;
-        private Single t_quantunHighAvg = 0;
-        private Single t_quantunLowAvg = 0;
+        private Single t_quantumAvg = 0;
+        private Single t_quantumHighAvg = 0;
+        private Single t_quantumLowAvg = 0;
+
+        private Single t_vikalaHighAvg = 0;
+        private Single t_vikalaLowAvg = 0;
 
         public Single T_MassAvg { get { return (Single)Math.Round(t_massAvg, RoundLength); } }
-        public Single T_QuantumAvg { get { return (Single)Math.Round(t_quantunAvg, RoundLength); } }
-        public Single T_QuantumHighAvg { get { return (Single)Math.Round(t_quantunHighAvg, RoundLength); } }
-        public Single T_QuantumLowAvg { get { return (Single)Math.Round(t_quantunLowAvg, RoundLength); } }
+        public Single T_QuantumAvg { get { return (Single)Math.Round(t_quantumAvg, RoundLength); } }
+        public Single T_QuantumHighAvg { get { return (Single)Math.Round(t_quantumHighAvg, RoundLength); } }
+        public Single T_QuantumLowAvg { get { return (Single)Math.Round(t_quantumLowAvg, RoundLength); } }
+
+        public Single T_VikalaHighAvg { get { return (Single)Math.Round(t_vikalaHighAvg, RoundLength); } }
+        public Single T_VikalaLowAvg { get { return (Single)Math.Round(t_vikalaLowAvg, RoundLength); } }
 
         public Single T_VikalaAvg { get { return (Single)Math.Round(t_VikalaAvg, RoundLength); } }
         public Single T_TotalCenterAvg { get { return (Single)Math.Round(t_TotalCenterAvg, RoundLength); } }
@@ -76,17 +81,20 @@ namespace OM.PP.Chakra
                 ClosePrice = sourceData.ClosePrice;
                 DTime = sourceData.DTime;
 
+                t_openAvg = (Single)sourceDataArray.Average(t => t.OpenPrice);
                 t_closeAvg = (Single)sourceDataArray.Average(t => t.ClosePrice);
-                t_highAvg = (Single)sourceDataArray.Average(t => t.HighPrice);
-                t_lowAvg = (Single)sourceDataArray.Average(t => t.LowPrice);
+                
 
-                t_quantunAvg = (Single)sourceDataArray.Average(t => t.QuantumPrice);
-                t_quantunHighAvg = (Single)sourceDataArray.Average(t => t.QuantumHighPrice);
-                t_quantunLowAvg = (Single)sourceDataArray.Average(t => t.QuantumLowPrice);
+                t_quantumAvg = (Single)sourceDataArray.Average(t => t.QuantumPrice);
+                t_quantumHighAvg = (Single)sourceDataArray.Average(t => t.QuantumHighPrice);
+                t_quantumLowAvg = (Single)sourceDataArray.Average(t => t.QuantumLowPrice);
 
                 t_massAvg = (Single)sourceDataArray.Average(t => t.MassPrice);
 
                 t_VikalaAvg = (Single)sourceDataArray.Average(t => t.VikalaPrice);
+                t_vikalaHighAvg = (Single)sourceDataArray.Average(t => t.VikalaHighPrice);
+                t_vikalaLowAvg = (Single)sourceDataArray.Average(t => t.VikalaLowPrice);
+
                 t_TotalCenterAvg = (Single)sourceDataArray.Average(t => t.TotalCenterPrice);
             }
             catch (Exception ex)
