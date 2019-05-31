@@ -40,6 +40,8 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbCL_Quantum = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbCL_QuantumHL = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem20 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbCL_Chakra = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbCL_Wuxing = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,6 +52,11 @@
             this.toolStripMenuItem14 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbC = new System.Windows.Forms.ToolStripSplitButton();
             this.tsbC_Basic = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbC_Basic_인 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem18 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbC_Basic_지 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem19 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbC_Basic_천 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbC_SLH = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
@@ -108,11 +115,6 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNoMdiAll = new System.Windows.Forms.ToolStripButton();
             this.tabPage = new System.Windows.Forms.TabControl();
-            this.tsbC_Basic_인 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem18 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbC_Basic_지 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem19 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbC_Basic_천 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -203,6 +205,8 @@
             this.toolStripSeparator4,
             this.tsbCL_Quantum,
             this.toolStripMenuItem6,
+            this.tsbCL_QuantumHL,
+            this.toolStripMenuItem20,
             this.tsbCL_Chakra,
             this.toolStripMenuItem2,
             this.tsbCL_Wuxing,
@@ -223,84 +227,98 @@
             this.tsbCL_ATOM.Image = ((System.Drawing.Image)(resources.GetObject("tsbCL_ATOM.Image")));
             this.tsbCL_ATOM.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbCL_ATOM.Name = "tsbCL_ATOM";
-            this.tsbCL_ATOM.Size = new System.Drawing.Size(140, 24);
+            this.tsbCL_ATOM.Size = new System.Drawing.Size(186, 24);
             this.tsbCL_ATOM.Text = "원자챠트";
             this.tsbCL_ATOM.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(137, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(183, 6);
             // 
             // tsbCL_Quantum
             // 
             this.tsbCL_Quantum.Image = ((System.Drawing.Image)(resources.GetObject("tsbCL_Quantum.Image")));
             this.tsbCL_Quantum.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbCL_Quantum.Name = "tsbCL_Quantum";
-            this.tsbCL_Quantum.Size = new System.Drawing.Size(140, 24);
+            this.tsbCL_Quantum.Size = new System.Drawing.Size(186, 24);
             this.tsbCL_Quantum.Text = "양자챠트";
             this.tsbCL_Quantum.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(137, 6);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(183, 6);
+            // 
+            // tsbCL_QuantumHL
+            // 
+            this.tsbCL_QuantumHL.Image = ((System.Drawing.Image)(resources.GetObject("tsbCL_QuantumHL.Image")));
+            this.tsbCL_QuantumHL.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbCL_QuantumHL.Name = "tsbCL_QuantumHL";
+            this.tsbCL_QuantumHL.Size = new System.Drawing.Size(186, 24);
+            this.tsbCL_QuantumHL.Text = "양자고저챠트";
+            this.tsbCL_QuantumHL.Click += new System.EventHandler(this.tsb_Click);
+            // 
+            // toolStripMenuItem20
+            // 
+            this.toolStripMenuItem20.Name = "toolStripMenuItem20";
+            this.toolStripMenuItem20.Size = new System.Drawing.Size(183, 6);
             // 
             // tsbCL_Chakra
             // 
             this.tsbCL_Chakra.Image = ((System.Drawing.Image)(resources.GetObject("tsbCL_Chakra.Image")));
             this.tsbCL_Chakra.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbCL_Chakra.Name = "tsbCL_Chakra";
-            this.tsbCL_Chakra.Size = new System.Drawing.Size(140, 24);
+            this.tsbCL_Chakra.Size = new System.Drawing.Size(186, 24);
             this.tsbCL_Chakra.Text = "챠크라챠트";
             this.tsbCL_Chakra.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(137, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(183, 6);
             // 
             // tsbCL_Wuxing
             // 
             this.tsbCL_Wuxing.Image = ((System.Drawing.Image)(resources.GetObject("tsbCL_Wuxing.Image")));
             this.tsbCL_Wuxing.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbCL_Wuxing.Name = "tsbCL_Wuxing";
-            this.tsbCL_Wuxing.Size = new System.Drawing.Size(140, 24);
+            this.tsbCL_Wuxing.Size = new System.Drawing.Size(186, 24);
             this.tsbCL_Wuxing.Text = "삼태극챠트";
             this.tsbCL_Wuxing.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(137, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(183, 6);
             // 
             // tsbCL_Reverse
             // 
             this.tsbCL_Reverse.Image = ((System.Drawing.Image)(resources.GetObject("tsbCL_Reverse.Image")));
             this.tsbCL_Reverse.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbCL_Reverse.Name = "tsbCL_Reverse";
-            this.tsbCL_Reverse.Size = new System.Drawing.Size(140, 24);
+            this.tsbCL_Reverse.Size = new System.Drawing.Size(186, 24);
             this.tsbCL_Reverse.Text = "리버스챠트";
             this.tsbCL_Reverse.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripMenuItem10
             // 
             this.toolStripMenuItem10.Name = "toolStripMenuItem10";
-            this.toolStripMenuItem10.Size = new System.Drawing.Size(137, 6);
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(183, 6);
             // 
             // tsbCL_Velocity
             // 
             this.tsbCL_Velocity.Image = ((System.Drawing.Image)(resources.GetObject("tsbCL_Velocity.Image")));
             this.tsbCL_Velocity.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbCL_Velocity.Name = "tsbCL_Velocity";
-            this.tsbCL_Velocity.Size = new System.Drawing.Size(140, 24);
+            this.tsbCL_Velocity.Size = new System.Drawing.Size(186, 24);
             this.tsbCL_Velocity.Text = "변화챠트";
             this.tsbCL_Velocity.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripMenuItem14
             // 
             this.toolStripMenuItem14.Name = "toolStripMenuItem14";
-            this.toolStripMenuItem14.Size = new System.Drawing.Size(137, 6);
+            this.toolStripMenuItem14.Size = new System.Drawing.Size(183, 6);
             // 
             // tsbC
             // 
@@ -343,125 +361,159 @@
             this.tsbC_Basic.Image = ((System.Drawing.Image)(resources.GetObject("tsbC_Basic.Image")));
             this.tsbC_Basic.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbC_Basic.Name = "tsbC_Basic";
-            this.tsbC_Basic.Size = new System.Drawing.Size(186, 24);
+            this.tsbC_Basic.Size = new System.Drawing.Size(184, 24);
             this.tsbC_Basic.Text = "기본챠트";
+            // 
+            // tsbC_Basic_인
+            // 
+            this.tsbC_Basic_인.AutoSize = false;
+            this.tsbC_Basic_인.Name = "tsbC_Basic_인";
+            this.tsbC_Basic_인.Size = new System.Drawing.Size(180, 22);
+            this.tsbC_Basic_인.Text = "인-캔들챠트";
+            this.tsbC_Basic_인.Click += new System.EventHandler(this.tsb_Click);
+            // 
+            // toolStripMenuItem18
+            // 
+            this.toolStripMenuItem18.Name = "toolStripMenuItem18";
+            this.toolStripMenuItem18.Size = new System.Drawing.Size(136, 6);
+            // 
+            // tsbC_Basic_지
+            // 
+            this.tsbC_Basic_지.AutoSize = false;
+            this.tsbC_Basic_지.Name = "tsbC_Basic_지";
+            this.tsbC_Basic_지.Size = new System.Drawing.Size(180, 22);
+            this.tsbC_Basic_지.Text = "지-캔들챠트";
+            this.tsbC_Basic_지.Click += new System.EventHandler(this.tsb_Click);
+            // 
+            // toolStripMenuItem19
+            // 
+            this.toolStripMenuItem19.Name = "toolStripMenuItem19";
+            this.toolStripMenuItem19.Size = new System.Drawing.Size(136, 6);
+            // 
+            // tsbC_Basic_천
+            // 
+            this.tsbC_Basic_천.AutoSize = false;
+            this.tsbC_Basic_천.Name = "tsbC_Basic_천";
+            this.tsbC_Basic_천.Size = new System.Drawing.Size(180, 22);
+            this.tsbC_Basic_천.Text = "천-캔들챠트";
+            this.tsbC_Basic_천.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripMenuItem8
             // 
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(183, 6);
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(181, 6);
             // 
             // tsbC_SLH
             // 
             this.tsbC_SLH.Image = ((System.Drawing.Image)(resources.GetObject("tsbC_SLH.Image")));
             this.tsbC_SLH.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbC_SLH.Name = "tsbC_SLH";
-            this.tsbC_SLH.Size = new System.Drawing.Size(186, 24);
+            this.tsbC_SLH.Size = new System.Drawing.Size(184, 24);
             this.tsbC_SLH.Text = "천지인챠트";
             this.tsbC_SLH.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(183, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(181, 6);
             // 
             // tsbC_Quark
             // 
             this.tsbC_Quark.Image = ((System.Drawing.Image)(resources.GetObject("tsbC_Quark.Image")));
             this.tsbC_Quark.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbC_Quark.Name = "tsbC_Quark";
-            this.tsbC_Quark.Size = new System.Drawing.Size(186, 24);
+            this.tsbC_Quark.Size = new System.Drawing.Size(184, 24);
             this.tsbC_Quark.Text = "쿼크챠트";
             this.tsbC_Quark.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(183, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(181, 6);
             // 
             // tsbC_Five
             // 
             this.tsbC_Five.Image = ((System.Drawing.Image)(resources.GetObject("tsbC_Five.Image")));
             this.tsbC_Five.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbC_Five.Name = "tsbC_Five";
-            this.tsbC_Five.Size = new System.Drawing.Size(186, 24);
+            this.tsbC_Five.Size = new System.Drawing.Size(184, 24);
             this.tsbC_Five.Text = "음양오행챠트";
             this.tsbC_Five.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripMenuItem9
             // 
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(183, 6);
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(181, 6);
             // 
             // tsbC_Five2
             // 
             this.tsbC_Five2.Image = ((System.Drawing.Image)(resources.GetObject("tsbC_Five2.Image")));
             this.tsbC_Five2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbC_Five2.Name = "tsbC_Five2";
-            this.tsbC_Five2.Size = new System.Drawing.Size(186, 24);
+            this.tsbC_Five2.Size = new System.Drawing.Size(184, 24);
             this.tsbC_Five2.Text = "음양오행(누적)챠트";
             this.tsbC_Five2.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(183, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(181, 6);
             // 
             // tsbC_Five3
             // 
             this.tsbC_Five3.Image = ((System.Drawing.Image)(resources.GetObject("tsbC_Five3.Image")));
             this.tsbC_Five3.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbC_Five3.Name = "tsbC_Five3";
-            this.tsbC_Five3.Size = new System.Drawing.Size(186, 24);
+            this.tsbC_Five3.Size = new System.Drawing.Size(184, 24);
             this.tsbC_Five3.Text = "음양오행(소수)챠트";
             this.tsbC_Five3.Click += new System.EventHandler(this.tsb_Click);
             // 
             // 천지인ToolStripMenuItem
             // 
             this.천지인ToolStripMenuItem.Name = "천지인ToolStripMenuItem";
-            this.천지인ToolStripMenuItem.Size = new System.Drawing.Size(183, 6);
+            this.천지인ToolStripMenuItem.Size = new System.Drawing.Size(181, 6);
             // 
             // tsbC_Freq
             // 
             this.tsbC_Freq.Image = ((System.Drawing.Image)(resources.GetObject("tsbC_Freq.Image")));
             this.tsbC_Freq.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbC_Freq.Name = "tsbC_Freq";
-            this.tsbC_Freq.Size = new System.Drawing.Size(186, 24);
+            this.tsbC_Freq.Size = new System.Drawing.Size(184, 24);
             this.tsbC_Freq.Text = "진동주파수챠트";
             this.tsbC_Freq.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripMenuItem11
             // 
             this.toolStripMenuItem11.Name = "toolStripMenuItem11";
-            this.toolStripMenuItem11.Size = new System.Drawing.Size(183, 6);
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(181, 6);
             // 
             // tsbC_Wuxing
             // 
             this.tsbC_Wuxing.Image = ((System.Drawing.Image)(resources.GetObject("tsbC_Wuxing.Image")));
             this.tsbC_Wuxing.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbC_Wuxing.Name = "tsbC_Wuxing";
-            this.tsbC_Wuxing.Size = new System.Drawing.Size(186, 24);
+            this.tsbC_Wuxing.Size = new System.Drawing.Size(184, 24);
             this.tsbC_Wuxing.Text = "삼태극챠트";
             this.tsbC_Wuxing.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripMenuItem12
             // 
             this.toolStripMenuItem12.Name = "toolStripMenuItem12";
-            this.toolStripMenuItem12.Size = new System.Drawing.Size(183, 6);
+            this.toolStripMenuItem12.Size = new System.Drawing.Size(181, 6);
             // 
             // tsbC_Mirror
             // 
             this.tsbC_Mirror.Image = ((System.Drawing.Image)(resources.GetObject("tsbC_Mirror.Image")));
             this.tsbC_Mirror.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbC_Mirror.Name = "tsbC_Mirror";
-            this.tsbC_Mirror.Size = new System.Drawing.Size(186, 24);
+            this.tsbC_Mirror.Size = new System.Drawing.Size(184, 24);
             this.tsbC_Mirror.Text = "미러챠트";
             this.tsbC_Mirror.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(183, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(181, 6);
             // 
             // tsbL
             // 
@@ -831,40 +883,6 @@
             this.tabPage.SelectedIndexChanged += new System.EventHandler(this.tabPage_SelectedIndexChanged);
             this.tabPage.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tabPage_MouseClick);
             // 
-            // tsbC_Basic_인
-            // 
-            this.tsbC_Basic_인.AutoSize = false;
-            this.tsbC_Basic_인.Name = "tsbC_Basic_인";
-            this.tsbC_Basic_인.Size = new System.Drawing.Size(180, 22);
-            this.tsbC_Basic_인.Text = "인-캔들챠트";
-            this.tsbC_Basic_인.Click += new System.EventHandler(this.tsb_Click);
-            // 
-            // toolStripMenuItem18
-            // 
-            this.toolStripMenuItem18.Name = "toolStripMenuItem18";
-            this.toolStripMenuItem18.Size = new System.Drawing.Size(177, 6);
-            // 
-            // tsbC_Basic_지
-            // 
-            this.tsbC_Basic_지.AutoSize = false;
-            this.tsbC_Basic_지.Name = "tsbC_Basic_지";
-            this.tsbC_Basic_지.Size = new System.Drawing.Size(180, 22);
-            this.tsbC_Basic_지.Text = "지-캔들챠트";
-            this.tsbC_Basic_지.Click += new System.EventHandler(this.tsb_Click);
-            // 
-            // toolStripMenuItem19
-            // 
-            this.toolStripMenuItem19.Name = "toolStripMenuItem19";
-            this.toolStripMenuItem19.Size = new System.Drawing.Size(177, 6);
-            // 
-            // tsbC_Basic_천
-            // 
-            this.tsbC_Basic_천.AutoSize = false;
-            this.tsbC_Basic_천.Name = "tsbC_Basic_천";
-            this.tsbC_Basic_천.Size = new System.Drawing.Size(180, 22);
-            this.tsbC_Basic_천.Text = "천-캔들챠트";
-            this.tsbC_Basic_천.Click += new System.EventHandler(this.tsb_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -971,5 +989,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsbC_Basic_지;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem19;
         private System.Windows.Forms.ToolStripMenuItem tsbC_Basic_천;
+        private System.Windows.Forms.ToolStripMenuItem tsbCL_QuantumHL;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem20;
     }
 }

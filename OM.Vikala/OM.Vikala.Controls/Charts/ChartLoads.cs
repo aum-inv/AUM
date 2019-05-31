@@ -435,6 +435,54 @@ namespace OM.Vikala.Controls.Charts
                 throw ex;
             }
         }
+
+        public static void loadDataAndApply(this QuantumLineChartHL c
+            , string itemCode
+            , List<S_CandleItemData> sourceDatas
+            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+            , int itemsCnt = 7)
+        {
+            try
+            {
+                List<T_QuantumItemData> transformedDatas = new List<T_QuantumItemData>();
+
+                for (int i = itemsCnt; i <= sourceDatas.Count; i++)
+                {
+                    T_QuantumItemData transData = new T_QuantumItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemsCnt, itemsCnt));
+                    transData.Transform();
+                    transformedDatas.Add(transData);
+                }
+                c.LoadData(itemCode, transformedDatas, timeInterval);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static void loadDataAverageAndApply(this QuantumLineChartHL c
+           , string itemCode
+           , List<S_CandleItemData> sourceDatas
+           , List<S_CandleItemData> averageDatas
+           , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+           , int itemsCnt = 7)
+        {
+            try
+            {
+                List<T_QuantumItemData> transformedDatas = new List<T_QuantumItemData>();
+
+                for (int i = itemsCnt; i <= sourceDatas.Count; i++)
+                {
+                    T_QuantumItemData transData = new T_QuantumItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemsCnt, itemsCnt));
+                    transData.Transform();
+                    transformedDatas.Add(transData);
+                }
+                c.LoadData(itemCode, transformedDatas, timeInterval);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         #endregion
 
         #region ReverseCandleChart
@@ -802,6 +850,7 @@ namespace OM.Vikala.Controls.Charts
             else if (c is FiveColorChart) ((FiveColorChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
             else if (c is PrimeNumCandleChart) ((PrimeNumCandleChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
             else if (c is QuantumLineChart) ((QuantumLineChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
+            else if (c is QuantumLineChartHL) ((QuantumLineChartHL)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
             else if (c is ReverseCandleChart) ((ReverseCandleChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
             else if (c is ThreeThaChiChart) ((ThreeThaChiChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
             else if (c is VelocityLineChart) ((VelocityLineChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
@@ -829,6 +878,7 @@ namespace OM.Vikala.Controls.Charts
             else if (c is FiveColorChart) ((FiveColorChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
             else if (c is PrimeNumCandleChart) ((PrimeNumCandleChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
             else if (c is QuantumLineChart) ((QuantumLineChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
+            else if (c is QuantumLineChartHL) ((QuantumLineChartHL)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
             else if (c is ReverseCandleChart) ((ReverseCandleChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
             else if (c is ThreeThaChiChart) ((ThreeThaChiChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
             else if (c is VelocityLineChart) ((VelocityLineChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);

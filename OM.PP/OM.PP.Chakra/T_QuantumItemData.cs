@@ -16,13 +16,17 @@ namespace OM.PP.Chakra
 
         private Single t_openAvg = 0;
         private Single t_closeAvg = 0;
-      
+        private Single t_highAvg = 0;
+        private Single t_lowAvg = 0;
+
         public Single t_VikalaAvg = 0;
         public Single t_TotalCenterAvg = 0;
 
         public Single T_OpenAvg { get { return (Single)Math.Round(t_openAvg, RoundLength); } }
         public Single T_CloseAvg { get { return (Single)Math.Round(t_closeAvg, RoundLength); } }
-   
+        public Single T_HighAvg { get { return (Single)Math.Round(t_highAvg, RoundLength); } }
+        public Single T_LowAvg { get { return (Single)Math.Round(t_lowAvg, RoundLength); } }
+
 
         private Single t_massAvg = 0;
         private Single t_quantumAvg = 0;
@@ -83,7 +87,8 @@ namespace OM.PP.Chakra
 
                 t_openAvg = (Single)sourceDataArray.Average(t => t.OpenPrice);
                 t_closeAvg = (Single)sourceDataArray.Average(t => t.ClosePrice);
-                
+                t_highAvg = (Single)sourceDataArray.Average(t => t.HighPrice);
+                t_lowAvg = (Single)sourceDataArray.Average(t => t.LowPrice);
 
                 t_quantumAvg = (Single)sourceDataArray.Average(t => t.QuantumPrice);
                 t_quantumHighAvg = (Single)sourceDataArray.Average(t => t.QuantumHighPrice);

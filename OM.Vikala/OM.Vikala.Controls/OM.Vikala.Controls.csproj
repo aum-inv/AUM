@@ -59,6 +59,12 @@
     <Compile Include="Charts\AtomChart_Backup.Designer.cs">
       <DependentUpon>AtomChart_Backup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Charts\QuantumLineChartHL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Charts\QuantumLineChartHL.Designer.cs">
+      <DependentUpon>QuantumLineChartHL.cs</DependentUpon>
+    </Compile>
     <Compile Include="Charts\RealCandleChart.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -210,6 +216,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Charts\BaseChartControl.resx">
       <DependentUpon>BaseChartControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Charts\QuantumLineChartHL.resx">
+      <DependentUpon>QuantumLineChartHL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Charts\RealCandleChart.resx">
       <DependentUpon>RealCandleChart.cs</DependentUpon>
