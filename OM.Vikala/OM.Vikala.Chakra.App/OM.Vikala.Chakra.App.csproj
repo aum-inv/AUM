@@ -101,6 +101,12 @@
     <Compile Include="Mains\ChartForms\ChakraSingleChartForm.Designer.cs">
       <DependentUpon>ChakraSingleChartForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mains\ChartForms\LinePointChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mains\ChartForms\LinePointChartForm.Designer.cs">
+      <DependentUpon>LinePointChartForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mains\ChartForms\LineChartForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -373,6 +379,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Mains\ChartForms\ChakraSingleChartForm.resx">
       <DependentUpon>ChakraSingleChartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mains\ChartForms\LinePointChartForm.resx">
+      <DependentUpon>LinePointChartForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mains\ChartForms\LineChartForm.resx">
       <DependentUpon>LineChartForm.cs</DependentUpon>

@@ -260,7 +260,7 @@ namespace OM.PP.Chakra
 
             try
             {
-                LimitedList<double> priceList = PPUtils.GetLinePointByCandle(list);
+                LimitedList<double> priceList = PPUtils.GetLinePointsByCandles(list);
 
                 var lineChartPattern2 = PointsUtil.GetTwoLinePattern(priceList);
                 PPEvents.Instance.OnTickLineChartPatternHandler(itemCode, timeInterval, lineChartPattern2, "Line2");

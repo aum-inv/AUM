@@ -572,7 +572,7 @@ namespace OM.PP.Chakra
         #endregion
 
         #region CandleToLine
-        public static LimitedList<double> GetLinePointByCandle(LimitedList<S_CandleItemData> sourceDatas)
+        public static LimitedList<double> GetLinePointsByCandles(LimitedList<S_CandleItemData> sourceDatas)
         {
             List<S_CandleItemData> list = sourceDatas.ToList();
             LimitedList<double> resultList = new LimitedList<double>(list.Count * 4);
@@ -609,6 +609,81 @@ namespace OM.PP.Chakra
             {
             }
             return resultList;
+        }
+
+        public static List<double> GetSixPointByCandle(S_CandleItemData data)
+        {
+            List<double> results = new List<double>();
+            try
+            {
+                double oPrice = data.OpenPrice;
+                double hPrice = data.HighPrice;
+                double lPrice = data.LowPrice;
+                double cPrice = data.ClosePrice;
+                double mlPrice = data.MiddlePrice;
+                double ctPrice = data.CenterPrice;
+
+                if (data.PlusMinusType == PlusMinusTypeEnum.양)
+                {
+                    results.Add(oPrice);
+                    results.Add(lPrice);
+
+                    if (mlPrice < ctPrice)
+                    {
+                        results.Add(mlPrice);
+                        results.Add(ctPrice);
+                    }
+                    else
+                    {
+                        results.Add(ctPrice);
+                        results.Add(mlPrice);                        
+                    }
+
+                    results.Add(hPrice);
+                    results.Add(cPrice);
+                }
+                else
+                {
+                    results.Add(oPrice);
+                    results.Add(hPrice);
+
+                    if (mlPrice < ctPrice)
+                    {
+                        results.Add(ctPrice);
+                        results.Add(mlPrice);                        
+                    }
+                    else
+                    {
+                        results.Add(mlPrice);
+                        results.Add(ctPrice);
+                    }
+                    results.Add(lPrice);
+                    results.Add(cPrice);
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+            return results;
+        }
+        public static List<double> GetSixPointsByCandles(List<S_CandleItemData> list)
+        {
+            List<double> results = new List<double>();
+            try
+            {
+                foreach (var item in list)
+                {
+                    var r = GetSixPointByCandle(item);
+                    foreach (var p in r)
+                        results.Add(p);
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+            return results;
         }
         #endregion
 
