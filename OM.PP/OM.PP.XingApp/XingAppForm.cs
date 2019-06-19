@@ -340,41 +340,41 @@ namespace OM.PP.XingApp
         {   
             Task.Factory.StartNew(() =>
             {
-                {                   
-                    Api_WorldFuture apiFF = new Api.Api_WorldFuture();
-                    apiFF.ApiLogHandler += (log) => { LogWrite(log); };
-                    apiFF.Query(itemCode, "1", "5");
-                    System.Threading.Thread.Sleep(3000);
-                }
+                //{                   
+                //    Api_WorldFuture apiFF = new Api.Api_WorldFuture();
+                //    apiFF.ApiLogHandler += (log) => { LogWrite(log); };
+                //    apiFF.Query(itemCode, "1", "5");
+                //    System.Threading.Thread.Sleep(4000);
+                //}
                 {
                     Api_WorldFuture apiFF = new Api.Api_WorldFuture();
                     apiFF.ApiLogHandler += (log) => { LogWrite(log); };
                     apiFF.Query(itemCode, "1", "10");
-                    System.Threading.Thread.Sleep(3000);
+                    System.Threading.Thread.Sleep(4000);
                 }
                 {
                     Api_WorldFuture apiFF = new Api.Api_WorldFuture();
                     apiFF.ApiLogHandler += (log) => { LogWrite(log); };
                     apiFF.Query(itemCode, "1", "30");
-                    System.Threading.Thread.Sleep(3000);
+                    System.Threading.Thread.Sleep(4000);
                 }
                 {
                     Api_WorldFuture apiFF = new Api.Api_WorldFuture();
                     apiFF.ApiLogHandler += (log) => { LogWrite(log); };
                     apiFF.Query(itemCode, "1", "60");
-                    System.Threading.Thread.Sleep(3000);
+                    System.Threading.Thread.Sleep(4000);
                 }
-                {
-                    Api_WorldFuture apiFF = new Api.Api_WorldFuture();
-                    apiFF.ApiLogHandler += (log) => { LogWrite(log); };
-                    apiFF.Query(itemCode, "1", "120");
-                    System.Threading.Thread.Sleep(3000);
-                }
+                //{
+                //    Api_WorldFuture apiFF = new Api.Api_WorldFuture();
+                //    apiFF.ApiLogHandler += (log) => { LogWrite(log); };
+                //    apiFF.Query(itemCode, "1", "120");
+                //    System.Threading.Thread.Sleep(4000);
+                //}
                 {
                     Api_WorldFutureDWM apiFFDWM = new Api.Api_WorldFutureDWM();
                     apiFFDWM.ApiLogHandler += (log) => { LogWrite(log); };
                     apiFFDWM.Query(itemCode, "2");
-                    System.Threading.Thread.Sleep(3000);
+                    System.Threading.Thread.Sleep(4000);
                 }
 
                 isRuning = false;              

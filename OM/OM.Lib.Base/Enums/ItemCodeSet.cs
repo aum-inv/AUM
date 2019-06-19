@@ -21,7 +21,7 @@ namespace OM.Lib.Base.Enums
             //, new ItemData(){ Name = "지수-해외-니케이225" , Code = "NII", Length = 2}
             //, new ItemData(){ Name = "-" , Code = ""}
             //, new ItemData(){ Name = "선물-국내-코스피200" , Code = "KS", Length = 2}
-            , new ItemData(){ Name = "선물-해외-WTI" , Code = "CL", Length = 2, SHCode = "CLN19", Tick=0.01} //6-20
+            , new ItemData(){ Name = "선물-해외-WTI" , Code = "CL", Length = 2, SHCode = "CLQ19", Tick=0.01} //6-20
             , new ItemData(){ Name = "선물-해외-NG" , Code = "NG", Length = 3, SHCode = "NGN19", Tick=0.001}//6-29
             , new ItemData(){ Name = "선물-해외-GOLD" , Code = "GC", Length = 1, SHCode = "GCQ19", Tick=0.1}//5-29
             , new ItemData(){ Name = "선물-해외-SILVER" , Code = "SI", Length = 3, SHCode = "SIN19", Tick=0.1}//4-29
