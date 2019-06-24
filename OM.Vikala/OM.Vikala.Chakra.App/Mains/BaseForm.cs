@@ -54,7 +54,7 @@ namespace OM.Vikala.Chakra.App.Mains
 
             MainFormToolBarEvents.Instance.AutoReloadHandler += Instance_AutoReloadHandler;
 
-            MainFormToolBarEvents.Instance.OnAutoReloadHandler(true);
+            //MainFormToolBarEvents.Instance.OnAutoReloadHandler(true);
         }
 
         private void Instance_AutoReloadHandler(bool isAutoReload)

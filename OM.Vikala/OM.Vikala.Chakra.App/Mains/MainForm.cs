@@ -223,6 +223,9 @@ namespace OM.Vikala.Chakra.App.Mains
                         case "캔들라인형:양자고저챠트":
                             createCandleLineTypeChart_QuantumHL(menuText);
                             break;
+                        case "캔들라인형:주사위챠트":
+                            createCandleLineTypeChart_Dice(menuText);
+                            break;
                         case "캔들라인형:삼태극챠트":
                             createCandleLineTypeChart_Wuxing(menuText);
                             break;
@@ -385,6 +388,12 @@ namespace OM.Vikala.Chakra.App.Mains
         private void createCandleLineTypeChart_QuantumHL(string title)
         {
             var form = new Mains.ChartForm.QuantumChartHLForm();
+            form.Text = title;
+            AddTab(form);
+        }
+        private void createCandleLineTypeChart_Dice(string title)
+        {
+            var form = new Mains.ChartForm.DiceChartForm();
             form.Text = title;
             AddTab(form);
         }

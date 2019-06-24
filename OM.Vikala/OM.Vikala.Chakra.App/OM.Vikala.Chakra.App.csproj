@@ -113,6 +113,12 @@
     <Compile Include="Mains\ChartForms\LineChartForm.Designer.cs">
       <DependentUpon>LineChartForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mains\ChartForms\DiceChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mains\ChartForms\DiceChartForm.Designer.cs">
+      <DependentUpon>DiceChartForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mains\ChartForms\QuantumChartHLForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -385,6 +391,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mains\ChartForms\LineChartForm.resx">
       <DependentUpon>LineChartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mains\ChartForms\DiceChartForm.resx">
+      <DependentUpon>DiceChartForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mains\ChartForms\QuantumChartHLForm.resx">
       <DependentUpon>QuantumChartHLForm.cs</DependentUpon>

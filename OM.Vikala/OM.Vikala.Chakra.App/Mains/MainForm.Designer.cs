@@ -50,6 +50,8 @@
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbCL_Velocity = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem14 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbCL_Dice = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem21 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbC = new System.Windows.Forms.ToolStripSplitButton();
             this.tsbC_Basic = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbC_Basic_인 = new System.Windows.Forms.ToolStripMenuItem();
@@ -214,7 +216,9 @@
             this.tsbCL_Reverse,
             this.toolStripMenuItem10,
             this.tsbCL_Velocity,
-            this.toolStripMenuItem14});
+            this.toolStripMenuItem14,
+            this.tsbCL_Dice,
+            this.toolStripMenuItem21});
             this.tsbCL.Image = ((System.Drawing.Image)(resources.GetObject("tsbCL.Image")));
             this.tsbCL.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbCL.Name = "tsbCL";
@@ -319,6 +323,20 @@
             // 
             this.toolStripMenuItem14.Name = "toolStripMenuItem14";
             this.toolStripMenuItem14.Size = new System.Drawing.Size(183, 6);
+            // 
+            // tsbCL_Dice
+            // 
+            this.tsbCL_Dice.Image = ((System.Drawing.Image)(resources.GetObject("tsbCL_Dice.Image")));
+            this.tsbCL_Dice.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbCL_Dice.Name = "tsbCL_Dice";
+            this.tsbCL_Dice.Size = new System.Drawing.Size(186, 24);
+            this.tsbCL_Dice.Text = "주사위챠트";
+            this.tsbCL_Dice.Click += new System.EventHandler(this.tsb_Click);
+            // 
+            // toolStripMenuItem21
+            // 
+            this.toolStripMenuItem21.Name = "toolStripMenuItem21";
+            this.toolStripMenuItem21.Size = new System.Drawing.Size(183, 6);
             // 
             // tsbC
             // 
@@ -826,7 +844,7 @@
             this.tsbAutoReloadStop.Image = ((System.Drawing.Image)(resources.GetObject("tsbAutoReloadStop.Image")));
             this.tsbAutoReloadStop.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbAutoReloadStop.Name = "tsbAutoReloadStop";
-            this.tsbAutoReloadStop.Size = new System.Drawing.Size(44, 44);
+            this.tsbAutoReloadStop.Size = new System.Drawing.Size(44, 34);
             this.tsbAutoReloadStop.Text = "toolStripButton1";
             this.tsbAutoReloadStop.Visible = false;
             this.tsbAutoReloadStop.Click += new System.EventHandler(this.tsbAutoReloadStop_Click);
@@ -837,7 +855,7 @@
             this.tsbIsMdiY.Image = ((System.Drawing.Image)(resources.GetObject("tsbIsMdiY.Image")));
             this.tsbIsMdiY.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbIsMdiY.Name = "tsbIsMdiY";
-            this.tsbIsMdiY.Size = new System.Drawing.Size(44, 44);
+            this.tsbIsMdiY.Size = new System.Drawing.Size(44, 34);
             this.tsbIsMdiY.Text = "toolStripButton1";
             this.tsbIsMdiY.Click += new System.EventHandler(this.tsbIsMdiY_Click);
             // 
@@ -847,7 +865,7 @@
             this.tsbIsMdiN.Image = ((System.Drawing.Image)(resources.GetObject("tsbIsMdiN.Image")));
             this.tsbIsMdiN.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbIsMdiN.Name = "tsbIsMdiN";
-            this.tsbIsMdiN.Size = new System.Drawing.Size(44, 44);
+            this.tsbIsMdiN.Size = new System.Drawing.Size(44, 34);
             this.tsbIsMdiN.Text = "toolStripButton2";
             this.tsbIsMdiN.Visible = false;
             this.tsbIsMdiN.Click += new System.EventHandler(this.tsbIsMdiN_Click);
@@ -863,7 +881,7 @@
             this.tsbNoMdiAll.Image = ((System.Drawing.Image)(resources.GetObject("tsbNoMdiAll.Image")));
             this.tsbNoMdiAll.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbNoMdiAll.Name = "tsbNoMdiAll";
-            this.tsbNoMdiAll.Size = new System.Drawing.Size(44, 44);
+            this.tsbNoMdiAll.Size = new System.Drawing.Size(44, 34);
             this.tsbNoMdiAll.Text = "toolStripButton3";
             this.tsbNoMdiAll.Click += new System.EventHandler(this.tsbNoMdiAll_Click);
             // 
@@ -991,5 +1009,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsbC_Basic_천;
         private System.Windows.Forms.ToolStripMenuItem tsbCL_QuantumHL;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem20;
+        private System.Windows.Forms.ToolStripMenuItem tsbCL_Dice;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem21;
     }
 }

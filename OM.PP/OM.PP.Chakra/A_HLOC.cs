@@ -35,13 +35,13 @@ namespace OM.PP.Chakra
 
         public Single Volume { get; set; } = 0;
 
-   
+
         public Single CenterPrice
         {
             get
             {
                 return (Single)Math.Round((HighPrice + LowPrice) / 2.0f, RoundLength);
-            }            
+            }
         }
         public Single HCenterPrice
         {
@@ -88,7 +88,7 @@ namespace OM.PP.Chakra
             {
                 if (PlusMinusType == PlusMinusTypeEnum.양)
                 {
-                    return (Single)Math.Round(Math.Abs(OpenPrice -LowPrice), RoundLength);
+                    return (Single)Math.Round(Math.Abs(OpenPrice - LowPrice), RoundLength);
                 }
                 else if (PlusMinusType == PlusMinusTypeEnum.음)
                 {
@@ -98,6 +98,13 @@ namespace OM.PP.Chakra
                 {
                     return (Single)Math.Round(Math.Abs(ClosePrice - LowPrice), RoundLength);
                 }
+            }
+        }
+        public Single BodyLength
+        {
+            get
+            {
+                return (Single)Math.Round(Math.Abs(OpenPrice - ClosePrice), RoundLength);
             }
         }
         public Single QuantumPrice
@@ -164,7 +171,7 @@ namespace OM.PP.Chakra
                 Single v = 0f;
                 if (PlusMinusType == PlusMinusTypeEnum.양)
                 {
-                    v= (Single)Math.Round(ClosePrice + Math.Abs(OpenPrice - ClosePrice), RoundLength);
+                    v = (Single)Math.Round(ClosePrice + Math.Abs(OpenPrice - ClosePrice), RoundLength);
                     v -= HeadLength;
                     if (v < ClosePrice) v = ClosePrice;
                 }
@@ -308,7 +315,7 @@ namespace OM.PP.Chakra
             get
             {
                 List<double> list = new List<double>();
-                
+
                 list.Add(QuantumHighPrice);
                 list.Add(PriceTick.GetUpPriceOfTick(ItemCode, QuantumHighPrice, 1));
                 list.Add(PriceTick.GetUpPriceOfTick(ItemCode, QuantumHighPrice, 2));
@@ -335,7 +342,7 @@ namespace OM.PP.Chakra
             get
             {
                 List<double> list = new List<double>();
-                
+
                 list.Add(VikalaPrice);
                 list.Add(PriceTick.GetUpPriceOfTick(ItemCode, VikalaPrice, 1));
                 list.Add(PriceTick.GetUpPriceOfTick(ItemCode, VikalaPrice, 2));
@@ -501,6 +508,130 @@ namespace OM.PP.Chakra
                     return VikalaPrice;
                 else
                     return 0;
+            }
+        }
+
+        //public int DiceNum
+        //{
+        //    get
+        //    {
+        //        int n = 0;
+        //        int roundNum = RoundLength - 1;
+        //        if (roundNum < 0) roundNum = 0;
+
+        //        double headLength = Math.Round(HeadLength, roundNum);
+        //        double bodyLength = Math.Round(BodyLength, roundNum);
+        //        double legLength = Math.Round(LegLength, roundNum);
+
+        //        try
+        //        {
+        //            if (headLength == 0 && legLength == 0)
+        //                n = 1;
+        //            else if (headLength > 0 && legLength > 0 && (bodyLength == 0 || headLength == legLength))
+        //                n = 6;
+
+        //            else if (headLength > 0 && legLength == 0)
+        //                n = 2;
+        //            else if (headLength == 0 && legLength > 0)
+        //                n = 5;
+
+        //            else if (headLength > 0 && legLength > 0 && bodyLength > 0 && headLength > legLength)
+        //                n = 3;
+        //            else if (headLength > 0 && legLength > 0 && bodyLength > 0 && headLength < legLength)
+        //                n = 4;
+        //        }
+        //        catch (Exception)
+        //        {
+        //        }
+
+        //        return n;
+        //    }
+        //}
+
+        //public int DiceNum
+        //{
+        //    get
+        //    {
+        //        double totalLength = HighPrice - LowPrice;               
+
+        //        int headLengthRate = (int)(HeadLength / totalLength * 100.0);
+        //        int bodyLengthRate = (int)(BodyLength / totalLength * 100.0);
+        //        int legLengthRate = (int)(LegLength / totalLength * 100.0);
+
+        //        int headLength = headLengthRate;
+        //        int bodyLength = bodyLengthRate;
+        //        int legLength = legLengthRate;
+
+        //        int headlegDiff = Math.Abs(headLength - legLength);
+
+        //        if (headLength < 5) headLength = 0;
+        //        if (bodyLength < 5) bodyLength = 0;
+        //        if (legLength < 5) legLength = 0;            
+        //        if (headlegDiff < 5) headlegDiff = 0;
+
+        //        int n = 0;
+        //        try
+        //        {
+        //            if (headLength == 0 && legLength == 0)
+        //                n = 1;
+        //            else if (headLength > 0 && legLength > 0 && (bodyLength == 0 || headlegDiff == 0))
+        //                n = 6;
+
+        //            else if (headLength > 0 && bodyLength > 0 && legLength == 0)
+        //                n = 2;
+        //            else if (headLength == 0 && bodyLength > 0 && legLength > 0)
+        //                n = 5;
+
+        //            else if (headLength > 0 && legLength > 0 && bodyLength > 0 && headLength > legLength && headlegDiff > 0)
+        //                n = 3;
+        //            else if (headLength > 0 && legLength > 0 && bodyLength > 0 && headLength < legLength && headlegDiff > 0)
+        //                n = 4;
+        //        }
+        //        catch (Exception)
+        //        {
+        //        }
+        //        if (n == 0)
+        //        {
+
+        //        }
+        //        return n;
+        //    }
+        //}
+
+        public int DiceNum
+        {
+            get
+            {
+                double totalLength = HighPrice - LowPrice;
+
+                int headLength = (int)Math.Round((HeadLength / totalLength * 100.0),0);
+                int bodyLength = (int)Math.Round((BodyLength / totalLength * 100.0), 0);
+                int legLength = (int)Math.Round((LegLength / totalLength * 100.0), 0);
+                int headlegDiff = (int)Math.Round((Math.Abs(HeadLength - LegLength) / totalLength * 100.0), 0);
+             
+                int n = 0;
+                try
+                {
+                    if (bodyLength >= 90)
+                        n = 1;
+                    else if (bodyLength <= 10 && headlegDiff < 10) n = 6;
+
+                    else if (headLength >= 60 && legLength < 10) n = 2;
+                    else if (legLength >= 60 && headLength < 10) n = 5;
+
+                    //else if (headLength >= 40 && headlegDiff >= 10 && headLength > legLength) n = 3;
+                    //else if (legLength >= 40 && headlegDiff >= 10 && headLength < legLength) n = 4;
+                    else if (headlegDiff >= 10 && headLength > legLength) n = 3;
+                    else if (headlegDiff >= 10 && headLength < legLength) n = 4;
+                }
+                catch (Exception)
+                {
+                }
+                if (n == 0)
+                {
+
+                }
+                return n;
             }
         }
     }
