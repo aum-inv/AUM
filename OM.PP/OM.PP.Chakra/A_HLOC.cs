@@ -511,104 +511,17 @@ namespace OM.PP.Chakra
             }
         }
 
-        //public int DiceNum
-        //{
-        //    get
-        //    {
-        //        int n = 0;
-        //        int roundNum = RoundLength - 1;
-        //        if (roundNum < 0) roundNum = 0;
-
-        //        double headLength = Math.Round(HeadLength, roundNum);
-        //        double bodyLength = Math.Round(BodyLength, roundNum);
-        //        double legLength = Math.Round(LegLength, roundNum);
-
-        //        try
-        //        {
-        //            if (headLength == 0 && legLength == 0)
-        //                n = 1;
-        //            else if (headLength > 0 && legLength > 0 && (bodyLength == 0 || headLength == legLength))
-        //                n = 6;
-
-        //            else if (headLength > 0 && legLength == 0)
-        //                n = 2;
-        //            else if (headLength == 0 && legLength > 0)
-        //                n = 5;
-
-        //            else if (headLength > 0 && legLength > 0 && bodyLength > 0 && headLength > legLength)
-        //                n = 3;
-        //            else if (headLength > 0 && legLength > 0 && bodyLength > 0 && headLength < legLength)
-        //                n = 4;
-        //        }
-        //        catch (Exception)
-        //        {
-        //        }
-
-        //        return n;
-        //    }
-        //}
-
-        //public int DiceNum
-        //{
-        //    get
-        //    {
-        //        double totalLength = HighPrice - LowPrice;               
-
-        //        int headLengthRate = (int)(HeadLength / totalLength * 100.0);
-        //        int bodyLengthRate = (int)(BodyLength / totalLength * 100.0);
-        //        int legLengthRate = (int)(LegLength / totalLength * 100.0);
-
-        //        int headLength = headLengthRate;
-        //        int bodyLength = bodyLengthRate;
-        //        int legLength = legLengthRate;
-
-        //        int headlegDiff = Math.Abs(headLength - legLength);
-
-        //        if (headLength < 5) headLength = 0;
-        //        if (bodyLength < 5) bodyLength = 0;
-        //        if (legLength < 5) legLength = 0;            
-        //        if (headlegDiff < 5) headlegDiff = 0;
-
-        //        int n = 0;
-        //        try
-        //        {
-        //            if (headLength == 0 && legLength == 0)
-        //                n = 1;
-        //            else if (headLength > 0 && legLength > 0 && (bodyLength == 0 || headlegDiff == 0))
-        //                n = 6;
-
-        //            else if (headLength > 0 && bodyLength > 0 && legLength == 0)
-        //                n = 2;
-        //            else if (headLength == 0 && bodyLength > 0 && legLength > 0)
-        //                n = 5;
-
-        //            else if (headLength > 0 && legLength > 0 && bodyLength > 0 && headLength > legLength && headlegDiff > 0)
-        //                n = 3;
-        //            else if (headLength > 0 && legLength > 0 && bodyLength > 0 && headLength < legLength && headlegDiff > 0)
-        //                n = 4;
-        //        }
-        //        catch (Exception)
-        //        {
-        //        }
-        //        if (n == 0)
-        //        {
-
-        //        }
-        //        return n;
-        //    }
-        //}
-
         public int DiceNum
         {
             get
             {
                 double totalLength = HighPrice - LowPrice;
 
-                int headLength = (int)Math.Round((HeadLength / totalLength * 100.0),0);
+                int headLength = (int)Math.Round((HeadLength / totalLength * 100.0), 0);
                 int bodyLength = (int)Math.Round((BodyLength / totalLength * 100.0), 0);
                 int legLength = (int)Math.Round((LegLength / totalLength * 100.0), 0);
                 int headlegDiff = (int)Math.Round((Math.Abs(HeadLength - LegLength) / totalLength * 100.0), 0);
-             
+
                 int n = 0;
                 try
                 {
@@ -634,6 +547,7 @@ namespace OM.PP.Chakra
                 return n;
             }
         }
+
     }
 
     //public abstract class A_HLOC

@@ -893,7 +893,7 @@ namespace OM.Vikala.Controls.Charts
             , int itemsCnt = 9)
         {
             if (sourceDatas.Count == 0) return;
-            itemsCnt = 3;
+            itemsCnt = 6;
             if (c is BasicCandleChart) ((BasicCandleChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
             else if (c is AtomChart) ((AtomChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
             else if (c is BasicVolumeChart) ((BasicVolumeChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
@@ -922,7 +922,7 @@ namespace OM.Vikala.Controls.Charts
             , int itemsCnt = 9)
         {
             if (sourceDatas.Count == 0) return;
-            itemsCnt = 3;
+            itemsCnt = 6;
             if (c is BasicCandleChart) ((BasicCandleChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
             else if (c is AtomChart) ((AtomChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
             else if (c is BasicVolumeChart) ((BasicVolumeChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);

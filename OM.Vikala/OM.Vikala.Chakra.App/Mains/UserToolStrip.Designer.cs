@@ -216,6 +216,7 @@
             this.tsbTime2.Size = new System.Drawing.Size(37, 40);
             this.tsbTime2.Tag = "2";
             this.tsbTime2.Text = "5분";
+            this.tsbTime2.Visible = false;
             this.tsbTime2.Click += new System.EventHandler(this.IntervalButton_Click);
             // 
             // tsbTime3

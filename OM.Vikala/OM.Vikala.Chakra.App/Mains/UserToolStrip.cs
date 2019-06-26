@@ -45,11 +45,11 @@ namespace OM.Vikala.Chakra.App.Mains
                     tsbTime5.Visible =
                     tsbTime6.Visible =
                     tsbTime7.Visible =
-                    tsbTime11.Visible =
-                    tsbTime12.Visible =
-                    tsbTime13.Visible =
-                    tsbTime14.Visible =
-                    tsbTime15.Visible =
+                    //tsbTime11.Visible =
+                    //tsbTime12.Visible =
+                    //tsbTime13.Visible =
+                    //tsbTime14.Visible =
+                    //tsbTime15.Visible =
                     value;
             }
         }

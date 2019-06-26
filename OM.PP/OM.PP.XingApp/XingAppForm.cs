@@ -364,12 +364,12 @@ namespace OM.PP.XingApp
                     apiFF.Query(itemCode, "1", "60");
                     System.Threading.Thread.Sleep(4000);
                 }
-                //{
-                //    Api_WorldFuture apiFF = new Api.Api_WorldFuture();
-                //    apiFF.ApiLogHandler += (log) => { LogWrite(log); };
-                //    apiFF.Query(itemCode, "1", "120");
-                //    System.Threading.Thread.Sleep(4000);
-                //}
+                {
+                    Api_WorldFuture apiFF = new Api.Api_WorldFuture();
+                    apiFF.ApiLogHandler += (log) => { LogWrite(log); };
+                    apiFF.Query(itemCode, "1", "120");
+                    System.Threading.Thread.Sleep(4000);
+                }
                 {
                     Api_WorldFutureDWM apiFFDWM = new Api.Api_WorldFutureDWM();
                     apiFFDWM.ApiLogHandler += (log) => { LogWrite(log); };
