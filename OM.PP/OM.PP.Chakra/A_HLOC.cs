@@ -32,10 +32,7 @@ namespace OM.PP.Chakra
         public Single HighPrice { get { return (Single)Math.Round(_HighPrice, RoundLength); ; } set { _HighPrice = value; } }
         public Single LowPrice { get { return (Single)Math.Round(_LowPrice, RoundLength); ; } set { _LowPrice = value; } }
         public Single ClosePrice { get { return (Single)Math.Round(_ClosePrice, RoundLength); ; } set { _ClosePrice = value; } }
-
         public Single Volume { get; set; } = 0;
-
-
         public Single CenterPrice
         {
             get
@@ -387,51 +384,7 @@ namespace OM.PP.Chakra
             }
         }
 
-        //public virtual Single GetPlusMass(A_HLOC b)
-        //{
-        //    //전종 – 현종
-        //    //전시 – 현시
-        //    //전시 – 고
-        //    //현시 - 고
-        //    //전종 – 고
-        //    //현종 – 고
-
-        //    Single h = b.HighPrice > HighPrice ? b.HighPrice : HighPrice;
-
-        //    Single m1 = Math.Abs(b.ClosePrice - this.ClosePrice);
-        //    Single m2 = Math.Abs(b.OpenPrice - this.OpenPrice);
-        //    Single m3 = Math.Abs(b.OpenPrice - h);
-        //    Single m4 = Math.Abs(this.OpenPrice - h);
-        //    Single m5 = Math.Abs(b.ClosePrice - h);
-        //    Single m6 = Math.Abs(this.ClosePrice - h);
-
-        //    return (m1 + m2 + m3 + m4 + m5 + m6);
-        //}
-
-        //public virtual Single GetMinusMass(A_HLOC b)
-        //{
-        //    //전종 – 현종
-        //    //전시 – 현시
-        //    //전시 – 고
-        //    //현시 - 고
-        //    //전종 – 고
-        //    //현종 – 고
-
-        //    Single l = b.LowPrice < LowPrice ? b.LowPrice : LowPrice;
-
-        //    Single m1 = Math.Abs(b.ClosePrice - this.ClosePrice);
-        //    Single m2 = Math.Abs(b.OpenPrice - this.OpenPrice);
-        //    Single m3 = Math.Abs(b.OpenPrice - l);
-        //    Single m4 = Math.Abs(this.OpenPrice - l);
-        //    Single m5 = Math.Abs(b.ClosePrice - l);
-        //    Single m6 = Math.Abs(this.ClosePrice - l);
-
-        //    return (m1 + m2 + m3 + m4 + m5 + m6);
-        //}
-
-
-
-        public Single 천고
+        public Single 천가격
         {
             get
             {
@@ -510,32 +463,166 @@ namespace OM.PP.Chakra
                     return 0;
             }
         }
+        public Single 전자가격P
+        {
+            get
+            {
+                if (PlusMinusType == PlusMinusTypeEnum.양)
+                    return (Single)Math.Round(ClosePrice + BodyLength, RoundLength);
+                else
+                    return (Single)Math.Round(OpenPrice + BodyLength, RoundLength); ;
+
+            }
+        }
+        public Single 전자가격M
+        {
+            get
+            {
+                if (PlusMinusType == PlusMinusTypeEnum.음)
+                    return (Single)Math.Round(ClosePrice - BodyLength, RoundLength);
+                else
+                    return (Single)Math.Round(OpenPrice - BodyLength, RoundLength); ;
+
+            }
+        }
+        //public int DiceNum
+        //{
+        //    get
+        //    {
+        //        double totalLength = HighPrice - LowPrice;
+
+        //        int headLength = (int)Math.Round((HeadLength / totalLength * 100.0), 0);
+        //        int bodyLength = (int)Math.Round((BodyLength / totalLength * 100.0), 0);
+        //        int legLength = (int)Math.Round((LegLength / totalLength * 100.0), 0);
+        //        int headlegDiff = (int)Math.Round((Math.Abs(HeadLength - LegLength) / totalLength * 100.0), 0);
+
+        //        int n = 0;
+        //        try
+        //        {
+        //            if (bodyLength >= 90)
+        //                n = 1;
+        //            else if (bodyLength <= 10 && headlegDiff < 10) n = 6;
+
+        //            else if (headLength >= 60 && legLength < 10) n = 2;
+        //            else if (legLength >= 60 && headLength < 10) n = 5;
+
+        //            //else if (headLength >= 40 && headlegDiff >= 10 && headLength > legLength) n = 3;
+        //            //else if (legLength >= 40 && headlegDiff >= 10 && headLength < legLength) n = 4;
+        //            else if (headlegDiff >= 10 && headLength > legLength) n = 3;
+        //            else if (headlegDiff >= 10 && headLength < legLength) n = 4;
+        //        }
+        //        catch (Exception)
+        //        {
+        //        }
+        //        if (n == 0)
+        //        {
+
+        //        }
+        //        return n;
+        //    }
+        //}
+
+
+
+        //public int DiceNum
+        //{
+        //    get
+        //    {
+        //        double[] anArray = {
+        //                OpenPrice, HighPrice, LowPrice, ClosePrice
+        //            ,   QuantumPrice, QuantumHighPrice, QuantumLowPrice
+        //            ,   VikalaPrice, VikalaHighPrice, VikalaLowPrice
+        //        };
+        //        double[] anArray2 = {
+        //                OpenPrice, ClosePrice
+        //            ,   QuantumPrice
+        //            ,   VikalaPrice
+        //        };
+        //        double highPrice = anArray.Max();
+        //        double lowPrice = anArray.Min();
+        //        double openPrice = anArray2.Min();
+        //        double closePrice = anArray2.Max();
+
+        //        double totalLength = Math.Round(highPrice - lowPrice, RoundLength);
+        //        double headLength = Math.Round(Math.Abs(highPrice - closePrice), RoundLength);
+        //        double legLength = Math.Round(Math.Abs(lowPrice - openPrice), RoundLength);
+        //        double bodyLength = Math.Round(Math.Abs(openPrice - closePrice), RoundLength);
+
+        //        int headLengthRate = (int)Math.Round((HeadLength / totalLength * 100.0), 0);
+        //        int bodyLengthRate = (int)Math.Round((BodyLength / totalLength * 100.0), 0);
+        //        int legLengthRate = (int)Math.Round((LegLength / totalLength * 100.0), 0);
+
+        //        int n = 0;
+        //        try
+        //        {
+        //            if (bodyLengthRate > 90) n = 1;
+        //            else if (headLengthRate >= 40 && legLengthRate >= 40) n = 2;
+
+        //            else if (headLengthRate > 0 && legLengthRate == 0) n = 2;
+        //            else if (headLengthRate == 0 && legLengthRate > 0) n = 5;
+
+        //            else if (headLengthRate > 0 && legLengthRate > 0 && headLengthRate > legLengthRate) n = 3;
+        //            else if (headLengthRate > 0 && legLengthRate > 0 && headLengthRate < legLengthRate) n = 4;
+        //        }
+        //        catch (Exception)
+        //        {
+        //        }
+        //        if (n == 0)
+        //        {
+
+        //        }
+        //        return n;
+        //    }
+        //} 
 
         public int DiceNum
         {
             get
             {
-                double totalLength = HighPrice - LowPrice;
+                //double[] anArray = {
+                //        OpenPrice, HighPrice, LowPrice, ClosePrice
+                //    ,   전자가격P, 전자가격M
+                //};
+                //double[] anArray2 = {
+                //        OpenPrice, ClosePrice
+                //    ,   QuantumPrice
+                //    ,   VikalaPrice
+                //};
 
-                int headLength = (int)Math.Round((HeadLength / totalLength * 100.0), 0);
-                int bodyLength = (int)Math.Round((BodyLength / totalLength * 100.0), 0);
-                int legLength = (int)Math.Round((LegLength / totalLength * 100.0), 0);
-                int headlegDiff = (int)Math.Round((Math.Abs(HeadLength - LegLength) / totalLength * 100.0), 0);
+                double[] anArray = {
+                         OpenPrice, HighPrice, LowPrice, ClosePrice
+                     ,   QuantumPrice, QuantumHighPrice, QuantumLowPrice
+                     ,   VikalaPrice, VikalaHighPrice, VikalaLowPrice
+                 };
+                double[] anArray2 = {
+                         OpenPrice, ClosePrice, 전자가격P, 전자가격M
+                 };
+
+                double highPrice = anArray.Max();
+                double lowPrice = anArray.Min();
+                double openPrice = anArray2.Min();
+                double closePrice = anArray2.Max();
+
+                double totalLength = Math.Round(highPrice - lowPrice, RoundLength);
+                double headLength = Math.Round(Math.Abs(highPrice - closePrice), RoundLength);
+                double legLength = Math.Round(Math.Abs(lowPrice - openPrice), RoundLength);
+                double bodyLength = Math.Round(Math.Abs(openPrice - closePrice), RoundLength);
+
+                int headLengthRate = (int)Math.Round((headLength / totalLength * 100.0), 0);
+                int bodyLengthRate = (int)Math.Round((bodyLength / totalLength * 100.0), 0);
+                int legLengthRate = (int)Math.Round((legLength / totalLength * 100.0), 0);
 
                 int n = 0;
                 try
                 {
-                    if (bodyLength >= 90)
-                        n = 1;
-                    else if (bodyLength <= 10 && headlegDiff < 10) n = 6;
+                    if (bodyLengthRate == 100) n = 1;
+                    else if (headLengthRate >= 40 && legLengthRate >= 40) n = 2;
 
-                    else if (headLength >= 60 && legLength < 10) n = 2;
-                    else if (legLength >= 60 && headLength < 10) n = 5;
+                    else if (headLengthRate > 0 && legLengthRate == 0) n = 2;
+                    else if (headLengthRate == 0 && legLengthRate > 0) n = 5;
 
-                    //else if (headLength >= 40 && headlegDiff >= 10 && headLength > legLength) n = 3;
-                    //else if (legLength >= 40 && headlegDiff >= 10 && headLength < legLength) n = 4;
-                    else if (headlegDiff >= 10 && headLength > legLength) n = 3;
-                    else if (headlegDiff >= 10 && headLength < legLength) n = 4;
+                    else if (headLengthRate > 0 && legLengthRate > 0 && headLengthRate > legLengthRate) n = 3;
+                    else if (headLengthRate > 0 && legLengthRate > 0 && headLengthRate < legLengthRate) n = 4;
                 }
                 catch (Exception)
                 {

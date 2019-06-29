@@ -114,8 +114,8 @@
             series2.BorderColor = System.Drawing.Color.Transparent;
             series2.ChartArea = "cArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Candlestick;
-            series2.Color = System.Drawing.Color.DimGray;
-            series2.CustomProperties = "PriceDownColor=192\\, 192\\, 255, PriceUpColor=255\\, 192\\, 192";
+            series2.Color = System.Drawing.Color.Black;
+            series2.CustomProperties = "PriceDownColor=Blue, PriceUpColor=Red";
             series2.IsValueShownAsLabel = true;
             series2.IsXValueIndexed = true;
             series2.Label = "-";
@@ -124,11 +124,14 @@
             series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             series2.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             series2.YValuesPerPoint = 4;
+            series3.BorderColor = System.Drawing.Color.Transparent;
             series3.ChartArea = "cArea1";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Candlestick;
-            series3.CustomProperties = "PriceDownColor=192\\, 255\\, 192, PriceUpColor=Green";
+            series3.Color = System.Drawing.Color.Black;
+            series3.CustomProperties = "PriceDownColor=Blue, PriceUpColor=Red";
             series3.IsXValueIndexed = true;
             series3.Name = "candle3";
+            series3.ShadowColor = System.Drawing.Color.Transparent;
             series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             series3.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             series3.YValuesPerPoint = 4;
