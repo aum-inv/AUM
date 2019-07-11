@@ -62,9 +62,11 @@ namespace OM.Vikala.Controls.Charts
             foreach (T_AtomItemData item in ChartData)
             {
                 int idx = chart.Series[0].Points.AddXY(item.DTime, item.HighPrice, item.LowPrice, item.OpenPrice, item.ClosePrice);
-                chart.Series[1].Points.AddXY(item.DTime, item.QuantumHighPrice, item.QuantumLowPrice, item.OpenPrice, item.QuantumPrice);
-                chart.Series[2].Points.AddXY(item.DTime, item.VikalaHighPrice, item.VikalaLowPrice, item.ClosePrice, item.VikalaPrice);
-                
+                //chart.Series[1].Points.AddXY(item.DTime, item.QuantumHighPrice, item.QuantumLowPrice, item.OpenPrice, item.QuantumPrice);
+                //chart.Series[2].Points.AddXY(item.DTime, item.VikalaHighPrice, item.VikalaLowPrice, item.ClosePrice, item.VikalaPrice);
+                chart.Series[1].Points.AddXY(item.DTime, item.LowPrice, item.LowPrice, item.LowPrice, item.LowPrice);
+                chart.Series[2].Points.AddXY(item.DTime, item.HighPrice, item.HighPrice, item.HighPrice, item.HighPrice);
+
                 chart.Series[3].Points.AddXY(item.DTime, item.T_MassAvg);
                 chart.Series[4].Points.AddXY(item.DTime, item.T_QuantumAvg);
                 chart.Series[5].Points.AddXY(item.DTime, item.T_VikalaAvg);
@@ -83,7 +85,7 @@ namespace OM.Vikala.Controls.Charts
                         {
                             chart.Series[1].Points[idx - 1].Label = "▼";
                             isFirst = true;
-                        }                        
+                        }
                         if (bitem.VikalaPrice > item.ClosePrice)
                         {
                             chart.Series[2].Points[idx - 1].Label = "▼";
@@ -118,8 +120,54 @@ namespace OM.Vikala.Controls.Charts
                         }
                     }
                 }
+
+                //if (idx > 0)
+                //{
+                //    T_AtomItemData bitem = ChartData[idx - 1];
+                //    if (bitem.PlusMinusType == PlusMinusTypeEnum.양)
+                //    {
+                //        bool isFirst = false;
+                //        bool isSecond = false;
+                //        if (bitem.QuantumPrice > item.ClosePrice)
+                //        {
+                //            chart.Series[0].Points[idx - 1].Label = "▼";
+                //            isFirst = true;
+                //        }
+                //        if (bitem.VikalaPrice > item.ClosePrice)
+                //        {
+                //            chart.Series[0].Points[idx - 1].Label += "▼";
+                //            isSecond = true;
+                //        }
+
+                //        if (isFirst && isSecond)
+                //        {
+                //            chart.Series[0].Points[idx - 1].LabelForeColor = Color.Blue;
+                //        }
+                //    }
+                //    if (bitem.PlusMinusType == PlusMinusTypeEnum.음)
+                //    {
+                //        bool isFirst = false;
+                //        bool isSecond = false;
+                //        if (bitem.QuantumPrice < item.ClosePrice)
+                //        {
+                //            chart.Series[0].Points[idx - 1].Label = "▲";
+                //            isFirst = true;
+                //        }
+                //        if (bitem.VikalaPrice < item.ClosePrice)
+                //        {
+                //            chart.Series[0].Points[idx - 1].Label += "▲";
+                //            isSecond = true;
+                //        }
+
+                //        if (isFirst && isSecond)
+                //        {
+                //            chart.Series[0].Points[idx - 1].LabelForeColor =Color.Red;
+                //        }
+                //    }
+                //}
             }
-            chart.Series[1].Enabled = true;// IsShowCandle;
+            //chart.Series[1].Enabled = false;
+            //chart.Series[2].Enabled = false;
 
             double maxPrice1 = ChartData.Max(m => m.HighPrice);
             double minPrice1 = ChartData.Min(m => m.LowPrice);

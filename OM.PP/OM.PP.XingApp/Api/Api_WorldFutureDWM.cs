@@ -46,7 +46,7 @@ namespace OM.PP.XingApp.Api
         public void Query(
               string shcode
             , string gubun = "1"
-            , string qrycnt = "100"
+            , string qrycnt = "500"
             , string sdate = ""
             , string edate = "")
         {  

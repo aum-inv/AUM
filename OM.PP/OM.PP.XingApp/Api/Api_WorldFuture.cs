@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using XA_DATASETLib;
 
@@ -16,6 +17,7 @@ namespace OM.PP.XingApp.Api
 {
     class Api_WorldFuture : BaseApi
     {
+        public ManualResetEvent manualEvent = new ManualResetEvent(false);
         public string ItemCode
         {
             get;
@@ -46,10 +48,35 @@ namespace OM.PP.XingApp.Api
         public void Query(
               string shcode
             , string gubun = "1"
-            , string ncnt = "1"
-            , string qrycnt = "100"
-            , string cts_date = ""
-            , string cts_time = "")
+            , string ncnt = "1")
+        {
+            Task.Factory.StartNew(() =>
+            {
+                ItemCode = shcode;
+
+                TimeInterval = EnumUtil.GetTimeIntervalValue(gubun, ncnt);
+                string cts_date = DateTime.Now.ToString("yyyyMMdd");
+                string cts_time = "";
+                string qrycnt = "100";
+
+                query.SetFieldData(inBlock, "shcode", 0, shcode + ".1");
+                query.SetFieldData(inBlock, "ncnt", 0, ncnt);
+                query.SetFieldData(inBlock, "readcnt", 0, qrycnt);
+                query.SetFieldData(inBlock, "cts_date", 0, cts_date);
+                query.SetFieldData(inBlock, "cts_time", 0, cts_time);
+
+                query.Request(false);
+            });
+        }
+        public string lastCts_Date = "";
+        public string lastCts_Time = "";
+        public void Query(
+             string shcode
+           , string gubun = "1"
+           , string ncnt = "1"
+           , string qrycnt = "100"
+           , string cts_date = ""
+           , string cts_time = "")
         {
             Task.Factory.StartNew(() =>
             {
@@ -63,65 +90,77 @@ namespace OM.PP.XingApp.Api
                 query.SetFieldData(inBlock, "cts_date", 0, cts_date);
                 query.SetFieldData(inBlock, "cts_time", 0, cts_time);
 
-                query.Request(false);
+                query.Request(true);
             });
         }
-
         protected override void query_ReceiveData(string szTrCode)
         {
-            PPContext.Instance.ClientContext.ClearSourceData(ItemCode, TimeInterval);
+            if(lastCts_Date == string.Empty)
+                PPContext.Instance.ClientContext.ClearSourceData(ItemCode, TimeInterval);
 
             Task.Factory.StartNew(() =>
             {
-                int blockCnt = Convert.ToInt32(query.GetBlockCount(outBlock1));
-                int round = ItemCodeUtil.GetItemCodeRoundNum(ItemCode);
-                for (int idx = 0; idx < blockCnt; idx++)
+                try
                 {
-                    string date = query.GetFieldData(outBlock1, "date", idx);
-                    string time = query.GetFieldData(outBlock1, "time", idx);
-                    string open = query.GetFieldData(outBlock1, "open", idx);
-                    string high = query.GetFieldData(outBlock1, "high", idx);
-                    string low = query.GetFieldData(outBlock1, "low", idx);
-                    string close = query.GetFieldData(outBlock1, "close", idx);
-                    //string jdiff_vol = query.GetFieldData(outBlock1, "jdiff_vol", idx);
-                    //string value = query.GetFieldData(outBlock1, "value", idx);
+                    int blockCnt = Convert.ToInt32(query.GetBlockCount(outBlock1));
+                    int round = ItemCodeUtil.GetItemCodeRoundNum(ItemCode);
 
-                    if (date.Length == 0) continue;
+                    lastCts_Date = query.GetFieldData(outBlock, "cts_date", 0);
+                    lastCts_Time = query.GetFieldData(outBlock, "cts_time", 0);
 
-                    /*
-                    OM.Lib.Entity.LitePurushaPrakriti data = new Lib.Entity.LitePurushaPrakriti();
-                    string format = "yyyyMMdd" + (time.Length > 0 ? "HHmmss" : "");
-                    var dt = DateTime.ParseExact(date + time, format, CultureInfo.InvariantCulture);
-                    data.DT = dt;
-                    data.Item = ItemCode;
-                    data.OpenVal = Convert.ToSingle(open);
-                    data.HighVal = Convert.ToSingle(high);
-                    data.LowVal = Convert.ToSingle(low);
-                    data.CloseVal = Convert.ToSingle(close);
-                    data.Volume = 0;
-                    data.Interval = (int)TimeInterval;
-                    PPContext.Instance.ClientContext.SetSourceData(
-                          ItemCode
-                        , TimeInterval
-                        , data);
-                    */
-                    
-                    string format = "yyyyMMdd" + (time.Length > 0 ? "HHmmss" : "");
-                    var dt = DateTime.ParseExact(date + time, format, CultureInfo.InvariantCulture);
-                    S_CandleItemData data = new S_CandleItemData();
-                    data.DTime = dt;
-                    data.ItemCode = ItemCode;
-                    data.OpenPrice = (Single)Math.Round(Convert.ToDouble(open), round);
-                    data.HighPrice = (Single)Math.Round(Convert.ToDouble(high), round);
-                    data.LowPrice = (Single)Math.Round(Convert.ToDouble(low), round);
-                    data.ClosePrice = (Single)Math.Round(Convert.ToDouble(close), round);
-                    data.Volume = 0;
-                  
-                    PPContext.Instance.ClientContext.SetCandleSourceData(ItemCode, TimeInterval, data);
+                    for (int idx = 0; idx < blockCnt; idx++)
+                    {
+                        string date = query.GetFieldData(outBlock1, "date", idx);
+                        string time = query.GetFieldData(outBlock1, "time", idx);
+                        string open = query.GetFieldData(outBlock1, "open", idx);
+                        string high = query.GetFieldData(outBlock1, "high", idx);
+                        string low = query.GetFieldData(outBlock1, "low", idx);
+                        string close = query.GetFieldData(outBlock1, "close", idx);
+                        //string jdiff_vol = query.GetFieldData(outBlock1, "jdiff_vol", idx);
+                        //string value = query.GetFieldData(outBlock1, "value", idx);
 
-                    OnApiLog($"date : {date} time : {time} opne : {open} high : {high} low : {low} close : {close} ");
+                        if (date.Length == 0) continue;
+
+                        /*
+                        OM.Lib.Entity.LitePurushaPrakriti data = new Lib.Entity.LitePurushaPrakriti();
+                        string format = "yyyyMMdd" + (time.Length > 0 ? "HHmmss" : "");
+                        var dt = DateTime.ParseExact(date + time, format, CultureInfo.InvariantCulture);
+                        data.DT = dt;
+                        data.Item = ItemCode;
+                        data.OpenVal = Convert.ToSingle(open);
+                        data.HighVal = Convert.ToSingle(high);
+                        data.LowVal = Convert.ToSingle(low);
+                        data.CloseVal = Convert.ToSingle(close);
+                        data.Volume = 0;
+                        data.Interval = (int)TimeInterval;
+                        PPContext.Instance.ClientContext.SetSourceData(
+                              ItemCode
+                            , TimeInterval
+                            , data);
+                        */
+
+                        string format = "yyyyMMdd" + (time.Length > 0 ? "HHmmss" : "");
+                        var dt = DateTime.ParseExact(date + time, format, CultureInfo.InvariantCulture);
+                        S_CandleItemData data = new S_CandleItemData();
+                        data.DTime = dt;
+                        data.ItemCode = ItemCode;
+                        data.OpenPrice = (Single)Math.Round(Convert.ToDouble(open), round);
+                        data.HighPrice = (Single)Math.Round(Convert.ToDouble(high), round);
+                        data.LowPrice = (Single)Math.Round(Convert.ToDouble(low), round);
+                        data.ClosePrice = (Single)Math.Round(Convert.ToDouble(close), round);
+                        data.Volume = 0;
+
+                        PPContext.Instance.ClientContext.SetCandleSourceData(ItemCode, TimeInterval, data);
+
+                        OnApiLog($"date : {date} time : {time} opne : {open} high : {high} low : {low} close : {close} ");
+                    }
+                    OnApiLog("Api_WorldFuture ::: query_ReceiveData");
                 }
-                OnApiLog("Api_WorldFuture ::: query_ReceiveData");
+                catch (Exception ex) { }
+                finally
+                {
+                    manualEvent.Set();
+                }
             });
         }
         #endregion

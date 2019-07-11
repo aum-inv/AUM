@@ -43,7 +43,7 @@ namespace OM.PP.Chakra
             {
                 if (!StorageMin01.ContainsKey(itemCode))
                 {
-                    StorageMin01.Add(itemCode, new LimitedList<S_CandleItemData>(200));
+                    StorageMin01.Add(itemCode, new LimitedList<S_CandleItemData>(1000));
                 }
                 else
                 {
@@ -52,7 +52,7 @@ namespace OM.PP.Chakra
 
                 if (!StorageMin05.ContainsKey(itemCode))
                 {
-                    StorageMin05.Add(itemCode, new LimitedList<S_CandleItemData>(200));
+                    StorageMin05.Add(itemCode, new LimitedList<S_CandleItemData>(1000));
                 }
                 else
                 {
@@ -61,7 +61,7 @@ namespace OM.PP.Chakra
 
                 if (!StorageMin10.ContainsKey(itemCode))
                 {
-                    StorageMin10.Add(itemCode, new LimitedList<S_CandleItemData>(200));
+                    StorageMin10.Add(itemCode, new LimitedList<S_CandleItemData>(1000));
                 }
                 else
                 {
@@ -70,7 +70,7 @@ namespace OM.PP.Chakra
 
                 if (!StorageMin30.ContainsKey(itemCode))
                 {
-                    StorageMin30.Add(itemCode, new LimitedList<S_CandleItemData>(200));
+                    StorageMin30.Add(itemCode, new LimitedList<S_CandleItemData>(1000));
                 }
                 else
                 {
@@ -79,7 +79,7 @@ namespace OM.PP.Chakra
 
                 if (!StorageMin60.ContainsKey(itemCode))
                 {
-                    StorageMin60.Add(itemCode, new LimitedList<S_CandleItemData>(200));
+                    StorageMin60.Add(itemCode, new LimitedList<S_CandleItemData>(1000));
                 }
                 else
                 {
@@ -88,7 +88,7 @@ namespace OM.PP.Chakra
 
                 if (!StorageMin120.ContainsKey(itemCode))
                 {
-                    StorageMin120.Add(itemCode, new LimitedList<S_CandleItemData>(200));
+                    StorageMin120.Add(itemCode, new LimitedList<S_CandleItemData>(1000));
                 }
                 else
                 {
@@ -97,7 +97,7 @@ namespace OM.PP.Chakra
 
                 if (!StorageDay.ContainsKey(itemCode))
                 {
-                    StorageDay.Add(itemCode, new LimitedList<S_CandleItemData>(200));
+                    StorageDay.Add(itemCode, new LimitedList<S_CandleItemData>(1000));
                 }
                 else
                 {
@@ -114,7 +114,7 @@ namespace OM.PP.Chakra
             {
                 if (!StorageTick180.ContainsKey(itemCode))
                 {
-                    StorageTick180.Add(itemCode, new LimitedList<S_CandleItemData>(200));
+                    StorageTick180.Add(itemCode, new LimitedList<S_CandleItemData>(1000));
                 }
                 else
                 {
@@ -123,7 +123,7 @@ namespace OM.PP.Chakra
 
                 if (!StorageTick360.ContainsKey(itemCode))
                 {
-                    StorageTick360.Add(itemCode, new LimitedList<S_CandleItemData>(200));
+                    StorageTick360.Add(itemCode, new LimitedList<S_CandleItemData>(1000));
                 }
                 else
                 {
@@ -132,7 +132,7 @@ namespace OM.PP.Chakra
 
                 if (!StorageTick720.ContainsKey(itemCode))
                 {
-                    StorageTick720.Add(itemCode, new LimitedList<S_CandleItemData>(200));
+                    StorageTick720.Add(itemCode, new LimitedList<S_CandleItemData>(1000));
                 }
                 else
                 {
@@ -141,7 +141,7 @@ namespace OM.PP.Chakra
 
                 if (!StorageTick1080.ContainsKey(itemCode))
                 {
-                    StorageTick1080.Add(itemCode, new LimitedList<S_CandleItemData>(200));
+                    StorageTick1080.Add(itemCode, new LimitedList<S_CandleItemData>(1000));
                 }
                 else
                 {
@@ -150,7 +150,7 @@ namespace OM.PP.Chakra
 
                 if (!StorageTick1440.ContainsKey(itemCode))
                 {
-                    StorageTick1440.Add(itemCode, new LimitedList<S_CandleItemData>(200));
+                    StorageTick1440.Add(itemCode, new LimitedList<S_CandleItemData>(1000));
                 }
                 else
                 {

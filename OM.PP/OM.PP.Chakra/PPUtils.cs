@@ -26,6 +26,42 @@ namespace OM.PP.Chakra
             }
             return averageDatas;
         }
+        public static List<S_CandleItemData> GetAccumulatedAverageDatas(string itemCode, List<S_CandleItemData> sourceDatas, int averageCnt)
+        {
+            List<S_CandleItemData> averageDatas = new List<S_CandleItemData>();
+
+            try
+            {
+                for (int i = averageCnt; i <= sourceDatas.Count; i++)
+                {
+                    var subList = sourceDatas.GetRange(i - averageCnt, averageCnt);
+
+                    List<Single> oList = new List<float>();
+                    List<Single> cList = new List<float>();
+                    List<Single> hList = new List<float>();
+                    List<Single> lList = new List<float>();
+                    for (int j = 0; j < subList.Count; j++)
+                    {
+                        oList.Add(subList[j].OpenPrice);
+                        cList.Add(subList[j].ClosePrice);
+                        hList.Add(subList[j].HighPrice);
+                        lList.Add(subList[j].LowPrice);
+
+                        subList[j].OpenPrice = oList.Average();
+                        subList[j].ClosePrice = cList.Average();
+                        subList[j].HighPrice = hList.Average();
+                        subList[j].LowPrice = lList.Average();
+                    }
+
+                    S_CandleItemData transData = new S_CandleItemData(itemCode, sourceDatas.GetRange(i - averageCnt, averageCnt));
+                    averageDatas.Add(transData);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return averageDatas;
+        }
         public static List<S_CandleItemData> GetCutDatas(List<S_CandleItemData> sourceDatas, DateTime dt)
         {            
             List<S_CandleItemData> sourceDatasNew = new List<S_CandleItemData>();

@@ -166,6 +166,8 @@ namespace OM.PP.Chakra
             base.HighPrice = (Single)Math.Round(sourceItems.Average(t => t.HighPrice), RoundLength);
             base.LowPrice = (Single)Math.Round(sourceItems.Average(t => t.LowPrice), RoundLength);
 
+
+
             CenterPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.CenterPrice), RoundLength);
             HCenterPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.HCenterPrice), RoundLength);
             LCenterPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.LCenterPrice), RoundLength);

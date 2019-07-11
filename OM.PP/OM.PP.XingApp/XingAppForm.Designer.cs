@@ -38,7 +38,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pnlContent = new System.Windows.Forms.Panel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.button9 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button15 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
@@ -57,6 +59,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tbLog = new System.Windows.Forms.TextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.chkRealES = new System.Windows.Forms.CheckBox();
             this.chkSendRealtime = new System.Windows.Forms.CheckBox();
             this.chkRealURO = new System.Windows.Forms.CheckBox();
             this.chkRealNQ = new System.Windows.Forms.CheckBox();
@@ -68,9 +71,9 @@
             this.btnReal = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.noti = new System.Windows.Forms.NotifyIcon(this.components);
-            this.button9 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
-            this.chkRealES = new System.Windows.Forms.CheckBox();
+            this.rdo100 = new System.Windows.Forms.RadioButton();
+            this.rdo200 = new System.Windows.Forms.RadioButton();
+            this.rdo500 = new System.Windows.Forms.RadioButton();
             this.groupBox3.SuspendLayout();
             this.pnlContent.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -163,6 +166,9 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.rdo500);
+            this.groupBox5.Controls.Add(this.rdo200);
+            this.groupBox5.Controls.Add(this.rdo100);
             this.groupBox5.Controls.Add(this.button9);
             this.groupBox5.Controls.Add(this.groupBox2);
             this.groupBox5.Controls.Add(this.button25);
@@ -182,6 +188,16 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "해외선물";
             // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(180, 46);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(50, 27);
+            this.button9.TabIndex = 40;
+            this.button9.Text = "ES";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.btnFF_Click);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.button15);
@@ -200,6 +216,16 @@
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "해외선물 틱시세";
+            // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(180, 50);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(50, 27);
+            this.button15.TabIndex = 40;
+            this.button15.Text = "ES";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.btnFFTick_Click);
             // 
             // button7
             // 
@@ -354,7 +380,7 @@
             this.groupBox1.Controls.Add(this.tbLog);
             this.groupBox1.Location = new System.Drawing.Point(287, 9);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(9);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(9, 9, 9, 9);
             this.groupBox1.Size = new System.Drawing.Size(241, 318);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
@@ -392,6 +418,17 @@
             this.groupBox7.TabIndex = 16;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "실시간 시세받기";
+            // 
+            // chkRealES
+            // 
+            this.chkRealES.AutoSize = true;
+            this.chkRealES.Location = new System.Drawing.Point(137, 42);
+            this.chkRealES.Name = "chkRealES";
+            this.chkRealES.Size = new System.Drawing.Size(40, 16);
+            this.chkRealES.TabIndex = 43;
+            this.chkRealES.Text = "ES";
+            this.chkRealES.UseVisualStyleBackColor = true;
+            this.chkRealES.CheckedChanged += new System.EventHandler(this.chkAuto_Changed);
             // 
             // chkSendRealtime
             // 
@@ -503,36 +540,36 @@
             // 
             this.noti.Visible = true;
             // 
-            // button9
+            // rdo100
             // 
-            this.button9.Location = new System.Drawing.Point(180, 46);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(50, 27);
-            this.button9.TabIndex = 40;
-            this.button9.Text = "ES";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.btnFF_Click);
+            this.rdo100.AutoSize = true;
+            this.rdo100.Checked = true;
+            this.rdo100.Location = new System.Drawing.Point(231, 17);
+            this.rdo100.Name = "rdo100";
+            this.rdo100.Size = new System.Drawing.Size(41, 16);
+            this.rdo100.TabIndex = 41;
+            this.rdo100.Text = "100";
+            this.rdo100.UseVisualStyleBackColor = true;
             // 
-            // button15
+            // rdo200
             // 
-            this.button15.Location = new System.Drawing.Point(180, 50);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(50, 27);
-            this.button15.TabIndex = 40;
-            this.button15.Text = "ES";
-            this.button15.UseVisualStyleBackColor = true;
-            this.button15.Click += new System.EventHandler(this.btnFFTick_Click);
+            this.rdo200.AutoSize = true;
+            this.rdo200.Location = new System.Drawing.Point(231, 35);
+            this.rdo200.Name = "rdo200";
+            this.rdo200.Size = new System.Drawing.Size(41, 16);
+            this.rdo200.TabIndex = 42;
+            this.rdo200.Text = "200";
+            this.rdo200.UseVisualStyleBackColor = true;
             // 
-            // chkRealES
+            // rdo500
             // 
-            this.chkRealES.AutoSize = true;
-            this.chkRealES.Location = new System.Drawing.Point(137, 42);
-            this.chkRealES.Name = "chkRealES";
-            this.chkRealES.Size = new System.Drawing.Size(40, 16);
-            this.chkRealES.TabIndex = 43;
-            this.chkRealES.Text = "ES";
-            this.chkRealES.UseVisualStyleBackColor = true;
-            this.chkRealES.CheckedChanged += new System.EventHandler(this.chkAuto_Changed);
+            this.rdo500.AutoSize = true;
+            this.rdo500.Location = new System.Drawing.Point(231, 53);
+            this.rdo500.Name = "rdo500";
+            this.rdo500.Size = new System.Drawing.Size(41, 16);
+            this.rdo500.TabIndex = 43;
+            this.rdo500.Text = "500";
+            this.rdo500.UseVisualStyleBackColor = true;
             // 
             // XingAppForm
             // 
@@ -552,6 +589,7 @@
             this.groupBox3.PerformLayout();
             this.pnlContent.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -603,6 +641,9 @@
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.CheckBox chkRealES;
+        private System.Windows.Forms.RadioButton rdo100;
+        private System.Windows.Forms.RadioButton rdo500;
+        private System.Windows.Forms.RadioButton rdo200;
     }
 }
 
