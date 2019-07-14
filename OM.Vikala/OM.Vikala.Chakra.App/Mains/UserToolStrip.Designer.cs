@@ -66,6 +66,7 @@
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbLineBold = new System.Windows.Forms.ToolStripButton();
             this.tsbLineBold2 = new System.Windows.Forms.ToolStripButton();
+            this.tsbReload2 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -99,6 +100,7 @@
             this.tspb,
             this.tsbAutoReload,
             this.tsbReload,
+            this.tsbReload2,
             this.toolStripSeparator4,
             this.tsbPrint,
             this.toolStripSeparator2,
@@ -484,6 +486,16 @@
             this.tsbLineBold2.Text = "Bold-";
             this.tsbLineBold2.Click += new System.EventHandler(this.TsbLineBold2_Click);
             // 
+            // tsbReload2
+            // 
+            this.tsbReload2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbReload2.Image = global::OM.Vikala.Chakra.App.Properties.Resources.refreshing_3;
+            this.tsbReload2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbReload2.Name = "tsbReload2";
+            this.tsbReload2.Size = new System.Drawing.Size(28, 20);
+            this.tsbReload2.Text = "toolStripButton1";
+            this.tsbReload2.Click += new System.EventHandler(this.TsbReload2_Click);
+            // 
             // UserToolStrip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -538,5 +550,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripButton tsbLineBold;
         private System.Windows.Forms.ToolStripButton tsbLineBold2;
+        private System.Windows.Forms.ToolStripButton tsbReload2;
     }
 }

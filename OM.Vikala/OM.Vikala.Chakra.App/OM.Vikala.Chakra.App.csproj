@@ -95,6 +95,12 @@
     <Compile Include="Chakra\CandleSummary.cs" />
     <Compile Include="Chakra\TradeForecastInfo.cs" />
     <Compile Include="Events\MainFormToolBarEvents.cs" />
+    <Compile Include="Mains\ChartForms\CandleChartForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mains\ChartForms\CandleChartForm2.Designer.cs">
+      <DependentUpon>CandleChartForm2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mains\ChartForms\ChakraSingleChartForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -383,6 +389,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Mains\ChartForms\CandleChartForm2.resx">
+      <DependentUpon>CandleChartForm2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mains\ChartForms\ChakraSingleChartForm.resx">
       <DependentUpon>ChakraSingleChartForm.cs</DependentUpon>
     </EmbeddedResource>

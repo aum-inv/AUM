@@ -255,6 +255,9 @@ namespace OM.Vikala.Chakra.App.Mains
                         case "기본챠트:천-캔들챠트":
                             createCandleTypeChart_Basic_천(menuText);
                             break;
+                        case "기본챠트:천지인-캔들챠트":
+                            createCandleTypeChart_Basic_천지인(menuText);
+                            break;
 
                         case "캔들형:천지인챠트":
                             createCandleTypeChart_Slh(menuText);
@@ -449,6 +452,12 @@ namespace OM.Vikala.Chakra.App.Mains
             form.Text = title;
             AddTab(form);
         }
+        private void createCandleTypeChart_Basic_천지인(string title)
+        {
+            var form = new Mains.ChartForm.CandleChartForm2();
+            form.Text = title;
+            AddTab(form);
+        }
 
         private void createCandleTypeChart_Slh(string title) {            
             var form = new Mains.ChartForm.CandleChartForm(Vikala.Controls.Charts.CandleChartTypeEnum.천지인);
@@ -584,9 +593,11 @@ namespace OM.Vikala.Chakra.App.Mains
 
         private void tsbIsMdiN_Click(object sender, EventArgs e)
         {
-            isUseMdiForm = true;
-            tsbIsMdiY.Visible = isUseMdiForm;
-            tsbIsMdiN.Visible = !isUseMdiForm;
+            //isUseMdiForm = true;
+            //tsbIsMdiY.Visible = isUseMdiForm;
+            //tsbIsMdiN.Visible = !isUseMdiForm;
+
+            MainFormToolBarEvents.Instance.OnManualReloadHandler();
         }
 
         private void tsbNoMdiAll_Click(object sender, EventArgs e)

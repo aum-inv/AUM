@@ -81,6 +81,8 @@ namespace OM.Vikala.Controls.Charts
             double maxPrice = 0.0;
             double minPrice = 0.0;
             int bDistance = -1;
+            T_QuantumItemData bItem = null;
+
             foreach (var item in ChartData)
             {
                 int idx = chart.Series[0].Points.AddXY(item.DTime, item.HighPrice, item.LowPrice, item.OpenPrice, item.ClosePrice);
@@ -107,20 +109,57 @@ namespace OM.Vikala.Controls.Charts
 
                 }
 
-                if (d == 0)
+                if (d == 0 && bItem != null)
                 {
-                    chart.Series[5].Points[idx].Label = "↑";
-                 
-                    if (item.PlusMinusType == PlusMinusTypeEnum.양)
-                        chart.Series[5].Points[idx].LabelForeColor = Color.Blue;
-                    else if (item.PlusMinusType == PlusMinusTypeEnum.음)
-                        chart.Series[5].Points[idx].LabelForeColor = Color.Red;
-                    else
-                        chart.Series[5].Points[idx].LabelForeColor = Color.Black;
+                    var p = chart.Series[5].Points[idx];
+                    //if (bItem.PlusMinusType == item.PlusMinusType)
+                    //{    
+                    //    if (bItem.TotalLength > item.TotalLength && bItem.BodyLength > item.BodyLength)
+                    //    {
+                    //        //↑  ↓   ↕    ↗    ↘  │
+                    //        if (item.PlusMinusType == PlusMinusTypeEnum.양)
+                    //            p.Label = "↓";
+                    //        else if (item.PlusMinusType == PlusMinusTypeEnum.음)
+                    //            p.Label = "↑";
+                    //        else
+                    //            p.Label = "↕";
+                    //    }
+                    //    else if (bItem.TotalLength > item.TotalLength || bItem.BodyLength > item.BodyLength)
+                    //    {
+                    //        if (item.PlusMinusType == PlusMinusTypeEnum.양)
+                    //            p.Label = "↘";
+                    //        else if (item.PlusMinusType == PlusMinusTypeEnum.음)
+                    //            p.Label = "↗";
+                    //        else
+                    //            p.Label = "│";
+                    //    }
+                    //    if (item.PlusMinusType == PlusMinusTypeEnum.양)
+                    //        p.LabelForeColor = Color.Blue;
+                    //    else if (item.PlusMinusType == PlusMinusTypeEnum.음)
+                    //        p.LabelForeColor = Color.Red;
+                    //    else
+                    //        p.LabelForeColor = Color.Black;
+                    //}
+
+                    //if (bItem.TotalLength > item.TotalLength && bItem.BodyLength > item.BodyLength)
+                    //    p.Label = "↑";
+                    //else if (bItem.TotalLength > item.TotalLength || bItem.BodyLength > item.BodyLength)
+                    //    p.Label = "│";
+
+                    p.Label = "↑";
+
+                    //if (item.PlusMinusType == PlusMinusTypeEnum.양 && bItem.TotalLength > item.TotalLength)
+                    //    p.LabelForeColor = Color.Blue;
+                    //else if (item.PlusMinusType == PlusMinusTypeEnum.음 && bItem.TotalLength > item.TotalLength)
+                    //    p.LabelForeColor = Color.Red;
+                    //else
+                    //    p.LabelForeColor = Color.Black;
                 }
                 bDistance = d;
                 
                 var dataPoint = chart.Series[0].Points[idx];
+
+                bItem = item;
             }
             
 

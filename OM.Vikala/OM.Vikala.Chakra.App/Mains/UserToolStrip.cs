@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using OM.Lib.Base.Enums;
 using OM.Vikala.Chakra.App.Config;
+using OM.Vikala.Chakra.App.Events;
 
 namespace OM.Vikala.Chakra.App.Mains
 {
@@ -66,8 +67,15 @@ namespace OM.Vikala.Chakra.App.Mains
         {
             InitializeComponent();
             this.Load += UserToolStrip_Load;
+
+            MainFormToolBarEvents.Instance.ManualReloadHandler += Instance_ManualReloadHandler;
         }
-        
+
+        private void Instance_ManualReloadHandler()
+        {
+            ReloadEvent(this, new EventArgs());
+        }
+
         private void UserToolStrip_Load(object sender, EventArgs e)
         {
             setItems();
@@ -207,8 +215,12 @@ namespace OM.Vikala.Chakra.App.Mains
         }
 
         private void tsbReload_Click(object sender, EventArgs e)
-        {
+        {            
             ReloadEvent(sender, e);
+        }
+        private void TsbReload2_Click(object sender, EventArgs e)
+        {
+            MainFormToolBarEvents.Instance.OnManualReloadHandler();
         }
 
         private void tsbAlignment_Click(object sender, EventArgs e)
@@ -283,6 +295,8 @@ namespace OM.Vikala.Chakra.App.Mains
             if (LineChartWidthChangedEvent != null)
                 LineChartWidthChangedEvent("-", e);
         }
+
+       
     }
 
     public enum FlowDirectionTypeEnum

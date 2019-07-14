@@ -104,6 +104,13 @@ namespace OM.PP.Chakra
                 return (Single)Math.Round(Math.Abs(OpenPrice - ClosePrice), RoundLength);
             }
         }
+        public Single TotalLength
+        {
+            get
+            {
+                return (Single)Math.Round(Math.Abs(HighPrice - LowPrice), RoundLength);
+            }
+        }
         public Single QuantumPrice
         {
             get
@@ -485,119 +492,25 @@ namespace OM.PP.Chakra
 
             }
         }
-        //public int DiceNum
-        //{
-        //    get
-        //    {
-        //        double totalLength = HighPrice - LowPrice;
-
-        //        int headLength = (int)Math.Round((HeadLength / totalLength * 100.0), 0);
-        //        int bodyLength = (int)Math.Round((BodyLength / totalLength * 100.0), 0);
-        //        int legLength = (int)Math.Round((LegLength / totalLength * 100.0), 0);
-        //        int headlegDiff = (int)Math.Round((Math.Abs(HeadLength - LegLength) / totalLength * 100.0), 0);
-
-        //        int n = 0;
-        //        try
-        //        {
-        //            if (bodyLength >= 90)
-        //                n = 1;
-        //            else if (bodyLength <= 10 && headlegDiff < 10) n = 6;
-
-        //            else if (headLength >= 60 && legLength < 10) n = 2;
-        //            else if (legLength >= 60 && headLength < 10) n = 5;
-
-        //            //else if (headLength >= 40 && headlegDiff >= 10 && headLength > legLength) n = 3;
-        //            //else if (legLength >= 40 && headlegDiff >= 10 && headLength < legLength) n = 4;
-        //            else if (headlegDiff >= 10 && headLength > legLength) n = 3;
-        //            else if (headlegDiff >= 10 && headLength < legLength) n = 4;
-        //        }
-        //        catch (Exception)
-        //        {
-        //        }
-        //        if (n == 0)
-        //        {
-
-        //        }
-        //        return n;
-        //    }
-        //}
 
 
 
-        //public int DiceNum
-        //{
-        //    get
-        //    {
-        //        double[] anArray = {
-        //                OpenPrice, HighPrice, LowPrice, ClosePrice
-        //            ,   QuantumPrice, QuantumHighPrice, QuantumLowPrice
-        //            ,   VikalaPrice, VikalaHighPrice, VikalaLowPrice
-        //        };
-        //        double[] anArray2 = {
-        //                OpenPrice, ClosePrice
-        //            ,   QuantumPrice
-        //            ,   VikalaPrice
-        //        };
-        //        double highPrice = anArray.Max();
-        //        double lowPrice = anArray.Min();
-        //        double openPrice = anArray2.Min();
-        //        double closePrice = anArray2.Max();
 
-        //        double totalLength = Math.Round(highPrice - lowPrice, RoundLength);
-        //        double headLength = Math.Round(Math.Abs(highPrice - closePrice), RoundLength);
-        //        double legLength = Math.Round(Math.Abs(lowPrice - openPrice), RoundLength);
-        //        double bodyLength = Math.Round(Math.Abs(openPrice - closePrice), RoundLength);
-
-        //        int headLengthRate = (int)Math.Round((HeadLength / totalLength * 100.0), 0);
-        //        int bodyLengthRate = (int)Math.Round((BodyLength / totalLength * 100.0), 0);
-        //        int legLengthRate = (int)Math.Round((LegLength / totalLength * 100.0), 0);
-
-        //        int n = 0;
-        //        try
-        //        {
-        //            if (bodyLengthRate > 90) n = 1;
-        //            else if (headLengthRate >= 40 && legLengthRate >= 40) n = 2;
-
-        //            else if (headLengthRate > 0 && legLengthRate == 0) n = 2;
-        //            else if (headLengthRate == 0 && legLengthRate > 0) n = 5;
-
-        //            else if (headLengthRate > 0 && legLengthRate > 0 && headLengthRate > legLengthRate) n = 3;
-        //            else if (headLengthRate > 0 && legLengthRate > 0 && headLengthRate < legLengthRate) n = 4;
-        //        }
-        //        catch (Exception)
-        //        {
-        //        }
-        //        if (n == 0)
-        //        {
-
-        //        }
-        //        return n;
-        //    }
-        //} 
 
         public int DiceNum
         {
             get
             {
-                //double[] anArray = {
-                //        OpenPrice, HighPrice, LowPrice, ClosePrice
-                //    ,   전자가격P, 전자가격M
-                //};
-                //double[] anArray2 = {
-                //        OpenPrice, ClosePrice
-                //    ,   QuantumPrice
-                //    ,   VikalaPrice
-                //};
-
                 double[] anArray = {
-                         OpenPrice, HighPrice, LowPrice, ClosePrice
-                     ,   QuantumPrice, QuantumHighPrice, QuantumLowPrice
-                     ,   VikalaPrice, VikalaHighPrice, VikalaLowPrice
-                 };
+                        OpenPrice, HighPrice, LowPrice, ClosePrice
+                    ,   QuantumPrice, QuantumHighPrice, QuantumLowPrice
+                    ,   VikalaPrice, VikalaHighPrice, VikalaLowPrice
+                };
                 double[] anArray2 = {
-                         OpenPrice, ClosePrice, 전자가격P, 전자가격M
-                 };
-
+                        OpenPrice, ClosePrice
+                    ,   QuantumPrice
+                    ,   VikalaPrice
+                };
                 double highPrice = anArray.Max();
                 double lowPrice = anArray.Min();
                 double openPrice = anArray2.Min();
@@ -608,14 +521,14 @@ namespace OM.PP.Chakra
                 double legLength = Math.Round(Math.Abs(lowPrice - openPrice), RoundLength);
                 double bodyLength = Math.Round(Math.Abs(openPrice - closePrice), RoundLength);
 
-                int headLengthRate = (int)Math.Round((headLength / totalLength * 100.0), 0);
-                int bodyLengthRate = (int)Math.Round((bodyLength / totalLength * 100.0), 0);
-                int legLengthRate = (int)Math.Round((legLength / totalLength * 100.0), 0);
+                int headLengthRate = (int)Math.Round((HeadLength / totalLength * 100.0), 0);
+                int bodyLengthRate = (int)Math.Round((BodyLength / totalLength * 100.0), 0);
+                int legLengthRate = (int)Math.Round((LegLength / totalLength * 100.0), 0);
 
                 int n = 0;
                 try
                 {
-                    if (bodyLengthRate == 100) n = 1;
+                    if (bodyLengthRate > 90) n = 1;
                     else if (headLengthRate >= 40 && legLengthRate >= 40) n = 2;
 
                     else if (headLengthRate > 0 && legLengthRate == 0) n = 2;
@@ -634,6 +547,66 @@ namespace OM.PP.Chakra
                 return n;
             }
         }
+
+        //public int DiceNum
+        //{
+        //    get
+        //    {
+        //        //double[] anArray = {
+        //        //        OpenPrice, HighPrice, LowPrice, ClosePrice
+        //        //    ,   전자가격P, 전자가격M
+        //        //};
+        //        //double[] anArray2 = {
+        //        //        OpenPrice, ClosePrice
+        //        //    ,   QuantumPrice
+        //        //    ,   VikalaPrice
+        //        //};
+
+        //        double[] anArray = {
+        //                 OpenPrice, HighPrice, LowPrice, ClosePrice
+        //             ,   QuantumPrice, QuantumHighPrice, QuantumLowPrice
+        //             ,   VikalaPrice, VikalaHighPrice, VikalaLowPrice
+        //         };
+        //        double[] anArray2 = {
+        //                 OpenPrice, ClosePrice, 전자가격P, 전자가격M
+        //         };
+
+        //        double highPrice = anArray.Max();
+        //        double lowPrice = anArray.Min();
+        //        double openPrice = anArray2.Min();
+        //        double closePrice = anArray2.Max();
+
+        //        double totalLength = Math.Round(highPrice - lowPrice, RoundLength);
+        //        double headLength = Math.Round(Math.Abs(highPrice - closePrice), RoundLength);
+        //        double legLength = Math.Round(Math.Abs(lowPrice - openPrice), RoundLength);
+        //        double bodyLength = Math.Round(Math.Abs(openPrice - closePrice), RoundLength);
+
+        //        int headLengthRate = (int)Math.Round((headLength / totalLength * 100.0), 0);
+        //        int bodyLengthRate = (int)Math.Round((bodyLength / totalLength * 100.0), 0);
+        //        int legLengthRate = (int)Math.Round((legLength / totalLength * 100.0), 0);
+
+        //        int n = 0;
+        //        try
+        //        {
+        //            if (bodyLengthRate == 100) n = 1;
+        //            else if (headLengthRate >= 40 && legLengthRate >= 40) n = 2;
+
+        //            else if (headLengthRate > 0 && legLengthRate == 0) n = 2;
+        //            else if (headLengthRate == 0 && legLengthRate > 0) n = 5;
+
+        //            else if (headLengthRate > 0 && legLengthRate > 0 && headLengthRate > legLengthRate) n = 3;
+        //            else if (headLengthRate > 0 && legLengthRate > 0 && headLengthRate < legLengthRate) n = 4;
+        //        }
+        //        catch (Exception)
+        //        {
+        //        }
+        //        if (n == 0)
+        //        {
+
+        //        }
+        //        return n;
+        //    }
+        //}
 
     }
 

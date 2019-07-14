@@ -358,14 +358,14 @@ namespace OM.PP.XingApp
                     apiFF.manualEvent.WaitOne();
                     System.Threading.Thread.Sleep(1000);
 
-                    if (cnt > 200)
+                    if (cnt >= 200)
                     {
                         apiFF.manualEvent.Reset();
                         apiFF.Query(itemCode, "1", ncnt, "100", apiFF.lastCts_Date, apiFF.lastCts_Time);
                         apiFF.manualEvent.WaitOne();
                         System.Threading.Thread.Sleep(1000);
                     }
-                    if (cnt == 500)
+                    if (cnt >= 500)
                     {
                         apiFF.manualEvent.Reset();
                         apiFF.Query(itemCode, "1", ncnt, "100", apiFF.lastCts_Date, apiFF.lastCts_Time);
@@ -392,14 +392,14 @@ namespace OM.PP.XingApp
                     apiFF.manualEvent.WaitOne();
                     System.Threading.Thread.Sleep(1000);
 
-                    if (cnt > 200)
+                    if (cnt >= 200)
                     {
                         apiFF.manualEvent.Reset();
                         apiFF.Query(itemCode, "1", ncnt, "100", apiFF.lastCts_Date, apiFF.lastCts_Time);
                         apiFF.manualEvent.WaitOne();
                         System.Threading.Thread.Sleep(1000);
                     }
-                    if (cnt == 500)
+                    if (cnt >= 500)
                     {
                         apiFF.manualEvent.Reset();
                         apiFF.Query(itemCode, "1", ncnt, "100", apiFF.lastCts_Date, apiFF.lastCts_Time);
@@ -425,14 +425,14 @@ namespace OM.PP.XingApp
                     apiFF.manualEvent.WaitOne();
                     System.Threading.Thread.Sleep(1000);
 
-                    if (cnt > 200)
+                    if (cnt >= 200)
                     {
                         apiFF.manualEvent.Reset();
                         apiFF.Query(itemCode, "1", ncnt, "100", apiFF.lastCts_Date, apiFF.lastCts_Time);
                         apiFF.manualEvent.WaitOne();
                         System.Threading.Thread.Sleep(1000);
                     }
-                    if (cnt == 500)
+                    if (cnt >= 500)
                     {
                         apiFF.manualEvent.Reset();
                         apiFF.Query(itemCode, "1", ncnt, "100", apiFF.lastCts_Date, apiFF.lastCts_Time);
@@ -458,14 +458,14 @@ namespace OM.PP.XingApp
                     apiFF.manualEvent.WaitOne();
                     System.Threading.Thread.Sleep(1000);
 
-                    if (cnt > 200)
+                    if (cnt >= 200)
                     {
                         apiFF.manualEvent.Reset();
                         apiFF.Query(itemCode, "1", ncnt, "100", apiFF.lastCts_Date, apiFF.lastCts_Time);
                         apiFF.manualEvent.WaitOne();
                         System.Threading.Thread.Sleep(1000);
                     }
-                    if (cnt == 500)
+                    if (cnt >= 500)
                     {
                         apiFF.manualEvent.Reset();
                         apiFF.Query(itemCode, "1", ncnt, "100", apiFF.lastCts_Date, apiFF.lastCts_Time);

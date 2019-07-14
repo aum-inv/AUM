@@ -88,6 +88,11 @@ namespace OM.Vikala.Controls.Charts
                     int idx = chart.Series[0].Points.AddXY(item.DTime, item.QuantumHighPrice, item.QuantumLowPrice, item.OpenPrice, item.QuantumPrice);
                     var dataPoint = chart.Series[0].Points[idx];
                     dataPoint.Tag = item;
+                    SetDataPointColor(dataPoint, Color.White, Color.White, Color.White);
+                    if (item.PlusMinusType == PlusMinusTypeEnum.음)
+                    {
+                        SetDataPointColor(dataPoint, Color.Blue, Color.Blue, Color.Blue);
+                    }
                 }
                 // 챠크라
                 else if (BaseCandleChartType == BaseCandleChartTypeEnum.천)
@@ -95,6 +100,12 @@ namespace OM.Vikala.Controls.Charts
                     int idx = chart.Series[0].Points.AddXY(item.DTime, item.VikalaHighPrice, item.VikalaLowPrice, item.ClosePrice, item.VikalaPrice);
                     var dataPoint = chart.Series[0].Points[idx];
                     dataPoint.Tag = item;
+                    SetDataPointColor(dataPoint, Color.White, Color.White, Color.White);
+                   
+                    if (item.PlusMinusType == PlusMinusTypeEnum.양)
+                    {
+                        SetDataPointColor(dataPoint, Color.Red, Color.Red, Color.Red);
+                    }
                 }
             }
             if (BaseCandleChartType == BaseCandleChartTypeEnum.인)
