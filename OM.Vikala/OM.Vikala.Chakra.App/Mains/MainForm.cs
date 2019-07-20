@@ -353,27 +353,27 @@ namespace OM.Vikala.Chakra.App.Mains
         }
         private void createMultiChart1(string title)
         {
-            BaseForm bmf = new MultiChartForm1();
-            bmf.Text = title;
-            AddTab(bmf);
+            //BaseForm bmf = new MultiChartForm1();
+            //bmf.Text = title;
+            //AddTab(bmf);
         }
         private void createMultiChart2(string title)
         {
-            BaseForm bmf = new MultiChartForm2();
-            bmf.Text = title;
-            AddTab(bmf);
+            //BaseForm bmf = new MultiChartForm2();
+            //bmf.Text = title;
+            //AddTab(bmf);
         }
         private void createMultiChart3(string title)
         {
-            BaseForm bmf = new MultiChartForm4();
-            bmf.Text = title;
-            AddTab(bmf);
+            //BaseForm bmf = new MultiChartForm4();
+            //bmf.Text = title;
+            //AddTab(bmf);
         }
         private void createMultiChart4(string title)
         {
-            BaseForm bmf = new MultiChartForm3();
-            bmf.Text = title;
-            AddTab(bmf);
+            //BaseForm bmf = new MultiChartForm3();
+            //bmf.Text = title;
+            //AddTab(bmf);
         }
         #endregion
 

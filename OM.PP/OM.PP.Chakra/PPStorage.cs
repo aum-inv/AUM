@@ -22,13 +22,12 @@ namespace OM.PP.Chakra
             }
         }
 
-        public Dictionary<string, LimitedList<S_CandleItemData>> StorageMin01 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
-        public Dictionary<string, LimitedList<S_CandleItemData>> StorageMin05 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
-        public Dictionary<string, LimitedList<S_CandleItemData>> StorageMin10 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
-        public Dictionary<string, LimitedList<S_CandleItemData>> StorageMin30 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
         public Dictionary<string, LimitedList<S_CandleItemData>> StorageMin60 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
-
         public Dictionary<string, LimitedList<S_CandleItemData>> StorageMin120 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
+        public Dictionary<string, LimitedList<S_CandleItemData>> StorageMin180 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
+        public Dictionary<string, LimitedList<S_CandleItemData>> StorageMin300 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
+        public Dictionary<string, LimitedList<S_CandleItemData>> StorageMin420 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
+        public Dictionary<string, LimitedList<S_CandleItemData>> StorageMin540 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
         public Dictionary<string, LimitedList<S_CandleItemData>> StorageDay = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
 
         public Dictionary<string, LimitedList<S_CandleItemData>> StorageTick180 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
@@ -41,42 +40,6 @@ namespace OM.PP.Chakra
         {
             try
             {
-                if (!StorageMin01.ContainsKey(itemCode))
-                {
-                    StorageMin01.Add(itemCode, new LimitedList<S_CandleItemData>(1000));
-                }
-                else
-                {
-                    StorageMin01[itemCode].Clear();
-                }
-
-                if (!StorageMin05.ContainsKey(itemCode))
-                {
-                    StorageMin05.Add(itemCode, new LimitedList<S_CandleItemData>(1000));
-                }
-                else
-                {
-                    StorageMin05[itemCode].Clear();
-                }
-
-                if (!StorageMin10.ContainsKey(itemCode))
-                {
-                    StorageMin10.Add(itemCode, new LimitedList<S_CandleItemData>(1000));
-                }
-                else
-                {
-                    StorageMin10[itemCode].Clear();
-                }
-
-                if (!StorageMin30.ContainsKey(itemCode))
-                {
-                    StorageMin30.Add(itemCode, new LimitedList<S_CandleItemData>(1000));
-                }
-                else
-                {
-                    StorageMin30[itemCode].Clear();
-                }
-
                 if (!StorageMin60.ContainsKey(itemCode))
                 {
                     StorageMin60.Add(itemCode, new LimitedList<S_CandleItemData>(1000));
@@ -93,6 +56,42 @@ namespace OM.PP.Chakra
                 else
                 {
                     StorageMin120[itemCode].Clear();
+                }
+
+                if (!StorageMin180.ContainsKey(itemCode))
+                {
+                    StorageMin180.Add(itemCode, new LimitedList<S_CandleItemData>(1000));
+                }
+                else
+                {
+                    StorageMin180[itemCode].Clear();
+                }
+
+                if (!StorageMin300.ContainsKey(itemCode))
+                {
+                    StorageMin300.Add(itemCode, new LimitedList<S_CandleItemData>(1000));
+                }
+                else
+                {
+                    StorageMin300[itemCode].Clear();
+                }
+
+                if (!StorageMin420.ContainsKey(itemCode))
+                {
+                    StorageMin420.Add(itemCode, new LimitedList<S_CandleItemData>(1000));
+                }
+                else
+                {
+                    StorageMin420[itemCode].Clear();
+                }
+
+                if (!StorageMin540.ContainsKey(itemCode))
+                {
+                    StorageMin540.Add(itemCode, new LimitedList<S_CandleItemData>(1000));
+                }
+                else
+                {
+                    StorageMin540[itemCode].Clear();
                 }
 
                 if (!StorageDay.ContainsKey(itemCode))
@@ -169,23 +168,23 @@ namespace OM.PP.Chakra
             {               
                 switch (timeInterval)
                 {
-                    case TimeIntervalEnum.Minute_01:
-                        storageList = StorageMin01[itemCode];
-                        break;
-                    case TimeIntervalEnum.Minute_05:
-                        storageList = StorageMin05[itemCode];
-                        break;
-                    case TimeIntervalEnum.Minute_10:
-                        storageList = StorageMin10[itemCode];
-                        break;
-                    case TimeIntervalEnum.Minute_30:
-                        storageList = StorageMin30[itemCode];
-                        break;
                     case TimeIntervalEnum.Minute_60:
                         storageList = StorageMin60[itemCode];
                         break;
                     case TimeIntervalEnum.Minute_120:
                         storageList = StorageMin120[itemCode];
+                        break;
+                    case TimeIntervalEnum.Minute_180:
+                        storageList = StorageMin180[itemCode];
+                        break;
+                    case TimeIntervalEnum.Minute_300:
+                        storageList = StorageMin300[itemCode];
+                        break;
+                    case TimeIntervalEnum.Minute_420:
+                        storageList = StorageMin420[itemCode];
+                        break;
+                    case TimeIntervalEnum.Minute_540:
+                        storageList = StorageMin540[itemCode];
                         break;
                     case TimeIntervalEnum.Day:
                         storageList = StorageDay[itemCode];
@@ -224,17 +223,23 @@ namespace OM.PP.Chakra
             LimitedList<S_CandleItemData> list = null;
             switch (timeInterval)
             {
-                case TimeIntervalEnum.Minute_10:
-                    list = StorageMin10[itemCode];
-                    break;
-                case TimeIntervalEnum.Minute_30:
-                    list = StorageMin30[itemCode];
-                    break;
                 case TimeIntervalEnum.Minute_60:
                     list = StorageMin60[itemCode];
                     break;
                 case TimeIntervalEnum.Minute_120:
                     list = StorageMin120[itemCode];
+                    break;
+                case TimeIntervalEnum.Minute_180:
+                    list = StorageMin180[itemCode];
+                    break;
+                case TimeIntervalEnum.Minute_300:
+                    list = StorageMin300[itemCode];
+                    break;
+                case TimeIntervalEnum.Minute_420:
+                    list = StorageMin420[itemCode];
+                    break;
+                case TimeIntervalEnum.Minute_540:
+                    list = StorageMin540[itemCode];
                     break;
                 case TimeIntervalEnum.Day:
                     list = StorageDay[itemCode];

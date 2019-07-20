@@ -22,7 +22,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         public static void loadDataAverageAndApply(this BasicCandleChart c
@@ -38,7 +38,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         #endregion
@@ -56,7 +56,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         public static void loadDataAverageAndApply(this RealCandleChart c
@@ -72,7 +72,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         #endregion
@@ -97,7 +97,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         public static void loadDataAverageAndApply(this AtomChart c
@@ -121,7 +121,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         #endregion
@@ -139,7 +139,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         public static void loadDataAverageAndApply(this BasicLineChart c
@@ -155,7 +155,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         #endregion
@@ -173,7 +173,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         public static void loadDataAverageAndApply(this BasicVolumeChart c
@@ -189,7 +189,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         #endregion
@@ -207,7 +207,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         public static void loadDataAverageAndApply(this Candlestick c
@@ -223,7 +223,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
 
@@ -251,7 +251,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         public static void loadDataAverageAndApply(this FiveColorChart c
@@ -276,7 +276,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         #endregion
@@ -306,7 +306,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         public static void loadDataAverageAndApply(this PrimeNumCandleChart c
@@ -334,7 +334,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         #endregion
@@ -360,7 +360,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         public static void loadDataAverageAndApply(this QuantumLineChart c
@@ -384,7 +384,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
 
@@ -408,7 +408,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         public static void loadDataAverageAndApply(this QuantumLineTradeChart c
@@ -432,7 +432,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+              
             }
         }
 
@@ -456,7 +456,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         public static void loadDataAverageAndApply(this QuantumLineChartHL c
@@ -480,7 +480,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         #endregion
@@ -506,7 +506,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         public static void loadDataAverageAndApply(this DiceCandleChart c
@@ -530,7 +530,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
 
@@ -563,7 +563,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         public static void loadDataAverageAndApply(this ReverseCandleChart c
@@ -593,7 +593,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         #endregion
@@ -620,7 +620,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         public static void loadDataAverageAndApply(this ThreeThaChiChart c
@@ -645,7 +645,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         #endregion
@@ -673,7 +673,7 @@ namespace OM.Vikala.Controls.Charts
 
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         public static void loadDataAverageAndApply(this VelocityLineChart c
@@ -699,7 +699,7 @@ namespace OM.Vikala.Controls.Charts
 
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         #endregion
@@ -729,7 +729,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         public static void loadDataAverageAndApply(this WuXingCandleChart c
@@ -757,7 +757,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         #endregion
@@ -787,7 +787,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         public static void loadDataAverageAndApply(this QuarkCandleChart c
@@ -815,7 +815,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         #endregion
@@ -833,7 +833,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         public static void loadDataAverageAndApply(this ChakraChart c
@@ -849,7 +849,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
 
@@ -865,7 +865,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         public static void loadDataAverageAndApply(this ChakraTradeChart c
@@ -881,7 +881,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex)
             {
-                throw ex;
+                
             }
         }
         #endregion
@@ -893,7 +893,7 @@ namespace OM.Vikala.Controls.Charts
             , int itemsCnt = 9)
         {
             if (sourceDatas.Count == 0) return;
-            itemsCnt = 7;
+            itemsCnt = 9;
             if (c is BasicCandleChart) ((BasicCandleChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
             else if (c is AtomChart) ((AtomChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
             else if (c is BasicVolumeChart) ((BasicVolumeChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
@@ -922,7 +922,7 @@ namespace OM.Vikala.Controls.Charts
             , int itemsCnt = 9)
         {
             if (sourceDatas.Count == 0) return;
-            itemsCnt = 7;
+            itemsCnt = 9;
             if (c is BasicCandleChart) ((BasicCandleChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
             else if (c is AtomChart) ((AtomChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
             else if (c is BasicVolumeChart) ((BasicVolumeChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);

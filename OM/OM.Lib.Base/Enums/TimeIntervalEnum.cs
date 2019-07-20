@@ -9,12 +9,12 @@ namespace OM.Lib.Base.Enums
     public enum TimeIntervalEnum
     {
             Tick = 0
-        ,   Minute_01 = 1
-        ,   Minute_05 = 2
-        ,   Minute_10 = 3
-        ,   Minute_30 = 4
-        ,   Minute_60 = 5
-        ,   Minute_120 = 6
+        ,   Minute_60 = 1
+        ,   Minute_120 = 2
+        ,   Minute_180 = 3
+        ,   Minute_300 = 4
+        ,   Minute_420 = 5
+        ,   Minute_540 = 6
         ,   Day = 7 
         ,   Week = 8
         ,   Month = 9     

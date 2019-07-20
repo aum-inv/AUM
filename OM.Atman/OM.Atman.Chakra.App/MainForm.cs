@@ -195,17 +195,17 @@ namespace OM.Atman.Chakra.App
                 //PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Minute_05
                 //    , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Minute_05));
 
-                PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Minute_10
-                    , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Minute_10));
-
-                PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Minute_30
-                    , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Minute_30));
-
                 PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Minute_60
                     , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Minute_60));
 
                 PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Minute_120
                     , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Minute_120));
+
+                PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Minute_180
+                    , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Minute_180));
+
+                PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Minute_300
+                    , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Minute_300));
 
                 PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Day
                     , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(itemCode, TimeIntervalEnum.Day));
@@ -225,11 +225,10 @@ namespace OM.Atman.Chakra.App
                 //PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Tick_1440
                 //   , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Tick_1440));
 
-                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Minute_10);
-                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Minute_30);
                 PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Minute_60);
-
                 PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Minute_120);
+                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Minute_180);
+                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Minute_300);
                 PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Day);
 
                 PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Tick_360);
@@ -346,19 +345,19 @@ namespace OM.Atman.Chakra.App
         private void btnAtomRule_Click(object sender, EventArgs e)
         {
             //new AtomRuleForm().Show();
-            new StrategyTradeRuleForm().Show();
+            //new StrategyTradeRuleForm().Show();
         }
 
         private void btnTwoLineRule_Click(object sender, EventArgs e)
         {
             // new TwoLineRuleForm().Show();
-            new StrategyTradeRuleForm().Show();
+            //new StrategyTradeRuleForm().Show();
         }
 
         private void btnTradeRule_Click(object sender, EventArgs e)
         {
             //new TradeRuleForm().Show();
-            new StrategyTradeRuleForm().Show();
+            //new StrategyTradeRuleForm().Show();
         }
         private void btnCandleSignal_Click(object sender, EventArgs e)
         {
@@ -388,27 +387,27 @@ namespace OM.Atman.Chakra.App
 
         private void btnStrategySS_Click(object sender, EventArgs e)
         {
-            new StrategyTradeRuleSSForm().Show();
+            //new StrategyTradeRuleSSForm().Show();
         }
 
         private void btnStrategySM_Click(object sender, EventArgs e)
         {
-            new StrategyTradeRuleSMForm().Show();
+            //new StrategyTradeRuleSMForm().Show();
         }
 
         private void btnStrategyMS_Click(object sender, EventArgs e)
         {
-            new StrategyTradeRuleMSForm().Show();
+           // new StrategyTradeRuleMSForm().Show();
         }
 
         private void btnStrategyMM_Click(object sender, EventArgs e)
         {
-            new StrategyTradeRuleMMForm().Show();
+            //new StrategyTradeRuleMMForm().Show();
         }
 
         private void btnStrategy_Click(object sender, EventArgs e)
         {
-            new StrategyAutoTradeRuleForm().Show();
+            //new StrategyAutoTradeRuleForm().Show();
         }
 
         private void button1_Click(object sender, EventArgs e)

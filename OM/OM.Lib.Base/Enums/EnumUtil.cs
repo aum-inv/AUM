@@ -37,12 +37,13 @@ namespace OM.Lib.Base.Enums
         public static TimeIntervalEnum GetTimeIntervalValue(string gubun, string ncnt)
         {
 
-            if (gubun == "1" && ncnt == "1") return TimeIntervalEnum.Minute_01;
-            else if (gubun == "1" && ncnt == "5") return TimeIntervalEnum.Minute_05;
-            else if (gubun == "1" && ncnt == "10") return TimeIntervalEnum.Minute_10;
-            else if (gubun == "1" && ncnt == "30") return TimeIntervalEnum.Minute_30;
-            else if (gubun == "1" && ncnt == "60") return TimeIntervalEnum.Minute_60;
+            if (gubun == "1" && ncnt == "60") return TimeIntervalEnum.Minute_60;
             else if (gubun == "1" && ncnt == "120") return TimeIntervalEnum.Minute_120;
+            else if (gubun == "1" && ncnt == "180") return TimeIntervalEnum.Minute_180;
+            else if (gubun == "1" && ncnt == "300") return TimeIntervalEnum.Minute_300;
+            else if (gubun == "1" && ncnt == "420") return TimeIntervalEnum.Minute_420;
+            else if (gubun == "1" && ncnt == "540") return TimeIntervalEnum.Minute_540;
+
             else if (gubun == "2") return TimeIntervalEnum.Day;
             else if (gubun == "3") return TimeIntervalEnum.Week;
             else if (gubun == "4") return TimeIntervalEnum.Month;
@@ -58,12 +59,12 @@ namespace OM.Lib.Base.Enums
         public static TimeIntervalEnum GetTimeIntervalValue(string timeType)
         {
 
-            if (timeType == "1분") return TimeIntervalEnum.Minute_01;
-            else if (timeType == "5분") return TimeIntervalEnum.Minute_05;
-            else if (timeType == "10분") return TimeIntervalEnum.Minute_10;
-            else if (timeType == "30분") return TimeIntervalEnum.Minute_30;
-            else if (timeType == "60분") return TimeIntervalEnum.Minute_60;
+            if (timeType == "60분") return TimeIntervalEnum.Minute_60;
             else if (timeType == "120분") return TimeIntervalEnum.Minute_120;
+            else if (timeType == "180분") return TimeIntervalEnum.Minute_180;
+            else if (timeType == "300분") return TimeIntervalEnum.Minute_300;
+            else if (timeType == "420분") return TimeIntervalEnum.Minute_420;
+            else if (timeType == "540분") return TimeIntervalEnum.Minute_540;
             else if (timeType == "일") return TimeIntervalEnum.Day;
             else if (timeType == "주") return TimeIntervalEnum.Week;
             else if (timeType == "월") return TimeIntervalEnum.Month;
@@ -78,12 +79,12 @@ namespace OM.Lib.Base.Enums
         public static string GetTimeIntervalText(TimeIntervalEnum timeType)
         {
 
-            if (timeType == TimeIntervalEnum.Minute_01) return "1분";
-            else if (timeType == TimeIntervalEnum.Minute_05) return "5분";
-            else if (timeType == TimeIntervalEnum.Minute_10) return "10분";
-            else if (timeType == TimeIntervalEnum.Minute_30) return "30분";
-            else if (timeType == TimeIntervalEnum.Minute_60) return "60분";
+            if (timeType == TimeIntervalEnum.Minute_60) return "60분";
             else if (timeType == TimeIntervalEnum.Minute_120) return "120분";
+            else if (timeType == TimeIntervalEnum.Minute_180) return "180분";
+            else if (timeType == TimeIntervalEnum.Minute_300) return "300분";
+            else if (timeType == TimeIntervalEnum.Minute_420) return "420분";
+            else if (timeType == TimeIntervalEnum.Minute_540) return "540분";
             else if (timeType == TimeIntervalEnum.Day) return "일";
             else if (timeType == TimeIntervalEnum.Week) return "주";
             else if (timeType == TimeIntervalEnum.Month) return "월";
@@ -101,12 +102,12 @@ namespace OM.Lib.Base.Enums
         public static int GetIntervalValueToMinutes(string timeType)
         {
 
-            if (timeType == "1분") return 1;
-            else if (timeType == "5분") return 5;
-            else if (timeType == "10분") return 10;
-            else if (timeType == "30분") return 30;
-            else if (timeType == "60분") return 60;
-            else if (timeType == "120분") return 120;            
+            if (timeType == "60분") return 60;
+            else if (timeType == "120분") return 120;
+            else if (timeType == "180분") return 180;
+            else if (timeType == "300분") return 300;
+            else if (timeType == "420분") return 420;
+            else if (timeType == "540분") return 540;            
 
             return 1;
         }

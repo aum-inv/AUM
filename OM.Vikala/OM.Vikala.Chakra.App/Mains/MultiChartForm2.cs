@@ -58,11 +58,11 @@ namespace OM.Vikala.Chakra.App.Mains
             qMin120.Title = "원자챠트 120분";
             qDay.Title = "원자챠트 일";
 
-            qMin5.TimeInterval = TimeIntervalEnum.Minute_05;
-            qMin10.TimeInterval = TimeIntervalEnum.Minute_10;
-            qMin30.TimeInterval = TimeIntervalEnum.Minute_30;
-            qMin60.TimeInterval = TimeIntervalEnum.Minute_60;
-            qMin120.TimeInterval = TimeIntervalEnum.Minute_120;
+            qMin5.TimeInterval = TimeIntervalEnum.Minute_60;
+            qMin10.TimeInterval = TimeIntervalEnum.Minute_120;
+            qMin30.TimeInterval = TimeIntervalEnum.Minute_300;
+            qMin60.TimeInterval = TimeIntervalEnum.Minute_420;
+            qMin120.TimeInterval = TimeIntervalEnum.Minute_540;
             qDay.TimeInterval = TimeIntervalEnum.Day;
 
             foreach (var c in charts)

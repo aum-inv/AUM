@@ -40,12 +40,14 @@ namespace OM.Vikala.Chakra.App.Mains
         {
             get { return tsbTime11.Visible; }
             set
-            {              
-                    tsbTime3.Visible =
-                    tsbTime4.Visible =
-                    tsbTime5.Visible =
-                    tsbTime6.Visible =
-                    tsbTime7.Visible =
+            {
+                    tsbTime11.Visible =
+                    tsbTime12.Visible =
+                    tsbTime13.Visible =
+                    tsbTime14.Visible =
+                    tsbTime15.Visible =
+                    tsbTime16.Visible =
+                    tsbTime20.Visible =
                     //tsbTime11.Visible =
                     //tsbTime12.Visible =
                     //tsbTime13.Visible =
@@ -122,31 +124,21 @@ namespace OM.Vikala.Chakra.App.Mains
         }
         private void setInterval()
         {
-            tsbTime2.BackColor = Color.WhiteSmoke;
-            tsbTime3.BackColor = Color.WhiteSmoke;
-            tsbTime4.BackColor = Color.WhiteSmoke;
-            tsbTime5.BackColor = Color.WhiteSmoke;
-            tsbTime6.BackColor = Color.WhiteSmoke;
-            tsbTime7.BackColor = Color.WhiteSmoke;
-            
             tsbTime11.BackColor = Color.WhiteSmoke;
             tsbTime12.BackColor = Color.WhiteSmoke;
             tsbTime13.BackColor = Color.WhiteSmoke;
             tsbTime14.BackColor = Color.WhiteSmoke;
             tsbTime15.BackColor = Color.WhiteSmoke;
+            tsbTime16.BackColor = Color.WhiteSmoke;           
+            tsbTime20.BackColor = Color.WhiteSmoke;          
 
-            if (timeInterval == TimeIntervalEnum.Minute_05) tsbTime2.BackColor = Color.Yellow;
-            else if (timeInterval == TimeIntervalEnum.Minute_10) tsbTime3.BackColor = Color.Yellow;
-            else if (timeInterval == TimeIntervalEnum.Minute_10) tsbTime3.BackColor = Color.Yellow;
-            else if (timeInterval == TimeIntervalEnum.Minute_30) tsbTime4.BackColor = Color.Yellow;
-            else if (timeInterval == TimeIntervalEnum.Minute_60) tsbTime5.BackColor = Color.Yellow;
-            else if (timeInterval == TimeIntervalEnum.Minute_120) tsbTime6.BackColor = Color.Yellow;
-            else if (timeInterval == TimeIntervalEnum.Day) tsbTime7.BackColor = Color.Yellow;
-            else if (timeInterval == TimeIntervalEnum.Tick_180) tsbTime11.BackColor = Color.Yellow;
-            else if (timeInterval == TimeIntervalEnum.Tick_360) tsbTime12.BackColor = Color.Yellow;          
-            else if (timeInterval == TimeIntervalEnum.Tick_720) tsbTime13.BackColor = Color.Yellow;
-            else if (timeInterval == TimeIntervalEnum.Tick_1080) tsbTime14.BackColor = Color.Yellow;
-            else if (timeInterval == TimeIntervalEnum.Tick_1440) tsbTime15.BackColor = Color.Yellow;
+            if (timeInterval == TimeIntervalEnum.Minute_60) tsbTime11.BackColor = Color.Yellow;
+            else if (timeInterval == TimeIntervalEnum.Minute_120) tsbTime12.BackColor = Color.Yellow;
+            else if (timeInterval == TimeIntervalEnum.Minute_180) tsbTime13.BackColor = Color.Yellow;
+            else if (timeInterval == TimeIntervalEnum.Minute_300) tsbTime14.BackColor = Color.Yellow;
+            else if (timeInterval == TimeIntervalEnum.Minute_420) tsbTime15.BackColor = Color.Yellow;
+            else if (timeInterval == TimeIntervalEnum.Minute_540) tsbTime16.BackColor = Color.Yellow;
+            else if (timeInterval == TimeIntervalEnum.Day) tsbTime20.BackColor = Color.Yellow;
         }
 
         private void tscbItem_SelectedIndexChanged(object sender, EventArgs e)
@@ -180,20 +172,14 @@ namespace OM.Vikala.Chakra.App.Mains
             var b = sender as ToolStripButton;
             int n = Convert.ToInt32(b.Tag);
 
-            if (n == 1) timeInterval = TimeIntervalEnum.Minute_01;
-            else if (n == 2) timeInterval = TimeIntervalEnum.Minute_05;
-            else if (n == 3) timeInterval = TimeIntervalEnum.Minute_10;
-            else if (n == 4) timeInterval = TimeIntervalEnum.Minute_30;
-            else if (n == 5) timeInterval = TimeIntervalEnum.Minute_60;
-            else if (n == 6) timeInterval = TimeIntervalEnum.Minute_120;
+            if (n == 1) timeInterval = TimeIntervalEnum.Minute_60;
+            else if (n == 2) timeInterval = TimeIntervalEnum.Minute_120;
+            else if (n == 3) timeInterval = TimeIntervalEnum.Minute_180;
+            else if (n == 4) timeInterval = TimeIntervalEnum.Minute_300;
+            else if (n == 5) timeInterval = TimeIntervalEnum.Minute_420;
+            else if (n == 6) timeInterval = TimeIntervalEnum.Minute_540;
             else if (n == 7) timeInterval = TimeIntervalEnum.Day;
-
-            else if (n == 11) timeInterval = TimeIntervalEnum.Tick_180;
-            else if (n == 12) timeInterval = TimeIntervalEnum.Tick_360;
-            else if (n == 13) timeInterval = TimeIntervalEnum.Tick_720;
-            else if (n == 14) timeInterval = TimeIntervalEnum.Tick_1080;
-            else if (n == 15) timeInterval = TimeIntervalEnum.Tick_1440;
-
+            
             if (TimerIntervalChangedEvent != null)
             {
                 TimerIntervalChangedEvent(timeInterval, e);

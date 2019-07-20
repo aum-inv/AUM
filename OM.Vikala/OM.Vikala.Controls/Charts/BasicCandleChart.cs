@@ -89,7 +89,7 @@ namespace OM.Vikala.Controls.Charts
                     var dataPoint = chart.Series[0].Points[idx];
                     dataPoint.Tag = item;
                     SetDataPointColor(dataPoint, Color.White, Color.White, Color.White);
-                    if (item.PlusMinusType == PlusMinusTypeEnum.음)
+                    if (item.PlusMinusType == PlusMinusTypeEnum.양)
                     {
                         SetDataPointColor(dataPoint, Color.Blue, Color.Blue, Color.Blue);
                     }
@@ -102,7 +102,7 @@ namespace OM.Vikala.Controls.Charts
                     dataPoint.Tag = item;
                     SetDataPointColor(dataPoint, Color.White, Color.White, Color.White);
                    
-                    if (item.PlusMinusType == PlusMinusTypeEnum.양)
+                    if (item.PlusMinusType == PlusMinusTypeEnum.음)
                     {
                         SetDataPointColor(dataPoint, Color.Red, Color.Red, Color.Red);
                     }

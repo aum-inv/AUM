@@ -351,105 +351,15 @@ namespace OM.PP.XingApp
                 //    System.Threading.Thread.Sleep(4000);
                 //}
                 {
-                    string ncnt = "10";
-                    Api_WorldFuture apiFF = new Api.Api_WorldFuture();
-                    apiFF.ApiLogHandler += (log) => { LogWrite(log); };
-                    apiFF.Query(itemCode, "1", ncnt);
-                    apiFF.manualEvent.WaitOne();
-                    System.Threading.Thread.Sleep(1000);
-
-                    if (cnt >= 200)
-                    {
-                        apiFF.manualEvent.Reset();
-                        apiFF.Query(itemCode, "1", ncnt, "100", apiFF.lastCts_Date, apiFF.lastCts_Time);
-                        apiFF.manualEvent.WaitOne();
-                        System.Threading.Thread.Sleep(1000);
-                    }
-                    if (cnt >= 500)
-                    {
-                        apiFF.manualEvent.Reset();
-                        apiFF.Query(itemCode, "1", ncnt, "100", apiFF.lastCts_Date, apiFF.lastCts_Time);
-                        apiFF.manualEvent.WaitOne();
-                        System.Threading.Thread.Sleep(1000);
-
-                        apiFF.manualEvent.Reset();
-                        apiFF.Query(itemCode, "1", ncnt, "100", apiFF.lastCts_Date, apiFF.lastCts_Time);
-                        apiFF.manualEvent.WaitOne();
-                        System.Threading.Thread.Sleep(1000);
-
-                        apiFF.manualEvent.Reset();
-                        apiFF.Query(itemCode, "1", ncnt, "100", apiFF.lastCts_Date, apiFF.lastCts_Time);
-                        apiFF.manualEvent.WaitOne();
-                        System.Threading.Thread.Sleep(1000);
-                    }
-                }
-
-                {
-                    string ncnt = "30";
-                    Api_WorldFuture apiFF = new Api.Api_WorldFuture();
-                    apiFF.ApiLogHandler += (log) => { LogWrite(log); };
-                    apiFF.Query(itemCode, "1", ncnt);
-                    apiFF.manualEvent.WaitOne();
-                    System.Threading.Thread.Sleep(1000);
-
-                    if (cnt >= 200)
-                    {
-                        apiFF.manualEvent.Reset();
-                        apiFF.Query(itemCode, "1", ncnt, "100", apiFF.lastCts_Date, apiFF.lastCts_Time);
-                        apiFF.manualEvent.WaitOne();
-                        System.Threading.Thread.Sleep(1000);
-                    }
-                    if (cnt >= 500)
-                    {
-                        apiFF.manualEvent.Reset();
-                        apiFF.Query(itemCode, "1", ncnt, "100", apiFF.lastCts_Date, apiFF.lastCts_Time);
-                        apiFF.manualEvent.WaitOne();
-                        System.Threading.Thread.Sleep(1000);
-
-                        apiFF.manualEvent.Reset();
-                        apiFF.Query(itemCode, "1", ncnt, "100", apiFF.lastCts_Date, apiFF.lastCts_Time);
-                        apiFF.manualEvent.WaitOne();
-                        System.Threading.Thread.Sleep(1000);
-
-                        apiFF.manualEvent.Reset();
-                        apiFF.Query(itemCode, "1", ncnt, "100", apiFF.lastCts_Date, apiFF.lastCts_Time);
-                        apiFF.manualEvent.WaitOne();
-                        System.Threading.Thread.Sleep(1000);
-                    }
-                }
-                {
                     string ncnt = "60";
                     Api_WorldFuture apiFF = new Api.Api_WorldFuture();
                     apiFF.ApiLogHandler += (log) => { LogWrite(log); };
                     apiFF.Query(itemCode, "1", ncnt);
                     apiFF.manualEvent.WaitOne();
                     System.Threading.Thread.Sleep(1000);
-
-                    if (cnt >= 200)
-                    {
-                        apiFF.manualEvent.Reset();
-                        apiFF.Query(itemCode, "1", ncnt, "100", apiFF.lastCts_Date, apiFF.lastCts_Time);
-                        apiFF.manualEvent.WaitOne();
-                        System.Threading.Thread.Sleep(1000);
-                    }
-                    if (cnt >= 500)
-                    {
-                        apiFF.manualEvent.Reset();
-                        apiFF.Query(itemCode, "1", ncnt, "100", apiFF.lastCts_Date, apiFF.lastCts_Time);
-                        apiFF.manualEvent.WaitOne();
-                        System.Threading.Thread.Sleep(1000);
-
-                        apiFF.manualEvent.Reset();
-                        apiFF.Query(itemCode, "1", ncnt, "100", apiFF.lastCts_Date, apiFF.lastCts_Time);
-                        apiFF.manualEvent.WaitOne();
-                        System.Threading.Thread.Sleep(1000);
-
-                        apiFF.manualEvent.Reset();
-                        apiFF.Query(itemCode, "1", ncnt, "100", apiFF.lastCts_Date, apiFF.lastCts_Time);
-                        apiFF.manualEvent.WaitOne();
-                        System.Threading.Thread.Sleep(1000);
-                    }
+                    runApi(itemCode, cnt, ncnt, apiFF);
                 }
+
                 {
                     string ncnt = "120";
                     Api_WorldFuture apiFF = new Api.Api_WorldFuture();
@@ -457,31 +367,47 @@ namespace OM.PP.XingApp
                     apiFF.Query(itemCode, "1", ncnt);
                     apiFF.manualEvent.WaitOne();
                     System.Threading.Thread.Sleep(1000);
+                    runApi(itemCode, cnt, ncnt, apiFF);
+                }
 
-                    if (cnt >= 200)
-                    {
-                        apiFF.manualEvent.Reset();
-                        apiFF.Query(itemCode, "1", ncnt, "100", apiFF.lastCts_Date, apiFF.lastCts_Time);
-                        apiFF.manualEvent.WaitOne();
-                        System.Threading.Thread.Sleep(1000);
-                    }
-                    if (cnt >= 500)
-                    {
-                        apiFF.manualEvent.Reset();
-                        apiFF.Query(itemCode, "1", ncnt, "100", apiFF.lastCts_Date, apiFF.lastCts_Time);
-                        apiFF.manualEvent.WaitOne();
-                        System.Threading.Thread.Sleep(1000);
+                {
+                    string ncnt = "180";
+                    Api_WorldFuture apiFF = new Api.Api_WorldFuture();
+                    apiFF.ApiLogHandler += (log) => { LogWrite(log); };
+                    apiFF.Query(itemCode, "1", ncnt);
+                    apiFF.manualEvent.WaitOne();
+                    System.Threading.Thread.Sleep(1000);
+                    runApi(itemCode, cnt, ncnt, apiFF);
+                }
 
-                        apiFF.manualEvent.Reset();
-                        apiFF.Query(itemCode, "1", ncnt, "100", apiFF.lastCts_Date, apiFF.lastCts_Time);
-                        apiFF.manualEvent.WaitOne();
-                        System.Threading.Thread.Sleep(1000);
+                {
+                    string ncnt = "300";
+                    Api_WorldFuture apiFF = new Api.Api_WorldFuture();
+                    apiFF.ApiLogHandler += (log) => { LogWrite(log); };
+                    apiFF.Query(itemCode, "1", ncnt);
+                    apiFF.manualEvent.WaitOne();
+                    System.Threading.Thread.Sleep(1000);
+                    runApi(itemCode, cnt, ncnt, apiFF);
+                }
 
-                        apiFF.manualEvent.Reset();
-                        apiFF.Query(itemCode, "1", ncnt, "100", apiFF.lastCts_Date, apiFF.lastCts_Time);
-                        apiFF.manualEvent.WaitOne();
-                        System.Threading.Thread.Sleep(1000);
-                    }
+                {
+                    string ncnt = "420";
+                    Api_WorldFuture apiFF = new Api.Api_WorldFuture();
+                    apiFF.ApiLogHandler += (log) => { LogWrite(log); };
+                    apiFF.Query(itemCode, "1", ncnt);
+                    apiFF.manualEvent.WaitOne();
+                    System.Threading.Thread.Sleep(1000);
+                    runApi(itemCode, cnt, ncnt, apiFF);
+                }
+
+                {
+                    string ncnt = "540";
+                    Api_WorldFuture apiFF = new Api.Api_WorldFuture();
+                    apiFF.ApiLogHandler += (log) => { LogWrite(log); };
+                    apiFF.Query(itemCode, "1", ncnt);
+                    apiFF.manualEvent.WaitOne();
+                    System.Threading.Thread.Sleep(1000);
+                    runApi(itemCode, cnt, ncnt, apiFF);
                 }
 
                 {
@@ -494,6 +420,35 @@ namespace OM.PP.XingApp
                 isRuning = false;              
             });
         }
+
+        private static void runApi(string itemCode, int cnt, string ncnt, Api_WorldFuture apiFF)
+        {
+            if (cnt >= 200)
+            {
+                apiFF.manualEvent.Reset();
+                apiFF.Query(itemCode, "1", ncnt, "100", apiFF.lastCts_Date, apiFF.lastCts_Time);
+                apiFF.manualEvent.WaitOne();
+                System.Threading.Thread.Sleep(1000);
+            }
+            if (cnt >= 500)
+            {
+                apiFF.manualEvent.Reset();
+                apiFF.Query(itemCode, "1", ncnt, "100", apiFF.lastCts_Date, apiFF.lastCts_Time);
+                apiFF.manualEvent.WaitOne();
+                System.Threading.Thread.Sleep(1000);
+
+                apiFF.manualEvent.Reset();
+                apiFF.Query(itemCode, "1", ncnt, "100", apiFF.lastCts_Date, apiFF.lastCts_Time);
+                apiFF.manualEvent.WaitOne();
+                System.Threading.Thread.Sleep(1000);
+
+                apiFF.manualEvent.Reset();
+                apiFF.Query(itemCode, "1", ncnt, "100", apiFF.lastCts_Date, apiFF.lastCts_Time);
+                apiFF.manualEvent.WaitOne();
+                System.Threading.Thread.Sleep(1000);
+            }
+        }
+
         private void queryFFTick(string itemCode)
         {
             //PPContext.Instance.ClientContext.InitSourceTickData(itemCode);

@@ -221,12 +221,6 @@
     <Compile Include="Mains\TrendChartFormS.Designer.cs">
       <DependentUpon>TrendChartFormS.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mains\MultiChartForm4.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mains\MultiChartForm4.Designer.cs">
-      <DependentUpon>MultiChartForm4.cs</DependentUpon>
-    </Compile>
     <Compile Include="Mains\Strategy\CandleSummaryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -250,24 +244,6 @@
     </Compile>
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mains\MultiChartForm3.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mains\MultiChartForm3.Designer.cs">
-      <DependentUpon>MultiChartForm3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mains\MultiChartForm2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mains\MultiChartForm2.Designer.cs">
-      <DependentUpon>MultiChartForm2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mains\MultiChartForm1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mains\MultiChartForm1.Designer.cs">
-      <DependentUpon>MultiChartForm1.cs</DependentUpon>
     </Compile>
     <Compile Include="Mains\ChartForms\AtomChartForm.cs">
       <SubType>Form</SubType>
@@ -452,9 +428,6 @@
     <EmbeddedResource Include="Mains\TrendChartFormS.resx">
       <DependentUpon>TrendChartFormS.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mains\MultiChartForm4.resx">
-      <DependentUpon>MultiChartForm4.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Mains\Strategy\CandleSummaryForm.resx">
       <DependentUpon>CandleSummaryForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -466,15 +439,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mains\BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mains\MultiChartForm3.resx">
-      <DependentUpon>MultiChartForm3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mains\MultiChartForm2.resx">
-      <DependentUpon>MultiChartForm2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mains\MultiChartForm1.resx">
-      <DependentUpon>MultiChartForm1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mains\ChartForms\AtomChartForm.resx">
       <DependentUpon>AtomChartForm.cs</DependentUpon>

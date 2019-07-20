@@ -74,9 +74,9 @@ namespace OM.Atman.Chakra.App
             uc60List.Add("URO", ucSignalURO60);
             uc60List.Add("ES", ucSignalES60);
 
-            ucAll.Add(TimeIntervalEnum.Minute_10, uc10List);
-            ucAll.Add(TimeIntervalEnum.Minute_30, uc30List);
-            ucAll.Add(TimeIntervalEnum.Minute_60, uc60List);
+            ucAll.Add(TimeIntervalEnum.Minute_60, uc10List);
+            ucAll.Add(TimeIntervalEnum.Minute_120, uc30List);
+            ucAll.Add(TimeIntervalEnum.Minute_180, uc60List);
         }
 
         private void Instance_TickLineUpDownPatternHandler(string itemCode, TimeIntervalEnum timeInterval, UpDownPatternEnum updown, string type)

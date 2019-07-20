@@ -37,11 +37,12 @@ namespace OM.Vikala.Controls.Strategy
                 if (item.Code == "") continue;
                 foreach (var p in new string[] { "매수", "매도" })
                 {
-                    ForecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_05, p));
-                    ForecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_10, p));
-                    ForecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_30, p));
                     ForecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_60, p));
                     ForecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_120, p));
+                    ForecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_120, p));
+                    ForecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_300, p));
+                    ForecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_420, p));
+                    ForecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_540, p));
                     ForecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Day, p));
                 }
             }            

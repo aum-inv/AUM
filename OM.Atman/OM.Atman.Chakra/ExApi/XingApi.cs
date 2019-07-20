@@ -13,7 +13,7 @@ namespace OM.Atman.Chakra.ExApi
         {
             try
             {
-                //XingContext.Instance.ClientContext.OrderBuySell(itemCode, position, "1", "0", quantity);                
+                XingContext.Instance.ClientContext.OrderBuySell(itemCode, position, "1", "0", quantity);                
             }
             catch (Exception)
             {
@@ -28,7 +28,7 @@ namespace OM.Atman.Chakra.ExApi
         {
             try
             {               
-                //XingContext.Instance.ClientContext.OrderBuySell(itemCode, position, "1", cPrice, quantity);                
+                XingContext.Instance.ClientContext.OrderBuySell(itemCode, position, "1", cPrice, quantity);                
             }
             catch (Exception)
             {
@@ -43,7 +43,7 @@ namespace OM.Atman.Chakra.ExApi
         {
             try
             {
-                //XingContext.Instance.ClientContext.OrderBuySell(itemCode, position, "1", cPrice, quantity);                
+                XingContext.Instance.ClientContext.OrderBuySell(itemCode, position, "1", cPrice, quantity);                
             }
             catch (Exception)
             {

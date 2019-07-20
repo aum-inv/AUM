@@ -59,12 +59,6 @@
   <ItemGroup>
     <Compile Include="ExApi\TelegramBotApi.cs" />
     <Compile Include="ExApi\XingApi.cs" />
-    <Compile Include="StrategyTradeMMRule.cs" />
-    <Compile Include="StrategyTradeMSRule.cs" />
-    <Compile Include="StrategyTradeSMRule.cs" />
-    <Compile Include="StrategyAutoTradeRule.cs" />
-    <Compile Include="StrategyTradeSSRule.cs" />
-    <Compile Include="StrategyTradeRule.cs" />
     <Compile Include="OrderMITRule.cs" />
     <Compile Include="OrderSimpleRule.cs" />
     <Compile Include="BaseTradeRule.cs" />

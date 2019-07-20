@@ -37,11 +37,12 @@ namespace OM.Vikala.Chakra.App.Chakra
                 if (item.Code == "") continue;
                 foreach (var p in new string[] { "매수", "매도", "매수평균", "매도평균" })
                 {
-                    forecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_05, p));
-                    forecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_10, p));
-                    forecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_30, p));
                     forecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_60, p));
                     forecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_120, p));
+                    forecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_180, p));
+                    forecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_300, p));
+                    forecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_420, p));
+                    forecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_540, p));
                     forecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Day, p));
                 }
             }            

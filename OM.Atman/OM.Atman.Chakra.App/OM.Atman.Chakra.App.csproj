@@ -119,48 +119,6 @@
     <Compile Include="OrderSimpleForm.Designer.cs">
       <DependentUpon>OrderSimpleForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="StrategyAutoTradeRule2Form.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="StrategyAutoTradeRule2Form.Designer.cs">
-      <DependentUpon>StrategyAutoTradeRule2Form.cs</DependentUpon>
-    </Compile>
-    <Compile Include="StrategyTradeRuleMSForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="StrategyTradeRuleMSForm.Designer.cs">
-      <DependentUpon>StrategyTradeRuleMSForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="StrategyTradeRuleMMForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="StrategyTradeRuleMMForm.Designer.cs">
-      <DependentUpon>StrategyTradeRuleMMForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="StrategyTradeRuleSMForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="StrategyTradeRuleSMForm.Designer.cs">
-      <DependentUpon>StrategyTradeRuleSMForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="StrategyAutoTradeRuleForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="StrategyAutoTradeRuleForm.Designer.cs">
-      <DependentUpon>StrategyAutoTradeRuleForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="StrategyTradeRuleSSForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="StrategyTradeRuleSSForm.Designer.cs">
-      <DependentUpon>StrategyTradeRuleSSForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="StrategyTradeRuleForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="StrategyTradeRuleForm.Designer.cs">
-      <DependentUpon>StrategyTradeRuleForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -196,27 +154,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OrderSimpleForm.resx">
       <DependentUpon>OrderSimpleForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="StrategyAutoTradeRule2Form.resx">
-      <DependentUpon>StrategyAutoTradeRule2Form.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="StrategyTradeRuleMSForm.resx">
-      <DependentUpon>StrategyTradeRuleMSForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="StrategyTradeRuleMMForm.resx">
-      <DependentUpon>StrategyTradeRuleMMForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="StrategyTradeRuleSMForm.resx">
-      <DependentUpon>StrategyTradeRuleSMForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="StrategyAutoTradeRuleForm.resx">
-      <DependentUpon>StrategyAutoTradeRuleForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="StrategyTradeRuleSSForm.resx">
-      <DependentUpon>StrategyTradeRuleSSForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="StrategyTradeRuleForm.resx">
-      <DependentUpon>StrategyTradeRuleForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

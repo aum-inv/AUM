@@ -58,12 +58,12 @@ namespace OM.Vikala.Chakra.App.Mains
             qMin120.Title = "양자챠트 120분";
             qDay.Title = "양자챠트 일";
 
-            qMin5.TimeInterval = TimeIntervalEnum.Minute_05;
-            qMin10.TimeInterval = TimeIntervalEnum.Minute_10;
-            qMin30.TimeInterval = TimeIntervalEnum.Minute_30;
-            qMin60.TimeInterval = TimeIntervalEnum.Minute_60;
-            qMin120.TimeInterval = TimeIntervalEnum.Minute_120;
-            qDay.TimeInterval = TimeIntervalEnum.Day;
+            qMin5.TimeInterval = TimeIntervalEnum.Minute_60;
+            qMin10.TimeInterval = TimeIntervalEnum.Minute_120;
+            qMin30.TimeInterval = TimeIntervalEnum.Minute_180;
+            qMin60.TimeInterval = TimeIntervalEnum.Minute_300;
+            qMin120.TimeInterval = TimeIntervalEnum.Minute_420;
+            qDay.TimeInterval = TimeIntervalEnum.Minute_540;
 
             foreach (var c in charts)
             {
@@ -149,23 +149,23 @@ namespace OM.Vikala.Chakra.App.Mains
             
             var sourceDatas1 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                   base.SelectedItemData.Code
-                , TimeIntervalEnum.Minute_05);
+                , TimeIntervalEnum.Minute_60);
 
             var sourceDatas2 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                   base.SelectedItemData.Code
-                , TimeIntervalEnum.Minute_10);
+                , TimeIntervalEnum.Minute_120);
 
             var sourceDatas3 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                   base.SelectedItemData.Code
-                , TimeIntervalEnum.Minute_30);
+                , TimeIntervalEnum.Minute_180);
 
             var sourceDatas4 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                   base.SelectedItemData.Code
-                , TimeIntervalEnum.Minute_60);
+                , TimeIntervalEnum.Minute_300);
 
             var sourceDatas5 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                   base.SelectedItemData.Code
-                , TimeIntervalEnum.Minute_120);
+                , TimeIntervalEnum.Minute_420);
 
             var sourceDatas6 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                   base.SelectedItemData.Code
@@ -177,12 +177,12 @@ namespace OM.Vikala.Chakra.App.Mains
             if (sourceDatas5 == null || sourceDatas5.Count == 0) return;
             if (sourceDatas6 == null || sourceDatas6.Count == 0) return;
 
-            qMin5.LoadDataAndApply(itemCode, sourceDatas1, TimeIntervalEnum.Minute_05, 3);
-            qMin10.LoadDataAndApply(itemCode, sourceDatas2, TimeIntervalEnum.Minute_10, 3);
-            qMin30.LoadDataAndApply(itemCode, sourceDatas3, TimeIntervalEnum.Minute_30, 3);
-            qMin60.LoadDataAndApply(itemCode, sourceDatas4, TimeIntervalEnum.Minute_60, 3);
-            qMin120.LoadDataAndApply(itemCode, sourceDatas5, TimeIntervalEnum.Minute_120, 3);
-            qDay.LoadDataAndApply(itemCode, sourceDatas6, TimeIntervalEnum.Day, 3);
+            //qMin5.LoadDataAndApply(itemCode, sourceDatas1, TimeIntervalEnum.Minute_05, 3);
+            //qMin10.LoadDataAndApply(itemCode, sourceDatas2, TimeIntervalEnum.Minute_10, 3);
+            //qMin30.LoadDataAndApply(itemCode, sourceDatas3, TimeIntervalEnum.Minute_30, 3);
+            //qMin60.LoadDataAndApply(itemCode, sourceDatas4, TimeIntervalEnum.Minute_60, 3);
+            //qMin120.LoadDataAndApply(itemCode, sourceDatas5, TimeIntervalEnum.Minute_120, 3);
+            //qDay.LoadDataAndApply(itemCode, sourceDatas6, TimeIntervalEnum.Day, 3);
 
             Summary(itemCode, (QuantumLineChart)qMin5);
             Summary(itemCode, (QuantumLineChart)qMin10);
