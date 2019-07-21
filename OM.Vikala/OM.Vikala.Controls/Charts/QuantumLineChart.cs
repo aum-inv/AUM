@@ -112,48 +112,32 @@ namespace OM.Vikala.Controls.Charts
                 if (d == 0 && bItem != null)
                 {
                     var p = chart.Series[5].Points[idx];
-                    //if (bItem.PlusMinusType == item.PlusMinusType)
-                    //{    
-                    //    if (bItem.TotalLength > item.TotalLength && bItem.BodyLength > item.BodyLength)
-                    //    {
-                    //        //↑  ↓   ↕    ↗    ↘  │
-                    //        if (item.PlusMinusType == PlusMinusTypeEnum.양)
-                    //            p.Label = "↓";
-                    //        else if (item.PlusMinusType == PlusMinusTypeEnum.음)
-                    //            p.Label = "↑";
-                    //        else
-                    //            p.Label = "↕";
-                    //    }
-                    //    else if (bItem.TotalLength > item.TotalLength || bItem.BodyLength > item.BodyLength)
-                    //    {
-                    //        if (item.PlusMinusType == PlusMinusTypeEnum.양)
-                    //            p.Label = "↘";
-                    //        else if (item.PlusMinusType == PlusMinusTypeEnum.음)
-                    //            p.Label = "↗";
-                    //        else
-                    //            p.Label = "│";
-                    //    }
-                    //    if (item.PlusMinusType == PlusMinusTypeEnum.양)
-                    //        p.LabelForeColor = Color.Blue;
-                    //    else if (item.PlusMinusType == PlusMinusTypeEnum.음)
-                    //        p.LabelForeColor = Color.Red;
-                    //    else
-                    //        p.LabelForeColor = Color.Black;
-                    //}
 
-                    //if (bItem.TotalLength > item.TotalLength && bItem.BodyLength > item.BodyLength)
-                    //    p.Label = "↑";
-                    //else if (bItem.TotalLength > item.TotalLength || bItem.BodyLength > item.BodyLength)
-                    //    p.Label = "│";
+                    bool isSignal = false;
+                    if (item.T_MassAvg < item.T_QuantumAvg)
+                    {
+                        if (item.T_QuantumAvg < item.LowPrice)
+                        {
+                            isSignal = true;
+                        }
+                        if (item.T_MassAvg > item.HighPrice)
+                        {
+                            isSignal = true;
+                        }
+                    }
+                    if (item.T_MassAvg > item.T_QuantumAvg)
+                    {
+                        if (item.T_QuantumAvg > item.HighPrice)
+                        {
+                            isSignal = true;
+                        }
+                        if (item.T_MassAvg < item.LowPrice)
+                        {
+                            isSignal = true;
+                        }
+                    }
 
-                    p.Label = "↑";
-
-                    //if (item.PlusMinusType == PlusMinusTypeEnum.양 && bItem.TotalLength > item.TotalLength)
-                    //    p.LabelForeColor = Color.Blue;
-                    //else if (item.PlusMinusType == PlusMinusTypeEnum.음 && bItem.TotalLength > item.TotalLength)
-                    //    p.LabelForeColor = Color.Red;
-                    //else
-                    //    p.LabelForeColor = Color.Black;
+                    if(isSignal) p.Label = "↑";
                 }
                 bDistance = d;
                 

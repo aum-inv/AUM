@@ -73,11 +73,50 @@ namespace OM.Vikala.Controls.Charts
                 chart.Series[6].Points.AddXY(item.DTime, item.T_TotalCenterAvg);
 
                 var dataPoint = chart.Series[1].Points[idx];
+                bool isSignal = false;
+                bool isUpPosition = false;
+                bool isDownPosition = false;
+                if (item.HighPrice < item.T_MassAvg
+                    && item.HighPrice < item.T_QuantumAvg
+                    && item.HighPrice < item.T_VikalaAvg
+                    && item.HighPrice < item.T_TotalCenterAvg)
+                {
+                    isSignal = true;
+                    isDownPosition = true;
+                }
+                if (item.LowPrice > item.T_MassAvg
+                   && item.LowPrice > item.T_QuantumAvg
+                   && item.LowPrice > item.T_VikalaAvg
+                   && item.LowPrice > item.T_TotalCenterAvg)
+                {
+                    isSignal = true;
+                    isUpPosition = true;
+                }
 
-                if (idx > 0)
+                if (idx > 0 && isSignal)
                 {
                     T_AtomItemData bitem = ChartData[idx - 1];
-                    if (bitem.PlusMinusType == PlusMinusTypeEnum.양)
+                    bool isSignal2 = false;
+                    bool isUpPosition2 = false;
+                    bool isDownPosition2 = false;
+                    if (bitem.HighPrice < bitem.T_MassAvg
+                   && bitem.HighPrice < bitem.T_QuantumAvg
+                   && bitem.HighPrice < bitem.T_VikalaAvg
+                   && bitem.HighPrice < bitem.T_TotalCenterAvg)
+                    {
+                        isSignal2 = true;
+                        isDownPosition2 = true;
+                    }
+                    if (bitem.LowPrice > bitem.T_MassAvg
+                       && bitem.LowPrice > bitem.T_QuantumAvg
+                       && bitem.LowPrice > bitem.T_VikalaAvg
+                       && bitem.LowPrice > bitem.T_TotalCenterAvg)
+                    {
+                        isSignal2 = true;
+                        isUpPosition2 = true;
+                    }
+
+                    if (bitem.PlusMinusType == PlusMinusTypeEnum.양 && isUpPosition && isUpPosition2)
                     {
                         bool isFirst = false;
                         bool isSecond = false;
@@ -98,7 +137,8 @@ namespace OM.Vikala.Controls.Charts
                                  chart.Series[2].Points[idx - 1].LabelForeColor = Color.Blue;
                         }
                     }
-                    if (bitem.PlusMinusType == PlusMinusTypeEnum.음)
+
+                    if (bitem.PlusMinusType == PlusMinusTypeEnum.음 && isDownPosition && isDownPosition2)
                     {
                         bool isFirst = false;
                         bool isSecond = false;
@@ -120,54 +160,7 @@ namespace OM.Vikala.Controls.Charts
                         }
                     }
                 }
-
-                //if (idx > 0)
-                //{
-                //    T_AtomItemData bitem = ChartData[idx - 1];
-                //    if (bitem.PlusMinusType == PlusMinusTypeEnum.양)
-                //    {
-                //        bool isFirst = false;
-                //        bool isSecond = false;
-                //        if (bitem.QuantumPrice > item.ClosePrice)
-                //        {
-                //            chart.Series[0].Points[idx - 1].Label = "▼";
-                //            isFirst = true;
-                //        }
-                //        if (bitem.VikalaPrice > item.ClosePrice)
-                //        {
-                //            chart.Series[0].Points[idx - 1].Label += "▼";
-                //            isSecond = true;
-                //        }
-
-                //        if (isFirst && isSecond)
-                //        {
-                //            chart.Series[0].Points[idx - 1].LabelForeColor = Color.Blue;
-                //        }
-                //    }
-                //    if (bitem.PlusMinusType == PlusMinusTypeEnum.음)
-                //    {
-                //        bool isFirst = false;
-                //        bool isSecond = false;
-                //        if (bitem.QuantumPrice < item.ClosePrice)
-                //        {
-                //            chart.Series[0].Points[idx - 1].Label = "▲";
-                //            isFirst = true;
-                //        }
-                //        if (bitem.VikalaPrice < item.ClosePrice)
-                //        {
-                //            chart.Series[0].Points[idx - 1].Label += "▲";
-                //            isSecond = true;
-                //        }
-
-                //        if (isFirst && isSecond)
-                //        {
-                //            chart.Series[0].Points[idx - 1].LabelForeColor =Color.Red;
-                //        }
-                //    }
-                //}
             }
-            //chart.Series[1].Enabled = false;
-            //chart.Series[2].Enabled = false;
 
             double maxPrice1 = ChartData.Max(m => m.HighPrice);
             double minPrice1 = ChartData.Min(m => m.LowPrice);

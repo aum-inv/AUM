@@ -102,14 +102,8 @@ namespace OM.Vikala.Controls.Charts
 
                 if (d == 0)
                 {
-                    chart.Series[7].Points[idx].Label = "↑";
-                 
-                    if (item.PlusMinusType == PlusMinusTypeEnum.양)
-                        chart.Series[7].Points[idx].LabelForeColor = Color.Blue;
-                    else if (item.PlusMinusType == PlusMinusTypeEnum.음)
-                        chart.Series[7].Points[idx].LabelForeColor = Color.Red;
-                    else
-                        chart.Series[7].Points[idx].LabelForeColor = Color.Black;
+                    if(item.T_HighAvg < item.LowPrice || item.T_LowAvg > item.HighPrice)
+                        chart.Series[7].Points[idx].Label = "↑";
                 }
                 bDistance = d;
                 

@@ -160,14 +160,15 @@ namespace OM.PP.Chakra
         private void calculateAvgEx()
         {
             if (this.sourceItems == null) return;
+            
+            //sourceItems.Remove(sourceItems.Find(t => this.PlusMinusType == t.PlusMinusType && t.BodyLength == sourceItems.Max(s => s.BodyLength)));
+            //sourceItems.Remove(sourceItems.Find(t => this.PlusMinusType != t.PlusMinusType && t.BodyLength == sourceItems.Max(s => s.BodyLength)));
 
             base.OpenPrice = (Single)Math.Round(sourceItems.Average(t => t.OpenPrice), RoundLength);
             base.ClosePrice = (Single)Math.Round(sourceItems.Average(t => t.ClosePrice), RoundLength);
             base.HighPrice = (Single)Math.Round(sourceItems.Average(t => t.HighPrice), RoundLength);
             base.LowPrice = (Single)Math.Round(sourceItems.Average(t => t.LowPrice), RoundLength);
-
-
-
+                       
             CenterPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.CenterPrice), RoundLength);
             HCenterPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.HCenterPrice), RoundLength);
             LCenterPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.LCenterPrice), RoundLength);
