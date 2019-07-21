@@ -62,47 +62,33 @@ namespace OM.Vikala.Controls.Charts
                
                 if (bItem != null)
                 {
-                    if (bItem.DiceNum + item.DiceNum == 7)
+                    bool isSignal = false;
+                    if (item.T_MassAvg < item.T_QuantumAvg)
                     {
-                        chart.Series[3].Points[idx].Label = "↑";
-                      
-                        //if (bItem.PlusMinusType != item.PlusMinusType)
-                        //{
-                        //    if (item.PlusMinusType == PlusMinusTypeEnum.양)
-                        //    {
-                        //        chart.Series[3].Points[idx].LabelForeColor = Color.Red;
-                        //        chart.Series[3].Points[idx].Label = "↑";
-                        //    }
-                        //    else if (item.PlusMinusType == PlusMinusTypeEnum.음)
-                        //    {
-                        //        chart.Series[3].Points[idx].LabelForeColor = Color.Blue;
-                        //        chart.Series[3].Points[idx].Label = "↓";
-                        //    }
-                        //    else
-                        //    {
-                        //        chart.Series[3].Points[idx].LabelForeColor = Color.Black;
-                        //        chart.Series[3].Points[idx].Label = "↕";
-                        //    }
-                        //}
+                        if (item.T_QuantumAvg < item.LowPrice)
+                        {
+                            isSignal = true;
+                        }
+                        if (item.T_MassAvg > item.HighPrice)
+                        {
+                            isSignal = true;
+                        }
+                    }
+                    if (item.T_MassAvg > item.T_QuantumAvg)
+                    {
+                        if (item.T_QuantumAvg > item.HighPrice)
+                        {
+                            isSignal = true;
+                        }
+                        if (item.T_MassAvg < item.LowPrice)
+                        {
+                            isSignal = true;
+                        }
+                    }
 
-                        //if (bItem.PlusMinusType == item.PlusMinusType)
-                        //{
-                        //    if (item.PlusMinusType == PlusMinusTypeEnum.음)
-                        //    {
-                        //        chart.Series[3].Points[idx].LabelForeColor = Color.Red;
-                        //        chart.Series[3].Points[idx].Label = "↑";
-                        //    }
-                        //    else if (item.PlusMinusType == PlusMinusTypeEnum.양)
-                        //    {
-                        //        chart.Series[3].Points[idx].LabelForeColor = Color.Blue;
-                        //        chart.Series[3].Points[idx].Label = "↓";
-                        //    }
-                        //    else
-                        //    {
-                        //        chart.Series[3].Points[idx].LabelForeColor = Color.Black;
-                        //        chart.Series[3].Points[idx].Label = "↕";
-                        //    }
-                        //}
+                    if (bItem.DiceNum + item.DiceNum == 7 && isSignal)
+                    {
+                        chart.Series[3].Points[idx].Label = "↑";                     
                     }                   
                 }
 
