@@ -108,41 +108,41 @@
             series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             series1.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             series1.YValuesPerPoint = 4;
-            series2.BorderColor = System.Drawing.Color.Transparent;
             series2.ChartArea = "chartArea";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Color = System.Drawing.Color.Red;
-            series2.IsVisibleInLegend = false;
+            series2.Color = System.Drawing.Color.Blue;
             series2.IsXValueIndexed = true;
-            series2.LabelForeColor = System.Drawing.Color.Lime;
-            series2.Name = "line1";
-            series2.ShadowColor = System.Drawing.Color.Transparent;
+            series2.Name = "line2";
             series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            series3.BorderColor = System.Drawing.Color.Transparent;
             series3.ChartArea = "chartArea";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Color = System.Drawing.Color.Blue;
+            series3.Color = System.Drawing.Color.Red;
+            series3.IsVisibleInLegend = false;
             series3.IsXValueIndexed = true;
-            series3.Name = "line2";
+            series3.LabelForeColor = System.Drawing.Color.Lime;
+            series3.Name = "line1";
+            series3.ShadowColor = System.Drawing.Color.Transparent;
             series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             series4.ChartArea = "chartArea";
             series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series4.Color = System.Drawing.Color.Yellow;
+            series4.Enabled = false;
             series4.IsXValueIndexed = true;
             series4.Name = "line3";
-            series4.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             series4.YValuesPerPoint = 6;
             series5.ChartArea = "chartArea";
             series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series5.Color = System.Drawing.Color.Black;
+            series5.Enabled = false;
             series5.IsXValueIndexed = true;
             series5.Name = "line4";
-            series5.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             this.chart.Series.Add(series1);
             this.chart.Series.Add(series2);
             this.chart.Series.Add(series3);
             this.chart.Series.Add(series4);
             this.chart.Series.Add(series5);
-            this.chart.Size = new System.Drawing.Size(619, 324);
+            this.chart.Size = new System.Drawing.Size(722, 299);
             this.chart.TabIndex = 2;
             this.chart.PostPaint += new System.EventHandler<System.Windows.Forms.DataVisualization.Charting.ChartPaintEventArgs>(this.chart_PostPaint);
             // 
@@ -151,10 +151,10 @@
             this.pnlScroll.Controls.Add(this.hScrollBar);
             this.pnlScroll.Controls.Add(this.trackBar);
             this.pnlScroll.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlScroll.Location = new System.Drawing.Point(0, 324);
+            this.pnlScroll.Location = new System.Drawing.Point(0, 299);
             this.pnlScroll.Margin = new System.Windows.Forms.Padding(1);
             this.pnlScroll.Name = "pnlScroll";
-            this.pnlScroll.Size = new System.Drawing.Size(619, 15);
+            this.pnlScroll.Size = new System.Drawing.Size(722, 14);
             this.pnlScroll.TabIndex = 4;
             // 
             // hScrollBar
@@ -164,7 +164,7 @@
             this.hScrollBar.Location = new System.Drawing.Point(0, 0);
             this.hScrollBar.Maximum = 1;
             this.hScrollBar.Name = "hScrollBar";
-            this.hScrollBar.Size = new System.Drawing.Size(558, 15);
+            this.hScrollBar.Size = new System.Drawing.Size(651, 14);
             this.hScrollBar.TabIndex = 4;
             this.hScrollBar.Value = 1;
             this.hScrollBar.ValueChanged += new System.EventHandler(this.hScrollBar_ValueChanged);
@@ -173,21 +173,21 @@
             // 
             this.trackBar.Dock = System.Windows.Forms.DockStyle.Right;
             this.trackBar.LargeChange = 1;
-            this.trackBar.Location = new System.Drawing.Point(558, 0);
+            this.trackBar.Location = new System.Drawing.Point(651, 0);
             this.trackBar.Margin = new System.Windows.Forms.Padding(1);
             this.trackBar.Name = "trackBar";
-            this.trackBar.Size = new System.Drawing.Size(61, 15);
+            this.trackBar.Size = new System.Drawing.Size(71, 14);
             this.trackBar.TabIndex = 5;
             this.trackBar.ValueChanged += new System.EventHandler(this.trackBar_ValueChanged);
             // 
             // VelocityLineChart
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.chart);
             this.Controls.Add(this.pnlScroll);
             this.Name = "VelocityLineChart";
-            this.Size = new System.Drawing.Size(619, 339);
+            this.Size = new System.Drawing.Size(722, 313);
             ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
             this.pnlScroll.ResumeLayout(false);
             this.pnlScroll.PerformLayout();

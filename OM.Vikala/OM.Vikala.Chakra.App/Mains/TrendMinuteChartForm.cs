@@ -19,17 +19,12 @@ namespace OM.Vikala.Chakra.App.Mains
     {
         List<BaseChartControl> charts = new List<BaseChartControl>();
 
-        BaseChartControl qMin05 = new QuantumLineChart();
-        BaseChartControl qMin30 = new QuantumLineChart();
-
-        BaseChartControl qMin10 = new QuantumLineChart();
-        BaseChartControl qMin60 = new QuantumLineChart();
-
-        BaseChartControl qMin20= new QuantumLineChart();
-        BaseChartControl qMin120 = new QuantumLineChart();
-     
-        //BaseChartControl qTick1 = new QuantumLineChart();
-        //BaseChartControl qTick2 = new QuantumLineChart();
+        BaseChartControl qMin1 = new QuantumLineChart();
+        BaseChartControl qMin2 = new QuantumLineChart();
+        BaseChartControl qMin3 = new QuantumLineChart();
+        BaseChartControl qMin4 = new QuantumLineChart();
+        BaseChartControl qMin5= new QuantumLineChart();
+        BaseChartControl qMin6 = new QuantumLineChart();
 
         public TrendMinuteChartForm()
         {
@@ -48,20 +43,19 @@ namespace OM.Vikala.Chakra.App.Mains
         public override void loadChartControls()
         {
             charts.Clear();
-            charts.Add(qMin05);
-            charts.Add(qMin30);
+            charts.Add(qMin1);
+            charts.Add(qMin2);
+            charts.Add(qMin3);
+            charts.Add(qMin4);
+            charts.Add(qMin5);
+            charts.Add(qMin6);
 
-            charts.Add(qMin10);
-            charts.Add(qMin60);
-
-            charts.Add(qMin20);
-            charts.Add(qMin120);
-
-            qMin05.Title = "챠트 05분";
-            qMin10.Title = "챠트 10분";
-            qMin20.Title = qMin30.Title = "챠트 30분";
-            qMin60.Title = "챠트 60분";
-            qMin120.Title = "챠트 120분";
+            qMin1.Title = "챠트 120분";
+            qMin2.Title = "챠트 180분";
+            qMin3.Title = "챠트 300분";
+            qMin4.Title = "챠트 420분";
+            qMin5.Title = "챠트 540분";
+            qMin6.Title = "챠트 1일";
 
             foreach (var c in charts)
             {
@@ -114,47 +108,54 @@ namespace OM.Vikala.Chakra.App.Mains
 
             string itemCode = base.SelectedItemData.Code;
 
-            var sourceDatas05 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
+            var sourceDatas1 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                    base.SelectedItemData.Code
-                 , TimeIntervalEnum.Minute_60);
-            var sourceDatas10 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
+                 , TimeIntervalEnum.Minute_120);
+            var sourceDatas2 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                   base.SelectedItemData.Code
-                , TimeIntervalEnum.Minute_120);
-            var sourceDatas30 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
+                , TimeIntervalEnum.Minute_180);
+            var sourceDatas3 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                   base.SelectedItemData.Code
                 , TimeIntervalEnum.Minute_300);
-            var sourceDatas60 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
+            var sourceDatas4 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                   base.SelectedItemData.Code
                 , TimeIntervalEnum.Minute_420);
-            var sourceDatas120 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
+            var sourceDatas5 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                   base.SelectedItemData.Code
                 , TimeIntervalEnum.Minute_540);
-         
-            if (sourceDatas05 != null && sourceDatas05.Count > 0)
+            var sourceDatas6 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
+                  base.SelectedItemData.Code
+                , TimeIntervalEnum.Day);
+
+            if (sourceDatas1 != null && sourceDatas1.Count > 0)
             {
-                var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas05, 7);
-                qMin05.LoadDataAndApply(itemCode, averageDatas, TimeIntervalEnum.Minute_60, 3);
+                var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas1, 7);
+                qMin1.LoadDataAndApply(itemCode, averageDatas, TimeIntervalEnum.Minute_60, 3);
             }
-            if (sourceDatas10 != null && sourceDatas10.Count > 0)
+            if (sourceDatas2 != null && sourceDatas2.Count > 0)
             {
-                var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas10, 7);
-                qMin10.LoadDataAndApply(itemCode, averageDatas, TimeIntervalEnum.Minute_120, 3);
+                var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas2, 7);
+                qMin2.LoadDataAndApply(itemCode, averageDatas, TimeIntervalEnum.Minute_120, 3);
             }
-            if (sourceDatas30 != null && sourceDatas30.Count > 0)
+            if (sourceDatas3 != null && sourceDatas3.Count > 0)
             {
-                var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas30, 7);
-                qMin20.LoadDataAndApply(itemCode, averageDatas, TimeIntervalEnum.Minute_300, 3);
-                qMin30.LoadDataAndApply(itemCode, averageDatas, TimeIntervalEnum.Minute_300, 3);
+                var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas3, 7);
+                qMin3.LoadDataAndApply(itemCode, averageDatas, TimeIntervalEnum.Minute_300, 3);              
             }
-            if (sourceDatas60 != null && sourceDatas60.Count > 0)
+            if (sourceDatas4 != null && sourceDatas4.Count > 0)
             {
-                var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas60, 7);
-                qMin60.LoadDataAndApply(itemCode, averageDatas, TimeIntervalEnum.Minute_420, 3);
+                var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas4, 7);
+                qMin4.LoadDataAndApply(itemCode, averageDatas, TimeIntervalEnum.Minute_420, 3);
             }
-            if (sourceDatas120 != null && sourceDatas120.Count > 0)
+            if (sourceDatas5 != null && sourceDatas5.Count > 0)
             {
-                var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas120, 7);
-                qMin120.LoadDataAndApply(itemCode, averageDatas, TimeIntervalEnum.Minute_540, 3);
+                var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas5, 7);
+                qMin5.LoadDataAndApply(itemCode, averageDatas, TimeIntervalEnum.Minute_540, 3);
+            }
+            if (sourceDatas6 != null && sourceDatas6.Count > 0)
+            {
+                var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas6, 7);
+                qMin6.LoadDataAndApply(itemCode, averageDatas, TimeIntervalEnum.Day, 3);
             }
         }
     }
