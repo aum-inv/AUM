@@ -19,12 +19,12 @@ namespace OM.Vikala.Chakra.App.Mains
     {
         List<BaseChartControl> charts = new List<BaseChartControl>();
 
-        BaseChartControl qMin1 = new QuantumLineChart();
-        BaseChartControl qMin2 = new QuantumLineChart();
-        BaseChartControl qMin3 = new QuantumLineChart();
-        BaseChartControl qMin4 = new QuantumLineChart();
-        BaseChartControl qMin5= new QuantumLineChart();
-        BaseChartControl qMin6 = new QuantumLineChart();
+        BaseChartControl qMin1 = new QuantumLineChartHL();
+        BaseChartControl qMin2 = new QuantumLineChartHL();
+        BaseChartControl qMin3 = new QuantumLineChartHL();
+        BaseChartControl qMin4 = new QuantumLineChartHL();
+        BaseChartControl qMin5= new QuantumLineChartHL();
+        BaseChartControl qMin6 = new QuantumLineChartHL();
 
         public TrendMinuteChartForm()
         {
@@ -65,6 +65,15 @@ namespace OM.Vikala.Chakra.App.Mains
                     c.InitializeControl();
                     c.InitializeEvent(null);                 
                     ((QuantumLineChart)c).IsShowCandle = true;
+                }
+                else if (c is QuantumLineChartHL)
+                {
+                    c.IsAutoScrollX = true;
+                    c.IsShowXLine = false;
+                    c.InitializeControl();
+                    c.InitializeEvent(null);
+                    ((AtomChart)c).IsShowLine = false;
+                    ((AtomChart)c).IsShowCandle = false;
                 }
                 else if (c is AtomChart)
                 {
