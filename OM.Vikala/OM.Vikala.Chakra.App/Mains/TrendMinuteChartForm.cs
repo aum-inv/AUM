@@ -72,8 +72,6 @@ namespace OM.Vikala.Chakra.App.Mains
                     c.IsShowXLine = false;
                     c.InitializeControl();
                     c.InitializeEvent(null);
-                    ((AtomChart)c).IsShowLine = false;
-                    ((AtomChart)c).IsShowCandle = false;
                 }
                 else if (c is AtomChart)
                 {

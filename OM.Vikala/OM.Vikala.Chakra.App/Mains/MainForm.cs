@@ -1,4 +1,5 @@
-﻿using OM.PP.Chakra.Ctx;
+﻿using OM.Lib.Base.Enums;
+using OM.PP.Chakra.Ctx;
 using OM.Vikala.Chakra.App.Events;
 using System;
 using System.Collections.Generic;
@@ -31,14 +32,32 @@ namespace OM.Vikala.Chakra.App.Mains
         {
             InitializeComponent();
             serverInfo();
+
+            this.Load += MainForm_Load;
         }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            setItems();
+        }
+
         private void serverInfo()
         {
             PPServerConfigData.IP = ConfigurationManager.AppSettings["PPService_IP"];
             PPServerConfigData.Port = Convert.ToInt32(ConfigurationManager.AppSettings["PPService_Port"]);
             PPContext.Instance.OnCreateClient();
         }
-        
+        private void setItems()
+        {
+            ItemData[] itemDatas = new ItemData[ItemCodeSet.Items.Length];
+            ItemCodeSet.Items.CopyTo(itemDatas, 0);
+
+            tscbItem.ComboBox.DataSource = itemDatas;
+            tscbItem.ComboBox.DisplayMember = "Name";
+            tscbItem.ComboBox.ValueMember = "Code";
+            tscbItem.SelectedIndex = -1;
+        }
+
         public void AddTab(BaseForm bmf)
         {
             try
@@ -181,6 +200,9 @@ namespace OM.Vikala.Chakra.App.Mains
                     string menuText = menu.Text;
                     switch (menuText)
                     {
+                        case "필수챠트":
+                            createRequiredCharts();
+                            break;
                         case "단중장추세":
                             createTrendMultiChart(menuText);
                             break;
@@ -322,6 +344,15 @@ namespace OM.Vikala.Chakra.App.Mains
                 }
             }
             catch(Exception ex) { }
+        }
+        private void createRequiredCharts()
+        {
+            createTrendMultiChart("분챠트추세");
+            createCandleLineTypeChart_Atom("원자챠트");
+            createCandleLineTypeChart_Quantum("양자챠트");
+            createCandleLineTypeChart_QuantumHL("양자고저챠트");
+            createCandleLineTypeChart_Dice("주사위챠트");
+            createCandleLineTypeChart_Velocity("변화챠트");           
         }
         #region 멀티챠트
         private void createTrendMultiChart(string title)
@@ -611,6 +642,12 @@ namespace OM.Vikala.Chakra.App.Mains
         private void tsbAtman_Click(object sender, EventArgs e)
         {
             //new Strategy.CandleSummaryForm().Show();
+        }
+
+        private void TscbItem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(tscbItem.SelectedIndex > 0 )
+                MainFormToolBarEvents.Instance.OnItemSelectedChangedHandler(tscbItem.SelectedIndex);
         }
     }
 }

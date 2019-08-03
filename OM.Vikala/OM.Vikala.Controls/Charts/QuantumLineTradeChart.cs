@@ -46,8 +46,11 @@ namespace OM.Vikala.Controls.Charts
             TimeInterval = timeInterval;
             ItemCode = itemCode;
             ChartData = chartData;
-            Reset();
-            View();
+            this.Invoke(new MethodInvoker(() => {
+                Reset();
+                View();
+                //Summary();
+            }));
         }
 
         public QuantumLineTradeChart()

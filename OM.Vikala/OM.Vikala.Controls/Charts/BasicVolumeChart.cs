@@ -31,8 +31,10 @@ namespace OM.Vikala.Controls.Charts
         {
             TimeInterval = timeInterval;
             ChartData = chartData;
-            Reset();
-            View();
+            this.Invoke(new MethodInvoker(() => {
+                Reset();
+                View();
+            }));
         }
         
         public BasicVolumeChart()

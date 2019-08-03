@@ -47,10 +47,13 @@ namespace OM.Vikala.Controls.Charts
             TimeInterval = timeInterval;
             ItemCode = itemCode;
             ChartData = chartData;
-            Reset();
-            View();
-            if(IsShowEightRule)
-                Annotation();
+
+            this.Invoke(new MethodInvoker(() => {
+                Reset();
+                View();
+                if (IsShowEightRule)
+                    Annotation();
+            }));
         }
         
         public BasicCandleChart() 

@@ -226,10 +226,14 @@ namespace OM.Vikala.Chakra.App.Mains
         {
             ItemData itemData = (ItemData)sender;
             if (itemData.Code == "") return;
+            if (SelectedItemData != null && SelectedItemData.Code == itemData.Code) return;
 
             SelectedItemData = itemData;
             //this.Text = itemData.Name;
-            loadData();
+            Task.Factory.StartNew(() =>
+            {
+                loadData();
+            });
         }
 
         private void InitializeComponent()

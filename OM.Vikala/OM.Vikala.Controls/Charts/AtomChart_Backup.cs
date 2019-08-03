@@ -43,9 +43,11 @@ namespace OM.Vikala.Controls.Charts
             TimeInterval = timeInterval;
             ItemCode = itemCode;
             ChartData = chartData;
-            Reset();
-            View();
-            Summary();
+            this.Invoke(new MethodInvoker(() => {
+                Reset();
+                View();
+                Summary();
+            }));
         }        
 
         public AtomChart_Backup() 

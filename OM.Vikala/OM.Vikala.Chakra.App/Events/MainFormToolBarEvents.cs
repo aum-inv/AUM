@@ -9,6 +9,7 @@ namespace OM.Vikala.Chakra.App.Events
     public delegate void AutoReloadDelegate(bool isAutoReload);
 
     public delegate void ManualReloadDelegate();
+    public delegate void ItemSelectedChangedDelegae(int selectedIndex);
 
     public class MainFormToolBarEvents
     {
@@ -23,7 +24,7 @@ namespace OM.Vikala.Chakra.App.Events
 
         public event AutoReloadDelegate AutoReloadHandler;
         public event ManualReloadDelegate ManualReloadHandler;
-
+        public event ItemSelectedChangedDelegae ItemSelectedChangedHandler;
         public void OnAutoReloadHandler(bool isAutoReload)
         {
             if (AutoReloadHandler != null)
@@ -33,6 +34,11 @@ namespace OM.Vikala.Chakra.App.Events
         {
             if (ManualReloadHandler != null)
                 ManualReloadHandler();
+        }
+        public void OnItemSelectedChangedHandler(int selectedIndex)
+        {
+            if (ItemSelectedChangedHandler != null)
+                ItemSelectedChangedHandler(selectedIndex);
         }
     }
 }

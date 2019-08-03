@@ -71,6 +71,15 @@ namespace OM.Vikala.Chakra.App.Mains
             this.Load += UserToolStrip_Load;
 
             MainFormToolBarEvents.Instance.ManualReloadHandler += Instance_ManualReloadHandler;
+            MainFormToolBarEvents.Instance.ItemSelectedChangedHandler += Instance_ItemSelectedChangedHandler;
+        }
+
+        private void Instance_ItemSelectedChangedHandler(int selectedIndex)
+        {
+            if (selectedIndex == 0) return;
+
+            if(tscbItem.Items.Count > 0 )
+                tscbItem.SelectedIndex = selectedIndex;
         }
 
         private void Instance_ManualReloadHandler()

@@ -36,8 +36,11 @@ namespace OM.Vikala.Controls.Charts
             ChartData = chartData;
             ReverseChartData = reverseChartData;
 
-            Reset();
-            View();
+            this.Invoke(new MethodInvoker(() => {
+                Reset();
+                View();
+                //Summary();
+            }));
         }
         
         public ReverseCandleChart()

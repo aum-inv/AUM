@@ -31,8 +31,11 @@ namespace OM.Vikala.Controls.Charts
 
             ItemCode = itemCode;
             ChartData = chartData;
-            Reset();
-            View();
+            this.Invoke(new MethodInvoker(() => {
+                Reset();
+                View();
+                //Summary();
+            }));
         }
         
         public QuarkCandleChart() 
