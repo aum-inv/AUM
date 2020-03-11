@@ -248,8 +248,8 @@ namespace OM.PP.XingApp
                       AccountInfoLEE.접속아이디
                     , AccountInfoLEE.접속비밀번호
                     , AccountInfoLEE.인증비밀번호
-                    //, (int)XA_SESSIONLib.XA_SERVER_TYPE.XA_REAL_SERVER
-                    , (int)XA_SESSIONLib.XA_SERVER_TYPE.XA_SIMUL_SERVER
+                    , (int)XA_SESSIONLib.XA_SERVER_TYPE.XA_REAL_SERVER
+                    //, (int)XA_SESSIONLib.XA_SERVER_TYPE.XA_SIMUL_SERVER
                     , false);
                 WorldFutureAccountInfo.LoginUser = "LEE";
             }

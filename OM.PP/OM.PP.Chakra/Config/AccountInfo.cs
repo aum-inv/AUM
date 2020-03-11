@@ -14,7 +14,7 @@ namespace OM.PP.XingApp.Config
     public class AccountInfoLEE
     {
         public static string 계좌번호 = "200038401-01";
-        public static string 계좌비밀번호 = "0000";
+        public static string 계좌비밀번호 = "0802";
         public static string 접속아이디 = "ljhhh76";
         //public static string 접속비밀번호 = "wogjsl76";
         public static string 접속비밀번호 = "wogjsl7^";

@@ -21,14 +21,14 @@ namespace OM.Lib.Base.Enums
             //, new ItemData(){ Name = "지수-해외-니케이225" , Code = "NII", Length = 2}
             //, new ItemData(){ Name = "-" , Code = ""}
             //, new ItemData(){ Name = "선물-국내-코스피200" , Code = "KS", Length = 2}
-            , new ItemData(){ Name = "선물-해외-WTI" , Code = "CL", Length = 2, SHCode = "CLU19", Tick=0.01} //6-20
-            , new ItemData(){ Name = "선물-해외-NG" , Code = "NG", Length = 3, SHCode = "NGU19", Tick=0.001}//6-29
-            , new ItemData(){ Name = "선물-해외-GOLD" , Code = "GC", Length = 1, SHCode = "GCZ19", Tick=0.1}//5-29
-            , new ItemData(){ Name = "선물-해외-SILVER" , Code = "SI", Length = 3, SHCode = "SIN19", Tick=0.1}//4-29
-            , new ItemData(){ Name = "선물-해외-항셍" , Code = "HMH", Length = 0, SHCode = "HMHM19", Tick=1.0} //4-29
-            , new ItemData(){ Name = "선물-해외-나스닥" , Code = "NQ", Length = 0, SHCode = "NQM19", Tick=0.25}  //6-21
-            , new ItemData(){ Name = "선물-해외-유로FX" , Code = "URO", Length = 5, SHCode = "UROM19", Tick=0.00005} //6-17
-             , new ItemData(){ Name = "선물-해외-SNP" , Code = "ES", Length = 2, SHCode = "ESM19", Tick=0.25} //6-21
+            , new ItemData(){ Name = "선물-해외-WTI" , Code = "CL", Length = 2, SHCode = "CLJ20", Tick=0.01} //6-20  
+            , new ItemData(){ Name = "선물-해외-NG" , Code = "NG", Length = 3, SHCode = "NGU20", Tick=0.001}//6-29
+            , new ItemData(){ Name = "선물-해외-GOLD" , Code = "GC", Length = 1, SHCode = "GCZ20", Tick=0.1}//5-29
+            , new ItemData(){ Name = "선물-해외-SILVER" , Code = "SI", Length = 3, SHCode = "SIN20", Tick=0.1}//4-29
+            , new ItemData(){ Name = "선물-해외-항셍" , Code = "HMH", Length = 0, SHCode = "HMHM20", Tick=1.0} //4-29
+            , new ItemData(){ Name = "선물-해외-나스닥" , Code = "NQ", Length = 0, SHCode = "NQM20", Tick=0.25}  //6-21
+            , new ItemData(){ Name = "선물-해외-유로FX" , Code = "URO", Length = 5, SHCode = "UROM20", Tick=0.00005} //6-17
+             , new ItemData(){ Name = "선물-해외-SNP" , Code = "ES", Length = 2, SHCode = "ESM20", Tick=0.25} //6-21
             //, new ItemData(){ Name = "-" , Code = ""}
             //, new ItemData(){ Name = "환율-EUR/USD" , Code = "EURUSD", Length = 2}
             //, new ItemData(){ Name = "환율-USD/JPY" , Code = "USDJPY", Length = 2}
