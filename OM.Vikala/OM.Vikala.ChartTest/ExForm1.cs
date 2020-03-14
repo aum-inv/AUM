@@ -55,6 +55,8 @@ namespace OM.Vikala.ChartTest
             chartArea.Position.Width = 98F;
             chartArea.Position.Y = 2F;
             chartArea.ShadowColor = System.Drawing.Color.Transparent;
+
+            chartArea.AxisX.LabelStyle.Format = "MM/dd HH:mm";
         }
        
         private void FillChart(List<CandleDate> listCandles)
@@ -67,8 +69,10 @@ namespace OM.Vikala.ChartTest
 
             chart.Series[0].Points.Clear();
 
-            foreach(var dc in listCandles)
+            foreach (var dc in listCandles)
+            {
                 chart.Series[0].Points.AddXY(dc.dt, dc.high, dc.low, dc.open, dc.close);
+            }
             var chartArea = chart.ChartAreas[chart.Series[0].ChartArea];
 
             chartArea.AxisX.Minimum = 0;
@@ -80,6 +84,53 @@ namespace OM.Vikala.ChartTest
             chartArea.AxisX.ScaleView.SizeType = DateTimeIntervalType.Number;
             int position = listCandles.Count - blockSize;
             int size = listCandles.Count;
+            chartArea.AxisX.ScaleView.Zoom(position, size + 1);
+
+            // disable zoom-reset button (only scrollbar's arrows are available)
+            chartArea.AxisX.ScrollBar.ButtonStyle = ScrollBarButtonStyles.All;
+            chartArea.AxisX.ScaleView.SmallScrollSize = 10;
+
+            chart_AxisViewChanged(chart, new ViewEventArgs(chartArea.AxisX, size + 1));
+
+        }
+        private void FillChart(List<CandleDate> listCandles, int findMinute, int findCount)
+        {
+            if (listCandles == null)
+                return;
+
+            int blockSize = 100;
+
+            chart.Series[0].Points.Clear();
+            int candleCount = 0;
+
+            foreach (var dc in listCandles)
+            {
+                int idx = chart.Series[0].Points.AddXY(dc.dt, dc.high, dc.low, dc.open, dc.close);
+                
+                setDataPointColor(chart.Series[0].Points[idx], null, null, null, 5);
+
+                var list = findCandles(dc, findMinute, findCount);
+                candleCount++;
+
+                foreach (var dc2 in list)
+                {
+                    int idx2 = chart.Series[0].Points.AddXY(dc2.dt, dc2.high, dc2.low, dc2.open, dc2.close);
+                    candleCount++;
+
+                    //setDataPointColor(chart.Series[0].Points[idx2], Color.Orange, Color.Orange);
+                }
+            }
+            var chartArea = chart.ChartAreas[chart.Series[0].ChartArea];
+
+            chartArea.AxisX.Minimum = 0;
+            chartArea.AxisX.Maximum = candleCount;
+
+            chartArea.CursorX.AutoScroll = true;
+
+            chartArea.AxisX.ScaleView.Zoomable = true;
+            chartArea.AxisX.ScaleView.SizeType = DateTimeIntervalType.Number;
+            int position = candleCount - blockSize;
+            int size = candleCount;
             chartArea.AxisX.ScaleView.Zoom(position, size + 1);
 
             // disable zoom-reset button (only scrollbar's arrows are available)
@@ -168,7 +219,11 @@ namespace OM.Vikala.ChartTest
 
                     listCandles180.Add(cd);
                 }
-            }           
+            }
+
+            listCandles60.Reverse();
+            listCandles120.Reverse();
+            listCandles180.Reverse();
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -178,11 +233,67 @@ namespace OM.Vikala.ChartTest
         {
             FillChart(listCandles120);
         }
-
+        private void btnDisplay120Ex_Click(object sender, EventArgs e)
+        {
+            FillChart(listCandles120, 60, 2);
+        }
         private void btnDisplay180_Click(object sender, EventArgs e)
         {
             FillChart(listCandles180);
         }
+        private void btnDisplay180Ex_Click(object sender, EventArgs e)
+        {
+            FillChart(listCandles180, 60, 3);
+        }
+        private List<CandleDate> findCandles(CandleDate candle, int findMinute, int findCount)
+        {
+            List<CandleDate> sourcesList = null;
+            List<CandleDate> findLists = new List<CandleDate>();
+            
+            if (findMinute == 60)
+                sourcesList = listCandles60;
+            else if (findMinute == 120)
+                sourcesList = listCandles120;
+            else if (findMinute == 180)
+                sourcesList = listCandles180;
+
+            int idx = sourcesList.FindIndex(t => t.dt == candle.dt);
+
+            if (idx > findCount)
+            {
+                int findIndex = idx + 1;
+                int findLength = idx + findCount;
+                //for (int i = idx - findCount + 1; i <= idx; i++)
+                //{
+                //    findLists.Add(sourcesList[i]);
+                //}
+
+                for (int i = findIndex; i <= findLength; i++)
+                {
+                    if(sourcesList.Count > i)
+                        findLists.Add(sourcesList[i]);
+                }
+            }
+
+            return findLists;
+        }
+
+
+        public void setDataPointColor(
+               DataPoint dataPoint
+           , Color? headlegColor = null
+           , Color? bodyLineColor = null
+           , Color? bodyColor = null
+           , int borderWidth = 1)
+        {
+            if (headlegColor != null) dataPoint.Color = headlegColor.Value;
+            if (bodyLineColor != null) dataPoint.BorderColor = bodyLineColor.Value;
+            if (bodyColor != null) dataPoint.SetCustomProperty("PriceUpColor", bodyColor.Value.Name);
+            if (bodyColor != null) dataPoint.SetCustomProperty("PriceDownColor", bodyColor.Value.Name);
+            dataPoint.BorderWidth = borderWidth;
+        }
+
+     
     }
 
     //class CandleDate
