@@ -12,9 +12,12 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace OM.Vikala.ChartTest
 {
-    public partial class Form1 : Form
+    public partial class ExForm1 : Form
     {
-        public Form1()
+        List<CandleDate> listCandles60 = new List<CandleDate>();
+        List<CandleDate> listCandles120 = new List<CandleDate>();
+        List<CandleDate> listCandles180 = new List<CandleDate>();
+        public ExForm1()
         {
             InitializeComponent();
             InitializeControl();
@@ -53,35 +56,13 @@ namespace OM.Vikala.ChartTest
             chartArea.Position.Y = 2F;
             chartArea.ShadowColor = System.Drawing.Color.Transparent;
         }
-        private void button1_Click(object sender, EventArgs e)
+       
+        private void FillChart(List<CandleDate> listCandles)
         {
-            FillChart();
-        }
-        private void FillChart()
-        {
-            List<CandleDate> listCandles = new List<CandleDate>();
-
-            using (var reader = new StreamReader(Environment.CurrentDirectory  + "\\wti_180.csv"))
-            {
-                while (!reader.EndOfStream)
-                {
-                    var line = reader.ReadLine();
-                    var values = line.Split(',');
-
-                    CandleDate cd = new CandleDate();
-                    cd.dt = Convert.ToDateTime(values[0].Trim() + " " + values[1].Trim());
-                    cd.open = Convert.ToDouble(values[2].Trim());
-                    cd.high = Convert.ToDouble(values[3].Trim());
-                    cd.low = Convert.ToDouble(values[4].Trim());
-                    cd.close = Convert.ToDouble(values[5].Trim());
-                    cd.volume = Convert.ToDouble(values[6].Trim());
-
-                    listCandles.Add(cd);
-                }
-            }
-
-            listCandles.Reverse();
-
+            if (listCandles == null)
+                return;
+            
+           
             int blockSize = 100;
 
             chart.Series[0].Points.Clear();
@@ -128,15 +109,89 @@ namespace OM.Vikala.ChartTest
                 chart.ChartAreas[0].AxisY2.ScrollBar.Enabled = false;
             }
         }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            listCandles60.Clear();
+            using (var reader = new StreamReader(Environment.CurrentDirectory + "\\wti_60.csv"))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+
+                    CandleDate cd = new CandleDate();
+                    cd.dt = Convert.ToDateTime(values[0].Trim() + " " + values[1].Trim());
+                    cd.open = Convert.ToDouble(values[2].Trim());
+                    cd.high = Convert.ToDouble(values[3].Trim());
+                    cd.low = Convert.ToDouble(values[4].Trim());
+                    cd.close = Convert.ToDouble(values[5].Trim());
+                    cd.volume = Convert.ToDouble(values[6].Trim());
+
+                    listCandles60.Add(cd);
+                }
+            }
+            listCandles120.Clear();
+            using (var reader = new StreamReader(Environment.CurrentDirectory + "\\wti_120.csv"))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+
+                    CandleDate cd = new CandleDate();
+                    cd.dt = Convert.ToDateTime(values[0].Trim() + " " + values[1].Trim());
+                    cd.open = Convert.ToDouble(values[2].Trim());
+                    cd.high = Convert.ToDouble(values[3].Trim());
+                    cd.low = Convert.ToDouble(values[4].Trim());
+                    cd.close = Convert.ToDouble(values[5].Trim());
+                    cd.volume = Convert.ToDouble(values[6].Trim());
+
+                    listCandles120.Add(cd);
+                }
+            }
+            listCandles180.Clear();
+            using (var reader = new StreamReader(Environment.CurrentDirectory + "\\wti_180.csv"))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+
+                    CandleDate cd = new CandleDate();
+                    cd.dt = Convert.ToDateTime(values[0].Trim() + " " + values[1].Trim());
+                    cd.open = Convert.ToDouble(values[2].Trim());
+                    cd.high = Convert.ToDouble(values[3].Trim());
+                    cd.low = Convert.ToDouble(values[4].Trim());
+                    cd.close = Convert.ToDouble(values[5].Trim());
+                    cd.volume = Convert.ToDouble(values[6].Trim());
+
+                    listCandles180.Add(cd);
+                }
+            }           
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FillChart(listCandles60);
+        }
+        private void btnDisplay120_Click(object sender, EventArgs e)
+        {
+            FillChart(listCandles120);
+        }
+
+        private void btnDisplay180_Click(object sender, EventArgs e)
+        {
+            FillChart(listCandles180);
+        }
     }
 
-    class CandleDate
-    {
-        public DateTime dt;
-        public double open;
-        public double high;
-        public double low;
-        public double close;
-        public double volume;
-    }
+    //class CandleDate
+    //{
+    //    public DateTime dt;
+    //    public double open;
+    //    public double high;
+    //    public double low;
+    //    public double close;
+    //    public double volume;
+    //}
 }
