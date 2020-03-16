@@ -71,7 +71,7 @@ namespace OM.Vikala.ChartTest
 
             foreach (var dc in listCandles)
             {
-                chart.Series[0].Points.AddXY(dc.dt, dc.high, dc.low, dc.open, dc.close);
+                int idx = chart.Series[0].Points.AddXY(dc.dt, dc.high, dc.low, dc.open, dc.close);               
             }
             var chartArea = chart.ChartAreas[chart.Series[0].ChartArea];
 
@@ -106,8 +106,8 @@ namespace OM.Vikala.ChartTest
             foreach (var dc in listCandles)
             {
                 int idx = chart.Series[0].Points.AddXY(dc.dt, dc.high, dc.low, dc.open, dc.close);
-                
-                setDataPointColor(chart.Series[0].Points[idx], null, null, null, 5);
+                chart.Series[0].Points[idx].Tag = "1";
+                setDataPointColor(chart.Series[0].Points[idx], Color.Black, Color.Black, Color.Black, 5);
 
                 var list = findCandles(dc, findMinute, findCount);
                 candleCount++;
@@ -115,8 +115,8 @@ namespace OM.Vikala.ChartTest
                 foreach (var dc2 in list)
                 {
                     int idx2 = chart.Series[0].Points.AddXY(dc2.dt, dc2.high, dc2.low, dc2.open, dc2.close);
+                    chart.Series[0].Points[idx2].Tag = "0";
                     candleCount++;
-
                     //setDataPointColor(chart.Series[0].Points[idx2], Color.Orange, Color.Orange);
                 }
             }
@@ -279,7 +279,7 @@ namespace OM.Vikala.ChartTest
         }
 
 
-        public void setDataPointColor(
+        private void setDataPointColor(
                DataPoint dataPoint
            , Color? headlegColor = null
            , Color? bodyLineColor = null
@@ -293,7 +293,21 @@ namespace OM.Vikala.ChartTest
             dataPoint.BorderWidth = borderWidth;
         }
 
-     
+        private void setVisibleItems(string type, bool isVisible)
+        {
+            foreach (var c in chart.Series[0].Points)
+            {
+                if (type == c.Tag.ToString())
+                {
+                    c.IsEmpty = !isVisible;
+                }
+            }
+        }
+
+        private void chkDisplay180_CheckedChanged(object sender, EventArgs e)
+        {
+            setVisibleItems("0", chkDisplay180.Checked);
+        }
     }
 
     //class CandleDate
