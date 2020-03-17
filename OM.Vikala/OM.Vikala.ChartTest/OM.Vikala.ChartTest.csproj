@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExForm2.Designer.cs">
+      <DependentUpon>ExForm2.cs</DependentUpon>
+    </Compile>
     <Compile Include="ExForm1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,6 +67,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ExForm2.resx">
+      <DependentUpon>ExForm2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ExForm1.resx">
       <DependentUpon>ExForm1.cs</DependentUpon>
     </EmbeddedResource>
@@ -90,6 +99,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\OM.PP\OM.PP.Chakra\OM.PP.Chakra.csproj">
+      <Project>{2c4aa241-5c13-4abf-9eb3-5903308cb439}</Project>
+      <Name>OM.PP.Chakra</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\OM\OM.Lib.Framework\OM.Lib.Framework.csproj">
       <Project>{5a86d37b-e9a0-4cfd-bc4a-fa53cd0edc61}</Project>
       <Name>OM.Lib.Framework</Name>

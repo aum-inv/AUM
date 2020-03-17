@@ -815,7 +815,29 @@ namespace OM.PP.Chakra
                 return null;
             }
         }
-       
+
+        #endregion
+
+        #region Renko
+        public static int GetRenko(string itemCode, S_CandleItemData cData, S_CandleItemData bData, double renkoValue)
+        {
+            int renko = 0;
+            int hrenko = 0;
+            int lrenko = 0;
+            if (bData.ClosePrice < cData.ClosePrice && bData.HighPrice < cData.HighPrice )
+            {
+                hrenko = Convert.ToInt32((cData.HighPrice - bData.HighPrice) / renkoValue);
+            }
+            if (bData.ClosePrice > cData.ClosePrice && bData.LowPrice > cData.LowPrice)
+            {
+                lrenko = Convert.ToInt32((bData.LowPrice - cData.LowPrice) / renkoValue);
+            }
+
+            if (hrenko > lrenko) renko = hrenko;
+            if (hrenko < lrenko) renko = lrenko * -1;
+
+            return renko;
+        }
         #endregion
     }
 }
