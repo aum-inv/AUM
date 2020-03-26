@@ -8,20 +8,28 @@ namespace OM.Lib.Base.Enums
 {
     public enum TimeIntervalEnum
     {
-            Tick = 0
-        ,   Minute_60 = 1
+            Minute_60 = 1
         ,   Minute_120 = 2
         ,   Minute_180 = 3
-        ,   Minute_300 = 4
-        ,   Minute_420 = 5
-        ,   Minute_540 = 6
-        ,   Day = 7 
-        ,   Week = 8
-        ,   Month = 9     
-        ,   Tick_180 = 11
-        ,   Tick_360 = 12
-        ,   Tick_720 = 13
-        ,   Tick_1080 = 14
-        ,   Tick_1440 = 15
+        ,   Minute_240 = 4
+        ,   Minute_300 = 5
+        ,   Minute_360 = 6
+        ,   Minute_480 = 8
+        ,   Minute_720 = 12
+        ,   Day
+        ,   Week
+        ,   Month          
+          
+        ,   None
     }
 }
+
+
+// 1시간 : 60분
+// 2시간 : 120분
+// 3시간 : 180분
+// 4시간 : 240분
+// 5시간 : 300분
+// 6시간 : 360분
+// 8시간 : 480분
+// 12시간 : 720분

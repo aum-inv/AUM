@@ -18,6 +18,9 @@ namespace OM.Vikala.ChartTest
         List<S_CandleItemData> listCandles60 = new List<S_CandleItemData>();
         List<S_CandleItemData> listCandles120 = new List<S_CandleItemData>();
         List<S_CandleItemData> listCandles180 = new List<S_CandleItemData>();
+        List<S_CandleItemData> listCandles360 = new List<S_CandleItemData>();
+        List<S_CandleItemData> listCandles720 = new List<S_CandleItemData>();
+        List<S_CandleItemData> listCandlesDay = new List<S_CandleItemData>();
         public ExForm2()
         {
             InitializeComponent();
@@ -80,17 +83,17 @@ namespace OM.Vikala.ChartTest
 
             chartArea.InnerPlotPosition.Auto = false;
             chartArea.InnerPlotPosition.Height = 90F;
-            chartArea.InnerPlotPosition.Width = 95F;
+            chartArea.InnerPlotPosition.Width = 100F;
             chartArea.InnerPlotPosition.Y = 2F;
             chartArea.InnerPlotPosition.X = 2F;
             chartArea.Name = "chartArea";
 
             chartArea.Position.Auto = false;
-            chartArea.Position.Height = 95F;
+            chartArea.Position.Height = 85F;
             chartArea.Position.Width = 98F;
             chartArea.Position.Y = 2F;
             chartArea.ShadowColor = System.Drawing.Color.Transparent;
-            chartArea.AxisY2.LabelStyle.Format = "N2";         
+   
             chartArea.AxisX.LabelStyle.Format = "MM/dd HH:mm";
         }
        
@@ -129,7 +132,7 @@ namespace OM.Vikala.ChartTest
             // disable zoom-reset button (only scrollbar's arrows are available)
             chartArea.AxisX.ScrollBar.ButtonStyle = ScrollBarButtonStyles.All;
             chartArea.AxisX.ScaleView.SmallScrollSize = 10;
-
+           
             chart_AxisViewChanged(chart, new ViewEventArgs(chartArea.AxisX, size + 1));
 
         }
@@ -147,14 +150,16 @@ namespace OM.Vikala.ChartTest
             {
                 int idx = -1;
                 if (!isQuantum)
+                {
                     idx = chart.Series[0].Points.AddXY(
-                        dc.DTime, dc.HighPrice, dc.LowPrice, dc.HighPrice, dc.LowPrice);
+                        dc.DTime, dc.HighPrice, dc.LowPrice, dc.OpenPrice, dc.ClosePrice);
+                }
                 else
                 {
-                    if(dc.PlusMinusType == PlusMinusTypeEnum.양)
+                    if (dc.PlusMinusType == PlusMinusTypeEnum.양)
                         idx = chart.Series[0].Points.AddXY(
                             dc.DTime, dc.OpenPrice, dc.QuantumPrice, dc.OpenPrice, dc.QuantumPrice);
-                    else 
+                    else
                         idx = chart.Series[0].Points.AddXY(
                             dc.DTime, dc.QuantumPrice, dc.OpenPrice, dc.OpenPrice, dc.QuantumPrice);
                 }
@@ -202,7 +207,7 @@ namespace OM.Vikala.ChartTest
         {
             if (listCandles == null)
                 return;
-            int blockSize = 50;
+            int blockSize = 30;
             chart2.Series[0].Points.Clear();
             int candleCount = 0;
             S_CandleItemData bdc = null;
@@ -223,9 +228,6 @@ namespace OM.Vikala.ChartTest
                             else
                                 idx = chart2.Series[0].Points.AddXY(dc.DTime, 1, 0, 1, 0);
 
-                            //idx = chart2.Series[0].Points.AddXY(
-                            //    dc.DTime, dc.HighPrice, dc.LowPrice, dc.HighPrice, dc.LowPrice);
-
                             chart2.Series[0].Points[idx].Tag = dc;
 
                             candleCount++;
@@ -237,17 +239,18 @@ namespace OM.Vikala.ChartTest
 
             var chartArea = chart2.ChartAreas[chart2.Series[0].ChartArea];
             chartArea.AxisX.Minimum = 0;
-            chartArea.AxisX.Maximum = candleCount;
+            chartArea.AxisX.Maximum = candleCount + 1;
             chartArea.CursorX.AutoScroll = true;
             chartArea.AxisX.ScaleView.Zoomable = true;
             chartArea.AxisX.ScaleView.SizeType = DateTimeIntervalType.Number;
             int position = candleCount - blockSize;
-            int size = candleCount;
-            chartArea.AxisX.ScaleView.Zoom(position, size + 1);
+            int size = candleCount;           
             chartArea.AxisX.ScrollBar.ButtonStyle = ScrollBarButtonStyles.All;
             chartArea.AxisX.ScaleView.SmallScrollSize = 10;
             chartArea.AxisY2.Maximum = 1.0;
-            //chart2_AxisViewChanged(chart, new ViewEventArgs(chartArea.AxisX, size + 1));
+            chartArea.AxisY2.Minimum = 0.0;
+            chartArea.AxisY2.Enabled = AxisEnabled.False;
+            chartArea.AxisX.ScaleView.Zoom(position, size + 1);
         }
         private void chart_AxisViewChanged(object sender, ViewEventArgs e)
         {          
@@ -269,21 +272,7 @@ namespace OM.Vikala.ChartTest
         }
         private void chart2_AxisViewChanged(object sender, ViewEventArgs e)
         {
-            if (e.Axis.AxisName == AxisName.X)
-            {
-                int start = (int)e.Axis.ScaleView.ViewMinimum;
-                int end = (int)e.Axis.ScaleView.ViewMaximum;
-
-                double[] tempHighs = chart2.Series[0].Points.Where((x, i) => i >= start && i <= end).Select(x => x.YValues[0]).ToArray();
-                double[] tempLows = chart2.Series[0].Points.Where((x, i) => i >= start && i <= end).Select(x => x.YValues[0]).ToArray();
-                double ymin = tempLows.Min();
-                double ymax = tempHighs.Max();
-
-                chart2.ChartAreas[0].AxisX.ScaleView.Position = start + 5;
-                chart2.ChartAreas[0].AxisY2.ScaleView.Position = ymin;
-                chart2.ChartAreas[0].AxisY2.ScaleView.Size = ymax - ymin;
-                chart2.ChartAreas[0].AxisY2.ScrollBar.Enabled = false;
-            }
+           
         }
         private void btnLoad_Click(object sender, EventArgs e)
         {
@@ -345,9 +334,70 @@ namespace OM.Vikala.ChartTest
                 }
             }
 
+            listCandles360.Clear();
+            using (var reader = new StreamReader(Environment.CurrentDirectory + "\\wti_360.csv"))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+
+                    S_CandleItemData cd = new S_CandleItemData("CL"
+                        , Convert.ToSingle(values[2].Trim())
+                        , Convert.ToSingle(values[3].Trim())
+                        , Convert.ToSingle(values[4].Trim())
+                        , Convert.ToSingle(values[5].Trim())
+                        , 0
+                        , Convert.ToDateTime(values[0].Trim() + " " + values[1].Trim()));
+
+                    listCandles360.Add(cd);
+                }
+            }
+            listCandles720.Clear();
+            using (var reader = new StreamReader(Environment.CurrentDirectory + "\\wti_720.csv"))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+
+                    S_CandleItemData cd = new S_CandleItemData("CL"
+                        , Convert.ToSingle(values[2].Trim())
+                        , Convert.ToSingle(values[3].Trim())
+                        , Convert.ToSingle(values[4].Trim())
+                        , Convert.ToSingle(values[5].Trim())
+                        , 0
+                        , Convert.ToDateTime(values[0].Trim() + " " + values[1].Trim()));
+
+                    listCandles720.Add(cd);
+                }
+            }
+
+            listCandlesDay.Clear();
+            using (var reader = new StreamReader(Environment.CurrentDirectory + "\\wti_day.csv"))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+
+                    S_CandleItemData cd = new S_CandleItemData("CL"
+                        , Convert.ToSingle(values[1].Trim())
+                        , Convert.ToSingle(values[2].Trim())
+                        , Convert.ToSingle(values[3].Trim())
+                        , Convert.ToSingle(values[4].Trim())
+                        , 0
+                        , Convert.ToDateTime(values[0].Trim()));
+
+                    listCandlesDay.Add(cd);
+                }
+            }
             listCandles60.Reverse();
             listCandles120.Reverse();
             listCandles180.Reverse();
+            listCandles360.Reverse();
+            listCandles720.Reverse();
+            listCandlesDay.Reverse();
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -371,6 +421,17 @@ namespace OM.Vikala.ChartTest
             FillChart(listCandles180, 60, 3, true, false);
             FillRenkoChart(listCandles180, 2.0);
         }
+        private void btnDisplay720Ex_Click(object sender, EventArgs e)
+        {
+            FillChart(listCandles720, 360, 2, false, false);
+            FillRenkoChart(listCandles720, 1.0);
+        }
+        private void btnDisplayDayEx_Click(object sender, EventArgs e)
+        {
+            FillChart(listCandlesDay, 720, 2, false, false);
+            FillRenkoChart(listCandlesDay, 2.0);
+        }
+
         private List<S_CandleItemData> findCandles(S_CandleItemData candle, int findMinute, int findCount)
         {
             List<S_CandleItemData> sourcesList = null;
@@ -382,21 +443,25 @@ namespace OM.Vikala.ChartTest
                 sourcesList = listCandles120;
             else if (findMinute == 180)
                 sourcesList = listCandles180;
-
-            int idx = sourcesList.FindIndex(t => t.DTime == candle.DTime);
+            else if (findMinute == 360)
+                sourcesList = listCandles360;
+            else if (findMinute == 720)
+                sourcesList = listCandles720;
+           
+            int idx = sourcesList.FindIndex(t => t.DTime >= candle.DTime);
 
             if (idx > findCount)
             {
-                int findIndex = idx + 1;
+                int findIndex = idx;
                 int findLength = idx + findCount;
               
-                for (int i = findIndex; i <= findLength; i++)
+                for (int i = findIndex; i < findLength; i++)
                 {
                     if(sourcesList.Count > i)
                         findLists.Add(sourcesList[i]);
                 }
             }
-
+            //findLists.Reverse();
             return findLists;
         }
 
@@ -429,7 +494,9 @@ namespace OM.Vikala.ChartTest
         private void chkDisplay180_CheckedChanged(object sender, EventArgs e)
         {
             setVisibleItems("0", chkDisplay180.Checked);
-        }       
+        }
+
+        
     }
 
     //class CandleDate

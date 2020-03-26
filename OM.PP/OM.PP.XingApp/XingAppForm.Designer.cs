@@ -38,6 +38,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pnlContent = new System.Windows.Forms.Panel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.rdo500 = new System.Windows.Forms.RadioButton();
+            this.rdo200 = new System.Windows.Forms.RadioButton();
+            this.rdo100 = new System.Windows.Forms.RadioButton();
             this.button9 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button15 = new System.Windows.Forms.Button();
@@ -71,15 +74,15 @@
             this.btnReal = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.noti = new System.Windows.Forms.NotifyIcon(this.components);
-            this.rdo100 = new System.Windows.Forms.RadioButton();
-            this.rdo200 = new System.Windows.Forms.RadioButton();
-            this.rdo500 = new System.Windows.Forms.RadioButton();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button32 = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             this.pnlContent.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnLogin
@@ -153,6 +156,7 @@
             // 
             // pnlContent
             // 
+            this.pnlContent.Controls.Add(this.groupBox4);
             this.pnlContent.Controls.Add(this.groupBox5);
             this.pnlContent.Controls.Add(this.groupBox1);
             this.pnlContent.Controls.Add(this.groupBox7);
@@ -161,7 +165,7 @@
             this.pnlContent.Location = new System.Drawing.Point(2, 2);
             this.pnlContent.Name = "pnlContent";
             this.pnlContent.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.pnlContent.Size = new System.Drawing.Size(532, 312);
+            this.pnlContent.Size = new System.Drawing.Size(464, 385);
             this.pnlContent.TabIndex = 12;
             // 
             // groupBox5
@@ -187,6 +191,38 @@
             this.groupBox5.TabIndex = 14;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "해외선물";
+            // 
+            // rdo500
+            // 
+            this.rdo500.AutoSize = true;
+            this.rdo500.Location = new System.Drawing.Point(231, 53);
+            this.rdo500.Name = "rdo500";
+            this.rdo500.Size = new System.Drawing.Size(41, 16);
+            this.rdo500.TabIndex = 43;
+            this.rdo500.Text = "500";
+            this.rdo500.UseVisualStyleBackColor = true;
+            // 
+            // rdo200
+            // 
+            this.rdo200.AutoSize = true;
+            this.rdo200.Location = new System.Drawing.Point(231, 35);
+            this.rdo200.Name = "rdo200";
+            this.rdo200.Size = new System.Drawing.Size(41, 16);
+            this.rdo200.TabIndex = 42;
+            this.rdo200.Text = "200";
+            this.rdo200.UseVisualStyleBackColor = true;
+            // 
+            // rdo100
+            // 
+            this.rdo100.AutoSize = true;
+            this.rdo100.Checked = true;
+            this.rdo100.Location = new System.Drawing.Point(231, 17);
+            this.rdo100.Name = "rdo100";
+            this.rdo100.Size = new System.Drawing.Size(41, 16);
+            this.rdo100.TabIndex = 41;
+            this.rdo100.TabStop = true;
+            this.rdo100.Text = "100";
+            this.rdo100.UseVisualStyleBackColor = true;
             // 
             // button9
             // 
@@ -380,8 +416,8 @@
             this.groupBox1.Controls.Add(this.tbLog);
             this.groupBox1.Location = new System.Drawing.Point(287, 9);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(9, 9, 9, 9);
-            this.groupBox1.Size = new System.Drawing.Size(241, 318);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(9);
+            this.groupBox1.Size = new System.Drawing.Size(174, 318);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Log";
@@ -395,7 +431,7 @@
             this.tbLog.Multiline = true;
             this.tbLog.Name = "tbLog";
             this.tbLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbLog.Size = new System.Drawing.Size(223, 286);
+            this.tbLog.Size = new System.Drawing.Size(156, 286);
             this.tbLog.TabIndex = 0;
             // 
             // groupBox7
@@ -540,36 +576,28 @@
             // 
             this.noti.Visible = true;
             // 
-            // rdo100
+            // groupBox4
             // 
-            this.rdo100.AutoSize = true;
-            this.rdo100.Checked = true;
-            this.rdo100.Location = new System.Drawing.Point(231, 17);
-            this.rdo100.Name = "rdo100";
-            this.rdo100.Size = new System.Drawing.Size(41, 16);
-            this.rdo100.TabIndex = 41;
-            this.rdo100.Text = "100";
-            this.rdo100.UseVisualStyleBackColor = true;
+            this.groupBox4.Controls.Add(this.button32);
+            this.groupBox4.Location = new System.Drawing.Point(6, 331);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox4.Size = new System.Drawing.Size(455, 50);
+            this.groupBox4.TabIndex = 17;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "CSV 파일로 시세 받기";
             // 
-            // rdo200
+            // button32
             // 
-            this.rdo200.AutoSize = true;
-            this.rdo200.Location = new System.Drawing.Point(231, 35);
-            this.rdo200.Name = "rdo200";
-            this.rdo200.Size = new System.Drawing.Size(41, 16);
-            this.rdo200.TabIndex = 42;
-            this.rdo200.Text = "200";
-            this.rdo200.UseVisualStyleBackColor = true;
-            // 
-            // rdo500
-            // 
-            this.rdo500.AutoSize = true;
-            this.rdo500.Location = new System.Drawing.Point(231, 53);
-            this.rdo500.Name = "rdo500";
-            this.rdo500.Size = new System.Drawing.Size(41, 16);
-            this.rdo500.TabIndex = 43;
-            this.rdo500.Text = "500";
-            this.rdo500.UseVisualStyleBackColor = true;
+            this.button32.Location = new System.Drawing.Point(17, 16);
+            this.button32.Name = "button32";
+            this.button32.Size = new System.Drawing.Size(88, 27);
+            this.button32.TabIndex = 1;
+            this.button32.Tag = "cl";
+            this.button32.Text = "CL 시세";
+            this.button32.UseVisualStyleBackColor = true;
+            this.button32.Click += new System.EventHandler(this.btnFileOpen_Click);
             // 
             // XingAppForm
             // 
@@ -577,7 +605,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(536, 316);
+            this.ClientSize = new System.Drawing.Size(468, 389);
             this.Controls.Add(this.pnlContent);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -595,6 +623,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -644,6 +673,8 @@
         private System.Windows.Forms.RadioButton rdo100;
         private System.Windows.Forms.RadioButton rdo500;
         private System.Windows.Forms.RadioButton rdo200;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button button32;
     }
 }
 

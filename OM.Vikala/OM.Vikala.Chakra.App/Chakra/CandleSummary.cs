@@ -41,8 +41,8 @@ namespace OM.Vikala.Chakra.App.Chakra
                     forecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_120, p));
                     forecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_180, p));
                     forecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_300, p));
-                    forecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_420, p));
-                    forecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_540, p));
+                    forecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_360, p));
+                    forecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_480, p));
                     forecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Day, p));
                 }
             }            

@@ -29,9 +29,7 @@ namespace OM.Atman.Chakra.App
             PPEvents.Instance.CandleOccurHandler += Instance_CandleOccurHandler;
             PPEvents.Instance.CandleChartPatternHandler += Instance_CandleChartPatternHandler;
             PPEvents.Instance.CandleMassPatternHandler += Instance_CandleMassPatternHandler;
-            PPEvents.Instance.TickLineChartPatternHandler += Instance_TickLineChartPatternHandler;
-            PPEvents.Instance.TickLineUpDownPatternHandler += Instance_TickLineUpDownPatternHandler;
-
+            
             this.Load += CandleSignalForm_Load;
             this.FormClosing += CandleSignalForm4_FormClosing;
         }
@@ -41,8 +39,7 @@ namespace OM.Atman.Chakra.App
             PPEvents.Instance.CandleOccurHandler -= Instance_CandleOccurHandler;
             PPEvents.Instance.CandleChartPatternHandler -= Instance_CandleChartPatternHandler;
             PPEvents.Instance.CandleMassPatternHandler -= Instance_CandleMassPatternHandler;
-            PPEvents.Instance.TickLineChartPatternHandler -= Instance_TickLineChartPatternHandler;
-            PPEvents.Instance.TickLineUpDownPatternHandler -= Instance_TickLineUpDownPatternHandler;
+           
         }
 
         private void CandleSignalForm_Load(object sender, EventArgs e)
@@ -73,73 +70,6 @@ namespace OM.Atman.Chakra.App
             uc60List.Add("NQ", ucSignalNQ60);
             uc60List.Add("URO", ucSignalURO60);
             uc60List.Add("ES", ucSignalES60);
-
-            ucAll.Add(TimeIntervalEnum.Tick_360, uc10List);
-            ucAll.Add(TimeIntervalEnum.Tick_720, uc30List);
-            ucAll.Add(TimeIntervalEnum.Tick_1080, uc60List);
-        }
-
-        private void Instance_TickLineUpDownPatternHandler(string itemCode, TimeIntervalEnum timeInterval, UpDownPatternEnum updown, string type)
-        {
-            if (!ucAll.ContainsKey(timeInterval)) return;
-            string signal = updown.ToString().Replace("Up", "↗").Replace("Down", "↘");
-            string result = signal.EndsWith("↗") ? "▲" : "▼";
-            string soundType = "1";
-            
-            this.Invoke(new Action(() =>
-            {
-                var ucList = ucAll[timeInterval];
-
-                if (type == "High")         ucList[itemCode].SetHighLine("", "", DateTime.Now);
-                else if (type == "Low")    ucList[itemCode].SetLowLine("", "", DateTime.Now);
-                else if (type == "HL")      ucList[itemCode].SetHighLowLine("", "", DateTime.Now);
-
-                if (updown != UpDownPatternEnum.None)
-                {
-                    if (type == "High") ucList[itemCode].SetHighLine(signal, result, DateTime.Now);
-                    else if (type == "Low") ucList[itemCode].SetLowLine(signal, result, DateTime.Now);
-                    else if (type == "HL")
-                    {
-                        ucList[itemCode].SetHighLowLine(signal, result, DateTime.Now);
-                        soundType = "2";
-                    }
-                    ucList[itemCode].SetLastTime(DateTime.Now);
-                    string title = "라인패턴 시그널";
-                    string msg = $"{itemCode}::{EnumUtil.GetTimeIntervalText(timeInterval)}::{updown}";
-                    if (selectedItemCode == itemCode && updown != UpDownPatternEnum.None)
-                        ShowNotifyIcon(title, msg, soundType);
-                }
-            }));
-        }
-
-        private void Instance_TickLineChartPatternHandler(string itemCode, TimeIntervalEnum timeInterval, TickLineChartPatternEnum updown, string type)
-        {
-            if (!ucAll.ContainsKey(timeInterval)) return;
-            string signal = updown.ToString().Replace("H", "↗").Replace("L", "↘").Replace("M", "↕");
-            string result = signal.EndsWith("↗") ? "▲" : "▼";
-            string soundType = "1";
-         
-            this.Invoke(new Action(() =>
-            {
-                var ucList = ucAll[timeInterval];
-                if (type == "Line2")        ucList[itemCode].SetLine2("", "", DateTime.Now);
-                else if (type == "Line3")  ucList[itemCode].SetLine3("", "", DateTime.Now);
-                if (updown != TickLineChartPatternEnum.None)
-                {
-                    if (type == "Line2") ucList[itemCode].SetLine2(signal, result, DateTime.Now);
-                    else if (type == "Line3")
-                    {
-                        ucList[itemCode].SetLine3(signal, result, DateTime.Now);
-                        soundType = "2";
-                    }
-                    ucList[itemCode].SetLastTime(DateTime.Now);
-                    string title = "멀티라인패턴 시그널";
-                    string msg = $"{itemCode}::{EnumUtil.GetTimeIntervalText(timeInterval)}::{updown}";
-                    if (selectedItemCode == itemCode && updown != TickLineChartPatternEnum.None)
-                        ShowNotifyIcon(title, msg, soundType);
-                }
-            }));
-           
         }
 
         private void Instance_CandleChartPatternHandler(string itemCode, TimeIntervalEnum timeInterval, CandleChartPatternEnum updown)
@@ -340,7 +270,7 @@ namespace OM.Atman.Chakra.App
 
         private void ShowNotifyIcon(string title, string message, string soundType = "1")
         {
-            return;
+           // return;
             try
             {
                 PopupNotifier popup = new PopupNotifier();

@@ -33,7 +33,7 @@ namespace OM.Atman.Chakra.Ctx
 
                 prices.Enqueue(price);
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
         }
     }
 }

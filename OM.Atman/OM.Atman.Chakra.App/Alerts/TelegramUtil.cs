@@ -23,7 +23,7 @@ namespace OM.Atman.Chakra.App.Alerts
 
                 var result = await bot.SendTextMessageAsync(new Telegram.Bot.Types.ChatId(729502769), msg);
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
         }
 
         private static TelegramBotClient receiveBot = null;

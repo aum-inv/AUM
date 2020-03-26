@@ -125,6 +125,7 @@ namespace OM.PP.XingApp.Order
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
 
@@ -150,6 +151,7 @@ namespace OM.PP.XingApp.Order
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
     }

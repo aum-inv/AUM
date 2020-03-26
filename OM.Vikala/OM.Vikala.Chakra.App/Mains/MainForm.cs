@@ -81,7 +81,7 @@ namespace OM.Vikala.Chakra.App.Mains
                     bmf.Show();
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
         }
         public void RemoveTab(BaseForm bmf)
         {
@@ -104,7 +104,7 @@ namespace OM.Vikala.Chakra.App.Mains
 
                 formList.Remove(bmf);
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
         }
       
         private void tabPage_DrawItem(object sender, DrawItemEventArgs e)
@@ -146,7 +146,7 @@ namespace OM.Vikala.Chakra.App.Mains
                         RemoveTab((BaseForm)TabP.Controls[0]);
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
         }
 
         private void MainForm_SizeChanged(object sender, EventArgs e)
@@ -159,7 +159,7 @@ namespace OM.Vikala.Chakra.App.Mains
                     f.WindowState = FormWindowState.Maximized;
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
         }
 
         private void tabPage_SelectedIndexChanged(object sender, EventArgs e)
@@ -177,7 +177,7 @@ namespace OM.Vikala.Chakra.App.Mains
                     f.WindowState = FormWindowState.Maximized;
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
         }
 
         private void tsb_MouseDown(object sender, MouseEventArgs e)
@@ -187,7 +187,7 @@ namespace OM.Vikala.Chakra.App.Mains
                 ToolStripSplitButton tsb = sender as ToolStripSplitButton;
                 tsb.ShowDropDown();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
         }
 
         private void tsb_Click(object sender, EventArgs e)
@@ -343,7 +343,7 @@ namespace OM.Vikala.Chakra.App.Mains
                     }
                 }
             }
-            catch(Exception ex) { }
+            catch(Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
         }
         private void createRequiredCharts()
         {
@@ -369,12 +369,7 @@ namespace OM.Vikala.Chakra.App.Mains
                 bmf3.Text = "장기추세";
                 AddTab(bmf3);
             }
-            if (title == "틱챠트추세")
-            {
-                BaseForm bmf = new TrendTickChartForm();
-                bmf.Text = title;
-                AddTab(bmf);
-            }
+          
             if (title == "분챠트추세")
             {
                 BaseForm bmf = new TrendMinuteChartForm();

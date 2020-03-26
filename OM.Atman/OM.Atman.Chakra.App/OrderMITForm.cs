@@ -49,7 +49,9 @@ namespace OM.Atman.Chakra.App
                         rule.Analysis(price);
                     }
                 }
-                catch (Exception ex) { }
+                catch (Exception ex) {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
             }
         }
         private void OrderMITForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -73,6 +75,7 @@ namespace OM.Atman.Chakra.App
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
 

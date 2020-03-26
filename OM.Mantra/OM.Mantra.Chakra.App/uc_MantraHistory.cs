@@ -66,7 +66,7 @@ namespace OM.Mantra.Chakra.App
                 }
             }
             catch (Exception ex)
-            { }
+            { System.Diagnostics.Debug.WriteLine(ex.Message); }
         }
 
         private void btnReg_Click(object sender, EventArgs e)

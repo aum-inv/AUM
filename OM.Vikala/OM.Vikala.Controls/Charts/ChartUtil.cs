@@ -49,7 +49,7 @@ namespace OM.Vikala.Controls.Charts
                 int bodyNum = SumOfEachDigit(bodyPrice);
                 int legNum = SumOfEachDigit(legPrice);
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
 
             return (headType, bodyType, legType);
         }
@@ -96,7 +96,7 @@ namespace OM.Vikala.Controls.Charts
                 else if (legNum == Convert.ToInt32(VF_8.Substring(2, 1))) legType = RainbowTypeEnum._8_금;
                 else if (legNum == Convert.ToInt32(VF_9.Substring(2, 1))) legType = RainbowTypeEnum._9_흑;
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
 
             return (headType, bodyType, legType);
         }

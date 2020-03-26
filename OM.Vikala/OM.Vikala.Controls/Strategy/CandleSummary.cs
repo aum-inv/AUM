@@ -41,8 +41,8 @@ namespace OM.Vikala.Controls.Strategy
                     ForecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_120, p));
                     ForecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_120, p));
                     ForecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_300, p));
-                    ForecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_420, p));
-                    ForecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_540, p));
+                    ForecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_360, p));
+                    ForecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Minute_480, p));
                     ForecastInfos.Add(new TradeForecastInfo(item.Code, TimeIntervalEnum.Day, p));
                 }
             }            

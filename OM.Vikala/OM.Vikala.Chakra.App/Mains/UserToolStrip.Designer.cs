@@ -39,6 +39,8 @@
             this.tsbTime14 = new System.Windows.Forms.ToolStripButton();
             this.tsbTime15 = new System.Windows.Forms.ToolStripButton();
             this.tsbTime16 = new System.Windows.Forms.ToolStripButton();
+            this.tsbTime17 = new System.Windows.Forms.ToolStripButton();
+            this.tsbTime18 = new System.Windows.Forms.ToolStripButton();
             this.tsbTime20 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tscbCnt = new System.Windows.Forms.ToolStripComboBox();
@@ -81,6 +83,8 @@
             this.tsbTime14,
             this.tsbTime15,
             this.tsbTime16,
+            this.tsbTime17,
+            this.tsbTime18,
             this.tsbTime20,
             this.toolStripSeparator3,
             this.tscbCnt,
@@ -107,15 +111,15 @@
             this.tsbLineBold2});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.toolStrip1.Size = new System.Drawing.Size(2793, 46);
+            this.toolStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.toolStrip1.Size = new System.Drawing.Size(1504, 23);
             this.toolStrip1.TabIndex = 5;
             // 
             // toolStripLabel1
             // 
             this.toolStripLabel1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel1.Image")));
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(108, 40);
+            this.toolStripLabel1.Size = new System.Drawing.Size(66, 20);
             this.toolStripLabel1.Text = "상품 : ";
             // 
             // tscbItem
@@ -123,13 +127,13 @@
             this.tscbItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.tscbItem.MaxDropDownItems = 30;
             this.tscbItem.Name = "tscbItem";
-            this.tscbItem.Size = new System.Drawing.Size(368, 46);
+            this.tscbItem.Size = new System.Drawing.Size(150, 23);
             this.tscbItem.SelectedIndexChanged += new System.EventHandler(this.tscbItem_SelectedIndexChanged);
             // 
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(6, 46);
+            this.toolStripLabel2.Size = new System.Drawing.Size(6, 23);
             // 
             // tsbTime11
             // 
@@ -180,8 +184,7 @@
             this.tsbTime14.Name = "tsbTime14";
             this.tsbTime14.Size = new System.Drawing.Size(45, 40);
             this.tsbTime14.Tag = "4";
-            this.tsbTime14.Text = "300분";
-            this.tsbTime14.Visible = false;
+            this.tsbTime14.Text = "240분";
             this.tsbTime14.Click += new System.EventHandler(this.IntervalButton_Click);
             // 
             // tsbTime15
@@ -193,8 +196,7 @@
             this.tsbTime15.Name = "tsbTime15";
             this.tsbTime15.Size = new System.Drawing.Size(45, 40);
             this.tsbTime15.Tag = "5";
-            this.tsbTime15.Text = "420분";
-            this.tsbTime15.Visible = false;
+            this.tsbTime15.Text = "300분";
             this.tsbTime15.Click += new System.EventHandler(this.IntervalButton_Click);
             // 
             // tsbTime16
@@ -206,9 +208,32 @@
             this.tsbTime16.Name = "tsbTime16";
             this.tsbTime16.Size = new System.Drawing.Size(37, 40);
             this.tsbTime16.Tag = "6";
-            this.tsbTime16.Text = "540분";
-            this.tsbTime16.Visible = false;
+            this.tsbTime16.Text = "360분";
             this.tsbTime16.Click += new System.EventHandler(this.IntervalButton_Click);
+            // 
+            // tsbTime17
+            // 
+            this.tsbTime17.AutoSize = false;
+            this.tsbTime17.AutoToolTip = false;
+            this.tsbTime17.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbTime17.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbTime17.Name = "tsbTime17";
+            this.tsbTime17.Size = new System.Drawing.Size(37, 40);
+            this.tsbTime17.Tag = "6";
+            this.tsbTime17.Text = "480분";
+            this.tsbTime17.Click += new System.EventHandler(this.IntervalButton_Click);
+            // 
+            // tsbTime18
+            // 
+            this.tsbTime18.AutoSize = false;
+            this.tsbTime18.AutoToolTip = false;
+            this.tsbTime18.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbTime18.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbTime18.Name = "tsbTime18";
+            this.tsbTime18.Size = new System.Drawing.Size(37, 40);
+            this.tsbTime18.Tag = "6";
+            this.tsbTime18.Text = "720분";
+            this.tsbTime18.Click += new System.EventHandler(this.IntervalButton_Click);
             // 
             // tsbTime20
             // 
@@ -228,7 +253,7 @@
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 46);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 23);
             // 
             // tscbCnt
             // 
@@ -249,13 +274,13 @@
             "300"});
             this.tscbCnt.MaxDropDownItems = 50;
             this.tscbCnt.Name = "tscbCnt";
-            this.tscbCnt.Size = new System.Drawing.Size(136, 46);
+            this.tscbCnt.Size = new System.Drawing.Size(75, 23);
             this.tscbCnt.SelectedIndexChanged += new System.EventHandler(this.tscbCnt_SelectedIndexChanged);
             // 
             // tsbSplit
             // 
             this.tsbSplit.Name = "tsbSplit";
-            this.tsbSplit.Size = new System.Drawing.Size(6, 46);
+            this.tsbSplit.Size = new System.Drawing.Size(6, 23);
             // 
             // tsbTable
             // 
@@ -265,7 +290,7 @@
             this.tsbTable.Image = ((System.Drawing.Image)(resources.GetObject("tsbTable.Image")));
             this.tsbTable.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbTable.Name = "tsbTable";
-            this.tsbTable.Size = new System.Drawing.Size(77, 40);
+            this.tsbTable.Size = new System.Drawing.Size(39, 20);
             this.tsbTable.Text = "Table";
             this.tsbTable.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.tsbTable.Click += new System.EventHandler(this.tsbAlignment_Click);
@@ -277,7 +302,7 @@
             this.tsbList.Image = ((System.Drawing.Image)(resources.GetObject("tsbList.Image")));
             this.tsbList.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbList.Name = "tsbList";
-            this.tsbList.Size = new System.Drawing.Size(55, 40);
+            this.tsbList.Size = new System.Drawing.Size(29, 20);
             this.tsbList.Text = "List";
             this.tsbList.Click += new System.EventHandler(this.tsbAlignment_Click);
             // 
@@ -289,14 +314,14 @@
             this.tsbFTab.Image = ((System.Drawing.Image)(resources.GetObject("tsbFTab.Image")));
             this.tsbFTab.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbFTab.Name = "tsbFTab";
-            this.tsbFTab.Size = new System.Drawing.Size(58, 40);
+            this.tsbFTab.Size = new System.Drawing.Size(30, 20);
             this.tsbFTab.Text = "Tab";
             this.tsbFTab.Click += new System.EventHandler(this.tsbAlignment_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 46);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 23);
             // 
             // tspb
             // 
@@ -305,7 +330,7 @@
             this.tspb.ForeColor = System.Drawing.Color.Red;
             this.tspb.Maximum = 60;
             this.tspb.Name = "tspb";
-            this.tspb.Size = new System.Drawing.Size(260, 54);
+            this.tspb.Size = new System.Drawing.Size(140, 27);
             this.tspb.Value = 60;
             // 
             // tsbAutoReload
@@ -336,14 +361,14 @@
             this.tsbReload2.Image = global::OM.Vikala.Chakra.App.Properties.Resources.refreshing_3;
             this.tsbReload2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbReload2.Name = "tsbReload2";
-            this.tsbReload2.Size = new System.Drawing.Size(46, 40);
+            this.tsbReload2.Size = new System.Drawing.Size(28, 20);
             this.tsbReload2.Text = "toolStripButton1";
             this.tsbReload2.Click += new System.EventHandler(this.TsbReload2_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 46);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 23);
             // 
             // tsbPrint
             // 
@@ -358,7 +383,7 @@
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 46);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 23);
             // 
             // tsbMdiOut
             // 
@@ -366,7 +391,7 @@
             this.tsbMdiOut.Image = ((System.Drawing.Image)(resources.GetObject("tsbMdiOut.Image")));
             this.tsbMdiOut.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbMdiOut.Name = "tsbMdiOut";
-            this.tsbMdiOut.Size = new System.Drawing.Size(46, 40);
+            this.tsbMdiOut.Size = new System.Drawing.Size(28, 20);
             this.tsbMdiOut.Click += new System.EventHandler(this.tsbMdiOut_Click);
             // 
             // tsbMdiIn
@@ -375,14 +400,14 @@
             this.tsbMdiIn.Image = ((System.Drawing.Image)(resources.GetObject("tsbMdiIn.Image")));
             this.tsbMdiIn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbMdiIn.Name = "tsbMdiIn";
-            this.tsbMdiIn.Size = new System.Drawing.Size(46, 40);
+            this.tsbMdiIn.Size = new System.Drawing.Size(28, 20);
             this.tsbMdiIn.Visible = false;
             this.tsbMdiIn.Click += new System.EventHandler(this.tsbMdiIn_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 46);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 23);
             // 
             // toolStripLabel3
             // 
@@ -411,7 +436,7 @@
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 46);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 23);
             // 
             // tsbLineBold
             // 
@@ -419,7 +444,7 @@
             this.tsbLineBold.Image = ((System.Drawing.Image)(resources.GetObject("tsbLineBold.Image")));
             this.tsbLineBold.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbLineBold.Name = "tsbLineBold";
-            this.tsbLineBold.Size = new System.Drawing.Size(84, 40);
+            this.tsbLineBold.Size = new System.Drawing.Size(43, 20);
             this.tsbLineBold.Text = "Bold+";
             this.tsbLineBold.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.tsbLineBold.Click += new System.EventHandler(this.TsbLineBold_Click);
@@ -430,19 +455,19 @@
             this.tsbLineBold2.Image = ((System.Drawing.Image)(resources.GetObject("tsbLineBold2.Image")));
             this.tsbLineBold2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbLineBold2.Name = "tsbLineBold2";
-            this.tsbLineBold2.Size = new System.Drawing.Size(77, 40);
+            this.tsbLineBold2.Size = new System.Drawing.Size(40, 20);
             this.tsbLineBold2.Text = "Bold-";
             this.tsbLineBold2.Click += new System.EventHandler(this.TsbLineBold2_Click);
             // 
             // UserToolStrip
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.Controls.Add(this.toolStrip1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "UserToolStrip";
-            this.Size = new System.Drawing.Size(2793, 46);
+            this.Size = new System.Drawing.Size(1504, 23);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -457,11 +482,14 @@
         private System.Windows.Forms.ToolStripSeparator toolStripLabel2;
         private System.Windows.Forms.ToolStripButton tsbTime11;
         private System.Windows.Forms.ToolStripButton tsbTime12;
-        private System.Windows.Forms.ToolStripButton tsbTime16;      
-        private System.Windows.Forms.ToolStripButton tsbTime20;
         private System.Windows.Forms.ToolStripButton tsbTime13;
         private System.Windows.Forms.ToolStripButton tsbTime14;
         private System.Windows.Forms.ToolStripButton tsbTime15;
+        private System.Windows.Forms.ToolStripButton tsbTime16;
+        private System.Windows.Forms.ToolStripButton tsbTime17;
+        private System.Windows.Forms.ToolStripButton tsbTime18;
+        private System.Windows.Forms.ToolStripButton tsbTime20;
+        
         private System.Windows.Forms.ToolStripSeparator tsbSplit;
         private System.Windows.Forms.ToolStripButton tsbFTab;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;

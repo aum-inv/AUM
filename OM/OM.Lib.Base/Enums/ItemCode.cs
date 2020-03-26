@@ -19,14 +19,15 @@ namespace OM.Lib.Base.Enums
         public const string 지수_해외_니케이225 = "지수-해외-니케이225";
 
         public const string 선물_국내_코스피200 = "선물-국내-코스피200";
-        public const string 선물_해외_WTI = "선물-해외-WTI";
-        public const string 선물_해외_NG = "선물-해외-NG";
-        public const string 선물_해외_GOLD = "선물-해외-GOLD";
-        public const string 선물_해외_SILVER = "선물-해외-SILVER";
-        public const string 선물_해외_항셍 = "선물-해외-항셍";
-        public const string 선물_해외_나스닥 = "선물-해외-나스닥";
-        public const string 선물_해외_유로FX = "선물-해외-유로FX";
-        public const string 선물_해외_SNP = "선물-해외-SNP"; 
+        public const string 선물_해외_WTI = "해선-WTI";
+        public const string 선물_해외_NG = "해선-NG";
+        public const string 선물_해외_GOLD = "해선-GOLD";
+        public const string 선물_해외_SILVER = "해선-SILVER";
+        public const string 선물_해외_항셍 = "해선-항셍";
+        public const string 선물_해외_나스닥 = "해선-나스닥";
+        public const string 선물_해외_유로FX = "해선-유로FX";
+        public const string 선물_해외_SNP = "해선-SNP"; 
+
         public const string 환율_EUR_USD = "환율-EUR/USD";
         public const string 환율_USD_JPY = "환율-USD/JPY";
 

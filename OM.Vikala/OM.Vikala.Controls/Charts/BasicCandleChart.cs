@@ -158,7 +158,7 @@ namespace OM.Vikala.Controls.Charts
         }
         public void Annotation()
         {
-            return;
+            //return;
             if (ChartData == null) return;
             int idx = 0;
             foreach (var item in ChartData)
@@ -626,7 +626,7 @@ namespace OM.Vikala.Controls.Charts
 
         private void addImageAnnotation(EightRuleTypeEnum eightRuleType,  DataPoint point)
         {
-            return;
+            //return;
 
             if (eightRuleType == EightRuleTypeEnum.무_0_없음) return;
 

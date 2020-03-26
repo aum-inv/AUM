@@ -156,7 +156,7 @@ namespace OM.PP.XingApp.Api
                     }
                     OnApiLog("Api_WorldFuture ::: query_ReceiveData");
                 }
-                catch (Exception ex) { }
+                catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
                 finally
                 {
                     manualEvent.Set();

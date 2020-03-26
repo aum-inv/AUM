@@ -152,7 +152,7 @@ namespace OM.Atman.Chakra.App
                         lblRate[itemCode].ForeColor = Color.White;
                     }
                 }
-                catch (Exception ex) { }
+                catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
             }));
         }
 
@@ -166,15 +166,6 @@ namespace OM.Atman.Chakra.App
             PPStorage.Instance.Init("NQ");
             PPStorage.Instance.Init("URO");
             PPStorage.Instance.Init("ES");
-
-            PPStorage.Instance.InitTick("CL");
-            PPStorage.Instance.InitTick("NG");
-            PPStorage.Instance.InitTick("GC");
-            PPStorage.Instance.InitTick("SI");
-            PPStorage.Instance.InitTick("HMH");
-            PPStorage.Instance.InitTick("NQ");
-            PPStorage.Instance.InitTick("URO");
-            PPStorage.Instance.InitTick("ES");
 
             LoadCandle("CL");
             LoadCandle("NG");
@@ -208,34 +199,17 @@ namespace OM.Atman.Chakra.App
                     , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Minute_300));
 
                 PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Day
-                    , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(itemCode, TimeIntervalEnum.Day));
-
-                //PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Tick_180
-                //    , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Tick_180));
-
-                PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Tick_360
-                   , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Tick_360));
-
-                PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Tick_720
-                   , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Tick_720));
-
-                PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Tick_1080
-                   , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Tick_1080));
-
-                //PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Tick_1440
-                //   , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Tick_1440));
+                    , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(itemCode, TimeIntervalEnum.Day));            
 
                 PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Minute_60);
                 PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Minute_120);
                 PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Minute_180);
+                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Minute_240);
                 PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Minute_300);
+                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Minute_360);
+                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Minute_480);
+                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Minute_720);
                 PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Day);
-
-                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Tick_360);
-                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Tick_720);
-                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Tick_1080);
-                //PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Tick_1440);
-
             }
             catch (Exception ex)
             {
@@ -331,7 +305,7 @@ namespace OM.Atman.Chakra.App
                         }
                     }
                 }
-                catch (Exception ex) { }
+                catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
             }
         }
         private void MainForm_Load(object sender, EventArgs e)

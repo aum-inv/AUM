@@ -191,12 +191,6 @@
     <Compile Include="Mains\ChartForms\CandleChartForm.Designer.cs">
       <DependentUpon>CandleChartForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mains\TrendTickChartForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mains\TrendTickChartForm.Designer.cs">
-      <DependentUpon>TrendTickChartForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Mains\TrendMinuteChartForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -412,9 +406,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mains\ChartForms\CandleChartForm.resx">
       <DependentUpon>CandleChartForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mains\TrendTickChartForm.resx">
-      <DependentUpon>TrendTickChartForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mains\TrendMinuteChartForm.resx">
       <DependentUpon>TrendMinuteChartForm.cs</DependentUpon>

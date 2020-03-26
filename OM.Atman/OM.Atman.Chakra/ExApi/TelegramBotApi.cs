@@ -24,7 +24,7 @@ namespace OM.Atman.Chakra.ExApi
 
                 var result = await bot.SendTextMessageAsync(new Telegram.Bot.Types.ChatId(729502769), msg);
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
         }
 
         private static TelegramBotClient receiveBot = null;
@@ -103,8 +103,9 @@ namespace OM.Atman.Chakra.ExApi
                 ExApi.XingApi.Order("메신저주문", itemCode, position, quantity);              
                 await SendMessageAsync("메신저 주문완료");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
     }

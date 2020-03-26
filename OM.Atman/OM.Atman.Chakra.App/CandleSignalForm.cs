@@ -16,105 +16,20 @@ namespace OM.Atman.Chakra.App
 {
     public partial class CandleSignalForm : Form
     {
-        //TickLineTradeRule tickLineRuleCL = new TickLineTradeRule("CL", "0");
-        //TickLineTradeRule tickLineRuleNG = new TickLineTradeRule("NG", "0");
-        //TickLineTradeRule tickLineRuleGC = new TickLineTradeRule("GC", "0");
-        //TickLineTradeRule tickLineRuleSI = new TickLineTradeRule("SI", "0");
-        //TickLineTradeRule tickLineRuleHSI = new TickLineTradeRule("HMH", "0");
-        //TickLineTradeRule tickLineRuleNQ = new TickLineTradeRule("NQ", "0");
-        //TickLineTradeRule tickLineRuleURO = new TickLineTradeRule("URO", "0");
-
-        //TickLineTradeRule tick5LineRuleCL = new TickLineTradeRule("CL", "2");
-        //TickLineTradeRule tick5LineRuleNG = new TickLineTradeRule("NG", "2");
-        //TickLineTradeRule tick5LineRuleGC = new TickLineTradeRule("GC", "2");
-        //TickLineTradeRule tick5LineRuleSI = new TickLineTradeRule("SI", "2");
-        //TickLineTradeRule tick5LineRuleHSI = new TickLineTradeRule("HMH", "2");
-        //TickLineTradeRule tick5LineRuleNQ = new TickLineTradeRule("NQ", "2");
-        //TickLineTradeRule tick5LineRuleURO = new TickLineTradeRule("URO", "2");
-
+       
         public CandleSignalForm()
         {
             InitializeComponent();
 
             PPEvents.Instance.CandleOccurHandler += Instance_CandleOccurHandler;
             PPEvents.Instance.CandleChartPatternHandler += Instance_CandleChartPatternHandler;
-            PPEvents.Instance.TickLineChartPatternHandler += Instance_TickLineChartPatternHandler;
-            PPEvents.Instance.TickLineUpDownPatternHandler += Instance_TickLineUpDownPatternHandler;
 
             this.Load += CandleSignalForm_Load;
-
-            //SiseEvents.Instance.SiseHandler += Instance_SiseHandler;
         }
 
-        //private void Instance_SiseHandler(string itemCode, CurrentPrice price)
-        //{
-        //    try
-        //    {
-        //        switch (itemCode)
-        //        {
-        //            case "CL":
-        //                tickLineRuleCL.Analysis(price);
-        //                tick5LineRuleCL.Analysis(price);
-        //                break;
-        //            case "NG":
-        //                tickLineRuleNG.Analysis(price);
-        //                tick5LineRuleNG.Analysis(price);
-        //                break;
-        //            case "GC":
-        //                tickLineRuleGC.Analysis(price);
-        //                tick5LineRuleGC.Analysis(price);
-        //                break;
-        //            case "SI":
-        //                tickLineRuleSI.Analysis(price);
-        //                tick5LineRuleSI.Analysis(price);
-        //                break;
-        //            case "HMH":
-        //                tickLineRuleHSI.Analysis(price);
-        //                tick5LineRuleHSI.Analysis(price);
-        //                break;
-        //            case "NQ":
-        //                tickLineRuleNQ.Analysis(price);
-        //                tick5LineRuleNQ.Analysis(price);
-        //                break;
-        //            case "URO":
-        //                tickLineRuleURO.Analysis(price);
-        //                tick5LineRuleURO.Analysis(price);
-        //                break;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {   
-        //    }
-        //}
         private void CandleSignalForm_Load(object sender, EventArgs e)
         {
             
-        }
-
-        private void Instance_TickLineUpDownPatternHandler(string itemCode, TimeIntervalEnum timeInterval, UpDownPatternEnum updown, string type)
-        {
-            this.Invoke(new Action(() =>
-            {
-                dgv.Rows.Insert(0, "UpDown패턴 ", DateTime.Now.ToString("yy-MM-dd HH:mm:ss"), itemCode, EnumUtil.GetTimeIntervalText(timeInterval), updown.ToString().Replace("Up", "↗").Replace("Down", "↘"), type);
-
-                string title = "라인포틴트패턴 시그널";
-                string msg = $"{itemCode}::{EnumUtil.GetTimeIntervalText(timeInterval)}::{updown}";
-
-                ShowNotifyIcon(title, msg);
-            }));
-        }
-
-        private void Instance_TickLineChartPatternHandler(string itemCode, TimeIntervalEnum timeInterval, TickLineChartPatternEnum updown, string type)
-        {            
-            this.Invoke(new Action(() =>
-            {
-                dgv.Rows.Insert(0, "Tick패턴 ", DateTime.Now.ToString("yy-MM-dd HH:mm:ss"), itemCode, EnumUtil.GetTimeIntervalText(timeInterval), updown.ToString().Replace("H", "▲").Replace("L", "▼").Replace("M", "↕"), type);
-
-                string title = "라인포인트패턴 시그널";
-                string msg = $"{itemCode}::{EnumUtil.GetTimeIntervalText(timeInterval)}::{updown}";
-
-                ShowNotifyIcon(title, msg);
-            }));
         }
 
         private void Instance_CandleChartPatternHandler(string itemCode, TimeIntervalEnum timeInterval, CandleChartPatternEnum updown)
@@ -145,7 +60,7 @@ namespace OM.Atman.Chakra.App
 
         private void ShowNotifyIcon(string title, string message)
         {
-            return;
+            //return;
             try
             {
                 PopupNotifier popup = new PopupNotifier();

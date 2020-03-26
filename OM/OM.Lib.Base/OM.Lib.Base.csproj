@@ -53,7 +53,6 @@
   <ItemGroup>
     <Compile Include="Enums\CandleMassPatternEnum.cs" />
     <Compile Include="Enums\CandleChartPatternEnum.cs" />
-    <Compile Include="Enums\TickLineChartPatternEnum.cs" />
     <Compile Include="Enums\ItemCodeSet.cs" />
     <Compile Include="Enums\PricePatternEnum.cs" />
     <Compile Include="Enums\UpDownPatternEnum.cs" />

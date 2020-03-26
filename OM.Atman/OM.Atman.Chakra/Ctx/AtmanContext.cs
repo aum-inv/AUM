@@ -50,7 +50,7 @@ namespace OM.Atman.Chakra.Ctx
                 serverContext.Host.Faulted += (o, e) => { StartServer(); };
 
             }
-            catch (Exception ex) {}
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
         }
         public void CloseServer()
         {
@@ -58,7 +58,7 @@ namespace OM.Atman.Chakra.Ctx
             {
                 serverContext.Close();
             }
-            catch (Exception ex) {}
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
         }
 
         /// 
@@ -85,6 +85,7 @@ namespace OM.Atman.Chakra.Ctx
                     }
                     catch (Exception ex)
                     {
+                        System.Diagnostics.Debug.WriteLine(ex.Message);
                     }
                 }
 
@@ -101,7 +102,7 @@ namespace OM.Atman.Chakra.Ctx
                 clientContext = new TcpServiceHostClient<IAtmanService>(AtmanServerConfigData.ServiceName);
                 clientService = clientContext.Connect(AtmanServerConfigData.IP, AtmanServerConfigData.Port);
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
         }
 
         public IAtmanService GetClientService()
@@ -113,7 +114,8 @@ namespace OM.Atman.Chakra.Ctx
 
                 return clientServiceNew;
             }
-            catch (Exception ex) {                
+            catch (Exception ex) {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
                 return null;
             }
         }

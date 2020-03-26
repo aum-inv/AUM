@@ -77,7 +77,7 @@ namespace OM.Vikala.Chakra.App.Mains
                 timer1.Stop();
                 timer1.Dispose();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
         }
 
         protected Timer timer1 = new Timer();
@@ -111,6 +111,7 @@ namespace OM.Vikala.Chakra.App.Mains
             {
                 timer1.Stop();
                 timer1.Enabled = false;
+                System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
 

@@ -1,6 +1,7 @@
 ﻿using OM.Lib.Framework.Communication;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,7 +51,7 @@ namespace OM.PP.Chakra.Ctx
                 serverContext.Host.Faulted += (o, e) => { StartServer(); };
 
             }
-            catch (Exception ex) {}
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
         }
         public void CloseServer()
         {
@@ -58,7 +59,7 @@ namespace OM.PP.Chakra.Ctx
             {
                 serverContext.Close();
             }
-            catch (Exception ex) {}
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
         }
 
         /// 
@@ -85,6 +86,7 @@ namespace OM.PP.Chakra.Ctx
                     }
                     catch (Exception ex)
                     {
+                        Debug.WriteLine(ex.Message);
                     }
                 }
 
@@ -101,7 +103,7 @@ namespace OM.PP.Chakra.Ctx
                 clientContext = new TcpServiceHostClient<IXingService>(XingServerConfigData.ServiceName);
                 clientService = clientContext.Connect(XingServerConfigData.IP, XingServerConfigData.Port);
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
         }
 
         public IXingService GetClientService()
@@ -113,7 +115,8 @@ namespace OM.PP.Chakra.Ctx
 
                 return clientServiceNew;
             }
-            catch (Exception ex) {                
+            catch (Exception ex) {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
                 return null;
             }
         }

@@ -210,6 +210,7 @@ namespace OM.Atman.Chakra
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
     }

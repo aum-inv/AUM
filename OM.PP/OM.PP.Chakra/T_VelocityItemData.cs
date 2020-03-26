@@ -73,6 +73,7 @@ namespace OM.PP.Chakra
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
     }

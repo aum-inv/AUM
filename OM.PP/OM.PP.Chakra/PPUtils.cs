@@ -2,6 +2,7 @@
 using OM.Lib.Base.Enums;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,7 @@ namespace OM.PP.Chakra
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
             }
             return averageDatas;
         }
@@ -59,6 +61,7 @@ namespace OM.PP.Chakra
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
             }
             return averageDatas;
         }
@@ -76,6 +79,7 @@ namespace OM.PP.Chakra
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
             }
             return sourceDatasNew;
         }
@@ -92,6 +96,7 @@ namespace OM.PP.Chakra
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
             }
             return averageDatas;
         }
@@ -109,6 +114,7 @@ namespace OM.PP.Chakra
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
             }
             return sourceDatasNew;
         }
@@ -772,9 +778,7 @@ namespace OM.PP.Chakra
         {
             try
             {
-                Single hh = 0;
-                Single hm = 0;
-                Single lm = 0;
+                Single hh = 0;         
                 Single ll = 0;
 
                 hh = list.Max(t => t.HighPrice);

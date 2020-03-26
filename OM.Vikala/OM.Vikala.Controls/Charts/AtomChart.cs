@@ -99,7 +99,6 @@ namespace OM.Vikala.Controls.Charts
                 if (idx > 0 && isSignal)
                 {
                     T_AtomItemData bitem = ChartData[idx - 1];
-                    bool isSignal2 = false;
                     bool isUpPosition2 = false;
                     bool isDownPosition2 = false;
                     if (bitem.HighPrice < bitem.T_MassAvg
@@ -107,7 +106,6 @@ namespace OM.Vikala.Controls.Charts
                    && bitem.HighPrice < bitem.T_VikalaAvg
                    && bitem.HighPrice < bitem.T_TotalCenterAvg)
                     {
-                        isSignal2 = true;
                         isDownPosition2 = true;
                     }
                     if (bitem.LowPrice > bitem.T_MassAvg
@@ -115,7 +113,6 @@ namespace OM.Vikala.Controls.Charts
                        && bitem.LowPrice > bitem.T_VikalaAvg
                        && bitem.LowPrice > bitem.T_TotalCenterAvg)
                     {
-                        isSignal2 = true;
                         isUpPosition2 = true;
                     }
 

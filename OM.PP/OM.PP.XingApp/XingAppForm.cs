@@ -3,6 +3,7 @@ using MaterialSkin.Controls;
 using MetroFramework.Forms;
 using OM.Atman.Chakra.Ctx;
 using OM.Lib.Base.Enums;
+using OM.PP.Chakra;
 using OM.PP.Chakra.Ctx;
 using OM.PP.XingApp.Api;
 using OM.PP.XingApp.Config;
@@ -12,6 +13,7 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,9 +28,9 @@ namespace OM.PP.XingApp
         private XASessionClass session = new XASessionClass();
 
         System.Threading.Timer timer = null;
-        System.Threading.Timer timerTick = null;
+
         bool isRuning = false;
-        bool isRuningTick = false;
+      
         bool isLogoned = false;
 
         bool isAutoFFCL  = false;
@@ -91,6 +93,7 @@ namespace OM.PP.XingApp
             }
             catch (System.Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
                 //MessageBox.Show(ex.Message);
             }
         }
@@ -160,65 +163,7 @@ namespace OM.PP.XingApp
                 && !isAutoFFES)
                 isRuning = false;
         }
-        private void timer_TickTick(object state)
-        {
-            if (!isLogoned) return;
-            if (isRuningTick) return;
-            isRuningTick = true;
-            Task.Factory.StartNew(() => {
-                if (isAutoFFGC)
-                {
-                    queryFFRTick(ItemCodeSet.GetItemCode(ItemCode.선물_해외_GOLD));
-                    System.Threading.Thread.Sleep(1500);
-                }
-                if (isAutoFFNG)
-                {
-                    queryFFRTick(ItemCodeSet.GetItemCode(ItemCode.선물_해외_NG));
-                    System.Threading.Thread.Sleep(1500);
-                }
-                if (isAutoFFSI)
-                {
-                    queryFFRTick(ItemCodeSet.GetItemCode(ItemCode.선물_해외_SILVER));
-                    System.Threading.Thread.Sleep(1500);
-                }
-                if (isAutoFFCL)
-                {
-                    queryFFRTick(ItemCodeSet.GetItemCode(ItemCode.선물_해외_WTI));
-                    System.Threading.Thread.Sleep(1500);
-                }
-                if (isAutoFFNQ)
-                {
-                    queryFFRTick(ItemCodeSet.GetItemCode(ItemCode.선물_해외_나스닥));
-                    System.Threading.Thread.Sleep(1500);
-                }
-                if (isAutoFFHSI)
-                {
-                    queryFFRTick(ItemCodeSet.GetItemCode(ItemCode.선물_해외_항셍));
-                    System.Threading.Thread.Sleep(1500);
-                }
-                if (isAutoFFURO)
-                {
-                    queryFFRTick(ItemCodeSet.GetItemCode(ItemCode.선물_해외_유로FX));
-                    System.Threading.Thread.Sleep(1500);
-                }
-                if (isAutoFFES)
-                {
-                    queryFFRTick(ItemCodeSet.GetItemCode(ItemCode.선물_해외_SNP));
-                    System.Threading.Thread.Sleep(1500);
-                }
-            });
-
-            if (!isAutoFFGC 
-                && !isAutoFFNG 
-                && !isAutoFFSI 
-                && !isAutoFFCL 
-                && !isAutoFFNQ 
-                && !isAutoFFHSI 
-                && !isAutoFFURO
-                 && !isAutoFFES)
-                isRuningTick = false;
-        }
-
+       
         #region XingLoginLogout
         private void XingAppForm_Load(object sender, EventArgs e)
         {
@@ -534,64 +479,13 @@ namespace OM.PP.XingApp
                         System.Threading.Thread.Sleep(1500);
                     }
                 }
-                catch (Exception ex) { }
+                catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
                 finally
                 {
                     isRuning = false;
                 }
             });
-        }
-        private void queryFFRTick(string itemCode)
-        {
-            Task.Factory.StartNew(() =>
-            {
-                try
-                {
-                    PPContext.Instance.ClientContext.InitSourceTickData(itemCode);
-                    {
-                        Api_WorldFutureTick apiFF = new Api.Api_WorldFutureTick(100);
-                        apiFF.ApiLogHandler += (log) => { LogWrite(log); };
-                        apiFF.Query(itemCode, "180");
-                        apiFF.manualEvent.WaitOne();
-                        System.Threading.Thread.Sleep(1000);
-                    }
-                    {
-                        Api_WorldFutureTick apiFF = new Api.Api_WorldFutureTick(100);
-                        apiFF.ApiLogHandler += (log) => { LogWrite(log); };
-                        apiFF.Query(itemCode, "360");
-                        apiFF.manualEvent.WaitOne();
-                        System.Threading.Thread.Sleep(1000);
-                    }
-                    {
-                        Api_WorldFutureTick apiFF = new Api.Api_WorldFutureTick(100);
-                        apiFF.ApiLogHandler += (log) => { LogWrite(log); };
-                        apiFF.Query(itemCode, "720");
-                        apiFF.manualEvent.WaitOne();
-                        System.Threading.Thread.Sleep(1000);
-                    }
-                    {
-                        Api_WorldFutureTick apiFF = new Api.Api_WorldFutureTick(100);
-                        apiFF.ApiLogHandler += (log) => { LogWrite(log); };
-                        apiFF.Query(itemCode, "1080");
-                        apiFF.manualEvent.WaitOne();
-                        System.Threading.Thread.Sleep(1000);
-                    }
-                    {
-                        Api_WorldFutureTick apiFF = new Api.Api_WorldFutureTick(100);
-                        apiFF.ApiLogHandler += (log) => { LogWrite(log); };
-                        apiFF.Query(itemCode, "1440");
-                        //apiFF.manualEvent.WaitOne();
-                        //System.Threading.Thread.Sleep(1000);
-                    }
-                }
-                catch (Exception ex) { }
-                finally
-                {
-                    isRuningTick = false;
-                }
-            });
-        }
-                     
+        }    
         private void btnReal_Click(object sender, EventArgs e)
         {
             if (!isLogoned) return;
@@ -720,6 +614,70 @@ namespace OM.PP.XingApp
         private void chkSendRealtime_CheckedChanged(object sender, EventArgs e)
         {
             Api_WorldFutureReal.IsSend = chkSendRealtime.Checked;
-        }    
+        }
+
+        private void btnFileOpen_Click(object sender, EventArgs e)
+        {
+            string path = Environment.CurrentDirectory;
+
+            string folder = (sender as Button).Tag.ToString() ;
+
+            string fullPath = System.IO.Path.Combine(path, "sise", folder);
+
+            if (!System.IO.Directory.Exists(fullPath)) return;
+
+            var fileList = Directory.GetFiles(fullPath);
+
+            foreach (var f in fileList)
+            {
+                TimeIntervalEnum timeIntervalEnum =  TimeIntervalEnum.None;
+
+                if (f.IndexOf("720") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_720;
+                else if (f.IndexOf("480") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_480;
+                else if (f.IndexOf("360") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_360;
+                else if (f.IndexOf("300") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_300;
+                else if (f.IndexOf("180") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_180;
+                else if (f.IndexOf("120") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_120;
+                else if (f.IndexOf("60") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_60;
+                else if (f.IndexOf("일") > -1) timeIntervalEnum = TimeIntervalEnum.Day;
+
+                if (timeIntervalEnum == TimeIntervalEnum.None) continue;
+
+                using (var reader = new StreamReader(f))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        var line = reader.ReadLine();
+                        var values = line.Split(',');
+
+                        S_CandleItemData data = new S_CandleItemData();
+                        if (timeIntervalEnum == TimeIntervalEnum.Day)
+                        {
+                            data.DTime = Convert.ToDateTime(values[0].Trim());
+                            data.ItemCode = folder.ToUpper();
+                            data.OpenPrice = Convert.ToSingle(values[1].Trim());
+                            data.HighPrice = Convert.ToSingle(values[2].Trim());
+                            data.LowPrice = Convert.ToSingle(values[3].Trim());
+                            data.ClosePrice = Convert.ToSingle(values[4].Trim());
+                            data.Volume = 0;
+                        }
+                        else
+                        {
+                            data.DTime = Convert.ToDateTime(values[0].Trim() + " " + values[1].Trim());
+                            data.ItemCode = folder.ToUpper();
+                            data.OpenPrice = Convert.ToSingle(values[2].Trim());
+                            data.HighPrice = Convert.ToSingle(values[3].Trim());
+                            data.LowPrice = Convert.ToSingle(values[4].Trim());
+                            data.ClosePrice = Convert.ToSingle(values[5].Trim());
+                            data.Volume = 0;
+                        }
+                        PPContext.Instance.ClientContext.SetCandleSourceData(data.ItemCode, timeIntervalEnum, data);
+
+                        LogWrite($"date : {data.DTime} opne : {data.OpenPrice} high : {data.HighPrice} low : {data.LowPrice} close : {data.ClosePrice} ");
+                       
+                    }
+                }
+            }
+        }
     }
 }

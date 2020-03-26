@@ -145,8 +145,8 @@ namespace OM.Vikala.Chakra.App.Mains
             else if (timeInterval == TimeIntervalEnum.Minute_120) tsbTime12.BackColor = Color.Yellow;
             else if (timeInterval == TimeIntervalEnum.Minute_180) tsbTime13.BackColor = Color.Yellow;
             else if (timeInterval == TimeIntervalEnum.Minute_300) tsbTime14.BackColor = Color.Yellow;
-            else if (timeInterval == TimeIntervalEnum.Minute_420) tsbTime15.BackColor = Color.Yellow;
-            else if (timeInterval == TimeIntervalEnum.Minute_540) tsbTime16.BackColor = Color.Yellow;
+            else if (timeInterval == TimeIntervalEnum.Minute_360) tsbTime15.BackColor = Color.Yellow;
+            else if (timeInterval == TimeIntervalEnum.Minute_480) tsbTime16.BackColor = Color.Yellow;
             else if (timeInterval == TimeIntervalEnum.Day) tsbTime20.BackColor = Color.Yellow;
         }
 
@@ -185,8 +185,8 @@ namespace OM.Vikala.Chakra.App.Mains
             else if (n == 2) timeInterval = TimeIntervalEnum.Minute_120;
             else if (n == 3) timeInterval = TimeIntervalEnum.Minute_180;
             else if (n == 4) timeInterval = TimeIntervalEnum.Minute_300;
-            else if (n == 5) timeInterval = TimeIntervalEnum.Minute_420;
-            else if (n == 6) timeInterval = TimeIntervalEnum.Minute_540;
+            else if (n == 5) timeInterval = TimeIntervalEnum.Minute_360;
+            else if (n == 6) timeInterval = TimeIntervalEnum.Minute_480;
             else if (n == 7) timeInterval = TimeIntervalEnum.Day;
             
             if (TimerIntervalChangedEvent != null)
@@ -290,8 +290,6 @@ namespace OM.Vikala.Chakra.App.Mains
             if (LineChartWidthChangedEvent != null)
                 LineChartWidthChangedEvent("-", e);
         }
-
-       
     }
 
     public enum FlowDirectionTypeEnum
