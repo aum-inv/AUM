@@ -25,22 +25,22 @@ namespace OM.Vikala.Controls.Charts
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
-        public static void loadDataAverageAndApply(this BasicCandleChart c
-            , string itemCode
-            , List<S_CandleItemData> sourceDatas
-            , List<S_CandleItemData> averageDatas
-            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
-            , int itemCnt = 7)
-        {
-            try
-            {
-                c.LoadData(itemCode, sourceDatas, timeInterval);
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-            }
-        }
+        //public static void loadDataAverageAndApply(this BasicCandleChart c
+        //    , string itemCode
+        //    , List<S_CandleItemData> sourceDatas
+        //    , List<S_CandleItemData> averageDatas
+        //    , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+        //    , int itemCnt = 7)
+        //{
+        //    try
+        //    {
+        //        c.LoadData(itemCode, sourceDatas, timeInterval);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine(ex.Message);
+        //    }
+        //}
         #endregion
 
         #region RealCandleChart
@@ -59,22 +59,22 @@ namespace OM.Vikala.Controls.Charts
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
-        public static void loadDataAverageAndApply(this RealCandleChart c
-            , string itemCode
-            , List<S_CandleItemData> sourceDatas
-            , List<S_CandleItemData> averageDatas
-            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
-            , int itemCnt = 7)
-        {
-            try
-            {
-                c.LoadData(itemCode, sourceDatas, timeInterval);
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-            }
-        }
+        //public static void loadDataAverageAndApply(this RealCandleChart c
+        //    , string itemCode
+        //    , List<S_CandleItemData> sourceDatas
+        //    , List<S_CandleItemData> averageDatas
+        //    , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+        //    , int itemCnt = 7)
+        //{
+        //    try
+        //    {
+        //        c.LoadData(itemCode, sourceDatas, timeInterval);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine(ex.Message);
+        //    }
+        //}
         #endregion
 
         #region AtomChart
@@ -100,30 +100,30 @@ namespace OM.Vikala.Controls.Charts
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
-        public static void loadDataAverageAndApply(this AtomChart c
-             , string itemCode
-             , List<S_CandleItemData> sourceDatas
-             , List<S_CandleItemData> averageDatas
-             , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
-             , int itemCnt = 7)
-        {
-            try
-            {
-                List<T_AtomItemData> transformedDatas = new List<T_AtomItemData>();
+        //public static void loadDataAverageAndApply(this AtomChart c
+        //     , string itemCode
+        //     , List<S_CandleItemData> sourceDatas
+        //     , List<S_CandleItemData> averageDatas
+        //     , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+        //     , int itemCnt = 7)
+        //{
+        //    try
+        //    {
+        //        List<T_AtomItemData> transformedDatas = new List<T_AtomItemData>();
 
-                for (int i = itemCnt; i <= sourceDatas.Count; i++)
-                {
-                    T_AtomItemData transData = new T_AtomItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemCnt, itemCnt));
-                    transData.Transform();
-                    transformedDatas.Add(transData);
-                }
-                c.LoadData(itemCode, transformedDatas, timeInterval);
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-            }
-        }
+        //        for (int i = itemCnt; i <= sourceDatas.Count; i++)
+        //        {
+        //            T_AtomItemData transData = new T_AtomItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemCnt, itemCnt));
+        //            transData.Transform();
+        //            transformedDatas.Add(transData);
+        //        }
+        //        c.LoadData(itemCode, transformedDatas, timeInterval);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine(ex.Message);
+        //    }
+        //}
         #endregion
 
         #region BasicLineChart
@@ -142,22 +142,22 @@ namespace OM.Vikala.Controls.Charts
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
-        public static void loadDataAverageAndApply(this BasicLineChart c
-            , string itemCode
-            , List<S_LineItemData> sourceDatas
-            , List<S_CandleItemData> averageDatas
-            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
-            , int itemCnt = 7)
-        {
-            try
-            {
-                c.LoadData(itemCode, sourceDatas, timeInterval);
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-            }
-        }
+        //public static void loadDataAverageAndApply(this BasicLineChart c
+        //    , string itemCode
+        //    , List<S_LineItemData> sourceDatas
+        //    , List<S_CandleItemData> averageDatas
+        //    , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+        //    , int itemCnt = 7)
+        //{
+        //    try
+        //    {
+        //        c.LoadData(itemCode, sourceDatas, timeInterval);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine(ex.Message);
+        //    }
+        //}
         #endregion
 
         #region BasicVolumeChart
@@ -176,22 +176,22 @@ namespace OM.Vikala.Controls.Charts
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
-        public static void loadDataAverageAndApply(this BasicVolumeChart c
-            , string itemCode
-            , List<S_CandleItemData> sourceDatas
-            , List<S_CandleItemData> averageDatas
-            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
-             , int itemCnt = 7)
-        {
-            try
-            {
+        //public static void loadDataAverageAndApply(this BasicVolumeChart c
+        //    , string itemCode
+        //    , List<S_CandleItemData> sourceDatas
+        //    , List<S_CandleItemData> averageDatas
+        //    , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+        //     , int itemCnt = 7)
+        //{
+        //    try
+        //    {
 
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine(ex.Message);
+        //    }
+        //}
         #endregion
 
         #region CandleStick
@@ -210,22 +210,22 @@ namespace OM.Vikala.Controls.Charts
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
-        public static void loadDataAverageAndApply(this Candlestick c
-           , string itemCode
-           , List<S_CandleItemData> sourceDatas
-            , List<S_CandleItemData> averageDatas
-           , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
-           , int itemCnt = 7)
-        {
-            try
-            {
-                c.LoadData(sourceDatas, timeInterval);
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-            }
-        }
+        //public static void loadDataAverageAndApply(this Candlestick c
+        //   , string itemCode
+        //   , List<S_CandleItemData> sourceDatas
+        //    , List<S_CandleItemData> averageDatas
+        //   , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+        //   , int itemCnt = 7)
+        //{
+        //    try
+        //    {
+        //        c.LoadData(sourceDatas, timeInterval);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine(ex.Message);
+        //    }
+        //}
 
         #endregion
 
@@ -254,31 +254,31 @@ namespace OM.Vikala.Controls.Charts
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
-        public static void loadDataAverageAndApply(this FiveColorChart c
-             , string itemCode
-             , List<S_CandleItemData> sourceDatas
-             , List<S_CandleItemData> averageDatas
-             , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
-             , int itemsCnt = 7)
-        {
-            try
-            {
-                List<T_FiveColorItemData> transformedDatas = new List<T_FiveColorItemData>();
+        //public static void loadDataAverageAndApply(this FiveColorChart c
+        //     , string itemCode
+        //     , List<S_CandleItemData> sourceDatas
+        //     , List<S_CandleItemData> averageDatas
+        //     , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+        //     , int itemsCnt = 7)
+        //{
+        //    try
+        //    {
+        //        List<T_FiveColorItemData> transformedDatas = new List<T_FiveColorItemData>();
 
-                for (int i = itemsCnt; i <= sourceDatas.Count; i++)
-                {
-                    T_FiveColorItemData transData = new T_FiveColorItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemsCnt, itemsCnt));
-                    transData.Transform();
-                    transformedDatas.Add(transData);
-                }
+        //        for (int i = itemsCnt; i <= sourceDatas.Count; i++)
+        //        {
+        //            T_FiveColorItemData transData = new T_FiveColorItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemsCnt, itemsCnt));
+        //            transData.Transform();
+        //            transformedDatas.Add(transData);
+        //        }
 
-                c.LoadData(itemCode, transformedDatas, timeInterval);
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-            }
-        }
+        //        c.LoadData(itemCode, transformedDatas, timeInterval);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine(ex.Message);
+        //    }
+        //}
         #endregion
 
         #region PrimeNumCandleChart
@@ -309,34 +309,34 @@ namespace OM.Vikala.Controls.Charts
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
-        public static void loadDataAverageAndApply(this PrimeNumCandleChart c
-            , string itemCode
-            , List<S_CandleItemData> sourceDatas
-            , List<S_CandleItemData> averageDatas
-            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
-            , int itemCnt = 7)
-        {
-            try
-            {
-                List<T_PrimeNumItemData> transformedDatas = new List<T_PrimeNumItemData>();
-                DateTime? dtime = null;
-                foreach (var m in sourceDatas.OrderByDescending(t => t.DTime))
-                {
-                    if (dtime != null && dtime.Value <= m.DTime) continue;
+        //public static void loadDataAverageAndApply(this PrimeNumCandleChart c
+        //    , string itemCode
+        //    , List<S_CandleItemData> sourceDatas
+        //    , List<S_CandleItemData> averageDatas
+        //    , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+        //    , int itemCnt = 7)
+        //{
+        //    try
+        //    {
+        //        List<T_PrimeNumItemData> transformedDatas = new List<T_PrimeNumItemData>();
+        //        DateTime? dtime = null;
+        //        foreach (var m in sourceDatas.OrderByDescending(t => t.DTime))
+        //        {
+        //            if (dtime != null && dtime.Value <= m.DTime) continue;
 
-                    T_PrimeNumItemData tData = new T_PrimeNumItemData(m, sourceDatas);
-                    tData.Transform();
-                    transformedDatas.Add(tData);
+        //            T_PrimeNumItemData tData = new T_PrimeNumItemData(m, sourceDatas);
+        //            tData.Transform();
+        //            transformedDatas.Add(tData);
 
-                    dtime = tData.DTimeS;
-                }
-                c.LoadData(itemCode, transformedDatas.OrderBy(t => t.DTime).ToList(), timeInterval);
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-            }
-        }
+        //            dtime = tData.DTimeS;
+        //        }
+        //        c.LoadData(itemCode, transformedDatas.OrderBy(t => t.DTime).ToList(), timeInterval);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine(ex.Message);
+        //    }
+        //}
         #endregion
 
         #region  QuantumLineChart
@@ -363,30 +363,30 @@ namespace OM.Vikala.Controls.Charts
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
-        public static void loadDataAverageAndApply(this QuantumLineChart c
-           , string itemCode
-           , List<S_CandleItemData> sourceDatas
-           , List<S_CandleItemData> averageDatas
-           , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
-           , int itemsCnt = 7)
-        {
-            try
-            {
-                List<T_QuantumItemData> transformedDatas = new List<T_QuantumItemData>();
+        //public static void loadDataAverageAndApply(this QuantumLineChart c
+        //   , string itemCode
+        //   , List<S_CandleItemData> sourceDatas
+        //   , List<S_CandleItemData> averageDatas
+        //   , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+        //   , int itemsCnt = 7)
+        //{
+        //    try
+        //    {
+        //        List<T_QuantumItemData> transformedDatas = new List<T_QuantumItemData>();
 
-                for (int i = itemsCnt; i <= sourceDatas.Count; i++)
-                {
-                    T_QuantumItemData transData = new T_QuantumItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemsCnt, itemsCnt));
-                    transData.Transform();
-                    transformedDatas.Add(transData);
-                }
-                c.LoadData(itemCode, transformedDatas, timeInterval);
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-            }
-        }
+        //        for (int i = itemsCnt; i <= sourceDatas.Count; i++)
+        //        {
+        //            T_QuantumItemData transData = new T_QuantumItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemsCnt, itemsCnt));
+        //            transData.Transform();
+        //            transformedDatas.Add(transData);
+        //        }
+        //        c.LoadData(itemCode, transformedDatas, timeInterval);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine(ex.Message);
+        //    }
+        //}
 
         public static void loadDataAndApply(this QuantumLineTradeChart c
            , string itemCode
@@ -411,30 +411,30 @@ namespace OM.Vikala.Controls.Charts
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
-        public static void loadDataAverageAndApply(this QuantumLineTradeChart c
-           , string itemCode
-           , List<S_CandleItemData> sourceDatas
-           , List<S_CandleItemData> averageDatas
-           , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
-           , int itemsCnt = 7)
-        {
-            try
-            {
-                List<T_QuantumItemData> transformedDatas = new List<T_QuantumItemData>();
+        //public static void loadDataAverageAndApply(this QuantumLineTradeChart c
+        //   , string itemCode
+        //   , List<S_CandleItemData> sourceDatas
+        //   , List<S_CandleItemData> averageDatas
+        //   , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+        //   , int itemsCnt = 7)
+        //{
+        //    try
+        //    {
+        //        List<T_QuantumItemData> transformedDatas = new List<T_QuantumItemData>();
 
-                for (int i = itemsCnt; i <= sourceDatas.Count; i++)
-                {
-                    T_QuantumItemData transData = new T_QuantumItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemsCnt, itemsCnt));
-                    transData.Transform();
-                    transformedDatas.Add(transData);
-                }
-                c.LoadData(itemCode, transformedDatas, timeInterval);
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-            }
-        }
+        //        for (int i = itemsCnt; i <= sourceDatas.Count; i++)
+        //        {
+        //            T_QuantumItemData transData = new T_QuantumItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemsCnt, itemsCnt));
+        //            transData.Transform();
+        //            transformedDatas.Add(transData);
+        //        }
+        //        c.LoadData(itemCode, transformedDatas, timeInterval);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine(ex.Message);
+        //    }
+        //}
 
         public static void loadDataAndApply(this QuantumLineChartHL c
             , string itemCode
@@ -459,30 +459,30 @@ namespace OM.Vikala.Controls.Charts
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
-        public static void loadDataAverageAndApply(this QuantumLineChartHL c
-           , string itemCode
-           , List<S_CandleItemData> sourceDatas
-           , List<S_CandleItemData> averageDatas
-           , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
-           , int itemsCnt = 7)
-        {
-            try
-            {
-                List<T_QuantumItemData> transformedDatas = new List<T_QuantumItemData>();
+        //public static void loadDataAverageAndApply(this QuantumLineChartHL c
+        //   , string itemCode
+        //   , List<S_CandleItemData> sourceDatas
+        //   , List<S_CandleItemData> averageDatas
+        //   , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+        //   , int itemsCnt = 7)
+        //{
+        //    try
+        //    {
+        //        List<T_QuantumItemData> transformedDatas = new List<T_QuantumItemData>();
 
-                for (int i = itemsCnt; i <= sourceDatas.Count; i++)
-                {
-                    T_QuantumItemData transData = new T_QuantumItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemsCnt, itemsCnt));
-                    transData.Transform();
-                    transformedDatas.Add(transData);
-                }
-                c.LoadData(itemCode, transformedDatas, timeInterval);
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-            }
-        }
+        //        for (int i = itemsCnt; i <= sourceDatas.Count; i++)
+        //        {
+        //            T_QuantumItemData transData = new T_QuantumItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemsCnt, itemsCnt));
+        //            transData.Transform();
+        //            transformedDatas.Add(transData);
+        //        }
+        //        c.LoadData(itemCode, transformedDatas, timeInterval);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine(ex.Message);
+        //    }
+        //}
         #endregion
 
         #region  DiceCandleChart
@@ -509,30 +509,30 @@ namespace OM.Vikala.Controls.Charts
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
-        public static void loadDataAverageAndApply(this DiceCandleChart c
-           , string itemCode
-           , List<S_CandleItemData> sourceDatas
-           , List<S_CandleItemData> averageDatas
-           , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
-           , int itemsCnt = 7)
-        {
-            try
-            {
-                List<T_QuantumItemData> transformedDatas = new List<T_QuantumItemData>();
+        //public static void loadDataAverageAndApply(this DiceCandleChart c
+        //   , string itemCode
+        //   , List<S_CandleItemData> sourceDatas
+        //   , List<S_CandleItemData> averageDatas
+        //   , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+        //   , int itemsCnt = 7)
+        //{
+        //    try
+        //    {
+        //        List<T_QuantumItemData> transformedDatas = new List<T_QuantumItemData>();
 
-                for (int i = itemsCnt; i <= sourceDatas.Count; i++)
-                {
-                    T_QuantumItemData transData = new T_QuantumItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemsCnt, itemsCnt));
-                    transData.Transform();
-                    transformedDatas.Add(transData);
-                }
-                c.LoadData(itemCode, transformedDatas, timeInterval);
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-            }
-        }
+        //        for (int i = itemsCnt; i <= sourceDatas.Count; i++)
+        //        {
+        //            T_QuantumItemData transData = new T_QuantumItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemsCnt, itemsCnt));
+        //            transData.Transform();
+        //            transformedDatas.Add(transData);
+        //        }
+        //        c.LoadData(itemCode, transformedDatas, timeInterval);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine(ex.Message);
+        //    }
+        //}
 
         #endregion
 
@@ -566,36 +566,36 @@ namespace OM.Vikala.Controls.Charts
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
-        public static void loadDataAverageAndApply(this ReverseCandleChart c
-          , string itemCode
-          , List<S_CandleItemData> sourceDatas
-          , List<S_CandleItemData> averageDatas
-          , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
-          , int itemCnt = 7)
-        {
-            try
-            {
-                List<S_CandleItemData> reverseDatas = new List<S_CandleItemData>();
-                for (int i = 0, j = sourceDatas.Count - 1; i < sourceDatas.Count; i++, j--)
-                {
-                    S_CandleItemData reverseData = new S_CandleItemData(
-                          itemCode
-                          , sourceDatas[j].ClosePrice
-                          , sourceDatas[j].HighPrice
-                          , sourceDatas[j].LowPrice
-                          , sourceDatas[j].OpenPrice
-                          , 0
-                          , sourceDatas[i].DTime
-                        );
-                    reverseDatas.Add(reverseData);
-                }
-                c.LoadData(itemCode, sourceDatas, reverseDatas, timeInterval);
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-            }
-        }
+        //public static void loadDataAverageAndApply(this ReverseCandleChart c
+        //  , string itemCode
+        //  , List<S_CandleItemData> sourceDatas
+        //  , List<S_CandleItemData> averageDatas
+        //  , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+        //  , int itemCnt = 7)
+        //{
+        //    try
+        //    {
+        //        List<S_CandleItemData> reverseDatas = new List<S_CandleItemData>();
+        //        for (int i = 0, j = sourceDatas.Count - 1; i < sourceDatas.Count; i++, j--)
+        //        {
+        //            S_CandleItemData reverseData = new S_CandleItemData(
+        //                  itemCode
+        //                  , sourceDatas[j].ClosePrice
+        //                  , sourceDatas[j].HighPrice
+        //                  , sourceDatas[j].LowPrice
+        //                  , sourceDatas[j].OpenPrice
+        //                  , 0
+        //                  , sourceDatas[i].DTime
+        //                );
+        //            reverseDatas.Add(reverseData);
+        //        }
+        //        c.LoadData(itemCode, sourceDatas, reverseDatas, timeInterval);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine(ex.Message);
+        //    }
+        //}
         #endregion
 
         #region ThreeThaChiChart
@@ -623,31 +623,31 @@ namespace OM.Vikala.Controls.Charts
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
-        public static void loadDataAverageAndApply(this ThreeThaChiChart c
-           , string itemCode
-           , List<S_CandleItemData> sourceDatas
-           , List<S_CandleItemData> averageDatas
-           , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
-           , int itemsCnt = 7)
-        {
-            try
-            {
-                List<T_ThaChiItemData> transformedDatas = new List<T_ThaChiItemData>();
+        //public static void loadDataAverageAndApply(this ThreeThaChiChart c
+        //   , string itemCode
+        //   , List<S_CandleItemData> sourceDatas
+        //   , List<S_CandleItemData> averageDatas
+        //   , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+        //   , int itemsCnt = 7)
+        //{
+        //    try
+        //    {
+        //        List<T_ThaChiItemData> transformedDatas = new List<T_ThaChiItemData>();
 
-                for (int i = itemsCnt; i <= sourceDatas.Count; i++)
-                {
-                    T_ThaChiItemData transData = new T_ThaChiItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemsCnt, itemsCnt));
-                    transData.Transform();
-                    transformedDatas.Add(transData);
-                }
+        //        for (int i = itemsCnt; i <= sourceDatas.Count; i++)
+        //        {
+        //            T_ThaChiItemData transData = new T_ThaChiItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemsCnt, itemsCnt));
+        //            transData.Transform();
+        //            transformedDatas.Add(transData);
+        //        }
 
-                c.LoadData(itemCode, transformedDatas, timeInterval);
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-            }
-        }
+        //        c.LoadData(itemCode, transformedDatas, timeInterval);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine(ex.Message);
+        //    }
+        //}
         #endregion
 
         #region VelocityLineChart
@@ -676,32 +676,32 @@ namespace OM.Vikala.Controls.Charts
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
-        public static void loadDataAverageAndApply(this VelocityLineChart c
-           , string itemCode
-           , List<S_CandleItemData> sourceDatas
-           , List<S_CandleItemData> averageDatas
-           , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
-           , int itemsCnt = 7)
-        {
-            try
-            {
-                List<T_VelocityItemData> transformedDatas = new List<T_VelocityItemData>();
+        //public static void loadDataAverageAndApply(this VelocityLineChart c
+        //   , string itemCode
+        //   , List<S_CandleItemData> sourceDatas
+        //   , List<S_CandleItemData> averageDatas
+        //   , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+        //   , int itemsCnt = 7)
+        //{
+        //    try
+        //    {
+        //        List<T_VelocityItemData> transformedDatas = new List<T_VelocityItemData>();
 
-                for (int i = itemsCnt; i <= sourceDatas.Count; i++)
-                {
-                    T_VelocityItemData transData =
-                        new T_VelocityItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemsCnt, itemsCnt));
-                    transData.Transform();
-                    transformedDatas.Add(transData);
-                }
-                c.LoadData(itemCode, transformedDatas, timeInterval);
-            }
+        //        for (int i = itemsCnt; i <= sourceDatas.Count; i++)
+        //        {
+        //            T_VelocityItemData transData =
+        //                new T_VelocityItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemsCnt, itemsCnt));
+        //            transData.Transform();
+        //            transformedDatas.Add(transData);
+        //        }
+        //        c.LoadData(itemCode, transformedDatas, timeInterval);
+        //    }
 
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-            }
-        }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine(ex.Message);
+        //    }
+        //}
         #endregion
 
         #region WuxingCandleChart
@@ -732,34 +732,34 @@ namespace OM.Vikala.Controls.Charts
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
-        public static void loadDataAverageAndApply(this WuXingCandleChart c
-           , string itemCode
-           , List<S_CandleItemData> sourceDatas
-           , List<S_CandleItemData> averageDatas
-           , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
-           , int itemCnt = 7)
-        {
-            try
-            {
-                List<T_WuXingItemData> transformedDatas = new List<T_WuXingItemData>();
-                DateTime? dtime = null;
-                foreach (var m in sourceDatas.OrderByDescending(t => t.DTime))
-                {
-                    if (dtime != null && dtime.Value <= m.DTime) continue;
+        //public static void loadDataAverageAndApply(this WuXingCandleChart c
+        //   , string itemCode
+        //   , List<S_CandleItemData> sourceDatas
+        //   , List<S_CandleItemData> averageDatas
+        //   , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+        //   , int itemCnt = 7)
+        //{
+        //    try
+        //    {
+        //        List<T_WuXingItemData> transformedDatas = new List<T_WuXingItemData>();
+        //        DateTime? dtime = null;
+        //        foreach (var m in sourceDatas.OrderByDescending(t => t.DTime))
+        //        {
+        //            if (dtime != null && dtime.Value <= m.DTime) continue;
 
-                    T_WuXingItemData tData = new T_WuXingItemData(m, sourceDatas);
-                    tData.Transform();
-                    transformedDatas.Add(tData);
+        //            T_WuXingItemData tData = new T_WuXingItemData(m, sourceDatas);
+        //            tData.Transform();
+        //            transformedDatas.Add(tData);
 
-                    dtime = tData.DTimeS;
-                }
-                c.LoadData(itemCode, transformedDatas.OrderBy(t => t.DTime).ToList(), timeInterval);
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-            }
-        }
+        //            dtime = tData.DTimeS;
+        //        }
+        //        c.LoadData(itemCode, transformedDatas.OrderBy(t => t.DTime).ToList(), timeInterval);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine(ex.Message);
+        //    }
+        //}
         #endregion
 
         #region QuarkCandleChart
@@ -790,34 +790,34 @@ namespace OM.Vikala.Controls.Charts
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
-        public static void loadDataAverageAndApply(this QuarkCandleChart c
-           , string itemCode
-           , List<S_CandleItemData> sourceDatas
-           , List<S_CandleItemData> averageDatas
-           , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
-           , int itemCnt = 7)
-        {
-            try
-            {
-                List<T_QuarkItemData> transformedDatas = new List<T_QuarkItemData>();
-                DateTime? dtime = null;
-                foreach (var m in sourceDatas.OrderByDescending(t => t.DTime))
-                {
-                    if (dtime != null && dtime.Value <= m.DTime) continue;
+        //public static void loadDataAverageAndApply(this QuarkCandleChart c
+        //   , string itemCode
+        //   , List<S_CandleItemData> sourceDatas
+        //   , List<S_CandleItemData> averageDatas
+        //   , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+        //   , int itemCnt = 7)
+        //{
+        //    try
+        //    {
+        //        List<T_QuarkItemData> transformedDatas = new List<T_QuarkItemData>();
+        //        DateTime? dtime = null;
+        //        foreach (var m in sourceDatas.OrderByDescending(t => t.DTime))
+        //        {
+        //            if (dtime != null && dtime.Value <= m.DTime) continue;
 
-                    T_QuarkItemData tData = new T_QuarkItemData(m, sourceDatas);
-                    tData.Transform();
-                    transformedDatas.Add(tData);
+        //            T_QuarkItemData tData = new T_QuarkItemData(m, sourceDatas);
+        //            tData.Transform();
+        //            transformedDatas.Add(tData);
 
-                    dtime = tData.DTimeS;
-                }
-                c.LoadData(itemCode, transformedDatas.OrderBy(t => t.DTime).ToList(), timeInterval);
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-            }
-        }
+        //            dtime = tData.DTimeS;
+        //        }
+        //        c.LoadData(itemCode, transformedDatas.OrderBy(t => t.DTime).ToList(), timeInterval);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine(ex.Message);
+        //    }
+        //}
         #endregion
 
         #region ChakraChart
@@ -836,22 +836,22 @@ namespace OM.Vikala.Controls.Charts
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
-        public static void loadDataAverageAndApply(this ChakraChart c
-         , string itemCode
-         , List<S_CandleItemData> sourceDatas
-         , List<S_CandleItemData> averageDatas
-         , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
-         , int itemCnt = 7)
-        {
-            try
-            {
-                c.LoadData(itemCode, sourceDatas, timeInterval);
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-            }
-        }
+        //public static void loadDataAverageAndApply(this ChakraChart c
+        // , string itemCode
+        // , List<S_CandleItemData> sourceDatas
+        // , List<S_CandleItemData> averageDatas
+        // , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+        // , int itemCnt = 7)
+        //{
+        //    try
+        //    {
+        //        c.LoadData(itemCode, sourceDatas, timeInterval);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine(ex.Message);
+        //    }
+        //}
 
         public static void loadDataAndApply(this ChakraTradeChart c
          , string itemCode
@@ -868,24 +868,43 @@ namespace OM.Vikala.Controls.Charts
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
-        public static void loadDataAverageAndApply(this ChakraTradeChart c
-         , string itemCode
-         , List<S_CandleItemData> sourceDatas
-         , List<S_CandleItemData> averageDatas
-         , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
-         , int itemCnt = 7)
+        //public static void loadDataAverageAndApply(this ChakraTradeChart c
+        // , string itemCode
+        // , List<S_CandleItemData> sourceDatas
+        // , List<S_CandleItemData> averageDatas
+        // , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+        // , int itemCnt = 7)
+        //{
+        //    try
+        //    {
+        //        c.LoadData(itemCode, sourceDatas, timeInterval);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine(ex.Message);
+        //    }
+        //}
+        #endregion
+
+        #region ComplexChart
+        public static void loadDataAndApply(this ComplexChart c
+            , string itemCode
+            , List<S_CandleItemData> sourceDatas
+            , List<S_CandleItemData> sourceDatasSub
+            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+            , int itemCnt = 7)
         {
             try
             {
-                c.LoadData(itemCode, sourceDatas, timeInterval);
+                c.LoadData(itemCode, sourceDatas, sourceDatasSub, timeInterval);
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
+        
         #endregion
-
         public static void LoadDataAndApply(this BaseChartControl c
             , string itemCode
             , List<S_CandleItemData> sourceDatas            
@@ -913,35 +932,48 @@ namespace OM.Vikala.Controls.Charts
             else if (c is QuantumLineTradeChart) ((QuantumLineTradeChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
             else if (c is RealCandleChart) ((RealCandleChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
         }
-
-        public static void LoadDataAverageAndApply(this BaseChartControl c
-            , string itemCode
-            , List<S_CandleItemData> sourceDatas
-            , List<S_CandleItemData> averageDatas
-            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
-            , int itemsCnt = 9)
+        public static void LoadDataAndApply(this BaseChartControl c
+           , string itemCode
+           , List<S_CandleItemData> sourceDatas
+           , List<S_CandleItemData> sourceDatasSub
+           , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+           , int itemsCnt = 9)
         {
             if (sourceDatas.Count == 0) return;
             itemsCnt = 9;
-            if (c is BasicCandleChart) ((BasicCandleChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
-            else if (c is AtomChart) ((AtomChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
-            else if (c is BasicVolumeChart) ((BasicVolumeChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
-            else if (c is Candlestick) ((Candlestick)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
-            else if (c is FiveColorChart) ((FiveColorChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
-            else if (c is PrimeNumCandleChart) ((PrimeNumCandleChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
-            else if (c is QuantumLineChart) ((QuantumLineChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
-            else if (c is QuantumLineChartHL) ((QuantumLineChartHL)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
-            else if (c is DiceCandleChart) ((DiceCandleChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
-            else if (c is ReverseCandleChart) ((ReverseCandleChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
-            else if (c is ThreeThaChiChart) ((ThreeThaChiChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
-            else if (c is VelocityLineChart) ((VelocityLineChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
-            else if (c is WuXingCandleChart) ((WuXingCandleChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
-            else if (c is QuarkCandleChart) ((QuarkCandleChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
-            else if (c is ChakraChart) ((ChakraChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
-            else if (c is ChakraTradeChart) ((ChakraTradeChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
-            else if (c is QuantumLineTradeChart) ((QuantumLineTradeChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
-            else if (c is RealCandleChart) ((RealCandleChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
-
+            if (c is ComplexChart) ((ComplexChart)c).loadDataAndApply(itemCode, sourceDatas, sourceDatasSub, timeInterval, itemsCnt);
         }
+
+        //public static void LoadDataAverageAndApply(this BaseChartControl c
+        //    , string itemCode
+        //    , List<S_CandleItemData> sourceDatas
+        //    , List<S_CandleItemData> averageDatas
+        //    , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+        //    , int itemsCnt = 9)
+        //{
+        //    if (sourceDatas.Count == 0) return;
+        //    itemsCnt = 9;
+        //    if (c is BasicCandleChart) ((BasicCandleChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
+        //    else if (c is AtomChart) ((AtomChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
+        //    else if (c is BasicVolumeChart) ((BasicVolumeChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
+        //    else if (c is Candlestick) ((Candlestick)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
+        //    else if (c is FiveColorChart) ((FiveColorChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
+        //    else if (c is PrimeNumCandleChart) ((PrimeNumCandleChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
+        //    else if (c is QuantumLineChart) ((QuantumLineChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
+        //    else if (c is QuantumLineChartHL) ((QuantumLineChartHL)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
+        //    else if (c is DiceCandleChart) ((DiceCandleChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
+        //    else if (c is ReverseCandleChart) ((ReverseCandleChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
+        //    else if (c is ThreeThaChiChart) ((ThreeThaChiChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
+        //    else if (c is VelocityLineChart) ((VelocityLineChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
+        //    else if (c is WuXingCandleChart) ((WuXingCandleChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
+        //    else if (c is QuarkCandleChart) ((QuarkCandleChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
+        //    else if (c is ChakraChart) ((ChakraChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
+        //    else if (c is ChakraTradeChart) ((ChakraTradeChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
+        //    else if (c is QuantumLineTradeChart) ((QuantumLineTradeChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
+        //    else if (c is RealCandleChart) ((RealCandleChart)c).loadDataAverageAndApply(itemCode, sourceDatas, averageDatas, timeInterval, itemsCnt);
+
+        //}
+
+        
     }
 }

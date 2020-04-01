@@ -274,13 +274,7 @@ namespace OM.PP.XingApp
             string itemCode = btn.Text;           
             queryFF(itemCode);
         }
-        private void btnFFTick_Click(object sender, EventArgs e)
-        {
-            if (!isLogoned) return;
-            Button btn = sender as Button;
-            string itemCode = btn.Text;            
-            queryFFTick(itemCode);
-        }
+     
         private void queryFF(string itemCode)
         {
             int cnt = 100;
@@ -632,14 +626,15 @@ namespace OM.PP.XingApp
             {
                 TimeIntervalEnum timeIntervalEnum =  TimeIntervalEnum.None;
 
-                if (f.IndexOf("720") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_720;
-                else if (f.IndexOf("480") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_480;
-                else if (f.IndexOf("360") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_360;
-                else if (f.IndexOf("300") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_300;
-                else if (f.IndexOf("180") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_180;
-                else if (f.IndexOf("120") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_120;
-                else if (f.IndexOf("60") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_60;
-                else if (f.IndexOf("일") > -1) timeIntervalEnum = TimeIntervalEnum.Day;
+                if (f.IndexOf("(720분)") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_720;
+                else if (f.IndexOf("(480분)") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_480;
+                else if (f.IndexOf("(360분)") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_360;
+                else if (f.IndexOf("(300분)") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_300;
+                else if (f.IndexOf("(240분)") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_240;
+                else if (f.IndexOf("(180분)") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_180;
+                else if (f.IndexOf("(120분)") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_120;
+                else if (f.IndexOf("(60분)") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_60;
+                else if (f.IndexOf("(일)") > -1) timeIntervalEnum = TimeIntervalEnum.Day;
 
                 if (timeIntervalEnum == TimeIntervalEnum.None) continue;
 
@@ -648,7 +643,17 @@ namespace OM.PP.XingApp
                     while (!reader.EndOfStream)
                     {
                         var line = reader.ReadLine();
-                        var values = line.Split(',');
+
+                        if (line.StartsWith("[")) continue;
+                        
+                        string[] values = null;
+
+                        if (f.ToUpper().EndsWith(".TXT"))
+                            values = line.Split("\t".ToCharArray());
+                        else if (f.ToUpper().EndsWith(".CSV"))
+                            values = line.Split(',');
+                        else 
+                            values = line.Split(',');
 
                         S_CandleItemData data = new S_CandleItemData();
                         if (timeIntervalEnum == TimeIntervalEnum.Day)
@@ -671,6 +676,7 @@ namespace OM.PP.XingApp
                             data.ClosePrice = Convert.ToSingle(values[5].Trim());
                             data.Volume = 0;
                         }
+
                         PPContext.Instance.ClientContext.SetCandleSourceData(data.ItemCode, timeIntervalEnum, data);
 
                         LogWrite($"date : {data.DTime} opne : {data.OpenPrice} high : {data.HighPrice} low : {data.LowPrice} close : {data.ClosePrice} ");
@@ -678,6 +684,21 @@ namespace OM.PP.XingApp
                     }
                 }
             }
+        }
+
+        private void groupBox7_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void XingAppForm_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox4_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -156,12 +156,8 @@ namespace OM.Vikala.ChartTest
                 }
                 else
                 {
-                    if (dc.PlusMinusType == PlusMinusTypeEnum.양)
-                        idx = chart.Series[0].Points.AddXY(
-                            dc.DTime, dc.OpenPrice, dc.QuantumPrice, dc.OpenPrice, dc.QuantumPrice);
-                    else
-                        idx = chart.Series[0].Points.AddXY(
-                            dc.DTime, dc.QuantumPrice, dc.OpenPrice, dc.OpenPrice, dc.QuantumPrice);
+                    idx = chart.Series[0].Points.AddXY(
+                            dc.DTime, dc.QuantumBaseHighPrice, dc.QuantumBaseLowPrice, dc.OpenPrice, dc.QuantumBasePrice);
                 }
                 chart.Series[0].Points[idx].Tag = "1";
                 setDataPointColor(chart.Series[0].Points[idx], Color.Black, Color.Black, Color.Black, 1);
@@ -177,7 +173,7 @@ namespace OM.Vikala.ChartTest
                             dc2.DTime, dc2.HighPrice, dc2.LowPrice, dc2.OpenPrice, dc2.ClosePrice);
                     else
                         idx2 = chart.Series[0].Points.AddXY(
-                            dc2.DTime, dc2.QuantumHighPrice, dc2.QuantumLowPrice, dc2.OpenPrice, dc2.QuantumPrice);
+                            dc2.DTime, dc2.QuantumBaseHighPrice, dc2.QuantumBaseLowPrice, dc2.OpenPrice, dc2.QuantumBasePrice);
 
                     chart.Series[0].Points[idx2].Tag = "0";
                     candleCount++;
@@ -418,7 +414,7 @@ namespace OM.Vikala.ChartTest
         }
         private void btnDisplay180Ex_Click(object sender, EventArgs e)
         {
-            FillChart(listCandles180, 60, 3, true, false);
+            FillChart(listCandles180, 60, 3, false, false);
             FillRenkoChart(listCandles180, 2.0);
         }
         private void btnDisplay720Ex_Click(object sender, EventArgs e)

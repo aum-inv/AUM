@@ -154,6 +154,54 @@ namespace OM.PP.Chakra
                 return QuantumPrice;
             }
         }
+        public Single QuantumBasePrice
+        {
+            get
+            {
+                if (PlusMinusType == PlusMinusTypeEnum.양)
+                {
+                    return (Single)Math.Round(OpenPrice - BodyLength, RoundLength);                  
+                }
+                else if (PlusMinusType == PlusMinusTypeEnum.음)
+                {
+                    return (Single)Math.Round(OpenPrice + BodyLength, RoundLength);                  
+                }
+                else
+                    return (Single)Math.Round(OpenPrice, RoundLength);
+            }
+        }        
+        public Single QuantumBaseHighPrice
+        {
+            get
+            {
+                if (PlusMinusType == PlusMinusTypeEnum.양)
+                {
+                    return (Single)Math.Round(OpenPrice + LegLength, RoundLength);
+                }
+                else if (PlusMinusType == PlusMinusTypeEnum.음)
+                {
+                    return (Single)Math.Round(QuantumBasePrice + LegLength, RoundLength);
+                }
+                else
+                    return (Single)Math.Round(OpenPrice + LegLength, RoundLength);
+            }
+        }
+        public Single QuantumBaseLowPrice
+        {
+            get
+            {
+                if (PlusMinusType == PlusMinusTypeEnum.양)
+                {
+                    return (Single)Math.Round(QuantumBasePrice - HeadLength, RoundLength);
+                }
+                else if (PlusMinusType == PlusMinusTypeEnum.음)
+                {
+                    return (Single)Math.Round(OpenPrice - HeadLength, RoundLength);
+                }
+                else
+                    return (Single)Math.Round(OpenPrice - HeadLength, RoundLength);
+            }
+        }
         public Single QuantumCenterPrice
         {
             get

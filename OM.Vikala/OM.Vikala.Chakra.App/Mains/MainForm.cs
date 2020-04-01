@@ -212,18 +212,8 @@ namespace OM.Vikala.Chakra.App.Mains
                         case "틱챠트추세":
                             createTrendMultiChart(menuText);
                             break;
-
-                        case "추세":
-                            createMultiChart1(menuText);
-                            break;
-                        case "지지저항":
-                            createMultiChart2(menuText);
-                            break;
-                        case "추세지지저항":
-                            createMultiChart3(menuText);
-                            break;
-                        case "원리":
-                            createMultiChart4(menuText);
+                        case "멀티타임캔들":
+                            createTimeComplexChart(menuText);
                             break;
                     }
                 }
@@ -354,6 +344,7 @@ namespace OM.Vikala.Chakra.App.Mains
             createCandleLineTypeChart_Dice("주사위챠트");
             createCandleLineTypeChart_Velocity("변화챠트");           
         }
+
         #region 멀티챠트
         private void createTrendMultiChart(string title)
         {
@@ -377,29 +368,11 @@ namespace OM.Vikala.Chakra.App.Mains
                 AddTab(bmf);
             }
         }
-        private void createMultiChart1(string title)
+        private void createTimeComplexChart(string title)
         {
-            //BaseForm bmf = new MultiChartForm1();
-            //bmf.Text = title;
-            //AddTab(bmf);
-        }
-        private void createMultiChart2(string title)
-        {
-            //BaseForm bmf = new MultiChartForm2();
-            //bmf.Text = title;
-            //AddTab(bmf);
-        }
-        private void createMultiChart3(string title)
-        {
-            //BaseForm bmf = new MultiChartForm4();
-            //bmf.Text = title;
-            //AddTab(bmf);
-        }
-        private void createMultiChart4(string title)
-        {
-            //BaseForm bmf = new MultiChartForm3();
-            //bmf.Text = title;
-            //AddTab(bmf);
+            BaseForm bmf = new ChartForm.ComplexChartForm();
+            bmf.Text = title;
+            AddTab(bmf);
         }
         #endregion
 

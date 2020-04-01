@@ -37,22 +37,13 @@
             this.lblLogin = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pnlContent = new System.Windows.Forms.Panel();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.rdo500 = new System.Windows.Forms.RadioButton();
             this.rdo200 = new System.Windows.Forms.RadioButton();
             this.rdo100 = new System.Windows.Forms.RadioButton();
             this.button9 = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
             this.button25 = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -74,15 +65,20 @@
             this.btnReal = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.noti = new System.Windows.Forms.NotifyIcon(this.components);
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button32 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
+            this.button14 = new System.Windows.Forms.Button();
+            this.button15 = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             this.pnlContent.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox7.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnLogin
@@ -165,8 +161,28 @@
             this.pnlContent.Location = new System.Drawing.Point(2, 2);
             this.pnlContent.Name = "pnlContent";
             this.pnlContent.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.pnlContent.Size = new System.Drawing.Size(464, 385);
+            this.pnlContent.Size = new System.Drawing.Size(464, 329);
             this.pnlContent.TabIndex = 12;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.button7);
+            this.groupBox4.Controls.Add(this.button8);
+            this.groupBox4.Controls.Add(this.button10);
+            this.groupBox4.Controls.Add(this.button11);
+            this.groupBox4.Controls.Add(this.button12);
+            this.groupBox4.Controls.Add(this.button13);
+            this.groupBox4.Controls.Add(this.button14);
+            this.groupBox4.Controls.Add(this.button15);
+            this.groupBox4.Location = new System.Drawing.Point(6, 235);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox4.Size = new System.Drawing.Size(275, 92);
+            this.groupBox4.TabIndex = 17;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "CSV 파일로 시세 받기";
+            this.groupBox4.Enter += new System.EventHandler(this.groupBox4_Enter);
             // 
             // groupBox5
             // 
@@ -174,20 +190,18 @@
             this.groupBox5.Controls.Add(this.rdo200);
             this.groupBox5.Controls.Add(this.rdo100);
             this.groupBox5.Controls.Add(this.button9);
-            this.groupBox5.Controls.Add(this.groupBox2);
             this.groupBox5.Controls.Add(this.button25);
-            this.groupBox5.Controls.Add(this.panel2);
             this.groupBox5.Controls.Add(this.button4);
             this.groupBox5.Controls.Add(this.button5);
             this.groupBox5.Controls.Add(this.button6);
             this.groupBox5.Controls.Add(this.button1);
             this.groupBox5.Controls.Add(this.button2);
             this.groupBox5.Controls.Add(this.button3);
-            this.groupBox5.Location = new System.Drawing.Point(3, 66);
+            this.groupBox5.Location = new System.Drawing.Point(3, 148);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox5.Size = new System.Drawing.Size(278, 164);
+            this.groupBox5.Size = new System.Drawing.Size(278, 86);
             this.groupBox5.TabIndex = 14;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "해외선물";
@@ -234,105 +248,6 @@
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.btnFF_Click);
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.button15);
-            this.groupBox2.Controls.Add(this.button7);
-            this.groupBox2.Controls.Add(this.button8);
-            this.groupBox2.Controls.Add(this.button10);
-            this.groupBox2.Controls.Add(this.button11);
-            this.groupBox2.Controls.Add(this.button12);
-            this.groupBox2.Controls.Add(this.button13);
-            this.groupBox2.Controls.Add(this.button14);
-            this.groupBox2.Location = new System.Drawing.Point(0, 85);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox2.Size = new System.Drawing.Size(278, 85);
-            this.groupBox2.TabIndex = 16;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "해외선물 틱시세";
-            // 
-            // button15
-            // 
-            this.button15.Location = new System.Drawing.Point(180, 50);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(50, 27);
-            this.button15.TabIndex = 40;
-            this.button15.Text = "ES";
-            this.button15.UseVisualStyleBackColor = true;
-            this.button15.Click += new System.EventHandler(this.btnFFTick_Click);
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(181, 17);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(50, 27);
-            this.button7.TabIndex = 39;
-            this.button7.Text = "URO";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.btnFFTick_Click);
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(126, 50);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(50, 27);
-            this.button8.TabIndex = 6;
-            this.button8.Text = "NQ";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.btnFFTick_Click);
-            // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(72, 50);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(50, 27);
-            this.button10.TabIndex = 5;
-            this.button10.Text = "HMH";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.btnFFTick_Click);
-            // 
-            // button11
-            // 
-            this.button11.Location = new System.Drawing.Point(17, 50);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(50, 27);
-            this.button11.TabIndex = 4;
-            this.button11.Text = "SI";
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.btnFFTick_Click);
-            // 
-            // button12
-            // 
-            this.button12.Location = new System.Drawing.Point(126, 17);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(50, 27);
-            this.button12.TabIndex = 3;
-            this.button12.Text = "GC";
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.btnFFTick_Click);
-            // 
-            // button13
-            // 
-            this.button13.Location = new System.Drawing.Point(72, 17);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(50, 27);
-            this.button13.TabIndex = 2;
-            this.button13.Text = "NG";
-            this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.btnFFTick_Click);
-            // 
-            // button14
-            // 
-            this.button14.Location = new System.Drawing.Point(17, 16);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(50, 27);
-            this.button14.TabIndex = 1;
-            this.button14.Text = "CL";
-            this.button14.UseVisualStyleBackColor = true;
-            this.button14.Click += new System.EventHandler(this.btnFFTick_Click);
-            // 
             // button25
             // 
             this.button25.Location = new System.Drawing.Point(180, 17);
@@ -342,14 +257,6 @@
             this.button25.Text = "URO";
             this.button25.UseVisualStyleBackColor = true;
             this.button25.Click += new System.EventHandler(this.btnFF_Click);
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.Red;
-            this.panel2.Location = new System.Drawing.Point(8, 81);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(335, 2);
-            this.panel2.TabIndex = 22;
             // 
             // button4
             // 
@@ -446,19 +353,20 @@
             this.groupBox7.Controls.Add(this.chkRealNG);
             this.groupBox7.Controls.Add(this.chkRealCL);
             this.groupBox7.Controls.Add(this.btnReal);
-            this.groupBox7.Location = new System.Drawing.Point(3, 249);
+            this.groupBox7.Location = new System.Drawing.Point(3, 70);
             this.groupBox7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox7.Size = new System.Drawing.Size(278, 74);
+            this.groupBox7.Size = new System.Drawing.Size(278, 75);
             this.groupBox7.TabIndex = 16;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "실시간 시세받기";
+            this.groupBox7.Enter += new System.EventHandler(this.groupBox7_Enter);
             // 
             // chkRealES
             // 
             this.chkRealES.AutoSize = true;
-            this.chkRealES.Location = new System.Drawing.Point(137, 42);
+            this.chkRealES.Location = new System.Drawing.Point(142, 46);
             this.chkRealES.Name = "chkRealES";
             this.chkRealES.Size = new System.Drawing.Size(40, 16);
             this.chkRealES.TabIndex = 43;
@@ -471,7 +379,7 @@
             this.chkSendRealtime.AutoSize = true;
             this.chkSendRealtime.Checked = true;
             this.chkSendRealtime.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkSendRealtime.Location = new System.Drawing.Point(196, 15);
+            this.chkSendRealtime.Location = new System.Drawing.Point(201, 19);
             this.chkSendRealtime.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkSendRealtime.Name = "chkSendRealtime";
             this.chkSendRealtime.Size = new System.Drawing.Size(48, 16);
@@ -483,7 +391,7 @@
             // chkRealURO
             // 
             this.chkRealURO.AutoSize = true;
-            this.chkRealURO.Location = new System.Drawing.Point(137, 16);
+            this.chkRealURO.Location = new System.Drawing.Point(142, 20);
             this.chkRealURO.Name = "chkRealURO";
             this.chkRealURO.Size = new System.Drawing.Size(49, 16);
             this.chkRealURO.TabIndex = 41;
@@ -494,7 +402,7 @@
             // chkRealNQ
             // 
             this.chkRealNQ.AutoSize = true;
-            this.chkRealNQ.Location = new System.Drawing.Point(93, 42);
+            this.chkRealNQ.Location = new System.Drawing.Point(98, 46);
             this.chkRealNQ.Name = "chkRealNQ";
             this.chkRealNQ.Size = new System.Drawing.Size(42, 16);
             this.chkRealNQ.TabIndex = 26;
@@ -505,7 +413,7 @@
             // chkRealHSI
             // 
             this.chkRealHSI.AutoSize = true;
-            this.chkRealHSI.Location = new System.Drawing.Point(43, 42);
+            this.chkRealHSI.Location = new System.Drawing.Point(48, 46);
             this.chkRealHSI.Name = "chkRealHSI";
             this.chkRealHSI.Size = new System.Drawing.Size(51, 16);
             this.chkRealHSI.TabIndex = 25;
@@ -516,7 +424,7 @@
             // chkRealSI
             // 
             this.chkRealSI.AutoSize = true;
-            this.chkRealSI.Location = new System.Drawing.Point(5, 42);
+            this.chkRealSI.Location = new System.Drawing.Point(10, 46);
             this.chkRealSI.Name = "chkRealSI";
             this.chkRealSI.Size = new System.Drawing.Size(35, 16);
             this.chkRealSI.TabIndex = 24;
@@ -527,7 +435,7 @@
             // chkRealGC
             // 
             this.chkRealGC.AutoSize = true;
-            this.chkRealGC.Location = new System.Drawing.Point(93, 16);
+            this.chkRealGC.Location = new System.Drawing.Point(98, 20);
             this.chkRealGC.Name = "chkRealGC";
             this.chkRealGC.Size = new System.Drawing.Size(42, 16);
             this.chkRealGC.TabIndex = 23;
@@ -538,7 +446,7 @@
             // chkRealNG
             // 
             this.chkRealNG.AutoSize = true;
-            this.chkRealNG.Location = new System.Drawing.Point(43, 16);
+            this.chkRealNG.Location = new System.Drawing.Point(48, 20);
             this.chkRealNG.Name = "chkRealNG";
             this.chkRealNG.Size = new System.Drawing.Size(42, 16);
             this.chkRealNG.TabIndex = 22;
@@ -549,7 +457,7 @@
             // chkRealCL
             // 
             this.chkRealCL.AutoSize = true;
-            this.chkRealCL.Location = new System.Drawing.Point(5, 16);
+            this.chkRealCL.Location = new System.Drawing.Point(10, 20);
             this.chkRealCL.Name = "chkRealCL";
             this.chkRealCL.Size = new System.Drawing.Size(40, 16);
             this.chkRealCL.TabIndex = 21;
@@ -559,7 +467,7 @@
             // 
             // btnReal
             // 
-            this.btnReal.Location = new System.Drawing.Point(193, 36);
+            this.btnReal.Location = new System.Drawing.Point(198, 40);
             this.btnReal.Name = "btnReal";
             this.btnReal.Size = new System.Drawing.Size(75, 27);
             this.btnReal.TabIndex = 20;
@@ -576,28 +484,85 @@
             // 
             this.noti.Visible = true;
             // 
-            // groupBox4
+            // button7
             // 
-            this.groupBox4.Controls.Add(this.button32);
-            this.groupBox4.Location = new System.Drawing.Point(6, 331);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox4.Size = new System.Drawing.Size(455, 50);
-            this.groupBox4.TabIndex = 17;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "CSV 파일로 시세 받기";
+            this.button7.Location = new System.Drawing.Point(178, 52);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(50, 27);
+            this.button7.TabIndex = 48;
+            this.button7.Text = "ES";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.btnFileOpen_Click);
             // 
-            // button32
+            // button8
             // 
-            this.button32.Location = new System.Drawing.Point(17, 16);
-            this.button32.Name = "button32";
-            this.button32.Size = new System.Drawing.Size(88, 27);
-            this.button32.TabIndex = 1;
-            this.button32.Tag = "cl";
-            this.button32.Text = "CL 시세";
-            this.button32.UseVisualStyleBackColor = true;
-            this.button32.Click += new System.EventHandler(this.btnFileOpen_Click);
+            this.button8.Location = new System.Drawing.Point(178, 23);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(50, 27);
+            this.button8.TabIndex = 47;
+            this.button8.Text = "URO";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.btnFileOpen_Click);
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(124, 52);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(50, 27);
+            this.button10.TabIndex = 46;
+            this.button10.Text = "NQ";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.btnFileOpen_Click);
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(70, 52);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(50, 27);
+            this.button11.TabIndex = 45;
+            this.button11.Text = "HMH";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.btnFileOpen_Click);
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(15, 51);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(50, 27);
+            this.button12.TabIndex = 44;
+            this.button12.Text = "SI";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.btnFileOpen_Click);
+            // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(124, 23);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(50, 27);
+            this.button13.TabIndex = 43;
+            this.button13.Text = "GC";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.btnFileOpen_Click);
+            // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(70, 23);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(50, 27);
+            this.button14.TabIndex = 42;
+            this.button14.Text = "NG";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.btnFileOpen_Click);
+            // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(15, 22);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(50, 27);
+            this.button15.TabIndex = 41;
+            this.button15.Text = "CL";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.btnFileOpen_Click);
             // 
             // XingAppForm
             // 
@@ -605,7 +570,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(468, 389);
+            this.ClientSize = new System.Drawing.Size(468, 333);
             this.Controls.Add(this.pnlContent);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -613,17 +578,17 @@
             this.Padding = new System.Windows.Forms.Padding(2);
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "OM.PP ::: Xing 시세";
+            this.Load += new System.EventHandler(this.XingAppForm_Load_1);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.pnlContent.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -644,7 +609,6 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.Button btnReal;
         private System.Windows.Forms.CheckBox chkRealCL;
@@ -659,7 +623,12 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.NotifyIcon noti;
         private System.Windows.Forms.CheckBox chkSendRealtime;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.CheckBox chkRealES;
+        private System.Windows.Forms.RadioButton rdo100;
+        private System.Windows.Forms.RadioButton rdo500;
+        private System.Windows.Forms.RadioButton rdo200;
+        private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button10;
@@ -667,14 +636,7 @@
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.CheckBox chkRealES;
-        private System.Windows.Forms.RadioButton rdo100;
-        private System.Windows.Forms.RadioButton rdo500;
-        private System.Windows.Forms.RadioButton rdo200;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button button32;
     }
 }
 

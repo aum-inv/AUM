@@ -21,8 +21,6 @@ namespace OM.Vikala.Chakra.App.Mains
 
         BaseChartControl qMin1 = new QuantumLineChart();
         BaseChartControl qMin2 = new QuantumLineChart();
-        //BaseChartControl qTick1 = new QuantumLineChart();
-        //BaseChartControl qTick2 = new QuantumLineChart();
 
         public TrendChartFormM()
         {
@@ -42,9 +40,7 @@ namespace OM.Vikala.Chakra.App.Mains
         {
             charts.Clear();
             charts.Add(qMin1);
-            charts.Add(qMin2);
-            //charts.Add(qTick1);
-            //charts.Add(qTick2);            
+            charts.Add(qMin2);        
             foreach (var c in charts)
             {
                 if (c is QuantumLineChart)
@@ -75,9 +71,7 @@ namespace OM.Vikala.Chakra.App.Mains
             if (flowDirection == FlowDirectionTypeEnum.TABLE)
             {
                 flowTable.Controls.Add(charts[0], 0, 0);
-                flowTable.Controls.Add(charts[1], 1, 0);
-                //flowTable.Controls.Add(charts[2], 0, 1);
-                //flowTable.Controls.Add(charts[3], 1, 1);                 
+                flowTable.Controls.Add(charts[1], 1, 0);           
                 flowTable.Visible = true;
             }
             foreach (var c in charts)
@@ -100,15 +94,7 @@ namespace OM.Vikala.Chakra.App.Mains
 
             var sourceDatas2 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                   base.SelectedItemData.Code
-                , TimeIntervalEnum.Minute_480);            
-          
-            //var sourceDatasTick1 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
-            //   base.SelectedItemData.Code
-            // , TimeIntervalEnum.Tick_720);
-
-            //var sourceDatasTick2 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
-            //   base.SelectedItemData.Code
-            // , TimeIntervalEnum.Tick_1080);
+                , TimeIntervalEnum.Minute_720);       
 
             if (sourceDatas1 != null && sourceDatas1.Count > 0)
             {
@@ -120,16 +106,6 @@ namespace OM.Vikala.Chakra.App.Mains
                 var averageDatas2 = PPUtils.GetAverageDatas(itemCode, sourceDatas2, 7);
                 qMin2.LoadDataAndApply(itemCode, averageDatas2, TimeIntervalEnum.Minute_480, 3);
             }
-            //if (sourceDatasTick1 != null && sourceDatasTick1.Count > 0)
-            //{
-            //    var averageDatasTick1 = PPUtils.GetAverageDatas(itemCode, sourceDatasTick1, 7);
-            //    qTick1.LoadDataAndApply(itemCode, averageDatasTick1, TimeIntervalEnum.Tick_720, 3);
-            //}
-            //if (sourceDatasTick2 != null && sourceDatasTick2.Count > 0)
-            //{
-            //    var averageDatasTick2 = PPUtils.GetAverageDatas(itemCode, sourceDatasTick2, 7);
-            //    qTick2.LoadDataAndApply(itemCode, averageDatasTick2, TimeIntervalEnum.Tick_1080, 3);
-            //}
         }
     }
 }
