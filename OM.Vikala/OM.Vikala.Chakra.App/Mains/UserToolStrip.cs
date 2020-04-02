@@ -47,12 +47,10 @@ namespace OM.Vikala.Chakra.App.Mains
                     tsbTime14.Visible =
                     tsbTime15.Visible =
                     tsbTime16.Visible =
+                    tsbTime17.Visible =
+                    tsbTime18.Visible =
                     tsbTime20.Visible =
-                    //tsbTime11.Visible =
-                    //tsbTime12.Visible =
-                    //tsbTime13.Visible =
-                    //tsbTime14.Visible =
-                    //tsbTime15.Visible =
+                   
                     value;
             }
         }
@@ -138,25 +136,24 @@ namespace OM.Vikala.Chakra.App.Mains
             tsbTime13.BackColor = Color.WhiteSmoke;
             tsbTime14.BackColor = Color.WhiteSmoke;
             tsbTime15.BackColor = Color.WhiteSmoke;
-            tsbTime16.BackColor = Color.WhiteSmoke;           
+            tsbTime16.BackColor = Color.WhiteSmoke;
+            tsbTime17.BackColor = Color.WhiteSmoke;
+            tsbTime18.BackColor = Color.WhiteSmoke;
             tsbTime20.BackColor = Color.WhiteSmoke;          
 
             if (timeInterval == TimeIntervalEnum.Minute_60) tsbTime11.BackColor = Color.Yellow;
             else if (timeInterval == TimeIntervalEnum.Minute_120) tsbTime12.BackColor = Color.Yellow;
             else if (timeInterval == TimeIntervalEnum.Minute_180) tsbTime13.BackColor = Color.Yellow;
-            else if (timeInterval == TimeIntervalEnum.Minute_300) tsbTime14.BackColor = Color.Yellow;
-            else if (timeInterval == TimeIntervalEnum.Minute_360) tsbTime15.BackColor = Color.Yellow;
-            else if (timeInterval == TimeIntervalEnum.Minute_480) tsbTime16.BackColor = Color.Yellow;
+            else if (timeInterval == TimeIntervalEnum.Minute_240) tsbTime14.BackColor = Color.Yellow;
+            else if (timeInterval == TimeIntervalEnum.Minute_300) tsbTime15.BackColor = Color.Yellow;
+            else if (timeInterval == TimeIntervalEnum.Minute_360) tsbTime16.BackColor = Color.Yellow;
+            else if (timeInterval == TimeIntervalEnum.Minute_480) tsbTime17.BackColor = Color.Yellow;
+            else if (timeInterval == TimeIntervalEnum.Minute_720) tsbTime18.BackColor = Color.Yellow;
             else if (timeInterval == TimeIntervalEnum.Day) tsbTime20.BackColor = Color.Yellow;
         }
 
         private void tscbItem_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //if (SharedData.SelectedItem != null &&
-            //    SharedData.SelectedItem == (tscbItem.SelectedItem as ItemData))
-            //{
-            //    return;
-            //}
+        {           
             if ((tscbItem.SelectedItem as ItemData).Code == "")
             {
                 if (SharedData.SelectedItem != null)
@@ -184,10 +181,12 @@ namespace OM.Vikala.Chakra.App.Mains
             if (n == 1) timeInterval = TimeIntervalEnum.Minute_60;
             else if (n == 2) timeInterval = TimeIntervalEnum.Minute_120;
             else if (n == 3) timeInterval = TimeIntervalEnum.Minute_180;
-            else if (n == 4) timeInterval = TimeIntervalEnum.Minute_300;
-            else if (n == 5) timeInterval = TimeIntervalEnum.Minute_360;
-            else if (n == 6) timeInterval = TimeIntervalEnum.Minute_480;
-            else if (n == 7) timeInterval = TimeIntervalEnum.Day;
+            else if (n == 4) timeInterval = TimeIntervalEnum.Minute_240;
+            else if (n == 5) timeInterval = TimeIntervalEnum.Minute_300;
+            else if (n == 6) timeInterval = TimeIntervalEnum.Minute_360;
+            else if (n == 7) timeInterval = TimeIntervalEnum.Minute_480;
+            else if (n == 8) timeInterval = TimeIntervalEnum.Minute_720;
+            else if (n == 10) timeInterval = TimeIntervalEnum.Day;
             
             if (TimerIntervalChangedEvent != null)
             {

@@ -53,6 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Charts\ComplexChart_Backup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Charts\ComplexChart_Backup.Designer.cs">
+      <DependentUpon>ComplexChart_Backup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Charts\ComplexChart.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -223,6 +229,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Charts\ComplexChart_Backup.resx">
+      <DependentUpon>ComplexChart_Backup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Charts\ComplexChart.resx">
       <DependentUpon>ComplexChart.cs</DependentUpon>
     </EmbeddedResource>

@@ -87,6 +87,8 @@ namespace OM.Vikala.Controls.Charts
         {
             if (ChartData == null) return;
 
+            int candleCount = 0;
+           
             foreach (S_CandleItemData item in ChartData)
             {
                 int idx = -1;
@@ -101,6 +103,7 @@ namespace OM.Vikala.Controls.Charts
                             item.DTime, item.QuantumBaseHighPrice, item.QuantumBaseLowPrice, item.OpenPrice, item.QuantumBasePrice);
                 }        
                 SetDataPointColor(chart.Series[0].Points[idx], Color.Black, Color.Black, Color.Black, 1);
+                candleCount++;
 
                 var list = FindCandles(item);
 
@@ -113,30 +116,18 @@ namespace OM.Vikala.Controls.Charts
                     else
                         idx2 = chart.Series[0].Points.AddXY(
                             subItem.DTime, subItem.QuantumBaseHighPrice, subItem.QuantumBaseLowPrice, subItem.OpenPrice, subItem.QuantumBasePrice);
+                    
+                    candleCount++;
                 }
             }
 
-            double maxPrice1 = ChartData.Max(m => m.HighPrice);
-            double minPrice1 = ChartData.Min(m => m.LowPrice);
-            double maxPrice2 = ChartData.Max(m => m.QuantumBaseHighPrice);
-            double minPrice2 = ChartData.Min(m => m.QuantumBaseLowPrice);
-
-            double maxPrice = maxPrice1 > maxPrice2 ? maxPrice1 : maxPrice2;
-            double minPrice = minPrice1 < minPrice2 ? minPrice1 : minPrice2;          
-
-            maxPrice = maxPrice + SpaceMaxMin;
-            minPrice = minPrice - SpaceMaxMin;
-            
-            chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
-            chart.ChartAreas[0].AxisY2.Minimum = minPrice;            
-           
-            SetScrollBar();
-            SetTrackBar();
-            DisplayView();
+            DisplayView(candleCount);
 
             IsLoaded = true;
 
             base.View();
+
+            chart.ChartAreas[0].AxisX.LabelStyle.Format = "MM/dd:HH";
         }
         private List<S_CandleItemData> FindCandles(S_CandleItemData candle)
         {
@@ -160,116 +151,41 @@ namespace OM.Vikala.Controls.Charts
             return findLists;
         }
 
-        public void SetScrollBar()
+        
+        public void DisplayView(int candleCount)
         {
-            int trackView = trackBar.Value;
-            int displayItemCount = DisplayPointCount * trackView;
+            var chartArea = chart.ChartAreas[chart.Series[0].ChartArea];
+            chartArea.AxisX.Minimum = 0;
+            chartArea.AxisX.Maximum = candleCount;
+            chartArea.CursorX.AutoScroll = true;
+            chartArea.AxisX.ScaleView.Zoomable = true;
+            chartArea.AxisX.ScaleView.SizeType = DateTimeIntervalType.Number;
+            int position = candleCount - DisplayPointCount;
+            int size = candleCount;
+            chartArea.AxisX.ScaleView.Zoom(position, size + 1);
+            chartArea.AxisX.ScrollBar.ButtonStyle = ScrollBarButtonStyles.All;
+            chartArea.AxisX.ScaleView.SmallScrollSize = 10;
 
-            int maxScrollValue = (int)Math.Ceiling((Convert.ToDouble(ChartData.Count) / Convert.ToDouble(displayItemCount))) ;
-            int minScrollValue = 1;
-
-            hScrollBar.Minimum = minScrollValue;
-            hScrollBar.Maximum = maxScrollValue;
-            hScrollBar.Value = maxScrollValue;
-            hScrollBar.LargeChange = 1;
-            hScrollBar.SmallChange = 1;
+            chart_AxisViewChanged(chart, new ViewEventArgs(chartArea.AxisX, size + 1));
         }
-
-        public void SetTrackBar()
+        private void chart_AxisViewChanged(object sender, ViewEventArgs e)
         {
-            pnlScroll.Visible = IsAutoScrollX;
-            int maxScrollValue = (int)Math.Ceiling((Convert.ToDouble(ChartData.Count) / Convert.ToDouble(DisplayPointCount)));
-            int minScrollValue = 1;
-
-            trackBar.Minimum = minScrollValue;
-            trackBar.Maximum = maxScrollValue;
-            trackBar.Value = minScrollValue;
-            trackBar.LargeChange = 1;
-            trackBar.SmallChange = 1;
-        }
-
-        public void DisplayView()
-        {
-            chart.Update();
-
-            int scrollVal = hScrollBar.Value;
-
-            if (scrollVal < hScrollBar.Minimum) scrollVal = hScrollBar.Minimum;
-            if (scrollVal > hScrollBar.Maximum) scrollVal = hScrollBar.Maximum;
-
-            int trackView = trackBar.Value;
-            int displayItemCount = DisplayPointCount * trackView;
-
-            List<S_CandleItemData> viewLists = null;
-            int maxDisplayIndex = 0;
-            int minDisplayIndex = 0;
-            if (scrollVal == hScrollBar.Minimum)
+            if (e.Axis.AxisName == AxisName.X)
             {
-                int maxIndex = ChartData.Count > displayItemCount ? displayItemCount - 1 : ChartData.Count;
-                if (displayItemCount > ChartData.Count) displayItemCount = ChartData.Count;
-                viewLists = ChartData.GetRange(0, maxIndex);
-                maxDisplayIndex = displayItemCount;
-                minDisplayIndex = 0;
-            }
-            else if (scrollVal == hScrollBar.Maximum)
-            {
-                int minIndex = ChartData.Count < displayItemCount ? 0 : ChartData.Count - displayItemCount;
-                if (displayItemCount > ChartData.Count) displayItemCount = ChartData.Count;
-                viewLists = ChartData.GetRange(minIndex, ChartData.Count < displayItemCount ? ChartData.Count : displayItemCount);
-                maxDisplayIndex = ChartData.Count;
-                minDisplayIndex = minIndex;
-            }
-            else
-            {
-                int currentIndex = (scrollVal - 1) * displayItemCount;
-                if (ChartData.Count < currentIndex + displayItemCount)
-                    displayItemCount = ChartData.Count - currentIndex;
+                int start = (int)e.Axis.ScaleView.ViewMinimum;
+                int end = (int)e.Axis.ScaleView.ViewMaximum;
 
-                viewLists = ChartData.GetRange(currentIndex, displayItemCount);
+                double[] tempHighs = chart.Series[0].Points.Where((x, i) => i >= start && i <= end).Select(x => x.YValues[0]).ToArray();
+                double[] tempLows = chart.Series[0].Points.Where((x, i) => i >= start && i <= end).Select(x => x.YValues[1]).ToArray();
+                double ymin = tempLows.Min();
+                double ymax = tempHighs.Max();
 
-                maxDisplayIndex = currentIndex + displayItemCount;
-                minDisplayIndex = currentIndex;
-            }
-            if (viewLists != null)
-            {                
-                double maxPrice1 = viewLists.Max(m => m.HighPrice);
-                double minPrice1 = viewLists.Min(m => m.LowPrice);
-                double maxPrice2 = viewLists.Max(m => m.QuantumBaseHighPrice);
-                double minPrice2 = viewLists.Min(m => m.QuantumBaseLowPrice);
-
-                double maxPrice = maxPrice1 > maxPrice2 ? maxPrice1 : maxPrice2;
-                double minPrice = minPrice1 < minPrice2 ? minPrice1 : minPrice2;
-               
-                maxPrice = maxPrice + SpaceMaxMin;
-                minPrice = minPrice - SpaceMaxMin;
-
-                chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
-                chart.ChartAreas[0].AxisY2.Minimum = minPrice;
-                chart.ChartAreas[0].AxisX.Maximum = maxDisplayIndex + 1;
-                chart.ChartAreas[0].AxisX.Minimum = minDisplayIndex - 1;               
+                chart.ChartAreas[0].AxisX.ScaleView.Position = start + 5;
+                chart.ChartAreas[0].AxisY2.ScaleView.Position = ymin;
+                chart.ChartAreas[0].AxisY2.ScaleView.Size = ymax - ymin;
+                chart.ChartAreas[0].AxisY2.ScrollBar.Enabled = false;
             }
         }
-
-        private void hScrollBar_ValueChanged(object sender, EventArgs e)
-        {
-            if (!IsLoaded) return;
-            DisplayView();
-            if (ChartEventInstance != null)
-                ChartEventInstance.OnChangeChartScrollBarHandler(this.chart, hScrollBar.Value);
-        }
-
-        private void trackBar_ValueChanged(object sender, EventArgs e)
-        {
-            if (!IsLoaded) return;
-            
-            SetScrollBar();
-            DisplayView();
-            if (ChartEventInstance != null)
-                ChartEventInstance.OnChangeChartTrackBarHandler(this.chart, trackBar.Value);
-
-            SelectedTrackBarValue = (int)trackBar.Value;
-        }
-
         #region Chart Util
 
         #endregion

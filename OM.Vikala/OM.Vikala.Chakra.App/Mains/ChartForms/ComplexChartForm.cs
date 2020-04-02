@@ -61,11 +61,11 @@ namespace OM.Vikala.Chakra.App.Mains.ChartForm
         public override void loadChartControls()
         {
             chart.InitializeControl();
-            chart.InitializeEvent(chartEvent);
+            //chart.InitializeEvent(chartEvent);
             chart.DisplayPointCount = itemCnt;
 
             chart2.InitializeControl();
-            chart2.InitializeEvent(chartEvent);
+            //chart2.InitializeEvent(chartEvent);
             chart2.DisplayPointCount = itemCnt;
 
             chart.IsShowLine = true;

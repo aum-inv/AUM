@@ -614,7 +614,7 @@ namespace OM.PP.XingApp
         {
             string path = Environment.CurrentDirectory;
 
-            string folder = (sender as Button).Tag.ToString() ;
+            string folder = (sender as Button).Text.ToString() ;
 
             string fullPath = System.IO.Path.Combine(path, "sise", folder);
 
@@ -637,6 +637,8 @@ namespace OM.PP.XingApp
                 else if (f.IndexOf("(일)") > -1) timeIntervalEnum = TimeIntervalEnum.Day;
 
                 if (timeIntervalEnum == TimeIntervalEnum.None) continue;
+
+                List<S_CandleItemData> dummyList = new List<S_CandleItemData>();
 
                 using (var reader = new StreamReader(f))
                 {
@@ -676,11 +678,22 @@ namespace OM.PP.XingApp
                             data.ClosePrice = Convert.ToSingle(values[5].Trim());
                             data.Volume = 0;
                         }
+                        dummyList.Add(data);
+                    }
+                }
 
+                dummyList.Reverse();
+                foreach (var data in dummyList)
+                {
+                    try
+                    {
                         PPContext.Instance.ClientContext.SetCandleSourceData(data.ItemCode, timeIntervalEnum, data);
 
                         LogWrite($"date : {data.DTime} opne : {data.OpenPrice} high : {data.HighPrice} low : {data.LowPrice} close : {data.ClosePrice} ");
-                       
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Diagnostics.Debug.WriteLine(ex.Message);
                     }
                 }
             }

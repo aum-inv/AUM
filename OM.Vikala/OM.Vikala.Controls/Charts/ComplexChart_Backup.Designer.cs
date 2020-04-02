@@ -1,6 +1,6 @@
 ﻿namespace OM.Vikala.Controls.Charts
 {
-    partial class ComplexChart
+    partial class ComplexChart_Backup
     {
         /// <summary> 
         /// 필수 디자이너 변수입니다.
@@ -108,7 +108,6 @@
             this.chart.Series.Add(series1);
             this.chart.Size = new System.Drawing.Size(723, 299);
             this.chart.TabIndex = 2;
-            this.chart.AxisViewChanged += new System.EventHandler<System.Windows.Forms.DataVisualization.Charting.ViewEventArgs>(this.chart_AxisViewChanged);
             this.chart.PostPaint += new System.EventHandler<System.Windows.Forms.DataVisualization.Charting.ChartPaintEventArgs>(this.chart_PostPaint);
             this.chart.MouseDown += new System.Windows.Forms.MouseEventHandler(this.chart_MouseDown);
             // 
@@ -122,7 +121,6 @@
             this.pnlScroll.Name = "pnlScroll";
             this.pnlScroll.Size = new System.Drawing.Size(723, 14);
             this.pnlScroll.TabIndex = 4;
-            this.pnlScroll.Visible = false;
             // 
             // hScrollBar
             // 
@@ -134,6 +132,7 @@
             this.hScrollBar.Size = new System.Drawing.Size(651, 14);
             this.hScrollBar.TabIndex = 4;
             this.hScrollBar.Value = 1;
+            this.hScrollBar.ValueChanged += new System.EventHandler(this.hScrollBar_ValueChanged);
             // 
             // trackBar
             // 
@@ -144,6 +143,7 @@
             this.trackBar.Name = "trackBar";
             this.trackBar.Size = new System.Drawing.Size(72, 14);
             this.trackBar.TabIndex = 5;
+            this.trackBar.ValueChanged += new System.EventHandler(this.trackBar_ValueChanged);
             // 
             // lblQPrice
             // 

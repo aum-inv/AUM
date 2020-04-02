@@ -219,7 +219,7 @@
             this.tsbTime17.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbTime17.Name = "tsbTime17";
             this.tsbTime17.Size = new System.Drawing.Size(37, 40);
-            this.tsbTime17.Tag = "6";
+            this.tsbTime17.Tag = "7";
             this.tsbTime17.Text = "480분";
             this.tsbTime17.Click += new System.EventHandler(this.IntervalButton_Click);
             // 
@@ -231,7 +231,7 @@
             this.tsbTime18.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbTime18.Name = "tsbTime18";
             this.tsbTime18.Size = new System.Drawing.Size(37, 40);
-            this.tsbTime18.Tag = "6";
+            this.tsbTime18.Tag = "8";
             this.tsbTime18.Text = "720분";
             this.tsbTime18.Click += new System.EventHandler(this.IntervalButton_Click);
             // 
@@ -245,9 +245,8 @@
             this.tsbTime20.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbTime20.Name = "tsbTime20";
             this.tsbTime20.Size = new System.Drawing.Size(23, 40);
-            this.tsbTime20.Tag = "7";
+            this.tsbTime20.Tag = "10";
             this.tsbTime20.Text = "일";
-            this.tsbTime20.Visible = false;
             this.tsbTime20.Click += new System.EventHandler(this.IntervalButton_Click);
             // 
             // toolStripSeparator3
