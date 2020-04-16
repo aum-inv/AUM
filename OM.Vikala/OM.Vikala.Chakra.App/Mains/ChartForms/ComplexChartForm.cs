@@ -85,6 +85,8 @@ namespace OM.Vikala.Chakra.App.Mains.ChartForm
 
             if (sourceDatas == null || sourceDatas.Count == 0) return;
 
+            //chart.DisplayPointCount = 120;
+            //chart2.DisplayPointCount = 120;
             if (base.timeInterval == TimeIntervalEnum.Day)
             {
                 var sourceDatasSub1 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(itemCode, TimeIntervalEnum.Minute_720);

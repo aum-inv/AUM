@@ -16,9 +16,9 @@ namespace OM.Lib.Base.Enums
         ,   Minute_360 = 6
         ,   Minute_480 = 8
         ,   Minute_720 = 12
-        ,   Day
-        ,   Week
-        ,   Month          
+        ,   Day = 24
+        ,   Week = 24 * 7
+        ,   Month = 24 * 7 * 30         
           
         ,   None
     }

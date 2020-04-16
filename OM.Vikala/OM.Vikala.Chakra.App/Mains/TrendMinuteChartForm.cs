@@ -50,12 +50,12 @@ namespace OM.Vikala.Chakra.App.Mains
             charts.Add(qMin5);
             charts.Add(qMin6);
 
-            qMin1.Title = "챠트 120분";
-            qMin2.Title = "챠트 180분";
-            qMin3.Title = "챠트 300분";
-            qMin4.Title = "챠트 420분";
-            qMin5.Title = "챠트 540분";
-            qMin6.Title = "챠트 1일";
+            qMin1.Title = "챠트 1시간";
+            qMin2.Title = "챠트 2시간";
+            qMin3.Title = "챠트 3시간";
+            qMin4.Title = "챠트 6시간";
+            qMin5.Title = "챠트 12시간";
+            qMin6.Title = "챠트 24시간";
 
             foreach (var c in charts)
             {
@@ -117,19 +117,19 @@ namespace OM.Vikala.Chakra.App.Mains
 
             var sourceDatas1 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                    base.SelectedItemData.Code
-                 , TimeIntervalEnum.Minute_120);
+                 , TimeIntervalEnum.Minute_60);
             var sourceDatas2 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                   base.SelectedItemData.Code
-                , TimeIntervalEnum.Minute_180);
+                , TimeIntervalEnum.Minute_120);
             var sourceDatas3 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                   base.SelectedItemData.Code
-                , TimeIntervalEnum.Minute_300);
+                , TimeIntervalEnum.Minute_180);
             var sourceDatas4 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                   base.SelectedItemData.Code
                 , TimeIntervalEnum.Minute_360);
             var sourceDatas5 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                   base.SelectedItemData.Code
-                , TimeIntervalEnum.Minute_480);
+                , TimeIntervalEnum.Minute_720);
             var sourceDatas6 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                   base.SelectedItemData.Code
                 , TimeIntervalEnum.Day);
@@ -147,7 +147,7 @@ namespace OM.Vikala.Chakra.App.Mains
             if (sourceDatas3 != null && sourceDatas3.Count > 0)
             {
                 var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas3, 7);
-                qMin3.LoadDataAndApply(itemCode, averageDatas, TimeIntervalEnum.Minute_300, 3);              
+                qMin3.LoadDataAndApply(itemCode, averageDatas, TimeIntervalEnum.Minute_180, 3);              
             }
             if (sourceDatas4 != null && sourceDatas4.Count > 0)
             {
@@ -157,7 +157,7 @@ namespace OM.Vikala.Chakra.App.Mains
             if (sourceDatas5 != null && sourceDatas5.Count > 0)
             {
                 var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas5, 7);
-                qMin5.LoadDataAndApply(itemCode, averageDatas, TimeIntervalEnum.Minute_480, 3);
+                qMin5.LoadDataAndApply(itemCode, averageDatas, TimeIntervalEnum.Minute_720, 3);
             }
             if (sourceDatas6 != null && sourceDatas6.Count > 0)
             {

@@ -342,7 +342,8 @@ namespace OM.Vikala.Chakra.App.Mains
             createCandleLineTypeChart_Quantum("양자챠트");
             createCandleLineTypeChart_QuantumHL("양자고저챠트"); 
             createCandleLineTypeChart_Dice("주사위챠트");
-            createCandleLineTypeChart_Velocity("변화챠트");           
+            createCandleLineTypeChart_Velocity("변화챠트");
+            createTimeComplexChart("멀티타임챠트");
         }
 
         #region 멀티챠트

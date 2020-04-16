@@ -151,7 +151,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.toolStrip1.Size = new System.Drawing.Size(1393, 37);
+            this.toolStrip1.Size = new System.Drawing.Size(1198, 37);
             this.toolStrip1.TabIndex = 0;
             // 
             // tsbMC3
@@ -905,7 +905,7 @@
             this.tscbItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.tscbItem.MaxDropDownItems = 30;
             this.tscbItem.Name = "tscbItem";
-            this.tscbItem.Size = new System.Drawing.Size(136, 37);
+            this.tscbItem.Size = new System.Drawing.Size(96, 37);
             this.tscbItem.SelectedIndexChanged += new System.EventHandler(this.TscbItem_SelectedIndexChanged);
             // 
             // tabPage
@@ -914,10 +914,10 @@
             this.tabPage.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.tabPage.ItemSize = new System.Drawing.Size(150, 20);
             this.tabPage.Location = new System.Drawing.Point(0, 37);
-            this.tabPage.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage.Name = "tabPage";
             this.tabPage.SelectedIndex = 0;
-            this.tabPage.Size = new System.Drawing.Size(1393, 637);
+            this.tabPage.Size = new System.Drawing.Size(1198, 637);
             this.tabPage.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabPage.TabIndex = 2;
             this.tabPage.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabPage_DrawItem);
@@ -928,7 +928,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1393, 674);
+            this.ClientSize = new System.Drawing.Size(1198, 674);
             this.Controls.Add(this.tabPage);
             this.Controls.Add(this.toolStrip1);
             this.DoubleBuffered = true;

@@ -134,7 +134,31 @@ namespace OM.Vikala.Controls.Charts
             List<S_CandleItemData> sourcesList = ChartDataSub;
             List<S_CandleItemData> findLists = new List<S_CandleItemData>();
 
-            int idx = sourcesList.FindIndex(t => t.DTime >= candle.DTime);
+            var diffDT = candle.DTime.AddMinutes(60 * (int)TimeInterval);
+
+            //if (TimeInterval == Lib.Base.Enums.TimeIntervalEnum.Day)
+            //    diffDT = candle.DTime.AddMinutes(720);
+            //else if (TimeInterval == Lib.Base.Enums.TimeIntervalEnum.Minute_720)
+            //    diffDT = candle.DTime.AddMinutes(720);
+            //else if (TimeInterval == Lib.Base.Enums.TimeIntervalEnum.Minute_720)
+            //    diffDT = candle.DTime.AddMinutes(720);
+            //else if (TimeInterval == Lib.Base.Enums.TimeIntervalEnum.Minute_480)
+            //    diffDT = candle.DTime.AddMinutes(720);
+            //else if (TimeInterval == Lib.Base.Enums.TimeIntervalEnum.Minute_360)
+            //    diffDT = candle.DTime.AddMinutes(720);
+            //else if (TimeInterval == Lib.Base.Enums.TimeIntervalEnum.Minute_300)
+            //    diffDT = candle.DTime.AddMinutes(720);
+            //else if (TimeInterval == Lib.Base.Enums.TimeIntervalEnum.Minute_240)
+            //    diffDT = candle.DTime.AddMinutes(720);
+            //else if (TimeInterval == Lib.Base.Enums.TimeIntervalEnum.Minute_180)
+            //    diffDT = candle.DTime.AddMinutes(720);
+            //else if (TimeInterval == Lib.Base.Enums.TimeIntervalEnum.Minute_120)
+            //    diffDT = candle.DTime.AddMinutes(120);
+            //else if (TimeInterval == Lib.Base.Enums.TimeIntervalEnum.Minute_60)
+            //    diffDT = candle.DTime.AddMinutes(60);
+
+
+            int idx = sourcesList.FindIndex(t => t.DTime >= diffDT);
 
             if (idx > DisplaySubItemCount)
             {
