@@ -392,5 +392,10 @@ namespace OM.Atman.Chakra.App
         private void Button1_Click_1(object sender, EventArgs e)
         {          
         }
+
+        private void btnThreeFiveRule_Click(object sender, EventArgs e)
+        {
+            new TradingRule.ThreeFiveRuleForm().Show();
+        }
     }
 }

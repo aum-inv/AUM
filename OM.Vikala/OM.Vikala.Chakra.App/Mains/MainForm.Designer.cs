@@ -914,7 +914,7 @@
             this.tabPage.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.tabPage.ItemSize = new System.Drawing.Size(150, 20);
             this.tabPage.Location = new System.Drawing.Point(0, 37);
-            this.tabPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage.Name = "tabPage";
             this.tabPage.SelectedIndex = 0;
             this.tabPage.Size = new System.Drawing.Size(1198, 637);

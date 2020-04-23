@@ -90,12 +90,15 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnStrategyMM = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btnThreeFiveRule = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -165,7 +168,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81F));
             this.tableLayoutPanel2.Controls.Add(this.lblRateES, 4, 7);
             this.tableLayoutPanel2.Controls.Add(this.lblRateURO, 4, 6);
             this.tableLayoutPanel2.Controls.Add(this.lblRateNQ, 4, 5);
@@ -230,7 +233,7 @@
             this.lblRateES.Location = new System.Drawing.Point(220, 183);
             this.lblRateES.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblRateES.Name = "lblRateES";
-            this.lblRateES.Size = new System.Drawing.Size(70, 25);
+            this.lblRateES.Size = new System.Drawing.Size(71, 25);
             this.lblRateES.TabIndex = 43;
             this.lblRateES.Text = "0.00%";
             this.lblRateES.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -243,7 +246,7 @@
             this.lblRateURO.Location = new System.Drawing.Point(220, 157);
             this.lblRateURO.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblRateURO.Name = "lblRateURO";
-            this.lblRateURO.Size = new System.Drawing.Size(70, 25);
+            this.lblRateURO.Size = new System.Drawing.Size(71, 25);
             this.lblRateURO.TabIndex = 42;
             this.lblRateURO.Text = "0.00%";
             this.lblRateURO.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -256,7 +259,7 @@
             this.lblRateNQ.Location = new System.Drawing.Point(220, 131);
             this.lblRateNQ.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblRateNQ.Name = "lblRateNQ";
-            this.lblRateNQ.Size = new System.Drawing.Size(70, 25);
+            this.lblRateNQ.Size = new System.Drawing.Size(71, 25);
             this.lblRateNQ.TabIndex = 41;
             this.lblRateNQ.Text = "0.00%";
             this.lblRateNQ.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -269,7 +272,7 @@
             this.lblRateHSI.Location = new System.Drawing.Point(220, 105);
             this.lblRateHSI.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblRateHSI.Name = "lblRateHSI";
-            this.lblRateHSI.Size = new System.Drawing.Size(70, 25);
+            this.lblRateHSI.Size = new System.Drawing.Size(71, 25);
             this.lblRateHSI.TabIndex = 40;
             this.lblRateHSI.Text = "0.00%";
             this.lblRateHSI.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -282,7 +285,7 @@
             this.lblRateSI.Location = new System.Drawing.Point(220, 79);
             this.lblRateSI.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblRateSI.Name = "lblRateSI";
-            this.lblRateSI.Size = new System.Drawing.Size(70, 25);
+            this.lblRateSI.Size = new System.Drawing.Size(71, 25);
             this.lblRateSI.TabIndex = 39;
             this.lblRateSI.Text = "0.00%";
             this.lblRateSI.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -295,7 +298,7 @@
             this.lblRateGC.Location = new System.Drawing.Point(220, 53);
             this.lblRateGC.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblRateGC.Name = "lblRateGC";
-            this.lblRateGC.Size = new System.Drawing.Size(70, 25);
+            this.lblRateGC.Size = new System.Drawing.Size(71, 25);
             this.lblRateGC.TabIndex = 38;
             this.lblRateGC.Text = "0.00%";
             this.lblRateGC.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -620,7 +623,7 @@
             this.lblRateNG.Location = new System.Drawing.Point(220, 27);
             this.lblRateNG.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblRateNG.Name = "lblRateNG";
-            this.lblRateNG.Size = new System.Drawing.Size(70, 25);
+            this.lblRateNG.Size = new System.Drawing.Size(71, 25);
             this.lblRateNG.TabIndex = 13;
             this.lblRateNG.Text = "0.00%";
             this.lblRateNG.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -633,7 +636,7 @@
             this.lblRateCL.Location = new System.Drawing.Point(220, 1);
             this.lblRateCL.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblRateCL.Name = "lblRateCL";
-            this.lblRateCL.Size = new System.Drawing.Size(70, 25);
+            this.lblRateCL.Size = new System.Drawing.Size(71, 25);
             this.lblRateCL.TabIndex = 12;
             this.lblRateCL.Text = "0.00%";
             this.lblRateCL.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -896,7 +899,7 @@
             this.groupBox4.Controls.Add(this.btnStrategyMS);
             this.groupBox4.Controls.Add(this.btnStrategySM);
             this.groupBox4.Controls.Add(this.btnStrategySS);
-            this.groupBox4.Location = new System.Drawing.Point(3, 383);
+            this.groupBox4.Location = new System.Drawing.Point(3, 382);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
@@ -928,11 +931,36 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click_1);
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.btnThreeFiveRule);
+            this.groupBox5.Location = new System.Drawing.Point(8, 429);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(5);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
+            this.groupBox5.Size = new System.Drawing.Size(300, 45);
+            this.groupBox5.TabIndex = 20;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Trading Rule";
+            // 
+            // btnThreeFiveRule
+            // 
+            this.btnThreeFiveRule.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnThreeFiveRule.Location = new System.Drawing.Point(5, 15);
+            this.btnThreeFiveRule.Margin = new System.Windows.Forms.Padding(5);
+            this.btnThreeFiveRule.Name = "btnThreeFiveRule";
+            this.btnThreeFiveRule.Size = new System.Drawing.Size(80, 28);
+            this.btnThreeFiveRule.TabIndex = 11;
+            this.btnThreeFiveRule.Text = "ThreeFive";
+            this.btnThreeFiveRule.UseVisualStyleBackColor = true;
+            this.btnThreeFiveRule.Click += new System.EventHandler(this.btnThreeFiveRule_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 11F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(312, 424);
+            this.ClientSize = new System.Drawing.Size(312, 476);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -957,6 +985,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1024,6 +1053,8 @@
         private System.Windows.Forms.Button btnStrategyMM;
         private System.Windows.Forms.Button btnStrategy;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Button btnThreeFiveRule;
     }
 }
 
