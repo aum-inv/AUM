@@ -60,6 +60,7 @@
     <Compile Include="ExApi\TelegramBotApi.cs" />
     <Compile Include="ExApi\XingApi.cs" />
     <Compile Include="OrderMITRule.cs" />
+    <Compile Include="ThreeFiveTradingRule.cs" />
     <Compile Include="OrderSimpleRule.cs" />
     <Compile Include="BaseTradeRule.cs" />
     <Compile Include="TradeEvents.cs" />
