@@ -75,6 +75,7 @@
     <Compile Include="S_DiamondtemData.cs" />
     <Compile Include="S_VolumeItemData.cs" />
     <Compile Include="S_LineItemData.cs" />
+    <Compile Include="T_AntiMatterItemData.cs" />
     <Compile Include="T_MirrorItemData.cs" />
     <Compile Include="T_QuarkItemData.cs" />
     <Compile Include="T_ThreeThreeItemData.cs" />

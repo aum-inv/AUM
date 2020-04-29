@@ -250,6 +250,13 @@ namespace OM.Vikala.Chakra.App.Mains
                         case "캔들라인형:변화챠트":
                             createCandleLineTypeChart_Velocity(menuText);
                             break;
+
+                        case "캔들라인형:반입자양챠트":
+                            createCandleLineTypeChart_Anti_1(menuText);
+                            break;
+                        case "캔들라인형:반입자음챠트":
+                            createCandleLineTypeChart_Anti_0(menuText);
+                            break;
                         #endregion
 
                         #region 캔들형
@@ -421,7 +428,21 @@ namespace OM.Vikala.Chakra.App.Mains
             var form = new Mains.ChartForm.VelocityChartForm();
             form.Text = title;
             AddTab(form);
-        }       
+        }
+        private void createCandleLineTypeChart_Anti_1(string title)
+        {
+            var form = new Mains.ChartForm.AntiMatterChartForm();
+            form.PlusMinusTypeEnum = PP.Chakra.PlusMinusTypeEnum.양;
+            form.Text = title;
+            AddTab(form);
+        }
+        private void createCandleLineTypeChart_Anti_0(string title)
+        {
+            var form = new Mains.ChartForm.AntiMatterChartForm();
+            form.PlusMinusTypeEnum = PP.Chakra.PlusMinusTypeEnum.음;
+            form.Text = title;
+            AddTab(form);
+        }
         #endregion
 
         #region 캔들형챠트

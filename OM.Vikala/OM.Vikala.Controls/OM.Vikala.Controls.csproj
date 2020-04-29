@@ -53,6 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Charts\AntiMatterChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Charts\AntiMatterChart.Designer.cs">
+      <DependentUpon>AntiMatterChart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Charts\ComplexChart_Backup.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -229,6 +235,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Charts\AntiMatterChart.resx">
+      <DependentUpon>AntiMatterChart.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Charts\ComplexChart_Backup.resx">
       <DependentUpon>ComplexChart_Backup.cs</DependentUpon>
     </EmbeddedResource>

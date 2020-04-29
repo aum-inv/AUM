@@ -125,7 +125,54 @@ namespace OM.Vikala.Controls.Charts
         //    }
         //}
         #endregion
+        #region AntiMatter
+        public static void loadDataAndApply(this AntiMatterChart c
+            , string itemCode, List<S_CandleItemData> sourceDatas
+            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+            , int itemCnt = 7)
+        {
+            try
+            {
+                List<T_AntiMatterItemData> transformedDatas = new List<T_AntiMatterItemData>();
 
+                for (int i = itemCnt; i <= sourceDatas.Count; i++)
+                {
+                    T_AntiMatterItemData transData = new T_AntiMatterItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemCnt, itemCnt));
+                    transData.Transform();
+                    transformedDatas.Add(transData);
+                }
+                c.LoadData(itemCode, transformedDatas, timeInterval);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+        }
+        //public static void loadDataAverageAndApply(this AtomChart c
+        //     , string itemCode
+        //     , List<S_CandleItemData> sourceDatas
+        //     , List<S_CandleItemData> averageDatas
+        //     , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+        //     , int itemCnt = 7)
+        //{
+        //    try
+        //    {
+        //        List<T_AtomItemData> transformedDatas = new List<T_AtomItemData>();
+
+        //        for (int i = itemCnt; i <= sourceDatas.Count; i++)
+        //        {
+        //            T_AtomItemData transData = new T_AtomItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemCnt, itemCnt));
+        //            transData.Transform();
+        //            transformedDatas.Add(transData);
+        //        }
+        //        c.LoadData(itemCode, transformedDatas, timeInterval);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine(ex.Message);
+        //    }
+        //}
+        #endregion
         #region BasicLineChart
         public static void loadDataAndApply(this BasicLineChart c
             , string itemCode
@@ -914,6 +961,7 @@ namespace OM.Vikala.Controls.Charts
             if (sourceDatas.Count == 0) return;
             itemsCnt = 9;
             if (c is BasicCandleChart) ((BasicCandleChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
+            else if (c is AntiMatterChart) ((AntiMatterChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
             else if (c is AtomChart) ((AtomChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
             else if (c is BasicVolumeChart) ((BasicVolumeChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
             else if (c is Candlestick) ((Candlestick)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
@@ -974,6 +1022,6 @@ namespace OM.Vikala.Controls.Charts
 
         //}
 
-        
+
     }
 }
