@@ -64,17 +64,24 @@ namespace OM.Vikala.Controls.Charts
             foreach (T_AntiMatterItemData item in ChartData)
             {
                 int idx = chart.Series[0].Points.AddXY(item.DTime, item.HighPrice, item.LowPrice, item.OpenPrice, item.ClosePrice);
-                chart.Series[1].Points.AddXY(item.DTime, item.t_HighAvg);
-                chart.Series[2].Points.AddXY(item.DTime, item.T_LowAvg);
-                chart.Series[3].Points.AddXY(item.DTime, item.T_MassAvg);
+                chart.Series[1].Points.AddXY(item.DTime, item.U_HighAvg);
+                chart.Series[2].Points.AddXY(item.DTime, item.U_LowAvg);
+                chart.Series[3].Points.AddXY(item.DTime, item.D_HighAvg);
+                chart.Series[4].Points.AddXY(item.DTime, item.D_LowAvg);
             }
 
             double maxPrice1 = ChartData.Max(m => m.HighPrice);
             double minPrice1 = ChartData.Min(m => m.LowPrice);
+            double maxPrice2 = ChartData.Max(m => m.U_HighPrice);
+            double minPrice2 = ChartData.Min(m => m.U_LowPrice);
+            double maxPrice3 = ChartData.Max(m => m.D_HighPrice);
+            double minPrice3 = ChartData.Min(m => m.D_LowPrice);
 
-            double maxPrice = maxPrice1;
-            double minPrice = minPrice1;
-         
+            double maxPrice = maxPrice1 > maxPrice2 ? maxPrice1 : maxPrice2;
+            double minPrice = minPrice1 < minPrice2 ? minPrice1 : minPrice2;
+            maxPrice = maxPrice > maxPrice3 ? maxPrice : maxPrice3;
+            minPrice = minPrice < minPrice3 ? minPrice : minPrice3;
+
             maxPrice = maxPrice + SpaceMaxMin;
             minPrice = minPrice - SpaceMaxMin;
             chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
@@ -160,13 +167,19 @@ namespace OM.Vikala.Controls.Charts
                 minDisplayIndex = currentIndex;
             }
             if (viewLists != null)
-            {                
+            {
                 double maxPrice1 = viewLists.Max(m => m.HighPrice);
                 double minPrice1 = viewLists.Min(m => m.LowPrice);
+                double maxPrice2 = viewLists.Max(m => m.U_HighPrice);
+                double minPrice2 = viewLists.Min(m => m.U_LowPrice);
+                double maxPrice3 = viewLists.Max(m => m.D_HighPrice);
+                double minPrice3 = viewLists.Min(m => m.D_LowPrice);
 
-                double maxPrice = maxPrice1;
-                double minPrice = minPrice1;
-             
+                double maxPrice = maxPrice1 > maxPrice2 ? maxPrice1 : maxPrice2;
+                double minPrice = minPrice1 < minPrice2 ? minPrice1 : minPrice2;
+                maxPrice = maxPrice > maxPrice3 ? maxPrice : maxPrice3;
+                minPrice = minPrice < minPrice3 ? minPrice : minPrice3;
+
                 maxPrice = maxPrice + SpaceMaxMin;
                 minPrice = minPrice - SpaceMaxMin;
 

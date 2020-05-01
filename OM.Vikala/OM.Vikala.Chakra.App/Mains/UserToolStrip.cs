@@ -241,8 +241,8 @@ namespace OM.Vikala.Chakra.App.Mains
         {
             if (ItemCountChangedEvent != null)
             {
-                ItemCountChangedEvent(tscbCnt.SelectedItem, e);
                 SharedData.SelectedItemCount = Convert.ToInt32(tscbCnt.SelectedItem);
+                ItemCountChangedEvent(tscbCnt.SelectedItem, e);               
             }
             tscbCnt.Enabled = false;
             tscbCnt.Enabled = true;

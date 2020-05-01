@@ -3,6 +3,7 @@ using OM.Lib.Base.Utils;
 using OM.PP.Chakra;
 using OM.PP.Chakra.Ctx;
 using OM.Vikala.Chakra.App.Chakra;
+using OM.Vikala.Chakra.App.Config;
 using OM.Vikala.Controls.Charts;
 using System;
 using System.Collections.Generic;
@@ -18,11 +19,6 @@ namespace OM.Vikala.Chakra.App.Mains.ChartForm
 {
     public partial class AntiMatterChartForm : BaseForm
     {
-        public PlusMinusTypeEnum PlusMinusTypeEnum
-        {
-            get;
-            set;
-        } = PlusMinusTypeEnum.양;
 
         public AntiMatterChartForm()
         {
@@ -38,6 +34,12 @@ namespace OM.Vikala.Chakra.App.Mains.ChartForm
             userToolStrip.IsVisibleAlignmentButton = false;
             userToolStrip.TableViewChangedEvent += UserToolStrip_TableViewChangedEvent;
             userToolStrip.LineChartWidthChangedEvent += UserToolStrip_LineChartWidthChangedEvent;
+            userToolStrip.ItemCountChangedEvent += UserToolStrip_ItemCountChangedEvent;       
+        }
+
+        private void UserToolStrip_ItemCountChangedEvent(object sender, EventArgs e)
+        {
+            loadData();
         }
 
         private void UserToolStrip_LineChartWidthChangedEvent(object sender, EventArgs e)
@@ -90,23 +92,14 @@ namespace OM.Vikala.Chakra.App.Mains.ChartForm
                 , base.timeInterval);
             if (sourceDatas == null || sourceDatas.Count == 0) return;
 
-            foreach (var s in sourceDatas)
-            {
-                if (PlusMinusTypeEnum == PlusMinusTypeEnum.양 && s.PlusMinusType == PlusMinusTypeEnum.음)
-                {
-                    s.ClosePrice = s.QuantumBasePrice;
-                    s.HighPrice = s.QuantumBaseHighPrice;
-                    s.LowPrice = s.QuantumLowPrice;
-                }
-                if (PlusMinusTypeEnum == PlusMinusTypeEnum.음 && s.PlusMinusType == PlusMinusTypeEnum.양)
-                {
-                    s.ClosePrice = s.QuantumBasePrice;
-                    s.HighPrice = s.QuantumBaseHighPrice;
-                    s.LowPrice = s.QuantumLowPrice;
-                }
-            }
+            int totalCnt = sourceDatas.Count;
+
+            if (totalCnt > SharedData.SelectedItemCount)
+                sourceDatas.RemoveRange(0, totalCnt - SharedData.SelectedItemCount);
+          
             var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas, 7);
             sourceDatas = PPUtils.GetCutDatas(sourceDatas, averageDatas[0].DTime);
+
             chart.LoadDataAndApply(itemCode, sourceDatas, base.timeInterval, 7);
             chart2.LoadDataAndApply(itemCode, averageDatas, base.timeInterval, 7);
         }

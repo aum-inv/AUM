@@ -541,8 +541,64 @@ namespace OM.PP.Chakra
             }
         }
 
+        public Single U_HighPrice
+        {
+            get
+            {
+                if (PlusMinusType == PlusMinusTypeEnum.음)
+                {
+                    return QuantumBaseHighPrice;
+                }
+                else
+                {
+                    return HighPrice;
+                }
+            }
+        }
+        public Single U_LowPrice
+        {
+            get
+            {
+                if (PlusMinusType == PlusMinusTypeEnum.음)
+                {
+                    return QuantumBaseLowPrice;
+                }
+                else
+                {
+                    return LowPrice;
+                }
+            }
+        }
 
 
+        public Single D_HighPrice
+        {
+            get
+            {
+                if (PlusMinusType == PlusMinusTypeEnum.음)
+                {
+                    return HighPrice;
+                }
+                else
+                {
+                    return QuantumBaseHighPrice;
+                }
+            }
+        }
+        public Single D_LowPrice
+        {
+            get
+            {
+                if (PlusMinusType == PlusMinusTypeEnum.음)
+                {
+                    return LowPrice;
+                }
+                else
+                {
+                    return QuantumBaseLowPrice;
+                }
+            }
+        }
 
 
         public int DiceNum

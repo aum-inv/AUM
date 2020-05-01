@@ -50,8 +50,10 @@
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbCL_Velocity = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem14 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbCL_Dice = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbCL_Anti_1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem21 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbCL_Dice = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem24 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbC = new System.Windows.Forms.ToolStripSplitButton();
             this.tsbC_Basic = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbC_Basic_인 = new System.Windows.Forms.ToolStripMenuItem();
@@ -120,10 +122,6 @@
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.tscbItem = new System.Windows.Forms.ToolStripComboBox();
             this.tabPage = new System.Windows.Forms.TabControl();
-            this.tsbCL_Anti_1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem24 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbCL_Anti_0 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -228,8 +226,6 @@
             this.toolStripMenuItem14,
             this.tsbCL_Anti_1,
             this.toolStripMenuItem21,
-            this.tsbCL_Anti_0,
-            this.toolStripSeparator10,
             this.tsbCL_Dice,
             this.toolStripMenuItem24});
             this.tsbCL.Image = ((System.Drawing.Image)(resources.GetObject("tsbCL.Image")));
@@ -337,6 +333,20 @@
             this.toolStripMenuItem14.Name = "toolStripMenuItem14";
             this.toolStripMenuItem14.Size = new System.Drawing.Size(183, 6);
             // 
+            // tsbCL_Anti_1
+            // 
+            this.tsbCL_Anti_1.Image = ((System.Drawing.Image)(resources.GetObject("tsbCL_Anti_1.Image")));
+            this.tsbCL_Anti_1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbCL_Anti_1.Name = "tsbCL_Anti_1";
+            this.tsbCL_Anti_1.Size = new System.Drawing.Size(186, 24);
+            this.tsbCL_Anti_1.Text = "반입자챠트";
+            this.tsbCL_Anti_1.Click += new System.EventHandler(this.tsb_Click);
+            // 
+            // toolStripMenuItem21
+            // 
+            this.toolStripMenuItem21.Name = "toolStripMenuItem21";
+            this.toolStripMenuItem21.Size = new System.Drawing.Size(183, 6);
+            // 
             // tsbCL_Dice
             // 
             this.tsbCL_Dice.Image = ((System.Drawing.Image)(resources.GetObject("tsbCL_Dice.Image")));
@@ -346,10 +356,10 @@
             this.tsbCL_Dice.Text = "주사위챠트";
             this.tsbCL_Dice.Click += new System.EventHandler(this.tsb_Click);
             // 
-            // toolStripMenuItem21
+            // toolStripMenuItem24
             // 
-            this.toolStripMenuItem21.Name = "toolStripMenuItem21";
-            this.toolStripMenuItem21.Size = new System.Drawing.Size(183, 6);
+            this.toolStripMenuItem24.Name = "toolStripMenuItem24";
+            this.toolStripMenuItem24.Size = new System.Drawing.Size(183, 6);
             // 
             // tsbC
             // 
@@ -932,34 +942,6 @@
             this.tabPage.SelectedIndexChanged += new System.EventHandler(this.tabPage_SelectedIndexChanged);
             this.tabPage.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tabPage_MouseClick);
             // 
-            // tsbCL_Anti_1
-            // 
-            this.tsbCL_Anti_1.Image = ((System.Drawing.Image)(resources.GetObject("tsbCL_Anti_1.Image")));
-            this.tsbCL_Anti_1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbCL_Anti_1.Name = "tsbCL_Anti_1";
-            this.tsbCL_Anti_1.Size = new System.Drawing.Size(186, 24);
-            this.tsbCL_Anti_1.Text = "반입자양챠트";
-            this.tsbCL_Anti_1.Click += new System.EventHandler(this.tsb_Click);
-            // 
-            // toolStripMenuItem24
-            // 
-            this.toolStripMenuItem24.Name = "toolStripMenuItem24";
-            this.toolStripMenuItem24.Size = new System.Drawing.Size(183, 6);
-            // 
-            // tsbCL_Anti_0
-            // 
-            this.tsbCL_Anti_0.Image = ((System.Drawing.Image)(resources.GetObject("tsbCL_Anti_0.Image")));
-            this.tsbCL_Anti_0.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbCL_Anti_0.Name = "tsbCL_Anti_0";
-            this.tsbCL_Anti_0.Size = new System.Drawing.Size(186, 24);
-            this.tsbCL_Anti_0.Text = "반입자음챠트";
-            this.tsbCL_Anti_0.Click += new System.EventHandler(this.tsb_Click);
-            // 
-            // toolStripSeparator10
-            // 
-            this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(183, 6);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -1075,7 +1057,5 @@
         private System.Windows.Forms.ToolStripComboBox tscbItem;
         private System.Windows.Forms.ToolStripMenuItem tsbCL_Anti_1;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem24;
-        private System.Windows.Forms.ToolStripMenuItem tsbCL_Anti_0;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
     }
 }
