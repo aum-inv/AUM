@@ -13,7 +13,7 @@ using OM.Lib.Base.Utils;
 
 namespace OM.Vikala.Controls.Charts
 {
-    public partial class AntiMatterChart : BaseChartControl
+    public partial class CheonbugyeongChart : BaseChartControl
     {
         protected override string Description => "";        
         public bool IsShowCandle
@@ -26,13 +26,13 @@ namespace OM.Vikala.Controls.Charts
             get;
             set;
         } = false;
-        public List<T_AntiMatterItemData> ChartData
+        public List<T_CheonbugyeongItemData> ChartData
         {
             get;
             set;
         }
         public void LoadData(string itemCode = ""
-            , List<T_AntiMatterItemData> chartData = null
+            , List<T_CheonbugyeongItemData> chartData = null
             , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day)
         {
             if (itemCode != ItemCode || TimeInterval != timeInterval)
@@ -50,7 +50,7 @@ namespace OM.Vikala.Controls.Charts
             }));           
         }        
 
-        public AntiMatterChart() 
+        public CheonbugyeongChart() 
         {
             InitializeComponent();
             base.IsShowXLine = false;
@@ -61,13 +61,16 @@ namespace OM.Vikala.Controls.Charts
         {
             if (ChartData == null) return;
 
-            foreach (T_AntiMatterItemData item in ChartData)
+            foreach (T_CheonbugyeongItemData item in ChartData)
             {
                 int idx = chart.Series[0].Points.AddXY(item.DTime, item.HighPrice, item.LowPrice, item.OpenPrice, item.ClosePrice);
                 chart.Series[1].Points.AddXY(item.DTime, item.U_HighAvg);
                 chart.Series[2].Points.AddXY(item.DTime, item.U_LowAvg);
                 chart.Series[3].Points.AddXY(item.DTime, item.D_HighAvg);
                 chart.Series[4].Points.AddXY(item.DTime, item.D_LowAvg);
+
+                chart.Series[5].Points.AddXY(item.DTime, item.U_MiddleAvg);
+                chart.Series[6].Points.AddXY(item.DTime, item.D_MiddleAvg);
             }
 
             double maxPrice1 = ChartData.Max(m => m.HighPrice);
@@ -136,7 +139,7 @@ namespace OM.Vikala.Controls.Charts
             int trackView = trackBar.Value;
             int displayItemCount = DisplayPointCount * trackView;
 
-            List<T_AntiMatterItemData> viewLists = null;
+            List<T_CheonbugyeongItemData> viewLists = null;
             int maxDisplayIndex = 0;
             int minDisplayIndex = 0;
             if (scrollVal == hScrollBar.Minimum)

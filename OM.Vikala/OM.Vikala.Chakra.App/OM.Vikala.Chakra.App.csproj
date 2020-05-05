@@ -95,6 +95,12 @@
     <Compile Include="Chakra\CandleSummary.cs" />
     <Compile Include="Chakra\TradeForecastInfo.cs" />
     <Compile Include="Events\MainFormToolBarEvents.cs" />
+    <Compile Include="Mains\ChartForms\CheonbugyeongChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mains\ChartForms\CheonbugyeongChartForm.Designer.cs">
+      <DependentUpon>CheonbugyeongChartForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mains\ChartForms\AntiMatterChartForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -371,6 +377,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Mains\ChartForms\CheonbugyeongChartForm.resx">
+      <DependentUpon>CheonbugyeongChartForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mains\ChartForms\AntiMatterChartForm.resx">
       <DependentUpon>AntiMatterChartForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -17,10 +17,10 @@ using System.Windows.Forms;
 
 namespace OM.Vikala.Chakra.App.Mains.ChartForm
 {
-    public partial class AntiMatterChartForm : BaseForm
+    public partial class CheonbugyeongChartForm : BaseForm
     {
 
-        public AntiMatterChartForm()
+        public CheonbugyeongChartForm()
         {
             InitializeComponent();
             base.setToolStrip(userToolStrip1);

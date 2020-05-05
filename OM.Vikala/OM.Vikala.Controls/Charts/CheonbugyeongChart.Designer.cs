@@ -1,6 +1,6 @@
 ﻿namespace OM.Vikala.Controls.Charts
 {
-    partial class AntiMatterChart
+    partial class CheonbugyeongChart
     {
         /// <summary> 
         /// 필수 디자이너 변수입니다.
@@ -34,6 +34,8 @@
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pnlScroll = new System.Windows.Forms.Panel();
             this.hScrollBar = new System.Windows.Forms.HScrollBar();
@@ -138,11 +140,27 @@
             series5.Name = "lineDL";
             series5.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             series5.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
+            series6.ChartArea = "cArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series6.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            series6.IsXValueIndexed = true;
+            series6.Name = "lineUM";
+            series6.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            series6.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
+            series7.ChartArea = "cArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series7.Color = System.Drawing.Color.Navy;
+            series7.IsXValueIndexed = true;
+            series7.Name = "lineDM";
+            series7.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            series7.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             this.chart.Series.Add(series1);
             this.chart.Series.Add(series2);
             this.chart.Series.Add(series3);
             this.chart.Series.Add(series4);
             this.chart.Series.Add(series5);
+            this.chart.Series.Add(series6);
+            this.chart.Series.Add(series7);
             this.chart.Size = new System.Drawing.Size(826, 373);
             this.chart.TabIndex = 2;
             this.chart.PostPaint += new System.EventHandler<System.Windows.Forms.DataVisualization.Charting.ChartPaintEventArgs>(this.chart_PostPaint);
@@ -194,7 +212,7 @@
             this.lblQPrice.Text = "label1";
             this.lblQPrice.Visible = false;
             // 
-            // AntiMatterChart
+            // CheonbugyeongChart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -202,7 +220,7 @@
             this.Controls.Add(this.chart);
             this.Controls.Add(this.pnlScroll);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "AntiMatterChart";
+            this.Name = "CheonbugyeongChart";
             this.Size = new System.Drawing.Size(826, 391);
             ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
             this.pnlScroll.ResumeLayout(false);

@@ -53,6 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Charts\CheonbugyeongChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Charts\CheonbugyeongChart.Designer.cs">
+      <DependentUpon>CheonbugyeongChart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Charts\AntiMatterChart.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -235,6 +241,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Charts\CheonbugyeongChart.resx">
+      <DependentUpon>CheonbugyeongChart.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Charts\AntiMatterChart.resx">
       <DependentUpon>AntiMatterChart.cs</DependentUpon>
     </EmbeddedResource>
