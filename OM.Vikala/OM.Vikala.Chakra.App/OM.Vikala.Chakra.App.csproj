@@ -95,6 +95,18 @@
     <Compile Include="Chakra\CandleSummary.cs" />
     <Compile Include="Chakra\TradeForecastInfo.cs" />
     <Compile Include="Events\MainFormToolBarEvents.cs" />
+    <Compile Include="Mains\ChartForms\CandleAntiCandleChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mains\ChartForms\CandleAntiCandleChartForm.Designer.cs">
+      <DependentUpon>CandleAntiCandleChartForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mains\ChartForms\DarkMassChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mains\ChartForms\DarkMassChartForm.Designer.cs">
+      <DependentUpon>DarkMassChartForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mains\ChartForms\CheonbugyeongChartForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -377,6 +389,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Mains\ChartForms\CandleAntiCandleChartForm.resx">
+      <DependentUpon>CandleAntiCandleChartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mains\ChartForms\DarkMassChartForm.resx">
+      <DependentUpon>DarkMassChartForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mains\ChartForms\CheonbugyeongChartForm.resx">
       <DependentUpon>CheonbugyeongChartForm.cs</DependentUpon>
     </EmbeddedResource>

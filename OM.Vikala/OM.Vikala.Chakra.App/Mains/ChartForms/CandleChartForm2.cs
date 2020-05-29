@@ -74,9 +74,13 @@ namespace OM.Vikala.Chakra.App.Mains.ChartForm
                 , base.timeInterval);
             if (sourceDatas == null || sourceDatas.Count == 0) return;
 
-            chart.LoadDataAndApply(itemCode, sourceDatas, base.timeInterval, 11);
-            chart2.LoadDataAndApply(itemCode, sourceDatas, base.timeInterval, 11);
-            chart3.LoadDataAndApply(itemCode, sourceDatas, base.timeInterval, 11);
+            int totalCnt = sourceDatas.Count;
+            if (totalCnt > Config.SharedData.SelectedItemCount)
+                sourceDatas.RemoveRange(0, totalCnt - Config.SharedData.SelectedItemCount);
+
+            chart.LoadDataAndApply(itemCode, sourceDatas, base.timeInterval, 9);
+            chart2.LoadDataAndApply(itemCode, sourceDatas, base.timeInterval, 9);
+            chart3.LoadDataAndApply(itemCode, sourceDatas, base.timeInterval, 9);
         }
     }
 }

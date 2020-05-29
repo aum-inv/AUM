@@ -12,8 +12,8 @@ namespace OM.Lib.Base.Enums
         {
               new ItemData(){ Name = "선택하세요" , Code = ""}
             //, new ItemData(){ Name = "지수-국내-코스피" , Code = "001", Length = 2}
-            //, new ItemData(){ Name = "지수-국내-코스피200" , Code = "101", Length = 2}
-            //, new ItemData(){ Name = "선물-국내-코스피200" , Code = "90199999", Length = 2, SHCode = "101P3000", Tick=0.05}
+            , new ItemData(){ Name = "지수-국내-코스피" , Code = "101", Length = 2, SHCode = "101", Tick=0.01}
+            , new ItemData(){ Name = "지수-국내-코스닥" , Code = "301", Length = 2, SHCode = "301", Tick=0.01}
             //, new ItemData(){ Name = "지수-해외-다우" , Code = "DJI", Length = 2}
             //, new ItemData(){ Name = "지수-해외-나스닥" , Code = "NAS", Length = 2}
             //, new ItemData(){ Name = "지수-해외-홍콩" , Code = "HMH", Length = 2}

@@ -77,6 +77,9 @@ namespace OM.PP.Chakra.App
                 PPStorage.Instance.Init("NQ"); 
                 PPStorage.Instance.Init("URO"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               );
                 PPStorage.Instance.Init("ES");
+                //한국업종지수 코스피200 , 코스닥
+                PPStorage.Instance.Init("101");
+                PPStorage.Instance.Init("301");
             }
             catch (System.Exception ex)
             {

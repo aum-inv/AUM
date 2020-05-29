@@ -53,6 +53,11 @@ namespace OM.Vikala.Chakra.App.Mains.ChartForm
                   itemCode
                 , base.timeInterval);
             if (sourceDatas == null || sourceDatas.Count == 0) return;
+
+            int totalCnt = sourceDatas.Count;
+            if (totalCnt > Config.SharedData.SelectedItemCount)
+                sourceDatas.RemoveRange(0, totalCnt - Config.SharedData.SelectedItemCount);
+
             chart.LoadDataAndApply(itemCode, sourceDatas, base.timeInterval, 10);
             var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas, 7);
             chart2.LoadDataAndApply(itemCode, averageDatas, base.timeInterval, 10);

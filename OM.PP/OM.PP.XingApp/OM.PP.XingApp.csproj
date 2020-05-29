@@ -76,6 +76,7 @@
     <Compile Include="Api\Api_IndexFutureMaster.cs" />
     <Compile Include="Api\Api_IndexFutureReal.cs" />
     <Compile Include="Api\Api_Jongmok.cs" />
+    <Compile Include="Api\Api_Upjong.cs" />
     <Compile Include="Api\Api_WorldFutureTick.cs" />
     <Compile Include="Api\Api_WorldFuture.cs" />
     <Compile Include="Api\Api_WorldFutureDWM.cs" />

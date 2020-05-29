@@ -65,6 +65,11 @@ namespace OM.Vikala.Chakra.App.Mains.ChartForm
                   itemCode
                 , base.timeInterval);
             if (sourceDatas == null || sourceDatas.Count == 0) return;
+
+            int totalCnt = sourceDatas.Count;
+            if (totalCnt > Config.SharedData.SelectedItemCount)
+                sourceDatas.RemoveRange(0, totalCnt - Config.SharedData.SelectedItemCount);
+
             chart.LoadDataAndApply(itemCode, sourceDatas, base.timeInterval, 7);
             List<S_CandleItemData> sourceDatas2 = new List<S_CandleItemData>();
             List<T_MirrorItemData> transformedDatas = new List<T_MirrorItemData>();

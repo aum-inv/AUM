@@ -285,6 +285,24 @@ namespace OM.PP.Chakra
                 }
             }
         }
+
+        public Single DarkMassPrice
+        {
+            get
+            {
+
+                Single m =  Math.Abs(OpenPrice - ClosePrice)
+                    + Math.Abs(OpenPrice - HighPrice)
+                    + Math.Abs(OpenPrice - LowPrice)
+                    + Math.Abs(ClosePrice - HighPrice)
+                    + Math.Abs(ClosePrice - LowPrice)
+                    + Math.Abs(HighPrice - LowPrice);
+
+                return (Single)Math.Round(m, RoundLength);
+
+            }
+        }
+
         public Single MassPrice
         {
             get

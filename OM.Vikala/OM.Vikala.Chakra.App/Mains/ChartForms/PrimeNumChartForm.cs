@@ -71,10 +71,15 @@ namespace OM.Vikala.Chakra.App.Mains.ChartForm
                   itemCode
                 , base.timeInterval);
             if (sourceDatas == null || sourceDatas.Count == 0) return;
-            var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas, 7);
+
+            int totalCnt = sourceDatas.Count;
+            if (totalCnt > Config.SharedData.SelectedItemCount)
+                sourceDatas.RemoveRange(0, totalCnt - Config.SharedData.SelectedItemCount);
+
+            var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas, 9);
             sourceDatas = PPUtils.GetCutDatas(sourceDatas, averageDatas[0].DTime);
-            chart.LoadDataAndApply(itemCode, sourceDatas, base.timeInterval, 7);
-            chart2.LoadDataAndApply(itemCode, averageDatas, base.timeInterval, 7);
+            chart.LoadDataAndApply(itemCode, sourceDatas, base.timeInterval, 9);
+            chart2.LoadDataAndApply(itemCode, averageDatas, base.timeInterval, 9);
         }
     }
 }

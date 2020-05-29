@@ -32,7 +32,7 @@ namespace OM.PP.Chakra
         public Dictionary<string, LimitedList<S_CandleItemData>> StorageMin720 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
         public Dictionary<string, LimitedList<S_CandleItemData>> StorageDay = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
 
-
+        
         public void Init(string itemCode)
         {
             try
@@ -128,7 +128,10 @@ namespace OM.PP.Chakra
             LimitedList<S_CandleItemData> storageList = null;
 
             try
-            {               
+            {
+                if (!StorageMin60.ContainsKey(itemCode))
+                    Init(itemCode);
+
                 switch (timeInterval)
                 {
                     case TimeIntervalEnum.Minute_60:

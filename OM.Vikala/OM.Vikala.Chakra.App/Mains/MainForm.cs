@@ -258,6 +258,10 @@ namespace OM.Vikala.Chakra.App.Mains
                         case "캔들라인형:천부경챠트":
                             createCandleLineTypeChart_Cbk(menuText);
                             break;
+
+                        case "캔들라인형:캔들반캔들흐름챠트":
+                            createCandleLineTypeChart_Cac(menuText);
+                            break;                     
                         #endregion
 
                         #region 캔들형
@@ -319,7 +323,10 @@ namespace OM.Vikala.Chakra.App.Mains
                             break;
                         case "라인형:양자챠트":
                             createLineTypeChart_Quantum(menuText);
-                            break;                    
+                            break;
+                        case "라인형:암흑질량챠트":
+                            createCandleLineTypeChart_Dm(menuText);
+                            break;
                         #endregion
 
                         #region 기타형
@@ -440,6 +447,20 @@ namespace OM.Vikala.Chakra.App.Mains
         private void createCandleLineTypeChart_Cbk(string title)
         {
             var form = new Mains.ChartForm.CheonbugyeongChartForm();
+            form.Text = title;
+            AddTab(form);
+        }
+
+        private void createCandleLineTypeChart_Cac(string title)
+        {
+            var form = new Mains.ChartForm.CandleAntiCandleChartForm();
+            form.Text = title;
+            AddTab(form);
+        }
+
+        private void createCandleLineTypeChart_Dm(string title)
+        {
+            var form = new Mains.ChartForm.DarkMassChartForm();
             form.Text = title;
             AddTab(form);
         }

@@ -224,6 +224,104 @@ namespace OM.Vikala.Controls.Charts
         //}
         #endregion
 
+        #region CandleAntiCandle
+        public static void loadDataAndApply(this CandleAntiCandleChart c
+            , string itemCode, List<S_CandleItemData> sourceDatas
+            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+            , int itemCnt = 7)
+        {
+            try
+            {
+                List<T_CandleAntiCandleItemData> transformedDatas = new List<T_CandleAntiCandleItemData>();
+
+                for (int i = itemCnt; i <= sourceDatas.Count; i++)
+                {
+                    T_CandleAntiCandleItemData transData = new T_CandleAntiCandleItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemCnt, itemCnt));
+                    transData.Transform();
+                    transformedDatas.Add(transData);
+                }
+                c.LoadData(itemCode, transformedDatas, timeInterval);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+        }
+        //public static void loadDataAverageAndApply(this AtomChart c
+        //     , string itemCode
+        //     , List<S_CandleItemData> sourceDatas
+        //     , List<S_CandleItemData> averageDatas
+        //     , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+        //     , int itemCnt = 7)
+        //{
+        //    try
+        //    {
+        //        List<T_AtomItemData> transformedDatas = new List<T_AtomItemData>();
+
+        //        for (int i = itemCnt; i <= sourceDatas.Count; i++)
+        //        {
+        //            T_AtomItemData transData = new T_AtomItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemCnt, itemCnt));
+        //            transData.Transform();
+        //            transformedDatas.Add(transData);
+        //        }
+        //        c.LoadData(itemCode, transformedDatas, timeInterval);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine(ex.Message);
+        //    }
+        //}
+        #endregion
+
+        #region DarkMassChart
+        public static void loadDataAndApply(this DarkMassrChart c
+            , string itemCode, List<S_CandleItemData> sourceDatas
+            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+            , int itemCnt = 7)
+        {
+            try
+            {
+                List<T_DarkMassItemData> transformedDatas = new List<T_DarkMassItemData>();
+
+                for (int i = itemCnt; i <= sourceDatas.Count; i++)
+                {
+                    T_DarkMassItemData transData = new T_DarkMassItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemCnt, itemCnt));
+                    transData.Transform();
+                    transformedDatas.Add(transData);
+                }
+                c.LoadData(itemCode, transformedDatas, timeInterval);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+        }
+        //public static void loadDataAverageAndApply(this AtomChart c
+        //     , string itemCode
+        //     , List<S_CandleItemData> sourceDatas
+        //     , List<S_CandleItemData> averageDatas
+        //     , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+        //     , int itemCnt = 7)
+        //{
+        //    try
+        //    {
+        //        List<T_AtomItemData> transformedDatas = new List<T_AtomItemData>();
+
+        //        for (int i = itemCnt; i <= sourceDatas.Count; i++)
+        //        {
+        //            T_AtomItemData transData = new T_AtomItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemCnt, itemCnt));
+        //            transData.Transform();
+        //            transformedDatas.Add(transData);
+        //        }
+        //        c.LoadData(itemCode, transformedDatas, timeInterval);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine(ex.Message);
+        //    }
+        //}
+        #endregion
+
         #region BasicLineChart
         public static void loadDataAndApply(this BasicLineChart c
             , string itemCode
@@ -1032,6 +1130,8 @@ namespace OM.Vikala.Controls.Charts
             else if (c is ChakraTradeChart) ((ChakraTradeChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
             else if (c is QuantumLineTradeChart) ((QuantumLineTradeChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
             else if (c is RealCandleChart) ((RealCandleChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
+            else if (c is CandleAntiCandleChart) ((CandleAntiCandleChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
+            else if (c is DarkMassrChart) ((DarkMassrChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
         }
         public static void LoadDataAndApply(this BaseChartControl c
            , string itemCode

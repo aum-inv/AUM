@@ -53,6 +53,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Charts\DarkMassrChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Charts\DarkMassrChart.Designer.cs">
+      <DependentUpon>DarkMassrChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Charts\CandleAntiCandleChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Charts\CandleAntiCandleChart.Designer.cs">
+      <DependentUpon>CandleAntiCandleChart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Charts\CheonbugyeongChart.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -241,6 +253,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Charts\DarkMassrChart.resx">
+      <DependentUpon>DarkMassrChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Charts\CandleAntiCandleChart.resx">
+      <DependentUpon>CandleAntiCandleChart.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Charts\CheonbugyeongChart.resx">
       <DependentUpon>CheonbugyeongChart.cs</DependentUpon>
     </EmbeddedResource>

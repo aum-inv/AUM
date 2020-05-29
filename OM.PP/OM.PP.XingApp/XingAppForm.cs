@@ -274,7 +274,14 @@ namespace OM.PP.XingApp
             string itemCode = btn.Text;           
             queryFF(itemCode);
         }
-     
+
+        private void btnUpjong_Click(object sender, EventArgs e)
+        {
+            if (!isLogoned) return;
+            Button btn = sender as Button;
+            string itemCode = btn.Tag.ToString();
+            queryUpjong(itemCode);
+        }
         private void queryFF(string itemCode)
         {
             int cnt = 100;
@@ -320,7 +327,27 @@ namespace OM.PP.XingApp
                 }
 
                 {
+                    string ncnt = "240";
+                    Api_WorldFuture apiFF = new Api.Api_WorldFuture();
+                    apiFF.ApiLogHandler += (log) => { LogWrite(log); };
+                    apiFF.Query(itemCode, "1", ncnt);
+                    apiFF.manualEvent.WaitOne();
+                    System.Threading.Thread.Sleep(1000);
+                    runApi(itemCode, cnt, ncnt, apiFF);
+                }
+                
+                {
                     string ncnt = "300";
+                    Api_WorldFuture apiFF = new Api.Api_WorldFuture();
+                    apiFF.ApiLogHandler += (log) => { LogWrite(log); };
+                    apiFF.Query(itemCode, "1", ncnt);
+                    apiFF.manualEvent.WaitOne();
+                    System.Threading.Thread.Sleep(1000);
+                    runApi(itemCode, cnt, ncnt, apiFF);
+                }
+
+                {
+                    string ncnt = "360";
                     Api_WorldFuture apiFF = new Api.Api_WorldFuture();
                     apiFF.ApiLogHandler += (log) => { LogWrite(log); };
                     apiFF.Query(itemCode, "1", ncnt);
@@ -340,7 +367,7 @@ namespace OM.PP.XingApp
                 }
 
                 {
-                    string ncnt = "540";
+                    string ncnt = "720";
                     Api_WorldFuture apiFF = new Api.Api_WorldFuture();
                     apiFF.ApiLogHandler += (log) => { LogWrite(log); };
                     apiFF.Query(itemCode, "1", ncnt);
@@ -358,8 +385,7 @@ namespace OM.PP.XingApp
 
                 isRuning = false;              
             });
-        }
-
+        }      
         private static void runApi(string itemCode, int cnt, string ncnt, Api_WorldFuture apiFF)
         {
             if (cnt >= 200)
@@ -479,20 +505,99 @@ namespace OM.PP.XingApp
                     isRuning = false;
                 }
             });
-        }    
+        }
+
+        private void queryUpjong(string itemCode)
+        {
+            Task.Factory.StartNew(() =>
+            {
+                {
+                    string ncnt = "60";
+                    Api_Upjong api = new Api.Api_Upjong();
+                    api.ApiLogHandler += (log) => { LogWrite(log); };
+                    api.Query(itemCode, "1", ncnt);
+                    api.manualEvent.WaitOne();
+                    System.Threading.Thread.Sleep(1000);                    
+                }
+
+                {
+                    string ncnt = "120";
+                    Api_Upjong api = new Api.Api_Upjong();
+                    api.ApiLogHandler += (log) => { LogWrite(log); };
+                    api.Query(itemCode, "1", ncnt);
+                    api.manualEvent.WaitOne();
+                    System.Threading.Thread.Sleep(1000);
+                }
+
+                {
+                    string ncnt = "180";
+                    Api_Upjong api = new Api.Api_Upjong();
+                    api.ApiLogHandler += (log) => { LogWrite(log); };
+                    api.Query(itemCode, "1", ncnt);
+                    api.manualEvent.WaitOne();
+                    System.Threading.Thread.Sleep(1000);
+                }
+
+                {
+                    string ncnt = "240";
+                    Api_Upjong api = new Api.Api_Upjong();
+                    api.ApiLogHandler += (log) => { LogWrite(log); };
+                    api.Query(itemCode, "1", ncnt);
+                    api.manualEvent.WaitOne();
+                    System.Threading.Thread.Sleep(1000);
+                }
+
+                {
+                    string ncnt = "300";
+                    Api_Upjong api = new Api.Api_Upjong();
+                    api.ApiLogHandler += (log) => { LogWrite(log); };
+                    api.Query(itemCode, "1", ncnt);
+                    api.manualEvent.WaitOne();
+                    System.Threading.Thread.Sleep(1000);
+                }
+
+                {
+                    string ncnt = "360";
+                    Api_Upjong api = new Api.Api_Upjong();
+                    api.ApiLogHandler += (log) => { LogWrite(log); };
+                    api.Query(itemCode, "1", ncnt);
+                    api.manualEvent.WaitOne();
+                    System.Threading.Thread.Sleep(1000);
+                }
+
+                {
+                    string ncnt = "420";
+                    Api_Upjong api = new Api.Api_Upjong();
+                    api.ApiLogHandler += (log) => { LogWrite(log); };
+                    api.Query(itemCode, "1", ncnt);
+                    api.manualEvent.WaitOne();
+                    System.Threading.Thread.Sleep(1000);
+                }
+
+                {
+                    string ncnt = "720";
+                    Api_Upjong api = new Api.Api_Upjong();
+                    api.ApiLogHandler += (log) => { LogWrite(log); };
+                    api.Query(itemCode, "1", ncnt);
+                    api.manualEvent.WaitOne();
+                    System.Threading.Thread.Sleep(1000);
+                }
+
+                {
+                    Api_Upjong api = new Api.Api_Upjong();
+                    api.ApiLogHandler += (log) => { LogWrite(log); };
+                    api.Query(itemCode, "2", "");
+                    System.Threading.Thread.Sleep(1000);
+                }
+
+                isRuning = false;
+            });
+        }
         private void btnReal_Click(object sender, EventArgs e)
         {
             if (!isLogoned) return;
 
             btnReal.Enabled = false;
-
-            //bool isRealCL = chkRealCL.Checked;
-            //bool isRealNG = chkRealNG.Checked;
-            //bool isRealGC = chkRealGC.Checked;
-            //bool isRealSI = chkRealSI.Checked;
-            //bool isRealHSI = chkRealHSI.Checked;
-            //bool isRealNQ = chkRealNQ.Checked;
-            //bool isRealURO = chkRealURO.Checked;
 
             bool isRealCL = true;
             bool isRealNG = true;
