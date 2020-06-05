@@ -538,50 +538,50 @@ namespace OM.PP.XingApp
                     System.Threading.Thread.Sleep(1000);
                 }
 
-                {
-                    string ncnt = "240";
-                    Api_Upjong api = new Api.Api_Upjong();
-                    api.ApiLogHandler += (log) => { LogWrite(log); };
-                    api.Query(itemCode, "1", ncnt);
-                    api.manualEvent.WaitOne();
-                    System.Threading.Thread.Sleep(1000);
-                }
+                //{
+                //    string ncnt = "240";
+                //    Api_Upjong api = new Api.Api_Upjong();
+                //    api.ApiLogHandler += (log) => { LogWrite(log); };
+                //    api.Query(itemCode, "1", ncnt);
+                //    api.manualEvent.WaitOne();
+                //    System.Threading.Thread.Sleep(1000);
+                //}
 
-                {
-                    string ncnt = "300";
-                    Api_Upjong api = new Api.Api_Upjong();
-                    api.ApiLogHandler += (log) => { LogWrite(log); };
-                    api.Query(itemCode, "1", ncnt);
-                    api.manualEvent.WaitOne();
-                    System.Threading.Thread.Sleep(1000);
-                }
+                //{
+                //    string ncnt = "300";
+                //    Api_Upjong api = new Api.Api_Upjong();
+                //    api.ApiLogHandler += (log) => { LogWrite(log); };
+                //    api.Query(itemCode, "1", ncnt);
+                //    api.manualEvent.WaitOne();
+                //    System.Threading.Thread.Sleep(1000);
+                //}
 
-                {
-                    string ncnt = "360";
-                    Api_Upjong api = new Api.Api_Upjong();
-                    api.ApiLogHandler += (log) => { LogWrite(log); };
-                    api.Query(itemCode, "1", ncnt);
-                    api.manualEvent.WaitOne();
-                    System.Threading.Thread.Sleep(1000);
-                }
+                //{
+                //    string ncnt = "360";
+                //    Api_Upjong api = new Api.Api_Upjong();
+                //    api.ApiLogHandler += (log) => { LogWrite(log); };
+                //    api.Query(itemCode, "1", ncnt);
+                //    api.manualEvent.WaitOne();
+                //    System.Threading.Thread.Sleep(1000);
+                //}
 
-                {
-                    string ncnt = "420";
-                    Api_Upjong api = new Api.Api_Upjong();
-                    api.ApiLogHandler += (log) => { LogWrite(log); };
-                    api.Query(itemCode, "1", ncnt);
-                    api.manualEvent.WaitOne();
-                    System.Threading.Thread.Sleep(1000);
-                }
+                //{
+                //    string ncnt = "480";
+                //    Api_Upjong api = new Api.Api_Upjong();
+                //    api.ApiLogHandler += (log) => { LogWrite(log); };
+                //    api.Query(itemCode, "1", ncnt);
+                //    api.manualEvent.WaitOne();
+                //    System.Threading.Thread.Sleep(1000);
+                //}
 
-                {
-                    string ncnt = "720";
-                    Api_Upjong api = new Api.Api_Upjong();
-                    api.ApiLogHandler += (log) => { LogWrite(log); };
-                    api.Query(itemCode, "1", ncnt);
-                    api.manualEvent.WaitOne();
-                    System.Threading.Thread.Sleep(1000);
-                }
+                //{
+                //    string ncnt = "720";
+                //    Api_Upjong api = new Api.Api_Upjong();
+                //    api.ApiLogHandler += (log) => { LogWrite(log); };
+                //    api.Query(itemCode, "1", ncnt);
+                //    api.manualEvent.WaitOne();
+                //    System.Threading.Thread.Sleep(1000);
+                //}
 
                 {
                     Api_Upjong api = new Api.Api_Upjong();

@@ -11,6 +11,37 @@ namespace OM.PP.Chakra
 {
     public static class PPUtils
     {
+        public static void SetModifyOpenPriceByClosePrice(List<S_CandleItemData> sourceDatas)
+        {
+            try
+            {
+                for (int i = 1; i < sourceDatas.Count; i++)
+                {
+                    sourceDatas[i].OpenPrice = sourceDatas[i - 1].ClosePrice;
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+        public static List<S_CandleItemData> GetModifyOpenPriceByClosePrice(List<S_CandleItemData> sourceDatas)
+        {
+            List<S_CandleItemData> modifyDatas = sourceDatas.GetRange(0, sourceDatas.Count);
+
+            try
+            {
+                for (int i = 1; i < modifyDatas.Count; i++)
+                {
+                    modifyDatas[i].OpenPrice = sourceDatas[i - 1].ClosePrice;
+                }
+            }
+            catch (Exception)
+            {
+                return modifyDatas;
+            }
+
+            return modifyDatas;
+        }
         public static List<S_CandleItemData> GetAverageDatas(string itemCode, List<S_CandleItemData> sourceDatas, int averageCnt)
         {
             List<S_CandleItemData> averageDatas = new List<S_CandleItemData>();

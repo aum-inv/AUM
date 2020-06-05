@@ -85,6 +85,10 @@ namespace OM.Vikala.Chakra.App.Mains.ChartForm
                 , base.timeInterval);
             if (sourceDatas == null || sourceDatas.Count == 0) return;
 
+            //국내지수인 경우 시간갭이 크기 때문에.. 전일종가를 당일시가로 해야한다. 
+            if (itemCode == "101" || itemCode == "301")
+                PPUtils.SetModifyOpenPriceByClosePrice(sourceDatas);
+
             int totalCnt = sourceDatas.Count;
 
             if (totalCnt > SharedData.SelectedItemCount)
