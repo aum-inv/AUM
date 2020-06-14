@@ -141,7 +141,11 @@ namespace OM.PP.Chakra.Ctx
 
                     case TimeIntervalEnum.Day:
                         list = PPStorage.Instance.StorageDay[itemCode];
-                        break;                    
+                        break;
+
+                    case TimeIntervalEnum.Week:
+                        list = PPStorage.Instance.StorageWeek[itemCode];
+                        break;
                 }
                 return list;
             }
@@ -192,7 +196,10 @@ namespace OM.PP.Chakra.Ctx
 
                     case TimeIntervalEnum.Day:
                         list = PPStorage.Instance.StorageDay[itemCode];
-                        break;                    
+                        break;
+                    case TimeIntervalEnum.Week:
+                        list = PPStorage.Instance.StorageWeek[itemCode];
+                        break;
                 }
                 if (list == null) return;
 
@@ -254,7 +261,10 @@ namespace OM.PP.Chakra.Ctx
                     case TimeIntervalEnum.Day:
                         PPStorage.Instance.StorageDay[itemCode].Clear();
                         break;
-                
+                    case TimeIntervalEnum.Week:
+                        PPStorage.Instance.StorageWeek[itemCode].Clear();
+                        break;
+
                 }                
             }
             catch (Exception ex)

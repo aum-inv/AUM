@@ -31,8 +31,9 @@ namespace OM.PP.Chakra
         public Dictionary<string, LimitedList<S_CandleItemData>> StorageMin480 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
         public Dictionary<string, LimitedList<S_CandleItemData>> StorageMin720 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
         public Dictionary<string, LimitedList<S_CandleItemData>> StorageDay = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
+        public Dictionary<string, LimitedList<S_CandleItemData>> StorageWeek = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
 
-        
+
         public void Init(string itemCode)
         {
             try
@@ -118,6 +119,15 @@ namespace OM.PP.Chakra
                 {
                     StorageDay[itemCode].Clear();
                 }
+
+                if (!StorageWeek.ContainsKey(itemCode))
+                {
+                    StorageWeek.Add(itemCode, new LimitedList<S_CandleItemData>(1000));
+                }
+                else
+                {
+                    StorageWeek[itemCode].Clear();
+                }
             }
             catch (Exception)
             {
@@ -168,7 +178,11 @@ namespace OM.PP.Chakra
 
                     case TimeIntervalEnum.Day:
                         storageList = StorageDay[itemCode];
-                        break;                    
+                        break;
+
+                    case TimeIntervalEnum.Week:
+                        storageList = StorageWeek[itemCode];
+                        break;
                 }
               
                 if (storageList != null)
@@ -223,7 +237,11 @@ namespace OM.PP.Chakra
 
                 case TimeIntervalEnum.Day:
                     list = StorageDay[itemCode];
-                    break;               
+                    break;
+
+                case TimeIntervalEnum.Week:
+                    list = StorageWeek[itemCode];
+                    break;
             }
             if (list == null) return;
             if (list.Count < 10) return;

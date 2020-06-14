@@ -42,7 +42,7 @@ namespace OM.PP.XingApp.Api
 
         public void Query(
               string shcode
-            , string gubun = "1" //1:분 2:일
+            , string gubun = "1" //1:분 2:일 3:주
             , string ncnt = "" // 분일때 60 120  일일때 0         
             )
         {
@@ -52,9 +52,9 @@ namespace OM.PP.XingApp.Api
 
                 TimeInterval = EnumUtil.GetTimeIntervalValue(gubun, ncnt);
 
-                string qrycnt = "100"; //건수
+                string qrycnt = "500"; //건수
                 string tdgb = "0";  //당일구분
-                string sdate = DateTime.Now.AddYears(-2).ToString("yyyyMMdd");
+                string sdate = DateTime.Now.AddYears(-10).ToString("yyyyMMdd");
                 string edate = DateTime.Now.ToString("yyyyMMdd"); ;
                 string cts_date = "";
                 string cts_time = "";

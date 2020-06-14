@@ -42,6 +42,7 @@
             this.tsbTime17 = new System.Windows.Forms.ToolStripButton();
             this.tsbTime18 = new System.Windows.Forms.ToolStripButton();
             this.tsbTime20 = new System.Windows.Forms.ToolStripButton();
+            this.tsbTime30 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tscbCnt = new System.Windows.Forms.ToolStripComboBox();
             this.tsbSplit = new System.Windows.Forms.ToolStripSeparator();
@@ -85,7 +86,8 @@
             this.tsbTime16,
             this.tsbTime17,
             this.tsbTime18,
-            this.tsbTime20,
+            this.tsbTime20,     
+            this.tsbTime30,
             this.toolStripSeparator3,
             this.tscbCnt,
             this.tsbSplit,
@@ -248,6 +250,20 @@
             this.tsbTime20.Tag = "10";
             this.tsbTime20.Text = "일";
             this.tsbTime20.Click += new System.EventHandler(this.IntervalButton_Click);
+            // 
+            // tsbTime30
+            // 
+            this.tsbTime30.AutoSize = false;
+            this.tsbTime30.AutoToolTip = false;
+            this.tsbTime30.BackColor = System.Drawing.SystemColors.Control;
+            this.tsbTime30.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbTime30.Image = ((System.Drawing.Image)(resources.GetObject("tsbTime30.Image")));
+            this.tsbTime30.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbTime30.Name = "tsbTime30";
+            this.tsbTime30.Size = new System.Drawing.Size(23, 40);
+            this.tsbTime30.Tag = "20";
+            this.tsbTime30.Text = "주";
+            this.tsbTime30.Click += new System.EventHandler(this.IntervalButton_Click);
             // 
             // toolStripSeparator3
             // 
@@ -488,7 +504,8 @@
         private System.Windows.Forms.ToolStripButton tsbTime17;
         private System.Windows.Forms.ToolStripButton tsbTime18;
         private System.Windows.Forms.ToolStripButton tsbTime20;
-        
+        private System.Windows.Forms.ToolStripButton tsbTime30;
+
         private System.Windows.Forms.ToolStripSeparator tsbSplit;
         private System.Windows.Forms.ToolStripButton tsbFTab;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
