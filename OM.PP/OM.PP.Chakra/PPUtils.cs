@@ -67,10 +67,15 @@ namespace OM.PP.Chakra
             {
                 for (int i = averageCnt; i <= sourceDatas.Count; i++)
                 {
+                    DateTime dTime = sourceDatas[i].DTime;
+
                     int idx = i - averageCnt;
                     int cnt = averageCnt + averageCnt;
 
-                    S_CandleItemData transData = new S_CandleItemData(itemCode, sourceDatas.GetRange(idx, cnt));
+                    if (sourceDatas.Count - (idx + cnt) < 0)
+                        cnt = cnt - ((idx + cnt) - sourceDatas.Count);
+
+                    S_CandleItemData transData = new S_CandleItemData(itemCode, sourceDatas.GetRange(idx, cnt), dTime);
                     averageDatas.Add(transData);
                 }
             }
@@ -100,6 +105,7 @@ namespace OM.PP.Chakra
             }
             return sourceDatasNew;
         }
+
         public static List<S_LineItemData> GetAverageDatas(string itemCode, List<S_LineItemData> sourceDatas, int averageCnt)
         {
             List<S_LineItemData> averageDatas = new List<S_LineItemData>();

@@ -37,7 +37,17 @@ namespace OM.PP.Chakra
             this.sourceItems = sourceItems;
             calculateAvgEx();
         }
-                
+        public S_CandleItemData(
+             string itemCode
+           , List<S_CandleItemData> sourceItems
+           , DateTime dtime)
+        {
+            base.ItemCode = itemCode;
+            this.sourceItems = sourceItems;
+            calculateAvgEx();
+            base.DTime = dtime;
+        }
+
         public Single CenterPriceAvg
         {
             get; set;
