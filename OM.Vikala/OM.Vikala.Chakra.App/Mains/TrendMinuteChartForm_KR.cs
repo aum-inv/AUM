@@ -15,14 +15,16 @@ using System.Windows.Forms;
 
 namespace OM.Vikala.Chakra.App.Mains
 {
-    public partial class TrendChartFormS : BaseForm
+    public partial class TrendMinuteChartForm_KR : BaseForm
     {
         List<BaseChartControl> charts = new List<BaseChartControl>();
 
-        BaseChartControl qMin1 = new QuantumLineChart();
-        BaseChartControl qMin2 = new QuantumLineChart();
-
-        public TrendChartFormS()
+        BaseChartControl qMin1 = new QuantumLineChartHL();
+        BaseChartControl qMin2 = new QuantumLineChartHL();
+        BaseChartControl qMin3 = new QuantumLineChartHL();
+        BaseChartControl qMin4 = new QuantumLineChartHL();
+  
+        public TrendMinuteChartForm_KR()
         {
             InitializeComponent();
             base.setToolStrip(userToolStrip1);
@@ -40,7 +42,17 @@ namespace OM.Vikala.Chakra.App.Mains
         {
             charts.Clear();
             charts.Add(qMin1);
-            charts.Add(qMin2);        
+            charts.Add(qMin2);
+            charts.Add(qMin3);
+            charts.Add(qMin4);
+          
+
+            qMin1.Title = "챠트 1시간";
+            qMin2.Title = "챠트 3시간";
+            qMin3.Title = "챠트 일";
+            qMin4.Title = "챠트 주";
+          
+
             foreach (var c in charts)
             {
                 if (c is QuantumLineChart)
@@ -49,6 +61,13 @@ namespace OM.Vikala.Chakra.App.Mains
                     c.InitializeControl();
                     c.InitializeEvent(null);                 
                     ((QuantumLineChart)c).IsShowCandle = true;
+                }
+                else if (c is QuantumLineChartHL)
+                {
+                    c.IsAutoScrollX = true;
+                    c.IsShowXLine = false;
+                    c.InitializeControl();
+                    c.InitializeEvent(null);
                 }
                 else if (c is AtomChart)
                 {
@@ -71,7 +90,10 @@ namespace OM.Vikala.Chakra.App.Mains
             if (flowDirection == FlowDirectionTypeEnum.TABLE)
             {
                 flowTable.Controls.Add(charts[0], 0, 0);
-                flowTable.Controls.Add(charts[1], 1, 0);             
+                flowTable.Controls.Add(charts[1], 1, 0);
+                flowTable.Controls.Add(charts[2], 0, 1);
+                flowTable.Controls.Add(charts[3], 1, 1);
+              
                 flowTable.Visible = true;
             }
             foreach (var c in charts)
@@ -91,19 +113,37 @@ namespace OM.Vikala.Chakra.App.Mains
             var sourceDatas1 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                    base.SelectedItemData.Code
                  , TimeIntervalEnum.Minute_60);
-
             var sourceDatas2 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                   base.SelectedItemData.Code
-                , TimeIntervalEnum.Minute_300);            
+                , TimeIntervalEnum.Minute_180);
+            var sourceDatas3 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
+                  base.SelectedItemData.Code
+                , TimeIntervalEnum.Day);
+            var sourceDatas4 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
+                  base.SelectedItemData.Code
+                , TimeIntervalEnum.Week);
           
-            if (sourceDatas1 != null && sourceDatas1.Count > 0) {
-                var averageDatas1 = PPUtils.GetAverageDatas(itemCode, sourceDatas1, 9);
-                qMin1.LoadDataAndApply(itemCode, averageDatas1, TimeIntervalEnum.Minute_60, 3);
+
+            if (sourceDatas1 != null && sourceDatas1.Count > 0)
+            {
+                var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas1, 9);
+                qMin1.LoadDataAndApply(itemCode, averageDatas, TimeIntervalEnum.Minute_60, 3);
             }
-            if (sourceDatas2 != null && sourceDatas2.Count > 0) {
-                var averageDatas2 = PPUtils.GetAverageDatas(itemCode, sourceDatas2, 9);
-                qMin2.LoadDataAndApply(itemCode, averageDatas2, TimeIntervalEnum.Minute_300, 3);
+            if (sourceDatas2 != null && sourceDatas2.Count > 0)
+            {
+                var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas2, 9);
+                qMin2.LoadDataAndApply(itemCode, averageDatas, TimeIntervalEnum.Minute_180, 3);
             }
+            if (sourceDatas3 != null && sourceDatas3.Count > 0)
+            {
+                var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas3, 9);
+                qMin3.LoadDataAndApply(itemCode, averageDatas, TimeIntervalEnum.Day, 3);              
+            }
+            if (sourceDatas4 != null && sourceDatas4.Count > 0)
+            {
+                var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas4, 9);
+                qMin4.LoadDataAndApply(itemCode, averageDatas, TimeIntervalEnum.Week, 3);
+            }           
         }
     }
 }

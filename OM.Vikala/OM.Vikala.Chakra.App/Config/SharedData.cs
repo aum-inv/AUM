@@ -9,6 +9,12 @@ namespace OM.Vikala.Chakra.App.Config
 {
     public static class SharedData
     {
+        public static string SelectedType
+        {
+            get;
+            set;
+        } = "2";
+
         public static ItemData SelectedItem
         {
             get;
@@ -25,6 +31,6 @@ namespace OM.Vikala.Chakra.App.Config
         {
             get;
             set;
-        } = 120;
+        } = 300;
     }
 }

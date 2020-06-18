@@ -221,6 +221,30 @@
     <Compile Include="Mains\ChartForms\CandleChartForm.Designer.cs">
       <DependentUpon>CandleChartForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mains\TrendChartFormL_KR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mains\TrendChartFormL_KR.Designer.cs">
+      <DependentUpon>TrendChartFormL_KR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mains\TrendChartFormM_KR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mains\TrendChartFormM_KR.Designer.cs">
+      <DependentUpon>TrendChartFormM_KR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mains\TrendChartFormS__KR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mains\TrendChartFormS__KR.Designer.cs">
+      <DependentUpon>TrendChartFormS__KR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mains\TrendMinuteChartForm_KR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mains\TrendMinuteChartForm_KR.Designer.cs">
+      <DependentUpon>TrendMinuteChartForm_KR.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mains\TrendMinuteChartForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -451,6 +475,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mains\ChartForms\CandleChartForm.resx">
       <DependentUpon>CandleChartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mains\TrendChartFormL_KR.resx">
+      <DependentUpon>TrendChartFormL_KR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mains\TrendChartFormM_KR.resx">
+      <DependentUpon>TrendChartFormM_KR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mains\TrendChartFormS__KR.resx">
+      <DependentUpon>TrendChartFormS__KR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mains\TrendMinuteChartForm_KR.resx">
+      <DependentUpon>TrendMinuteChartForm_KR.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mains\TrendMinuteChartForm.resx">
       <DependentUpon>TrendMinuteChartForm.cs</DependentUpon>

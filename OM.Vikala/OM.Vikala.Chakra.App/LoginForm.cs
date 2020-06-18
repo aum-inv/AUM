@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OM.Vikala.Chakra.App.Config;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,10 +24,17 @@ namespace OM.Vikala.Chakra.App
             {
                 if (tbPwd.Text == "qawsedrf")
                 {
+                    if (rdoType1.Checked) SharedData.SelectedType = "1";
+                    if (rdoType2.Checked) SharedData.SelectedType = "2";
+
                     this.DialogResult = System.Windows.Forms.DialogResult.OK;
                     this.Close();
                 }
             }
+        }
+
+        private void tbPwd_TextChanged(object sender, EventArgs e)
+        {
         }
     }
 }

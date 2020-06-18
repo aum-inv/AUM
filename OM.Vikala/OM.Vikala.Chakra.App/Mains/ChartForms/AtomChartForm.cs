@@ -95,6 +95,10 @@ namespace OM.Vikala.Chakra.App.Mains.ChartForm
                 sourceDatas.RemoveRange(0, totalCnt - SharedData.SelectedItemCount);
 
             var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas, 9);
+            
+            //var averageDatas = PPUtils.GetAccumulatedAverageDatas(itemCode, sourceDatas, 9);
+
+
             sourceDatas = PPUtils.GetCutDatas(sourceDatas, averageDatas[0].DTime);
             chart.LoadDataAndApply(itemCode, sourceDatas, base.timeInterval, 9);
             chart2.LoadDataAndApply(itemCode, averageDatas, base.timeInterval, 9);

@@ -136,32 +136,32 @@ namespace OM.Vikala.Chakra.App.Mains
 
             if (sourceDatas1 != null && sourceDatas1.Count > 0)
             {
-                var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas1, 7);
+                var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas1, 9);
                 qMin1.LoadDataAndApply(itemCode, averageDatas, TimeIntervalEnum.Minute_60, 3);
             }
             if (sourceDatas2 != null && sourceDatas2.Count > 0)
             {
-                var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas2, 7);
+                var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas2, 9);
                 qMin2.LoadDataAndApply(itemCode, averageDatas, TimeIntervalEnum.Minute_120, 3);
             }
             if (sourceDatas3 != null && sourceDatas3.Count > 0)
             {
-                var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas3, 7);
+                var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas3, 9);
                 qMin3.LoadDataAndApply(itemCode, averageDatas, TimeIntervalEnum.Minute_180, 3);              
             }
             if (sourceDatas4 != null && sourceDatas4.Count > 0)
             {
-                var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas4, 7);
+                var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas4, 9);
                 qMin4.LoadDataAndApply(itemCode, averageDatas, TimeIntervalEnum.Minute_360, 3);
             }
             if (sourceDatas5 != null && sourceDatas5.Count > 0)
             {
-                var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas5, 7);
+                var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas5, 9);
                 qMin5.LoadDataAndApply(itemCode, averageDatas, TimeIntervalEnum.Minute_720, 3);
             }
             if (sourceDatas6 != null && sourceDatas6.Count > 0)
             {
-                var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas6, 7);
+                var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas6, 9);
                 qMin6.LoadDataAndApply(itemCode, averageDatas, TimeIntervalEnum.Day, 3);
             }
         }

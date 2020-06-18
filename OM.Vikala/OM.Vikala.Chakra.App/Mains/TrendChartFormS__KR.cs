@@ -15,14 +15,14 @@ using System.Windows.Forms;
 
 namespace OM.Vikala.Chakra.App.Mains
 {
-    public partial class TrendChartFormS : BaseForm
+    public partial class TrendChartFormS_KR : BaseForm
     {
         List<BaseChartControl> charts = new List<BaseChartControl>();
 
         BaseChartControl qMin1 = new QuantumLineChart();
         BaseChartControl qMin2 = new QuantumLineChart();
 
-        public TrendChartFormS()
+        public TrendChartFormS_KR()
         {
             InitializeComponent();
             base.setToolStrip(userToolStrip1);
@@ -88,21 +88,18 @@ namespace OM.Vikala.Chakra.App.Mains
 
             string itemCode = base.SelectedItemData.Code;
 
-            var sourceDatas1 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
-                   base.SelectedItemData.Code
-                 , TimeIntervalEnum.Minute_60);
+            TimeIntervalEnum timeInterval = TimeIntervalEnum.Minute_60;
 
-            var sourceDatas2 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
-                  base.SelectedItemData.Code
-                , TimeIntervalEnum.Minute_300);            
-          
-            if (sourceDatas1 != null && sourceDatas1.Count > 0) {
-                var averageDatas1 = PPUtils.GetAverageDatas(itemCode, sourceDatas1, 9);
-                qMin1.LoadDataAndApply(itemCode, averageDatas1, TimeIntervalEnum.Minute_60, 3);
-            }
-            if (sourceDatas2 != null && sourceDatas2.Count > 0) {
-                var averageDatas2 = PPUtils.GetAverageDatas(itemCode, sourceDatas2, 9);
-                qMin2.LoadDataAndApply(itemCode, averageDatas2, TimeIntervalEnum.Minute_300, 3);
+            var sourceDatas = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
+                   base.SelectedItemData.Code
+                 , timeInterval);
+
+            if (sourceDatas != null && sourceDatas.Count > 0) {
+                var averageDatas1 = PPUtils.GetAverageDatas(itemCode, sourceDatas, 9);
+                var averageDatas2 = PPUtils.GetAccumulatedAverageDatas(itemCode, sourceDatas, 9);
+
+                qMin1.LoadDataAndApply(itemCode, averageDatas1, timeInterval, 3);          
+                qMin2.LoadDataAndApply(itemCode, averageDatas2, timeInterval, 3);
             }
         }
     }

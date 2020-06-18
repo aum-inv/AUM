@@ -99,12 +99,12 @@ namespace OM.Vikala.Chakra.App.Mains
 
             if (sourceDatas1 != null && sourceDatas1.Count > 0)
             {
-                var averageDatas1 = PPUtils.GetAverageDatas(itemCode, sourceDatas1, 7);
+                var averageDatas1 = PPUtils.GetAverageDatas(itemCode, sourceDatas1, 9);
                 qMin1.LoadDataAndApply(itemCode, averageDatas1, TimeIntervalEnum.Minute_300, 3);
             }
             if (sourceDatas2 != null && sourceDatas2.Count > 0)
             {
-                var averageDatas2 = PPUtils.GetAverageDatas(itemCode, sourceDatas2, 7);
+                var averageDatas2 = PPUtils.GetAverageDatas(itemCode, sourceDatas2, 9);
                 qMin2.LoadDataAndApply(itemCode, averageDatas2, TimeIntervalEnum.Day, 3);
             }
         }

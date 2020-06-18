@@ -1,5 +1,6 @@
 ﻿using OM.Lib.Base.Enums;
 using OM.PP.Chakra.Ctx;
+using OM.Vikala.Chakra.App.Config;
 using OM.Vikala.Chakra.App.Events;
 using System;
 using System.Collections.Generic;
@@ -352,36 +353,78 @@ namespace OM.Vikala.Chakra.App.Mains
         }
         private void createRequiredCharts()
         {
-            createTrendMultiChart("분챠트추세");
-            createCandleLineTypeChart_Atom("원자챠트");
-            createCandleLineTypeChart_Quantum("양자챠트");
-            createCandleLineTypeChart_QuantumHL("양자고저챠트"); 
-            createCandleLineTypeChart_Dice("주사위챠트");
-            createCandleLineTypeChart_Velocity("변화챠트");
-            createTimeComplexChart("멀티타임챠트");
+            //국내지수
+            if (SharedData.SelectedType == "1")
+            {
+                createTrendMultiChart("분챠트추세");
+                createCandleLineTypeChart_Atom("원자챠트");
+                createCandleLineTypeChart_Quantum("양자챠트");
+                createCandleLineTypeChart_QuantumHL("양자고저챠트");
+                createCandleLineTypeChart_Dice("주사위챠트");
+                createCandleLineTypeChart_Velocity("변화챠트");
+                createTimeComplexChart("멀티타임챠트");
+            }
+            //해외선물
+            if (SharedData.SelectedType == "2")
+            {
+                createTrendMultiChart("분챠트추세");
+                createCandleLineTypeChart_Atom("원자챠트");
+                createCandleLineTypeChart_Quantum("양자챠트");
+                createCandleLineTypeChart_QuantumHL("양자고저챠트");
+                createCandleLineTypeChart_Dice("주사위챠트");
+                createCandleLineTypeChart_Velocity("변화챠트");
+                createTimeComplexChart("멀티타임챠트");
+            }
         }
 
         #region 멀티챠트
         private void createTrendMultiChart(string title)
         {
-            if (title == "단중장추세")
+            //국내지수
+            if (SharedData.SelectedType == "1")
             {
-                BaseForm bmf1 = new TrendChartFormS();
-                bmf1.Text = "단기추세";
-                AddTab(bmf1);
-                BaseForm bmf2 = new TrendChartFormM();
-                bmf2.Text = "중기추세";
-                AddTab(bmf2);
-                BaseForm bmf3 = new TrendChartFormL();
-                bmf3.Text = "장기추세";
-                AddTab(bmf3);
+                if (title == "단중장추세")
+                {
+                    BaseForm bmf1 = new TrendChartFormS_KR();
+                    bmf1.Text = "단기추세";
+                    AddTab(bmf1);
+                    BaseForm bmf2 = new TrendChartFormM_KR();
+                    bmf2.Text = "중기추세";
+                    AddTab(bmf2);
+                    BaseForm bmf3 = new TrendChartFormL_KR();
+                    bmf3.Text = "장기추세";
+                    AddTab(bmf3);
+                }
+
+                if (title == "분챠트추세")
+                {
+                    BaseForm bmf = new TrendMinuteChartForm_KR();
+                    bmf.Text = title;
+                    AddTab(bmf);
+                }
             }
-          
-            if (title == "분챠트추세")
+            //해외선물
+            if (SharedData.SelectedType == "2")
             {
-                BaseForm bmf = new TrendMinuteChartForm();
-                bmf.Text = title;
-                AddTab(bmf);
+                if (title == "단중장추세")
+                {
+                    BaseForm bmf1 = new TrendChartFormS();
+                    bmf1.Text = "단기추세";
+                    AddTab(bmf1);
+                    BaseForm bmf2 = new TrendChartFormM();
+                    bmf2.Text = "중기추세";
+                    AddTab(bmf2);
+                    BaseForm bmf3 = new TrendChartFormL();
+                    bmf3.Text = "장기추세";
+                    AddTab(bmf3);
+                }
+
+                if (title == "분챠트추세")
+                {
+                    BaseForm bmf = new TrendMinuteChartForm();
+                    bmf.Text = title;
+                    AddTab(bmf);
+                }
             }
         }
         private void createTimeComplexChart(string title)

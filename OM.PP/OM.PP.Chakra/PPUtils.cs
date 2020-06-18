@@ -67,26 +67,10 @@ namespace OM.PP.Chakra
             {
                 for (int i = averageCnt; i <= sourceDatas.Count; i++)
                 {
-                    var subList = sourceDatas.GetRange(i - averageCnt, averageCnt);
+                    int idx = i - averageCnt;
+                    int cnt = averageCnt + averageCnt;
 
-                    List<Single> oList = new List<float>();
-                    List<Single> cList = new List<float>();
-                    List<Single> hList = new List<float>();
-                    List<Single> lList = new List<float>();
-                    for (int j = 0; j < subList.Count; j++)
-                    {
-                        oList.Add(subList[j].OpenPrice);
-                        cList.Add(subList[j].ClosePrice);
-                        hList.Add(subList[j].HighPrice);
-                        lList.Add(subList[j].LowPrice);
-
-                        subList[j].OpenPrice = oList.Average();
-                        subList[j].ClosePrice = cList.Average();
-                        subList[j].HighPrice = hList.Average();
-                        subList[j].LowPrice = lList.Average();
-                    }
-
-                    S_CandleItemData transData = new S_CandleItemData(itemCode, sourceDatas.GetRange(i - averageCnt, averageCnt));
+                    S_CandleItemData transData = new S_CandleItemData(itemCode, sourceDatas.GetRange(idx, cnt));
                     averageDatas.Add(transData);
                 }
             }
@@ -96,6 +80,8 @@ namespace OM.PP.Chakra
             }
             return averageDatas;
         }
+
+
         public static List<S_CandleItemData> GetCutDatas(List<S_CandleItemData> sourceDatas, DateTime dt)
         {            
             List<S_CandleItemData> sourceDatasNew = new List<S_CandleItemData>();
