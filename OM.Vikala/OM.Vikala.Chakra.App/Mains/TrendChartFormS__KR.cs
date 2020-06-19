@@ -96,7 +96,7 @@ namespace OM.Vikala.Chakra.App.Mains
 
             if (sourceDatas != null && sourceDatas.Count > 0) {
                 var averageDatas1 = PPUtils.GetAverageDatas(itemCode, sourceDatas, 9);
-                var averageDatas2 = PPUtils.GetAccumulatedAverageDatas(itemCode, sourceDatas, 9);
+                var averageDatas2 = PPUtils.GetBalancedAverageDatas(itemCode, sourceDatas, 9);
 
                 qMin1.LoadDataAndApply(itemCode, averageDatas1, timeInterval, 3);          
                 qMin2.LoadDataAndApply(itemCode, averageDatas2, timeInterval, 3);

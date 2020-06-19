@@ -47,7 +47,26 @@ namespace OM.PP.Chakra
             calculateAvgEx();
             base.DTime = dtime;
         }
-
+        public S_CandleItemData(
+            string itemCode
+          , List<S_CandleItemData> sourceItems
+          , bool isAccum)
+        {
+            base.ItemCode = itemCode;
+            this.sourceItems = sourceItems;
+            calculateAvgEx(isAccum);           
+        }
+        public S_CandleItemData(
+           string itemCode
+         , List<S_CandleItemData> sourceItems
+         , bool isAccum
+         , DateTime dtime)
+        {
+            base.ItemCode = itemCode;
+            this.sourceItems = sourceItems;
+            calculateAvgEx(isAccum);
+            base.DTime = dtime;
+        }
         public Single CenterPriceAvg
         {
             get; set;
@@ -141,44 +160,36 @@ namespace OM.PP.Chakra
             base.ClosePrice = (Single)Math.Round(sourceItems.Average(t => t.ClosePrice), RoundLength);
             base.HighPrice = (Single)Math.Round(sourceItems.Average(t => t.HighPrice), RoundLength);
             base.LowPrice = (Single)Math.Round(sourceItems.Average(t => t.LowPrice), RoundLength);
-
-            CenterPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.CenterPrice), RoundLength);
-            HCenterPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.HCenterPrice), RoundLength);
-            LCenterPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.LCenterPrice), RoundLength);
-            MiddlePriceAvg = (Single)Math.Round(sourceItems.Average(t => t.MiddlePrice), RoundLength);
-            HeadLengthAvg = (Single)Math.Round(sourceItems.Average(t => t.HeadLength), RoundLength);
-            LegLengthAvg = (Single)Math.Round(sourceItems.Average(t => t.LegLength), RoundLength);
-            QuantumPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.QuantumPrice), RoundLength);
-            QuantumLowPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.QuantumLowPrice), RoundLength);
-            QuantumHighPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.QuantumHighPrice), RoundLength);
-            QuantumCenterPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.QuantumCenterPrice), RoundLength);
-            QuantumMiddlePriceAvg = (Single)Math.Round(sourceItems.Average(t => t.QuantumMiddlePrice), RoundLength);
-            VikalaPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.VikalaPrice), RoundLength);
-            VikalaLowPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.VikalaLowPrice), RoundLength);
-            VikalaHighPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.VikalaHighPrice), RoundLength);
-            VikalaCenterPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.VikalaCenterPrice), RoundLength);
-            VikalaMiddlePriceAvg = (Single)Math.Round(sourceItems.Average(t => t.VikalaMiddlePrice), RoundLength);
-            TotalCenterPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.TotalCenterPrice), RoundLength);
-            MassPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.MassPrice), RoundLength);
-            HMassPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.HMassPrice), RoundLength);
-            QMassPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.QMassPrice), RoundLength);
-            VMassPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.VMassPrice), RoundLength);
-
-            base.DTime = sourceItems.Max(t => t.DTime);
-            base.Volume = sourceItems.Sum(t => t.Volume);
         }
-        private void calculateAvgEx()
+        private void calculateAvgEx(bool isAccumulate = false)
         {
             if (this.sourceItems == null) return;
-            
-            //sourceItems.Remove(sourceItems.Find(t => this.PlusMinusType == t.PlusMinusType && t.BodyLength == sourceItems.Max(s => s.BodyLength)));
-            //sourceItems.Remove(sourceItems.Find(t => this.PlusMinusType != t.PlusMinusType && t.BodyLength == sourceItems.Max(s => s.BodyLength)));
+            if (isAccumulate)
+            {
+                
+                var list1 = sourceItems.GetRange(Convert.ToInt32(sourceItems.Count * 0.7), Convert.ToInt32(sourceItems.Count * 0.3));
+                var list2 = sourceItems.GetRange(Convert.ToInt32(sourceItems.Count * 0.3), Convert.ToInt32(sourceItems.Count * 0.7));
+                var list3 = sourceItems.GetRange(0, Convert.ToInt32(sourceItems.Count * 1.0));
 
-            base.OpenPrice = (Single)Math.Round(sourceItems.Average(t => t.OpenPrice), RoundLength);
-            base.ClosePrice = (Single)Math.Round(sourceItems.Average(t => t.ClosePrice), RoundLength);
-            base.HighPrice = (Single)Math.Round(sourceItems.Average(t => t.HighPrice), RoundLength);
-            base.LowPrice = (Single)Math.Round(sourceItems.Average(t => t.LowPrice), RoundLength);
-                       
+                var list = new List<S_CandleItemData>();
+
+                list.AddRange(list1);
+                list.AddRange(list2);
+                list.AddRange(list3);
+
+                base.OpenPrice = (Single)Math.Round(list.Average(t => t.OpenPrice), RoundLength);
+                base.ClosePrice = (Single)Math.Round(list.Average(t => t.ClosePrice), RoundLength);
+                base.HighPrice = (Single)Math.Round(list.Average(t => t.HighPrice), RoundLength);
+                base.LowPrice = (Single)Math.Round(list.Average(t => t.LowPrice), RoundLength);
+            }
+            else
+            {
+                base.OpenPrice = (Single)Math.Round(sourceItems.Average(t => t.OpenPrice), RoundLength);
+                base.ClosePrice = (Single)Math.Round(sourceItems.Average(t => t.ClosePrice), RoundLength);
+                base.HighPrice = (Single)Math.Round(sourceItems.Average(t => t.HighPrice), RoundLength);
+                base.LowPrice = (Single)Math.Round(sourceItems.Average(t => t.LowPrice), RoundLength);
+            }
+
             CenterPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.CenterPrice), RoundLength);
             HCenterPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.HCenterPrice), RoundLength);
             LCenterPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.LCenterPrice), RoundLength);
@@ -204,6 +215,7 @@ namespace OM.PP.Chakra
             base.DTime = sourceItems.Max(t => t.DTime);
             base.Volume = sourceItems.Sum(t => t.Volume);
         }
+
         public virtual WuXingTypeEnum WuXingType
         {
             get

@@ -59,7 +59,7 @@ namespace OM.PP.Chakra
             }
             return averageDatas;
         }
-        public static List<S_CandleItemData> GetAccumulatedAverageDatas(string itemCode, List<S_CandleItemData> sourceDatas, int averageCnt)
+        public static List<S_CandleItemData> GetBalancedAverageDatas(string itemCode, List<S_CandleItemData> sourceDatas, int averageCnt)
         {
             List<S_CandleItemData> averageDatas = new List<S_CandleItemData>();
 
@@ -85,8 +85,25 @@ namespace OM.PP.Chakra
             }
             return averageDatas;
         }
+        public static List<S_CandleItemData> GetAccumulatedAverageDatas(string itemCode, List<S_CandleItemData> sourceDatas, int averageCnt)
+        {
+            List<S_CandleItemData> averageDatas = new List<S_CandleItemData>();
+            try
+            {
+                for (int i = averageCnt; i <= sourceDatas.Count; i++)
+                {
+                    S_CandleItemData transData = new S_CandleItemData(itemCode, sourceDatas.GetRange(i - averageCnt, averageCnt), true);
+                    averageDatas.Add(transData);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+            return averageDatas;
+        }
 
-
+        
         public static List<S_CandleItemData> GetCutDatas(List<S_CandleItemData> sourceDatas, DateTime dt)
         {            
             List<S_CandleItemData> sourceDatasNew = new List<S_CandleItemData>();

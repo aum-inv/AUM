@@ -94,9 +94,9 @@ namespace OM.Vikala.Chakra.App.Mains.ChartForm
             if (totalCnt > SharedData.SelectedItemCount)
                 sourceDatas.RemoveRange(0, totalCnt - SharedData.SelectedItemCount);
 
-            var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas, 9);
-            
-            //var averageDatas = PPUtils.GetAccumulatedAverageDatas(itemCode, sourceDatas, 9);
+            //var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas, 9);
+            //var averageDatas = PPUtils.GetBalancedAverageDatas(itemCode, sourceDatas, 9);
+            var averageDatas = PPUtils.GetAccumulatedAverageDatas(itemCode, sourceDatas, 9);
 
 
             sourceDatas = PPUtils.GetCutDatas(sourceDatas, averageDatas[0].DTime);
