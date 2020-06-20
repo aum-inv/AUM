@@ -111,6 +111,7 @@ namespace OM.Vikala.Controls.Charts
                     }
                 }
             }
+
             if (BaseCandleChartType == BaseCandleChartTypeEnum.인)
             {
                 double maxPrice = ChartData.Max(m => m.HighPrice);

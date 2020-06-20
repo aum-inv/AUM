@@ -54,10 +54,11 @@ namespace OM.Vikala.Chakra.App.Mains.ChartForm
                 , base.timeInterval);
             if (sourceDatas == null || sourceDatas.Count == 0) return;
 
-            int totalCnt = sourceDatas.Count;
-            if (totalCnt > Config.SharedData.SelectedItemCount)
-                sourceDatas.RemoveRange(0, totalCnt - Config.SharedData.SelectedItemCount);
-
+            //표시할 갯수를 맞춘다.
+            RemoveSourceData(sourceDatas);
+            //국내지수인 경우 시간갭이 크기 때문에.. 전일종가를 당일시가로 해야한다. 
+            SetChangeOpenPrice(itemCode, sourceDatas);
+          
             chart.LoadDataAndApply(itemCode, sourceDatas, base.timeInterval, 10);
             var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas, 7);
             chart2.LoadDataAndApply(itemCode, averageDatas, base.timeInterval, 10);

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TrendChartFormS));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TrendChartFormS_KR));
             this.button1 = new System.Windows.Forms.Button();
             this.pnlContent = new System.Windows.Forms.Panel();
             this.flowTable = new System.Windows.Forms.TableLayoutPanel();
@@ -51,22 +51,24 @@
             this.pnlContent.Controls.Add(this.flowTable);
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContent.Location = new System.Drawing.Point(0, 23);
-            this.pnlContent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlContent.Margin = new System.Windows.Forms.Padding(2);
             this.pnlContent.Name = "pnlContent";
             this.pnlContent.Size = new System.Drawing.Size(1283, 507);
             this.pnlContent.TabIndex = 4;
             // 
             // flowTable
             // 
-            this.flowTable.ColumnCount = 2;
-            this.flowTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.flowTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.flowTable.ColumnCount = 1;
+            this.flowTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.flowTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.flowTable.Location = new System.Drawing.Point(15, 20);
-            this.flowTable.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flowTable.Margin = new System.Windows.Forms.Padding(2);
             this.flowTable.Name = "flowTable";
-            this.flowTable.RowCount = 1;
-            this.flowTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.flowTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.flowTable.RowCount = 4;
+            this.flowTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.flowTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.flowTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.flowTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.flowTable.Size = new System.Drawing.Size(258, 73);
             this.flowTable.TabIndex = 1;
             // 
@@ -78,12 +80,12 @@
             this.userToolStrip1.IsVisibleMdiButton = true;
             this.userToolStrip1.IsVisibleTimeIntervalButton = true;
             this.userToolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.userToolStrip1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.userToolStrip1.Margin = new System.Windows.Forms.Padding(1);
             this.userToolStrip1.Name = "userToolStrip1";
             this.userToolStrip1.Size = new System.Drawing.Size(1283, 23);
             this.userToolStrip1.TabIndex = 0;
             // 
-            // TrendChartFormS
+            // TrendChartFormS_KR
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -93,8 +95,8 @@
             this.Controls.Add(this.userToolStrip1);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Name = "TrendChartFormS";
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Name = "TrendChartFormS_KR";
             this.Text = "단기추세챠트";
             this.pnlContent.ResumeLayout(false);
             this.ResumeLayout(false);

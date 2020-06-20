@@ -1,4 +1,6 @@
 ﻿using OM.Lib.Base.Enums;
+using OM.PP.Chakra;
+using OM.Vikala.Chakra.App.Config;
 using OM.Vikala.Chakra.App.Events;
 using OM.Vikala.Controls.Charts;
 using System;
@@ -247,6 +249,20 @@ namespace OM.Vikala.Chakra.App.Mains
             this.Name = "BaseForm";
             this.ResumeLayout(false);
 
+        }
+
+
+        protected void RemoveSourceData(List<S_CandleItemData> sourceDatas)
+        {
+            int totalCnt = sourceDatas.Count;
+            if (totalCnt > SharedData.SelectedItemCount)
+                sourceDatas.RemoveRange(0, totalCnt - SharedData.SelectedItemCount);
+        }
+
+        protected void SetChangeOpenPrice(string itemCode, List<S_CandleItemData> sourceDatas)
+        {
+            if (itemCode == "101" || itemCode == "301")
+                PPUtils.SetModifyOpenPriceByClosePrice(sourceDatas);
         }
     }
 }

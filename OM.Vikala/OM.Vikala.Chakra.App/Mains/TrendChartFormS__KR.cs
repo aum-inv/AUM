@@ -2,6 +2,7 @@
 using OM.Lib.Base.Utils;
 using OM.PP.Chakra;
 using OM.PP.Chakra.Ctx;
+using OM.Vikala.Chakra.App.Config;
 using OM.Vikala.Controls.Charts;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,8 @@ namespace OM.Vikala.Chakra.App.Mains
 
         BaseChartControl qMin1 = new QuantumLineChart();
         BaseChartControl qMin2 = new QuantumLineChart();
+        BaseChartControl qMin3 = new QuantumLineChart();
+        BaseChartControl qMin4 = new QuantumLineChart();
 
         public TrendChartFormS_KR()
         {
@@ -40,7 +43,9 @@ namespace OM.Vikala.Chakra.App.Mains
         {
             charts.Clear();
             charts.Add(qMin1);
-            charts.Add(qMin2);        
+            charts.Add(qMin2);
+            charts.Add(qMin3);
+            charts.Add(qMin4);
             foreach (var c in charts)
             {
                 if (c is QuantumLineChart)
@@ -71,7 +76,9 @@ namespace OM.Vikala.Chakra.App.Mains
             if (flowDirection == FlowDirectionTypeEnum.TABLE)
             {
                 flowTable.Controls.Add(charts[0], 0, 0);
-                flowTable.Controls.Add(charts[1], 1, 0);             
+                flowTable.Controls.Add(charts[1], 0, 1);
+                flowTable.Controls.Add(charts[2], 0, 2);
+                flowTable.Controls.Add(charts[3], 0, 3);
                 flowTable.Visible = true;
             }
             foreach (var c in charts)
@@ -94,12 +101,22 @@ namespace OM.Vikala.Chakra.App.Mains
                    base.SelectedItemData.Code
                  , timeInterval);
 
+            //표시할 갯수를 맞춘다.
+            RemoveSourceData(sourceDatas);
+            //국내지수인 경우 시간갭이 크기 때문에.. 전일종가를 당일시가로 해야한다. 
+            SetChangeOpenPrice(itemCode, sourceDatas);
+
             if (sourceDatas != null && sourceDatas.Count > 0) {
                 var averageDatas1 = PPUtils.GetAverageDatas(itemCode, sourceDatas, 9);
                 var averageDatas2 = PPUtils.GetBalancedAverageDatas(itemCode, sourceDatas, 9);
+                var averageDatas3 = PPUtils.GetAccumulatedAverageDatas(itemCode, sourceDatas, 9);
 
-                qMin1.LoadDataAndApply(itemCode, averageDatas1, timeInterval, 3);          
-                qMin2.LoadDataAndApply(itemCode, averageDatas2, timeInterval, 3);
+                sourceDatas = PPUtils.GetCutDatas(sourceDatas, averageDatas1[0].DTime);
+
+                qMin1.LoadDataAndApply(itemCode, sourceDatas, timeInterval, 3);          
+                qMin2.LoadDataAndApply(itemCode, averageDatas1, timeInterval, 3);
+                qMin3.LoadDataAndApply(itemCode, averageDatas2, timeInterval, 3);
+                qMin4.LoadDataAndApply(itemCode, averageDatas3, timeInterval, 3);
             }
         }
     }

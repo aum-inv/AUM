@@ -80,28 +80,24 @@ namespace OM.Vikala.Chakra.App.Mains.ChartForm
 
             string itemCode = base.SelectedItemData.Code;
 
-            var sourceDatas = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(                 
+            var sourceDatas = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                   itemCode
                 , base.timeInterval);
             if (sourceDatas == null || sourceDatas.Count == 0) return;
 
+            //표시할 갯수를 맞춘다.
+            RemoveSourceData(sourceDatas);
             //국내지수인 경우 시간갭이 크기 때문에.. 전일종가를 당일시가로 해야한다. 
-            if (itemCode == "101" || itemCode == "301")
-                PPUtils.SetModifyOpenPriceByClosePrice(sourceDatas);
+            SetChangeOpenPrice(itemCode, sourceDatas);          
 
-            int totalCnt = sourceDatas.Count;
-
-            if (totalCnt > SharedData.SelectedItemCount)
-                sourceDatas.RemoveRange(0, totalCnt - SharedData.SelectedItemCount);
-
-            //var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas, 9);
+            var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas, 9);
             //var averageDatas = PPUtils.GetBalancedAverageDatas(itemCode, sourceDatas, 9);
-            var averageDatas = PPUtils.GetAccumulatedAverageDatas(itemCode, sourceDatas, 9);
-
-
+            //var averageDatas = PPUtils.GetAccumulatedAverageDatas(itemCode, sourceDatas, 9);
             sourceDatas = PPUtils.GetCutDatas(sourceDatas, averageDatas[0].DTime);
             chart.LoadDataAndApply(itemCode, sourceDatas, base.timeInterval, 9);
             chart2.LoadDataAndApply(itemCode, averageDatas, base.timeInterval, 9);
         }
+
+        
     }
 }
