@@ -267,6 +267,24 @@ namespace OM.Vikala.Controls.Charts
             
             chartArea.AxisY2.LabelStyle.Format = "{N" + RoundLength + "}";
         }
+        public void SetYFormat(string format)
+        {
+            try
+            {
+                System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea = chart.ChartAreas[0];
+                chartArea.AxisY2.LabelStyle.Format = format;
+            }
+            catch (Exception ex) { }
+        }
+        public void SetXFormat(string format)
+        {
+            try
+            {
+                System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea = chart.ChartAreas[0];
+                chartArea.AxisX.LabelStyle.Format = format;
+            }
+            catch (Exception ex) { }
+        }
         public void BoldLine(string type)
         {
             foreach (var s in chart.Series)

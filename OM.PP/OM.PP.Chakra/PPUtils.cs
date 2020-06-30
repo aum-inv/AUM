@@ -883,5 +883,148 @@ namespace OM.PP.Chakra
             return renko;
         }
         #endregion
+
+        #region ReCreateSecondsData
+        public static List<S_CandleItemData> GetRecreateWhimDatas(string itemCode, List<S_CandleItemData> sourceDatas, bool isWhim = false, double whimRate = 1.0, DateTime? dt = null)
+        {
+            List<S_CandleItemData> sourceDatasNew = new List<S_CandleItemData>();
+            try
+            {
+                for (int i = 1; i < sourceDatas.Count; i++)
+                {
+                    var m0 = sourceDatas[i - 1];
+                    var m1 = sourceDatas[i];
+
+                    if (dt != null && m1.DTime < dt) continue;
+
+                    var rate = Math.Abs((m1.ClosePrice - m0.ClosePrice) / m0.ClosePrice * 100.0);
+
+                    //변덕인것만 추리기
+                    if (isWhim)
+                    {
+                        if (rate >= whimRate)
+                        {
+                            sourceDatasNew.Add(new S_CandleItemData(itemCode, m1.OpenPrice, m1.HighPrice, m1.LowPrice, m1.ClosePrice, m1.Volume, m1.DTime));
+                        }
+                        else
+                        {
+                            sourceDatasNew.Add(new S_CandleItemData(itemCode, m0.OpenPrice, m0.HighPrice, m0.LowPrice, m0.ClosePrice, m0.Volume, m0.DTime));
+                        }
+                    }
+                    //변덕아닌것만 추리기
+                    else 
+                    {
+                        if (rate >= whimRate)
+                        {
+                            sourceDatasNew.Add(new S_CandleItemData(itemCode, m0.OpenPrice, m0.HighPrice, m0.LowPrice, m0.ClosePrice, m0.Volume, m0.DTime));
+                        }
+                        else
+                        {
+                            sourceDatasNew.Add(new S_CandleItemData(itemCode, m1.OpenPrice, m1.HighPrice, m1.LowPrice, m1.ClosePrice, m1.Volume, m1.DTime));
+                        }
+                    }                    
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+            return sourceDatasNew;
+        }
+        #endregion
+        #region Duration
+        public static List<S_CandleItemData> GetDurationSum(string itemCode, List<S_CandleItemData> baseDatas, List<S_CandleItemData> sourceDatas, DateTime? dt = null)
+        {
+            List<S_CandleItemData> sumDatasNew = new List<S_CandleItemData>();
+            try
+            {
+                for (int i = 0; i < baseDatas.Count - 1; i++)
+                {
+                    var m0 = baseDatas[i];
+                    var m1 = baseDatas[i + 1];
+
+                    if (dt != null && m0.DTime < dt) continue;
+
+                    var list = sourceDatas.FindAll(t => t.DTime >= m0.DTime && t.DTime < m1.DTime);
+
+                    var open = list.First().OpenPrice;
+                    var high = list.Max(t => t.HighPrice);
+                    var low = list.Min(t => t.LowPrice);
+                    var close = list.Last().ClosePrice;
+                    if(open < close)
+                        sumDatasNew.Add(new S_CandleItemData(itemCode, low, high, low, high, 0, m0.DTime));
+                    else
+                        sumDatasNew.Add(new S_CandleItemData(itemCode, high, high, low, low, 0, m0.DTime));
+                }
+                var mLast = baseDatas.Last();
+                var list2 = sourceDatas.FindAll(t => t.DTime >= mLast.DTime);
+                var open2 = list2.First().OpenPrice;
+                var high2 = list2.Max(t => t.HighPrice);
+                var low2 = list2.Min(t => t.LowPrice);
+                var close2 = list2.Last().ClosePrice;
+                if (open2 < close2)
+                    sumDatasNew.Add(new S_CandleItemData(itemCode, low2, high2, low2, high2, 0, mLast.DTime));
+                else
+                    sumDatasNew.Add(new S_CandleItemData(itemCode, high2, high2, low2, low2, 0, mLast.DTime));
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+            return sumDatasNew;
+        }
+        #endregion
+
+        #region MovingAverage
+        public static List<S_CandleItemData> GetMovingAverageDurationFlow(string itemCode, List<S_CandleItemData> averageDatas, bool isStrengthed = false, int inflectionPoint = 3, DateTime? dt = null)
+        {
+            List<S_CandleItemData> newDatas = new List<S_CandleItemData>();
+            try
+            {
+                int plusCnt = 0;
+                int minusCnt = 0;
+
+                S_CandleItemData bCandle = null;
+                for (int i = 1; i < averageDatas.Count; i++)
+                {
+                    var m0 = averageDatas[i - 1];
+                    var m1 = averageDatas[i];
+
+                    if (dt != null && m1.DTime < dt) continue;
+
+                    if (bCandle == null) bCandle = m0;
+
+                    if (isStrengthed)
+                    {
+                        if (m0.HighPrice < m1.HighPrice && m0.LowPrice < m1.LowPrice) plusCnt++;                       
+                        if (m0.HighPrice > m1.HighPrice && m0.LowPrice > m1.LowPrice) minusCnt++;
+                    }
+                    else
+                    {
+                        if (m0.PlusMinusType == PlusMinusTypeEnum.양 && m1.PlusMinusType == PlusMinusTypeEnum.양 ) plusCnt++;
+                        if (m0.PlusMinusType == PlusMinusTypeEnum.음 && m1.PlusMinusType == PlusMinusTypeEnum.음) minusCnt++;
+                    }
+
+                    if (plusCnt > inflectionPoint && minusCnt > inflectionPoint && plusCnt != minusCnt)
+                    {
+                        int c = plusCnt > minusCnt ? plusCnt : minusCnt;
+                        if (plusCnt > minusCnt)
+                            newDatas.Add(new S_CandleItemData(itemCode, 0, plusCnt, 0, plusCnt, 0, bCandle.DTime));
+                        else
+                            newDatas.Add(new S_CandleItemData(itemCode, minusCnt, minusCnt, 0, 0, 0, bCandle.DTime));
+                 
+                        plusCnt = 0;
+                        minusCnt = 0;
+                        bCandle = null;
+                    }                 
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+            return newDatas;
+        }
+        #endregion
     }
 }

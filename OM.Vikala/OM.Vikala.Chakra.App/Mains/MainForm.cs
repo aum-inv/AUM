@@ -69,7 +69,7 @@ namespace OM.Vikala.Chakra.App.Mains
                     bmf.MdiParent = this;
                     bmf.MdiForm = this;
 
-                    TabPage tp = new TabPage(bmf.Text);
+                    TabPage tp = new TabPage(bmf.Text);                  
                     tp.Controls.Add(bmf);
                     tabPage.TabPages.Add(tp);
                     bmf.Show();
@@ -117,6 +117,7 @@ namespace OM.Vikala.Chakra.App.Mains
                 r.Offset(2, 2);
                 Brush TitleBrush = new SolidBrush(Color.Black);
                 Font f = this.Font;
+                
                 string title = tabPage.TabPages[e.Index].Text.Replace("챠트",  "");
 
                 e.Graphics.DrawString(title, f, TitleBrush, new PointF(r.X, r.Y + 2));
@@ -131,6 +132,7 @@ namespace OM.Vikala.Chakra.App.Mains
             try
             {
                 TabControl tc = (TabControl)sender;
+                
                 Point p = e.Location;
                 int _tabWidth = 0;
                 _tabWidth = tabPage.GetTabRect(tc.SelectedIndex).Width - 16;
@@ -138,6 +140,7 @@ namespace OM.Vikala.Chakra.App.Mains
                 r.Offset(_tabWidth, 7);
                 r.Width = 16;
                 r.Height = 16;
+                
                 if (r.Contains(p))
                 {
                     TabPage TabP = (TabPage)tc.TabPages[tc.SelectedIndex];
@@ -216,6 +219,9 @@ namespace OM.Vikala.Chakra.App.Mains
                         case "멀티타임캔들":
                             createTimeComplexChart(menuText);
                             break;
+                        case "추세기간":
+                            createMovingAverageDurationChart(menuText);
+                            break;
                     }
                 }
                 else if (sender is ToolStripMenuItem)
@@ -284,6 +290,20 @@ namespace OM.Vikala.Chakra.App.Mains
                             createCandleTypeChart_Basic_천지인(menuText);
                             break;
 
+                        case "추세기간챠트-단순평균-가중-3":
+                        case "추세기간챠트-단순평균-가중-2":
+                        case "추세기간챠트-단순평균-일반-3":
+                        case "추세기간챠트-단순평균-일반-2":
+                        case "추세기간챠트-밸런스평균-가중-3":
+                        case "추세기간챠트-밸런스평균-가중-2":
+                        case "추세기간챠트-밸런스평균-일반-3":
+                        case "추세기간챠트-밸런스평균-일반-2":
+                        case "추세기간챠트-가중평균-가중-3":
+                        case "추세기간챠트-가중평균-가중-2":
+                        case "추세기간챠트-가중평균-일반-3":
+                        case "추세기간챠트-가중평균-일반-2":
+                            createCandleTypeChart_AverageDuration(menuText);
+                            break;
                         case "캔들형:천지인챠트":
                             createCandleTypeChart_Slh(menuText);
                             break;
@@ -433,6 +453,14 @@ namespace OM.Vikala.Chakra.App.Mains
             bmf.Text = title;
             AddTab(bmf);
         }
+
+        private void createMovingAverageDurationChart(string title)
+        {
+            BaseForm bmf = new ChartForm.MovingAverageDurationChartForm();
+            bmf.Text = title;
+            AddTab(bmf);
+        }
+        
         #endregion
 
         #region 캔들라인형챠트
@@ -543,7 +571,23 @@ namespace OM.Vikala.Chakra.App.Mains
             form.Text = title;
             AddTab(form);
         }
+        private void createCandleTypeChart_AverageDuration(string title)
+        {
+            string averageType = "단순";
+            bool isStrengthed = true;
+            int inflectionPoint = 3;
 
+            if (title.StartsWith("밸런스")) averageType = "밸런스";
+            else if (title.StartsWith("가중")) averageType = "가중";
+
+            isStrengthed = (title.IndexOf("-일반-") > 0);
+
+            if (title.EndsWith("2")) inflectionPoint = 2;
+          
+            var form = new Mains.ChartForm.MovingAverageDurationChartForm(averageType, isStrengthed, inflectionPoint);
+            form.Text = title;
+            AddTab(form);
+        }
         private void createCandleTypeChart_Slh(string title) {            
             var form = new Mains.ChartForm.CandleChartForm(Vikala.Controls.Charts.CandleChartTypeEnum.천지인);
             form.Text = title;

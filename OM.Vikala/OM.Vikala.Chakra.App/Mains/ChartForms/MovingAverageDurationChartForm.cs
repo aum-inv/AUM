@@ -17,15 +17,22 @@ using System.Windows.Forms;
 
 namespace OM.Vikala.Chakra.App.Mains.ChartForm
 {
-    public partial class AtomChartForm : BaseForm
+    public partial class MovingAverageDurationChartForm : BaseForm
     {
-        public AtomChartForm()
+        bool isStrengthed = false;
+        int inflectionPoint = 3;
+        string averageType = "단순";
+        public MovingAverageDurationChartForm(string averageType = "단순", bool isStrengthed = false, int inflectionPoint = 3)
         {
             InitializeComponent();
             base.setToolStrip(userToolStrip1);
             InitializeControls();
-        }
 
+            this.averageType = averageType;
+            this.isStrengthed = isStrengthed;
+            this.inflectionPoint = inflectionPoint;
+        }
+      
         private void InitializeControls()
         {           
             loadChartControls();
@@ -63,14 +70,11 @@ namespace OM.Vikala.Chakra.App.Mains.ChartForm
         {
             chart.InitializeControl();
             chart.InitializeEvent(chartEvent);
-            chart.DisplayPointCount = itemCnt;
+            chart.DisplayPointCount = 500;
 
             chart2.InitializeControl();
             chart2.InitializeEvent(chartEvent);
-            chart2.DisplayPointCount = itemCnt;
-
-            chart.IsShowLine = true;
-            chart2.IsShowLine = true;
+            chart2.DisplayPointCount = 500;
         }
 
         public override void loadData()
@@ -86,25 +90,44 @@ namespace OM.Vikala.Chakra.App.Mains.ChartForm
             if (sourceDatas == null || sourceDatas.Count == 0) return;
 
             //표시할 갯수를 맞춘다.
-            RemoveSourceData(sourceDatas);
+            //RemoveSourceData(sourceDatas);
             //국내지수인 경우 시간갭이 크기 때문에.. 전일종가를 당일시가로 해야한다. 
             SetChangeOpenPrice(itemCode, sourceDatas);
 
-            double rate = 0.0;
-            if (timeInterval == TimeIntervalEnum.Week) rate = 2.5;
-            if (timeInterval == TimeIntervalEnum.Day) rate = 1.0;
-            if (timeInterval == TimeIntervalEnum.Minute_180) rate = 0.7;
-            if (timeInterval == TimeIntervalEnum.Minute_120) rate = 0.5;
-            if (timeInterval == TimeIntervalEnum.Minute_60) rate = 0.3;
-            var sourceDatas2 = PPUtils.GetRecreateWhimDatas(itemCode, sourceDatas, true, rate, null);
+            bool isUseWhim = false;
+            if (isUseWhim)
+            {
+                double rate = 0.0;
+                if (timeInterval == TimeIntervalEnum.Week) rate = 2.5;
+                if (timeInterval == TimeIntervalEnum.Day) rate = 1.0;
+                if (timeInterval == TimeIntervalEnum.Minute_180) rate = 0.7;
+                if (timeInterval == TimeIntervalEnum.Minute_120) rate = 0.5;
+                if (timeInterval == TimeIntervalEnum.Minute_60) rate = 0.3;
+                sourceDatas = PPUtils.GetRecreateWhimDatas(itemCode, sourceDatas, true, rate, null);
+            }
 
-            var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas2, 9);
-            //var averageDatas = PPUtils.GetBalancedAverageDatas(itemCode, sourceDatas, 9);
-            //var averageDatas = PPUtils.GetAccumulatedAverageDatas(itemCode, sourceDatas, 9);
-            
-            sourceDatas = PPUtils.GetCutDatas(sourceDatas, averageDatas[0].DTime);
-            chart.LoadDataAndApply(itemCode, sourceDatas, base.timeInterval, 9);
-            chart2.LoadDataAndApply(itemCode, averageDatas, base.timeInterval, 9);
-        }               
+
+            List<S_CandleItemData> averageDatas = null;
+            if (averageType == "일반")
+            {
+                averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas, 9);
+            }
+            else if (averageType == "밸런스")
+            {
+                averageDatas = PPUtils.GetBalancedAverageDatas(itemCode, sourceDatas, 9);
+            }
+            else //if (averageType == "가중")
+            {
+                averageDatas = PPUtils.GetAccumulatedAverageDatas(itemCode, sourceDatas, 9);
+            }           
+
+            var averageDatas2 = PPUtils.GetMovingAverageDurationFlow(itemCode, averageDatas, isStrengthed, inflectionPoint);            
+            var sourceDatas2 = PPUtils.GetDurationSum(itemCode, averageDatas2, sourceDatas);
+
+            chart.LoadDataAndApply(itemCode, sourceDatas2, base.timeInterval, 9);
+            chart2.LoadDataAndApply(itemCode, averageDatas2, base.timeInterval, 9);
+
+            chart2.SetYFormat("N0");
+        }        
     }
 }

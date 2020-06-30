@@ -95,6 +95,12 @@
     <Compile Include="Chakra\CandleSummary.cs" />
     <Compile Include="Chakra\TradeForecastInfo.cs" />
     <Compile Include="Events\MainFormToolBarEvents.cs" />
+    <Compile Include="Mains\ChartForms\MovingAverageDurationChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mains\ChartForms\MovingAverageDurationChartForm.Designer.cs">
+      <DependentUpon>MovingAverageDurationChartForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mains\ChartForms\CandleAntiCandleChartForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -413,6 +419,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Mains\ChartForms\MovingAverageDurationChartForm.resx">
+      <DependentUpon>MovingAverageDurationChartForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mains\ChartForms\CandleAntiCandleChartForm.resx">
       <DependentUpon>CandleAntiCandleChartForm.cs</DependentUpon>
     </EmbeddedResource>

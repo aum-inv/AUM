@@ -53,6 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Charts\MovingAverageBarChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Charts\MovingAverageBarChart.Designer.cs">
+      <DependentUpon>MovingAverageBarChart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Charts\DarkMassrChart.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -253,6 +259,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Charts\MovingAverageBarChart.resx">
+      <DependentUpon>MovingAverageBarChart.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Charts\DarkMassrChart.resx">
       <DependentUpon>DarkMassrChart.cs</DependentUpon>
     </EmbeddedResource>
