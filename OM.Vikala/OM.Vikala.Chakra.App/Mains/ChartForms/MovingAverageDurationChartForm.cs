@@ -128,6 +128,8 @@ namespace OM.Vikala.Chakra.App.Mains.ChartForm
             chart2.LoadDataAndApply(itemCode, averageDatas2, base.timeInterval, 9);
 
             chart2.SetYFormat("N0");
+           
+            
         }        
     }
 }

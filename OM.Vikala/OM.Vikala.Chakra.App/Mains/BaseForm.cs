@@ -261,8 +261,8 @@ namespace OM.Vikala.Chakra.App.Mains
 
         protected void SetChangeOpenPrice(string itemCode, List<S_CandleItemData> sourceDatas)
         {
-            //if (itemCode == "101" || itemCode == "301")
-            //    PPUtils.SetModifyOpenPriceByClosePrice(sourceDatas);
+            if (itemCode == "101" || itemCode == "301")
+                PPUtils.SetModifyOpenPriceByClosePrice(sourceDatas);
         }
     }
 }

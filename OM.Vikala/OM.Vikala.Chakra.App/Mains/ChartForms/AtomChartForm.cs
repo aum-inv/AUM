@@ -88,17 +88,20 @@ namespace OM.Vikala.Chakra.App.Mains.ChartForm
             //표시할 갯수를 맞춘다.
             RemoveSourceData(sourceDatas);
             //국내지수인 경우 시간갭이 크기 때문에.. 전일종가를 당일시가로 해야한다. 
-            SetChangeOpenPrice(itemCode, sourceDatas);
+            //SetChangeOpenPrice(itemCode, sourceDatas);
 
-            double rate = 0.0;
-            if (timeInterval == TimeIntervalEnum.Week) rate = 2.5;
-            if (timeInterval == TimeIntervalEnum.Day) rate = 1.0;
-            if (timeInterval == TimeIntervalEnum.Minute_180) rate = 0.7;
-            if (timeInterval == TimeIntervalEnum.Minute_120) rate = 0.5;
-            if (timeInterval == TimeIntervalEnum.Minute_60) rate = 0.3;
-            var sourceDatas2 = PPUtils.GetRecreateWhimDatas(itemCode, sourceDatas, true, rate, null);
+            //if (true)
+            //{
+            //    double rate = 0.0;
+            //    if (timeInterval == TimeIntervalEnum.Week) rate = 2.5;
+            //    if (timeInterval == TimeIntervalEnum.Day) rate = 1.0;
+            //    if (timeInterval == TimeIntervalEnum.Minute_180) rate = 0.7;
+            //    if (timeInterval == TimeIntervalEnum.Minute_120) rate = 0.5;
+            //    if (timeInterval == TimeIntervalEnum.Minute_60) rate = 0.3;
+            //    sourceDatas = PPUtils.GetRecreateWhimDatas(itemCode, sourceDatas, true, rate, null);
+            //}
 
-            var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas2, 9);
+            var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas, 9);
             //var averageDatas = PPUtils.GetBalancedAverageDatas(itemCode, sourceDatas, 9);
             //var averageDatas = PPUtils.GetAccumulatedAverageDatas(itemCode, sourceDatas, 9);
             

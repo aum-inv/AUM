@@ -276,17 +276,13 @@
             this.tscbCnt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.tscbCnt.IntegralHeight = false;
             this.tscbCnt.Items.AddRange(new object[] {
-            "30",
-            "60",
-            "90",
+           
             "120",
             "150",
-            "10",
-            "20",
-            "50",
-            "100",
             "200",
-            "300"});
+            "300",
+            "500"
+            });
             this.tscbCnt.MaxDropDownItems = 50;
             this.tscbCnt.Name = "tscbCnt";
             this.tscbCnt.Size = new System.Drawing.Size(75, 23);
