@@ -15,6 +15,12 @@ namespace OM.Vikala.Chakra.App.Config
             set;
         } = "2";
 
+        public static string SecurityType
+        {
+            get;
+            set;
+        } = "2";
+
         public static ItemData SelectedItem
         {
             get;

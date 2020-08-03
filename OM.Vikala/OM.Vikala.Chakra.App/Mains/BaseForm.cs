@@ -66,7 +66,17 @@ namespace OM.Vikala.Chakra.App.Mains
    
 
         private void BaseForm_Load(object sender, EventArgs e)
-        {           
+        {
+            bool isPermission = false;
+            if (SharedData.SecurityType == "2")
+            {
+                if (Text.IndexOf("박원일") > 0)
+                    isPermission = true;
+            }
+            if (SharedData.SecurityType == "1") 
+                isPermission = true;
+
+            if (!isPermission) this.Close();
         }
 
         private void BaseForm_FormClosing(object sender, FormClosingEventArgs e)

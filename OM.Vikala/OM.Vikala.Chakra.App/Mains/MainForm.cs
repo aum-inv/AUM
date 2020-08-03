@@ -268,7 +268,7 @@ namespace OM.Vikala.Chakra.App.Mains
 
                         case "캔들라인형:캔들반캔들흐름챠트":
                             createCandleLineTypeChart_Cac(menuText);
-                            break;                     
+                            break;
                         #endregion
 
                         #region 캔들형
@@ -355,8 +355,11 @@ namespace OM.Vikala.Chakra.App.Mains
                         case "기타형:오색챠트":
                             createEtcTypeChart_FiveColor(menuText);
                             break;
-                        #endregion
 
+                        case "기타형:박원일챠트-1":
+                            createEtcTypeChart_Park1(menuText);
+                            break;
+                        #endregion
 
                         #region 챠크라
                         case "챠크라:엘리어트오행":
@@ -369,7 +372,7 @@ namespace OM.Vikala.Chakra.App.Mains
                     }
                 }
             }
-            catch(Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
         }
         private void createRequiredCharts()
         {
@@ -664,7 +667,12 @@ namespace OM.Vikala.Chakra.App.Mains
             form.Text = title;
             AddTab(form);
         }
-
+        private void createEtcTypeChart_Park1(string title)
+        {
+            var form = new Mains.ChartForm.ParkChartForm();
+            form.Text = title;
+            AddTab(form);
+        }
         #endregion
 
         #region 챠크라

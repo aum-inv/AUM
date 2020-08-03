@@ -66,6 +66,29 @@
     <Compile Include="Ctx\XingService.cs" />
     <Compile Include="Ctx\PPService.cs" />
     <Compile Include="A_HLOC.cs" />
+    <Compile Include="Indicators\Adl\Adl.cs" />
+    <Compile Include="Indicators\Adl\Adl.Models.cs" />
+    <Compile Include="Indicators\BollingerBands\BollingerBands.cs" />
+    <Compile Include="Indicators\BollingerBands\BollingerBands.Models.cs" />
+    <Compile Include="Indicators\Ema\DoubleEma.cs" />
+    <Compile Include="Indicators\Ema\Ema.cs" />
+    <Compile Include="Indicators\Ema\Ema.Models.cs" />
+    <Compile Include="Indicators\Indicators.cs" />
+    <Compile Include="Indicators\Macd\Macd.cs" />
+    <Compile Include="Indicators\Macd\Macd.Models.cs" />
+    <Compile Include="Indicators\ParabolicSar\ParabolicSar.cs" />
+    <Compile Include="Indicators\ParabolicSar\ParabolicSar.Models.cs" />
+    <Compile Include="Indicators\Rsi\Rsi.cs" />
+    <Compile Include="Indicators\Rsi\Rsi.Models.cs" />
+    <Compile Include="Indicators\Sma\Sma.cs" />
+    <Compile Include="Indicators\Sma\Sma.Models.cs" />
+    <Compile Include="Indicators\StochasticRsi\StochRsi.cs" />
+    <Compile Include="Indicators\StochasticRsi\StochRsi.Models.cs" />
+    <Compile Include="Indicators\Stochastic\Stoch.cs" />
+    <Compile Include="Indicators\Stochastic\Stoch.Models.cs" />
+    <Compile Include="Indicators\_Common\Cleaners.cs" />
+    <Compile Include="Indicators\_Common\Functions.cs" />
+    <Compile Include="Indicators\_Common\Models.cs" />
     <Compile Include="ItemTypeEnums.cs" />
     <Compile Include="ITransform.cs" />
     <Compile Include="PPEvents.cs" />
@@ -75,6 +98,7 @@
     <Compile Include="S_DiamondtemData.cs" />
     <Compile Include="S_VolumeItemData.cs" />
     <Compile Include="S_LineItemData.cs" />
+    <Compile Include="T_ParkItemData.cs" />
     <Compile Include="T_DarkMassItemData.cs" />
     <Compile Include="T_CandleAntiCandleItemData.cs" />
     <Compile Include="T_CheonbugyeongItemData.cs" />
@@ -126,5 +150,6 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

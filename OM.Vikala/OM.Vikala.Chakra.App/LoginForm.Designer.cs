@@ -33,6 +33,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.rdoType1 = new System.Windows.Forms.RadioButton();
             this.rdoType2 = new System.Windows.Forms.RadioButton();
+            this.btnLogin = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -43,9 +44,8 @@
             this.tbPwd.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tbPwd.Name = "tbPwd";
             this.tbPwd.PasswordChar = '$';
-            this.tbPwd.Size = new System.Drawing.Size(161, 38);
+            this.tbPwd.Size = new System.Drawing.Size(109, 38);
             this.tbPwd.TabIndex = 1;
-            this.tbPwd.Text = "qawsedrf";
             this.tbPwd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbPwd.TextChanged += new System.EventHandler(this.tbPwd_TextChanged);
             this.tbPwd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LoginForm_KeyDown);
@@ -64,30 +64,41 @@
             // rdoType1
             // 
             this.rdoType1.AutoSize = true;
-            this.rdoType1.Checked = true;
-            this.rdoType1.Location = new System.Drawing.Point(82, 203);
+            this.rdoType1.Location = new System.Drawing.Point(77, 203);
             this.rdoType1.Name = "rdoType1";
             this.rdoType1.Size = new System.Drawing.Size(71, 16);
             this.rdoType1.TabIndex = 2;
-            this.rdoType1.TabStop = true;
             this.rdoType1.Text = "국내지수";
             this.rdoType1.UseVisualStyleBackColor = true;
             // 
             // rdoType2
             // 
             this.rdoType2.AutoSize = true;
+            this.rdoType2.Checked = true;
             this.rdoType2.Location = new System.Drawing.Point(5, 203);
             this.rdoType2.Name = "rdoType2";
             this.rdoType2.Size = new System.Drawing.Size(71, 16);
             this.rdoType2.TabIndex = 3;
+            this.rdoType2.TabStop = true;
             this.rdoType2.Text = "해외선물";
             this.rdoType2.UseVisualStyleBackColor = true;
+            // 
+            // btnLogin
+            // 
+            this.btnLogin.Location = new System.Drawing.Point(273, 193);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(47, 38);
+            this.btnLogin.TabIndex = 4;
+            this.btnLogin.Text = "...";
+            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(324, 231);
+            this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.rdoType2);
             this.Controls.Add(this.rdoType1);
             this.Controls.Add(this.tbPwd);
@@ -111,5 +122,6 @@
         private System.Windows.Forms.TextBox tbPwd;
         private System.Windows.Forms.RadioButton rdoType1;
         private System.Windows.Forms.RadioButton rdoType2;
+        private System.Windows.Forms.Button btnLogin;
     }
 }

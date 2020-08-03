@@ -1099,8 +1099,34 @@ namespace OM.Vikala.Controls.Charts
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
-        
+
         #endregion
+
+        #region Etc_ParkChart
+        public static void loadDataAndApply(this ParkChart c
+            , string itemCode, List<S_CandleItemData> sourceDatas
+            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+            , int itemCnt = 7)
+        {
+            try
+            {
+                List<T_ParkItemData> transformedDatas = new List<T_ParkItemData>();
+
+                for (int i = itemCnt; i <= sourceDatas.Count; i++)
+                {
+                    T_ParkItemData transData = new T_ParkItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemCnt, itemCnt));
+                    transData.Transform();
+                    transformedDatas.Add(transData);
+                }
+                c.LoadData(itemCode, transformedDatas, timeInterval);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+        }
+        #endregion
+
         public static void LoadDataAndApply(this BaseChartControl c
             , string itemCode
             , List<S_CandleItemData> sourceDatas            
@@ -1132,6 +1158,8 @@ namespace OM.Vikala.Controls.Charts
             else if (c is RealCandleChart) ((RealCandleChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
             else if (c is CandleAntiCandleChart) ((CandleAntiCandleChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
             else if (c is DarkMassrChart) ((DarkMassrChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
+
+            else if (c is ParkChart) ((ParkChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
         }
         public static void LoadDataAndApply(this BaseChartControl c
            , string itemCode

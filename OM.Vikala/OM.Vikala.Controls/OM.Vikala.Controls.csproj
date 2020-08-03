@@ -53,6 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Charts\ParkChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Charts\ParkChart.Designer.cs">
+      <DependentUpon>ParkChart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Charts\MovingAverageBarChart.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -259,6 +265,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Charts\ParkChart.resx">
+      <DependentUpon>ParkChart.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Charts\MovingAverageBarChart.resx">
       <DependentUpon>MovingAverageBarChart.cs</DependentUpon>
     </EmbeddedResource>

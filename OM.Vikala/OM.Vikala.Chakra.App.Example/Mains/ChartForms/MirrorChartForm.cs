@@ -1,0 +1,126 @@
+﻿using OM.Lib.Base.Enums;
+using OM.Lib.Base.Utils;
+using OM.PP.Chakra;
+using OM.PP.Chakra.Ctx;
+using OM.Vikala.Controls.Charts;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OM.Vikala.Chakra.App.Mains.ChartForm
+{
+    public partial class MirrorChartForm : BaseForm
+    {
+        public MirrorChartForm()
+        {
+            InitializeComponent();
+            base.setToolStrip(userToolStrip1);
+            InitializeControls();
+        }
+
+        private void InitializeControls()
+        {           
+            loadChartControls();
+            setTimer();
+            userToolStrip.IsVisibleAlignmentButton = false;
+        }
+
+        public override void loadChartControls()
+        {
+            chart.InitializeControl();
+            chart.InitializeEvent(chartEvent);
+            chart.DisplayPointCount = itemCnt;
+            chart.CandleChartType = CandleChartTypeEnum.기본;
+            chart2.InitializeControl();
+            chart2.InitializeEvent(chartEvent);
+            chart2.DisplayPointCount = itemCnt;
+            chart2.CandleChartType = CandleChartTypeEnum.기본;
+            chart2.IsAutoScrollX = false;
+
+            chart3.InitializeControl();
+            chart3.InitializeEvent(chartEvent2);
+            chart3.DisplayPointCount = itemCnt;
+            chart3.CandleChartType = CandleChartTypeEnum.기본;
+            chart4.InitializeControl();
+            chart4.InitializeEvent(chartEvent2);
+            chart4.DisplayPointCount = itemCnt;
+            chart4.CandleChartType = CandleChartTypeEnum.기본;
+            chart4.IsAutoScrollX = false;
+        }
+
+        public override void loadData()
+        {
+            if (base.SelectedItemData == null) return;
+            if (string.IsNullOrEmpty(base.SelectedItemData.Code)) return;
+
+            string itemCode = base.SelectedItemData.Code;
+
+            var sourceDatas = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(                 
+                  itemCode
+                , base.timeInterval);
+            if (sourceDatas == null || sourceDatas.Count == 0) return;
+
+            int totalCnt = sourceDatas.Count;
+            if (totalCnt > Config.SharedData.SelectedItemCount)
+                sourceDatas.RemoveRange(0, totalCnt - Config.SharedData.SelectedItemCount);
+
+            chart.LoadDataAndApply(itemCode, sourceDatas, base.timeInterval, 7);
+            List<S_CandleItemData> sourceDatas2 = new List<S_CandleItemData>();
+            List<T_MirrorItemData> transformedDatas = new List<T_MirrorItemData>();
+            foreach (var m in sourceDatas)
+            {
+                T_MirrorItemData tData = new T_MirrorItemData(m, sourceDatas);
+                tData.Transform();
+                transformedDatas.Add(tData);
+            }
+            foreach (var m in transformedDatas)
+            {
+                S_CandleItemData sourceData = new S_CandleItemData(
+                      itemCode
+                    , m.T_OpenPrice
+                    , m.T_HighPrice
+                    , m.T_LowPrice
+                    , m.T_ClosePrice
+                    , m.Volume
+                    , m.DTime
+                    );
+
+                sourceDatas2.Add(sourceData);
+            }
+            chart2.LoadDataAndApply(itemCode, sourceDatas2, base.timeInterval, 7);
+
+            var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas, 7);
+            chart3.LoadDataAndApply(itemCode, averageDatas, base.timeInterval, 7);
+
+            List<S_CandleItemData> sourceDatas4 = new List<S_CandleItemData>();
+            List<T_MirrorItemData> transformedDatas2 = new List<T_MirrorItemData>();
+            foreach (var m in averageDatas)
+            {
+                T_MirrorItemData tData = new T_MirrorItemData(m, sourceDatas);
+                tData.Transform();
+                transformedDatas2.Add(tData);
+            }
+            foreach (var m in transformedDatas2)
+            {
+                S_CandleItemData sourceData = new S_CandleItemData(
+                      itemCode
+                    , m.T_OpenPrice
+                    , m.T_HighPrice
+                    , m.T_LowPrice
+                    , m.T_ClosePrice
+                    , m.Volume
+                    , m.DTime
+                    );
+
+                sourceDatas4.Add(sourceData);
+            }
+            chart4.LoadDataAndApply(itemCode, sourceDatas4, base.timeInterval, 7);
+        }
+    }
+}
