@@ -51,8 +51,8 @@ namespace OM.Vikala.Controls.Charts
             this.Invoke(new MethodInvoker(() => {
                 Reset();
                 View();
-                if (IsShowEightRule)
-                    Annotation();
+                //if (IsShowEightRule)
+                //    Annotation();
             }));
         }
         
@@ -128,7 +128,6 @@ namespace OM.Vikala.Controls.Charts
                 chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
                 chart.ChartAreas[0].AxisY2.Minimum = minPrice;
             }
-            //양자
             else if (BaseCandleChartType == BaseCandleChartTypeEnum.지)
             {
                 double maxPrice = ChartData.Max(m => m.QuantumHighPrice);

@@ -90,21 +90,21 @@ namespace OM.Vikala.Chakra.App.Mains
 
             var sourceDatas1 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                    base.SelectedItemData.Code
-                 , TimeIntervalEnum.Minute_120);
+                 , TimeIntervalEnum.Hour_02);
 
             var sourceDatas2 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                   base.SelectedItemData.Code
-                , TimeIntervalEnum.Minute_720);       
+                , TimeIntervalEnum.Hour_12);       
 
             if (sourceDatas1 != null && sourceDatas1.Count > 0)
             {
                 var averageDatas1 = PPUtils.GetAverageDatas(itemCode, sourceDatas1, 9);
-                qMin1.LoadDataAndApply(itemCode, averageDatas1, TimeIntervalEnum.Minute_120, 3);
+                qMin1.LoadDataAndApply(itemCode, averageDatas1, TimeIntervalEnum.Hour_02, 3);
             }
             if (sourceDatas2 != null && sourceDatas2.Count > 0)
             {
                 var averageDatas2 = PPUtils.GetAverageDatas(itemCode, sourceDatas2, 9);
-                qMin2.LoadDataAndApply(itemCode, averageDatas2, TimeIntervalEnum.Minute_480, 3);
+                qMin2.LoadDataAndApply(itemCode, averageDatas2, TimeIntervalEnum.Hour_08, 3);
             }
         }
     }

@@ -13,7 +13,7 @@ namespace OM.Vikala.Chakra.App.Config
         {
             get;
             set;
-        } = "2";
+        } = "KR";
 
         public static string SecurityType
         {

@@ -60,7 +60,7 @@ namespace OM.Atman.Chakra.App
             ucDayList.Add("URO", ucSignalURO10);
             ucDayList.Add("ES", ucSignalES10);
 
-            ucAll.Add(TimeIntervalEnum.Minute_120, uc120List);
+            ucAll.Add(TimeIntervalEnum.Hour_02, uc120List);
             ucAll.Add(TimeIntervalEnum.Day, ucDayList);        
         }
 

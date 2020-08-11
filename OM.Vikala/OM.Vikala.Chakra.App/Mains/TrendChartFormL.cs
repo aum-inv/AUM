@@ -91,7 +91,7 @@ namespace OM.Vikala.Chakra.App.Mains
 
             var sourceDatas1 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                    base.SelectedItemData.Code
-                 , TimeIntervalEnum.Minute_300);
+                 , TimeIntervalEnum.Hour_05);
 
             var sourceDatas2 = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                   base.SelectedItemData.Code
@@ -100,7 +100,7 @@ namespace OM.Vikala.Chakra.App.Mains
             if (sourceDatas1 != null && sourceDatas1.Count > 0)
             {
                 var averageDatas1 = PPUtils.GetAverageDatas(itemCode, sourceDatas1, 9);
-                qMin1.LoadDataAndApply(itemCode, averageDatas1, TimeIntervalEnum.Minute_300, 3);
+                qMin1.LoadDataAndApply(itemCode, averageDatas1, TimeIntervalEnum.Hour_05, 3);
             }
             if (sourceDatas2 != null && sourceDatas2.Count > 0)
             {

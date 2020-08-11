@@ -179,36 +179,35 @@ namespace OM.Atman.Chakra.App
         private void LoadCandle(string itemCode)
         {
             try
-            {
-                //PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Minute_01
-                //    , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Minute_01));
-
-                //PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Minute_05
-                //    , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Minute_05));
-
-                PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Minute_60
-                    , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Minute_60));
-
-                PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Minute_120
-                    , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Minute_120));
-
-                PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Minute_180
-                    , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Minute_180));
-
-                PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Minute_300
-                    , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Minute_300));
+            {                
+                PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Hour_01
+                    , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Hour_01));
+                PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Hour_02
+                    , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Hour_02));
+                PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Hour_03
+                    , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Hour_03));
+                PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Hour_04
+                   , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Hour_04));
+                PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Hour_05
+                    , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Hour_05));
+                PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Hour_06
+                   , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Hour_06));
+                PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Hour_08
+                   , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Hour_08));                
+                PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Hour_12
+                   , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByDesc(itemCode, TimeIntervalEnum.Hour_12));
 
                 PPStorage.Instance.Load(itemCode, TimeIntervalEnum.Day
                     , PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(itemCode, TimeIntervalEnum.Day));            
 
-                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Minute_60);
-                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Minute_120);
-                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Minute_180);
-                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Minute_240);
-                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Minute_300);
-                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Minute_360);
-                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Minute_480);
-                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Minute_720);
+                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Hour_01);
+                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Hour_02);
+                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Hour_03);
+                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Hour_04);
+                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Hour_05);
+                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Hour_06);
+                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Hour_08);
+                PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Hour_12);
                 PPStorage.Instance.GetState(itemCode, TimeIntervalEnum.Day);
             }
             catch (Exception ex)

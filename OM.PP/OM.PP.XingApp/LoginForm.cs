@@ -1,5 +1,7 @@
 ﻿using MaterialSkin;
+using MetroFramework;
 using MetroFramework.Forms;
+using OM.PP.XingApp.Config;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,8 +34,28 @@ namespace OM.PP.XingApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (tbPwd.Text == "^__^")
+            if (tbID.Text.Length == 0) 
             {
+                MessageBox.Show("접속아이디 입력해주세요");
+                return;
+            }
+            if (tbPassword.Text.Length == 0)
+            {
+                MessageBox.Show("접속패스워드 입력해주세요");
+                return;
+            }
+            if (tbAuth.Text.Length == 0)
+            {
+                MessageBox.Show("인증서비밀번호 입력해주세요");
+                return;
+            }
+
+            if (tbSecurity.Text == "atman999")
+            {
+                AccountInfoLEE.접속아이디 = tbID.Text;
+                AccountInfoLEE.접속비밀번호 = tbPassword.Text;
+                AccountInfoLEE.인증비밀번호 = tbAuth.Text;
+
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 this.Close();
             }
@@ -44,7 +66,7 @@ namespace OM.PP.XingApp
 
         private void LoginForm_KeyDown(object sender, KeyEventArgs e)
         {
-            if (tbPwd.Text == "^__^")
+            if (tbSecurity.Text == "^__^")
             {
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 this.Close();
@@ -52,6 +74,11 @@ namespace OM.PP.XingApp
             else
             {
             }
+        }
+
+        private void metroButton1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

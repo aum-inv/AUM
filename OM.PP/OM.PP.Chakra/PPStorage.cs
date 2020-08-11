@@ -21,6 +21,10 @@ namespace OM.PP.Chakra
                 return storage;
             }
         }
+        public Dictionary<string, LimitedList<S_CandleItemData>> StorageMin01 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
+        public Dictionary<string, LimitedList<S_CandleItemData>> StorageMin05 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
+        public Dictionary<string, LimitedList<S_CandleItemData>> StorageMin10 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
+        public Dictionary<string, LimitedList<S_CandleItemData>> StorageMin30 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
 
         public Dictionary<string, LimitedList<S_CandleItemData>> StorageMin60 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
         public Dictionary<string, LimitedList<S_CandleItemData>> StorageMin120 = new Dictionary<string, Lib.Base.LimitedList<S_CandleItemData>>();
@@ -38,6 +42,42 @@ namespace OM.PP.Chakra
         {
             try
             {
+                if (!StorageMin01.ContainsKey(itemCode))
+                {
+                    StorageMin01.Add(itemCode, new LimitedList<S_CandleItemData>(1000));
+                }
+                else
+                {
+                    StorageMin01[itemCode].Clear();
+                }
+
+                if (!StorageMin05.ContainsKey(itemCode))
+                {
+                    StorageMin05.Add(itemCode, new LimitedList<S_CandleItemData>(1000));
+                }
+                else
+                {
+                    StorageMin05[itemCode].Clear();
+                }
+
+                if (!StorageMin10.ContainsKey(itemCode))
+                {
+                    StorageMin10.Add(itemCode, new LimitedList<S_CandleItemData>(1000));
+                }
+                else
+                {
+                    StorageMin10[itemCode].Clear();
+                }
+
+                if (!StorageMin30.ContainsKey(itemCode))
+                {
+                    StorageMin30.Add(itemCode, new LimitedList<S_CandleItemData>(1000));
+                }
+                else
+                {
+                    StorageMin30[itemCode].Clear();
+                }
+
                 if (!StorageMin60.ContainsKey(itemCode))
                 {
                     StorageMin60.Add(itemCode, new LimitedList<S_CandleItemData>(1000));
@@ -144,35 +184,51 @@ namespace OM.PP.Chakra
 
                 switch (timeInterval)
                 {
-                    case TimeIntervalEnum.Minute_60:
+                    case TimeIntervalEnum.Minute_01:
+                        storageList = StorageMin01[itemCode];
+                        break;
+
+                    case TimeIntervalEnum.Minute_05:
+                        storageList = StorageMin05[itemCode];
+                        break;
+
+                    case TimeIntervalEnum.Minute_10:
+                        storageList = StorageMin10[itemCode];
+                        break;
+
+                    case TimeIntervalEnum.Minute_30:
+                        storageList = StorageMin30[itemCode];
+                        break;
+
+                    case TimeIntervalEnum.Hour_01:
                         storageList = StorageMin60[itemCode];
                         break;
 
-                    case TimeIntervalEnum.Minute_120:
+                    case TimeIntervalEnum.Hour_02:
                         storageList = StorageMin120[itemCode];
                         break;
 
-                    case TimeIntervalEnum.Minute_180:
+                    case TimeIntervalEnum.Hour_03:
                         storageList = StorageMin180[itemCode];
                         break;
 
-                    case TimeIntervalEnum.Minute_240:
+                    case TimeIntervalEnum.Hour_04:
                         storageList = StorageMin240[itemCode];
                         break;
 
-                    case TimeIntervalEnum.Minute_300:
+                    case TimeIntervalEnum.Hour_05:
                         storageList = StorageMin300[itemCode];
                         break;
 
-                    case TimeIntervalEnum.Minute_360:
+                    case TimeIntervalEnum.Hour_06:
                         storageList = StorageMin360[itemCode];
                         break;
 
-                    case TimeIntervalEnum.Minute_480:
+                    case TimeIntervalEnum.Hour_08:
                         storageList = StorageMin480[itemCode];
                         break;
 
-                    case TimeIntervalEnum.Minute_720:
+                    case TimeIntervalEnum.Hour_12:
                         storageList = StorageMin720[itemCode];
                         break;
 
@@ -203,35 +259,51 @@ namespace OM.PP.Chakra
             LimitedList<S_CandleItemData> list = null;
             switch (timeInterval)
             {
-                case TimeIntervalEnum.Minute_60:
+                case TimeIntervalEnum.Minute_01:
+                    list = StorageMin01[itemCode];
+                    break;
+
+                case TimeIntervalEnum.Minute_05:
+                    list = StorageMin05[itemCode];
+                    break;
+
+                case TimeIntervalEnum.Minute_10:
+                    list = StorageMin10[itemCode];
+                    break;
+
+                case TimeIntervalEnum.Minute_30:
+                    list = StorageMin30[itemCode];
+                    break;
+
+                case TimeIntervalEnum.Hour_01:
                     list = StorageMin60[itemCode];
                     break;
 
-                case TimeIntervalEnum.Minute_120:
+                case TimeIntervalEnum.Hour_02:
                     list = StorageMin120[itemCode];
                     break;
 
-                case TimeIntervalEnum.Minute_180:
+                case TimeIntervalEnum.Hour_03:
                     list = StorageMin180[itemCode];
                     break;
 
-                case TimeIntervalEnum.Minute_240:
+                case TimeIntervalEnum.Hour_04:
                     list = StorageMin240[itemCode];
                     break;
 
-                case TimeIntervalEnum.Minute_300:
+                case TimeIntervalEnum.Hour_05:
                     list = StorageMin300[itemCode];
                     break;
 
-                case TimeIntervalEnum.Minute_360:
+                case TimeIntervalEnum.Hour_06:
                     list = StorageMin360[itemCode];
                     break;
 
-                case TimeIntervalEnum.Minute_480:
+                case TimeIntervalEnum.Hour_08:
                     list = StorageMin480[itemCode];
                     break;
 
-                case TimeIntervalEnum.Minute_720:
+                case TimeIntervalEnum.Hour_12:
                     list = StorageMin720[itemCode];
                     break;
 

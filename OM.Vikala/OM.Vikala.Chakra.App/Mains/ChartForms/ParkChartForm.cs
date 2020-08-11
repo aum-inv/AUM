@@ -2,6 +2,7 @@
 using OM.Lib.Base.Utils;
 using OM.PP.Chakra;
 using OM.PP.Chakra.Ctx;
+using OM.PP.Chakra.Indicators;
 using OM.Vikala.Chakra.App.Chakra;
 using OM.Vikala.Chakra.App.Config;
 using OM.Vikala.Controls.Charts;
@@ -11,6 +12,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,7 +20,7 @@ using System.Windows.Forms;
 namespace OM.Vikala.Chakra.App.Mains.ChartForm
 {
     public partial class ParkChartForm : BaseForm
-    {
+    {       
         public ParkChartForm()
         {
             InitializeComponent();
@@ -89,7 +91,7 @@ namespace OM.Vikala.Chakra.App.Mains.ChartForm
             RemoveSourceData(sourceDatas);
            
             //국내지수인 경우 시간갭이 크기 때문에.. 전일종가를 당일시가로 해야한다. 
-            SetChangeOpenPrice(itemCode, sourceDatas);
+            //SetChangeOpenPrice(itemCode, sourceDatas);
 
             //if (true)
             //{
@@ -106,9 +108,34 @@ namespace OM.Vikala.Chakra.App.Mains.ChartForm
             //var averageDatas = PPUtils.GetBalancedAverageDatas(itemCode, sourceDatas, 9);
             //var averageDatas = PPUtils.GetAccumulatedAverageDatas(itemCode, sourceDatas, 9);
             
-            sourceDatas = PPUtils.GetCutDatas(sourceDatas, averageDatas[0].DTime);
-            chart.LoadDataAndApply(itemCode, sourceDatas, base.timeInterval, 9);
-            chart2.LoadDataAndApply(itemCode, averageDatas, base.timeInterval, 9);
-        }               
+            sourceDatas = PPUtils.GetCutDatas(sourceDatas, averageDatas[0].DTime);         
+
+            //파라볼릭 보조지표를 위한 로직
+            var optionSourceDatas = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
+                  itemCode
+                , TimeIntervalEnum.Day);
+            var optionAverageDatas = PPUtils.GetAverageDatas(itemCode, optionSourceDatas, 9);
+
+            var qs = PP.Chakra.Indicators.Indicator.ConverterCandleQuote(optionSourceDatas.ToList<S_CandleItemData>());
+            var qa = PP.Chakra.Indicators.Indicator.ConverterCandleQuote(optionAverageDatas.ToList<S_CandleItemData>());
+
+            chart.LoadDataAndApply(itemCode
+                , sourceDatas
+                , Indicator.GetParabolicSar(qs, 0.02m, 0.2m, true).ToList()
+                , Indicator.GetParabolicSar(qs, 0.02m, 0.2m, false).ToList()
+                , base.timeInterval
+                , 9);
+            chart2.LoadDataAndApply(itemCode
+                , averageDatas
+                , Indicator.GetParabolicSar(qa, 0.02m, 0.2m, true).ToList()
+                , Indicator.GetParabolicSar(qa, 0.02m, 0.2m, false).ToList()
+                , base.timeInterval
+                , 9);
+        }
+
+
+       
+        
+        
     }
 }

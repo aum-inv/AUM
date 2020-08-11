@@ -10,13 +10,20 @@ using System.Windows.Forms;
 using OM.PP.Chakra;
 using System.Windows.Forms.DataVisualization.Charting;
 using OM.Lib.Base.Utils;
+using System.Security;
+using System.Diagnostics;
+using System.Diagnostics.Contracts;
+using OM.PP.Chakra.Indicators;
+using System.Runtime.InteropServices;
 
 namespace OM.Vikala.Controls.Charts
 {
     public partial class ParkChart : BaseChartControl
     {
+        [DllImport("gdi32.dll")]
+        static extern int GetDeviceCaps(IntPtr hdc, int nIndex);
         protected override string Description => "";
-
+       
         public bool IsShowCandle
         {
             get;
@@ -56,37 +63,48 @@ namespace OM.Vikala.Controls.Charts
             InitializeComponent();
             base.IsShowXLine = false;
             base.SetChartControl(chart, hScrollBar, trackBar);
+
+            chart.MouseDown -= chart_MouseDown;          
         }
         
         public override void View()
         {
             if (ChartData == null) return;
-
+            int index = 0;
             foreach (T_ParkItemData item in ChartData)
             {
+                item.Index = index++;
                 int idx = chart.Series[0].Points.AddXY(item.DTime, item.HighPrice, item.LowPrice, item.OpenPrice, item.ClosePrice);
                 chart.Series[1].Points.AddXY(item.DTime, item.T_Psar);
+                chart.Series[2].Points.AddXY(item.DTime, item.T_Psar2);
             }
 
             double maxPrice1 = ChartData.Max(m => m.HighPrice);
             double minPrice1 = ChartData.Min(m => m.LowPrice);
-          
-            double maxPrice = maxPrice1;
-            double minPrice = minPrice1;
-    
+            double maxPrice2 = ChartData.Max(m => m.T_Psar);
+            double minPrice2 = ChartData.Min(m => m.T_Psar);
+            double maxPrice3 = ChartData.Max(m => m.T_Psar2);
+            double minPrice3 = ChartData.Min(m => m.T_Psar2);
+
+            double maxPrice = maxPrice1 > maxPrice2 ? maxPrice1 : maxPrice2;
+            double minPrice = minPrice1 < minPrice2 ? minPrice1 : minPrice2;
+            maxPrice = maxPrice > maxPrice3 ? maxPrice : maxPrice3;
+            minPrice = minPrice < minPrice3 ? minPrice : minPrice3;
+
             maxPrice = maxPrice + SpaceMaxMin;
             minPrice = minPrice - SpaceMaxMin;
             chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
-            chart.ChartAreas[0].AxisY2.Minimum = minPrice;            
+            chart.ChartAreas[0].AxisY2.Minimum = minPrice;
+            chart.ChartAreas[0].AxisX.Maximum = ChartData.Count + 1;
+
             SetScrollBar();
             SetTrackBar();
-            DisplayView();
-
+            DisplayView();                    
             IsLoaded = true;
 
             base.View();
-        }
-        
+        }     
+      
         public void SetScrollBar()
         {
             int trackView = trackBar.Value;
@@ -117,8 +135,6 @@ namespace OM.Vikala.Controls.Charts
 
         public void DisplayView()
         {
-            chart.Update();
-
             int scrollVal = hScrollBar.Value;
 
             if (scrollVal < hScrollBar.Minimum) scrollVal = hScrollBar.Minimum;
@@ -158,26 +174,36 @@ namespace OM.Vikala.Controls.Charts
                 minDisplayIndex = currentIndex;
             }
             if (viewLists != null)
-            {                
+            {
                 double maxPrice1 = viewLists.Max(m => m.HighPrice);
                 double minPrice1 = viewLists.Min(m => m.LowPrice);
-           
-                double maxPrice = maxPrice1;
-                double minPrice = minPrice1;
-               
+                double maxPrice2 = viewLists.Max(m => m.T_Psar);
+                double minPrice2 = viewLists.Min(m => m.T_Psar);
+                double maxPrice3 = viewLists.Max(m => m.T_Psar2);
+                double minPrice3 = viewLists.Min(m => m.T_Psar2);
+                double maxPrice = maxPrice1 > maxPrice2 ? maxPrice1 : maxPrice2;
+                double minPrice = minPrice1 < minPrice2 ? minPrice1 : minPrice2;
+
+                maxPrice = maxPrice > maxPrice3 ? maxPrice : maxPrice3;
+                minPrice = minPrice < minPrice3 ? minPrice : minPrice3;
                 maxPrice = maxPrice + SpaceMaxMin;
                 minPrice = minPrice - SpaceMaxMin;
                 chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
                 chart.ChartAreas[0].AxisY2.Minimum = minPrice;
                 chart.ChartAreas[0].AxisX.Maximum = maxDisplayIndex + 1;
-                chart.ChartAreas[0].AxisX.Minimum = minDisplayIndex - 1;               
+                chart.ChartAreas[0].AxisX.Minimum = minDisplayIndex - 1;
+
+                DrawLines(viewLists);
             }
+
+            chart.Update();
         }
 
         private void hScrollBar_ValueChanged(object sender, EventArgs e)
         {
             if (!IsLoaded) return;
             DisplayView();
+            
             if (ChartEventInstance != null)
                 ChartEventInstance.OnChangeChartScrollBarHandler(this.chart, hScrollBar.Value);
         }
@@ -188,20 +214,142 @@ namespace OM.Vikala.Controls.Charts
             
             SetScrollBar();
             DisplayView();
+           
             if (ChartEventInstance != null)
                 ChartEventInstance.OnChangeChartTrackBarHandler(this.chart, trackBar.Value);
 
             SelectedTrackBarValue = (int)trackBar.Value;
         }
 
-        #region Chart Util
+       
+        #region DrawLine
+        private void DrawLines(List<T_ParkItemData> viewLists)
+        {
+            try
+            {
+                chart.Annotations.Clear();
+                T_ParkItemData bItem = null;
+                int idx = 0;
+                int cnt = 0;
+                for (int i = 0; i < viewLists.Count; i++)
+                {
+                    if (bItem == null)
+                    {
+                        bItem = viewLists[0];
+                        continue;
+                    }
 
+                    var cItem = viewLists[i];
+                    cnt++;
+
+                    if (TimeInterval == Lib.Base.Enums.TimeIntervalEnum.Minute_01)
+                    {
+                        if (bItem.DTime.Minute / 10 != bItem.DTime.Minute / 10)
+                        {
+                            var subs = viewLists.GetRange(idx, cnt);
+                            var hPrice = subs.Max(t => t.HighPrice);
+                            var lPrice = subs.Min(t => t.LowPrice);
+                            DrawLine(viewLists[idx].Index, viewLists[idx + cnt - 1].Index, hPrice, lPrice);
+                            idx = i;
+                            cnt = 0;
+                            bItem = cItem;
+                        }
+                    }
+                    if (TimeInterval == Lib.Base.Enums.TimeIntervalEnum.Minute_10)
+                    {
+                        if (bItem.DTime.Hour != cItem.DTime.Hour)
+                        {
+                            var subs = viewLists.GetRange(idx, cnt);
+                            var hPrice = subs.Max(t => t.HighPrice);
+                            var lPrice = subs.Min(t => t.LowPrice);
+                            DrawLine(viewLists[idx].Index, viewLists[idx + cnt - 1].Index, hPrice, lPrice);
+                            idx = i;
+                            cnt = 0;
+                            bItem = cItem;
+                        }
+                    }
+                    if (TimeInterval == Lib.Base.Enums.TimeIntervalEnum.Hour_01)
+                    {
+                        if (bItem.DTime.Day != cItem.DTime.Day)
+                        {                         
+                            var subs = viewLists.GetRange(idx, cnt);
+                            var hPrice = subs.Max(t => t.HighPrice);
+                            var lPrice = subs.Min(t => t.LowPrice);
+                            DrawLine(viewLists[idx].Index, viewLists[idx + cnt - 1].Index, hPrice, lPrice);
+                            idx = i;
+                            cnt = 0;
+                            bItem = cItem;
+                        }
+                    }
+                }
+                if (idx != 0 && idx != viewLists.Count - 1)
+                {
+                    var subs = viewLists.GetRange(idx, cnt+1);
+                    var hPrice = subs.Max(t => t.HighPrice);
+                    var lPrice = subs.Min(t => t.LowPrice);
+                    DrawLine(viewLists[idx].Index, viewLists[idx + cnt].Index, hPrice, lPrice, true);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+        private void DrawLine(int startIdx, int endIdx, double hPrice, double lPrice, bool isLast = false)
+        {
+            try
+            {
+                int trackView = trackBar.Value;
+                DataPoint left = chart.Series[0].Points[startIdx];
+                DataPoint right = chart.Series[0].Points[endIdx];
+                float zoom = getScalingFactor();
+
+                LineAnnotation annH = new LineAnnotation();                
+                annH.AxisX = chart.ChartAreas[0].AxisX;
+                annH.AxisY = chart.ChartAreas[0].AxisY2;
+                annH.IsSizeAlwaysRelative = true;
+                annH.AnchorY = hPrice;
+                annH.IsInfinitive = false;
+                annH.LineColor = Color.DarkRed;
+                annH.LineWidth = 2;
+                annH.X = startIdx + 1;
+                annH.Y = hPrice;                
+                annH.Height = 0;
+                annH.Width = Math.Ceiling((Convert.ToDouble(endIdx) - Convert.ToDouble(startIdx)) * zoom / trackView);
+                //if (isLast) annH.Width += 1.5;
+                annH.StartCap = LineAnchorCapStyle.None;
+                annH.EndCap = LineAnchorCapStyle.None;
+                chart.Annotations.Add(annH);
+
+                LineAnnotation annL = new LineAnnotation();
+                annL.AxisX = chart.ChartAreas[0].AxisX;
+                annL.AxisY = chart.ChartAreas[0].AxisY2;
+                annL.IsSizeAlwaysRelative = true;
+                annL.AnchorY = lPrice;
+                annL.IsInfinitive = false;
+                annL.LineColor = Color.DarkBlue;
+                annL.LineWidth = 2;
+                annL.X = startIdx + 1;
+                annL.Y = lPrice;
+                annL.Height = 0;
+                annL.Width = Math.Ceiling((Convert.ToDouble(endIdx) - Convert.ToDouble(startIdx)) * zoom / trackView);
+                //if (isLast) annL.Width += 1.5;
+                annL.StartCap = LineAnchorCapStyle.None;
+                annL.EndCap = LineAnchorCapStyle.None;
+                chart.Annotations.Add(annL);
+            }
+            catch (Exception ex)
+            {
+            }
+        }
         #endregion
 
+        #region Chart Util
         private void chart_MouseDown(object sender, MouseEventArgs e)
         {  
             chart.Annotations.Clear();
             lblQPrice.Visible = false;
+
             HitTestResult result = chart.HitTest(e.X, e.Y);           
             if (result.ChartElementType == ChartElementType.DataPoint
                 && (result.Series == chart.Series[0] || result.Series == chart.Series[1]))
@@ -260,6 +408,27 @@ namespace OM.Vikala.Controls.Charts
         {
             chart.Annotations.Clear();
             lblQPrice.Visible = false;
+        }
+        #endregion
+
+        public enum DeviceCap
+        {
+            VERTRES = 10,
+            DESKTOPVERTRES = 117,
+
+            // http://pinvoke.net/default.aspx/gdi32/GetDeviceCaps.html
+        }
+
+        private float getScalingFactor()
+        {
+            Graphics g = Graphics.FromHwnd(IntPtr.Zero);
+            IntPtr desktop = g.GetHdc();
+            int LogicalScreenHeight = GetDeviceCaps(desktop, (int)DeviceCap.VERTRES);
+            int PhysicalScreenHeight = GetDeviceCaps(desktop, (int)DeviceCap.DESKTOPVERTRES);
+
+            float ScreenScalingFactor = (float)PhysicalScreenHeight / (float)LogicalScreenHeight;
+
+            return ScreenScalingFactor; // 1.25 = 125%
         }
     }
 }

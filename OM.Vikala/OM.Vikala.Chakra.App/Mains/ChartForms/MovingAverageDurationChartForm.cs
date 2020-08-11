@@ -100,9 +100,9 @@ namespace OM.Vikala.Chakra.App.Mains.ChartForm
                 double rate = 0.0;
                 if (timeInterval == TimeIntervalEnum.Week) rate = 2.5;
                 if (timeInterval == TimeIntervalEnum.Day) rate = 1.0;
-                if (timeInterval == TimeIntervalEnum.Minute_180) rate = 0.7;
-                if (timeInterval == TimeIntervalEnum.Minute_120) rate = 0.5;
-                if (timeInterval == TimeIntervalEnum.Minute_60) rate = 0.3;
+                if (timeInterval == TimeIntervalEnum.Hour_03) rate = 0.7;
+                if (timeInterval == TimeIntervalEnum.Hour_02) rate = 0.5;
+                if (timeInterval == TimeIntervalEnum.Hour_01) rate = 0.3;
                 sourceDatas = PPUtils.GetRecreateWhimDatas(itemCode, sourceDatas, true, rate, null);
             }
 

@@ -95,7 +95,7 @@ namespace OM.Vikala.Chakra.App.Mains
 
             string itemCode = base.SelectedItemData.Code;
 
-            TimeIntervalEnum timeInterval = TimeIntervalEnum.Minute_60;
+            TimeIntervalEnum timeInterval = TimeIntervalEnum.Hour_01;
 
             var sourceDatas = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                    base.SelectedItemData.Code

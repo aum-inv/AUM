@@ -11,7 +11,8 @@ namespace OM.PP.Chakra.Indicators
         public static IEnumerable<ParabolicSarResult> GetParabolicSar(
             IEnumerable<Quote> history,
             decimal accelerationStep = (decimal)0.02,
-            decimal maxAccelerationFactor = (decimal)0.2)
+            decimal maxAccelerationFactor = (decimal)0.2,
+            bool isRising = true)
         {
 
             // initialize
@@ -21,8 +22,7 @@ namespace OM.PP.Chakra.Indicators
             decimal accelerationFactor = accelerationStep;
             decimal extremePoint = first.High;
             decimal priorSar = first.Low;
-            bool isRising = true;
-
+          
             // roll through history
             foreach (Quote h in history)
             {

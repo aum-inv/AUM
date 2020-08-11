@@ -1,4 +1,5 @@
 ﻿using OM.PP.Chakra;
+using OM.PP.Chakra.Indicators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -1103,10 +1104,14 @@ namespace OM.Vikala.Controls.Charts
         #endregion
 
         #region Etc_ParkChart
+        
         public static void loadDataAndApply(this ParkChart c
-            , string itemCode, List<S_CandleItemData> sourceDatas
-            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
-            , int itemCnt = 7)
+           , string itemCode
+           , List<S_CandleItemData> sourceDatas
+           , List<ParabolicSarResult> quoteDatas
+           , List<ParabolicSarResult> quoteDatas2
+           , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+           , int itemCnt = 7)
         {
             try
             {
@@ -1114,7 +1119,7 @@ namespace OM.Vikala.Controls.Charts
 
                 for (int i = itemCnt; i <= sourceDatas.Count; i++)
                 {
-                    T_ParkItemData transData = new T_ParkItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemCnt, itemCnt));
+                    T_ParkItemData transData = new T_ParkItemData(sourceDatas[i - 1], sourceDatas, quoteDatas, quoteDatas2);
                     transData.Transform();
                     transformedDatas.Add(transData);
                 }
@@ -1157,9 +1162,7 @@ namespace OM.Vikala.Controls.Charts
             else if (c is QuantumLineTradeChart) ((QuantumLineTradeChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
             else if (c is RealCandleChart) ((RealCandleChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
             else if (c is CandleAntiCandleChart) ((CandleAntiCandleChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
-            else if (c is DarkMassrChart) ((DarkMassrChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
-
-            else if (c is ParkChart) ((ParkChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
+            else if (c is DarkMassrChart) ((DarkMassrChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);           
         }
         public static void LoadDataAndApply(this BaseChartControl c
            , string itemCode
@@ -1172,7 +1175,19 @@ namespace OM.Vikala.Controls.Charts
             itemsCnt = 9;
             if (c is ComplexChart) ((ComplexChart)c).loadDataAndApply(itemCode, sourceDatas, sourceDatasSub, timeInterval, itemsCnt);
         }
-
+       
+        public static void LoadDataAndApply(this BaseChartControl c
+          , string itemCode
+          , List<S_CandleItemData> sourceDatas
+          , List<ParabolicSarResult> quoteDatas
+          , List<ParabolicSarResult> quoteDatas2
+          , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+          , int itemsCnt = 9)
+        {
+            if (sourceDatas.Count == 0) return;
+            itemsCnt = 9;
+            if (c is ParkChart) ((ParkChart)c).loadDataAndApply(itemCode, sourceDatas, quoteDatas, quoteDatas2, timeInterval, itemsCnt);
+        }
         //public static void LoadDataAverageAndApply(this BaseChartControl c
         //    , string itemCode
         //    , List<S_CandleItemData> sourceDatas

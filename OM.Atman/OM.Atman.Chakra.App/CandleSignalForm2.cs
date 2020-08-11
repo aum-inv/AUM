@@ -70,9 +70,9 @@ namespace OM.Atman.Chakra.App
             uc60List.Add("URO", ucSignalURO60);
             uc60List.Add("ES", ucSignalES60);
 
-            ucAll.Add(TimeIntervalEnum.Minute_60, uc10List);
-            ucAll.Add(TimeIntervalEnum.Minute_120, uc30List);
-            ucAll.Add(TimeIntervalEnum.Minute_180, uc60List);
+            ucAll.Add(TimeIntervalEnum.Hour_01, uc10List);
+            ucAll.Add(TimeIntervalEnum.Hour_02, uc30List);
+            ucAll.Add(TimeIntervalEnum.Hour_03, uc60List);
         }
 
         private void Instance_CandleChartPatternHandler(string itemCode, TimeIntervalEnum timeInterval, CandleChartPatternEnum updown)

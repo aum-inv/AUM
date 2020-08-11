@@ -38,9 +38,9 @@ namespace OM.Vikala.Chakra.App
         {
             TimeIntervalEnum timeInterval = TimeIntervalEnum.Day;
 
-            if (radioButton1.Checked) timeInterval = TimeIntervalEnum.Minute_60;
-            if (radioButton2.Checked) timeInterval = TimeIntervalEnum.Minute_120;
-            if (radioButton3.Checked) timeInterval = TimeIntervalEnum.Minute_180;
+            if (radioButton1.Checked) timeInterval = TimeIntervalEnum.Hour_01;
+            if (radioButton2.Checked) timeInterval = TimeIntervalEnum.Hour_02;
+            if (radioButton3.Checked) timeInterval = TimeIntervalEnum.Hour_03;
             if (radioButton4.Checked) timeInterval = TimeIntervalEnum.Day;
 
             string itemCode = ItemCodeSet.GetItemCode(ItemCode.지수_국내_코스피200);

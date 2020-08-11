@@ -107,42 +107,45 @@ namespace OM.PP.Chakra.Ctx
                 List<S_CandleItemData> list = null;
                 switch (timeInterval)
                 {
-                    case TimeIntervalEnum.Minute_60:
+                    case TimeIntervalEnum.Minute_01:
+                        list = PPStorage.Instance.StorageMin01[itemCode];
+                        break;
+                    case TimeIntervalEnum.Minute_05:
+                        list = PPStorage.Instance.StorageMin05[itemCode];
+                        break;
+                    case TimeIntervalEnum.Minute_10:
+                        list = PPStorage.Instance.StorageMin10[itemCode];
+                        break;
+                    case TimeIntervalEnum.Minute_30:
+                        list = PPStorage.Instance.StorageMin30[itemCode];
+                        break;
+                    case TimeIntervalEnum.Hour_01:
                         list = PPStorage.Instance. StorageMin60[itemCode];
-                        break;
-                  
-                    case TimeIntervalEnum.Minute_120:
+                        break;                  
+                    case TimeIntervalEnum.Hour_02:
                         list = PPStorage.Instance.StorageMin120[itemCode];
-                        break;
-                    
-                    case TimeIntervalEnum.Minute_180:
+                        break;                    
+                    case TimeIntervalEnum.Hour_03:
                         list = PPStorage.Instance.StorageMin180[itemCode];
                         break;
-
-                    case TimeIntervalEnum.Minute_240:
+                    case TimeIntervalEnum.Hour_04:
                         list = PPStorage.Instance.StorageMin240[itemCode];
                         break;
-
-                    case TimeIntervalEnum.Minute_300:
+                    case TimeIntervalEnum.Hour_05:
                         list = PPStorage.Instance.StorageMin300[itemCode];
-                        break;
-                    
-                    case TimeIntervalEnum.Minute_360:
+                        break;                    
+                    case TimeIntervalEnum.Hour_06:
                         list = PPStorage.Instance.StorageMin360[itemCode];
-                        break;
-                    
-                    case TimeIntervalEnum.Minute_480:
+                        break;                    
+                    case TimeIntervalEnum.Hour_08:
                         list = PPStorage.Instance.StorageMin480[itemCode];
                         break;
-
-                    case TimeIntervalEnum.Minute_720:
+                    case TimeIntervalEnum.Hour_12:
                         list = PPStorage.Instance.StorageMin720[itemCode];
                         break;
-
                     case TimeIntervalEnum.Day:
                         list = PPStorage.Instance.StorageDay[itemCode];
                         break;
-
                     case TimeIntervalEnum.Week:
                         list = PPStorage.Instance.StorageWeek[itemCode];
                         break;
@@ -162,38 +165,42 @@ namespace OM.PP.Chakra.Ctx
                 LimitedList<S_CandleItemData> list = null;
                 switch (timeInterval)
                 {
-                    case TimeIntervalEnum.Minute_60:
+                    case TimeIntervalEnum.Minute_01:
+                        list = PPStorage.Instance.StorageMin01[itemCode];
+                        break;
+                    case TimeIntervalEnum.Minute_05:
+                        list = PPStorage.Instance.StorageMin05[itemCode];
+                        break;
+                    case TimeIntervalEnum.Minute_10:
+                        list = PPStorage.Instance.StorageMin10[itemCode];
+                        break;
+                    case TimeIntervalEnum.Minute_30:
+                        list = PPStorage.Instance.StorageMin30[itemCode];
+                        break;
+                    case TimeIntervalEnum.Hour_01:
                         list = PPStorage.Instance.StorageMin60[itemCode];
-                        break;
-                    
-                    case TimeIntervalEnum.Minute_120:
+                        break;                    
+                    case TimeIntervalEnum.Hour_02:
                         list = PPStorage.Instance.StorageMin120[itemCode];
-                        break;
-                  
-                    case TimeIntervalEnum.Minute_180:
+                        break;                  
+                    case TimeIntervalEnum.Hour_03:
                         list = PPStorage.Instance.StorageMin180[itemCode];
                         break;
-
-                    case TimeIntervalEnum.Minute_240:
+                    case TimeIntervalEnum.Hour_04:
                         list = PPStorage.Instance.StorageMin240[itemCode];
                         break;
-
-                    case TimeIntervalEnum.Minute_300:
+                    case TimeIntervalEnum.Hour_05:
                         list = PPStorage.Instance.StorageMin300[itemCode];
                         break;
-
-                    case TimeIntervalEnum.Minute_360:
+                    case TimeIntervalEnum.Hour_06:
                         list = PPStorage.Instance.StorageMin360[itemCode];
                         break;
-
-                    case TimeIntervalEnum.Minute_480:
+                    case TimeIntervalEnum.Hour_08:
                         list = PPStorage.Instance.StorageMin480[itemCode];
                         break;
-
-                    case TimeIntervalEnum.Minute_720:
+                    case TimeIntervalEnum.Hour_12:
                         list = PPStorage.Instance.StorageMin720[itemCode];
                         break;
-
                     case TimeIntervalEnum.Day:
                         list = PPStorage.Instance.StorageDay[itemCode];
                         break;
@@ -226,38 +233,43 @@ namespace OM.PP.Chakra.Ctx
             {
                 switch (timeInterval)
                 {
-                    case TimeIntervalEnum.Minute_60:
+                    case TimeIntervalEnum.Minute_01:
+                        PPStorage.Instance.StorageMin01[itemCode].Clear();
+                        break;
+                    case TimeIntervalEnum.Minute_05:
+                        PPStorage.Instance.StorageMin05[itemCode].Clear();
+                        break;
+                    case TimeIntervalEnum.Minute_10:
+                        PPStorage.Instance.StorageMin10[itemCode].Clear();
+                        break;
+                    case TimeIntervalEnum.Minute_30:
+                        PPStorage.Instance.StorageMin30[itemCode].Clear();
+                        break;
+                    
+                    case TimeIntervalEnum.Hour_01:
                         PPStorage.Instance.StorageMin60[itemCode].Clear();
-                        break;
-                    
-                    case TimeIntervalEnum.Minute_120:
+                        break;                    
+                    case TimeIntervalEnum.Hour_02:
                         PPStorage.Instance.StorageMin120[itemCode].Clear();
-                        break;
-                    
-                    case TimeIntervalEnum.Minute_180:
+                        break;                    
+                    case TimeIntervalEnum.Hour_03:
                         PPStorage.Instance.StorageMin180[itemCode].Clear();
                         break;
-
-                    case TimeIntervalEnum.Minute_240:
+                    case TimeIntervalEnum.Hour_04:
                         PPStorage.Instance.StorageMin240[itemCode].Clear();
                         break;
-
-                    case TimeIntervalEnum.Minute_300:
+                    case TimeIntervalEnum.Hour_05:
                         PPStorage.Instance.StorageMin300[itemCode].Clear();
-                        break;
-                    
-                    case TimeIntervalEnum.Minute_360:
+                        break;                    
+                    case TimeIntervalEnum.Hour_06:
                         PPStorage.Instance.StorageMin360[itemCode].Clear();
-                        break;
-                    
-                    case TimeIntervalEnum.Minute_480:
+                        break;                    
+                    case TimeIntervalEnum.Hour_08:
                         PPStorage.Instance.StorageMin480[itemCode].Clear();
                         break;
-
-                    case TimeIntervalEnum.Minute_720:
+                    case TimeIntervalEnum.Hour_12:
                         PPStorage.Instance.StorageMin720[itemCode].Clear();
                         break;
-
                     case TimeIntervalEnum.Day:
                         PPStorage.Instance.StorageDay[itemCode].Clear();
                         break;

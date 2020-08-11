@@ -46,12 +46,15 @@ namespace OM.Vikala.Controls.Charts
             {
                 int round = ItemCodeSet.GetItemRoundNum(ItemCode);
 
+                if (ItemCode == "101" || ItemCode == "301")
+                    round = 0;
+
                 if (round == 0) return 1;
-                else if (round == 1) return 0.1;
-                else if (round == 2) return 0.01;
-                else if (round == 3) return 0.001;
-                else if (round == 4) return 0.0001;
-                else if (round == 5) return 0.00001;
+                else if (round == 1) return 0.5;
+                else if (round == 2) return 0.05;
+                else if (round == 3) return 0.005;
+                else if (round == 4) return 0.0005;
+                else if (round == 5) return 0.00005;
 
                 return 0.01;
             }
@@ -72,7 +75,7 @@ namespace OM.Vikala.Controls.Charts
         {
             get;
             set;
-        } = 60;
+        } = 120;
         
         public string ItemCode
         {
@@ -155,7 +158,6 @@ namespace OM.Vikala.Controls.Charts
         public virtual void InitializeControl()
         {
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea = chart.ChartAreas[0];
-      
             chartArea.AxisX.IsLabelAutoFit = true;
             chartArea.AxisX.LabelStyle.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             chartArea.AxisX.LabelStyle.IsEndLabelVisible = true;

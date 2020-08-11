@@ -42,10 +42,10 @@
             // 
             this.groupBox1.BackColor = System.Drawing.Color.White;
             this.groupBox1.Controls.Add(this.tbLog);
-            this.groupBox1.Location = new System.Drawing.Point(10, 58);
+            this.groupBox1.Location = new System.Drawing.Point(12, 54);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(8, 10, 8, 10);
-            this.groupBox1.Size = new System.Drawing.Size(245, 109);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.groupBox1.Size = new System.Drawing.Size(286, 70);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Log";
@@ -55,11 +55,11 @@
             this.tbLog.BackColor = System.Drawing.Color.Black;
             this.tbLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbLog.ForeColor = System.Drawing.Color.White;
-            this.tbLog.Location = new System.Drawing.Point(8, 23);
+            this.tbLog.Location = new System.Drawing.Point(9, 23);
             this.tbLog.Multiline = true;
             this.tbLog.Name = "tbLog";
             this.tbLog.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.tbLog.Size = new System.Drawing.Size(229, 76);
+            this.tbLog.Size = new System.Drawing.Size(268, 38);
             this.tbLog.TabIndex = 0;
             // 
             // label3
@@ -67,9 +67,9 @@
             this.label3.BackColor = System.Drawing.Color.Red;
             this.label3.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(9, 47);
+            this.label3.Location = new System.Drawing.Point(10, 43);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(247, 7);
+            this.label3.Size = new System.Drawing.Size(288, 6);
             this.label3.TabIndex = 22;
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -78,9 +78,9 @@
             this.lblConnect.BackColor = System.Drawing.Color.Red;
             this.lblConnect.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblConnect.ForeColor = System.Drawing.Color.White;
-            this.lblConnect.Location = new System.Drawing.Point(89, 8);
+            this.lblConnect.Location = new System.Drawing.Point(104, 7);
             this.lblConnect.Name = "lblConnect";
-            this.lblConnect.Size = new System.Drawing.Size(96, 31);
+            this.lblConnect.Size = new System.Drawing.Size(112, 29);
             this.lblConnect.TabIndex = 21;
             this.lblConnect.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblConnect.Visible = false;
@@ -90,9 +90,9 @@
             this.btnStart.BackColor = System.Drawing.Color.White;
             this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStart.ForeColor = System.Drawing.Color.Maroon;
-            this.btnStart.Location = new System.Drawing.Point(10, 8);
+            this.btnStart.Location = new System.Drawing.Point(12, 7);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(74, 31);
+            this.btnStart.Size = new System.Drawing.Size(86, 29);
             this.btnStart.TabIndex = 23;
             this.btnStart.Text = "START";
             this.btnStart.UseVisualStyleBackColor = false;
@@ -103,9 +103,9 @@
             this.btnClose.BackColor = System.Drawing.Color.White;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.ForeColor = System.Drawing.Color.Maroon;
-            this.btnClose.Location = new System.Drawing.Point(191, 8);
+            this.btnClose.Location = new System.Drawing.Point(223, 7);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(65, 31);
+            this.btnClose.Size = new System.Drawing.Size(76, 29);
             this.btnClose.TabIndex = 24;
             this.btnClose.Text = "CLOSE";
             this.btnClose.UseVisualStyleBackColor = false;
@@ -113,9 +113,9 @@
             // 
             // AppMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(261, 169);
+            this.ClientSize = new System.Drawing.Size(304, 121);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.label3);
@@ -124,7 +124,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AppMain";
-            this.Text = "데이터 서비스 데몬";
+            this.Text = "ATMAN INV. F DEAMON";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.groupBox1.ResumeLayout(false);

@@ -41,17 +41,20 @@ namespace OM.Vikala.Chakra.App.Mains
             get { return tsbTime11.Visible; }
             set
             {
-                    tsbTime11.Visible =
-                    tsbTime12.Visible =
-                    tsbTime13.Visible =
-                    tsbTime14.Visible =
-                    tsbTime15.Visible =
-                    tsbTime16.Visible =
-                    tsbTime17.Visible =
-                    tsbTime18.Visible =
-                    tsbTime20.Visible =
-                    tsbTime30.Visible =
-                    value;
+                tsbTime01.Visible = 
+                tsbTime02.Visible = 
+                tsbTime03.Visible =
+                tsbTime04.Visible =
+                tsbTime11.Visible =
+                tsbTime12.Visible =
+                tsbTime13.Visible =
+                tsbTime14.Visible =
+                tsbTime15.Visible =
+                tsbTime16.Visible =
+                tsbTime17.Visible =
+                tsbTime18.Visible =
+                tsbTime20.Visible =
+                tsbTime30.Visible = value;
             }
         }
         public bool IsVisibleMdiButton
@@ -131,6 +134,10 @@ namespace OM.Vikala.Chakra.App.Mains
         }
         private void setInterval()
         {
+            tsbTime01.BackColor = Color.WhiteSmoke;
+            tsbTime02.BackColor = Color.WhiteSmoke;
+            tsbTime03.BackColor = Color.WhiteSmoke;
+            tsbTime04.BackColor = Color.WhiteSmoke;
             tsbTime11.BackColor = Color.WhiteSmoke;
             tsbTime12.BackColor = Color.WhiteSmoke;
             tsbTime13.BackColor = Color.WhiteSmoke;
@@ -142,16 +149,24 @@ namespace OM.Vikala.Chakra.App.Mains
             tsbTime20.BackColor = Color.WhiteSmoke;
             tsbTime30.BackColor = Color.WhiteSmoke;
 
-            if (timeInterval == TimeIntervalEnum.Minute_60) tsbTime11.BackColor = Color.Yellow;
-            else if (timeInterval == TimeIntervalEnum.Minute_120) tsbTime12.BackColor = Color.Yellow;
-            else if (timeInterval == TimeIntervalEnum.Minute_180) tsbTime13.BackColor = Color.Yellow;
-            else if (timeInterval == TimeIntervalEnum.Minute_240) tsbTime14.BackColor = Color.Yellow;
-            else if (timeInterval == TimeIntervalEnum.Minute_300) tsbTime15.BackColor = Color.Yellow;
-            else if (timeInterval == TimeIntervalEnum.Minute_360) tsbTime16.BackColor = Color.Yellow;
-            else if (timeInterval == TimeIntervalEnum.Minute_480) tsbTime17.BackColor = Color.Yellow;
-            else if (timeInterval == TimeIntervalEnum.Minute_720) tsbTime18.BackColor = Color.Yellow;
-            else if (timeInterval == TimeIntervalEnum.Day) tsbTime20.BackColor = Color.Yellow;
-            else if (timeInterval == TimeIntervalEnum.Week) tsbTime30.BackColor = Color.Yellow;
+            switch (timeInterval)
+            {
+                case TimeIntervalEnum.Minute_01 : tsbTime01.BackColor = Color.Yellow; break;
+                case TimeIntervalEnum.Minute_05: tsbTime02.BackColor = Color.Yellow; break;
+                case TimeIntervalEnum.Minute_10: tsbTime03.BackColor = Color.Yellow; break;
+                case TimeIntervalEnum.Minute_30: tsbTime04.BackColor = Color.Yellow; break;
+                case TimeIntervalEnum.Hour_01: tsbTime11.BackColor = Color.Yellow; break;
+                case TimeIntervalEnum.Hour_02: tsbTime12.BackColor = Color.Yellow; break;
+                case TimeIntervalEnum.Hour_03: tsbTime13.BackColor = Color.Yellow; break;
+                case TimeIntervalEnum.Hour_04: tsbTime14.BackColor = Color.Yellow; break;
+                case TimeIntervalEnum.Hour_05: tsbTime15.BackColor = Color.Yellow; break;
+                case TimeIntervalEnum.Hour_06: tsbTime16.BackColor = Color.Yellow; break;
+                case TimeIntervalEnum.Hour_08: tsbTime17.BackColor = Color.Yellow; break;
+                case TimeIntervalEnum.Hour_12: tsbTime18.BackColor = Color.Yellow; break;
+                case TimeIntervalEnum.Day: tsbTime20.BackColor = Color.Yellow; break;
+                case TimeIntervalEnum.Week: tsbTime30.BackColor = Color.Yellow; break;
+                default: tsbTime20.BackColor = Color.Yellow; break;
+            }
         }
 
         private void tscbItem_SelectedIndexChanged(object sender, EventArgs e)
@@ -178,18 +193,26 @@ namespace OM.Vikala.Chakra.App.Mains
         private void IntervalButton_Click(object sender, EventArgs e)
         {
             var b = sender as ToolStripButton;
-            int n = Convert.ToInt32(b.Tag);
+            string n = Convert.ToString(b.Tag);
 
-            if (n == 1) timeInterval = TimeIntervalEnum.Minute_60;
-            else if (n == 2) timeInterval = TimeIntervalEnum.Minute_120;
-            else if (n == 3) timeInterval = TimeIntervalEnum.Minute_180;
-            else if (n == 4) timeInterval = TimeIntervalEnum.Minute_240;
-            else if (n == 5) timeInterval = TimeIntervalEnum.Minute_300;
-            else if (n == 6) timeInterval = TimeIntervalEnum.Minute_360;
-            else if (n == 7) timeInterval = TimeIntervalEnum.Minute_480;
-            else if (n == 8) timeInterval = TimeIntervalEnum.Minute_720;
-            else if (n == 10) timeInterval = TimeIntervalEnum.Day;
-            else if (n == 20) timeInterval = TimeIntervalEnum.Week;
+            switch (n)
+            {
+                case "01m": timeInterval = TimeIntervalEnum.Minute_01; break;
+                case "05m": timeInterval = TimeIntervalEnum.Minute_05; break;
+                case "10m": timeInterval = TimeIntervalEnum.Minute_10; break;
+                case "30m": timeInterval = TimeIntervalEnum.Minute_30; break;
+                case "01h": timeInterval = TimeIntervalEnum.Hour_01; break;                
+                case "02h": timeInterval = TimeIntervalEnum.Hour_02; break;
+                case "03h": timeInterval = TimeIntervalEnum.Hour_03; break;
+                case "04h": timeInterval = TimeIntervalEnum.Hour_04; break;
+                case "05h": timeInterval = TimeIntervalEnum.Hour_05; break;
+                case "06h": timeInterval = TimeIntervalEnum.Hour_06; break;
+                case "08h": timeInterval = TimeIntervalEnum.Hour_08; break;
+                case "12h": timeInterval = TimeIntervalEnum.Hour_12; break;
+                case "D": timeInterval = TimeIntervalEnum.Day; break;
+                case "W": timeInterval = TimeIntervalEnum.Week; break;
+                default: timeInterval = TimeIntervalEnum.Day; break;
+            }           
 
             if (TimerIntervalChangedEvent != null)
             {

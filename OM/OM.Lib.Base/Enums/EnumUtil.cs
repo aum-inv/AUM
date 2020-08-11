@@ -37,15 +37,18 @@ namespace OM.Lib.Base.Enums
         public static TimeIntervalEnum GetTimeIntervalValue(string gubun, string ncnt)
         {
 
-            if (gubun == "1" && ncnt == "60") return TimeIntervalEnum.Minute_60;
-            else if (gubun == "1" && ncnt == "120") return TimeIntervalEnum.Minute_120;
-            else if (gubun == "1" && ncnt == "180") return TimeIntervalEnum.Minute_180;
-            else if (gubun == "1" && ncnt == "240") return TimeIntervalEnum.Minute_240;
-            else if (gubun == "1" && ncnt == "300") return TimeIntervalEnum.Minute_300;
-            else if (gubun == "1" && ncnt == "360") return TimeIntervalEnum.Minute_360;
-            else if (gubun == "1" && ncnt == "480") return TimeIntervalEnum.Minute_480;
-            else if (gubun == "1" && ncnt == "720") return TimeIntervalEnum.Minute_720;
-
+            if (gubun == "1" && ncnt == "01") return TimeIntervalEnum.Minute_01;
+            else if (gubun == "1" && ncnt == "05") return TimeIntervalEnum.Minute_05;
+            else if (gubun == "1" && ncnt == "10") return TimeIntervalEnum.Minute_10;
+            else if (gubun == "1" && ncnt == "30") return TimeIntervalEnum.Minute_30;
+            else if (gubun == "1" && ncnt == "60") return TimeIntervalEnum.Hour_01;
+            else if (gubun == "1" && ncnt == "120") return TimeIntervalEnum.Hour_02;
+            else if (gubun == "1" && ncnt == "180") return TimeIntervalEnum.Hour_03;
+            else if (gubun == "1" && ncnt == "240") return TimeIntervalEnum.Hour_04;
+            else if (gubun == "1" && ncnt == "300") return TimeIntervalEnum.Hour_05;
+            else if (gubun == "1" && ncnt == "360") return TimeIntervalEnum.Hour_06;
+            else if (gubun == "1" && ncnt == "480") return TimeIntervalEnum.Hour_08;
+            else if (gubun == "1" && ncnt == "720") return TimeIntervalEnum.Hour_12;
             else if (gubun == "2") return TimeIntervalEnum.Day;
             else if (gubun == "3") return TimeIntervalEnum.Week;
             else if (gubun == "4") return TimeIntervalEnum.Month;
@@ -55,37 +58,42 @@ namespace OM.Lib.Base.Enums
 
         public static TimeIntervalEnum GetTimeIntervalValue(string timeType)
         {
-
-            if (timeType == "60분") return TimeIntervalEnum.Minute_60;
-            else if (timeType == "120분") return TimeIntervalEnum.Minute_120;
-            else if (timeType == "180분") return TimeIntervalEnum.Minute_180;
-            else if (timeType == "240분") return TimeIntervalEnum.Minute_240;
-            else if (timeType == "300분") return TimeIntervalEnum.Minute_300;
-            else if (timeType == "360분") return TimeIntervalEnum.Minute_360;
-            else if (timeType == "480분") return TimeIntervalEnum.Minute_480;
-            else if (timeType == "720분") return TimeIntervalEnum.Minute_720;
-
-            else if (timeType == "일") return TimeIntervalEnum.Day;
-            else if (timeType == "주") return TimeIntervalEnum.Week;
-            else if (timeType == "월") return TimeIntervalEnum.Month;
+            if (timeType == "01m") return TimeIntervalEnum.Minute_01;
+            else if (timeType == "05m") return TimeIntervalEnum.Minute_05;
+            else if (timeType == "10m") return TimeIntervalEnum.Minute_10;
+            else if (timeType == "30m") return TimeIntervalEnum.Minute_30;
+            else if (timeType == "01h") return TimeIntervalEnum.Hour_01;
+            else if (timeType == "02h") return TimeIntervalEnum.Hour_02;
+            else if (timeType == "03h") return TimeIntervalEnum.Hour_03;
+            else if (timeType == "04h") return TimeIntervalEnum.Hour_04;
+            else if (timeType == "05h") return TimeIntervalEnum.Hour_05;
+            else if (timeType == "06h") return TimeIntervalEnum.Hour_06;
+            else if (timeType == "08h") return TimeIntervalEnum.Hour_08;
+            else if (timeType == "12h") return TimeIntervalEnum.Hour_12;
+            else if (timeType == "D") return TimeIntervalEnum.Day;
+            else if (timeType == "W") return TimeIntervalEnum.Week;
+            else if (timeType == "M") return TimeIntervalEnum.Month;
 
             return TimeIntervalEnum.None;
         }
         public static string GetTimeIntervalText(TimeIntervalEnum timeType)
         {
 
-            if (timeType == TimeIntervalEnum.Minute_60) return "60분";
-            else if (timeType == TimeIntervalEnum.Minute_120) return "120분";
-            else if (timeType == TimeIntervalEnum.Minute_180) return "180분";
-            else if (timeType == TimeIntervalEnum.Minute_240) return "240분";
-            else if (timeType == TimeIntervalEnum.Minute_300) return "300분";
-            else if (timeType == TimeIntervalEnum.Minute_360) return "360분";
-            else if (timeType == TimeIntervalEnum.Minute_480) return "480분";
-            else if (timeType == TimeIntervalEnum.Minute_720) return "720분";
-
-            else if (timeType == TimeIntervalEnum.Day) return "일";
-            else if (timeType == TimeIntervalEnum.Week) return "주";
-            else if (timeType == TimeIntervalEnum.Month) return "월";
+            if (timeType == TimeIntervalEnum.Minute_01) return "01m";
+            else if (timeType == TimeIntervalEnum.Minute_05) return "05m";
+            else if (timeType == TimeIntervalEnum.Minute_10) return "10m";
+            else if (timeType == TimeIntervalEnum.Minute_30) return "30m";
+            else if (timeType == TimeIntervalEnum.Hour_01) return "01h";
+            else if (timeType == TimeIntervalEnum.Hour_02) return "02h";
+            else if (timeType == TimeIntervalEnum.Hour_03) return "03h";
+            else if (timeType == TimeIntervalEnum.Hour_04) return "04h";
+            else if (timeType == TimeIntervalEnum.Hour_05) return "05h";
+            else if (timeType == TimeIntervalEnum.Hour_06) return "06h";
+            else if (timeType == TimeIntervalEnum.Hour_08) return "08h";
+            else if (timeType == TimeIntervalEnum.Hour_12) return "12h";
+            else if (timeType == TimeIntervalEnum.Day) return "D";
+            else if (timeType == TimeIntervalEnum.Week) return "W";
+            else if (timeType == TimeIntervalEnum.Month) return "M";
 
             return "1분";
         }

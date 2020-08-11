@@ -1,7 +1,9 @@
 ﻿using OM.Lib.Base;
 using OM.Lib.Base.Enums;
+using OM.Lib.Base.Utils;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -102,8 +104,7 @@ namespace OM.PP.Chakra
             }
             return averageDatas;
         }
-
-        
+                
         public static List<S_CandleItemData> GetCutDatas(List<S_CandleItemData> sourceDatas, DateTime dt)
         {            
             List<S_CandleItemData> sourceDatasNew = new List<S_CandleItemData>();
@@ -931,7 +932,256 @@ namespace OM.PP.Chakra
             }
             return sourceDatasNew;
         }
+
+        public static List<S_CandleItemData> GetRecreateSecondDatas(string itemCode, List<S_CandleItemData> sourceDatas, int duration = 5, bool isQutum= false)
+        {
+            List<S_CandleItemData> sourceDatasNew = new List<S_CandleItemData>();
+            try
+            {                
+                for (int i = duration; i <= sourceDatas.Count; i++)
+                {
+                    if (isQutum)
+                    {
+                        var subs = sourceDatas.GetRange(i - duration, duration);
+                        int cnt = subs.Count;
+                        int rankIndex = cnt > 1 ? 1 : 0;
+
+                        var open = subs.OrderBy(t => t.OpenPrice).ElementAt(rankIndex).OpenPrice;
+                        var open2 = subs.OrderByDescending(t => t.OpenPrice).ElementAt(rankIndex).OpenPrice;
+                        var close = subs.OrderByDescending(t => t.ClosePrice).ElementAt(rankIndex).QuantumBasePrice;
+                        var close2 = subs.OrderBy(t => t.ClosePrice).ElementAt(rankIndex).QuantumBasePrice;
+                        var high = subs.OrderByDescending(t => t.HighPrice).ElementAt(rankIndex).QuantumBaseHighPrice;
+                        var low = subs.OrderBy(t => t.LowPrice).ElementAt(rankIndex).QuantumBaseLowPrice;
+                        var dtime = subs.OrderBy(t => t.DTime).Last().DTime;
+                        var volume = subs.Sum(t => t.Volume);
+                        var fc = subs[0];
+                        var lc = subs[subs.Count - 1];
+
+                        //sourceDatasNew.Add(
+                        //    new S_CandleItemData(
+                        //        itemCode
+                        //        , (Single)Math.Round((open + open2) / 2.0, ItemCodeUtil.GetItemCodeRoundNum(itemCode))
+                        //        , high
+                        //        , low
+                        //        , (Single)Math.Round((close + close2) / 2.0, ItemCodeUtil.GetItemCodeRoundNum(itemCode))
+                        //        , volume
+                        //        , dtime)
+                        //    );
+
+                        //sourceDatasNew.Add(
+                        //    new S_CandleItemData(
+                        //        itemCode
+                        //        , fc.OpenPrice > lc.ClosePrice ? open2 : open
+                        //        , high
+                        //        , low
+                        //        , fc.OpenPrice > lc.ClosePrice ? close2 : close
+                        //        , volume
+                        //        , dtime)
+                        //    );
+
+                        sourceDatasNew.Add(
+                            new S_CandleItemData(
+                                itemCode
+                                , Math.Abs(open - close) > Math.Abs(open2 - close2) ? open : open2
+                                , high
+                                , low
+                                , Math.Abs(open - close) > Math.Abs(open2 - close2) ? close : close2
+                                , volume
+                                , dtime)
+                            );
+                    }
+                    else
+                    {
+                        var subs = sourceDatas.GetRange(i - duration, duration);
+                        int cnt = subs.Count;
+                        int rankIndex = cnt > 1 ? 1 : 0;
+
+                        var open = subs.OrderBy(t => t.OpenPrice).ElementAt(rankIndex).OpenPrice;
+                        var open2 = subs.OrderByDescending(t => t.OpenPrice).ElementAt(rankIndex).OpenPrice;
+                        var close = subs.OrderByDescending(t => t.ClosePrice).ElementAt(rankIndex).ClosePrice;
+                        var close2 = subs.OrderBy(t => t.ClosePrice).ElementAt(rankIndex).ClosePrice;
+                        var high = subs.OrderByDescending(t => t.HighPrice).ElementAt(rankIndex).HighPrice;
+                        var low = subs.OrderBy(t => t.LowPrice).ElementAt(rankIndex).LowPrice;
+                        var dtime = subs.OrderBy(t => t.DTime).Last().DTime;
+                        var volume = subs.Sum(t => t.Volume);
+                        var fc = subs[0];
+                        var lc = subs[subs.Count - 1];
+                        //sourceDatasNew.Add(
+                        //   new S_CandleItemData(
+                        //       itemCode
+                        //       , (Single)Math.Round((open + open2) / 2.0, ItemCodeUtil.GetItemCodeRoundNum(itemCode))
+                        //       , high
+                        //       , low
+                        //       , (Single)Math.Round((close + close2) / 2.0, ItemCodeUtil.GetItemCodeRoundNum(itemCode))
+                        //       , volume
+                        //       , dtime)
+                        //   );
+
+                        //sourceDatasNew.Add(
+                        //   new S_CandleItemData(
+                        //       itemCode
+                        //       , fc.OpenPrice > lc.ClosePrice ? open2 : open
+                        //       , high
+                        //       , low
+                        //       , fc.OpenPrice > lc.ClosePrice ? close2 : close
+                        //       , volume
+                        //       , dtime)
+                        //   );
+
+                        sourceDatasNew.Add(
+                            new S_CandleItemData(
+                                itemCode
+                                , Math.Abs(open - close) > Math.Abs(open2 - close2) ? open : open2
+                                , high
+                                , low
+                                , Math.Abs(open - close) > Math.Abs(open2 - close2) ? close : close2
+                                , volume
+                                , dtime)
+                            );
+                    }                    
+                }               
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+            return sourceDatasNew;
+        }
+
+        public static List<S_CandleItemData> GetRecreateSecondDatas2(string itemCode, List<S_CandleItemData> sourceDatas, int duration = 5, bool isQutum = false)
+        {
+            List<S_CandleItemData> sourceDatasNew = new List<S_CandleItemData>();
+            try
+            {
+                List<Single> tmpList = new List<float>();
+                
+                for (int i = duration; i <= sourceDatas.Count; i++)
+                {
+                    if (isQutum)
+                    {
+                        var subs = sourceDatas.GetRange(i - duration, duration);
+                        int cnt = subs.Count;
+                        int rankIndex = cnt > 1 ? 1 : 0;
+                        var fc = subs[0];
+                        var lc = subs[subs.Count - 1];
+
+                        if (fc.OpenPrice < lc.ClosePrice)
+                        {
+                            var open = subs.OrderBy(t => t.OpenPrice).ElementAt(rankIndex).OpenPrice;
+                            var close = subs.OrderByDescending(t => t.ClosePrice).ElementAt(rankIndex).QuantumBasePrice;
+                            var high = subs.OrderByDescending(t => t.HighPrice).ElementAt(rankIndex).QuantumBaseHighPrice;
+                            var low = subs.OrderBy(t => t.LowPrice).ElementAt(rankIndex).QuantumBaseLowPrice;
+                            var dtime = subs.OrderBy(t => t.DTime).Last().DTime;
+                            var volume = subs.Sum(t => t.Volume);
+                            tmpList.Clear();
+                            tmpList.Add(open);
+                            tmpList.Add(close);
+                            tmpList.Add(high);
+                            tmpList.Add(low);
+                            sourceDatasNew.Add(
+                            new S_CandleItemData(
+                                itemCode
+                                , open
+                                , tmpList.Max()
+                                , tmpList.Min()
+                                , close
+                                , volume
+                                , dtime)
+                            ) ;
+                        }
+                        else if (fc.OpenPrice > lc.ClosePrice)
+                        {
+                            var open = subs.OrderByDescending(t => t.OpenPrice).ElementAt(rankIndex).OpenPrice;
+                            var close = subs.OrderBy(t => t.ClosePrice).ElementAt(rankIndex).QuantumBasePrice;
+                            var high = subs.OrderByDescending(t => t.HighPrice).ElementAt(rankIndex).QuantumBaseHighPrice;
+                            var low = subs.OrderBy(t => t.LowPrice).ElementAt(rankIndex).QuantumBaseLowPrice;
+                            var dtime = subs.OrderBy(t => t.DTime).Last().DTime;
+                            var volume = subs.Sum(t => t.Volume);
+                            tmpList.Clear();
+                            tmpList.Add(open);
+                            tmpList.Add(close);
+                            tmpList.Add(high);
+                            tmpList.Add(low);
+                            sourceDatasNew.Add(
+                            new S_CandleItemData(
+                                itemCode
+                                , open
+                                , tmpList.Max()
+                                , tmpList.Min()
+                                , close
+                                , volume
+                                , dtime)
+                            );
+                        }
+                        
+                    }
+                    else
+                    {
+                        var subs = sourceDatas.GetRange(i - duration, duration);
+                        int cnt = subs.Count;
+                        int rankIndex = cnt > 1 ? 1 : 0;
+                        var fc = subs[0];
+                        var lc = subs[subs.Count - 1];
+
+                        if (fc.OpenPrice < lc.ClosePrice)
+                        {
+                            var open = subs.OrderBy(t => t.OpenPrice).ElementAt(rankIndex).OpenPrice;
+                            var close = subs.OrderByDescending(t => t.ClosePrice).ElementAt(rankIndex).ClosePrice;
+                            var high = subs.OrderByDescending(t => t.HighPrice).ElementAt(rankIndex).HighPrice;
+                            var low = subs.OrderBy(t => t.LowPrice).ElementAt(rankIndex).LowPrice;
+                            var dtime = subs.OrderBy(t => t.DTime).Last().DTime;
+                            var volume = subs.Sum(t => t.Volume);
+                            tmpList.Clear();
+                            tmpList.Add(open);
+                            tmpList.Add(close);
+                            tmpList.Add(high);
+                            tmpList.Add(low);
+                            sourceDatasNew.Add(
+                            new S_CandleItemData(
+                                itemCode
+                                , open                                
+                                , tmpList.Max()
+                                , tmpList.Min()
+                                , close
+                                , volume
+                                , dtime)
+                            );
+                        }
+                        else if (fc.OpenPrice > lc.ClosePrice)
+                        {
+                            var open = subs.OrderByDescending(t => t.OpenPrice).ElementAt(rankIndex).OpenPrice;
+                            var close = subs.OrderBy(t => t.ClosePrice).ElementAt(rankIndex).ClosePrice;
+                            var high = subs.OrderByDescending(t => t.HighPrice).ElementAt(rankIndex).HighPrice;
+                            var low = subs.OrderBy(t => t.LowPrice).ElementAt(rankIndex).LowPrice;
+                            var dtime = subs.OrderBy(t => t.DTime).Last().DTime;
+                            var volume = subs.Sum(t => t.Volume);
+                            tmpList.Clear();
+                            tmpList.Add(open);
+                            tmpList.Add(close);
+                            tmpList.Add(high);
+                            tmpList.Add(low);
+                            sourceDatasNew.Add(
+                            new S_CandleItemData(
+                                itemCode
+                                , open
+                                , tmpList.Max()
+                                , tmpList.Min()
+                                , close
+                                , volume
+                                , dtime)
+                            );
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+            return sourceDatasNew;
+        }
         #endregion
+
         #region Duration
         public static List<S_CandleItemData> GetDurationSum(string itemCode, List<S_CandleItemData> baseDatas, List<S_CandleItemData> sourceDatas, DateTime? dt = null)
         {
@@ -1026,5 +1276,7 @@ namespace OM.PP.Chakra
             return newDatas;
         }
         #endregion
+
+        
     }
 }

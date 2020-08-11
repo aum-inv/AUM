@@ -234,6 +234,7 @@ namespace OM.PP.XingApp
 
             if (isSuccess)
             {
+                btnLogin.Enabled = false;
                 lblLogin.BackColor = isSuccess ? Color.Blue : Color.Black;
                 LogWrite("IsConnectedServer => " + isSuccess.ToString());
                 isLogoned = true;
@@ -290,12 +291,45 @@ namespace OM.PP.XingApp
 
             Task.Factory.StartNew(() =>
             {
-                //{                   
-                //    Api_WorldFuture apiFF = new Api.Api_WorldFuture();
-                //    apiFF.ApiLogHandler += (log) => { LogWrite(log); };
-                //    apiFF.Query(itemCode, "1", "5");
-                //    System.Threading.Thread.Sleep(4000);
-                //}
+                {
+                    string ncnt = "01";
+                    Api_WorldFuture apiFF = new Api.Api_WorldFuture();
+                    apiFF.ApiLogHandler += (log) => { LogWrite(log); };
+                    apiFF.Query(itemCode, "1", ncnt);
+                    apiFF.manualEvent.WaitOne();
+                    System.Threading.Thread.Sleep(1000);
+                    runApi(itemCode, cnt, ncnt, apiFF);
+                }
+
+                {
+                    string ncnt = "05";
+                    Api_WorldFuture apiFF = new Api.Api_WorldFuture();
+                    apiFF.ApiLogHandler += (log) => { LogWrite(log); };
+                    apiFF.Query(itemCode, "1", ncnt);
+                    apiFF.manualEvent.WaitOne();
+                    System.Threading.Thread.Sleep(1000);
+                    runApi(itemCode, cnt, ncnt, apiFF);
+                }
+
+                {
+                    string ncnt = "10";
+                    Api_WorldFuture apiFF = new Api.Api_WorldFuture();
+                    apiFF.ApiLogHandler += (log) => { LogWrite(log); };
+                    apiFF.Query(itemCode, "1", ncnt);
+                    apiFF.manualEvent.WaitOne();
+                    System.Threading.Thread.Sleep(1000);
+                    runApi(itemCode, cnt, ncnt, apiFF);
+                }
+
+                {
+                    string ncnt = "30";
+                    Api_WorldFuture apiFF = new Api.Api_WorldFuture();
+                    apiFF.ApiLogHandler += (log) => { LogWrite(log); };
+                    apiFF.Query(itemCode, "1", ncnt);
+                    apiFF.manualEvent.WaitOne();
+                    System.Threading.Thread.Sleep(1000);
+                    runApi(itemCode, cnt, ncnt, apiFF);
+                }
                 {
                     string ncnt = "60";
                     Api_WorldFuture apiFF = new Api.Api_WorldFuture();
@@ -414,103 +448,43 @@ namespace OM.PP.XingApp
             }
         }
 
-        private void queryFFTick(string itemCode)
-        {
-            //PPContext.Instance.ClientContext.InitSourceTickData(itemCode);
-            Task.Factory.StartNew(() =>
-            {
-                {
-                    Api_WorldFutureTick apiFF = new Api.Api_WorldFutureTick(100);
-                    apiFF.ApiLogHandler += (log) => { LogWrite(log); };
-                    apiFF.Query(itemCode, "180");
-                    apiFF.manualEvent.WaitOne();
-                    System.Threading.Thread.Sleep(1000);
-                }
-                {
-                    Api_WorldFutureTick apiFF = new Api.Api_WorldFutureTick(100);
-                    apiFF.ApiLogHandler += (log) => { LogWrite(log); };
-                    apiFF.Query(itemCode, "360");
-                    apiFF.manualEvent.WaitOne();
-                    System.Threading.Thread.Sleep(1000);
-                }
-                {
-                    Api_WorldFutureTick apiFF = new Api.Api_WorldFutureTick(100);
-                    apiFF.ApiLogHandler += (log) => { LogWrite(log); };
-                    apiFF.Query(itemCode, "720");
-                    apiFF.manualEvent.WaitOne();
-                    System.Threading.Thread.Sleep(1000);
-                }
-                {
-                    Api_WorldFutureTick apiFF = new Api.Api_WorldFutureTick(100);
-                    apiFF.ApiLogHandler += (log) => { LogWrite(log); };
-                    apiFF.Query(itemCode, "1080");
-                    apiFF.manualEvent.WaitOne();
-                    System.Threading.Thread.Sleep(1000);
-                }
-                {
-                    Api_WorldFutureTick apiFF = new Api.Api_WorldFutureTick(100);
-                    apiFF.ApiLogHandler += (log) => { LogWrite(log); };
-                    apiFF.Query(itemCode, "1440");
-                    //apiFF.manualEvent.WaitOne();
-                    //System.Threading.Thread.Sleep(1000);
-                }
-            });
-        }
-        private void queryFFR(string itemCode)
-        {
-            Task.Factory.StartNew(() =>
-            {
-                try
-                {
-                    {
-                        Api_WorldFuture apiFF = new Api.Api_WorldFuture();
-                        apiFF.ApiLogHandler += (log) => { LogWrite(log); };
-                        apiFF.Query(itemCode, "1", "5", "50");
-                        System.Threading.Thread.Sleep(1500);
-                    }
-                    {
-                        Api_WorldFuture apiFF = new Api.Api_WorldFuture();
-                        apiFF.ApiLogHandler += (log) => { LogWrite(log); };
-                        apiFF.Query(itemCode, "1", "10", "50");
-                        System.Threading.Thread.Sleep(1500);
-                    }
-                    {
-                        Api_WorldFuture apiFF = new Api.Api_WorldFuture();
-                        apiFF.ApiLogHandler += (log) => { LogWrite(log); };
-                        apiFF.Query(itemCode, "1", "30", "50");
-                        System.Threading.Thread.Sleep(1500);
-                    }
-                    {
-                        Api_WorldFuture apiFF = new Api.Api_WorldFuture();
-                        apiFF.ApiLogHandler += (log) => { LogWrite(log); };
-                        apiFF.Query(itemCode, "1", "60", "50");
-                        System.Threading.Thread.Sleep(1500);
-                    }
-                    {
-                        Api_WorldFuture apiFF = new Api.Api_WorldFuture();
-                        apiFF.ApiLogHandler += (log) => { LogWrite(log); };
-                        apiFF.Query(itemCode, "1", "120", "50");
-                        System.Threading.Thread.Sleep(1500);
-                    }
-                    {
-                        Api_WorldFutureDWM apiFFDWM = new Api.Api_WorldFutureDWM();
-                        apiFFDWM.ApiLogHandler += (log) => { LogWrite(log); };
-                        apiFFDWM.Query(itemCode, "2", "50");
-                        System.Threading.Thread.Sleep(1500);
-                    }
-                }
-                catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
-                finally
-                {
-                    isRuning = false;
-                }
-            });
-        }
 
         private void queryUpjong(string itemCode)
         {
             Task.Factory.StartNew(() =>
             {
+                {
+                    string ncnt = "01";
+                    Api_Upjong api = new Api.Api_Upjong();
+                    api.ApiLogHandler += (log) => { LogWrite(log); };
+                    api.Query(itemCode, "1", ncnt);
+                    api.manualEvent.WaitOne();
+                    System.Threading.Thread.Sleep(1000);
+                }
+                {
+                    string ncnt = "05";
+                    Api_Upjong api = new Api.Api_Upjong();
+                    api.ApiLogHandler += (log) => { LogWrite(log); };
+                    api.Query(itemCode, "1", ncnt);
+                    api.manualEvent.WaitOne();
+                    System.Threading.Thread.Sleep(1000);
+                }
+                {
+                    string ncnt = "10";
+                    Api_Upjong api = new Api.Api_Upjong();
+                    api.ApiLogHandler += (log) => { LogWrite(log); };
+                    api.Query(itemCode, "1", ncnt);
+                    api.manualEvent.WaitOne();
+                    System.Threading.Thread.Sleep(1000);
+                }
+                {
+                    string ncnt = "30";
+                    Api_Upjong api = new Api.Api_Upjong();
+                    api.ApiLogHandler += (log) => { LogWrite(log); };
+                    api.Query(itemCode, "1", ncnt);
+                    api.manualEvent.WaitOne();
+                    System.Threading.Thread.Sleep(1000);
+                }
                 {
                     string ncnt = "60";
                     Api_Upjong api = new Api.Api_Upjong();
@@ -694,15 +668,19 @@ namespace OM.PP.XingApp
             {
                 TimeIntervalEnum timeIntervalEnum =  TimeIntervalEnum.None;
 
-                if (f.IndexOf("(720분)") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_720;
-                else if (f.IndexOf("(480분)") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_480;
-                else if (f.IndexOf("(360분)") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_360;
-                else if (f.IndexOf("(300분)") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_300;
-                else if (f.IndexOf("(240분)") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_240;
-                else if (f.IndexOf("(180분)") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_180;
-                else if (f.IndexOf("(120분)") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_120;
-                else if (f.IndexOf("(60분)") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_60;
+                if (f.IndexOf("(720분)") > -1) timeIntervalEnum = TimeIntervalEnum.Hour_12;
+                else if (f.IndexOf("(480분)") > -1) timeIntervalEnum = TimeIntervalEnum.Hour_08;
+                else if (f.IndexOf("(360분)") > -1) timeIntervalEnum = TimeIntervalEnum.Hour_06;
+                else if (f.IndexOf("(300분)") > -1) timeIntervalEnum = TimeIntervalEnum.Hour_05;
+                else if (f.IndexOf("(240분)") > -1) timeIntervalEnum = TimeIntervalEnum.Hour_04;
+                else if (f.IndexOf("(180분)") > -1) timeIntervalEnum = TimeIntervalEnum.Hour_03;
+                else if (f.IndexOf("(120분)") > -1) timeIntervalEnum = TimeIntervalEnum.Hour_02;
+                else if (f.IndexOf("(60분)") > -1) timeIntervalEnum = TimeIntervalEnum.Hour_01;
                 else if (f.IndexOf("(일)") > -1) timeIntervalEnum = TimeIntervalEnum.Day;
+                else if (f.IndexOf("(01분)") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_01;
+                else if (f.IndexOf("(05분)") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_05;
+                else if (f.IndexOf("(10분)") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_10;
+                else if (f.IndexOf("(30분)") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_30;
 
                 if (timeIntervalEnum == TimeIntervalEnum.None) continue;
 

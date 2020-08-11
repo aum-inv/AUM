@@ -27,7 +27,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\..\..\..\..\Users\atman\Desktop\AUM\ATMAN.CHART\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -95,6 +95,12 @@
     <Compile Include="Chakra\CandleSummary.cs" />
     <Compile Include="Chakra\TradeForecastInfo.cs" />
     <Compile Include="Events\MainFormToolBarEvents.cs" />
+    <Compile Include="Mains\ChartForms\RemoveFirstPriceChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mains\ChartForms\RemoveFirstPriceChartForm.Designer.cs">
+      <DependentUpon>RemoveFirstPriceChartForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mains\ChartForms\ParkChartForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -425,6 +431,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Mains\ChartForms\RemoveFirstPriceChartForm.resx">
+      <DependentUpon>RemoveFirstPriceChartForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mains\ChartForms\ParkChartForm.resx">
       <DependentUpon>ParkChartForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -33,6 +33,10 @@
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.tscbItem = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbTime01 = new System.Windows.Forms.ToolStripButton();
+            this.tsbTime02 = new System.Windows.Forms.ToolStripButton();
+            this.tsbTime03 = new System.Windows.Forms.ToolStripButton();
+            this.tsbTime04 = new System.Windows.Forms.ToolStripButton();
             this.tsbTime11 = new System.Windows.Forms.ToolStripButton();
             this.tsbTime12 = new System.Windows.Forms.ToolStripButton();
             this.tsbTime13 = new System.Windows.Forms.ToolStripButton();
@@ -78,6 +82,10 @@
             this.toolStripLabel1,
             this.tscbItem,
             this.toolStripLabel2,
+            this.tsbTime01,
+            this.tsbTime02,
+            this.tsbTime03,
+            this.tsbTime04,
             this.tsbTime11,
             this.tsbTime12,
             this.tsbTime13,
@@ -86,7 +94,7 @@
             this.tsbTime16,
             this.tsbTime17,
             this.tsbTime18,
-            this.tsbTime20,     
+            this.tsbTime20,
             this.tsbTime30,
             this.toolStripSeparator3,
             this.tscbCnt,
@@ -137,68 +145,111 @@
             this.toolStripLabel2.Name = "toolStripLabel2";
             this.toolStripLabel2.Size = new System.Drawing.Size(6, 23);
             // 
+            // tsbTime01
+            // 
+            this.tsbTime01.AutoToolTip = false;
+            this.tsbTime01.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbTime01.Image = ((System.Drawing.Image)(resources.GetObject("tsbTime01.Image")));
+            this.tsbTime01.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbTime01.Name = "tsbTime01";
+            this.tsbTime01.Size = new System.Drawing.Size(36, 20);
+            this.tsbTime01.Tag = "01m";
+            this.tsbTime01.Text = "01m";
+            this.tsbTime01.Click += new System.EventHandler(this.IntervalButton_Click);
+            // 
+            // tsbTime02
+            // 
+            this.tsbTime02.AutoToolTip = false;
+            this.tsbTime02.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbTime02.Image = ((System.Drawing.Image)(resources.GetObject("tsbTime02.Image")));
+            this.tsbTime02.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbTime02.Name = "tsbTime02";
+            this.tsbTime02.Size = new System.Drawing.Size(36, 20);
+            this.tsbTime02.Tag = "05m";
+            this.tsbTime02.Text = "05m";
+            this.tsbTime02.Click += new System.EventHandler(this.IntervalButton_Click);
+            // 
+            // tsbTime03
+            // 
+            this.tsbTime03.AutoToolTip = false;
+            this.tsbTime03.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbTime03.Image = ((System.Drawing.Image)(resources.GetObject("tsbTime03.Image")));
+            this.tsbTime03.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbTime03.Name = "tsbTime03";
+            this.tsbTime03.Size = new System.Drawing.Size(36, 20);
+            this.tsbTime03.Tag = "10m";
+            this.tsbTime03.Text = "10m";
+            this.tsbTime03.Click += new System.EventHandler(this.IntervalButton_Click);
+            // 
+            // tsbTime04
+            // 
+            this.tsbTime04.AutoToolTip = false;
+            this.tsbTime04.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbTime04.Image = ((System.Drawing.Image)(resources.GetObject("tsbTime04.Image")));
+            this.tsbTime04.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbTime04.Name = "tsbTime04";
+            this.tsbTime04.Size = new System.Drawing.Size(36, 20);
+            this.tsbTime04.Tag = "30m";
+            this.tsbTime04.Text = "30m";
+            this.tsbTime04.Click += new System.EventHandler(this.IntervalButton_Click);
+            // 
             // tsbTime11
             // 
-            this.tsbTime11.AutoSize = false;
             this.tsbTime11.AutoToolTip = false;
             this.tsbTime11.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsbTime11.Image = ((System.Drawing.Image)(resources.GetObject("tsbTime11.Image")));
             this.tsbTime11.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbTime11.Name = "tsbTime11";
-            this.tsbTime11.Size = new System.Drawing.Size(40, 40);
-            this.tsbTime11.Tag = "1";
-            this.tsbTime11.Text = "60분";
+            this.tsbTime11.Size = new System.Drawing.Size(32, 20);
+            this.tsbTime11.Tag = "01h";
+            this.tsbTime11.Text = "01h";
             this.tsbTime11.Click += new System.EventHandler(this.IntervalButton_Click);
             // 
             // tsbTime12
             // 
-            this.tsbTime12.AutoSize = false;
             this.tsbTime12.AutoToolTip = false;
             this.tsbTime12.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsbTime12.Image = ((System.Drawing.Image)(resources.GetObject("tsbTime12.Image")));
             this.tsbTime12.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbTime12.Name = "tsbTime12";
-            this.tsbTime12.Size = new System.Drawing.Size(40, 40);
-            this.tsbTime12.Tag = "2";
-            this.tsbTime12.Text = "120분";
+            this.tsbTime12.Size = new System.Drawing.Size(32, 20);
+            this.tsbTime12.Tag = "02h";
+            this.tsbTime12.Text = "02h";
             this.tsbTime12.Click += new System.EventHandler(this.IntervalButton_Click);
             // 
             // tsbTime13
             // 
-            this.tsbTime13.AutoSize = false;
             this.tsbTime13.AutoToolTip = false;
             this.tsbTime13.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsbTime13.Image = ((System.Drawing.Image)(resources.GetObject("tsbTime13.Image")));
             this.tsbTime13.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbTime13.Name = "tsbTime13";
-            this.tsbTime13.Size = new System.Drawing.Size(40, 40);
-            this.tsbTime13.Tag = "3";
-            this.tsbTime13.Text = "180분";
+            this.tsbTime13.Size = new System.Drawing.Size(32, 20);
+            this.tsbTime13.Tag = "03h";
+            this.tsbTime13.Text = "03h";
             this.tsbTime13.Click += new System.EventHandler(this.IntervalButton_Click);
             // 
             // tsbTime14
             // 
-            this.tsbTime14.AutoSize = false;
             this.tsbTime14.AutoToolTip = false;
             this.tsbTime14.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsbTime14.Image = ((System.Drawing.Image)(resources.GetObject("tsbTime14.Image")));
             this.tsbTime14.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbTime14.Name = "tsbTime14";
-            this.tsbTime14.Size = new System.Drawing.Size(45, 40);
-            this.tsbTime14.Tag = "4";
-            this.tsbTime14.Text = "240분";
+            this.tsbTime14.Size = new System.Drawing.Size(32, 20);
+            this.tsbTime14.Tag = "04h";
+            this.tsbTime14.Text = "04h";
             this.tsbTime14.Click += new System.EventHandler(this.IntervalButton_Click);
             // 
             // tsbTime15
             // 
-            this.tsbTime15.AutoSize = false;
             this.tsbTime15.AutoToolTip = false;
             this.tsbTime15.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsbTime15.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbTime15.Name = "tsbTime15";
-            this.tsbTime15.Size = new System.Drawing.Size(45, 40);
-            this.tsbTime15.Tag = "5";
-            this.tsbTime15.Text = "300분";
+            this.tsbTime15.Size = new System.Drawing.Size(32, 20);
+            this.tsbTime15.Tag = "05h";
+            this.tsbTime15.Text = "05h";
             this.tsbTime15.Click += new System.EventHandler(this.IntervalButton_Click);
             // 
             // tsbTime16
@@ -209,8 +260,8 @@
             this.tsbTime16.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbTime16.Name = "tsbTime16";
             this.tsbTime16.Size = new System.Drawing.Size(37, 40);
-            this.tsbTime16.Tag = "6";
-            this.tsbTime16.Text = "360분";
+            this.tsbTime16.Tag = "06h";
+            this.tsbTime16.Text = "06h";
             this.tsbTime16.Click += new System.EventHandler(this.IntervalButton_Click);
             // 
             // tsbTime17
@@ -221,8 +272,8 @@
             this.tsbTime17.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbTime17.Name = "tsbTime17";
             this.tsbTime17.Size = new System.Drawing.Size(37, 40);
-            this.tsbTime17.Tag = "7";
-            this.tsbTime17.Text = "480분";
+            this.tsbTime17.Tag = "08h";
+            this.tsbTime17.Text = "08h";
             this.tsbTime17.Click += new System.EventHandler(this.IntervalButton_Click);
             // 
             // tsbTime18
@@ -233,8 +284,8 @@
             this.tsbTime18.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbTime18.Name = "tsbTime18";
             this.tsbTime18.Size = new System.Drawing.Size(37, 40);
-            this.tsbTime18.Tag = "8";
-            this.tsbTime18.Text = "720분";
+            this.tsbTime18.Tag = "12h";
+            this.tsbTime18.Text = "12h";
             this.tsbTime18.Click += new System.EventHandler(this.IntervalButton_Click);
             // 
             // tsbTime20
@@ -247,8 +298,8 @@
             this.tsbTime20.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbTime20.Name = "tsbTime20";
             this.tsbTime20.Size = new System.Drawing.Size(23, 40);
-            this.tsbTime20.Tag = "10";
-            this.tsbTime20.Text = "일";
+            this.tsbTime20.Tag = "D";
+            this.tsbTime20.Text = " D ";
             this.tsbTime20.Click += new System.EventHandler(this.IntervalButton_Click);
             // 
             // tsbTime30
@@ -257,12 +308,11 @@
             this.tsbTime30.AutoToolTip = false;
             this.tsbTime30.BackColor = System.Drawing.SystemColors.Control;
             this.tsbTime30.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbTime30.Image = ((System.Drawing.Image)(resources.GetObject("tsbTime30.Image")));
             this.tsbTime30.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbTime30.Name = "tsbTime30";
             this.tsbTime30.Size = new System.Drawing.Size(23, 40);
-            this.tsbTime30.Tag = "20";
-            this.tsbTime30.Text = "주";
+            this.tsbTime30.Tag = "W";
+            this.tsbTime30.Text = " W ";
             this.tsbTime30.Click += new System.EventHandler(this.IntervalButton_Click);
             // 
             // toolStripSeparator3
@@ -276,13 +326,11 @@
             this.tscbCnt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.tscbCnt.IntegralHeight = false;
             this.tscbCnt.Items.AddRange(new object[] {
-           
             "120",
             "150",
             "200",
             "300",
-            "500"
-            });
+            "500"});
             this.tscbCnt.MaxDropDownItems = 50;
             this.tscbCnt.Name = "tscbCnt";
             this.tscbCnt.Size = new System.Drawing.Size(75, 23);
@@ -491,16 +539,6 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripComboBox tscbItem;
         private System.Windows.Forms.ToolStripSeparator toolStripLabel2;
-        private System.Windows.Forms.ToolStripButton tsbTime11;
-        private System.Windows.Forms.ToolStripButton tsbTime12;
-        private System.Windows.Forms.ToolStripButton tsbTime13;
-        private System.Windows.Forms.ToolStripButton tsbTime14;
-        private System.Windows.Forms.ToolStripButton tsbTime15;
-        private System.Windows.Forms.ToolStripButton tsbTime16;
-        private System.Windows.Forms.ToolStripButton tsbTime17;
-        private System.Windows.Forms.ToolStripButton tsbTime18;
-        private System.Windows.Forms.ToolStripButton tsbTime20;
-        private System.Windows.Forms.ToolStripButton tsbTime30;
 
         private System.Windows.Forms.ToolStripSeparator tsbSplit;
         private System.Windows.Forms.ToolStripButton tsbFTab;
@@ -525,5 +563,19 @@
         private System.Windows.Forms.ToolStripButton tsbLineBold;
         private System.Windows.Forms.ToolStripButton tsbLineBold2;
         private System.Windows.Forms.ToolStripButton tsbReload2;
+        public System.Windows.Forms.ToolStripButton tsbTime01;
+        public System.Windows.Forms.ToolStripButton tsbTime02;
+        public System.Windows.Forms.ToolStripButton tsbTime03;
+        public System.Windows.Forms.ToolStripButton tsbTime04;
+        public System.Windows.Forms.ToolStripButton tsbTime11;
+        public System.Windows.Forms.ToolStripButton tsbTime12;
+        public System.Windows.Forms.ToolStripButton tsbTime13;
+        public System.Windows.Forms.ToolStripButton tsbTime14;
+        public System.Windows.Forms.ToolStripButton tsbTime15;
+        public System.Windows.Forms.ToolStripButton tsbTime16;
+        public System.Windows.Forms.ToolStripButton tsbTime17;
+        public System.Windows.Forms.ToolStripButton tsbTime18;
+        public System.Windows.Forms.ToolStripButton tsbTime20;
+        public System.Windows.Forms.ToolStripButton tsbTime30;
     }
 }

@@ -114,7 +114,7 @@ namespace OM.Vikala.Chakra.App.Mains
             {
                 Rectangle r = e.Bounds;
                 r = tabPage.GetTabRect(e.Index);
-                r.Offset(2, 2);
+                r.Offset(4, 4);
                 Brush TitleBrush = new SolidBrush(Color.Black);
                 Font f = this.Font;
                 
@@ -122,7 +122,7 @@ namespace OM.Vikala.Chakra.App.Mains
 
                 e.Graphics.DrawString(title, f, TitleBrush, new PointF(r.X, r.Y + 2));
 
-                e.Graphics.DrawString("X", f, TitleBrush, new Point(r.X + (tabPage.GetTabRect(e.Index).Width - 16), 7));                
+                e.Graphics.DrawString("X", f, TitleBrush, new Point(r.X + (tabPage.GetTabRect(e.Index).Width - 20), 7));                
             }
             catch (Exception) { }
         }
@@ -266,8 +266,12 @@ namespace OM.Vikala.Chakra.App.Mains
                             createCandleLineTypeChart_Cbk(menuText);
                             break;
 
-                        case "캔들라인형:캔들반캔들흐름챠트":
+                        case "캔들라인형:반캔들흐름챠트":
                             createCandleLineTypeChart_Cac(menuText);
+                            break;
+
+                        case "캔들라인형:세컨드흐름챠트":
+                            createCandleLineTypeChart_SecondCandle(menuText);
                             break;
                         #endregion
 
@@ -531,7 +535,24 @@ namespace OM.Vikala.Chakra.App.Mains
             form.Text = title;
             AddTab(form);
         }
+        private void createCandleLineTypeChart_SecondCandle(string title)
+        {
+            var form = new Mains.ChartForm.RemoveFirstPriceChartForm(false, false);
+            form.Text = "세컨드:원본:일반";
+            AddTab(form);
 
+            var form2 = new Mains.ChartForm.RemoveFirstPriceChartForm(true, false);           
+            form2.Text = "세컨드:평균:일반"; 
+            AddTab(form2);
+
+            var form3 = new Mains.ChartForm.RemoveFirstPriceChartForm(false, true);
+            form3.Text = "세컨드:원본:상세";
+            AddTab(form3);
+
+            var form4 = new Mains.ChartForm.RemoveFirstPriceChartForm(true, true);
+            form4.Text = "세컨드:평균:상세";
+            AddTab(form4);
+        }
         private void createCandleLineTypeChart_Dm(string title)
         {
             var form = new Mains.ChartForm.DarkMassChartForm();

@@ -321,5 +321,21 @@ namespace OM.Vikala.Controls.Charts
             //    candlePriceInfo1.Init();
             //}
         }
+
+        public void SetDataPointColor(               
+             Color? headlegColor = null
+           , Color? bodyLineColor = null
+           , Color? bodyColor = null)
+        {
+            foreach (var dataPoint in chart.Series[0].Points)
+            {
+                if (headlegColor != null) dataPoint.Color = headlegColor.Value;
+                if (bodyLineColor != null) dataPoint.BorderColor = bodyLineColor.Value;
+                if (bodyColor != null) dataPoint.SetCustomProperty("PriceUpColor", bodyColor.Value.Name);
+                if (bodyColor != null) dataPoint.SetCustomProperty("PriceDownColor", bodyColor.Value.Name);
+            }
+
+            chart.Update();
+        }
     }
 }

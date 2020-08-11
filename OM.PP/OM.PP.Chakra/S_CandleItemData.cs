@@ -152,6 +152,11 @@ namespace OM.PP.Chakra
             get; set;
         } = 0;
 
+        public Int32 Index
+        {
+            get;
+            set;
+        } = 0;
         private void calculateAvg()
         {
             if (this.sourceItems == null) return;

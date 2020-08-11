@@ -19,28 +19,7 @@ namespace OM.Vikala.Chakra.App
         }
 
         private void LoginForm_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                if (tbPwd.Text == "qawsedrf")
-                {
-                    if (rdoType1.Checked) SharedData.SelectedType = "1";
-                    if (rdoType2.Checked) SharedData.SelectedType = "2";
-                    SharedData.SecurityType = "1";
-
-                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
-                    this.Close();
-                }
-
-                if (tbPwd.Text == "qkrdnjsdlf")
-                {
-                    if (rdoType1.Checked) SharedData.SelectedType = "1";
-                    if (rdoType2.Checked) SharedData.SelectedType = "2";
-
-                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
-                    this.Close();
-                }
-            }
+        {          
         }
 
         private void tbPwd_TextChanged(object sender, EventArgs e)
@@ -49,24 +28,26 @@ namespace OM.Vikala.Chakra.App
 
         private void btnLogin_Click(object sender, EventArgs e)
         {           
-            if (tbPwd.Text == "qawsedrf")
+            if (tbPwd.Text == "atman999")
             {
-                if (rdoType1.Checked) SharedData.SelectedType = "1";
-                if (rdoType2.Checked) SharedData.SelectedType = "2";
+                SharedData.SelectedType = "KR";                
                 SharedData.SecurityType = "1";
 
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 this.Close();
             }
+        }
 
-            if (tbPwd.Text == "qkrdnjsdlf")
+        private void btnLogin2_Click(object sender, EventArgs e)
+        {
+            if (tbPwd.Text == "atman999")
             {
-                if (rdoType1.Checked) SharedData.SelectedType = "1";
-                if (rdoType2.Checked) SharedData.SelectedType = "2";
+                SharedData.SelectedType = "US";               
+                SharedData.SecurityType = "1";
 
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 this.Close();
-            }            
+            }
         }
     }
 }
