@@ -32,6 +32,7 @@ namespace OM.Vikala.Chakra.App.Mains
 
         protected UserToolStrip userToolStrip = null;
 
+        protected double whimRate = 0.0;
         public MainForm MdiForm
         {
             get;
@@ -49,13 +50,22 @@ namespace OM.Vikala.Chakra.App.Mains
                 return ItemCodeSet.GetItemRoundNum(SelectedItemData.Code);
             }
         }
+        public AverageTypeEnum AverageType
+        {
+            get; set;
+        } = AverageTypeEnum.Normal;
+        
+        public OriginSourceTypeEnum OriginSourceType
+        {
+            get; set;
+        } = OriginSourceTypeEnum.Normal;
+
         public BaseForm()
         {
             this.FormClosing += BaseForm_FormClosing;
             this.Load += BaseForm_Load;
 
             MainFormToolBarEvents.Instance.AutoReloadHandler += Instance_AutoReloadHandler;
-
             //MainFormToolBarEvents.Instance.OnAutoReloadHandler(true);
         }
 
@@ -63,7 +73,6 @@ namespace OM.Vikala.Chakra.App.Mains
         {
             autoReload = isAutoReload;
         }
-   
 
         private void BaseForm_Load(object sender, EventArgs e)
         {
@@ -280,5 +289,26 @@ namespace OM.Vikala.Chakra.App.Mains
             if (itemCode == "101" || itemCode == "301")
                 PPUtils.SetModifyOpenPriceByClosePrice(sourceDatas);
         }
+
+        //protected void SetWhim(string itemCode
+        //    , TimeIntervalEnum timeInterval = TimeIntervalEnum.Day
+        //    , double rate = 0.0)
+        //{
+        //    this.whimRate = rate;
+
+        //    //if (timeInterval == TimeIntervalEnum.Week) rate = 2.5;
+        //    //if (timeInterval == TimeIntervalEnum.Day) rate = 1.0;
+        //    //if (timeInterval == TimeIntervalEnum.Hour_03) rate = 0.7;
+        //    //if (timeInterval == TimeIntervalEnum.Hour_02) rate = 0.5;
+        //    //if (timeInterval == TimeIntervalEnum.Hour_01) rate = 0.3;
+        //}
+    }
+    public enum AverageTypeEnum
+    { 
+        Normal, Balanced, Accumulated
+    }
+    public enum OriginSourceTypeEnum
+    {
+        Normal, Whim, Second, SecondQutum
     }
 }

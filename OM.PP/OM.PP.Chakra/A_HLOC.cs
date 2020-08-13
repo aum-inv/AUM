@@ -333,23 +333,23 @@ namespace OM.PP.Chakra
                 list.Add(PriceTick.GetDownPriceOfTick(ItemCode, ClosePrice, 1));
                 list.Add(PriceTick.GetDownPriceOfTick(ItemCode, ClosePrice, 2));
 
-                list.Add(QuantumHighPrice);
-                list.Add(PriceTick.GetUpPriceOfTick(ItemCode, QuantumHighPrice, 1));
-                list.Add(PriceTick.GetUpPriceOfTick(ItemCode, QuantumHighPrice, 2));
-                list.Add(PriceTick.GetDownPriceOfTick(ItemCode, QuantumHighPrice, 1));
-                list.Add(PriceTick.GetDownPriceOfTick(ItemCode, QuantumHighPrice, 2));
+                list.Add(QuantumBaseHighPrice);
+                list.Add(PriceTick.GetUpPriceOfTick(ItemCode, QuantumBaseHighPrice, 1));
+                list.Add(PriceTick.GetUpPriceOfTick(ItemCode, QuantumBaseHighPrice, 2));
+                list.Add(PriceTick.GetDownPriceOfTick(ItemCode, QuantumBaseHighPrice, 1));
+                list.Add(PriceTick.GetDownPriceOfTick(ItemCode, QuantumBaseHighPrice, 2));
 
                 list.Add(QuantumLowPrice);
-                list.Add(PriceTick.GetUpPriceOfTick(ItemCode, QuantumLowPrice, 1));
-                list.Add(PriceTick.GetUpPriceOfTick(ItemCode, QuantumLowPrice, 2));
-                list.Add(PriceTick.GetDownPriceOfTick(ItemCode, QuantumLowPrice, 1));
-                list.Add(PriceTick.GetDownPriceOfTick(ItemCode, QuantumLowPrice, 2));
+                list.Add(PriceTick.GetUpPriceOfTick(ItemCode, QuantumBaseLowPrice, 1));
+                list.Add(PriceTick.GetUpPriceOfTick(ItemCode, QuantumBaseLowPrice, 2));
+                list.Add(PriceTick.GetDownPriceOfTick(ItemCode, QuantumBaseLowPrice, 1));
+                list.Add(PriceTick.GetDownPriceOfTick(ItemCode, QuantumBaseLowPrice, 2));
 
                 list.Add(QuantumPrice);
-                list.Add(PriceTick.GetUpPriceOfTick(ItemCode, QuantumPrice, 1));
-                list.Add(PriceTick.GetUpPriceOfTick(ItemCode, QuantumPrice, 2));
-                list.Add(PriceTick.GetDownPriceOfTick(ItemCode, QuantumPrice, 1));
-                list.Add(PriceTick.GetDownPriceOfTick(ItemCode, QuantumPrice, 2));
+                list.Add(PriceTick.GetUpPriceOfTick(ItemCode, QuantumBasePrice, 1));
+                list.Add(PriceTick.GetUpPriceOfTick(ItemCode, QuantumBasePrice, 2));
+                list.Add(PriceTick.GetDownPriceOfTick(ItemCode, QuantumBasePrice, 1));
+                list.Add(PriceTick.GetDownPriceOfTick(ItemCode, QuantumBasePrice, 2));
 
                 list.Add(VikalaPrice);
                 list.Add(PriceTick.GetUpPriceOfTick(ItemCode, VikalaPrice, 1));

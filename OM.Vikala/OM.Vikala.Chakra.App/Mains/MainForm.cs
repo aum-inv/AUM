@@ -56,7 +56,9 @@ namespace OM.Vikala.Chakra.App.Mains
             tscbItem.ComboBox.DataSource = itemDatas;
             tscbItem.ComboBox.DisplayMember = "Name";
             tscbItem.ComboBox.ValueMember = "Code";
-            tscbItem.SelectedIndex = -1;
+            tscbItem.SelectedIndex = 1;
+
+            SharedData.SelectedItem = tscbItem.SelectedItem as ItemData;
         }
 
         public void AddTab(BaseForm bmf)
@@ -69,13 +71,18 @@ namespace OM.Vikala.Chakra.App.Mains
                     bmf.MdiParent = this;
                     bmf.MdiForm = this;
 
-                    TabPage tp = new TabPage(bmf.Text);                  
-                    tp.Controls.Add(bmf);
+                    if (bmf.Text.Length < 6)
+                        bmf.Text += "     ";
+
+                    TabPage tp = new TabPage(bmf.Text);                   
                     tabPage.TabPages.Add(tp);
+                    tp.Controls.Add(bmf);                   
+
                     bmf.Show();
                     formList.Add(bmf);
 
-                    tabPage.SelectedTab = tp;
+                    tabPage.SelectedTab = tp;                   
+                    tabPage.Update();
                 }
                 else
                 {
@@ -119,10 +126,16 @@ namespace OM.Vikala.Chakra.App.Mains
                 Font f = this.Font;
                 
                 string title = tabPage.TabPages[e.Index].Text.Replace("챠트",  "");
-
-                e.Graphics.DrawString(title, f, TitleBrush, new PointF(r.X, r.Y + 2));
-
-                e.Graphics.DrawString("X", f, TitleBrush, new Point(r.X + (tabPage.GetTabRect(e.Index).Width - 20), 7));                
+                if (e.Index == tabPage.SelectedIndex)
+                {
+                    e.Graphics.DrawString(title, new Font(tabPage.Font, FontStyle.Bold), Brushes.DarkRed, new PointF(r.X, r.Y + 2));
+                    e.Graphics.DrawString("X", new Font(tabPage.Font, FontStyle.Bold), Brushes.DarkRed, new Point(r.X + (tabPage.GetTabRect(e.Index).Width - 20), 9));
+                }
+                else
+                {
+                    e.Graphics.DrawString(title, f, TitleBrush, new PointF(r.X, r.Y + 2));
+                    e.Graphics.DrawString("X", f, TitleBrush, new Point(r.X + (tabPage.GetTabRect(e.Index).Width - 20), 9));
+                }
             }
             catch (Exception) { }
         }
@@ -381,7 +394,7 @@ namespace OM.Vikala.Chakra.App.Mains
         private void createRequiredCharts()
         {
             //국내지수
-            if (SharedData.SelectedType == "1")
+            if (SharedData.SelectedType == "KR")
             {
                 createTrendMultiChart("분챠트추세");
                 createCandleLineTypeChart_Atom("원자챠트");
@@ -392,7 +405,7 @@ namespace OM.Vikala.Chakra.App.Mains
                 createTimeComplexChart("멀티타임챠트");
             }
             //해외선물
-            if (SharedData.SelectedType == "2")
+            if (SharedData.SelectedType == "US")
             {
                 createTrendMultiChart("분챠트추세");
                 createCandleLineTypeChart_Atom("원자챠트");
@@ -408,47 +421,47 @@ namespace OM.Vikala.Chakra.App.Mains
         private void createTrendMultiChart(string title)
         {
             //국내지수
-            if (SharedData.SelectedType == "1")
+            if (SharedData.SelectedType == "KR")
             {
                 if (title == "단중장추세")
                 {
-                    BaseForm bmf1 = new TrendChartFormS_KR();
+                    var bmf1 = new TrendChartFormS_KR();
                     bmf1.Text = "단기추세";
                     AddTab(bmf1);
-                    BaseForm bmf2 = new TrendChartFormM_KR();
+                    var bmf2 = new TrendChartFormM_KR();
                     bmf2.Text = "중기추세";
                     AddTab(bmf2);
-                    BaseForm bmf3 = new TrendChartFormL_KR();
+                    var bmf3 = new TrendChartFormL_KR();
                     bmf3.Text = "장기추세";
                     AddTab(bmf3);
                 }
 
                 if (title == "분챠트추세")
                 {
-                    BaseForm bmf = new TrendMinuteChartForm_KR();
+                    var bmf = new TrendMinuteChartForm_KR();
                     bmf.Text = title;
                     AddTab(bmf);
                 }
             }
             //해외선물
-            if (SharedData.SelectedType == "2")
+            if (SharedData.SelectedType == "US")
             {
                 if (title == "단중장추세")
                 {
-                    BaseForm bmf1 = new TrendChartFormS();
+                    var bmf1 = new TrendChartFormS();
                     bmf1.Text = "단기추세";
                     AddTab(bmf1);
-                    BaseForm bmf2 = new TrendChartFormM();
+                    var bmf2 = new TrendChartFormM();
                     bmf2.Text = "중기추세";
                     AddTab(bmf2);
-                    BaseForm bmf3 = new TrendChartFormL();
+                    var bmf3 = new TrendChartFormL();
                     bmf3.Text = "장기추세";
                     AddTab(bmf3);
                 }
 
                 if (title == "분챠트추세")
                 {
-                    BaseForm bmf = new TrendMinuteChartForm();
+                    var bmf = new TrendMinuteChartForm();
                     bmf.Text = title;
                     AddTab(bmf);
                 }
@@ -456,7 +469,7 @@ namespace OM.Vikala.Chakra.App.Mains
         }
         private void createTimeComplexChart(string title)
         {
-            BaseForm bmf = new ChartForm.ComplexChartForm();
+            var bmf = new ChartForm.ComplexChartForm();
             bmf.Text = title;
             AddTab(bmf);
         }
@@ -474,6 +487,17 @@ namespace OM.Vikala.Chakra.App.Mains
         private void createCandleLineTypeChart_Atom(string title) {
             var form = new Mains.ChartForm.AtomChartForm();
             form.Text = title;
+            AddTab(form);
+
+            form = new Mains.ChartForm.AtomChartForm(OriginSourceTypeEnum.Whim);
+            form.Text = title + "(Whim)";
+            AddTab(form);
+
+            form = new Mains.ChartForm.AtomChartForm(OriginSourceTypeEnum.Second);
+            form.Text = title + "(SOrigin)";
+            AddTab(form);
+            form = new Mains.ChartForm.AtomChartForm(OriginSourceTypeEnum.SecondQutum);
+            form.Text = title + "(SQutum)";
             AddTab(form);
         }
         private void createCandleLineTypeChart_Quantum(string title) {            

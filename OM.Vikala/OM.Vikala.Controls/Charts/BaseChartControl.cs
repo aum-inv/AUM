@@ -29,11 +29,6 @@ namespace OM.Vikala.Controls.Charts
         public HorizontalLineAnnotation yLine = new HorizontalLineAnnotation();
         
         private System.ComponentModel.IContainer components;
-
-        protected ContextMenuStrip LineCMStrip;
-        protected ToolStripMenuItem tsm_Line;
-        protected ToolStripMenuItem tsm_HLine;
-        private ToolStripSeparator toolStripMenuItem1;
         Label yLineLabel = new Label();
         public int SelectedTrackBarValue
         {
@@ -59,7 +54,7 @@ namespace OM.Vikala.Controls.Charts
                 return 0.01;
             }
         }
-
+        
         public virtual string Title
         {
             get;
@@ -164,6 +159,7 @@ namespace OM.Vikala.Controls.Charts
             chartArea.AxisX.LineColor = System.Drawing.Color.DimGray;
             chartArea.AxisX.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
 
+            chartArea.AxisY2.IntervalType = DateTimeIntervalType.NotSet;           
             chartArea.AxisY2.IsLabelAutoFit = true;
             chartArea.AxisY2.LabelStyle.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             chartArea.AxisY2.LabelStyle.ForeColor = System.Drawing.Color.DimGray;
@@ -189,15 +185,13 @@ namespace OM.Vikala.Controls.Charts
             chartArea.ShadowColor = System.Drawing.Color.Transparent;
 
             if (IsShowXLine) createXYLineAnnotation();
-
-            chart.ContextMenuStrip = this.LineCMStrip;
+                        
             chart.MouseClick += Chart_MouseClick;
+            
         }
 
         private void Chart_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-                this.LineCMStrip.Show();
+        {            
         }
 
         public virtual void InitializeEvent(ChartEvents chartEvents)
@@ -269,7 +263,7 @@ namespace OM.Vikala.Controls.Charts
             
             chartArea.AxisY2.LabelStyle.Format = "{N" + RoundLength + "}";
         }
-        public void SetYFormat(string format)
+        public virtual void SetYFormat(string format)
         {
             try
             {
@@ -278,7 +272,7 @@ namespace OM.Vikala.Controls.Charts
             }
             catch (Exception ex) { }
         }
-        public void SetXFormat(string format)
+        public virtual void SetXFormat(string format)
         {
             try
             {
@@ -286,6 +280,31 @@ namespace OM.Vikala.Controls.Charts
                 chartArea.AxisX.LabelStyle.Format = format;
             }
             catch (Exception ex) { }
+        }
+        public virtual void SetYInterval(Axis axis, double min, double max, double interval = 0)
+        {
+            if (interval > 0)
+            {
+                axis.IntervalType = DateTimeIntervalType.NotSet;
+                axis.Interval = interval;
+                return;
+            }
+            if (max > 0 && min > 0)
+            {
+                double dx = 15.0;
+
+                axis.IntervalType = DateTimeIntervalType.NotSet;
+                axis.Interval = Math.Round((max - min) / dx, RoundLength);
+                return;
+            }
+        }
+        public virtual void SetXInterval(Axis axis, double min, double max, double interval = 0)
+        {
+            if (interval > 0)
+            {
+                axis.Interval = interval;
+                return;
+            }
         }
         public void BoldLine(string type)
         {
@@ -306,8 +325,8 @@ namespace OM.Vikala.Controls.Charts
         public void DrawChartTitle(ChartPaintEventArgs e)
         {
             if (string.IsNullOrEmpty(Title)) return;
-            if (string.IsNullOrEmpty(Description)) return;
-            string drawString = $"{Title}:::{Description}";
+            //if (string.IsNullOrEmpty(Description)) return;
+            string drawString = $"{Title}";
             System.Drawing.Font drawFont = new System.Drawing.Font("돋움", 8);
             System.Drawing.SolidBrush drawBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Gray);                     
             float x = 1.0F;
@@ -318,6 +337,10 @@ namespace OM.Vikala.Controls.Charts
 
             drawFont.Dispose();
             drawBrush.Dispose();
+        }
+        public void SetCandleColor(int idx, string plusColor = "Red", string minusColor = "Blue")
+        {
+            this.chart.Series[idx].CustomProperties = $"PriceDownColor={minusColor}, PriceUpColor={plusColor}";
         }
 
         public void SetDataPointColor(
@@ -402,54 +425,12 @@ namespace OM.Vikala.Controls.Charts
 
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseChartControl));
-            this.LineCMStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsm_Line = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsm_HLine = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.LineCMStrip.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // LineCMStrip
-            // 
-            this.LineCMStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.LineCMStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsm_Line,
-            this.toolStripMenuItem1,
-            this.tsm_HLine});
-            this.LineCMStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.LineCMStrip.Name = "contextMenuStrip1";
-            this.LineCMStrip.ShowCheckMargin = true;
-            this.LineCMStrip.Size = new System.Drawing.Size(185, 86);
-            this.LineCMStrip.Text = "라인긋기";
-            // 
-            // tsm_Line
-            // 
-            this.tsm_Line.AutoSize = false;
-            this.tsm_Line.Image = ((System.Drawing.Image)(resources.GetObject("tsm_Line.Image")));
-            this.tsm_Line.Name = "tsm_Line";
-            this.tsm_Line.Size = new System.Drawing.Size(218, 38);
-            this.tsm_Line.Text = "추세라인";
-            // 
-            // tsm_HLine
-            // 
-            this.tsm_HLine.AutoSize = false;
-            this.tsm_HLine.Image = ((System.Drawing.Image)(resources.GetObject("tsm_HLine.Image")));
-            this.tsm_HLine.Name = "tsm_HLine";
-            this.tsm_HLine.Size = new System.Drawing.Size(218, 38);
-            this.tsm_HLine.Text = "지지저항라인";
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(181, 6);
             // 
             // BaseChartControl
             // 
             this.Name = "BaseChartControl";
             this.Size = new System.Drawing.Size(1083, 749);
-            this.LineCMStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

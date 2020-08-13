@@ -299,9 +299,31 @@ namespace OM.Vikala.Chakra.App.Mains
         {
             ToolStripLabel lbl = sender as ToolStripLabel;
 
+            tsl_0.ForeColor = SystemColors.ControlText;
+            tsl_1.ForeColor = SystemColors.ControlText;
+            tsl_2.ForeColor = SystemColors.ControlText;
+            tsl_3.ForeColor = SystemColors.ControlText;
+            tsl_4.ForeColor = SystemColors.ControlText;
+
+            switch (lbl.Text) {
+                case "0": 
+                    tsl_0.ForeColor = Color.Coral;
+                    break;
+                case "1":
+                    tsl_1.ForeColor = Color.Coral;
+                    break;
+                case "2":
+                    tsl_2.ForeColor = Color.Coral;
+                    break;
+                case "3":
+                    tsl_3.ForeColor = Color.Coral;
+                    break;
+                case "4": 
+                    tsl_4.ForeColor = Color.Coral;
+                    break;
+            }
             if (TableViewChangedEvent != null)
-                TableViewChangedEvent(lbl.Text, e);
-            
+                TableViewChangedEvent(lbl.Text, e);            
         }
 
         private void TsbLineBold_Click(object sender, EventArgs e)

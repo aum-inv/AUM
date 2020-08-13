@@ -19,11 +19,15 @@ namespace OM.Vikala.Chakra.App
         }
 
         private void LoginForm_KeyDown(object sender, KeyEventArgs e)
-        {          
+        {   
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnLogin.PerformClick();
+            }
         }
-
         private void tbPwd_TextChanged(object sender, EventArgs e)
         {
+           
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

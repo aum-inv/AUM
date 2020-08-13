@@ -81,10 +81,10 @@ namespace OM.PP.Chakra
                     t_Avg = (Single)sourceDataArray.Average(t => t.ClosePrice);
                     t_HighAvg = (Single)sourceDataArray.Average(t => t.PlusMinusType == PlusMinusTypeEnum.양 ? t.HighPrice :  t.QuantumHighPrice);
                     t_LowAvg = (Single)sourceDataArray.Average(t => t.PlusMinusType == PlusMinusTypeEnum.양 ? t.QuantumLowPrice : t.LowPrice);
-                    t_QHighAvg = (Single)sourceDataArray.Average(t => t.QuantumHighPrice);
-                    t_QLowAvg = (Single)sourceDataArray.Average(t => t.QuantumLowPrice);
+                    t_QHighAvg = (Single)sourceDataArray.Average(t => t.QuantumBaseHighPrice);
+                    t_QLowAvg = (Single)sourceDataArray.Average(t => t.QuantumBaseLowPrice);
                     t_MassAvg = (Single)sourceDataArray.Average(t => t.MassPrice);
-                    t_QuantumAvg = (Single)sourceDataArray.Average(t => t.QuantumPrice);
+                    t_QuantumAvg = (Single)sourceDataArray.Average(t => t.QuantumBasePrice);
                     t_VikalaAvg = (Single)sourceDataArray.Average(t => t.VikalaPrice);
                     t_TotalCenterAvg = (Single)sourceDataArray.Average(t => t.TotalCenterPrice);
                 }

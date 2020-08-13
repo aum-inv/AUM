@@ -82,53 +82,54 @@ namespace OM.PP.XingApp.Api
 
         protected override void query_ReceiveData(string szTrCode)
         {
-            Task.Factory.StartNew(() =>
-            {
-                try
-                {
-                    int blockCnt = Convert.ToInt32(query.GetBlockCount(outBlock1));
-                    int round = ItemCodeUtil.GetItemCodeRoundNum(ItemCode);
+            _ = Task.Factory.StartNew(() =>
+              {
+                  try
+                  {
+                      int blockCnt = Convert.ToInt32(query.GetBlockCount(outBlock1));
+                      int round = ItemCodeUtil.GetItemCodeRoundNum(ItemCode);
 
-                    for (int idx = 0; idx < blockCnt; idx++)
-                    {
-                        string date = query.GetFieldData(outBlock1, "date", idx);
-                        string time = query.GetFieldData(outBlock1, "time", idx);
-                        string open = query.GetFieldData(outBlock1, "open", idx);
-                        string high = query.GetFieldData(outBlock1, "high", idx);
-                        string low = query.GetFieldData(outBlock1, "low", idx);
-                        string close = query.GetFieldData(outBlock1, "close", idx);
-                        string jdiff_vol = query.GetFieldData(outBlock1, "jdiff_vol", idx);
-                        string volume = query.GetFieldData(outBlock1, "value", idx);
+                      for (int idx = 0; idx < blockCnt; idx++)
+                      {
+                          string date = query.GetFieldData(outBlock1, "date", idx);
+                          string time = query.GetFieldData(outBlock1, "time", idx);
+                          string open = query.GetFieldData(outBlock1, "open", idx);
+                          string high = query.GetFieldData(outBlock1, "high", idx);
+                          string low = query.GetFieldData(outBlock1, "low", idx);
+                          string close = query.GetFieldData(outBlock1, "close", idx);
+                          string jdiff_vol = query.GetFieldData(outBlock1, "jdiff_vol", idx);
+                          string volume = query.GetFieldData(outBlock1, "value", idx);
 
-                        if (date.Length == 0) continue;
+                          if (date.Length == 0) continue;
 
-                        string format = "yyyyMMdd" + (time.Length > 0 ? "HHmmss" : "");
-                        var dt = DateTime.ParseExact(date + time, format, CultureInfo.InvariantCulture);
-                      
-                        S_CandleItemData data = new S_CandleItemData();
-                        data.DTime = dt;
-                        data.ItemCode = ItemCode;
-                        data.OpenPrice = (Single)Math.Round(Convert.ToDouble(open), round);
-                        data.HighPrice = (Single)Math.Round(Convert.ToDouble(high), round);
-                        data.LowPrice = (Single)Math.Round(Convert.ToDouble(low), round);
-                        data.ClosePrice = (Single)Math.Round(Convert.ToDouble(close), round);
-                        data.Volume = Convert.ToSingle(volume);
+                          string format = "yyyyMMdd" + (time.Length > 0 ? "HHmmss" : "");
+                          var dt = DateTime.ParseExact(date + time, format, CultureInfo.InvariantCulture);
 
-                        PPContext.Instance.ClientContext.SetCandleSourceData(ItemCode, TimeInterval, data);
+                          S_CandleItemData data = new S_CandleItemData();
+                          data.DTime = dt;
+                          data.ItemCode = ItemCode;
+                          data.OpenPrice = (Single)Math.Round(Convert.ToDouble(open), round);
+                          data.HighPrice = (Single)Math.Round(Convert.ToDouble(high), round);
+                          data.LowPrice = (Single)Math.Round(Convert.ToDouble(low), round);
+                          data.ClosePrice = (Single)Math.Round(Convert.ToDouble(close), round);
+                          data.Volume = Convert.ToSingle(volume);
 
-                        OnApiLog($"date : {date} time : {time} opne : {open} high : {high} low : {low} close : {close} ");
-                    }
-                    OnApiLog("Api_Upjong ::: query_ReceiveData");
-                }
-                catch (Exception)
-                {
-                }
-                finally
-                {    
-                    manualEvent.Set();                    
-                }
-                
-            });
+                          PPContext.Instance.ClientContext.SetCandleSourceData(ItemCode, TimeInterval, data);
+
+                          OnApiLog($"date : {date} time : {time} opne : {open} high : {high} low : {low} close : {close} ");
+                      }
+                      OnApiLog("Api_Upjong ::: query_ReceiveData");
+                  }
+                  catch (Exception ex)
+                  {
+                      OnApiLog("Error ::: " + ex.Message);
+                  }
+                  finally
+                  {
+                      manualEvent.Set();
+                  }
+
+              });
         }
        
     }

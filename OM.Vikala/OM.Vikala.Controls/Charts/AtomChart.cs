@@ -15,7 +15,7 @@ namespace OM.Vikala.Controls.Charts
 {
     public partial class AtomChart : BaseChartControl
     {
-        protected override string Description => "주황선:질량평균, 검은색:양종평균";
+        protected override string Description => "";
 
         public bool IsShowCandle
         {
@@ -65,15 +65,14 @@ namespace OM.Vikala.Controls.Charts
             foreach (T_AtomItemData item in ChartData)
             {
                 int idx = chart.Series[0].Points.AddXY(item.DTime, item.HighPrice, item.LowPrice, item.OpenPrice, item.ClosePrice);
-                //chart.Series[1].Points.AddXY(item.DTime, item.QuantumHighPrice, item.QuantumLowPrice, item.OpenPrice, item.QuantumPrice);
-                //chart.Series[2].Points.AddXY(item.DTime, item.VikalaHighPrice, item.VikalaLowPrice, item.ClosePrice, item.VikalaPrice);
+                
                 chart.Series[1].Points.AddXY(item.DTime, item.LowPrice, item.LowPrice, item.LowPrice, item.LowPrice);
                 chart.Series[2].Points.AddXY(item.DTime, item.HighPrice, item.HighPrice, item.HighPrice, item.HighPrice);
 
                 chart.Series[3].Points.AddXY(item.DTime, item.T_MassAvg);
                 chart.Series[4].Points.AddXY(item.DTime, item.T_QuantumAvg);
                 chart.Series[5].Points.AddXY(item.DTime, item.T_VikalaAvg);
-                chart.Series[6].Points.AddXY(item.DTime, item.T_TotalCenterAvg);
+                chart.Series[6].Points.AddXY(item.DTime, item.T_Avg);
 
                 var dataPoint = chart.Series[1].Points[idx];
                 bool isSignal = false;
@@ -177,7 +176,9 @@ namespace OM.Vikala.Controls.Charts
             maxPrice = maxPrice + SpaceMaxMin;
             minPrice = minPrice - SpaceMaxMin;
             chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
-            chart.ChartAreas[0].AxisY2.Minimum = minPrice;            
+            chart.ChartAreas[0].AxisY2.Minimum = minPrice;
+
+            SetYInterval(chart.ChartAreas[0].AxisY2, minPrice, maxPrice);
             SetScrollBar();
             SetTrackBar();
             DisplayView();
@@ -185,8 +186,8 @@ namespace OM.Vikala.Controls.Charts
             IsLoaded = true;
 
             base.View();
-        }
-        
+        }        
+
         public void SetScrollBar()
         {
             int trackView = trackBar.Value;
@@ -310,7 +311,7 @@ namespace OM.Vikala.Controls.Charts
             lblQPrice.Visible = false;
             HitTestResult result = chart.HitTest(e.X, e.Y);           
             if (result.ChartElementType == ChartElementType.DataPoint
-                && (result.Series == chart.Series[0] || result.Series == chart.Series[1]))
+                && result.Series == chart.Series[0])
             {
                 setLineAnnotation(result.PointIndex, e.Location);
             }

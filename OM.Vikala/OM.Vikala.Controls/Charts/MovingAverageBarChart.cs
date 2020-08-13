@@ -36,8 +36,6 @@ namespace OM.Vikala.Controls.Charts
             , List<T_AtomItemData> chartData = null
             , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day)
         {
-            LineCMStrip.Visible = false;
-
             if (itemCode != ItemCode || TimeInterval != timeInterval)
             {
                 clearAnnotation();

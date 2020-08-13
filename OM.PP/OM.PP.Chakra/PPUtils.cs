@@ -911,8 +911,7 @@ namespace OM.PP.Chakra
                         {
                             sourceDatasNew.Add(new S_CandleItemData(itemCode, m0.OpenPrice, m0.HighPrice, m0.LowPrice, m0.ClosePrice, m0.Volume, m0.DTime));
                         }
-                    }
-                    //변덕아닌것만 추리기
+                    }                    
                     else 
                     {
                         if (rate >= whimRate)
