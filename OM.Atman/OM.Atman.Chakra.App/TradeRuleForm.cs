@@ -29,7 +29,7 @@ namespace OM.Atman.Chakra.App
         private void TradeRuleForm_Load(object sender, EventArgs e)
         {
             rule.RuleID = tbRuleID.Text;
-            rule.Item = tbItem.Text;
+            rule.ItemCode = tbItem.Text;
 
             cbP1Pattern1.SelectedIndex = (int)rule.P1BuyPattern1;
             cbP1Pattern2.SelectedIndex = (int)rule.P1BuyPattern2;
@@ -60,7 +60,7 @@ namespace OM.Atman.Chakra.App
             {
                 if (!rule.IsUse) return;
 
-                if (rule.Item != itemCode) return;
+                if (rule.ItemCode != itemCode) return;
 
                 rule.Analysis(price);
             }
@@ -77,7 +77,7 @@ namespace OM.Atman.Chakra.App
         private void tbItem_TextChanged(object sender, EventArgs e)
         {
             if (tbItem.Text.Length == 0) return;
-            rule.Item = tbItem.Text;
+            rule.ItemCode = tbItem.Text;
         }
 
         private void cbTimeType_SelectedIndexChanged(object sender, EventArgs e)
@@ -128,19 +128,19 @@ namespace OM.Atman.Chakra.App
             {
                 if (tbP2BuyPrice2.Text == "0")
                 {
-                    tbP2BuyPrice2.Text = PriceTick.GetDownPriceOfTick(rule.Item, rule.P2BuyPrice1, buyTicks).ToString();
+                    tbP2BuyPrice2.Text = PriceTick.GetDownPriceOfTick(rule.ItemCode, rule.P2BuyPrice1, buyTicks).ToString();
                 }
                 if (tbP2LossPrice1.Text == "0")
                 {
-                    tbP2LossPrice1.Text = PriceTick.GetDownPriceOfTick(rule.Item, rule.P2BuyPrice2, lossTick1).ToString();
+                    tbP2LossPrice1.Text = PriceTick.GetDownPriceOfTick(rule.ItemCode, rule.P2BuyPrice2, lossTick1).ToString();
                 }
                 if (tbP2LossPrice2.Text == "0")
                 {
-                    tbP2LossPrice2.Text = PriceTick.GetDownPriceOfTick(rule.Item, rule.P2BuyPrice2, lossTick2).ToString();
+                    tbP2LossPrice2.Text = PriceTick.GetDownPriceOfTick(rule.ItemCode, rule.P2BuyPrice2, lossTick2).ToString();
                 }
                 if (tbMinimumRevenue2.Text == "0")
                 {
-                    tbMinimumRevenue2.Text = PriceTick.GetUpPriceOfTick(rule.Item, rule.P2BuyPrice2,  revenueTick).ToString();
+                    tbMinimumRevenue2.Text = PriceTick.GetUpPriceOfTick(rule.ItemCode, rule.P2BuyPrice2,  revenueTick).ToString();
                 }
             }
         }
@@ -215,19 +215,19 @@ namespace OM.Atman.Chakra.App
             {
                 if (tbP1BuyPrice2.Text == "0")
                 {
-                    tbP1BuyPrice2.Text = PriceTick.GetUpPriceOfTick(rule.Item, rule.P1BuyPrice1, buyTicks).ToString();
+                    tbP1BuyPrice2.Text = PriceTick.GetUpPriceOfTick(rule.ItemCode, rule.P1BuyPrice1, buyTicks).ToString();
                 }
                 if (tbP1LossPrice1.Text == "0")
                 {
-                    tbP1LossPrice1.Text = PriceTick.GetUpPriceOfTick(rule.Item, rule.P1BuyPrice2, lossTick1).ToString();
+                    tbP1LossPrice1.Text = PriceTick.GetUpPriceOfTick(rule.ItemCode, rule.P1BuyPrice2, lossTick1).ToString();
                 }
                 if (tbP1LossPrice2.Text == "0")
                 {
-                    tbP1LossPrice2.Text = PriceTick.GetUpPriceOfTick(rule.Item, rule.P1BuyPrice2, lossTick2).ToString();
+                    tbP1LossPrice2.Text = PriceTick.GetUpPriceOfTick(rule.ItemCode, rule.P1BuyPrice2, lossTick2).ToString();
                 }
                 if (tbMinimumRevenue1.Text == "0")
                 {
-                    tbMinimumRevenue1.Text = PriceTick.GetDownPriceOfTick(rule.Item, rule.P1BuyPrice2, revenueTick).ToString();
+                    tbMinimumRevenue1.Text = PriceTick.GetDownPriceOfTick(rule.ItemCode, rule.P1BuyPrice2, revenueTick).ToString();
                 }
             }
         }

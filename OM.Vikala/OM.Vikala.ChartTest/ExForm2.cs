@@ -212,7 +212,7 @@ namespace OM.Vikala.ChartTest
                 int idx = -1;
                 if (bdc != null)
                 {
-                    int renko = PPUtils.GetRenko("CL", dc, bdc, basePrice);
+                    int renko = PPUtils.GetRenko(dc, bdc, basePrice);
                     if (renko != 0)
                     {
                         int r = Math.Abs(renko);

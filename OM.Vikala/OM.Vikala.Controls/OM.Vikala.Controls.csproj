@@ -53,6 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Charts\ANodeLineChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Charts\ANodeLineChart.Designer.cs">
+      <DependentUpon>ANodeLineChart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Charts\ParkChart.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -165,6 +171,12 @@
     <Compile Include="Charts\QuarkCandleChart.Designer.cs">
       <DependentUpon>QuarkCandleChart.cs</DependentUpon>
     </Compile>
+    <Compile Include="Charts\LengthRateLineChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Charts\LengthRateLineChart.Designer.cs">
+      <DependentUpon>LengthRateLineChart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Charts\WuXingCandleChart.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -265,6 +277,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Charts\ANodeLineChart.resx">
+      <DependentUpon>ANodeLineChart.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Charts\ParkChart.resx">
       <DependentUpon>ParkChart.cs</DependentUpon>
     </EmbeddedResource>
@@ -321,6 +336,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Charts\QuarkCandleChart.resx">
       <DependentUpon>QuarkCandleChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Charts\LengthRateLineChart.resx">
+      <DependentUpon>LengthRateLineChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Charts\WuXingCandleChart.resx">
       <DependentUpon>WuXingCandleChart.cs</DependentUpon>

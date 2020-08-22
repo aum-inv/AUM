@@ -658,7 +658,7 @@ namespace OM.PP.XingApp
 
             string folder = (sender as Button).Text.ToString() ;
 
-            string fullPath = System.IO.Path.Combine(path, "sise", folder);
+            string fullPath = System.IO.Path.Combine(path, "data", folder);
 
             if (!System.IO.Directory.Exists(fullPath)) return;
 
@@ -677,6 +677,7 @@ namespace OM.PP.XingApp
                 else if (f.IndexOf("(120분)") > -1) timeIntervalEnum = TimeIntervalEnum.Hour_02;
                 else if (f.IndexOf("(60분)") > -1) timeIntervalEnum = TimeIntervalEnum.Hour_01;
                 else if (f.IndexOf("(일)") > -1) timeIntervalEnum = TimeIntervalEnum.Day;
+                else if (f.IndexOf("(주)") > -1) timeIntervalEnum = TimeIntervalEnum.Day;
                 else if (f.IndexOf("(01분)") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_01;
                 else if (f.IndexOf("(05분)") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_05;
                 else if (f.IndexOf("(10분)") > -1) timeIntervalEnum = TimeIntervalEnum.Minute_10;
@@ -704,7 +705,7 @@ namespace OM.PP.XingApp
                             values = line.Split(',');
 
                         S_CandleItemData data = new S_CandleItemData();
-                        if (timeIntervalEnum == TimeIntervalEnum.Day)
+                        if (timeIntervalEnum == TimeIntervalEnum.Day || timeIntervalEnum == TimeIntervalEnum.Week)
                         {
                             data.DTime = Convert.ToDateTime(values[0].Trim());
                             data.ItemCode = folder.ToUpper();

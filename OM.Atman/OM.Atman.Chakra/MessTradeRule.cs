@@ -12,11 +12,14 @@ namespace OM.Atman.Chakra
     public class MessTradeRule : BaseTradeRule
     {
         AtmanRule ruleInfo = null;
-        protected override string AtmanName => "MESS";
+        
         public AtmanRule RuleInfo
         {
             get { return ruleInfo; }
         }
+
+        public override string AtmanName => throw new NotImplementedException();
+
         public MessTradeRule(AtmanRule ruleInfo)
         {
             ItemCode = ruleInfo.Item;
@@ -292,18 +295,6 @@ namespace OM.Atman.Chakra
             catch (Exception ex) { }
 
             return buyPrice;
-        }
-
-        public void SellBuy(string type, string position)
-        {
-            try
-            {
-                TradeEvents.Instance.OnTradeRuleHandler(AtmanName, ItemCode, $"{type}::{position}::{CPrice}");
-                //XingContext.Instance.ClientContext.OrderBuySell();
-            }
-            catch (Exception)
-            {
-            }
-        }
+        }       
     }
 }

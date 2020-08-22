@@ -29,58 +29,166 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
-            this.tbPwd = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.button1 = new MetroFramework.Controls.MetroButton();
+            this.tbSecurity = new MetroFramework.Controls.MetroTextBox();
+            this.chkPlanResult = new MetroFramework.Controls.MetroCheckBox();
+            this.chkSignalSimple = new MetroFramework.Controls.MetroCheckBox();
+            this.chkSignalComplication = new MetroFramework.Controls.MetroCheckBox();
             this.SuspendLayout();
             // 
-            // tbPwd
+            // label5
             // 
-            this.tbPwd.Font = new System.Drawing.Font("굴림", 22.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbPwd.Location = new System.Drawing.Point(23, 339);
-            this.tbPwd.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.tbPwd.Name = "tbPwd";
-            this.tbPwd.PasswordChar = '$';
-            this.tbPwd.Size = new System.Drawing.Size(369, 75);
-            this.tbPwd.TabIndex = 1;
-            this.tbPwd.Text = "qawsedrf";
-            this.tbPwd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbPwd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LoginForm_KeyDown);
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.DarkRed;
+            this.label5.Location = new System.Drawing.Point(11, 59);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(239, 12);
+            this.label5.TabIndex = 28;
+            this.label5.Text = "---------------------------------------";
             // 
-            // pictureBox1
+            // label4
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(23, 24);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(369, 303);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.Color.DarkRed;
+            this.label4.Location = new System.Drawing.Point(11, 164);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(239, 12);
+            this.label4.TabIndex = 27;
+            this.label4.Text = "---------------------------------------";
+            // 
+            // button1
+            // 
+            this.button1.AutoSize = true;
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.Location = new System.Drawing.Point(176, 194);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(71, 23);
+            this.button1.TabIndex = 20;
+            this.button1.Text = "LOGIN";
+            this.button1.UseSelectable = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // tbSecurity
+            // 
+            // 
+            // 
+            // 
+            this.tbSecurity.CustomButton.Image = null;
+            this.tbSecurity.CustomButton.Location = new System.Drawing.Point(121, 1);
+            this.tbSecurity.CustomButton.Name = "";
+            this.tbSecurity.CustomButton.Size = new System.Drawing.Size(19, 19);
+            this.tbSecurity.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tbSecurity.CustomButton.TabIndex = 1;
+            this.tbSecurity.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbSecurity.CustomButton.UseSelectable = true;
+            this.tbSecurity.CustomButton.Visible = false;
+            this.tbSecurity.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.tbSecurity.Lines = new string[] {
+        "atman999"};
+            this.tbSecurity.Location = new System.Drawing.Point(13, 194);
+            this.tbSecurity.MaxLength = 32767;
+            this.tbSecurity.Name = "tbSecurity";
+            this.tbSecurity.PasswordChar = '#';
+            this.tbSecurity.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbSecurity.SelectedText = "";
+            this.tbSecurity.SelectionLength = 0;
+            this.tbSecurity.SelectionStart = 0;
+            this.tbSecurity.ShortcutsEnabled = true;
+            this.tbSecurity.Size = new System.Drawing.Size(141, 21);
+            this.tbSecurity.TabIndex = 19;
+            this.tbSecurity.Text = "atman999";
+            this.tbSecurity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbSecurity.UseSelectable = true;
+            this.tbSecurity.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbSecurity.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // chkPlanResult
+            // 
+            this.chkPlanResult.AutoSize = true;
+            this.chkPlanResult.BackColor = System.Drawing.Color.Black;
+            this.chkPlanResult.Checked = true;
+            this.chkPlanResult.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkPlanResult.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
+            this.chkPlanResult.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold;
+            this.chkPlanResult.ForeColor = System.Drawing.Color.White;
+            this.chkPlanResult.Location = new System.Drawing.Point(34, 75);
+            this.chkPlanResult.Name = "chkPlanResult";
+            this.chkPlanResult.Size = new System.Drawing.Size(154, 25);
+            this.chkPlanResult.TabIndex = 30;
+            this.chkPlanResult.Text = "투자계획및결과";
+            this.chkPlanResult.UseCustomBackColor = true;
+            this.chkPlanResult.UseCustomForeColor = true;
+            this.chkPlanResult.UseSelectable = true;
+            // 
+            // chkSignalSimple
+            // 
+            this.chkSignalSimple.AutoSize = true;
+            this.chkSignalSimple.BackColor = System.Drawing.Color.Black;
+            this.chkSignalSimple.Enabled = false;
+            this.chkSignalSimple.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
+            this.chkSignalSimple.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold;
+            this.chkSignalSimple.ForeColor = System.Drawing.Color.White;
+            this.chkSignalSimple.Location = new System.Drawing.Point(34, 106);
+            this.chkSignalSimple.Name = "chkSignalSimple";
+            this.chkSignalSimple.Size = new System.Drawing.Size(154, 25);
+            this.chkSignalSimple.TabIndex = 31;
+            this.chkSignalSimple.Text = "단순매매시그널";
+            this.chkSignalSimple.UseCustomBackColor = true;
+            this.chkSignalSimple.UseCustomForeColor = true;
+            this.chkSignalSimple.UseSelectable = true;
+            // 
+            // chkSignalComplication
+            // 
+            this.chkSignalComplication.AutoSize = true;
+            this.chkSignalComplication.BackColor = System.Drawing.Color.Black;
+            this.chkSignalComplication.Enabled = false;
+            this.chkSignalComplication.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
+            this.chkSignalComplication.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold;
+            this.chkSignalComplication.ForeColor = System.Drawing.Color.White;
+            this.chkSignalComplication.Location = new System.Drawing.Point(34, 137);
+            this.chkSignalComplication.Name = "chkSignalComplication";
+            this.chkSignalComplication.Size = new System.Drawing.Size(154, 25);
+            this.chkSignalComplication.TabIndex = 32;
+            this.chkSignalComplication.Text = "복잡매매시그널";
+            this.chkSignalComplication.UseCustomBackColor = true;
+            this.chkSignalComplication.UseCustomForeColor = true;
+            this.chkSignalComplication.UseSelectable = true;
             // 
             // LoginForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(412, 432);
-            this.Controls.Add(this.tbPwd);
-            this.Controls.Add(this.pictureBox1);
+            this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
+            this.ClientSize = new System.Drawing.Size(269, 230);
+            this.Controls.Add(this.chkSignalComplication);
+            this.Controls.Add(this.chkSignalSimple);
+            this.Controls.Add(this.chkPlanResult);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.tbSecurity);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "LoginForm";
-            this.Text = "OM.ATMAN APPLICATION";
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LoginForm_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.Resizable = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.Style = MetroFramework.MetroColorStyle.Red;
+            this.Text = "ATMAN LOGIN";
+            this.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox tbPwd;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private MetroFramework.Controls.MetroButton button1;
+        private MetroFramework.Controls.MetroTextBox tbSecurity;
+        private MetroFramework.Controls.MetroCheckBox chkPlanResult;
+        private MetroFramework.Controls.MetroCheckBox chkSignalSimple;
+        private MetroFramework.Controls.MetroCheckBox chkSignalComplication;
     }
 }

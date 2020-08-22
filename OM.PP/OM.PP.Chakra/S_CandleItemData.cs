@@ -67,6 +67,24 @@ namespace OM.PP.Chakra
             calculateAvgEx(isAccum);
             base.DTime = dtime;
         }
+
+
+        public Single OpenPriceAvg
+        {
+            get; set;
+        } = 0;
+        public Single HighPriceAvg
+        {
+            get; set;
+        } = 0;
+        public Single LowPriceAvg
+        {
+            get; set;
+        } = 0;
+        public Single ClosePriceAvg
+        {
+            get; set;
+        } = 0;
         public Single CenterPriceAvg
         {
             get; set;
@@ -195,6 +213,10 @@ namespace OM.PP.Chakra
                 base.LowPrice = (Single)Math.Round(sourceItems.Average(t => t.LowPrice), RoundLength);
             }
 
+            OpenPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.OpenPrice), RoundLength);
+            HighPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.HighPrice), RoundLength);
+            LowPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.LowPrice), RoundLength);
+            ClosePriceAvg = (Single)Math.Round(sourceItems.Average(t => t.ClosePrice), RoundLength);
             CenterPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.CenterPrice), RoundLength);
             HCenterPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.HCenterPrice), RoundLength);
             LCenterPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.LCenterPrice), RoundLength);

@@ -28,7 +28,7 @@ namespace OM.Vikala.Controls.Charts
 
         public HorizontalLineAnnotation yLine = new HorizontalLineAnnotation();
         
-        private System.ComponentModel.IContainer components;
+       
         Label yLineLabel = new Label();
         public int SelectedTrackBarValue
         {

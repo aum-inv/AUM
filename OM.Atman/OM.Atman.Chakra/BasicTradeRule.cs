@@ -44,13 +44,13 @@ namespace OM.Atman.Chakra
         public bool IsUseRevenue2 { get; set; } = false;
         public bool IsMinimumRevenue1 { get; set; } = false;
         public bool IsMinimumRevenue2 { get; set; } = false;
-        public double RevenuePrice { get; set; } = 0;
         public double RevenueRate { get; set; } = 0;
         public double MinimumRevenuePrice1 { get; set; } = 0;
         public double MinimumRevenuePrice2 { get; set; } = 0;
+
+        public override string AtmanName => throw new NotImplementedException();
         #endregion
 
-        protected override string AtmanName => "TRADE";
 
         public BasicTradeRule()
         {            
@@ -288,18 +288,6 @@ namespace OM.Atman.Chakra
             catch (Exception ) { }
 
             return revenuePrice;
-        }
-
-        public void SellBuy(string type, string position)
-        {
-            try
-            {
-                TradeEvents.Instance.OnTradeRuleHandler(AtmanName, RuleID, ItemCode, $"{type}::{position}::{CPrice}");
-                //XingContext.Instance.ClientContext.OrderBuySell();
-            }
-            catch (Exception)
-            {
-            }
         }
     }
 }

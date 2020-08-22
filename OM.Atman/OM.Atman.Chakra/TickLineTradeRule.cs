@@ -18,8 +18,6 @@ namespace OM.Atman.Chakra
 
         string priceType;
 
-        TickLineChartPatternEnum lastLineChartPattern2 = TickLineChartPatternEnum.None;
-        TickLineChartPatternEnum lastLineChartPattern3 = TickLineChartPatternEnum.None;
 
         UpDownPatternEnum lastUpDownH = UpDownPatternEnum.None;
         UpDownPatternEnum lastUpDownL = UpDownPatternEnum.None;

@@ -18,7 +18,7 @@ namespace OM.Atman.Chakra
             get { return ruleInfo; }
         }
 
-        protected override string AtmanName => "ATOM";
+        public override string AtmanName => throw new NotImplementedException();
 
         public AtomTradeRule(AtmanRule ruleInfo)
         {
@@ -302,7 +302,7 @@ namespace OM.Atman.Chakra
             return buyPrice;
         }
 
-        public void SellBuy(string type, string position)
+        public override void SellBuy(string type, string position)
         {
             try
             {

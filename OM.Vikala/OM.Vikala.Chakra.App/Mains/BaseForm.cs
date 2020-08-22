@@ -284,12 +284,6 @@ namespace OM.Vikala.Chakra.App.Mains
                 sourceDatas.RemoveRange(0, totalCnt - SharedData.SelectedItemCount);
         }
 
-        protected void SetChangeOpenPrice(string itemCode, List<S_CandleItemData> sourceDatas)
-        {
-            if (itemCode == "101" || itemCode == "301")
-                PPUtils.SetModifyOpenPriceByClosePrice(sourceDatas);
-        }
-
         //protected void SetWhim(string itemCode
         //    , TimeIntervalEnum timeInterval = TimeIntervalEnum.Day
         //    , double rate = 0.0)

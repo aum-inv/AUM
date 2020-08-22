@@ -19,8 +19,10 @@ namespace OM.Atman.Chakra.App
             LoginForm login_form = new LoginForm();
             if (login_form.ShowDialog() == DialogResult.OK)
             {
-                Application.Run(new MainForm());
+                Application.Run(new Forms.AtmanForm());
             }
+
+            //Application.Run(new LoginForm());
         }
     }
 }

@@ -47,6 +47,15 @@
     <Reference Include="AltoControls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AltoControls.1.0.1\lib\AltoControls.dll</HintPath>
     </Reference>
+    <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Design, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -104,6 +113,13 @@
     </Compile>
     <Compile Include="Config\RevenueConfig.cs" />
     <Compile Include="Config\LosscutConfig.cs" />
+    <Compile Include="Config\ShareConfig.cs" />
+    <Compile Include="Forms\AtmanForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AtmanForm.Designer.cs">
+      <DependentUpon>AtmanForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,14 +144,146 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PatternTradeRuleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatternTradeRuleForm.Designer.cs">
+      <DependentUpon>PatternTradeRuleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PatternTradeRuleForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatternTradeRuleForm2.Designer.cs">
+      <DependentUpon>PatternTradeRuleForm2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PatternTradeRuleForm3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatternTradeRuleForm3.Designer.cs">
+      <DependentUpon>PatternTradeRuleForm3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PatternTradeRuleForm4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatternTradeRuleForm4.Designer.cs">
+      <DependentUpon>PatternTradeRuleForm4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SiseEvents.cs" />
+    <Compile Include="StrategyAutoTradeRule2Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StrategyAutoTradeRule2Form.Designer.cs">
+      <DependentUpon>StrategyAutoTradeRule2Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StrategyAutoTradeRuleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StrategyAutoTradeRuleForm.Designer.cs">
+      <DependentUpon>StrategyAutoTradeRuleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StrategyTradeRuleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StrategyTradeRuleForm.Designer.cs">
+      <DependentUpon>StrategyTradeRuleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StrategyTradeRuleMMForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StrategyTradeRuleMMForm.Designer.cs">
+      <DependentUpon>StrategyTradeRuleMMForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StrategyTradeRuleMSForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StrategyTradeRuleMSForm.Designer.cs">
+      <DependentUpon>StrategyTradeRuleMSForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StrategyTradeRuleSMForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StrategyTradeRuleSMForm.Designer.cs">
+      <DependentUpon>StrategyTradeRuleSMForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StrategyTradeRuleSSForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StrategyTradeRuleSSForm.Designer.cs">
+      <DependentUpon>StrategyTradeRuleSSForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TradeRuleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TradeRuleForm.Designer.cs">
+      <DependentUpon>TradeRuleForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TradingRule\ThreeFiveRuleForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TradingRule\ThreeFiveRuleForm.Designer.cs">
       <DependentUpon>ThreeFiveRuleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TwoLineRuleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TwoLineRuleForm.Designer.cs">
+      <DependentUpon>TwoLineRuleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uc\Plans\Uc_PlanBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Uc\Plans\Uc_PlanBase.Designer.cs">
+      <DependentUpon>Uc_PlanBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uc\Plans\Uc_RevenuePlan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Uc\Plans\Uc_RevenuePlan.Designer.cs">
+      <DependentUpon>Uc_RevenuePlan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uc\Plans\Uc_InvResult.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Uc\Plans\Uc_InvResult.Designer.cs">
+      <DependentUpon>Uc_InvResult.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uc\Plans\Uc_BuyPlan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Uc\Plans\Uc_BuyPlan.Designer.cs">
+      <DependentUpon>Uc_BuyPlan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uc\Plans\Uc_LossPlan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Uc\Plans\Uc_LossPlan.Designer.cs">
+      <DependentUpon>Uc_LossPlan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uc\Plans\Uc_AccountFundPlan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Uc\Plans\Uc_AccountFundPlan.Designer.cs">
+      <DependentUpon>Uc_AccountFundPlan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uc\Plans\Uc_TrendCheck.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Uc\Plans\Uc_TrendCheck.Designer.cs">
+      <DependentUpon>Uc_TrendCheck.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uc\Plans\Uc_InvAvailability.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Uc\Plans\Uc_InvAvailability.Designer.cs">
+      <DependentUpon>Uc_InvAvailability.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uc\Uc_ListItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Uc\Uc_ListItem.Designer.cs">
+      <DependentUpon>Uc_ListItem.cs</DependentUpon>
     </Compile>
     <Compile Include="UC_Signal.cs">
       <SubType>UserControl</SubType>
@@ -155,6 +303,9 @@
     <EmbeddedResource Include="CandleSignalForm.resx">
       <DependentUpon>CandleSignalForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AtmanForm.resx">
+      <DependentUpon>AtmanForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -167,6 +318,18 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PatternTradeRuleForm.resx">
+      <DependentUpon>PatternTradeRuleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatternTradeRuleForm2.resx">
+      <DependentUpon>PatternTradeRuleForm2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatternTradeRuleForm3.resx">
+      <DependentUpon>PatternTradeRuleForm3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatternTradeRuleForm4.resx">
+      <DependentUpon>PatternTradeRuleForm4.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -177,8 +340,59 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="StrategyAutoTradeRule2Form.resx">
+      <DependentUpon>StrategyAutoTradeRule2Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StrategyAutoTradeRuleForm.resx">
+      <DependentUpon>StrategyAutoTradeRuleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StrategyTradeRuleForm.resx">
+      <DependentUpon>StrategyTradeRuleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StrategyTradeRuleMMForm.resx">
+      <DependentUpon>StrategyTradeRuleMMForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StrategyTradeRuleMSForm.resx">
+      <DependentUpon>StrategyTradeRuleMSForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StrategyTradeRuleSMForm.resx">
+      <DependentUpon>StrategyTradeRuleSMForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StrategyTradeRuleSSForm.resx">
+      <DependentUpon>StrategyTradeRuleSSForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TradeRuleForm.resx">
+      <DependentUpon>TradeRuleForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TradingRule\ThreeFiveRuleForm.resx">
       <DependentUpon>ThreeFiveRuleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TwoLineRuleForm.resx">
+      <DependentUpon>TwoLineRuleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uc\Plans\Uc_RevenuePlan.resx">
+      <DependentUpon>Uc_RevenuePlan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uc\Plans\Uc_InvResult.resx">
+      <DependentUpon>Uc_InvResult.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uc\Plans\Uc_BuyPlan.resx">
+      <DependentUpon>Uc_BuyPlan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uc\Plans\Uc_LossPlan.resx">
+      <DependentUpon>Uc_LossPlan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uc\Plans\Uc_AccountFundPlan.resx">
+      <DependentUpon>Uc_AccountFundPlan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uc\Plans\Uc_TrendCheck.resx">
+      <DependentUpon>Uc_TrendCheck.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uc\Plans\Uc_InvAvailability.resx">
+      <DependentUpon>Uc_InvAvailability.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uc\Uc_ListItem.resx">
+      <DependentUpon>Uc_ListItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UC_Signal.resx">
       <DependentUpon>UC_Signal.cs</DependentUpon>
@@ -226,6 +440,8 @@
       <Name>OM.Atman.Chakra</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Uc\Results\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

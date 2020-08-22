@@ -48,6 +48,9 @@
     <Reference Include="EasyTabs, Version=1.3.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EasyTabs.1.3.3.0\lib\net40\EasyTabs.dll</HintPath>
     </Reference>
+    <Reference Include="MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MaterialSkin.0.2.1\lib\MaterialSkin.dll</HintPath>
+    </Reference>
     <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
     </Reference>
@@ -95,6 +98,12 @@
     <Compile Include="Chakra\CandleSummary.cs" />
     <Compile Include="Chakra\TradeForecastInfo.cs" />
     <Compile Include="Events\MainFormToolBarEvents.cs" />
+    <Compile Include="Mains\ChartForms\ANodeLineChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mains\ChartForms\ANodeLineChartForm.Designer.cs">
+      <DependentUpon>ANodeLineChartForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mains\ChartForms\RemoveFirstPriceChartForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,6 +199,12 @@
     </Compile>
     <Compile Include="Mains\ChartForms\ChakraChartForm.Designer.cs">
       <DependentUpon>ChakraChartForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mains\ChartForms\LengthRateChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mains\ChartForms\LengthRateChartForm.Designer.cs">
+      <DependentUpon>LengthRateChartForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Mains\ChartForms\VelocityChartForm.cs">
       <SubType>Form</SubType>
@@ -431,6 +446,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Mains\ChartForms\ANodeLineChartForm.resx">
+      <DependentUpon>ANodeLineChartForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mains\ChartForms\RemoveFirstPriceChartForm.resx">
       <DependentUpon>RemoveFirstPriceChartForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -478,6 +496,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mains\ChartForms\ChakraChartForm.resx">
       <DependentUpon>ChakraChartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mains\ChartForms\LengthRateChartForm.resx">
+      <DependentUpon>LengthRateChartForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mains\ChartForms\VelocityChartForm.resx">
       <DependentUpon>VelocityChartForm.cs</DependentUpon>
@@ -544,6 +565,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mains\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MirrorMainForm_Sample.resx">
       <DependentUpon>MirrorMainForm_Sample.cs</DependentUpon>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OM.Atman.Chakra.App.Config;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,22 +11,27 @@ using System.Windows.Forms;
 
 namespace OM.Atman.Chakra.App
 {
-    public partial class LoginForm : Form
+    public partial class LoginForm : MetroFramework.Forms.MetroForm
     {
         public LoginForm()
         {
             InitializeComponent();
         }
 
-        private void LoginForm_KeyDown(object sender, KeyEventArgs e)
+        private void metroButton1_Click(object sender, EventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (tbSecurity.Text == "atman999")
             {
-                if (tbPwd.Text == "qawsedrf")
-                {
-                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
-                    this.Close();
-                }
+                ShareConfig.IsShowSignalForm = chkSignalSimple.Checked;
+                ShareConfig.IsShowDetailSignalForm = chkSignalComplication.Checked;
+
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                this.Close();
             }
         }
     }

@@ -17,9 +17,7 @@ namespace OM.Atman.Chakra
         public string RuleID { get; set; } = "";
         public string Item { get { return ItemCode; } set { ItemCode = value; } }
         public string TimeType { get; set; } = "";
-        public bool IsUse { get; set; } = false;
-        public string PriceType { get; set; } = "0";
-
+        
         public bool IsBaseLine { get; set; } = true;
 
         public bool IsUseP2 { get; set; } = false;
@@ -41,21 +39,19 @@ namespace OM.Atman.Chakra
         public UpDownPatternEnum P1BuyPattern { get; set; } = UpDownPatternEnum.None;
 
         public bool IsBuyDone { get; set; } = false;
-        public string Position { get; set; } = "";
-        public double BuyPrice { get; set; } = 0;
-        public double LosscutPrice { get; set; } = 0;
+        
 
         public bool IsUseRevenue1 { get; set; } = false;
         public bool IsUseRevenue2 { get; set; } = false;
         public bool IsMinimumRevenue1 { get; set; } = false;
         public bool IsMinimumRevenue2 { get; set; } = false;
-        public double RevenuePrice { get; set; } = 0;
+    
         public double RevenueRate { get; set; } = 0;
         public double MinimumRevenuePrice1 { get; set; } = 0;
         public double MinimumRevenuePrice2 { get; set; } = 0;
-        #endregion
 
-        protected override string AtmanName => "PATTERNTRADE2";
+        public override string AtmanName => throw new NotImplementedException();
+        #endregion
 
         public BasicPatternTradeRule2(bool isBaseLine = true)
         {
@@ -310,18 +306,6 @@ namespace OM.Atman.Chakra
             catch (Exception ) { }
 
             return revenuePrice;
-        }
-
-        public void SellBuy(string type, string position)
-        {
-            try
-            {
-                TradeEvents.Instance.OnTradeRuleHandler(AtmanName, RuleID, ItemCode, $"{type}::{position}::{CPrice}");
-                //XingContext.Instance.ClientContext.OrderBuySell();
-            }
-            catch (Exception)
-            {
-            }
         }
     }
 }

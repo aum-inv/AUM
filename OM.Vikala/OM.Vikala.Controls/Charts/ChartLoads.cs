@@ -900,7 +900,50 @@ namespace OM.Vikala.Controls.Charts
         //    }
         //}
         #endregion
+        #region LengthRateLineChart
+        public static void loadDataAndApply(this LengthRateLineChart c
+            , string itemCode
+            , List<S_CandleItemData> sourceDatas
+            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+            , int itemsCnt = 7)
+        {
+            try
+            {                
+                c.LoadData(itemCode, sourceDatas, timeInterval);
+            }
 
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+        }
+        //public static void loadDataAverageAndApply(this VelocityLineChart c
+        //   , string itemCode
+        //   , List<S_CandleItemData> sourceDatas
+        //   , List<S_CandleItemData> averageDatas
+        //   , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+        //   , int itemsCnt = 7)
+        //{
+        //    try
+        //    {
+        //        List<T_VelocityItemData> transformedDatas = new List<T_VelocityItemData>();
+
+        //        for (int i = itemsCnt; i <= sourceDatas.Count; i++)
+        //        {
+        //            T_VelocityItemData transData =
+        //                new T_VelocityItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemsCnt, itemsCnt));
+        //            transData.Transform();
+        //            transformedDatas.Add(transData);
+        //        }
+        //        c.LoadData(itemCode, transformedDatas, timeInterval);
+        //    }
+
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine(ex.Message);
+        //    }
+        //}
+        #endregion
         #region WuxingCandleChart
         public static void loadDataAndApply(this WuXingCandleChart c
             , string itemCode
@@ -957,6 +1000,26 @@ namespace OM.Vikala.Controls.Charts
         //        System.Diagnostics.Debug.WriteLine(ex.Message);
         //    }
         //}
+        #endregion
+        #region ANodeLineChart
+        public static void loadDataAndApply(this ANodeLineChart c
+            , string itemCode
+            , List<S_CandleItemData> sourceDatas
+            , List<S_CandleItemData> sourceDatasSub1
+            , List<S_CandleItemData> sourceDatasSub2
+            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+            , int itemsCnt = 7)
+        {
+            try
+            {
+                c.LoadData(itemCode, sourceDatas, sourceDatasSub1, sourceDatasSub2, timeInterval);
+            }
+
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+        }
         #endregion
 
         #region QuarkCandleChart
@@ -1162,7 +1225,8 @@ namespace OM.Vikala.Controls.Charts
             else if (c is QuantumLineTradeChart) ((QuantumLineTradeChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
             else if (c is RealCandleChart) ((RealCandleChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
             else if (c is CandleAntiCandleChart) ((CandleAntiCandleChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
-            else if (c is DarkMassrChart) ((DarkMassrChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);           
+            else if (c is DarkMassrChart) ((DarkMassrChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
+            else if (c is LengthRateLineChart) ((LengthRateLineChart)c).loadDataAndApply(itemCode, sourceDatas, timeInterval, itemsCnt);
         }
         public static void LoadDataAndApply(this BaseChartControl c
            , string itemCode
@@ -1175,7 +1239,17 @@ namespace OM.Vikala.Controls.Charts
             itemsCnt = 9;
             if (c is ComplexChart) ((ComplexChart)c).loadDataAndApply(itemCode, sourceDatas, sourceDatasSub, timeInterval, itemsCnt);
         }
-       
+        public static void LoadDataAndApply(this BaseChartControl c
+           , string itemCode
+           , List<S_CandleItemData> sourceDatas
+           , List<S_CandleItemData> sourceDatasSub1, List<S_CandleItemData> sourceDatasSub2
+           , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+           , int itemsCnt = 9)
+        {
+            if (sourceDatas.Count == 0) return;
+            itemsCnt = 9;           
+            if (c is ANodeLineChart) ((ANodeLineChart)c).loadDataAndApply(itemCode, sourceDatas, sourceDatasSub1, sourceDatasSub2, timeInterval, itemsCnt);
+        }
         public static void LoadDataAndApply(this BaseChartControl c
           , string itemCode
           , List<S_CandleItemData> sourceDatas

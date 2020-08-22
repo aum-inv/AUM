@@ -115,7 +115,7 @@ namespace OM.PP.Chakra
         {
             get
             {
-                Single v = 0f;
+                Single v;
                 if (PlusMinusType == PlusMinusTypeEnum.양)
                 {
                     v = (Single)Math.Round(OpenPrice - Math.Abs(OpenPrice - ClosePrice), RoundLength);
@@ -220,7 +220,7 @@ namespace OM.PP.Chakra
         {
             get
             {
-                Single v = 0f;
+                Single v;
                 if (PlusMinusType == PlusMinusTypeEnum.양)
                 {
                     v = (Single)Math.Round(ClosePrice + Math.Abs(OpenPrice - ClosePrice), RoundLength);
@@ -720,6 +720,110 @@ namespace OM.PP.Chakra
         public Single 천부경_지종
         {
             get { return (Single)Math.Round(_LowPrice - LegLength - BodyLength, RoundLength); }
+        }
+        public Single AllLength
+        {
+            get 
+            {
+                Single totalLength;
+                if (PlusMinusType == PlusMinusTypeEnum.양)
+                {
+                    totalLength = (Math.Abs(OpenPrice - LowPrice)
+                                        + Math.Abs(LowPrice - HighPrice)
+                                        + Math.Abs(HighPrice - ClosePrice))
+                                + (Math.Abs(LowPrice - HighPrice)
+                                        + Math.Abs(HighPrice - ClosePrice))
+                                + (Math.Abs(HighPrice - ClosePrice));
+                }
+                else
+                {
+                    totalLength = (Math.Abs(OpenPrice - HighPrice)
+                                        + Math.Abs(HighPrice - LowPrice)
+                                        + Math.Abs(LowPrice - ClosePrice))
+                                + (Math.Abs(HighPrice - LowPrice)
+                                        + Math.Abs(LowPrice - ClosePrice))
+                                + (Math.Abs(LowPrice - ClosePrice));
+
+                }
+                return (Single)Math.Round(totalLength, RoundLength); 
+            }
+        }
+        public Single AllLengthRate
+        {
+            get
+            {   
+                return (Single)Math.Round( (AllLength / 6.0), RoundLength);
+            }
+        }
+
+        public Single AllQuantumLength
+        {
+            get
+            {
+                Single totalLength;
+                if (PlusMinusType == PlusMinusTypeEnum.양)
+                {
+                    totalLength = (Math.Abs(OpenPrice - QuantumBaseLowPrice)
+                                        + Math.Abs(QuantumBaseLowPrice - QuantumBaseHighPrice)
+                                        + Math.Abs(QuantumBaseHighPrice - QuantumBasePrice))
+                                + (Math.Abs(QuantumBaseLowPrice - QuantumBaseHighPrice)
+                                        + Math.Abs(QuantumBaseHighPrice - QuantumBasePrice))
+                                + (Math.Abs(QuantumBaseHighPrice - QuantumBasePrice));
+                }
+                else
+                {
+                    totalLength = (Math.Abs(OpenPrice - QuantumBaseHighPrice)
+                                        + Math.Abs(QuantumBaseHighPrice - QuantumBaseLowPrice)
+                                        + Math.Abs(QuantumBaseLowPrice - QuantumBasePrice))
+                                + (Math.Abs(QuantumBaseHighPrice - QuantumBaseLowPrice)
+                                        + Math.Abs(QuantumBaseLowPrice - QuantumBasePrice))
+                                + (Math.Abs(QuantumBaseLowPrice - QuantumBasePrice));
+
+                }
+                return (Single)Math.Round(totalLength, RoundLength);
+            }
+        }
+        public Single AllQuantumLengthRate
+        {
+            get
+            {
+                return (Single)Math.Round((AllQuantumLength / 6.0), RoundLength);
+            }
+        }
+
+        public Single AllVikalaLength
+        {
+            get
+            {
+                Single totalLength;
+                if (PlusMinusType == PlusMinusTypeEnum.양)
+                {
+                    totalLength = (Math.Abs(OpenPrice - VikalaLowPrice)
+                                        + Math.Abs(VikalaLowPrice - VikalaHighPrice)
+                                        + Math.Abs(VikalaHighPrice - VikalaPrice))
+                                + (Math.Abs(VikalaLowPrice - VikalaHighPrice)
+                                        + Math.Abs(VikalaHighPrice - VikalaPrice))
+                                + (Math.Abs(VikalaHighPrice - VikalaPrice));
+                }
+                else
+                {
+                    totalLength = (Math.Abs(OpenPrice - VikalaHighPrice)
+                                        + Math.Abs(VikalaHighPrice - VikalaLowPrice)
+                                        + Math.Abs(VikalaLowPrice - VikalaPrice))
+                                + (Math.Abs(VikalaHighPrice - VikalaLowPrice)
+                                        + Math.Abs(VikalaLowPrice - VikalaPrice))
+                                + (Math.Abs(VikalaLowPrice - VikalaPrice));
+
+                }
+                return (Single)Math.Round(totalLength, RoundLength);
+            }
+        }
+        public Single AllVikalaLengthRate
+        {
+            get
+            {
+                return (Single)Math.Round((AllVikalaLength / 6.0), RoundLength);
+            }
         }
         #endregion
     }

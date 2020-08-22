@@ -87,9 +87,7 @@ namespace OM.Vikala.Controls.Charts
             if (maxPriceLine < maxPriceLine3) maxPriceLine = maxPriceLine3;
             if (minPriceLine > minPriceLine3) minPriceLine = minPriceLine3;
             if (maxPriceLine < maxPriceLine4) maxPriceLine = maxPriceLine4;
-            if (minPriceLine > minPriceLine4) minPriceLine = minPriceLine4;
-            maxPriceLine = maxPriceLine + SpaceMaxMin;
-            minPriceLine = minPriceLine - SpaceMaxMin;
+            if (minPriceLine > minPriceLine4) minPriceLine = minPriceLine4;           
             chart.ChartAreas[0].AxisY.Maximum = maxPriceLine;
             chart.ChartAreas[0].AxisY.Minimum = minPriceLine;
             chart.ChartAreas[0].AxisY.LabelStyle.Format = "{N2}";
@@ -195,9 +193,7 @@ namespace OM.Vikala.Controls.Charts
                 if (maxPriceLine < maxPriceLine3) maxPriceLine = maxPriceLine3;
                 if (minPriceLine > minPriceLine3) minPriceLine = minPriceLine3;
                 if (maxPriceLine < maxPriceLine4) maxPriceLine = maxPriceLine4;
-                if (minPriceLine > minPriceLine4) minPriceLine = minPriceLine4;
-                maxPriceLine = maxPriceLine + SpaceMaxMin;
-                minPriceLine = minPriceLine - SpaceMaxMin;
+                if (minPriceLine > minPriceLine4) minPriceLine = minPriceLine4;             
                 chart.ChartAreas[0].AxisY.Maximum = maxPriceLine;
                 chart.ChartAreas[0].AxisY.Minimum = minPriceLine;
                 chart.ChartAreas[0].AxisY.LabelStyle.Format = "{N2}";

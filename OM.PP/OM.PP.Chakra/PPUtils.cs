@@ -67,7 +67,7 @@ namespace OM.PP.Chakra
 
             try
             {
-                for (int i = averageCnt; i <= sourceDatas.Count; i++)
+                for (int i = averageCnt; i < sourceDatas.Count; i++)
                 {
                     DateTime dTime = sourceDatas[i].DTime;
 
@@ -75,7 +75,7 @@ namespace OM.PP.Chakra
                     int cnt = averageCnt + averageCnt;
 
                     if (sourceDatas.Count - (idx + cnt) < 0)
-                        cnt = cnt - ((idx + cnt) - sourceDatas.Count);
+                        cnt -= ((idx + cnt) - sourceDatas.Count);
 
                     S_CandleItemData transData = new S_CandleItemData(itemCode, sourceDatas.GetRange(idx, cnt), dTime);
                     averageDatas.Add(transData);
@@ -123,7 +123,29 @@ namespace OM.PP.Chakra
             }
             return sourceDatasNew;
         }
-
+        public static List<S_CandleItemData> GetQuantumDatas(List<S_CandleItemData> sourceDatas)
+        {
+            List<S_CandleItemData> sourceDatasNew = new List<S_CandleItemData>();
+            try
+            {
+                foreach (var m in sourceDatas)
+                {
+                    sourceDatasNew.Add(new S_CandleItemData(
+                        m.ItemCode, 
+                        m.OpenPrice, 
+                        m.QuantumBaseHighPrice, 
+                        m.QuantumBaseLowPrice, 
+                        m.QuantumBasePrice, 
+                        m.Volume, 
+                        m.DTime));
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+            return sourceDatasNew;
+        }
         public static List<S_LineItemData> GetAverageDatas(string itemCode, List<S_LineItemData> sourceDatas, int averageCnt)
         {
             List<S_LineItemData> averageDatas = new List<S_LineItemData>();
@@ -655,10 +677,10 @@ namespace OM.PP.Chakra
         #endregion
 
         #region CandleToLine
-        public static LimitedList<double> GetLinePointsByCandles(LimitedList<S_CandleItemData> sourceDatas)
+        public static List<double> GetLinePointsByCandles(List<S_CandleItemData> sourceDatas)
         {
             List<S_CandleItemData> list = sourceDatas.ToList();
-            LimitedList<double> resultList = new LimitedList<double>(list.Count * 4);
+            List<double> resultList = new List<double>(list.Count * 6);
             try
             {
                 foreach (var m in list)
@@ -693,6 +715,7 @@ namespace OM.PP.Chakra
             }
             return resultList;
         }
+       
 
         public static List<double> GetSixPointByCandle(S_CandleItemData data)
         {
@@ -864,7 +887,7 @@ namespace OM.PP.Chakra
         #endregion
 
         #region Renko
-        public static int GetRenko(string itemCode, S_CandleItemData cData, S_CandleItemData bData, double renkoValue)
+        public static int GetRenko(S_CandleItemData cData, S_CandleItemData bData, double renkoValue)
         {
             int renko = 0;
             int hrenko = 0;
@@ -1276,6 +1299,89 @@ namespace OM.PP.Chakra
         }
         #endregion
 
-        
+        #region ANode Converter
+        public static (List<S_CandleItemData> plusList, List<S_CandleItemData>minusList) GetANodeDatas(List<S_CandleItemData> sourceDatas)
+        {
+            List<S_CandleItemData> plusDatasNew = new List<S_CandleItemData>();
+            List<S_CandleItemData> minusDatasNew = new List<S_CandleItemData>();
+
+            //양자화 한다.
+            var quantumDatas = GetQuantumDatas(sourceDatas);
+
+            try
+            {
+                S_CandleItemData bp = null;
+                S_CandleItemData bm = null;
+
+                foreach (var m in quantumDatas)
+                {
+                    if (bp == null) bp = m;
+                    if (bm == null) bm = m;
+
+                    if (m.PlusMinusType == PlusMinusTypeEnum.양)
+                    {
+                        plusDatasNew.Add(
+                            new S_CandleItemData(m.ItemCode,m.OpenPrice,m.HighPrice,m.LowPrice,m.ClosePrice,m.Volume,m.DTime));
+                      
+                        bp = new S_CandleItemData(m.ItemCode, m.OpenPrice, m.HighPrice, m.LowPrice, m.ClosePrice, m.Volume, m.DTime);
+
+                        if (bm != null)
+                        {
+                            minusDatasNew.Add(new S_CandleItemData(
+                                bm.ItemCode,
+                                bm.OpenPrice,
+                                bm.HighPrice,
+                                bm.LowPrice,
+                                bm.ClosePrice,
+                                bm.Volume,
+                                m.DTime
+                                ));
+                        }
+                    }
+                    else if (m.PlusMinusType == PlusMinusTypeEnum.음)
+                    {
+                        minusDatasNew.Add(
+                            new S_CandleItemData(m.ItemCode, m.OpenPrice, m.HighPrice, m.LowPrice, m.ClosePrice, m.Volume, m.DTime));
+                       
+                        bm = new S_CandleItemData(m.ItemCode, m.OpenPrice, m.HighPrice, m.LowPrice, m.ClosePrice, m.Volume, m.DTime);
+
+                        if (bp != null)
+                        {
+                            plusDatasNew.Add(new S_CandleItemData(
+                                bp.ItemCode,
+                                bp.OpenPrice,
+                                bp.HighPrice,
+                                bp.LowPrice,
+                                bp.ClosePrice,
+                                bp.Volume,
+                                m.DTime
+                                ));
+                        }
+                    }
+                    else
+                    {
+                        plusDatasNew.Add(
+                            new S_CandleItemData(m.ItemCode, m.OpenPrice, m.HighPrice, m.LowPrice, m.ClosePrice, m.Volume, m.DTime));
+                        minusDatasNew.Add(
+                            new S_CandleItemData(m.ItemCode, m.OpenPrice, m.HighPrice, m.LowPrice, m.ClosePrice, m.Volume, m.DTime));
+                    }
+                }
+
+                if (plusDatasNew.Count > minusDatasNew.Count)
+                {
+                    plusDatasNew = GetCutDatas(plusDatasNew, minusDatasNew[0].DTime);
+                }
+                else if (plusDatasNew.Count < minusDatasNew.Count)
+                {
+                    minusDatasNew = GetCutDatas(minusDatasNew, plusDatasNew[0].DTime);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+            return (plusDatasNew, minusDatasNew);
+        }
+        #endregion
     }
 }

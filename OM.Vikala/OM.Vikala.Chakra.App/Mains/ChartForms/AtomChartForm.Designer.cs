@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AtomChartForm));
             this.pnlContent = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.chart = new OM.Vikala.Controls.Charts.AtomChart();
+            this.chart1 = new OM.Vikala.Controls.Charts.AtomChart();
             this.chart2 = new OM.Vikala.Controls.Charts.AtomChart();
             this.chart3 = new OM.Vikala.Controls.Charts.AtomChart();
             this.chart4 = new OM.Vikala.Controls.Charts.AtomChart();
@@ -53,14 +53,14 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));          
-            this.tableLayoutPanel1.Controls.Add(this.chart, 0, 0);
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.chart1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.chart2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.chart3, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.chart4, 0, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
@@ -70,51 +70,28 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1690, 1037);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // chart2
+            // chart1
             // 
-            this.chart4.CandleChartType = OM.Vikala.Controls.Charts.CandleChartTypeEnum.기본;
-            this.chart4.ChartData = null;
-            this.chart4.ChartEventInstance = null;
-            this.chart4.DisplayPointCount = 60;
-            this.chart4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chart4.IsAutoScrollX = true;
-            this.chart4.IsLoaded = false;
-            this.chart4.IsShowCandle = false;
-            this.chart4.IsShowLine = false;
-            this.chart4.IsShowXLine = false;
-            this.chart4.ItemCode = "";
-            this.chart4.LineChartType = OM.Vikala.Controls.Charts.LineChartTypeEnum.기본;
-            this.chart4.Location = new System.Drawing.Point(6, 265);
-            this.chart4.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.chart4.Name = "chart2";
-            this.chart4.SelectedTrackBarValue = 1;
-            this.chart4.Size = new System.Drawing.Size(1678, 247);
-            this.chart4.TabIndex = 1;
-            this.chart4.TimeInterval = OM.Lib.Base.Enums.TimeIntervalEnum.Day;
-            this.chart4.Title = null;
-            // 
-            // chart2
-            // 
-            this.chart3.CandleChartType = OM.Vikala.Controls.Charts.CandleChartTypeEnum.기본;
-            this.chart3.ChartData = null;
-            this.chart3.ChartEventInstance = null;
-            this.chart3.DisplayPointCount = 60;
-            this.chart3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chart3.IsAutoScrollX = true;
-            this.chart3.IsLoaded = false;
-            this.chart3.IsShowCandle = false;
-            this.chart3.IsShowLine = false;
-            this.chart3.IsShowXLine = false;
-            this.chart3.ItemCode = "";
-            this.chart3.LineChartType = OM.Vikala.Controls.Charts.LineChartTypeEnum.기본;
-            this.chart3.Location = new System.Drawing.Point(6, 265);
-            this.chart3.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.chart3.Name = "chart2";
-            this.chart3.SelectedTrackBarValue = 1;
-            this.chart3.Size = new System.Drawing.Size(1678, 247);
-            this.chart3.TabIndex = 1;
-            this.chart3.TimeInterval = OM.Lib.Base.Enums.TimeIntervalEnum.Day;
-            this.chart3.Title = null;
+            this.chart1.CandleChartType = OM.Vikala.Controls.Charts.CandleChartTypeEnum.기본;
+            this.chart1.ChartData = null;
+            this.chart1.ChartEventInstance = null;
+            this.chart1.DisplayPointCount = 60;
+            this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chart1.IsAutoScrollX = true;
+            this.chart1.IsLoaded = false;
+            this.chart1.IsShowCandle = false;
+            this.chart1.IsShowLine = false;
+            this.chart1.IsShowXLine = false;
+            this.chart1.ItemCode = "";
+            this.chart1.LineChartType = OM.Vikala.Controls.Charts.LineChartTypeEnum.기본;
+            this.chart1.Location = new System.Drawing.Point(6, 6);
+            this.chart1.Margin = new System.Windows.Forms.Padding(6);
+            this.chart1.Name = "chart1";
+            this.chart1.SelectedTrackBarValue = 1;
+            this.chart1.Size = new System.Drawing.Size(1678, 247);
+            this.chart1.TabIndex = 0;
+            this.chart1.TimeInterval = OM.Lib.Base.Enums.TimeIntervalEnum.Day;
+            this.chart1.Title = null;
             // 
             // chart2
             // 
@@ -131,7 +108,7 @@
             this.chart2.ItemCode = "";
             this.chart2.LineChartType = OM.Vikala.Controls.Charts.LineChartTypeEnum.기본;
             this.chart2.Location = new System.Drawing.Point(6, 265);
-            this.chart2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.chart2.Margin = new System.Windows.Forms.Padding(6);
             this.chart2.Name = "chart2";
             this.chart2.SelectedTrackBarValue = 1;
             this.chart2.Size = new System.Drawing.Size(1678, 247);
@@ -139,28 +116,51 @@
             this.chart2.TimeInterval = OM.Lib.Base.Enums.TimeIntervalEnum.Day;
             this.chart2.Title = null;
             // 
-            // chart
+            // chart3
             // 
-            this.chart.CandleChartType = OM.Vikala.Controls.Charts.CandleChartTypeEnum.기본;
-            this.chart.ChartData = null;
-            this.chart.ChartEventInstance = null;
-            this.chart.DisplayPointCount = 60;
-            this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chart.IsAutoScrollX = true;
-            this.chart.IsLoaded = false;
-            this.chart.IsShowCandle = false;
-            this.chart.IsShowLine = false;
-            this.chart.IsShowXLine = false;
-            this.chart.ItemCode = "";
-            this.chart.LineChartType = OM.Vikala.Controls.Charts.LineChartTypeEnum.기본;
-            this.chart.Location = new System.Drawing.Point(6, 6);
-            this.chart.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.chart.Name = "chart";
-            this.chart.SelectedTrackBarValue = 1;
-            this.chart.Size = new System.Drawing.Size(1678, 247);
-            this.chart.TabIndex = 0;
-            this.chart.TimeInterval = OM.Lib.Base.Enums.TimeIntervalEnum.Day;
-            this.chart.Title = null;
+            this.chart3.CandleChartType = OM.Vikala.Controls.Charts.CandleChartTypeEnum.기본;
+            this.chart3.ChartData = null;
+            this.chart3.ChartEventInstance = null;
+            this.chart3.DisplayPointCount = 60;
+            this.chart3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chart3.IsAutoScrollX = true;
+            this.chart3.IsLoaded = false;
+            this.chart3.IsShowCandle = false;
+            this.chart3.IsShowLine = false;
+            this.chart3.IsShowXLine = false;
+            this.chart3.ItemCode = "";
+            this.chart3.LineChartType = OM.Vikala.Controls.Charts.LineChartTypeEnum.기본;
+            this.chart3.Location = new System.Drawing.Point(6, 524);
+            this.chart3.Margin = new System.Windows.Forms.Padding(6);
+            this.chart3.Name = "chart3";
+            this.chart3.SelectedTrackBarValue = 1;
+            this.chart3.Size = new System.Drawing.Size(1678, 247);
+            this.chart3.TabIndex = 1;
+            this.chart3.TimeInterval = OM.Lib.Base.Enums.TimeIntervalEnum.Day;
+            this.chart3.Title = null;
+            // 
+            // chart4
+            // 
+            this.chart4.CandleChartType = OM.Vikala.Controls.Charts.CandleChartTypeEnum.기본;
+            this.chart4.ChartData = null;
+            this.chart4.ChartEventInstance = null;
+            this.chart4.DisplayPointCount = 60;
+            this.chart4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chart4.IsAutoScrollX = true;
+            this.chart4.IsLoaded = false;
+            this.chart4.IsShowCandle = false;
+            this.chart4.IsShowLine = false;
+            this.chart4.IsShowXLine = false;
+            this.chart4.ItemCode = "";
+            this.chart4.LineChartType = OM.Vikala.Controls.Charts.LineChartTypeEnum.기본;
+            this.chart4.Location = new System.Drawing.Point(6, 783);
+            this.chart4.Margin = new System.Windows.Forms.Padding(6);
+            this.chart4.Name = "chart4";
+            this.chart4.SelectedTrackBarValue = 1;
+            this.chart4.Size = new System.Drawing.Size(1678, 248);
+            this.chart4.TabIndex = 1;
+            this.chart4.TimeInterval = OM.Lib.Base.Enums.TimeIntervalEnum.Day;
+            this.chart4.Title = null;
             // 
             // userToolStrip1
             // 
@@ -170,7 +170,7 @@
             this.userToolStrip1.IsVisibleMdiButton = true;
             this.userToolStrip1.IsVisibleTimeIntervalButton = true;
             this.userToolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.userToolStrip1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.userToolStrip1.Margin = new System.Windows.Forms.Padding(2);
             this.userToolStrip1.Name = "userToolStrip1";
             this.userToolStrip1.Size = new System.Drawing.Size(1690, 34);
             this.userToolStrip1.TabIndex = 0;
@@ -199,7 +199,7 @@
         private UserToolStrip userToolStrip1;
         private System.Windows.Forms.Panel pnlContent;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private Controls.Charts.AtomChart chart;
+        private Controls.Charts.AtomChart chart1;
         private Controls.Charts.AtomChart chart2;
         private Controls.Charts.AtomChart chart3;
         private Controls.Charts.AtomChart chart4;

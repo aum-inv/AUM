@@ -345,8 +345,8 @@ namespace OM.Atman.Chakra.App
                 TimeIntervalEnum timeInterval = TimeIntervalEnum.Minute_05;
                 if (cbxTime.SelectedIndex == 1) timeInterval = TimeIntervalEnum.Minute_10;
                 else if (cbxTime.SelectedIndex == 2) timeInterval = TimeIntervalEnum.Minute_30;
-                else if (cbxTime.SelectedIndex == 3) timeInterval = TimeIntervalEnum.Minute_60;
-                else if (cbxTime.SelectedIndex == 4) timeInterval = TimeIntervalEnum.Minute_120;
+                else if (cbxTime.SelectedIndex == 3) timeInterval = TimeIntervalEnum.Hour_01;
+                else if (cbxTime.SelectedIndex == 4) timeInterval = TimeIntervalEnum.Hour_02;
 
                 var list = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(rule.ItemCode, timeInterval);
                 var avglist = PPUtils.GetAverageDatas(rule.ItemCode, list, 5);

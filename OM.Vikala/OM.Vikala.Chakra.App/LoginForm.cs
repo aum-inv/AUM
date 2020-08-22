@@ -1,4 +1,6 @@
-﻿using OM.Vikala.Chakra.App.Config;
+﻿using MaterialSkin;
+using MaterialSkin.Controls;
+using OM.Vikala.Chakra.App.Config;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,11 +13,16 @@ using System.Windows.Forms;
 
 namespace OM.Vikala.Chakra.App
 {
-    public partial class LoginForm : Form
+    public partial class LoginForm : MaterialForm
     {
         public LoginForm()
         {
             InitializeComponent();
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+
         }
 
         private void LoginForm_KeyDown(object sender, KeyEventArgs e)

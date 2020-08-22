@@ -60,7 +60,7 @@ namespace OM.Vikala.Chakra.App.Mains.ChartForm
 
         private void UserToolStrip_LineChartWidthChangedEvent(object sender, EventArgs e)
         {
-            chart.BoldLine(sender.ToString());
+            chart1.BoldLine(sender.ToString());
             chart2.BoldLine(sender.ToString());
             chart3.BoldLine(sender.ToString());
             chart4.BoldLine(sender.ToString());
@@ -106,9 +106,9 @@ namespace OM.Vikala.Chakra.App.Mains.ChartForm
         }
         public override void loadChartControls()
         {
-            chart.InitializeControl();
-            chart.InitializeEvent(chartEvent);
-            chart.DisplayPointCount = itemCnt;
+            chart1.InitializeControl();
+            chart1.InitializeEvent(chartEvent);
+            chart1.DisplayPointCount = itemCnt;
 
             chart2.InitializeControl();
             chart2.InitializeEvent(chartEvent);
@@ -122,7 +122,7 @@ namespace OM.Vikala.Chakra.App.Mains.ChartForm
             chart4.InitializeEvent(chartEvent);
             chart4.DisplayPointCount = itemCnt;
 
-            chart.IsShowLine = false;
+            chart1.IsShowLine = false;
             chart2.IsShowLine = false;
             chart3.IsShowLine = false;
             chart4.IsShowLine = false;
@@ -144,47 +144,50 @@ namespace OM.Vikala.Chakra.App.Mains.ChartForm
             RemoveSourceData(sourceDatas);
             //국내지수인 경우 시간갭이 크기 때문에.. 전일종가를 당일시가로 해야한다. 
             //SetChangeOpenPrice(itemCode, sourceDatas);
-            string chartTitle = "원자::Orgin::";
-        
+            string chartTitle = "원자::";
+            if (OriginSourceType == OriginSourceTypeEnum.Normal)
+            {
+                chartTitle += "Orgin::";
+            }
             if (OriginSourceType == OriginSourceTypeEnum.Whim)
             {
                 sourceDatas = PPUtils.GetRecreateWhimDatas(itemCode, sourceDatas, true);
-                chartTitle = "원자::Whim::";              
+                chartTitle += "Whim::";
             }
             if (OriginSourceType == OriginSourceTypeEnum.Second)
             {
                 sourceDatas = PPUtils.GetRecreateSecondDatas(itemCode, sourceDatas, 5, false);
-                chartTitle = "원자::Second::";
+                chartTitle += "Second::";
             }
             if (OriginSourceType == OriginSourceTypeEnum.SecondQutum)
             {
                 sourceDatas = PPUtils.GetRecreateSecondDatas(itemCode, sourceDatas, 5, true);
-                chart.SetCandleColor(0, "Blue", "Red");
+                chart1.SetCandleColor(0, "Blue", "Red");
                 chart2.SetCandleColor(0, "Blue", "Red");
                 chart3.SetCandleColor(0, "Blue", "Red");
                 chart4.SetCandleColor(0, "Blue", "Red");
 
-                chartTitle = "원자::SQutum::";
+                chartTitle += "SQutum::";
             }
-         
+
             if (true || AverageType == AverageTypeEnum.Normal)
             {
                 var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas, 5);
                 sourceDatas = PPUtils.GetCutDatas(sourceDatas, averageDatas[0].DTime);
-                chart.LoadDataAndApply(itemCode, sourceDatas, base.timeInterval, 5);
+                chart1.LoadDataAndApply(itemCode, sourceDatas, base.timeInterval, 5);
                 chart2.LoadDataAndApply(itemCode, averageDatas, base.timeInterval, 5);
-                chart.Title = chartTitle + "Normal";
+                chart1.Title = chartTitle + "Normal";
                 chart2.Title = chartTitle + "Normal";
             }
             if (true || AverageType == AverageTypeEnum.Balanced)
             {
-                var averageDatas = PPUtils.GetBalancedAverageDatas(itemCode, sourceDatas, 4);               
+                var averageDatas = PPUtils.GetBalancedAverageDatas(itemCode, sourceDatas, 4);
                 chart3.LoadDataAndApply(itemCode, averageDatas, base.timeInterval, 5);
                 chart3.Title = chartTitle + "Balanced";
             }
             if (true || AverageType == AverageTypeEnum.Accumulated)
             {
-                var averageDatas = PPUtils.GetAccumulatedAverageDatas(itemCode, sourceDatas, 9);                
+                var averageDatas = PPUtils.GetAccumulatedAverageDatas(itemCode, sourceDatas, 9);
                 chart4.LoadDataAndApply(itemCode, averageDatas, base.timeInterval, 5);
                 chart4.Title = chartTitle + "Accumulated";
             }

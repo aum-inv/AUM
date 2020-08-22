@@ -1,4 +1,5 @@
-﻿using OM.Lib.Base.Enums;
+﻿using MaterialSkin;
+using OM.Lib.Base.Enums;
 using OM.PP.Chakra.Ctx;
 using OM.Vikala.Chakra.App.Config;
 using OM.Vikala.Chakra.App.Events;
@@ -16,7 +17,7 @@ using System.Windows.Forms;
 
 namespace OM.Vikala.Chakra.App.Mains
 {
-    public partial class MainForm : Form
+    public partial class MainForm : MaterialSkin.Controls.MaterialForm
     {
         List<BaseForm> formList = new List<BaseForm>();
 
@@ -32,6 +33,14 @@ namespace OM.Vikala.Chakra.App.Mains
         public MainForm()
         {
             InitializeComponent();
+
+
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+
+
             serverInfo();
 
             this.Load += MainForm_Load;
@@ -197,16 +206,6 @@ namespace OM.Vikala.Chakra.App.Mains
             catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
         }
 
-        private void tsb_MouseDown(object sender, MouseEventArgs e)
-        {
-            try
-            {
-                ToolStripSplitButton tsb = sender as ToolStripSplitButton;
-                tsb.ShowDropDown();
-            }
-            catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
-        }
-
         private void tsb_Click(object sender, EventArgs e)
         {
             try
@@ -362,8 +361,14 @@ namespace OM.Vikala.Chakra.App.Mains
                         case "라인형:양자챠트":
                             createLineTypeChart_Quantum(menuText);
                             break;
+                        case "라인형:길이변화챠트":
+                            createLineTypeChart_LengthRate(menuText);
+                            break;
                         case "라인형:암흑질량챠트":
                             createCandleLineTypeChart_Dm(menuText);
+                            break;
+                        case "라인형:양극챠트":
+                            createCandleLineTypeChart_ANode(menuText);
                             break;
                         #endregion
 
@@ -504,11 +509,33 @@ namespace OM.Vikala.Chakra.App.Mains
             var form = new Mains.ChartForm.QuantumChartForm();
             form.Text = title;
             AddTab(form);
+
+            form = new Mains.ChartForm.QuantumChartForm(OriginSourceTypeEnum.Whim);
+            form.Text = title + "(Whim)";
+            AddTab(form);
+
+            form = new Mains.ChartForm.QuantumChartForm(OriginSourceTypeEnum.Second);
+            form.Text = title + "(SOrigin)";
+            AddTab(form);
+            form = new Mains.ChartForm.QuantumChartForm(OriginSourceTypeEnum.SecondQutum);
+            form.Text = title + "(SQutum)";
+            AddTab(form);
         }
         private void createCandleLineTypeChart_QuantumHL(string title)
         {
             var form = new Mains.ChartForm.QuantumChartHLForm();
             form.Text = title;
+            AddTab(form);
+
+            form = new Mains.ChartForm.QuantumChartHLForm(OriginSourceTypeEnum.Whim);
+            form.Text = title + "(Whim)";
+            AddTab(form);
+
+            form = new Mains.ChartForm.QuantumChartHLForm(OriginSourceTypeEnum.Second);
+            form.Text = title + "(SOrigin)";
+            AddTab(form);
+            form = new Mains.ChartForm.QuantumChartHLForm(OriginSourceTypeEnum.SecondQutum);
+            form.Text = title + "(SQutum)";
             AddTab(form);
         }
         private void createCandleLineTypeChart_Dice(string title)
@@ -577,12 +604,7 @@ namespace OM.Vikala.Chakra.App.Mains
             form4.Text = "세컨드:평균:상세";
             AddTab(form4);
         }
-        private void createCandleLineTypeChart_Dm(string title)
-        {
-            var form = new Mains.ChartForm.DarkMassChartForm();
-            form.Text = title;
-            AddTab(form);
-        }
+       
         #endregion
 
         #region 캔들형챠트
@@ -693,14 +715,33 @@ namespace OM.Vikala.Chakra.App.Mains
         }
         private void createLineTypeChart_Velocity(string title) {
             var form = new Mains.ChartForm.VelocityChartForm();
-            form.IsShowCandle = false;
+            form.IsShowCandle = true;
+            form.Text = title;
+            AddTab(form);
+        }
+        private void createCandleLineTypeChart_Dm(string title)
+        {
+            var form = new Mains.ChartForm.DarkMassChartForm();
+            form.Text = title;
+            AddTab(form);
+        }
+        private void createCandleLineTypeChart_ANode(string title)
+        {
+            var form = new Mains.ChartForm.ANodeLineChartForm();
+            form.Text = title;
+            AddTab(form);
+        }
+        private void createLineTypeChart_LengthRate(string title)
+        {
+            var form = new Mains.ChartForm.LengthRateChartForm();
+            form.IsShowCandle = true;
             form.Text = title;
             AddTab(form);
         }
         private void createLineTypeChart_Quantum(string title)
         {
             var form = new Mains.ChartForm.QuantumChartForm();
-            form.IsShowCandle = false;
+            form.IsShowCandle = true;
             form.Text = title;
             AddTab(form);
         }      

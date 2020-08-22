@@ -360,27 +360,27 @@ namespace OM.Atman.Chakra.App
 
         private void btnStrategySS_Click(object sender, EventArgs e)
         {
-            //new StrategyTradeRuleSSForm().Show();
+            new StrategyTradeRuleSSForm().Show();
         }
 
         private void btnStrategySM_Click(object sender, EventArgs e)
         {
-            //new StrategyTradeRuleSMForm().Show();
+            new StrategyTradeRuleSMForm().Show();
         }
 
         private void btnStrategyMS_Click(object sender, EventArgs e)
         {
-           // new StrategyTradeRuleMSForm().Show();
+            new StrategyTradeRuleMSForm().Show();
         }
 
         private void btnStrategyMM_Click(object sender, EventArgs e)
         {
-            //new StrategyTradeRuleMMForm().Show();
+            new StrategyTradeRuleMMForm().Show();
         }
 
         private void btnStrategy_Click(object sender, EventArgs e)
         {
-            //new StrategyAutoTradeRuleForm().Show();
+            new StrategyAutoTradeRuleForm().Show();
         }
 
         private void button1_Click(object sender, EventArgs e)

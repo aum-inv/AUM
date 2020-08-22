@@ -17,11 +17,13 @@ namespace OM.Atman.Chakra
         int limitTicks = 10;
         AtmanRule ruleInfo = null;
         S_CandleItemData candle = null;
-        protected override string AtmanName => "TWOLINE";
         public AtmanRule RuleInfo
         {
             get { return ruleInfo; }
         }
+
+        public override string AtmanName => throw new NotImplementedException();
+
         public TwoLineTradeRule(AtmanRule ruleInfo)
         {
             ItemCode = ruleInfo.Item;
@@ -300,18 +302,6 @@ namespace OM.Atman.Chakra
             catch (Exception ex) { }
 
             return buyPrice;
-        }
-
-        public void SellBuy(string type, string position)
-        {
-            try
-            {
-                TradeEvents.Instance.OnTradeRuleHandler(AtmanName, ItemCode, $"{type}:{ruleInfo.TimeType}:{ruleInfo.PriceType}:{position}:{CPrice}");
-                //XingContext.Instance.ClientContext.OrderBuySell();
-            }
-            catch (Exception)
-            {
-            }
         }
 
         public void GetSise(CurrentPrice price = null)
