@@ -103,7 +103,7 @@
             this.metroPanel1.HorizontalScrollbarSize = 10;
             this.metroPanel1.Location = new System.Drawing.Point(5, 5);
             this.metroPanel1.Name = "metroPanel1";
-            this.metroPanel1.Size = new System.Drawing.Size(928, 54);
+            this.metroPanel1.Size = new System.Drawing.Size(925, 54);
             this.metroPanel1.TabIndex = 8;
             this.metroPanel1.VerticalScrollbarBarColor = true;
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
@@ -122,7 +122,7 @@
             this.btnSave.ForeColor = System.Drawing.Color.White;
             this.btnSave.Inactive1 = System.Drawing.Color.Transparent;
             this.btnSave.Inactive2 = System.Drawing.Color.Transparent;
-            this.btnSave.Location = new System.Drawing.Point(859, 0);
+            this.btnSave.Location = new System.Drawing.Point(856, 0);
             this.btnSave.Name = "btnSave";
             this.btnSave.Radius = 2;
             this.btnSave.Size = new System.Drawing.Size(69, 54);
@@ -154,7 +154,7 @@
             this.label2.ForeColor = System.Drawing.Color.DimGray;
             this.label2.Location = new System.Drawing.Point(3, 26);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(964, 26);
+            this.label2.Size = new System.Drawing.Size(789, 26);
             this.label2.TabIndex = 7;
             this.label2.Text = " - 시스템, 불확실성, 추세단계, 변동성 등을 고려하여 투자가 가능한 시점인지 여부를 확인한다.. ";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -183,7 +183,7 @@
             this.metroPanel2.HorizontalScrollbarSize = 10;
             this.metroPanel2.Location = new System.Drawing.Point(5, 571);
             this.metroPanel2.Name = "metroPanel2";
-            this.metroPanel2.Size = new System.Drawing.Size(928, 24);
+            this.metroPanel2.Size = new System.Drawing.Size(925, 24);
             this.metroPanel2.TabIndex = 9;
             this.metroPanel2.VerticalScrollbarBarColor = true;
             this.metroPanel2.VerticalScrollbarHighlightOnWheel = false;
@@ -440,7 +440,7 @@
             this.metroPanel3.HorizontalScrollbarSize = 10;
             this.metroPanel3.Location = new System.Drawing.Point(5, 59);
             this.metroPanel3.Name = "metroPanel3";
-            this.metroPanel3.Size = new System.Drawing.Size(928, 512);
+            this.metroPanel3.Size = new System.Drawing.Size(925, 512);
             this.metroPanel3.TabIndex = 10;
             this.metroPanel3.VerticalScrollbarBarColor = true;
             this.metroPanel3.VerticalScrollbarHighlightOnWheel = false;
@@ -503,7 +503,7 @@
             this.metroTextBox1.SelectionStart = 0;
             this.metroTextBox1.ShortcutsEnabled = true;
             this.metroTextBox1.Size = new System.Drawing.Size(311, 174);
-            this.metroTextBox1.Style = MetroFramework.MetroColorStyle.Brown;
+            this.metroTextBox1.Style = MetroFramework.MetroColorStyle.Lime;
             this.metroTextBox1.TabIndex = 35;
             this.metroTextBox1.UseSelectable = true;
             this.metroTextBox1.UseStyleColors = true;
@@ -847,7 +847,7 @@
             this.tbUncertaintyCmt.SelectionStart = 0;
             this.tbUncertaintyCmt.ShortcutsEnabled = true;
             this.tbUncertaintyCmt.Size = new System.Drawing.Size(281, 141);
-            this.tbUncertaintyCmt.Style = MetroFramework.MetroColorStyle.Brown;
+            this.tbUncertaintyCmt.Style = MetroFramework.MetroColorStyle.Lime;
             this.tbUncertaintyCmt.TabIndex = 35;
             this.tbUncertaintyCmt.UseSelectable = true;
             this.tbUncertaintyCmt.UseStyleColors = true;
@@ -1292,7 +1292,7 @@
             this.Controls.Add(this.metroPanel1);
             this.Name = "Uc_InvAvailability";
             this.Padding = new System.Windows.Forms.Padding(5);
-            this.Size = new System.Drawing.Size(938, 600);
+            this.Size = new System.Drawing.Size(935, 600);
             this.metroPanel1.ResumeLayout(false);
             this.metroPanel2.ResumeLayout(false);
             this.metroPanel2.PerformLayout();

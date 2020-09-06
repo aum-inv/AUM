@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EasyTabs;
+using OM.Vikala.Chakra.App.Config;
 using OM.Vikala.Chakra.App.Mains;
 
 namespace OM.Vikala.Chakra.App
@@ -21,9 +22,10 @@ namespace OM.Vikala.Chakra.App
             LoginForm login_form = new LoginForm();
             if (login_form.ShowDialog() == DialogResult.OK)
             {
-                Application.Run(new Mains.MainForm());
-
-                //Application.Run(new MainForm());
+                if(SharedData.StartWindowType == "1")
+                    Application.Run(new Mains.MainForm());
+                else if (SharedData.StartWindowType == "2")
+                    Application.Run(new Mains.MainToolBar());
             }
         }
     }

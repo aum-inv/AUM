@@ -32,8 +32,22 @@ namespace OM.Vikala.Controls.Charts
             get;
             set;
         }
+        public List<T_AtomItemData> ChartDataSub
+        {
+            get;
+            set;
+        }
+
+        public void LoadData(string itemCode = ""
+            , List<T_AtomItemData> chartData = null 
+            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day)
+        {
+            LoadData(itemCode, chartData, null, timeInterval);
+        }
+
         public void LoadData(string itemCode = ""
             , List<T_AtomItemData> chartData = null
+            , List<T_AtomItemData> chartAvgData = null
             , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day)
         {
             if (itemCode != ItemCode || TimeInterval != timeInterval)
@@ -43,6 +57,7 @@ namespace OM.Vikala.Controls.Charts
             TimeInterval = timeInterval;
             ItemCode = itemCode;
             ChartData = chartData;
+            ChartDataSub = chartAvgData;
 
             this.Invoke(new MethodInvoker(() => {
                 Reset();

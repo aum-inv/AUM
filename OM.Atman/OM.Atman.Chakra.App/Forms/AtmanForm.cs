@@ -30,7 +30,6 @@ namespace OM.Atman.Chakra.App.Forms
             uc_BuyPlan.Dock = DockStyle.Fill;
             uc_InvAvailability.Dock = DockStyle.Fill;
             uc_InvResult.Dock = DockStyle.Fill;
-            uc_LossPlan.Dock = DockStyle.Fill;
             uc_RevenuePlan.Dock = DockStyle.Fill;
             uc_TrendCheck.Dock = DockStyle.Fill;
         }
@@ -43,16 +42,11 @@ namespace OM.Atman.Chakra.App.Forms
             tspMenu3.Click += tspMenu_Click;
             tspMenu4.Click += tspMenu_Click;
             tspMenu5.Click += tspMenu_Click;
-            tspMenu6.Click += tspMenu_Click;
             tspMenu7.Click += tspMenu_Click;
         }
 
         private void AtmanForm_Load(object sender, EventArgs e)
-        {
-            if (ShareConfig.IsShowSignalForm)
-                new TradingRule.ThreeFiveRuleForm().Show();
-            if (ShareConfig.IsShowDetailSignalForm)
-                new TradingRule.ThreeFiveRuleForm().Show();
+        {         
         }
 
         private void tspMenu_Click(object sender, EventArgs e)
@@ -66,7 +60,6 @@ namespace OM.Atman.Chakra.App.Forms
             tspMenu3.ForeColor =
             tspMenu4.ForeColor =
             tspMenu5.ForeColor = 
-            tspMenu6.ForeColor =
             tspMenu7.ForeColor = System.Drawing.Color.DimGray;
             btn.ForeColor = System.Drawing.Color.OrangeRed;
         }
@@ -78,7 +71,6 @@ namespace OM.Atman.Chakra.App.Forms
             uc_BuyPlan.Visible = false;
             uc_InvAvailability.Visible = false;
             uc_InvResult.Visible = false;
-            uc_LossPlan.Visible = false;
             uc_RevenuePlan.Visible = false;
             uc_TrendCheck.Visible = false;
 
@@ -87,9 +79,8 @@ namespace OM.Atman.Chakra.App.Forms
                 case "투자가능시점여부": uc_InvAvailability.Visible = true; break;
                 case "추세확인": uc_TrendCheck.Visible = true; break;
                 case "계좌&&자금계획": uc_AccountFundPlan.Visible = true; break;
-                case "매입계획": uc_BuyPlan.Visible = true; break;
+                case "진입&&로스컷계획": uc_BuyPlan.Visible = true; break;
                 case "수익포지션계획": uc_RevenuePlan.Visible = true; break;
-                case "손실포지션계획": uc_LossPlan.Visible = true; break;
                 case "투자결과": uc_InvResult.Visible = true; break;
                 default: break;
             }

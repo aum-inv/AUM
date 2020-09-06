@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OM.Atman.Chakra.App.Config;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,7 +20,14 @@ namespace OM.Atman.Chakra.App
             LoginForm login_form = new LoginForm();
             if (login_form.ShowDialog() == DialogResult.OK)
             {
-                Application.Run(new Forms.AtmanForm());
+                if(ShareConfig.LaunchFormType == 1)
+                    Application.Run(new Forms.AtmanKospiForm());
+                else if (ShareConfig.LaunchFormType == 2)
+                    Application.Run(new AIForms.AtmanKospiAIForm());
+                else if (ShareConfig.LaunchFormType == 3)
+                    Application.Run(new TradingRule.ThreeFiveRuleForm());
+                else if (ShareConfig.LaunchFormType == 4)
+                    Application.Run(new Forms.AtmanInvDiaryForm());
             }
 
             //Application.Run(new LoginForm());

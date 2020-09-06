@@ -31,8 +31,20 @@ namespace OM.Vikala.Controls.Charts
             get;
             set;
         }
+        public List<T_CandleAntiCandleItemData> ChartDataSub
+        {
+            get;
+            set;
+        }
         public void LoadData(string itemCode = ""
             , List<T_CandleAntiCandleItemData> chartData = null
+            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day)
+        {
+            LoadData(itemCode, chartData, null, timeInterval);
+        }
+        public void LoadData(string itemCode = ""
+            , List<T_CandleAntiCandleItemData> chartData = null
+            , List<T_CandleAntiCandleItemData> chartDataSub = null
             , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day)
         {
             if (itemCode != ItemCode || TimeInterval != timeInterval)
@@ -42,13 +54,14 @@ namespace OM.Vikala.Controls.Charts
             TimeInterval = timeInterval;
             ItemCode = itemCode;
             ChartData = chartData;
+            ChartDataSub = chartDataSub;
 
             this.Invoke(new MethodInvoker(() => {
                 Reset();
                 View();
                 Summary();
-            }));           
-        }        
+            }));
+        }
 
         public CandleAntiCandleChart() 
         {

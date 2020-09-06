@@ -82,7 +82,7 @@ namespace OM.PP.XingApp.Api
 
         protected override void query_ReceiveData(string szTrCode)
         {
-            _ = Task.Factory.StartNew(() =>
+            Task.Factory.StartNew(() =>
               {
                   try
                   {

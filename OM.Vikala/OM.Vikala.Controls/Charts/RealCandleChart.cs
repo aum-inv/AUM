@@ -22,14 +22,27 @@ namespace OM.Vikala.Controls.Charts
             get;
             set;
         }
+        public List<S_CandleItemData> ChartDataSub
+        {
+            get;
+            set;
+        }
 
         public void LoadData(string itemCode = ""
             , List<S_CandleItemData> chartData = null
             , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day)
         {
+            LoadData(itemCode, chartData, null, timeInterval);
+        }
+        public void LoadData(string itemCode = ""
+           , List<S_CandleItemData> chartData = null
+             , List<S_CandleItemData> chartDataSub = null
+           , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day)
+        {
             TimeInterval = timeInterval;
             ItemCode = itemCode;
             ChartData = chartData;
+            ChartDataSub = chartDataSub;
             this.Invoke(new MethodInvoker(() => {
                 Reset();
                 View();

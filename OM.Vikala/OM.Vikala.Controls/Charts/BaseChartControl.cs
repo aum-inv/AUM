@@ -262,6 +262,7 @@ namespace OM.Vikala.Controls.Charts
                 chartArea.AxisX.LabelStyle.Format = "MM/dd HH:mm";
             
             chartArea.AxisY2.LabelStyle.Format = "{N" + RoundLength + "}";
+            chartArea.AxisY.LabelStyle.Format = "{N" + RoundLength + "}";
         }
         public virtual void SetYFormat(string format)
         {
@@ -310,7 +311,7 @@ namespace OM.Vikala.Controls.Charts
         {
             foreach (var s in chart.Series)
             {
-                if (s.ChartType == SeriesChartType.Line)
+                if (s.ChartType == SeriesChartType.Line || s.ChartType == SeriesChartType.Spline)
                 {                 
                     if (type == "+")
                         s.BorderWidth += 1;
@@ -394,12 +395,12 @@ namespace OM.Vikala.Controls.Charts
             yLine.AnchorY = 0;
             yLineLabel.Visible = false;
         }
-        private void Chart_MouseDown(object sender, MouseEventArgs e)
+        public void Chart_MouseDown(object sender, MouseEventArgs e)
         {
             chart.Annotations.Clear();
         }
 
-        private void createXYLineAnnotation()
+        protected void createXYLineAnnotation()
         {
             yLine.AxisX = chart.ChartAreas[0].AxisX;
             yLine.AxisY = chart.ChartAreas[0].AxisY2;

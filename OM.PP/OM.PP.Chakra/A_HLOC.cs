@@ -23,16 +23,34 @@ namespace OM.PP.Chakra
             }
         }
 
+        #region 기본정보_시가대비
         private Single _OpenPrice = 0;
         private Single _HighPrice = 0;
         private Single _LowPrice = 0;
         private Single _ClosePrice = 0;
-
         public Single OpenPrice { get { return (Single)Math.Round(_OpenPrice, RoundLength); } set { _OpenPrice = value; } }
         public Single HighPrice { get { return (Single)Math.Round(_HighPrice, RoundLength); ; } set { _HighPrice = value; } }
         public Single LowPrice { get { return (Single)Math.Round(_LowPrice, RoundLength); ; } set { _LowPrice = value; } }
         public Single ClosePrice { get { return (Single)Math.Round(_ClosePrice, RoundLength); ; } set { _ClosePrice = value; } }
         public Single Volume { get; set; } = 0;
+        #endregion
+
+        #region 기본정보_전일종가대비
+
+        #endregion
+
+        #region 기본정보_전일종가대비
+
+        #endregion
+
+        #region 양자정보_시가대비
+
+        #endregion
+
+        #region 기본정보_전일종가대비
+
+        #endregion
+
         public Single CenterPrice
         {
             get
@@ -447,118 +465,6 @@ namespace OM.PP.Chakra
             }
         }
 
-        public virtual PlusMinusTypeEnum PlusMinusType2
-        {
-            get
-            {
-                if (CenterPrice < MiddlePrice) return PlusMinusTypeEnum.양;
-                else if (CenterPrice > MiddlePrice) return PlusMinusTypeEnum.음;
-                else return PlusMinusTypeEnum.무;
-            }
-        }
-
-        public Single 천가격
-        {
-            get
-            {
-                if (PlusMinusType == PlusMinusTypeEnum.양)
-                    return VikalaPrice;
-                else if (PlusMinusType == PlusMinusTypeEnum.음)
-                    return QuantumPrice;
-                else
-                    return 0;
-            }
-        }
-        public Single 천중
-        {
-            get
-            {
-                if (PlusMinusType == PlusMinusTypeEnum.양)
-                    return VikalaMiddlePrice;
-                else if (PlusMinusType == PlusMinusTypeEnum.음)
-                    return QuantumMiddlePrice;
-                else
-                    return 0;
-            }
-        }
-        public Single 천저인고
-        {
-            get
-            {
-                if (PlusMinusType == PlusMinusTypeEnum.양)
-                    return ClosePrice;
-                else if (PlusMinusType == PlusMinusTypeEnum.음)
-                    return OpenPrice;
-                else
-                    return 0;
-            }
-        }
-        public Single 인중
-        {
-            get
-            {
-                return MiddlePrice;
-            }
-        }
-        public Single 인저지고
-        {
-            get
-            {
-                if (PlusMinusType == PlusMinusTypeEnum.양)
-                    return OpenPrice;
-                else if (PlusMinusType == PlusMinusTypeEnum.음)
-                    return ClosePrice;
-                else
-                    return 0;
-            }
-        }
-        public Single 지중
-        {
-            get
-            {
-                if (PlusMinusType == PlusMinusTypeEnum.양)
-                    return QuantumMiddlePrice;
-                else if (PlusMinusType == PlusMinusTypeEnum.음)
-                    return VikalaMiddlePrice;
-                else
-                    return 0;
-            }
-        }
-        public Single 지저
-        {
-            get
-            {
-                if (PlusMinusType == PlusMinusTypeEnum.양)
-                    return QuantumPrice;
-                else if (PlusMinusType == PlusMinusTypeEnum.음)
-                    return VikalaPrice;
-                else
-                    return 0;
-            }
-        }
-        public Single 전자가격P
-        {
-            get
-            {
-                if (PlusMinusType == PlusMinusTypeEnum.양)
-                    return (Single)Math.Round(ClosePrice + BodyLength, RoundLength);
-                else
-                    return (Single)Math.Round(OpenPrice + BodyLength, RoundLength); ;
-
-            }
-        }
-        public Single 전자가격M
-        {
-            get
-            {
-                if (PlusMinusType == PlusMinusTypeEnum.음)
-                    return (Single)Math.Round(ClosePrice - BodyLength, RoundLength);
-                else
-                    return (Single)Math.Round(OpenPrice - BodyLength, RoundLength); ;
-
-            }
-        }
-
         public Single U_HighPrice
         {
             get
@@ -670,57 +576,8 @@ namespace OM.PP.Chakra
         }
 
 
-        #region 천부경_천지인캔들가격
-        public Single 천부경_천고
-        {
-            get { return (Single)Math.Round(_HighPrice + TotalLength, RoundLength); }
-        }
-        public Single 천부경_천저
-        {
-            get { return (Single)Math.Round(_HighPrice, RoundLength); }
-        }
-        public Single 천부경_천시
-        {
-            get { return (Single)Math.Round(_HighPrice + HeadLength, RoundLength); }
-        }
-        public Single 천부경_천종
-        {
-            get { return (Single)Math.Round(_HighPrice + HeadLength + BodyLength, RoundLength); }
-        }
-
-        public Single 천부경_인고
-        {
-            get { return (Single)Math.Round(_HighPrice, RoundLength); }
-        }
-        public Single 천부경_인저
-        {
-            get { return (Single)Math.Round(_LowPrice, RoundLength); }
-        }
-        public Single 천부경_인시
-        {
-            get { return (Single)Math.Round(_OpenPrice, RoundLength); }
-        }
-        public Single 천부경_인종
-        {
-            get { return (Single)Math.Round(_ClosePrice, RoundLength); }
-        }
-
-        public Single 천부경_지고
-        {
-            get { return (Single)Math.Round(_LowPrice, RoundLength); }
-        }
-        public Single 천부경_지저
-        {
-            get { return (Single)Math.Round(_LowPrice - TotalLength, RoundLength); }
-        }
-        public Single 천부경_지시
-        {
-            get { return (Single)Math.Round(_LowPrice - LegLength, RoundLength); }
-        }
-        public Single 천부경_지종
-        {
-            get { return (Single)Math.Round(_LowPrice - LegLength - BodyLength, RoundLength); }
-        }
+        #region ALL Length
+       
         public Single AllLength
         {
             get 

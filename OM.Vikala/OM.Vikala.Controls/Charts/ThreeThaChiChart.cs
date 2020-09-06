@@ -26,21 +26,34 @@ namespace OM.Vikala.Controls.Charts
             get;
             set;
         }
+        public List<T_ThaChiItemData> ChartDataSub
+        {
+            get;
+            set;
+        }
 
         public void LoadData(string itemCode = ""
             , List <T_ThaChiItemData> chartData = null
             , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day)
         {
+            LoadData(itemCode, chartData, null, timeInterval);
+        }
+        public void LoadData(string itemCode = ""
+            , List<T_ThaChiItemData> chartData = null
+            , List<T_ThaChiItemData> chartDataSub = null
+            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day)
+        {
             TimeInterval = timeInterval;
             ItemCode = itemCode;
             ChartData = chartData;
+            ChartData = chartDataSub;
             this.Invoke(new MethodInvoker(() => {
                 Reset();
                 View();
                 //Summary();
             }));
         }
-        
+
         public ThreeThaChiChart()
         {
             InitializeComponent();

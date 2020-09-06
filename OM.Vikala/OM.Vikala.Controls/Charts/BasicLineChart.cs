@@ -19,8 +19,7 @@ namespace OM.Vikala.Controls.Charts
             get;
             set;
         } = LineChartTypeEnum.기본;
-
-        
+                
         public bool IsUseLine1
         {
             get { return chart.Series[0].Enabled; }
@@ -47,20 +46,31 @@ namespace OM.Vikala.Controls.Charts
             get;
             set;
         }
-
+        public List<S_LineItemData> ChartDataSub
+        {
+            get;
+            set;
+        }
         public void LoadData(string itemCode = ""
             , List<S_LineItemData> chartData = null
             , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day)
         {
+            LoadData(itemCode, chartData, null, timeInterval);
+        }
+        public void LoadData(string itemCode = ""
+           , List<S_LineItemData> chartData = null
+             , List<S_LineItemData> chartDataSub = null
+           , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day)
+        {
             TimeInterval = timeInterval;
             ItemCode = itemCode;
             ChartData = chartData;
+            ChartDataSub = chartDataSub;
             this.Invoke(new MethodInvoker(() => {
                 Reset();
                 View();
             }));
         }
-
         public BasicLineChart()
         {
             InitializeComponent();

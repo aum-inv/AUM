@@ -27,8 +27,10 @@ namespace OM.Atman.Chakra.App
         {
             if (tbSecurity.Text == "atman999")
             {
-                ShareConfig.IsShowSignalForm = chkSignalSimple.Checked;
-                ShareConfig.IsShowDetailSignalForm = chkSignalComplication.Checked;
+                if (chkPlanResult.Checked) ShareConfig.LaunchFormType = 1;
+                else if (chkSignalMatching.Checked) ShareConfig.LaunchFormType = 2;
+                else if (chkSignalComplication.Checked) ShareConfig.LaunchFormType = 3;
+                else if (chkDiary.Checked) ShareConfig.LaunchFormType = 4;
 
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 this.Close();

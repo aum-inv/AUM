@@ -26,7 +26,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\..\..\..\..\Users\atman\Desktop\AUM\ATMAN.CHAKRA\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -59,9 +59,6 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="OM.Vikala.Controls">
-      <HintPath>..\..\OM.Vikala\OM.Vikala.Controls\obj\Debug\OM.Vikala.Controls.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -83,6 +80,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AIForms\AtmanKospiAIForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AIForms\AtmanKospiAIForm.Designer.cs">
+      <DependentUpon>AtmanKospiAIForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Alerts\Class1.cs" />
     <Compile Include="Alerts\TelegramUtil.cs" />
     <Compile Include="Cals\RevenueCalculater.cs" />
@@ -114,11 +117,26 @@
     <Compile Include="Config\RevenueConfig.cs" />
     <Compile Include="Config\LosscutConfig.cs" />
     <Compile Include="Config\ShareConfig.cs" />
+    <Compile Include="Config\ShareData.cs" />
+    <Compile Include="Events\SiseListSelectedEvents.cs" />
+    <Compile Include="Events\InvestmentPlanSelectedEvents.cs" />
+    <Compile Include="Forms\AtmanInvDiaryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AtmanInvDiaryForm.Designer.cs">
+      <DependentUpon>AtmanInvDiaryForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AtmanForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\AtmanForm.Designer.cs">
       <DependentUpon>AtmanForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AtmanKospiForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AtmanKospiForm.Designer.cs">
+      <DependentUpon>AtmanKospiForm.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
@@ -255,12 +273,6 @@
     <Compile Include="Uc\Plans\Uc_BuyPlan.Designer.cs">
       <DependentUpon>Uc_BuyPlan.cs</DependentUpon>
     </Compile>
-    <Compile Include="Uc\Plans\Uc_LossPlan.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Uc\Plans\Uc_LossPlan.Designer.cs">
-      <DependentUpon>Uc_LossPlan.cs</DependentUpon>
-    </Compile>
     <Compile Include="Uc\Plans\Uc_AccountFundPlan.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -279,6 +291,12 @@
     <Compile Include="Uc\Plans\Uc_InvAvailability.Designer.cs">
       <DependentUpon>Uc_InvAvailability.cs</DependentUpon>
     </Compile>
+    <Compile Include="Uc\Uc_SiseListItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Uc\Uc_SiseListItem.Designer.cs">
+      <DependentUpon>Uc_SiseListItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Uc\Uc_ListItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -291,6 +309,9 @@
     <Compile Include="UC_Signal.Designer.cs">
       <DependentUpon>UC_Signal.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AIForms\AtmanKospiAIForm.resx">
+      <DependentUpon>AtmanKospiAIForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CandleSignalForm4.resx">
       <DependentUpon>CandleSignalForm4.cs</DependentUpon>
     </EmbeddedResource>
@@ -303,8 +324,14 @@
     <EmbeddedResource Include="CandleSignalForm.resx">
       <DependentUpon>CandleSignalForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AtmanInvDiaryForm.resx">
+      <DependentUpon>AtmanInvDiaryForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AtmanForm.resx">
       <DependentUpon>AtmanForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AtmanKospiForm.resx">
+      <DependentUpon>AtmanKospiForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -379,9 +406,6 @@
     <EmbeddedResource Include="Uc\Plans\Uc_BuyPlan.resx">
       <DependentUpon>Uc_BuyPlan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Uc\Plans\Uc_LossPlan.resx">
-      <DependentUpon>Uc_LossPlan.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Uc\Plans\Uc_AccountFundPlan.resx">
       <DependentUpon>Uc_AccountFundPlan.cs</DependentUpon>
     </EmbeddedResource>
@@ -390,6 +414,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Uc\Plans\Uc_InvAvailability.resx">
       <DependentUpon>Uc_InvAvailability.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uc\Uc_SiseListItem.resx">
+      <DependentUpon>Uc_SiseListItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Uc\Uc_ListItem.resx">
       <DependentUpon>Uc_ListItem.cs</DependentUpon>
@@ -416,12 +443,19 @@
     <None Include="Resources\begin-tune.wav" />
     <None Include="Resources\money.wav" />
     <None Include="Resources\signal.png" />
+    <Content Include="DataSchema\AtmanKospiDataSchema.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="feed-icon-pink.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\OM.PP\OM.PP.Chakra\OM.PP.Chakra.csproj">
       <Project>{2c4aa241-5c13-4abf-9eb3-5903308cb439}</Project>
       <Name>OM.PP.Chakra</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OM.Vikala\OM.Vikala.Controls\OM.Vikala.Controls.csproj">
+      <Project>{28e6d99c-2c15-4527-928a-a2eab2e692b5}</Project>
+      <Name>OM.Vikala.Controls</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\OM\OM.Lib.Base\OM.Lib.Base.csproj">
       <Project>{1796ffd0-4eaf-4f72-8db2-923345b88c7e}</Project>

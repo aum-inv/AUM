@@ -59,11 +59,27 @@
     <Compile Include="Charts\ANodeLineChart.Designer.cs">
       <DependentUpon>ANodeLineChart.cs</DependentUpon>
     </Compile>
-    <Compile Include="Charts\ParkChart.cs">
+    <Compile Include="Charts\ChakraChart.cs" />
+    <Compile Include="Charts\ChakraChart.Designer.cs">
+      <DependentUpon>ChakraChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Charts\SmartCandleChart.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Charts\ParkChart.Designer.cs">
-      <DependentUpon>ParkChart.cs</DependentUpon>
+    <Compile Include="Charts\SmartCandleChart.Designer.cs">
+      <DependentUpon>SmartCandleChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Charts\ComparedBasicCandleChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Charts\ComparedBasicCandleChart.Designer.cs">
+      <DependentUpon>ComparedBasicCandleChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Charts\BasicCandleChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Charts\BasicCandleChart.Designer.cs">
+      <DependentUpon>BasicCandleChart.cs</DependentUpon>
     </Compile>
     <Compile Include="Charts\MovingAverageBarChart.cs">
       <SubType>UserControl</SubType>
@@ -82,12 +98,6 @@
     </Compile>
     <Compile Include="Charts\CandleAntiCandleChart.Designer.cs">
       <DependentUpon>CandleAntiCandleChart.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Charts\CheonbugyeongChart.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Charts\CheonbugyeongChart.Designer.cs">
-      <DependentUpon>CheonbugyeongChart.cs</DependentUpon>
     </Compile>
     <Compile Include="Charts\AntiMatterChart.cs">
       <SubType>UserControl</SubType>
@@ -137,22 +147,10 @@
     <Compile Include="Charts\ChakraTradeChart.Designer.cs">
       <DependentUpon>ChakraTradeChart.cs</DependentUpon>
     </Compile>
-    <Compile Include="Charts\ChakraChart.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Charts\ChakraChart.Designer.cs">
-      <DependentUpon>ChakraChart.cs</DependentUpon>
-    </Compile>
     <Compile Include="Charts\BaseChartControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Charts\ChartLoads.cs" />
-    <Compile Include="Charts\PrimeNumCandleChart.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Charts\PrimeNumCandleChart.Designer.cs">
-      <DependentUpon>PrimeNumCandleChart.cs</DependentUpon>
-    </Compile>
     <Compile Include="Charts\QuantumLineChart_Backup.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -165,23 +163,11 @@
     <Compile Include="Charts\QuantumLineTradeChart.Designer.cs">
       <DependentUpon>QuantumLineTradeChart.cs</DependentUpon>
     </Compile>
-    <Compile Include="Charts\QuarkCandleChart.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Charts\QuarkCandleChart.Designer.cs">
-      <DependentUpon>QuarkCandleChart.cs</DependentUpon>
-    </Compile>
     <Compile Include="Charts\LengthRateLineChart.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Charts\LengthRateLineChart.Designer.cs">
       <DependentUpon>LengthRateLineChart.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Charts\WuXingCandleChart.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Charts\WuXingCandleChart.Designer.cs">
-      <DependentUpon>WuXingCandleChart.cs</DependentUpon>
     </Compile>
     <Compile Include="Charts\VelocityLineChart.cs">
       <SubType>UserControl</SubType>
@@ -189,23 +175,11 @@
     <Compile Include="Charts\VelocityLineChart.Designer.cs">
       <DependentUpon>VelocityLineChart.cs</DependentUpon>
     </Compile>
-    <Compile Include="Charts\ReverseCandleChart.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Charts\ReverseCandleChart.Designer.cs">
-      <DependentUpon>ReverseCandleChart.cs</DependentUpon>
-    </Compile>
     <Compile Include="Charts\QuantumLineChart.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Charts\QuantumLineChart.Designer.cs">
       <DependentUpon>QuantumLineChart.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Charts\FiveColorChart.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Charts\FiveColorChart.Designer.cs">
-      <DependentUpon>FiveColorChart.cs</DependentUpon>
     </Compile>
     <Compile Include="Charts\ThreeThaChiChart.cs">
       <SubType>UserControl</SubType>
@@ -225,24 +199,6 @@
     </Compile>
     <Compile Include="Charts\BasicLineChart.Designer.cs">
       <DependentUpon>BasicLineChart.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Charts\BasicCandleChart.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Charts\BasicCandleChart.Designer.cs">
-      <DependentUpon>BasicCandleChart.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Charts\BasicVolumeChart.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Charts\BasicVolumeChart.Designer.cs">
-      <DependentUpon>BasicVolumeChart.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Charts\Candlestick.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Charts\Candlestick.Designer.cs">
-      <DependentUpon>Candlestick.cs</DependentUpon>
     </Compile>
     <Compile Include="Charts\ChartEvents.cs" />
     <Compile Include="Charts\ChartUtil.cs" />
@@ -280,8 +236,17 @@
     <EmbeddedResource Include="Charts\ANodeLineChart.resx">
       <DependentUpon>ANodeLineChart.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Charts\ParkChart.resx">
-      <DependentUpon>ParkChart.cs</DependentUpon>
+    <EmbeddedResource Include="Charts\ChakraChart.resx">
+      <DependentUpon>ChakraChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Charts\SmartCandleChart.resx">
+      <DependentUpon>SmartCandleChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Charts\ComparedBasicCandleChart.resx">
+      <DependentUpon>ComparedBasicCandleChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Charts\BasicCandleChart.resx">
+      <DependentUpon>BasicCandleChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Charts\MovingAverageBarChart.resx">
       <DependentUpon>MovingAverageBarChart.cs</DependentUpon>
@@ -291,9 +256,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Charts\CandleAntiCandleChart.resx">
       <DependentUpon>CandleAntiCandleChart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Charts\CheonbugyeongChart.resx">
-      <DependentUpon>CheonbugyeongChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Charts\AntiMatterChart.resx">
       <DependentUpon>AntiMatterChart.cs</DependentUpon>
@@ -322,38 +284,20 @@
     <EmbeddedResource Include="Charts\ChakraTradeChart.resx">
       <DependentUpon>ChakraTradeChart.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Charts\ChakraChart.resx">
-      <DependentUpon>ChakraChart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Charts\PrimeNumCandleChart.resx">
-      <DependentUpon>PrimeNumCandleChart.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Charts\QuantumLineChart_Backup.resx">
       <DependentUpon>QuantumLineChart_Backup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Charts\QuantumLineTradeChart.resx">
       <DependentUpon>QuantumLineTradeChart.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Charts\QuarkCandleChart.resx">
-      <DependentUpon>QuarkCandleChart.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Charts\LengthRateLineChart.resx">
       <DependentUpon>LengthRateLineChart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Charts\WuXingCandleChart.resx">
-      <DependentUpon>WuXingCandleChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Charts\VelocityLineChart.resx">
       <DependentUpon>VelocityLineChart.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Charts\ReverseCandleChart.resx">
-      <DependentUpon>ReverseCandleChart.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Charts\QuantumLineChart.resx">
       <DependentUpon>QuantumLineChart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Charts\FiveColorChart.resx">
-      <DependentUpon>FiveColorChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Charts\ThreeThaChiChart.resx">
       <DependentUpon>ThreeThaChiChart.cs</DependentUpon>
@@ -363,15 +307,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Charts\BasicLineChart.resx">
       <DependentUpon>BasicLineChart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Charts\BasicCandleChart.resx">
-      <DependentUpon>BasicCandleChart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Charts\BasicVolumeChart.resx">
-      <DependentUpon>BasicVolumeChart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Charts\Candlestick.resx">
-      <DependentUpon>Candlestick.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

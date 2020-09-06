@@ -55,6 +55,7 @@
     <Compile Include="Api\Api_WorldFutureTrade.cs" />
     <Compile Include="Api\BaseTradeApi.cs" />
     <Compile Include="A_CLOSE.cs" />
+    <Compile Include="SmartCandleData.cs" />
     <Compile Include="A_HMML.cs" />
     <Compile Include="Config\AccountInfo.cs" />
     <Compile Include="Config\IndexFutureAccountInfo.cs" />
@@ -101,18 +102,12 @@
     <Compile Include="T_ParkItemData.cs" />
     <Compile Include="T_DarkMassItemData.cs" />
     <Compile Include="T_CandleAntiCandleItemData.cs" />
-    <Compile Include="T_CheonbugyeongItemData.cs" />
     <Compile Include="T_AntiMatterItemData.cs" />
     <Compile Include="T_MirrorItemData.cs" />
-    <Compile Include="T_QuarkItemData.cs" />
-    <Compile Include="T_ThreeThreeItemData.cs" />
-    <Compile Include="T_PrimeNumItemData.cs" />
-    <Compile Include="T_WuXingItemData.cs" />
     <Compile Include="T_VelocityItemData.cs" />
     <Compile Include="T_ThaChiItemData.cs" />
     <Compile Include="T_FiveColorItemData.cs" />
     <Compile Include="T_AtomItemData.cs" />
-    <Compile Include="T_SLHItemData.cs" />
     <Compile Include="T_QuantumItemData.cs" />
     <Compile Include="S_CandleItemData.cs" />
   </ItemGroup>
@@ -150,6 +145,8 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="SmartCandleData.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

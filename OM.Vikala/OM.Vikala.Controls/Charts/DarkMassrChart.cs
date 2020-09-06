@@ -31,14 +31,27 @@ namespace OM.Vikala.Controls.Charts
             get;
             set;
         }
+        public List<T_DarkMassItemData> ChartDataSub
+        {
+            get;
+            set;
+        }
         public void LoadData(string itemCode = ""
             , List<T_DarkMassItemData> chartData = null
+            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day)
+        {
+            LoadData(itemCode, chartData, null, timeInterval);   
+        } 
+        
+        public void LoadData(string itemCode = ""
+            , List<T_DarkMassItemData> chartData = null
+            , List<T_DarkMassItemData> chartDataSub = null
             , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day)
         {           
             TimeInterval = timeInterval;
             ItemCode = itemCode;
             ChartData = chartData;
-
+            ChartDataSub = chartDataSub;
             this.Invoke(new MethodInvoker(() => {
                 Reset();
                 View();

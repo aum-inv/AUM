@@ -51,14 +51,27 @@ namespace OM.Vikala.Controls.Charts
             get;
             set;
         }
+        public List<T_QuantumItemData> ChartDataSub
+        {
+            get;
+            set;
+        }
 
         public void LoadData(string itemCode = ""
             , List<T_QuantumItemData> chartData = null
             , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day)
         {
+            LoadData(itemCode, chartData, null, timeInterval);
+        }
+        public void LoadData(string itemCode = ""
+            , List<T_QuantumItemData> chartData = null
+            , List<T_QuantumItemData> chartDataSub = null
+            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day)
+        {
             TimeInterval = timeInterval;
             ItemCode = itemCode;
             ChartData = chartData;
+            ChartDataSub = chartDataSub;
             this.Invoke(new MethodInvoker(() => {
                 Reset();
                 View();

@@ -38,12 +38,13 @@ namespace OM.Vikala.Chakra.App
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
-        {           
+        {    
             if (tbPwd.Text == "atman999")
             {
                 SharedData.SelectedType = "KR";                
                 SharedData.SecurityType = "1";
-
+                SharedData.StartWindowType = chkStartWindowType.Checked ? "2" : "1";
+                    
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 this.Close();
             }
@@ -55,6 +56,7 @@ namespace OM.Vikala.Chakra.App
             {
                 SharedData.SelectedType = "US";               
                 SharedData.SecurityType = "1";
+                SharedData.StartWindowType = chkStartWindowType.Checked ? "2" : "1";
 
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 this.Close();

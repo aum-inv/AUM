@@ -18,5 +18,10 @@ namespace OM.Atman.Chakra.App.Uc.Plans
 
             
         }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

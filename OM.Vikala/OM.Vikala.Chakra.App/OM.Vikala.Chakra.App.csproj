@@ -104,17 +104,17 @@
     <Compile Include="Mains\ChartForms\ANodeLineChartForm.Designer.cs">
       <DependentUpon>ANodeLineChartForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mains\ChartForms\ComparedCandleChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mains\ChartForms\ComparedCandleChartForm.Designer.cs">
+      <DependentUpon>ComparedCandleChartForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mains\ChartForms\RemoveFirstPriceChartForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Mains\ChartForms\RemoveFirstPriceChartForm.Designer.cs">
       <DependentUpon>RemoveFirstPriceChartForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mains\ChartForms\ParkChartForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mains\ChartForms\ParkChartForm.Designer.cs">
-      <DependentUpon>ParkChartForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Mains\ChartForms\MovingAverageDurationChartForm.cs">
       <SubType>Form</SubType>
@@ -134,12 +134,6 @@
     <Compile Include="Mains\ChartForms\DarkMassChartForm.Designer.cs">
       <DependentUpon>DarkMassChartForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mains\ChartForms\CheonbugyeongChartForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mains\ChartForms\CheonbugyeongChartForm.Designer.cs">
-      <DependentUpon>CheonbugyeongChartForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Mains\ChartForms\AntiMatterChartForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,18 +145,6 @@
     </Compile>
     <Compile Include="Mains\ChartForms\ComplexChartForm.Designer.cs">
       <DependentUpon>ComplexChartForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mains\ChartForms\CandleChartForm2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mains\ChartForms\CandleChartForm2.Designer.cs">
-      <DependentUpon>CandleChartForm2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mains\ChartForms\ChakraSingleChartForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mains\ChartForms\ChakraSingleChartForm.Designer.cs">
-      <DependentUpon>ChakraSingleChartForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Mains\ChartForms\LinePointChartForm.cs">
       <SubType>Form</SubType>
@@ -194,12 +176,6 @@
     <Compile Include="Mains\ChartForms\QuantumChartForm.Designer.cs">
       <DependentUpon>QuantumChartForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mains\ChartForms\ChakraChartForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mains\ChartForms\ChakraChartForm.Designer.cs">
-      <DependentUpon>ChakraChartForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Mains\ChartForms\LengthRateChartForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,47 +188,23 @@
     <Compile Include="Mains\ChartForms\VelocityChartForm.Designer.cs">
       <DependentUpon>VelocityChartForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mains\ChartForms\PrimeNumChartForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mains\ChartForms\PrimeNumChartForm.Designer.cs">
-      <DependentUpon>PrimeNumChartForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Mains\ChartForms\MirrorChartForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Mains\ChartForms\MirrorChartForm.Designer.cs">
       <DependentUpon>MirrorChartForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mains\ChartForms\XuWingChartForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mains\ChartForms\XuWingChartForm.Designer.cs">
-      <DependentUpon>XuWingChartForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mains\ChartForms\ReverseChartForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mains\ChartForms\ReverseChartForm.Designer.cs">
-      <DependentUpon>ReverseChartForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mains\ChartForms\ThaChiChartForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mains\ChartForms\ThaChiChartForm.Designer.cs">
-      <DependentUpon>ThaChiChartForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mains\ChartForms\FiveColorChartForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mains\ChartForms\FiveColorChartForm.Designer.cs">
-      <DependentUpon>FiveColorChartForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Mains\ChartForms\CandleChartForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Mains\ChartForms\CandleChartForm.Designer.cs">
       <DependentUpon>CandleChartForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mains\MainToolBar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mains\MainToolBar.Designer.cs">
+      <DependentUpon>MainToolBar.cs</DependentUpon>
     </Compile>
     <Compile Include="Mains\TrendChartFormL_KR.cs">
       <SubType>Form</SubType>
@@ -308,12 +260,6 @@
     <Compile Include="Mains\Strategy\CandleSummaryForm.Designer.cs">
       <DependentUpon>CandleSummaryForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ShakraMainForm_Sample.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ShakraMainForm_Sample.Designer.cs">
-      <DependentUpon>ShakraMainForm_Sample.cs</DependentUpon>
-    </Compile>
     <Compile Include="Contains\ContainsSample.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -338,45 +284,9 @@
     <Compile Include="Mains\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MirrorMainForm_Sample.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MirrorMainForm_Sample.Designer.cs">
-      <DependentUpon>MirrorMainForm_Sample.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PrimeNumMainForm_Sample.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PrimeNumMainForm_Sample.Designer.cs">
-      <DependentUpon>PrimeNumMainForm_Sample.cs</DependentUpon>
-    </Compile>
-    <Compile Include="QuarkMainForm_Sample.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="QuarkMainForm_Sample.Designer.cs">
-      <DependentUpon>QuarkMainForm_Sample.cs</DependentUpon>
-    </Compile>
-    <Compile Include="WuXingMainForm_Sample.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="WuXingMainForm_Sample.Designer.cs">
-      <DependentUpon>WuXingMainForm_Sample.cs</DependentUpon>
-    </Compile>
     <Compile Include="Config\SharedData.cs" />
     <Compile Include="Mains\BaseForm.cs">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="VelocityMainForm_Sample.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="VelocityMainForm_Sample.Designer.cs">
-      <DependentUpon>VelocityMainForm_Sample.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ReverseCandleMainForm_Sample.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ReverseCandleMainForm_Sample.Designer.cs">
-      <DependentUpon>ReverseCandleMainForm_Sample.cs</DependentUpon>
     </Compile>
     <Compile Include="Mains\BasicMainForm.cs">
       <SubType>Form</SubType>
@@ -390,70 +300,16 @@
     <Compile Include="Mains\UserToolStrip.Designer.cs">
       <DependentUpon>UserToolStrip.cs</DependentUpon>
     </Compile>
-    <Compile Include="QuantumMainForm_Sample.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="QuantumMainForm_Sample.Designer.cs">
-      <DependentUpon>QuantumMainForm_Sample.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ThaChiMainForm_Sample.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ThaChiMainForm_Sample.Designer.cs">
-      <DependentUpon>ThaChiMainForm_Sample.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FiveColorMainForm_Sample.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FiveColorMainForm_Sample.Designer.cs">
-      <DependentUpon>FiveColorMainForm_Sample.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BroswerForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BroswerForm.Designer.cs">
-      <DependentUpon>BroswerForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AtomMainForm_Sample.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AtomMainForm_Sample.Designer.cs">
-      <DependentUpon>AtomMainForm_Sample.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CandleMainForm_Sample.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CandleMainForm_Sample.Designer.cs">
-      <DependentUpon>CandleMainForm_Sample.cs</DependentUpon>
-    </Compile>
-    <Compile Include="LineMainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="LineMainForm.Designer.cs">
-      <DependentUpon>LineMainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CandleMainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CandleMainForm.Designer.cs">
-      <DependentUpon>CandleMainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Mains\ChartForms\ANodeLineChartForm.resx">
       <DependentUpon>ANodeLineChartForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Mains\ChartForms\ComparedCandleChartForm.resx">
+      <DependentUpon>ComparedCandleChartForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mains\ChartForms\RemoveFirstPriceChartForm.resx">
       <DependentUpon>RemoveFirstPriceChartForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mains\ChartForms\ParkChartForm.resx">
-      <DependentUpon>ParkChartForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mains\ChartForms\MovingAverageDurationChartForm.resx">
       <DependentUpon>MovingAverageDurationChartForm.cs</DependentUpon>
@@ -464,20 +320,11 @@
     <EmbeddedResource Include="Mains\ChartForms\DarkMassChartForm.resx">
       <DependentUpon>DarkMassChartForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mains\ChartForms\CheonbugyeongChartForm.resx">
-      <DependentUpon>CheonbugyeongChartForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Mains\ChartForms\AntiMatterChartForm.resx">
       <DependentUpon>AntiMatterChartForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mains\ChartForms\ComplexChartForm.resx">
       <DependentUpon>ComplexChartForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mains\ChartForms\CandleChartForm2.resx">
-      <DependentUpon>CandleChartForm2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mains\ChartForms\ChakraSingleChartForm.resx">
-      <DependentUpon>ChakraSingleChartForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mains\ChartForms\LinePointChartForm.resx">
       <DependentUpon>LinePointChartForm.cs</DependentUpon>
@@ -494,35 +341,20 @@
     <EmbeddedResource Include="Mains\ChartForms\QuantumChartForm.resx">
       <DependentUpon>QuantumChartForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mains\ChartForms\ChakraChartForm.resx">
-      <DependentUpon>ChakraChartForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Mains\ChartForms\LengthRateChartForm.resx">
       <DependentUpon>LengthRateChartForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mains\ChartForms\VelocityChartForm.resx">
       <DependentUpon>VelocityChartForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mains\ChartForms\PrimeNumChartForm.resx">
-      <DependentUpon>PrimeNumChartForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Mains\ChartForms\MirrorChartForm.resx">
       <DependentUpon>MirrorChartForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mains\ChartForms\XuWingChartForm.resx">
-      <DependentUpon>XuWingChartForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mains\ChartForms\ReverseChartForm.resx">
-      <DependentUpon>ReverseChartForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mains\ChartForms\ThaChiChartForm.resx">
-      <DependentUpon>ThaChiChartForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Mains\ChartForms\FiveColorChartForm.resx">
-      <DependentUpon>FiveColorChartForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Mains\ChartForms\CandleChartForm.resx">
       <DependentUpon>CandleChartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mains\MainToolBar.resx">
+      <DependentUpon>MainToolBar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mains\TrendChartFormL_KR.resx">
       <DependentUpon>TrendChartFormL_KR.cs</DependentUpon>
@@ -551,9 +383,6 @@
     <EmbeddedResource Include="Mains\Strategy\CandleSummaryForm.resx">
       <DependentUpon>CandleSummaryForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ShakraMainForm_Sample.resx">
-      <DependentUpon>ShakraMainForm_Sample.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -567,56 +396,11 @@
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="MirrorMainForm_Sample.resx">
-      <DependentUpon>MirrorMainForm_Sample.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PrimeNumMainForm_Sample.resx">
-      <DependentUpon>PrimeNumMainForm_Sample.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="QuarkMainForm_Sample.resx">
-      <DependentUpon>QuarkMainForm_Sample.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WuXingMainForm_Sample.resx">
-      <DependentUpon>WuXingMainForm_Sample.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="VelocityMainForm_Sample.resx">
-      <DependentUpon>VelocityMainForm_Sample.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ReverseCandleMainForm_Sample.resx">
-      <DependentUpon>ReverseCandleMainForm_Sample.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Mains\BasicMainForm.resx">
       <DependentUpon>BasicMainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mains\UserToolStrip.resx">
       <DependentUpon>UserToolStrip.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="QuantumMainForm_Sample.resx">
-      <DependentUpon>QuantumMainForm_Sample.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ThaChiMainForm_Sample.resx">
-      <DependentUpon>ThaChiMainForm_Sample.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FiveColorMainForm_Sample.resx">
-      <DependentUpon>FiveColorMainForm_Sample.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BroswerForm.resx">
-      <DependentUpon>BroswerForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AtomMainForm_Sample.resx">
-      <DependentUpon>AtomMainForm_Sample.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CandleMainForm_Sample.resx">
-      <DependentUpon>CandleMainForm_Sample.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="LineMainForm.resx">
-      <DependentUpon>LineMainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CandleMainForm.resx">
-      <DependentUpon>CandleMainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

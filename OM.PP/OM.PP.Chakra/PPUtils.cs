@@ -104,7 +104,7 @@ namespace OM.PP.Chakra
             }
             return averageDatas;
         }
-                
+            
         public static List<S_CandleItemData> GetCutDatas(List<S_CandleItemData> sourceDatas, DateTime dt)
         {            
             List<S_CandleItemData> sourceDatasNew = new List<S_CandleItemData>();
@@ -1381,6 +1381,102 @@ namespace OM.PP.Chakra
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
             return (plusDatasNew, minusDatasNew);
+        }
+        #endregion
+
+        #region StandardDeviation
+        public static double GetStandardDeviation(double[] valueArray, double average)
+        {
+
+            int valueCount = valueArray.Length;
+            if (valueCount == 0)
+            {
+                return 0d;
+            }
+            double standardDeviation = 0d;
+            double variance = 0d;
+            try
+            {
+                for (int i = 0; i < valueCount; i++)
+                {
+                    variance += Math.Pow(valueArray[i] - average, 2);
+                }
+                standardDeviation = Math.Sqrt(SafeDivide(variance, valueCount));
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return standardDeviation;
+
+        }
+        private static double SafeDivide(double value1, double value2)
+        {
+            double result = 0d;
+            try
+            {
+                if ((value1 == 0) || (value2 == 0))
+                {
+                    return 0d;
+                }
+                result = value1 / value2;
+            }
+            catch
+            {
+            }
+            return result;
+        }
+        #endregion
+
+        #region ETC
+        public static double GetRateOfChange(double changeValue, double standardValue)
+        {
+            try
+            {
+                double ret =  Math.Round(((changeValue - standardValue) / standardValue) * 100.0, 2);
+
+                if (double.IsInfinity(ret)) ret = 0;
+                if (double.IsNaN(ret)) ret = 0;
+
+                return ret;
+            }
+            catch (Exception ex)
+            {
+                return 0d;
+            }
+        }
+        public static double GetAvgRateOfChange(double changeValue, double standardValue)
+        {
+            try
+            {
+                double ret =Math.Abs((changeValue - standardValue) / standardValue);
+
+                if (double.IsInfinity(ret)) ret = 0;
+                if (double.IsNaN(ret)) ret = 0;
+
+                return ret;
+            }
+            catch (Exception ex)
+            {
+                return 0d;
+            }
+        }
+        public static double GetRateOfSpace(double changeValue, double standardValue)
+        {
+            try
+            {
+                double ret = Math.Abs(Math.Round(((changeValue - standardValue) / standardValue), 2));
+
+                if (double.IsInfinity(ret)) ret = -1;
+                if (double.IsNaN(ret)) ret = -1;
+             
+                return ret;
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
         }
         #endregion
     }

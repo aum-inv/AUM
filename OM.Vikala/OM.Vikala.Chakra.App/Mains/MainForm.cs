@@ -256,16 +256,8 @@ namespace OM.Vikala.Chakra.App.Mains
                             break;
                         case "캔들라인형:주사위챠트":
                             createCandleLineTypeChart_Dice(menuText);
-                            break;
-                        case "캔들라인형:삼태극챠트":
-                            createCandleLineTypeChart_Wuxing(menuText);
-                            break;
-                        case "캔들라인형:리버스챠트":
-                            createCandleLineTypeChart_Reverse(menuText);
-                            break;
-                        case "캔들라인형:챠크라챠트":
-                            createCandleLineTypeChart_Chakra(menuText);
-                            break;
+                            break;                      
+                                       
                         case "캔들라인형:변화챠트":
                             createCandleLineTypeChart_Velocity(menuText);
                             break;
@@ -273,11 +265,6 @@ namespace OM.Vikala.Chakra.App.Mains
                         case "캔들라인형:반입자챠트":
                             createCandleLineTypeChart_Anti(menuText);
                             break;
-
-                        case "캔들라인형:천부경챠트":
-                            createCandleLineTypeChart_Cbk(menuText);
-                            break;
-
                         case "캔들라인형:반캔들흐름챠트":
                             createCandleLineTypeChart_Cac(menuText);
                             break;
@@ -292,18 +279,8 @@ namespace OM.Vikala.Chakra.App.Mains
                         case "캔들형:기본챠트":
                             createCandleTypeChart_Basic(menuText);
                             break;
-
-                        case "기본챠트:인-캔들챠트":
-                            createCandleTypeChart_Basic_인(menuText);
-                            break;
-                        case "기본챠트:지-캔들챠트":
-                            createCandleTypeChart_Basic_지(menuText);
-                            break;
-                        case "기본챠트:천-캔들챠트":
-                            createCandleTypeChart_Basic_천(menuText);
-                            break;
-                        case "기본챠트:천지인-캔들챠트":
-                            createCandleTypeChart_Basic_천지인(menuText);
+                        case "캔들형:비교기본챠트":
+                            createCandleTypeChart_ComparedBasic(menuText);
                             break;
 
                         case "추세기간챠트:단순평균-가중-3":
@@ -319,34 +296,10 @@ namespace OM.Vikala.Chakra.App.Mains
                         case "추세기간챠트:가중평균-일반-3":
                         case "추세기간챠트:가중평균-일반-2":
                             createCandleTypeChart_AverageDuration(menuText);
-                            break;
-                        case "캔들형:천지인챠트":
-                            createCandleTypeChart_Slh(menuText);
-                            break;
-                        case "캔들형:쿼크챠트":
-                            createCandleTypeChart_Quark(menuText);
-                            break;
-                        case "캔들형:음양오행챠트":
-                            createCandleTypeChart_Five(menuText);
-                            break;
-                        case "캔들형:음양오행(누적)챠트":
-                            createCandleTypeChart_FiveAccur(menuText);
-                            break;
-                        case "캔들형:음양오행(소수)챠트":
-                            createCandleTypeChart_FivePrimeNum(menuText);
-                            break;
-                        case "캔들형:진동주파수챠트":
-                            createCandleTypeChart_Frequency(menuText);
-                            break;
-                        case "캔들형:삼태극챠트":
-                            createCandleTypeChart_Wuxing(menuText);
-                            break;
+                            break;                       
                         case "캔들형:미러챠트":
                             createCandleTypeChart_Mirror(menuText);
-                            break;
-                        case "캔들형:삼양삼음챠트":
-                            createCandleTypeChart_TT(menuText);
-                            break;
+                            break;                      
 
                         #endregion
 
@@ -371,18 +324,7 @@ namespace OM.Vikala.Chakra.App.Mains
                             createCandleLineTypeChart_ANode(menuText);
                             break;
                         #endregion
-
-                        #region 기타형
-                        //오색
-                        case "기타형:오색챠트":
-                            createEtcTypeChart_FiveColor(menuText);
-                            break;
-
-                        case "기타형:박원일챠트-1":
-                            createEtcTypeChart_Park1(menuText);
-                            break;
-                        #endregion
-
+                                                
                         #region 챠크라
                         case "챠크라:엘리어트오행":
                             createChakra(menuText);
@@ -543,23 +485,8 @@ namespace OM.Vikala.Chakra.App.Mains
             var form = new Mains.ChartForm.DiceChartForm();
             form.Text = title;
             AddTab(form);
-        }
-        private void createCandleLineTypeChart_Wuxing(string title) {            
-            var form = new Mains.ChartForm.XuWingChartForm();
-            form.Text = title;
-            AddTab(form);
-        }
-        private void createCandleLineTypeChart_Reverse(string title) {
-            var form = new Mains.ChartForm.ReverseChartForm();
-            form.Text = title;
-            AddTab(form);
-        }
-        private void createCandleLineTypeChart_Chakra(string title)
-        {
-            var form = new Mains.ChartForm.ChakraChartForm();
-            form.Text = title;
-            AddTab(form);
-        }
+        }      
+                
         private void createCandleLineTypeChart_Velocity(string title)
         {
             var form = new Mains.ChartForm.VelocityChartForm();
@@ -569,13 +496,6 @@ namespace OM.Vikala.Chakra.App.Mains
         private void createCandleLineTypeChart_Anti(string title)
         {
             var form = new Mains.ChartForm.AntiMatterChartForm();           
-            form.Text = title;
-            AddTab(form);
-        }
-
-        private void createCandleLineTypeChart_Cbk(string title)
-        {
-            var form = new Mains.ChartForm.CheonbugyeongChartForm();
             form.Text = title;
             AddTab(form);
         }
@@ -613,31 +533,9 @@ namespace OM.Vikala.Chakra.App.Mains
             form.Text = title;
             AddTab(form);
         }
-
-        private void createCandleTypeChart_Basic_인(string title)
+        private void createCandleTypeChart_ComparedBasic(string title)
         {
-            var form = new Mains.ChartForm.CandleChartForm(Vikala.Controls.Charts.CandleChartTypeEnum.기본
-                , Vikala.Controls.Charts.BaseCandleChartTypeEnum.인);
-            form.Text = title;
-            AddTab(form);
-        }
-        private void createCandleTypeChart_Basic_지(string title)
-        {
-            var form = new Mains.ChartForm.CandleChartForm(Vikala.Controls.Charts.CandleChartTypeEnum.기본
-                , Vikala.Controls.Charts.BaseCandleChartTypeEnum.지);
-            form.Text = title;
-            AddTab(form);
-        }
-        private void createCandleTypeChart_Basic_천(string title)
-        {
-            var form = new Mains.ChartForm.CandleChartForm(Vikala.Controls.Charts.CandleChartTypeEnum.기본
-                , Vikala.Controls.Charts.BaseCandleChartTypeEnum.천);
-            form.Text = title;
-            AddTab(form);
-        }
-        private void createCandleTypeChart_Basic_천지인(string title)
-        {
-            var form = new Mains.ChartForm.CandleChartForm2();
+            var form = new Mains.ChartForm.ComparedCandleChartForm();
             form.Text = title;
             AddTab(form);
         }
@@ -657,54 +555,14 @@ namespace OM.Vikala.Chakra.App.Mains
             var form = new Mains.ChartForm.MovingAverageDurationChartForm(averageType, isStrengthed, inflectionPoint);
             form.Text = title;
             AddTab(form);
-        }
-        private void createCandleTypeChart_Slh(string title) {            
-            var form = new Mains.ChartForm.CandleChartForm(Vikala.Controls.Charts.CandleChartTypeEnum.천지인);
-            form.Text = title;
-            AddTab(form);
-        }
-        private void createCandleTypeChart_Quark(string title) {
-            var form = new Mains.ChartForm.CandleChartForm(Vikala.Controls.Charts.CandleChartTypeEnum.쿼크);
-            form.Text = title;
-            AddTab(form);
-        }
-        private void createCandleTypeChart_Five(string title) {
-            var form = new Mains.ChartForm.CandleChartForm(Vikala.Controls.Charts.CandleChartTypeEnum.음양오행);
-            form.Text = title;
-            AddTab(form);
-        }
-        private void createCandleTypeChart_FiveAccur(string title)
-        {
-            var form = new Mains.ChartForm.XuWingChartForm();
-            form.Text = title;
-            AddTab(form);
-        }
-        private void createCandleTypeChart_FivePrimeNum(string title)
-        {
-            var form = new Mains.ChartForm.PrimeNumChartForm();
-            form.Text = title;
-            AddTab(form);
-        }        
-        private void createCandleTypeChart_Frequency(string title) {
-            var form = new Mains.ChartForm.CandleChartForm(Vikala.Controls.Charts.CandleChartTypeEnum.진동주파수);
-            form.Text = title;
-            AddTab(form);
-        }
-        private void createCandleTypeChart_Wuxing(string title) {
-            var form = new Mains.ChartForm.ThaChiChartForm();
-            form.Text = title;
-            AddTab(form);
-        }
+        }      
+            
         private void createCandleTypeChart_Mirror(string title) {
             var form = new Mains.ChartForm.MirrorChartForm();
             form.Text = title;
             AddTab(form);
         }
-        private void createCandleTypeChart_TT(string title) {
-            var form = new Mains.ChartForm.CandleChartForm(Vikala.Controls.Charts.CandleChartTypeEnum.삼양삼음);
-            form.Text = title;
-            AddTab(form);
-        }
+      
         #endregion
 
         #region 라인형챠트
@@ -746,20 +604,7 @@ namespace OM.Vikala.Chakra.App.Mains
             AddTab(form);
         }      
         #endregion
-
-        #region 기타형챠트
-        private void createEtcTypeChart_FiveColor(string title) {
-            var form = new Mains.ChartForm.FiveColorChartForm();
-            form.Text = title;
-            AddTab(form);
-        }
-        private void createEtcTypeChart_Park1(string title)
-        {
-            var form = new Mains.ChartForm.ParkChartForm();
-            form.Text = title;
-            AddTab(form);
-        }
-        #endregion
+               
 
         #region 챠크라
         private void createChakra(string title)

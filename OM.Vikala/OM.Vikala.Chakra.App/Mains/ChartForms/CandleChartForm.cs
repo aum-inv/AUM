@@ -26,21 +26,21 @@ namespace OM.Vikala.Chakra.App.Mains.ChartForm
             base.setToolStrip(userToolStrip1);
             InitializeControls();
         }
-        public CandleChartForm(CandleChartTypeEnum candleChartType)
-        {
-            InitializeComponent();
-            base.setToolStrip(userToolStrip1);
-            this.candleChartType = candleChartType;
-            InitializeControls();
-        }
-        public CandleChartForm(CandleChartTypeEnum candleChartType, BaseCandleChartTypeEnum baseCandleChartType)
-        {
-            InitializeComponent();
-            base.setToolStrip(userToolStrip1);
-            this.candleChartType = candleChartType;
-            this.baseCandleChartType = baseCandleChartType;
-            InitializeControls();
-        }
+        //public CandleChartForm(CandleChartTypeEnum candleChartType)
+        //{
+        //    InitializeComponent();
+        //    base.setToolStrip(userToolStrip1);
+        //    this.candleChartType = candleChartType;
+        //    InitializeControls();
+        //}
+        //public CandleChartForm(CandleChartTypeEnum candleChartType, BaseCandleChartTypeEnum baseCandleChartType)
+        //{
+        //    InitializeComponent();
+        //    base.setToolStrip(userToolStrip1);
+        //    this.candleChartType = candleChartType;
+        //    this.baseCandleChartType = baseCandleChartType;
+        //    InitializeControls();
+        //}
 
         private void InitializeControls()
         {           
@@ -79,13 +79,11 @@ namespace OM.Vikala.Chakra.App.Mains.ChartForm
             chart.InitializeEvent(chartEvent);
             chart.DisplayPointCount = itemCnt;
             chart.CandleChartType = candleChartType;
-            chart.BaseCandleChartType = baseCandleChartType;
             
             chart2.InitializeControl();
             chart2.InitializeEvent(chartEvent);
             chart2.DisplayPointCount = itemCnt;
             chart2.CandleChartType = candleChartType;
-            chart2.BaseCandleChartType = baseCandleChartType;
         }
 
         public override void loadData()

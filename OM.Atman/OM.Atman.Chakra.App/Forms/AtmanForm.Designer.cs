@@ -68,7 +68,6 @@
             this.uc_AccountFundPlan = new OM.Atman.Chakra.App.Uc.Plans.Uc_AccountFundPlan();
             this.uc_BuyPlan = new OM.Atman.Chakra.App.Uc.Plans.Uc_BuyPlan();
             this.uc_RevenuePlan = new OM.Atman.Chakra.App.Uc.Plans.Uc_RevenuePlan();
-            this.uc_LossPlan = new OM.Atman.Chakra.App.Uc.Plans.Uc_LossPlan();
             this.uc_InvResult = new OM.Atman.Chakra.App.Uc.Plans.Uc_InvResult();
             this.pnlContentMenu = new MetroFramework.Controls.MetroPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -82,9 +81,9 @@
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
             this.tspMenu5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
-            this.tspMenu6 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.tspMenu7 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
+            this.tspMenuInvHistory = new System.Windows.Forms.ToolStripButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pnlTitle = new MetroFramework.Controls.MetroPanel();
             this.altoButton1 = new AltoControls.AltoButton();
@@ -128,7 +127,7 @@
             // spMain.Panel2
             // 
             this.spMain.Panel2.Controls.Add(this.pnlMain);
-            this.spMain.Size = new System.Drawing.Size(1240, 700);
+            this.spMain.Size = new System.Drawing.Size(1169, 645);
             this.spMain.SplitterDistance = 300;
             this.spMain.TabIndex = 3;
             // 
@@ -143,7 +142,7 @@
             this.pnlLeft.HorizontalScrollbarSize = 10;
             this.pnlLeft.Location = new System.Drawing.Point(0, 0);
             this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.Size = new System.Drawing.Size(298, 698);
+            this.pnlLeft.Size = new System.Drawing.Size(298, 643);
             this.pnlLeft.TabIndex = 6;
             this.pnlLeft.VerticalScrollbarBarColor = true;
             this.pnlLeft.VerticalScrollbarHighlightOnWheel = false;
@@ -161,7 +160,7 @@
             this.pnlLeftContent.Location = new System.Drawing.Point(0, 27);
             this.pnlLeftContent.Name = "pnlLeftContent";
             this.pnlLeftContent.Padding = new System.Windows.Forms.Padding(5);
-            this.pnlLeftContent.Size = new System.Drawing.Size(298, 671);
+            this.pnlLeftContent.Size = new System.Drawing.Size(298, 616);
             this.pnlLeftContent.TabIndex = 5;
             this.pnlLeftContent.VerticalScrollbarBarColor = true;
             this.pnlLeftContent.VerticalScrollbarHighlightOnWheel = false;
@@ -180,7 +179,7 @@
             this.metroPanel3.HorizontalScrollbarSize = 10;
             this.metroPanel3.Location = new System.Drawing.Point(5, 301);
             this.metroPanel3.Name = "metroPanel3";
-            this.metroPanel3.Size = new System.Drawing.Size(288, 365);
+            this.metroPanel3.Size = new System.Drawing.Size(288, 310);
             this.metroPanel3.TabIndex = 19;
             this.metroPanel3.VerticalScrollbarBarColor = true;
             this.metroPanel3.VerticalScrollbarHighlightOnWheel = false;
@@ -620,12 +619,15 @@
             // uc_ListItem4
             // 
             this.uc_ListItem4.BackColor = System.Drawing.Color.White;
+            this.uc_ListItem4.Index = -1;
+            this.uc_ListItem4.IsSelected = false;
             this.uc_ListItem4.Location = new System.Drawing.Point(4, 4);
             this.uc_ListItem4.Margin = new System.Windows.Forms.Padding(4);
             this.uc_ListItem4.Name = "uc_ListItem4";
             this.uc_ListItem4.Padding = new System.Windows.Forms.Padding(2);
             this.uc_ListItem4.Size = new System.Drawing.Size(260, 42);
             this.uc_ListItem4.TabIndex = 3;
+            this.uc_ListItem4.XNode = null;
             // 
             // panel1
             // 
@@ -689,7 +691,7 @@
             this.pnlMain.HorizontalScrollbarSize = 10;
             this.pnlMain.Location = new System.Drawing.Point(0, 0);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(934, 698);
+            this.pnlMain.Size = new System.Drawing.Size(863, 643);
             this.pnlMain.TabIndex = 6;
             this.pnlMain.VerticalScrollbarBarColor = true;
             this.pnlMain.VerticalScrollbarHighlightOnWheel = false;
@@ -702,7 +704,6 @@
             this.pnlContent.Controls.Add(this.uc_AccountFundPlan);
             this.pnlContent.Controls.Add(this.uc_BuyPlan);
             this.pnlContent.Controls.Add(this.uc_RevenuePlan);
-            this.pnlContent.Controls.Add(this.uc_LossPlan);
             this.pnlContent.Controls.Add(this.uc_InvResult);
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContent.HorizontalScrollbarBarColor = true;
@@ -711,7 +712,7 @@
             this.pnlContent.Location = new System.Drawing.Point(0, 69);
             this.pnlContent.Name = "pnlContent";
             this.pnlContent.Padding = new System.Windows.Forms.Padding(5);
-            this.pnlContent.Size = new System.Drawing.Size(934, 629);
+            this.pnlContent.Size = new System.Drawing.Size(863, 574);
             this.pnlContent.TabIndex = 6;
             this.pnlContent.VerticalScrollbarBarColor = true;
             this.pnlContent.VerticalScrollbarHighlightOnWheel = false;
@@ -777,18 +778,6 @@
             this.uc_RevenuePlan.TabIndex = 4;
             this.uc_RevenuePlan.Visible = false;
             // 
-            // uc_LossPlan
-            // 
-            this.uc_LossPlan.BackColor = System.Drawing.Color.White;
-            this.uc_LossPlan.Location = new System.Drawing.Point(439, 410);
-            this.uc_LossPlan.Margin = new System.Windows.Forms.Padding(4);
-            this.uc_LossPlan.Name = "uc_LossPlan";
-            this.uc_LossPlan.Padding = new System.Windows.Forms.Padding(5);
-            this.uc_LossPlan.PlanID = null;
-            this.uc_LossPlan.Size = new System.Drawing.Size(283, 195);
-            this.uc_LossPlan.TabIndex = 3;
-            this.uc_LossPlan.Visible = false;
-            // 
             // uc_InvResult
             // 
             this.uc_InvResult.BackColor = System.Drawing.Color.White;
@@ -810,7 +799,7 @@
             this.pnlContentMenu.HorizontalScrollbarSize = 10;
             this.pnlContentMenu.Location = new System.Drawing.Point(0, 27);
             this.pnlContentMenu.Name = "pnlContentMenu";
-            this.pnlContentMenu.Size = new System.Drawing.Size(934, 42);
+            this.pnlContentMenu.Size = new System.Drawing.Size(863, 42);
             this.pnlContentMenu.TabIndex = 5;
             this.pnlContentMenu.VerticalScrollbarBarColor = true;
             this.pnlContentMenu.VerticalScrollbarHighlightOnWheel = false;
@@ -834,13 +823,13 @@
             this.toolStripLabel4,
             this.tspMenu5,
             this.toolStripLabel5,
-            this.tspMenu6,
+            this.tspMenu7,
             this.toolStripLabel6,
-            this.tspMenu7});
+            this.tspMenuInvHistory});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.toolStrip1.Size = new System.Drawing.Size(934, 42);
+            this.toolStrip1.Size = new System.Drawing.Size(863, 42);
             this.toolStrip1.TabIndex = 6;
             // 
             // tspMenu1
@@ -898,8 +887,8 @@
             this.tspMenu4.Image = ((System.Drawing.Image)(resources.GetObject("tspMenu4.Image")));
             this.tspMenu4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tspMenu4.Name = "tspMenu4";
-            this.tspMenu4.Size = new System.Drawing.Size(91, 39);
-            this.tspMenu4.Text = "매입계획";
+            this.tspMenu4.Size = new System.Drawing.Size(137, 39);
+            this.tspMenu4.Text = "진입&&로스컷계획";
             // 
             // toolStripLabel4
             // 
@@ -923,22 +912,6 @@
             this.toolStripLabel5.Size = new System.Drawing.Size(19, 39);
             this.toolStripLabel5.Text = "▷";
             // 
-            // tspMenu6
-            // 
-            this.tspMenu6.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold);
-            this.tspMenu6.ForeColor = System.Drawing.Color.DimGray;
-            this.tspMenu6.Image = ((System.Drawing.Image)(resources.GetObject("tspMenu6.Image")));
-            this.tspMenu6.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tspMenu6.Name = "tspMenu6";
-            this.tspMenu6.Size = new System.Drawing.Size(139, 39);
-            this.tspMenu6.Text = "손실포지션계획   ";
-            // 
-            // toolStripLabel6
-            // 
-            this.toolStripLabel6.Name = "toolStripLabel6";
-            this.toolStripLabel6.Size = new System.Drawing.Size(19, 39);
-            this.toolStripLabel6.Text = "★";
-            // 
             // tspMenu7
             // 
             this.tspMenu7.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold);
@@ -949,13 +922,30 @@
             this.tspMenu7.Size = new System.Drawing.Size(91, 39);
             this.tspMenu7.Text = "투자결과";
             // 
+            // toolStripLabel6
+            // 
+            this.toolStripLabel6.Name = "toolStripLabel6";
+            this.toolStripLabel6.Size = new System.Drawing.Size(19, 39);
+            this.toolStripLabel6.Text = "★";
+            // 
+            // tspMenuInvHistory
+            // 
+            this.tspMenuInvHistory.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold);
+            this.tspMenuInvHistory.ForeColor = System.Drawing.Color.DimGray;
+            this.tspMenuInvHistory.Image = ((System.Drawing.Image)(resources.GetObject("tspMenuInvHistory.Image")));
+            this.tspMenuInvHistory.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tspMenuInvHistory.Name = "tspMenuInvHistory";
+            this.tspMenuInvHistory.Size = new System.Drawing.Size(91, 36);
+            this.tspMenuInvHistory.Text = "투자일지";
+            this.tspMenuInvHistory.ToolTipText = "투자일지";
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Red;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 25);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(934, 2);
+            this.panel2.Size = new System.Drawing.Size(863, 2);
             this.panel2.TabIndex = 3;
             // 
             // pnlTitle
@@ -973,7 +963,7 @@
             this.pnlTitle.HorizontalScrollbarSize = 10;
             this.pnlTitle.Location = new System.Drawing.Point(0, 0);
             this.pnlTitle.Name = "pnlTitle";
-            this.pnlTitle.Size = new System.Drawing.Size(934, 25);
+            this.pnlTitle.Size = new System.Drawing.Size(863, 25);
             this.pnlTitle.TabIndex = 2;
             this.pnlTitle.VerticalScrollbarBarColor = true;
             this.pnlTitle.VerticalScrollbarHighlightOnWheel = false;
@@ -1079,7 +1069,7 @@
             this.btnDelete.ForeColor = System.Drawing.Color.White;
             this.btnDelete.Inactive1 = System.Drawing.Color.Transparent;
             this.btnDelete.Inactive2 = System.Drawing.Color.Transparent;
-            this.btnDelete.Location = new System.Drawing.Point(892, 0);
+            this.btnDelete.Location = new System.Drawing.Point(821, 0);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Radius = 2;
             this.btnDelete.Size = new System.Drawing.Size(42, 25);
@@ -1102,7 +1092,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1280, 780);
+            this.ClientSize = new System.Drawing.Size(1209, 725);
             this.Controls.Add(this.spMain);
             this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1157,7 +1147,6 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel4;
         private System.Windows.Forms.ToolStripButton tspMenu5;
         private System.Windows.Forms.ToolStripLabel toolStripLabel5;
-        private System.Windows.Forms.ToolStripButton tspMenu6;
         private System.Windows.Forms.ToolStripLabel toolStripLabel6;
         private System.Windows.Forms.ToolStripButton tspMenu7;
         private MetroFramework.Controls.MetroPanel pnlContent;
@@ -1183,7 +1172,6 @@
         private Uc.Plans.Uc_AccountFundPlan uc_AccountFundPlan;
         private Uc.Plans.Uc_BuyPlan uc_BuyPlan;
         private Uc.Plans.Uc_RevenuePlan uc_RevenuePlan;
-        private Uc.Plans.Uc_LossPlan uc_LossPlan;
         private Uc.Plans.Uc_InvResult uc_InvResult;
         private System.Windows.Forms.Button btnLoad;
         private AltoControls.AltoButton btnDelete;
@@ -1200,5 +1188,6 @@
         private MetroFramework.Controls.MetroComboBox cboxProgress;
         private AltoControls.AltoButton altoButton1;
         private MetroFramework.Controls.MetroLabel metroLabel10;
+        private System.Windows.Forms.ToolStripButton tspMenuInvHistory;
     }
 }

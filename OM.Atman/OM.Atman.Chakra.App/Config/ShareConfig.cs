@@ -8,10 +8,7 @@ namespace OM.Atman.Chakra.App.Config
 {
     public static class ShareConfig
     {
-        public static bool IsShowSignalForm
-        { get; set; } = false;
-
-        public static bool IsShowDetailSignalForm
-        { get; set; } = false;
+        public static int LaunchFormType
+        { get; set; } = 1;
     }
 }

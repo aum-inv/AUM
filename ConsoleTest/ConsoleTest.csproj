@@ -66,6 +66,10 @@
       <Project>{1796ffd0-4eaf-4f72-8db2-923345b88c7e}</Project>
       <Name>OM.Lib.Base</Name>
     </ProjectReference>
+    <ProjectReference Include="..\OM\OM.Lib.Framework\OM.Lib.Framework.csproj">
+      <Project>{5a86d37b-e9a0-4cfd-bc4a-fa53cd0edc61}</Project>
+      <Name>OM.Lib.Framework</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

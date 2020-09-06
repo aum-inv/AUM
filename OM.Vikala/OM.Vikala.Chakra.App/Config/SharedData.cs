@@ -21,6 +21,13 @@ namespace OM.Vikala.Chakra.App.Config
             set;
         } = "2";
 
+        public static string StartWindowType
+        {
+            get;
+            set;
+        } = "2";
+
+
         public static ItemData SelectedItem
         {
             get;
