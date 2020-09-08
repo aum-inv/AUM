@@ -51,11 +51,11 @@
 				<Summary></Summary>
 			</BasicCharts>
 			<Indicators>
-				<Indicator1></Indicator1>
-				<Indicator2></Indicator2>
-				<Indicator3></Indicator3>
-				<Indicator4></Indicator4>
-				<Indicator5></Indicator5>
+				<Indicator></Indicator>
+				<Indicator></Indicator>
+				<Indicator></Indicator>
+				<Indicator></Indicator>
+				<Indicator></Indicator>
 				<Summary></Summary>
 			</Indicators>
 		</IndexTrendCheck>				
@@ -68,96 +68,70 @@
 			<FundMethod></FundMethod>			
 			<Summary></Summary>
 		</AccountFundPlan>
-		<BuyAndLosscutPlan>
-			<Buys>
-				<Buy>
-					<ExpectedBuyIndexPrice></ExpectedBuyIndexPrice>
-					<ExpectedBuyIndexPrice></ExpectedBuyIndexPrice>
-					<ExpectedBuyIndexPrice></ExpectedBuyIndexPrice>
-				</Buy>
-				<Buy>
-					<ExpectedBuyIndexPrice></ExpectedBuyIndexPrice>
-					<ExpectedBuyIndexPrice></ExpectedBuyIndexPrice>
-					<ExpectedBuyIndexPrice></ExpectedBuyIndexPrice>
-				</Buy>
-				<Buy>
-					<ExpectedBuyIndexPrice></ExpectedBuyIndexPrice>
-					<ExpectedBuyIndexPrice></ExpectedBuyIndexPrice>
-					<ExpectedBuyIndexPrice></ExpectedBuyIndexPrice>
-				</Buy>
-			</Buys>
-			<Losscuts>
-				<Losscut>
-					<ExpectedLosscutIndexPrice></ExpectedLosscutIndexPrice>
-				</Losscut>
-				<Losscut>
-					<ExpectedLosscutIndexPrice></ExpectedLosscutIndexPrice>
-				</Losscut>
-				<Losscut>
-					<ExpectedLosscutIndexPrice></ExpectedLosscutIndexPrice>
-				</Losscut>
-			</Losscuts>
-			<Etcs>
-				<Etc></Etc>
-				<Etc></Etc>
-				<Etc></Etc>
-			</Etcs>
+		<BuyAndLosscutPlan>			
+			<Buy1>
+				<ExpectedBuyIndexPrice></ExpectedBuyIndexPrice>
+				<ExpectedBuyIndexPrice></ExpectedBuyIndexPrice>
+				<ExpectedBuyIndexPrice></ExpectedBuyIndexPrice>
+			</Buy1>
+			<Buy2>
+				<ExpectedBuyIndexPrice></ExpectedBuyIndexPrice>
+				<ExpectedBuyIndexPrice></ExpectedBuyIndexPrice>
+				<ExpectedBuyIndexPrice></ExpectedBuyIndexPrice>
+			</Buy2>
+			<Buy3>
+				<ExpectedBuyIndexPrice></ExpectedBuyIndexPrice>
+				<ExpectedBuyIndexPrice></ExpectedBuyIndexPrice>
+				<ExpectedBuyIndexPrice></ExpectedBuyIndexPrice>
+			</Buy3>		
+			<Losscut1>
+				<ExpectedLosscutIndexPrice></ExpectedLosscutIndexPrice>
+			</Losscut1>
+			<Losscut2>
+				<ExpectedLosscutIndexPrice></ExpectedLosscutIndexPrice>
+			</Losscut2>
+			<Losscut3>
+				<ExpectedLosscutIndexPrice></ExpectedLosscutIndexPrice>
+			</Losscut3>
+			<Etc1></Etc1>
+			<Etc2></Etc2>
+			<Etc3></Etc3>			
 		</BuyAndLosscutPlan>
-		<RevenuePlan>
-			<ReBuy>
-				<ReBuyMethod></ReBuyMethod>
-			</ReBuy>
-			<Sells>
-				<Sell>
-					<ExpectedSellIndexPrice></ExpectedSellIndexPrice>
-					<ExpectedSellIndexPrice></ExpectedSellIndexPrice>
-					<ExpectedSellIndexPrice></ExpectedSellIndexPrice>
-					<ExpectedAllSellIndexPrice></ExpectedAllSellIndexPrice>
-				</Sell>
-				<Sell>
-					<ExpectedSellIndexPrice></ExpectedSellIndexPrice>
-					<ExpectedSellIndexPrice></ExpectedSellIndexPrice>
-					<ExpectedSellIndexPrice></ExpectedSellIndexPrice>
-					<ExpectedAllSellIndexPrice></ExpectedAllSellIndexPrice>
-				</Sell>
-				<Sell>
-					<ExpectedSellIndexPrice></ExpectedSellIndexPrice>
-					<ExpectedSellIndexPrice></ExpectedSellIndexPrice>
-					<ExpectedSellIndexPrice></ExpectedSellIndexPrice>
-					<ExpectedAllSellIndexPrice></ExpectedAllSellIndexPrice>
-				</Sell>
-			</Sells>
-			<Etcs>
+		<RevenuePlan>			
+			<ReBuyMethod></ReBuyMethod>						
+			<Sell1>
+				<ExpectedSellIndexPrice></ExpectedSellIndexPrice>
+				<ExpectedSellIndexPrice></ExpectedSellIndexPrice>
+				<ExpectedSellIndexPrice></ExpectedSellIndexPrice>
+				<ExpectedAllSellIndexPrice></ExpectedAllSellIndexPrice>
 				<Etc></Etc>
+			</Sell1>
+			<Sell2>
+				<ExpectedSellIndexPrice></ExpectedSellIndexPrice>
+				<ExpectedSellIndexPrice></ExpectedSellIndexPrice>
+				<ExpectedSellIndexPrice></ExpectedSellIndexPrice>
+				<ExpectedAllSellIndexPrice></ExpectedAllSellIndexPrice>
 				<Etc></Etc>
+			</Sell2>
+			<Sell3>
+				<ExpectedSellIndexPrice></ExpectedSellIndexPrice>
+				<ExpectedSellIndexPrice></ExpectedSellIndexPrice>
+				<ExpectedSellIndexPrice></ExpectedSellIndexPrice>
+				<ExpectedAllSellIndexPrice></ExpectedAllSellIndexPrice>
 				<Etc></Etc>
-			</Etcs>
+			</Sell3>	
 		</RevenuePlan>
-		<InvestmentResult>
-			<PlanResult>
-				<Trend></Trend>
-				<TechnicalAnalysis></TechnicalAnalysis>
-				<Tendency></Tendency>
-				<Accounts></Accounts>
-				<Fund></Fund>
-				<Duration></Duration>
-				<Summary></Summary>
-			</PlanResult>
-			<InvestmentResult>						
-				<ProfitAndLosses>
-					<ProfitAndLoss></ProfitAndLoss>
-					<ProfitAndLoss></ProfitAndLoss>
-					<ProfitAndLoss></ProfitAndLoss>
-					<ProfitAndLoss></ProfitAndLoss>
-				</ProfitAndLosses>						
-				<Fees>
-					<Fee></Fee>
-					<Fee></Fee>
-					<Fee></Fee>
-					<Fee></Fee>
-				</Fees>
-				<Summary></Summary>
-			</InvestmentResult>
+		<InvestmentResult>			
+			<Trend></Trend>
+			<TechnicalAnalysis></TechnicalAnalysis>
+			<Tendency></Tendency>
+			<Accounts></Accounts>
+			<Fund></Fund>
+			<Duration></Duration>
+			<ProfitAndLoss1></ProfitAndLoss1>
+			<ProfitAndLoss2></ProfitAndLoss2>
+			<ProfitAndLoss3></ProfitAndLoss3>
+			<Summary></Summary>
 		</InvestmentResult>		
 	</FinancialInvestmentPlan>	
 </Atman>

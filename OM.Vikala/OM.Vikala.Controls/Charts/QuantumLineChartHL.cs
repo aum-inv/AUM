@@ -89,14 +89,18 @@ namespace OM.Vikala.Controls.Charts
         {
             pnlScroll.Visible = IsAutoScrollX;
             if (ChartData == null) return;
+            if (ChartDataSub == null) return;
 
             double maxPrice = 0.0;
             double minPrice = 0.0;
             int bDistance = -1;
-            foreach (var item in ChartData)
+            for (int i = 0; i < ChartData.Count; i++)
             {
+                var item = ChartData[i];
+
                 int idx = chart.Series[0].Points.AddXY(item.DTime, item.HighPrice, item.LowPrice, item.OpenPrice, item.ClosePrice);
-              
+
+                item = ChartDataSub[i];
                 chart.Series[1].Points.AddXY(item.DTime, item.T_VikalaHighAvg);
                 chart.Series[2].Points.AddXY(item.DTime, item.T_HighAvg);
                 chart.Series[3].Points.AddXY(item.DTime, item.T_QuantumHighAvg);
@@ -126,28 +130,28 @@ namespace OM.Vikala.Controls.Charts
             }
             
 
-            maxPrice = ChartData.Max(m => m.HighPrice);
-            minPrice = ChartData.Min(m => m.LowPrice);
+            //maxPrice = ChartData.Max(m => m.HighPrice);
+            //minPrice = ChartData.Min(m => m.LowPrice);
 
-            double maxPrice2 = ChartData.Max(m => m.T_QuantumHighAvg);
-            double minPrice2 = ChartData.Min(m => m.T_QuantumLowAvg);
-            if (maxPrice < maxPrice2) maxPrice = maxPrice2;
-            if (minPrice > minPrice2) minPrice = minPrice2;
-            maxPrice2 = ChartData.Max(m => m.T_CloseAvg);
-            minPrice2 = ChartData.Min(m => m.T_CloseAvg);
-            if (maxPrice < maxPrice2) maxPrice = maxPrice2;
-            if (minPrice > minPrice2) minPrice = minPrice2;
-            maxPrice2 = ChartData.Max(m => m.T_QuantumAvg);
-            minPrice2 = ChartData.Min(m => m.T_QuantumAvg);
-            if (maxPrice < maxPrice2) maxPrice = maxPrice2;
-            if (minPrice > minPrice2) minPrice = minPrice2;
+            //double maxPrice2 = ChartData.Max(m => m.T_QuantumHighAvg);
+            //double minPrice2 = ChartData.Min(m => m.T_QuantumLowAvg);
+            //if (maxPrice < maxPrice2) maxPrice = maxPrice2;
+            //if (minPrice > minPrice2) minPrice = minPrice2;
+            //maxPrice2 = ChartData.Max(m => m.T_CloseAvg);
+            //minPrice2 = ChartData.Min(m => m.T_CloseAvg);
+            //if (maxPrice < maxPrice2) maxPrice = maxPrice2;
+            //if (minPrice > minPrice2) minPrice = minPrice2;
+            //maxPrice2 = ChartData.Max(m => m.T_QuantumAvg);
+            //minPrice2 = ChartData.Min(m => m.T_QuantumAvg);
+            //if (maxPrice < maxPrice2) maxPrice = maxPrice2;
+            //if (minPrice > minPrice2) minPrice = minPrice2;
 
-            maxPrice = maxPrice + SpaceMaxMin;
-            minPrice = minPrice - SpaceMaxMin;
-            chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
-            chart.ChartAreas[0].AxisY2.Minimum = minPrice;
-            chart.ChartAreas[0].AxisY.Maximum = 10000;
-            chart.ChartAreas[0].AxisY.Minimum = 0;
+            //maxPrice = maxPrice + SpaceMaxMin;
+            //minPrice = minPrice - SpaceMaxMin;
+            //chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
+            //chart.ChartAreas[0].AxisY2.Minimum = minPrice;
+            //chart.ChartAreas[0].AxisY.Maximum = 10000;
+            //chart.ChartAreas[0].AxisY.Minimum = 0;
 
             SetScrollBar();
             SetTrackBar();

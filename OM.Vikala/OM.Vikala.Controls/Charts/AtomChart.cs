@@ -76,14 +76,17 @@ namespace OM.Vikala.Controls.Charts
         public override void View()
         {
             if (ChartData == null) return;
-
-            foreach (T_AtomItemData item in ChartData)
+            if (ChartDataSub == null) return;
+            //foreach (T_AtomItemData item in ChartData)
+            for (int i = 0; i < ChartData.Count; i++)
             {
+                var item = ChartData[i];
+             
                 int idx = chart.Series[0].Points.AddXY(item.DTime, item.HighPrice, item.LowPrice, item.OpenPrice, item.ClosePrice);
-                
+
+                item = ChartDataSub[i];
                 chart.Series[1].Points.AddXY(item.DTime, item.LowPrice, item.LowPrice, item.LowPrice, item.LowPrice);
                 chart.Series[2].Points.AddXY(item.DTime, item.HighPrice, item.HighPrice, item.HighPrice, item.HighPrice);
-
                 chart.Series[3].Points.AddXY(item.DTime, item.T_MassAvg);
                 chart.Series[4].Points.AddXY(item.DTime, item.T_QuantumAvg);
                 chart.Series[5].Points.AddXY(item.DTime, item.T_VikalaAvg);
@@ -112,7 +115,7 @@ namespace OM.Vikala.Controls.Charts
 
                 if (idx > 0 && isSignal)
                 {
-                    T_AtomItemData bitem = ChartData[idx - 1];
+                    T_AtomItemData bitem = ChartDataSub[idx - 1];
                     bool isUpPosition2 = false;
                     bool isDownPosition2 = false;
                     if (bitem.HighPrice < bitem.T_MassAvg
@@ -176,24 +179,25 @@ namespace OM.Vikala.Controls.Charts
                 }
             }
 
-            double maxPrice1 = ChartData.Max(m => m.HighPrice);
-            double minPrice1 = ChartData.Min(m => m.LowPrice);
-            double maxPrice2 = ChartData.Max(m => m.QuantumHighPrice);
-            double minPrice2 = ChartData.Min(m => m.QuantumLowPrice);
-            double maxPrice3 = ChartData.Max(m => m.VikalaHighPrice);
-            double minPrice3 = ChartData.Min(m => m.VikalaLowPrice);
+            //double maxPrice1 = ChartData.Max(m => m.HighPrice);
+            //double minPrice1 = ChartData.Min(m => m.LowPrice);
+            //double maxPrice2 = ChartData.Max(m => m.QuantumHighPrice);
+            //double minPrice2 = ChartData.Min(m => m.QuantumLowPrice);
+            //double maxPrice3 = ChartData.Max(m => m.VikalaHighPrice);
+            //double minPrice3 = ChartData.Min(m => m.VikalaLowPrice);
 
-            double maxPrice = maxPrice1 > maxPrice2 ? maxPrice1 : maxPrice2;
-            double minPrice = minPrice1 < minPrice2 ? minPrice1 : minPrice2;
-            maxPrice = maxPrice > maxPrice3 ? maxPrice : maxPrice3;
-            minPrice = minPrice < minPrice3 ? minPrice : minPrice3;
+            //double maxPrice = maxPrice1 > maxPrice2 ? maxPrice1 : maxPrice2;
+            //double minPrice = minPrice1 < minPrice2 ? minPrice1 : minPrice2;
+            //maxPrice = maxPrice > maxPrice3 ? maxPrice : maxPrice3;
+            //minPrice = minPrice < minPrice3 ? minPrice : minPrice3;
 
-            maxPrice = maxPrice + SpaceMaxMin;
-            minPrice = minPrice - SpaceMaxMin;
-            chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
-            chart.ChartAreas[0].AxisY2.Minimum = minPrice;
+            //maxPrice = maxPrice + SpaceMaxMin;
+            //minPrice = minPrice - SpaceMaxMin;
+            //chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
+            //chart.ChartAreas[0].AxisY2.Minimum = minPrice;
 
-            SetYInterval(chart.ChartAreas[0].AxisY2, minPrice, maxPrice);
+            //SetYInterval(chart.ChartAreas[0].AxisY2, minPrice, maxPrice);
+
             SetScrollBar();
             SetTrackBar();
             DisplayView();

@@ -210,62 +210,62 @@
             this.원자챠트ToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.원자챠트ToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.원자챠트ToolStripMenuItem.Name = "원자챠트ToolStripMenuItem";
-            this.원자챠트ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.원자챠트ToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.원자챠트ToolStripMenuItem.Text = "원자챠트";
             this.원자챠트ToolStripMenuItem.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripMenuItem37
             // 
             this.toolStripMenuItem37.Name = "toolStripMenuItem37";
-            this.toolStripMenuItem37.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem37.Size = new System.Drawing.Size(155, 6);
             // 
             // 양자챠트ToolStripMenuItem
             // 
             this.양자챠트ToolStripMenuItem.Name = "양자챠트ToolStripMenuItem";
-            this.양자챠트ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.양자챠트ToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.양자챠트ToolStripMenuItem.Text = "양자챠트";
             this.양자챠트ToolStripMenuItem.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripMenuItem38
             // 
             this.toolStripMenuItem38.Name = "toolStripMenuItem38";
-            this.toolStripMenuItem38.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem38.Size = new System.Drawing.Size(155, 6);
             // 
             // 주사위챠트ToolStripMenuItem
             // 
             this.주사위챠트ToolStripMenuItem.Name = "주사위챠트ToolStripMenuItem";
-            this.주사위챠트ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.주사위챠트ToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.주사위챠트ToolStripMenuItem.Text = "주사위챠트";
             this.주사위챠트ToolStripMenuItem.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripMenuItem39
             // 
             this.toolStripMenuItem39.Name = "toolStripMenuItem39";
-            this.toolStripMenuItem39.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem39.Size = new System.Drawing.Size(155, 6);
             // 
             // 세컨드흐름챠트ToolStripMenuItem
             // 
             this.세컨드흐름챠트ToolStripMenuItem.Name = "세컨드흐름챠트ToolStripMenuItem";
-            this.세컨드흐름챠트ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.세컨드흐름챠트ToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.세컨드흐름챠트ToolStripMenuItem.Text = "세컨드흐름챠트";
             this.세컨드흐름챠트ToolStripMenuItem.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripMenuItem40
             // 
             this.toolStripMenuItem40.Name = "toolStripMenuItem40";
-            this.toolStripMenuItem40.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem40.Size = new System.Drawing.Size(155, 6);
             // 
             // 추세기간챠트ToolStripMenuItem
             // 
             this.추세기간챠트ToolStripMenuItem.Name = "추세기간챠트ToolStripMenuItem";
-            this.추세기간챠트ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.추세기간챠트ToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.추세기간챠트ToolStripMenuItem.Text = "추세기간챠트";
             this.추세기간챠트ToolStripMenuItem.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripMenuItem41
             // 
             this.toolStripMenuItem41.Name = "toolStripMenuItem41";
-            this.toolStripMenuItem41.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem41.Size = new System.Drawing.Size(155, 6);
             // 
             // tsbMC4
             // 
@@ -503,147 +503,147 @@
             // 평균ToolStripMenuItem
             // 
             this.평균ToolStripMenuItem.Name = "평균ToolStripMenuItem";
-            this.평균ToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.평균ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.평균ToolStripMenuItem.Text = "단순평균-가중-3";
             this.평균ToolStripMenuItem.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripMenuItem25
             // 
             this.toolStripMenuItem25.Name = "toolStripMenuItem25";
-            this.toolStripMenuItem25.Size = new System.Drawing.Size(172, 6);
+            this.toolStripMenuItem25.Size = new System.Drawing.Size(177, 6);
             // 
             // 단순ToolStripMenuItem
             // 
             this.단순ToolStripMenuItem.Name = "단순ToolStripMenuItem";
-            this.단순ToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.단순ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.단순ToolStripMenuItem.Text = "단순평균-가중-2";
             this.단순ToolStripMenuItem.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripMenuItem26
             // 
             this.toolStripMenuItem26.Name = "toolStripMenuItem26";
-            this.toolStripMenuItem26.Size = new System.Drawing.Size(172, 6);
+            this.toolStripMenuItem26.Size = new System.Drawing.Size(177, 6);
             // 
             // 단순ToolStripMenuItem1
             // 
             this.단순ToolStripMenuItem1.Name = "단순ToolStripMenuItem1";
-            this.단순ToolStripMenuItem1.Size = new System.Drawing.Size(175, 22);
+            this.단순ToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.단순ToolStripMenuItem1.Text = "단순평균-일반-3";
             this.단순ToolStripMenuItem1.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripMenuItem27
             // 
             this.toolStripMenuItem27.Name = "toolStripMenuItem27";
-            this.toolStripMenuItem27.Size = new System.Drawing.Size(172, 6);
+            this.toolStripMenuItem27.Size = new System.Drawing.Size(177, 6);
             // 
             // 단순평균일반2ToolStripMenuItem
             // 
             this.단순평균일반2ToolStripMenuItem.Name = "단순평균일반2ToolStripMenuItem";
-            this.단순평균일반2ToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.단순평균일반2ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.단순평균일반2ToolStripMenuItem.Text = "단순평균-일반-2";
             this.단순평균일반2ToolStripMenuItem.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripMenuItem29
             // 
             this.toolStripMenuItem29.Name = "toolStripMenuItem29";
-            this.toolStripMenuItem29.Size = new System.Drawing.Size(172, 6);
+            this.toolStripMenuItem29.Size = new System.Drawing.Size(177, 6);
             // 
             // 밸런스평균가중3ToolStripMenuItem
             // 
             this.밸런스평균가중3ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.밸런스평균가중3ToolStripMenuItem.Name = "밸런스평균가중3ToolStripMenuItem";
-            this.밸런스평균가중3ToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.밸런스평균가중3ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.밸런스평균가중3ToolStripMenuItem.Text = "밸런스평균-가중-3";
             this.밸런스평균가중3ToolStripMenuItem.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripMenuItem28
             // 
             this.toolStripMenuItem28.Name = "toolStripMenuItem28";
-            this.toolStripMenuItem28.Size = new System.Drawing.Size(172, 6);
+            this.toolStripMenuItem28.Size = new System.Drawing.Size(177, 6);
             // 
             // 밸런스평균가중2ToolStripMenuItem
             // 
             this.밸런스평균가중2ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.밸런스평균가중2ToolStripMenuItem.Name = "밸런스평균가중2ToolStripMenuItem";
-            this.밸런스평균가중2ToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.밸런스평균가중2ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.밸런스평균가중2ToolStripMenuItem.Text = "밸런스평균-가중-2";
             this.밸런스평균가중2ToolStripMenuItem.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripMenuItem30
             // 
             this.toolStripMenuItem30.Name = "toolStripMenuItem30";
-            this.toolStripMenuItem30.Size = new System.Drawing.Size(172, 6);
+            this.toolStripMenuItem30.Size = new System.Drawing.Size(177, 6);
             // 
             // 밸런스평균일반3ToolStripMenuItem
             // 
             this.밸런스평균일반3ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.밸런스평균일반3ToolStripMenuItem.Name = "밸런스평균일반3ToolStripMenuItem";
-            this.밸런스평균일반3ToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.밸런스평균일반3ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.밸런스평균일반3ToolStripMenuItem.Text = "밸런스평균-일반-3";
             this.밸런스평균일반3ToolStripMenuItem.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripMenuItem31
             // 
             this.toolStripMenuItem31.Name = "toolStripMenuItem31";
-            this.toolStripMenuItem31.Size = new System.Drawing.Size(172, 6);
+            this.toolStripMenuItem31.Size = new System.Drawing.Size(177, 6);
             // 
             // 밸런스평균일반2ToolStripMenuItem
             // 
             this.밸런스평균일반2ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.밸런스평균일반2ToolStripMenuItem.Name = "밸런스평균일반2ToolStripMenuItem";
-            this.밸런스평균일반2ToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.밸런스평균일반2ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.밸런스평균일반2ToolStripMenuItem.Text = "밸런스평균-일반-2";
             this.밸런스평균일반2ToolStripMenuItem.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripMenuItem32
             // 
             this.toolStripMenuItem32.Name = "toolStripMenuItem32";
-            this.toolStripMenuItem32.Size = new System.Drawing.Size(172, 6);
+            this.toolStripMenuItem32.Size = new System.Drawing.Size(177, 6);
             // 
             // 가중평균가중3ToolStripMenuItem
             // 
             this.가중평균가중3ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.가중평균가중3ToolStripMenuItem.Name = "가중평균가중3ToolStripMenuItem";
-            this.가중평균가중3ToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.가중평균가중3ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.가중평균가중3ToolStripMenuItem.Text = "가중평균-가중-3";
             this.가중평균가중3ToolStripMenuItem.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripMenuItem33
             // 
             this.toolStripMenuItem33.Name = "toolStripMenuItem33";
-            this.toolStripMenuItem33.Size = new System.Drawing.Size(172, 6);
+            this.toolStripMenuItem33.Size = new System.Drawing.Size(177, 6);
             // 
             // 가중평균가중2ToolStripMenuItem
             // 
             this.가중평균가중2ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.가중평균가중2ToolStripMenuItem.Name = "가중평균가중2ToolStripMenuItem";
-            this.가중평균가중2ToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.가중평균가중2ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.가중평균가중2ToolStripMenuItem.Text = "가중평균-가중-2";
             this.가중평균가중2ToolStripMenuItem.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripMenuItem34
             // 
             this.toolStripMenuItem34.Name = "toolStripMenuItem34";
-            this.toolStripMenuItem34.Size = new System.Drawing.Size(172, 6);
+            this.toolStripMenuItem34.Size = new System.Drawing.Size(177, 6);
             // 
             // 가중평균일반3ToolStripMenuItem
             // 
             this.가중평균일반3ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.가중평균일반3ToolStripMenuItem.Name = "가중평균일반3ToolStripMenuItem";
-            this.가중평균일반3ToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.가중평균일반3ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.가중평균일반3ToolStripMenuItem.Text = "가중평균-일반-3";
             this.가중평균일반3ToolStripMenuItem.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripMenuItem35
             // 
             this.toolStripMenuItem35.Name = "toolStripMenuItem35";
-            this.toolStripMenuItem35.Size = new System.Drawing.Size(172, 6);
+            this.toolStripMenuItem35.Size = new System.Drawing.Size(177, 6);
             // 
             // 가중평균일반2ToolStripMenuItem
             // 
             this.가중평균일반2ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.가중평균일반2ToolStripMenuItem.Name = "가중평균일반2ToolStripMenuItem";
-            this.가중평균일반2ToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.가중평균일반2ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.가중평균일반2ToolStripMenuItem.Text = "가중평균-일반-2";
             this.가중평균일반2ToolStripMenuItem.Click += new System.EventHandler(this.tsb_Click);
             // 
@@ -698,71 +698,71 @@
             // 
             this.tsbL_Basic.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbL_Basic.Name = "tsbL_Basic";
-            this.tsbL_Basic.Size = new System.Drawing.Size(180, 22);
+            this.tsbL_Basic.Size = new System.Drawing.Size(146, 22);
             this.tsbL_Basic.Text = "기본챠트";
             this.tsbL_Basic.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripMenuItem13
             // 
             this.toolStripMenuItem13.Name = "toolStripMenuItem13";
-            this.toolStripMenuItem13.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem13.Size = new System.Drawing.Size(143, 6);
             // 
             // tsbL_Quantum
             // 
             this.tsbL_Quantum.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbL_Quantum.Name = "tsbL_Quantum";
-            this.tsbL_Quantum.Size = new System.Drawing.Size(180, 22);
+            this.tsbL_Quantum.Size = new System.Drawing.Size(146, 22);
             this.tsbL_Quantum.Text = "양자챠트";
             this.tsbL_Quantum.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(143, 6);
             // 
             // tsbL_Velocity
             // 
             this.tsbL_Velocity.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbL_Velocity.Name = "tsbL_Velocity";
-            this.tsbL_Velocity.Size = new System.Drawing.Size(180, 22);
+            this.tsbL_Velocity.Size = new System.Drawing.Size(146, 22);
             this.tsbL_Velocity.Text = "변화챠트";
             this.tsbL_Velocity.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(143, 6);
             // 
             // tsbL_LengthRate
             // 
             this.tsbL_LengthRate.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbL_LengthRate.Name = "tsbL_LengthRate";
-            this.tsbL_LengthRate.Size = new System.Drawing.Size(180, 22);
+            this.tsbL_LengthRate.Size = new System.Drawing.Size(146, 22);
             this.tsbL_LengthRate.Text = "길이변화챠트";
             this.tsbL_LengthRate.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripSeparator13
             // 
             this.toolStripSeparator13.Name = "toolStripSeparator13";
-            this.toolStripSeparator13.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator13.Size = new System.Drawing.Size(143, 6);
             // 
             // tsbL_DarkMass
             // 
             this.tsbL_DarkMass.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbL_DarkMass.Name = "tsbL_DarkMass";
-            this.tsbL_DarkMass.Size = new System.Drawing.Size(180, 22);
+            this.tsbL_DarkMass.Size = new System.Drawing.Size(146, 22);
             this.tsbL_DarkMass.Text = "암흑질량챠트";
             this.tsbL_DarkMass.Click += new System.EventHandler(this.tsb_Click);
             // 
             // toolStripMenuItem43
             // 
             this.toolStripMenuItem43.Name = "toolStripMenuItem43";
-            this.toolStripMenuItem43.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem43.Size = new System.Drawing.Size(143, 6);
             // 
             // tsbL_ANode
             // 
             this.tsbL_ANode.Name = "tsbL_ANode";
-            this.tsbL_ANode.Size = new System.Drawing.Size(180, 22);
+            this.tsbL_ANode.Size = new System.Drawing.Size(146, 22);
             this.tsbL_ANode.Text = "양극챠트";
             this.tsbL_ANode.Click += new System.EventHandler(this.tsb_Click);
             // 
@@ -1020,7 +1020,7 @@
             this.tabPage.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.tabPage.ItemSize = new System.Drawing.Size(150, 24);
             this.tabPage.Location = new System.Drawing.Point(0, 37);
-            this.tabPage.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.tabPage.Margin = new System.Windows.Forms.Padding(1);
             this.tabPage.Name = "tabPage";
             this.tabPage.SelectedIndex = 0;
             this.tabPage.Size = new System.Drawing.Size(1198, 636);

@@ -71,7 +71,7 @@ namespace OM.PP.XingApp
             this.tbSecurity.SelectionStart = 0;
             this.tbSecurity.ShortcutsEnabled = true;
             this.tbSecurity.Size = new System.Drawing.Size(141, 21);
-            this.tbSecurity.TabIndex = 8;
+            this.tbSecurity.TabIndex = 4;
             this.tbSecurity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbSecurity.UseSelectable = true;
             this.tbSecurity.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -84,7 +84,7 @@ namespace OM.PP.XingApp
             this.button1.Location = new System.Drawing.Point(185, 184);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(71, 23);
-            this.button1.TabIndex = 9;
+            this.button1.TabIndex = 5;
             this.button1.Text = "LOGIN";
             this.button1.UseSelectable = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -125,7 +125,7 @@ namespace OM.PP.XingApp
             this.tbID.SelectionStart = 0;
             this.tbID.ShortcutsEnabled = true;
             this.tbID.Size = new System.Drawing.Size(141, 21);
-            this.tbID.TabIndex = 11;
+            this.tbID.TabIndex = 1;
             this.tbID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbID.UseSelectable = true;
             this.tbID.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -157,7 +157,7 @@ namespace OM.PP.XingApp
             this.tbPassword.SelectionStart = 0;
             this.tbPassword.ShortcutsEnabled = true;
             this.tbPassword.Size = new System.Drawing.Size(141, 21);
-            this.tbPassword.TabIndex = 13;
+            this.tbPassword.TabIndex = 2;
             this.tbPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbPassword.UseSelectable = true;
             this.tbPassword.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -199,7 +199,7 @@ namespace OM.PP.XingApp
             this.tbAuth.SelectionStart = 0;
             this.tbAuth.ShortcutsEnabled = true;
             this.tbAuth.Size = new System.Drawing.Size(141, 21);
-            this.tbAuth.TabIndex = 15;
+            this.tbAuth.TabIndex = 3;
             this.tbAuth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbAuth.UseSelectable = true;
             this.tbAuth.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -242,7 +242,7 @@ namespace OM.PP.XingApp
             this.metroButton1.Location = new System.Drawing.Point(196, 23);
             this.metroButton1.Name = "metroButton1";
             this.metroButton1.Size = new System.Drawing.Size(60, 23);
-            this.metroButton1.TabIndex = 18;
+            this.metroButton1.TabIndex = 6;
             this.metroButton1.Text = "CLOSE";
             this.metroButton1.UseSelectable = true;
             this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);

@@ -49,47 +49,40 @@
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.btnSave = new AltoControls.AltoButton();
             this.metroPanel3 = new MetroFramework.Controls.MetroPanel();
+            this.btnClear2 = new MetroFramework.Controls.MetroButton();
+            this.btnClear = new MetroFramework.Controls.MetroButton();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
+            this.tbIndicatorSummary = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel10 = new MetroFramework.Controls.MetroLabel();
-            this.metroTextBox2 = new MetroFramework.Controls.MetroTextBox();
-            this.metroTextBox3 = new MetroFramework.Controls.MetroTextBox();
+            this.tbIndicator3 = new MetroFramework.Controls.MetroTextBox();
+            this.tbIndicator2 = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel12 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel13 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel14 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel15 = new MetroFramework.Controls.MetroLabel();
-            this.metroTextBox4 = new MetroFramework.Controls.MetroTextBox();
+            this.tbIndicator5 = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel16 = new MetroFramework.Controls.MetroLabel();
-            this.metroTextBox5 = new MetroFramework.Controls.MetroTextBox();
-            this.metroTextBox7 = new MetroFramework.Controls.MetroTextBox();
+            this.tbIndicator1 = new MetroFramework.Controls.MetroTextBox();
+            this.tbIndicator4 = new MetroFramework.Controls.MetroTextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.metroTextBox15 = new MetroFramework.Controls.MetroTextBox();
-            this.metroTextBox14 = new MetroFramework.Controls.MetroTextBox();
-            this.metroTextBox13 = new MetroFramework.Controls.MetroTextBox();
-            this.metroTextBox12 = new MetroFramework.Controls.MetroTextBox();
-            this.metroTextBox11 = new MetroFramework.Controls.MetroTextBox();
-            this.metroTextBox10 = new MetroFramework.Controls.MetroTextBox();
-            this.metroTextBox9 = new MetroFramework.Controls.MetroTextBox();
-            this.metroTextBox8 = new MetroFramework.Controls.MetroTextBox();
-            this.tbUncertaintyCmt = new MetroFramework.Controls.MetroTextBox();
+            this.tbBasicSummary = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel9 = new MetroFramework.Controls.MetroLabel();
-            this.tbUncertaintyUs = new MetroFramework.Controls.MetroTextBox();
-            this.tbUncertaintyFx = new MetroFramework.Controls.MetroTextBox();
+            this.tbBasicChart3 = new MetroFramework.Controls.MetroTextBox();
+            this.tbBasicChart2 = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
-            this.tbUncertaintyCn = new MetroFramework.Controls.MetroTextBox();
+            this.tbBasicChart5 = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
-            this.tbUncertaintyKp = new MetroFramework.Controls.MetroTextBox();
+            this.tbBasicChart1 = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
-            this.tbUncertaintyVixUs = new MetroFramework.Controls.MetroTextBox();
-            this.tbUncertaintyEu = new MetroFramework.Controls.MetroTextBox();
-            this.tbUncertaintyVixEu = new MetroFramework.Controls.MetroTextBox();
-            this.tbUncertaintyVixCn = new MetroFramework.Controls.MetroTextBox();
-            this.metroTextBox6 = new MetroFramework.Controls.MetroTextBox();
+            this.tbBasicChart6 = new MetroFramework.Controls.MetroTextBox();
+            this.tbBasicChart4 = new MetroFramework.Controls.MetroTextBox();
+            this.tbBasicChart7 = new MetroFramework.Controls.MetroTextBox();
+            this.tbBasicChart8 = new MetroFramework.Controls.MetroTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.metroPanel2.SuspendLayout();
@@ -395,11 +388,14 @@
             this.btnSave.Size = new System.Drawing.Size(69, 54);
             this.btnSave.Stroke = false;
             this.btnSave.StrokeColor = System.Drawing.Color.Transparent;
-            this.btnSave.TabIndex = 20;
+            this.btnSave.TabIndex = 18;
             this.btnSave.Transparency = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // metroPanel3
             // 
+            this.metroPanel3.Controls.Add(this.btnClear2);
+            this.metroPanel3.Controls.Add(this.btnClear);
             this.metroPanel3.Controls.Add(this.tableLayoutPanel2);
             this.metroPanel3.Controls.Add(this.tableLayoutPanel1);
             this.metroPanel3.Controls.Add(this.label4);
@@ -416,24 +412,44 @@
             this.metroPanel3.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel3.VerticalScrollbarSize = 10;
             // 
+            // btnClear2
+            // 
+            this.btnClear2.Location = new System.Drawing.Point(823, 12);
+            this.btnClear2.Name = "btnClear2";
+            this.btnClear2.Size = new System.Drawing.Size(76, 23);
+            this.btnClear2.TabIndex = 17;
+            this.btnClear2.Text = "항목비우기";
+            this.btnClear2.UseSelectable = true;
+            this.btnClear2.Click += new System.EventHandler(this.btnClear2_Click);
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(344, 12);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(76, 23);
+            this.btnClear.TabIndex = 16;
+            this.btnClear.Text = "항목비우기";
+            this.btnClear.UseSelectable = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.metroTextBox1, 1, 5);
+            this.tableLayoutPanel2.Controls.Add(this.tbIndicatorSummary, 1, 5);
             this.tableLayoutPanel2.Controls.Add(this.metroLabel10, 0, 5);
-            this.tableLayoutPanel2.Controls.Add(this.metroTextBox2, 1, 2);
-            this.tableLayoutPanel2.Controls.Add(this.metroTextBox3, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.tbIndicator3, 1, 2);
+            this.tableLayoutPanel2.Controls.Add(this.tbIndicator2, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.metroLabel12, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.metroLabel13, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.metroLabel14, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.metroLabel15, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.metroTextBox4, 1, 4);
+            this.tableLayoutPanel2.Controls.Add(this.tbIndicator5, 1, 4);
             this.tableLayoutPanel2.Controls.Add(this.metroLabel16, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.metroTextBox5, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.metroTextBox7, 1, 3);
+            this.tableLayoutPanel2.Controls.Add(this.tbIndicator1, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.tbIndicator4, 1, 3);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(479, 38);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 6;
@@ -446,39 +462,39 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(420, 437);
             this.tableLayoutPanel2.TabIndex = 19;
             // 
-            // metroTextBox1
+            // tbIndicatorSummary
             // 
             // 
             // 
             // 
-            this.metroTextBox1.CustomButton.Image = null;
-            this.metroTextBox1.CustomButton.Location = new System.Drawing.Point(139, 2);
-            this.metroTextBox1.CustomButton.Name = "";
-            this.metroTextBox1.CustomButton.Size = new System.Drawing.Size(169, 169);
-            this.metroTextBox1.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroTextBox1.CustomButton.TabIndex = 1;
-            this.metroTextBox1.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTextBox1.CustomButton.UseSelectable = true;
-            this.metroTextBox1.CustomButton.Visible = false;
-            this.metroTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroTextBox1.Lines = new string[0];
-            this.metroTextBox1.Location = new System.Drawing.Point(105, 259);
-            this.metroTextBox1.MaxLength = 32767;
-            this.metroTextBox1.Multiline = true;
-            this.metroTextBox1.Name = "metroTextBox1";
-            this.metroTextBox1.PasswordChar = '\0';
-            this.metroTextBox1.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.metroTextBox1.SelectedText = "";
-            this.metroTextBox1.SelectionLength = 0;
-            this.metroTextBox1.SelectionStart = 0;
-            this.metroTextBox1.ShortcutsEnabled = true;
-            this.metroTextBox1.Size = new System.Drawing.Size(311, 174);
-            this.metroTextBox1.Style = MetroFramework.MetroColorStyle.Brown;
-            this.metroTextBox1.TabIndex = 35;
-            this.metroTextBox1.UseSelectable = true;
-            this.metroTextBox1.UseStyleColors = true;
-            this.metroTextBox1.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.metroTextBox1.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.tbIndicatorSummary.CustomButton.Image = null;
+            this.tbIndicatorSummary.CustomButton.Location = new System.Drawing.Point(139, 2);
+            this.tbIndicatorSummary.CustomButton.Name = "";
+            this.tbIndicatorSummary.CustomButton.Size = new System.Drawing.Size(169, 169);
+            this.tbIndicatorSummary.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tbIndicatorSummary.CustomButton.TabIndex = 1;
+            this.tbIndicatorSummary.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbIndicatorSummary.CustomButton.UseSelectable = true;
+            this.tbIndicatorSummary.CustomButton.Visible = false;
+            this.tbIndicatorSummary.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbIndicatorSummary.Lines = new string[0];
+            this.tbIndicatorSummary.Location = new System.Drawing.Point(105, 259);
+            this.tbIndicatorSummary.MaxLength = 32767;
+            this.tbIndicatorSummary.Multiline = true;
+            this.tbIndicatorSummary.Name = "tbIndicatorSummary";
+            this.tbIndicatorSummary.PasswordChar = '\0';
+            this.tbIndicatorSummary.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbIndicatorSummary.SelectedText = "";
+            this.tbIndicatorSummary.SelectionLength = 0;
+            this.tbIndicatorSummary.SelectionStart = 0;
+            this.tbIndicatorSummary.ShortcutsEnabled = true;
+            this.tbIndicatorSummary.Size = new System.Drawing.Size(311, 174);
+            this.tbIndicatorSummary.Style = MetroFramework.MetroColorStyle.Brown;
+            this.tbIndicatorSummary.TabIndex = 15;
+            this.tbIndicatorSummary.UseSelectable = true;
+            this.tbIndicatorSummary.UseStyleColors = true;
+            this.tbIndicatorSummary.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbIndicatorSummary.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // metroLabel10
             // 
@@ -491,101 +507,97 @@
             this.metroLabel10.Text = "요약정리";
             this.metroLabel10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // metroTextBox2
+            // tbIndicator3
             // 
             // 
             // 
             // 
-            this.metroTextBox2.CustomButton.BackColor = System.Drawing.Color.Red;
-            this.metroTextBox2.CustomButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.metroTextBox2.CustomButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.metroTextBox2.CustomButton.Image = null;
-            this.metroTextBox2.CustomButton.Location = new System.Drawing.Point(269, 2);
-            this.metroTextBox2.CustomButton.Name = "";
-            this.metroTextBox2.CustomButton.Size = new System.Drawing.Size(39, 39);
-            this.metroTextBox2.CustomButton.Style = MetroFramework.MetroColorStyle.Red;
-            this.metroTextBox2.CustomButton.TabIndex = 1;
-            this.metroTextBox2.CustomButton.Tag = "https://fred.stlouisfed.org/series/USEPUINDXD";
-            this.metroTextBox2.CustomButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.metroTextBox2.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTextBox2.CustomButton.UseCompatibleTextRendering = true;
-            this.metroTextBox2.CustomButton.UseCustomBackColor = true;
-            this.metroTextBox2.CustomButton.UseCustomForeColor = true;
-            this.metroTextBox2.CustomButton.UseSelectable = true;
-            this.metroTextBox2.CustomButton.UseStyleColors = true;
-            this.metroTextBox2.CustomButton.UseVisualStyleBackColor = false;
-            this.metroTextBox2.CustomButton.Visible = false;
-            this.metroTextBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroTextBox2.Lines = new string[] {
-        "보조지표 확인"};
-            this.metroTextBox2.Location = new System.Drawing.Point(105, 106);
-            this.metroTextBox2.MaxLength = 32767;
-            this.metroTextBox2.Multiline = true;
-            this.metroTextBox2.Name = "metroTextBox2";
-            this.metroTextBox2.PasswordChar = '\0';
-            this.metroTextBox2.PromptText = "지표(챠트) 확인";
-            this.metroTextBox2.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.metroTextBox2.SelectedText = "";
-            this.metroTextBox2.SelectionLength = 0;
-            this.metroTextBox2.SelectionStart = 0;
-            this.metroTextBox2.ShortcutsEnabled = true;
-            this.metroTextBox2.Size = new System.Drawing.Size(311, 44);
-            this.metroTextBox2.Style = MetroFramework.MetroColorStyle.Orange;
-            this.metroTextBox2.TabIndex = 25;
-            this.metroTextBox2.Text = "보조지표 확인";
-            this.metroTextBox2.UseSelectable = true;
-            this.metroTextBox2.UseStyleColors = true;
-            this.metroTextBox2.WaterMark = "지표(챠트) 확인";
-            this.metroTextBox2.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.metroTextBox2.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.tbIndicator3.CustomButton.BackColor = System.Drawing.Color.Red;
+            this.tbIndicator3.CustomButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.tbIndicator3.CustomButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.tbIndicator3.CustomButton.Image = null;
+            this.tbIndicator3.CustomButton.Location = new System.Drawing.Point(269, 2);
+            this.tbIndicator3.CustomButton.Name = "";
+            this.tbIndicator3.CustomButton.Size = new System.Drawing.Size(39, 39);
+            this.tbIndicator3.CustomButton.Style = MetroFramework.MetroColorStyle.Red;
+            this.tbIndicator3.CustomButton.TabIndex = 1;
+            this.tbIndicator3.CustomButton.Tag = "https://fred.stlouisfed.org/series/USEPUINDXD";
+            this.tbIndicator3.CustomButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tbIndicator3.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbIndicator3.CustomButton.UseCompatibleTextRendering = true;
+            this.tbIndicator3.CustomButton.UseCustomBackColor = true;
+            this.tbIndicator3.CustomButton.UseCustomForeColor = true;
+            this.tbIndicator3.CustomButton.UseSelectable = true;
+            this.tbIndicator3.CustomButton.UseStyleColors = true;
+            this.tbIndicator3.CustomButton.UseVisualStyleBackColor = false;
+            this.tbIndicator3.CustomButton.Visible = false;
+            this.tbIndicator3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbIndicator3.Lines = new string[0];
+            this.tbIndicator3.Location = new System.Drawing.Point(105, 106);
+            this.tbIndicator3.MaxLength = 32767;
+            this.tbIndicator3.Multiline = true;
+            this.tbIndicator3.Name = "tbIndicator3";
+            this.tbIndicator3.PasswordChar = '\0';
+            this.tbIndicator3.PromptText = "지표(챠트) 확인";
+            this.tbIndicator3.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbIndicator3.SelectedText = "";
+            this.tbIndicator3.SelectionLength = 0;
+            this.tbIndicator3.SelectionStart = 0;
+            this.tbIndicator3.ShortcutsEnabled = true;
+            this.tbIndicator3.Size = new System.Drawing.Size(311, 44);
+            this.tbIndicator3.Style = MetroFramework.MetroColorStyle.Orange;
+            this.tbIndicator3.TabIndex = 12;
+            this.tbIndicator3.UseSelectable = true;
+            this.tbIndicator3.UseStyleColors = true;
+            this.tbIndicator3.WaterMark = "지표(챠트) 확인";
+            this.tbIndicator3.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbIndicator3.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
-            // metroTextBox3
+            // tbIndicator2
             // 
             // 
             // 
             // 
-            this.metroTextBox3.CustomButton.BackColor = System.Drawing.Color.Red;
-            this.metroTextBox3.CustomButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.metroTextBox3.CustomButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.metroTextBox3.CustomButton.Image = null;
-            this.metroTextBox3.CustomButton.Location = new System.Drawing.Point(269, 2);
-            this.metroTextBox3.CustomButton.Name = "";
-            this.metroTextBox3.CustomButton.Size = new System.Drawing.Size(39, 39);
-            this.metroTextBox3.CustomButton.Style = MetroFramework.MetroColorStyle.Red;
-            this.metroTextBox3.CustomButton.TabIndex = 1;
-            this.metroTextBox3.CustomButton.Tag = "https://www.investing.com/indices/kospi-volatility";
-            this.metroTextBox3.CustomButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.metroTextBox3.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTextBox3.CustomButton.UseCompatibleTextRendering = true;
-            this.metroTextBox3.CustomButton.UseCustomBackColor = true;
-            this.metroTextBox3.CustomButton.UseCustomForeColor = true;
-            this.metroTextBox3.CustomButton.UseSelectable = true;
-            this.metroTextBox3.CustomButton.UseStyleColors = true;
-            this.metroTextBox3.CustomButton.UseVisualStyleBackColor = false;
-            this.metroTextBox3.CustomButton.Visible = false;
-            this.metroTextBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroTextBox3.Lines = new string[] {
-        "보조지표 확인"};
-            this.metroTextBox3.Location = new System.Drawing.Point(105, 55);
-            this.metroTextBox3.MaxLength = 32767;
-            this.metroTextBox3.Multiline = true;
-            this.metroTextBox3.Name = "metroTextBox3";
-            this.metroTextBox3.PasswordChar = '\0';
-            this.metroTextBox3.PromptText = "지표(챠트) 확인";
-            this.metroTextBox3.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.metroTextBox3.SelectedText = "";
-            this.metroTextBox3.SelectionLength = 0;
-            this.metroTextBox3.SelectionStart = 0;
-            this.metroTextBox3.ShortcutsEnabled = true;
-            this.metroTextBox3.Size = new System.Drawing.Size(311, 44);
-            this.metroTextBox3.Style = MetroFramework.MetroColorStyle.Lime;
-            this.metroTextBox3.TabIndex = 26;
-            this.metroTextBox3.Text = "보조지표 확인";
-            this.metroTextBox3.UseSelectable = true;
-            this.metroTextBox3.UseStyleColors = true;
-            this.metroTextBox3.WaterMark = "지표(챠트) 확인";
-            this.metroTextBox3.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.metroTextBox3.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.tbIndicator2.CustomButton.BackColor = System.Drawing.Color.Red;
+            this.tbIndicator2.CustomButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.tbIndicator2.CustomButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.tbIndicator2.CustomButton.Image = null;
+            this.tbIndicator2.CustomButton.Location = new System.Drawing.Point(269, 2);
+            this.tbIndicator2.CustomButton.Name = "";
+            this.tbIndicator2.CustomButton.Size = new System.Drawing.Size(39, 39);
+            this.tbIndicator2.CustomButton.Style = MetroFramework.MetroColorStyle.Red;
+            this.tbIndicator2.CustomButton.TabIndex = 1;
+            this.tbIndicator2.CustomButton.Tag = "https://www.investing.com/indices/kospi-volatility";
+            this.tbIndicator2.CustomButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tbIndicator2.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbIndicator2.CustomButton.UseCompatibleTextRendering = true;
+            this.tbIndicator2.CustomButton.UseCustomBackColor = true;
+            this.tbIndicator2.CustomButton.UseCustomForeColor = true;
+            this.tbIndicator2.CustomButton.UseSelectable = true;
+            this.tbIndicator2.CustomButton.UseStyleColors = true;
+            this.tbIndicator2.CustomButton.UseVisualStyleBackColor = false;
+            this.tbIndicator2.CustomButton.Visible = false;
+            this.tbIndicator2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbIndicator2.Lines = new string[0];
+            this.tbIndicator2.Location = new System.Drawing.Point(105, 55);
+            this.tbIndicator2.MaxLength = 32767;
+            this.tbIndicator2.Multiline = true;
+            this.tbIndicator2.Name = "tbIndicator2";
+            this.tbIndicator2.PasswordChar = '\0';
+            this.tbIndicator2.PromptText = "지표(챠트) 확인";
+            this.tbIndicator2.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbIndicator2.SelectedText = "";
+            this.tbIndicator2.SelectionLength = 0;
+            this.tbIndicator2.SelectionStart = 0;
+            this.tbIndicator2.ShortcutsEnabled = true;
+            this.tbIndicator2.Size = new System.Drawing.Size(311, 44);
+            this.tbIndicator2.Style = MetroFramework.MetroColorStyle.Lime;
+            this.tbIndicator2.TabIndex = 11;
+            this.tbIndicator2.UseSelectable = true;
+            this.tbIndicator2.UseStyleColors = true;
+            this.tbIndicator2.WaterMark = "지표(챠트) 확인";
+            this.tbIndicator2.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbIndicator2.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // metroLabel12
             // 
@@ -631,44 +643,42 @@
             this.metroLabel15.Text = "보조지표";
             this.metroLabel15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // metroTextBox4
+            // tbIndicator5
             // 
             // 
             // 
             // 
-            this.metroTextBox4.CustomButton.Image = null;
-            this.metroTextBox4.CustomButton.Location = new System.Drawing.Point(269, 2);
-            this.metroTextBox4.CustomButton.Name = "";
-            this.metroTextBox4.CustomButton.Size = new System.Drawing.Size(39, 39);
-            this.metroTextBox4.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroTextBox4.CustomButton.TabIndex = 1;
-            this.metroTextBox4.CustomButton.Tag = "https://fred.stlouisfed.org/series/CHIEPUINDXM";
-            this.metroTextBox4.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTextBox4.CustomButton.UseSelectable = true;
-            this.metroTextBox4.CustomButton.Visible = false;
-            this.metroTextBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroTextBox4.Lines = new string[] {
-        "보조지표 확인"};
-            this.metroTextBox4.Location = new System.Drawing.Point(105, 208);
-            this.metroTextBox4.MaxLength = 32767;
-            this.metroTextBox4.Multiline = true;
-            this.metroTextBox4.Name = "metroTextBox4";
-            this.metroTextBox4.PasswordChar = '\0';
-            this.metroTextBox4.PromptText = "지표(챠트) 확인";
-            this.metroTextBox4.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.metroTextBox4.SelectedText = "";
-            this.metroTextBox4.SelectionLength = 0;
-            this.metroTextBox4.SelectionStart = 0;
-            this.metroTextBox4.ShortcutsEnabled = true;
-            this.metroTextBox4.Size = new System.Drawing.Size(311, 44);
-            this.metroTextBox4.Style = MetroFramework.MetroColorStyle.Orange;
-            this.metroTextBox4.TabIndex = 4;
-            this.metroTextBox4.Text = "보조지표 확인";
-            this.metroTextBox4.UseSelectable = true;
-            this.metroTextBox4.UseStyleColors = true;
-            this.metroTextBox4.WaterMark = "지표(챠트) 확인";
-            this.metroTextBox4.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.metroTextBox4.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.tbIndicator5.CustomButton.Image = null;
+            this.tbIndicator5.CustomButton.Location = new System.Drawing.Point(269, 2);
+            this.tbIndicator5.CustomButton.Name = "";
+            this.tbIndicator5.CustomButton.Size = new System.Drawing.Size(39, 39);
+            this.tbIndicator5.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tbIndicator5.CustomButton.TabIndex = 1;
+            this.tbIndicator5.CustomButton.Tag = "https://fred.stlouisfed.org/series/CHIEPUINDXM";
+            this.tbIndicator5.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbIndicator5.CustomButton.UseSelectable = true;
+            this.tbIndicator5.CustomButton.Visible = false;
+            this.tbIndicator5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbIndicator5.Lines = new string[0];
+            this.tbIndicator5.Location = new System.Drawing.Point(105, 208);
+            this.tbIndicator5.MaxLength = 32767;
+            this.tbIndicator5.Multiline = true;
+            this.tbIndicator5.Name = "tbIndicator5";
+            this.tbIndicator5.PasswordChar = '\0';
+            this.tbIndicator5.PromptText = "지표(챠트) 확인";
+            this.tbIndicator5.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbIndicator5.SelectedText = "";
+            this.tbIndicator5.SelectionLength = 0;
+            this.tbIndicator5.SelectionStart = 0;
+            this.tbIndicator5.ShortcutsEnabled = true;
+            this.tbIndicator5.Size = new System.Drawing.Size(311, 44);
+            this.tbIndicator5.Style = MetroFramework.MetroColorStyle.Orange;
+            this.tbIndicator5.TabIndex = 14;
+            this.tbIndicator5.UseSelectable = true;
+            this.tbIndicator5.UseStyleColors = true;
+            this.tbIndicator5.WaterMark = "지표(챠트) 확인";
+            this.tbIndicator5.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbIndicator5.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // metroLabel16
             // 
@@ -681,120 +691,107 @@
             this.metroLabel16.Text = "보조지표";
             this.metroLabel16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // metroTextBox5
+            // tbIndicator1
             // 
             // 
             // 
             // 
-            this.metroTextBox5.CustomButton.Image = null;
-            this.metroTextBox5.CustomButton.Location = new System.Drawing.Point(269, 2);
-            this.metroTextBox5.CustomButton.Name = "";
-            this.metroTextBox5.CustomButton.Size = new System.Drawing.Size(39, 39);
-            this.metroTextBox5.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroTextBox5.CustomButton.TabIndex = 1;
-            this.metroTextBox5.CustomButton.Tag = "https://eiec.kdi.re.kr/issue/epuList.do";
-            this.metroTextBox5.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTextBox5.CustomButton.UseSelectable = true;
-            this.metroTextBox5.CustomButton.Visible = false;
-            this.metroTextBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroTextBox5.Lines = new string[] {
-        "보조지표 확인"};
-            this.metroTextBox5.Location = new System.Drawing.Point(105, 4);
-            this.metroTextBox5.MaxLength = 32767;
-            this.metroTextBox5.Multiline = true;
-            this.metroTextBox5.Name = "metroTextBox5";
-            this.metroTextBox5.PasswordChar = '\0';
-            this.metroTextBox5.PromptText = "지표(챠트) 확인";
-            this.metroTextBox5.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.metroTextBox5.SelectedText = "";
-            this.metroTextBox5.SelectionLength = 0;
-            this.metroTextBox5.SelectionStart = 0;
-            this.metroTextBox5.ShortcutsEnabled = true;
-            this.metroTextBox5.Size = new System.Drawing.Size(311, 44);
-            this.metroTextBox5.Style = MetroFramework.MetroColorStyle.Lime;
-            this.metroTextBox5.TabIndex = 24;
-            this.metroTextBox5.Text = "보조지표 확인";
-            this.metroTextBox5.UseCustomBackColor = true;
-            this.metroTextBox5.UseCustomForeColor = true;
-            this.metroTextBox5.UseSelectable = true;
-            this.metroTextBox5.UseStyleColors = true;
-            this.metroTextBox5.WaterMark = "지표(챠트) 확인";
-            this.metroTextBox5.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.metroTextBox5.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.tbIndicator1.CustomButton.Image = null;
+            this.tbIndicator1.CustomButton.Location = new System.Drawing.Point(269, 2);
+            this.tbIndicator1.CustomButton.Name = "";
+            this.tbIndicator1.CustomButton.Size = new System.Drawing.Size(39, 39);
+            this.tbIndicator1.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tbIndicator1.CustomButton.TabIndex = 1;
+            this.tbIndicator1.CustomButton.Tag = "https://eiec.kdi.re.kr/issue/epuList.do";
+            this.tbIndicator1.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbIndicator1.CustomButton.UseSelectable = true;
+            this.tbIndicator1.CustomButton.Visible = false;
+            this.tbIndicator1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbIndicator1.Lines = new string[0];
+            this.tbIndicator1.Location = new System.Drawing.Point(105, 4);
+            this.tbIndicator1.MaxLength = 32767;
+            this.tbIndicator1.Multiline = true;
+            this.tbIndicator1.Name = "tbIndicator1";
+            this.tbIndicator1.PasswordChar = '\0';
+            this.tbIndicator1.PromptText = "지표(챠트) 확인";
+            this.tbIndicator1.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbIndicator1.SelectedText = "";
+            this.tbIndicator1.SelectionLength = 0;
+            this.tbIndicator1.SelectionStart = 0;
+            this.tbIndicator1.ShortcutsEnabled = true;
+            this.tbIndicator1.Size = new System.Drawing.Size(311, 44);
+            this.tbIndicator1.Style = MetroFramework.MetroColorStyle.Lime;
+            this.tbIndicator1.TabIndex = 10;
+            this.tbIndicator1.UseCustomBackColor = true;
+            this.tbIndicator1.UseCustomForeColor = true;
+            this.tbIndicator1.UseSelectable = true;
+            this.tbIndicator1.UseStyleColors = true;
+            this.tbIndicator1.WaterMark = "지표(챠트) 확인";
+            this.tbIndicator1.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbIndicator1.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
-            // metroTextBox7
+            // tbIndicator4
             // 
             // 
             // 
             // 
-            this.metroTextBox7.CustomButton.Image = null;
-            this.metroTextBox7.CustomButton.Location = new System.Drawing.Point(269, 2);
-            this.metroTextBox7.CustomButton.Name = "";
-            this.metroTextBox7.CustomButton.Size = new System.Drawing.Size(39, 39);
-            this.metroTextBox7.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroTextBox7.CustomButton.TabIndex = 1;
-            this.metroTextBox7.CustomButton.Tag = "https://fred.stlouisfed.org/series/EUEPUINDXM";
-            this.metroTextBox7.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTextBox7.CustomButton.UseSelectable = true;
-            this.metroTextBox7.CustomButton.Visible = false;
-            this.metroTextBox7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroTextBox7.Lines = new string[] {
-        "보조지표 확인"};
-            this.metroTextBox7.Location = new System.Drawing.Point(105, 157);
-            this.metroTextBox7.MaxLength = 32767;
-            this.metroTextBox7.Multiline = true;
-            this.metroTextBox7.Name = "metroTextBox7";
-            this.metroTextBox7.PasswordChar = '\0';
-            this.metroTextBox7.PromptText = "지표(챠트) 확인";
-            this.metroTextBox7.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.metroTextBox7.SelectedText = "";
-            this.metroTextBox7.SelectionLength = 0;
-            this.metroTextBox7.SelectionStart = 0;
-            this.metroTextBox7.ShortcutsEnabled = true;
-            this.metroTextBox7.Size = new System.Drawing.Size(311, 44);
-            this.metroTextBox7.Style = MetroFramework.MetroColorStyle.Orange;
-            this.metroTextBox7.TabIndex = 15;
-            this.metroTextBox7.Text = "보조지표 확인";
-            this.metroTextBox7.UseSelectable = true;
-            this.metroTextBox7.UseStyleColors = true;
-            this.metroTextBox7.WaterMark = "지표(챠트) 확인";
-            this.metroTextBox7.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.metroTextBox7.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.tbIndicator4.CustomButton.Image = null;
+            this.tbIndicator4.CustomButton.Location = new System.Drawing.Point(269, 2);
+            this.tbIndicator4.CustomButton.Name = "";
+            this.tbIndicator4.CustomButton.Size = new System.Drawing.Size(39, 39);
+            this.tbIndicator4.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tbIndicator4.CustomButton.TabIndex = 1;
+            this.tbIndicator4.CustomButton.Tag = "https://fred.stlouisfed.org/series/EUEPUINDXM";
+            this.tbIndicator4.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbIndicator4.CustomButton.UseSelectable = true;
+            this.tbIndicator4.CustomButton.Visible = false;
+            this.tbIndicator4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbIndicator4.Lines = new string[0];
+            this.tbIndicator4.Location = new System.Drawing.Point(105, 157);
+            this.tbIndicator4.MaxLength = 32767;
+            this.tbIndicator4.Multiline = true;
+            this.tbIndicator4.Name = "tbIndicator4";
+            this.tbIndicator4.PasswordChar = '\0';
+            this.tbIndicator4.PromptText = "지표(챠트) 확인";
+            this.tbIndicator4.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbIndicator4.SelectedText = "";
+            this.tbIndicator4.SelectionLength = 0;
+            this.tbIndicator4.SelectionStart = 0;
+            this.tbIndicator4.ShortcutsEnabled = true;
+            this.tbIndicator4.Size = new System.Drawing.Size(311, 44);
+            this.tbIndicator4.Style = MetroFramework.MetroColorStyle.Orange;
+            this.tbIndicator4.TabIndex = 13;
+            this.tbIndicator4.UseSelectable = true;
+            this.tbIndicator4.UseStyleColors = true;
+            this.tbIndicator4.WaterMark = "지표(챠트) 확인";
+            this.tbIndicator4.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbIndicator4.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
-            this.tableLayoutPanel1.Controls.Add(this.metroTextBox15, 2, 8);
-            this.tableLayoutPanel1.Controls.Add(this.metroTextBox14, 2, 7);
-            this.tableLayoutPanel1.Controls.Add(this.metroTextBox13, 2, 6);
-            this.tableLayoutPanel1.Controls.Add(this.metroTextBox12, 2, 5);
-            this.tableLayoutPanel1.Controls.Add(this.metroTextBox11, 2, 4);
-            this.tableLayoutPanel1.Controls.Add(this.metroTextBox10, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.metroTextBox9, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.metroTextBox8, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.tbUncertaintyCmt, 1, 8);
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.tbBasicSummary, 1, 8);
             this.tableLayoutPanel1.Controls.Add(this.metroLabel9, 0, 8);
-            this.tableLayoutPanel1.Controls.Add(this.tbUncertaintyUs, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.tbUncertaintyFx, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.tbBasicChart3, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.tbBasicChart2, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.metroLabel8, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.metroLabel1, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.metroLabel2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.metroLabel3, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.metroLabel4, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.tbUncertaintyCn, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.tbBasicChart5, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.metroLabel5, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.tbUncertaintyKp, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tbBasicChart1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.metroLabel6, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.metroLabel7, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.tbUncertaintyVixUs, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.tbUncertaintyEu, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.tbUncertaintyVixEu, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.tbUncertaintyVixCn, 1, 7);
-            this.tableLayoutPanel1.Controls.Add(this.metroTextBox6, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tbBasicChart6, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.tbBasicChart4, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.tbBasicChart7, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.tbBasicChart8, 1, 7);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(30, 37);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 9;
@@ -810,310 +807,39 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(390, 437);
             this.tableLayoutPanel1.TabIndex = 18;
             // 
-            // metroTextBox15
+            // tbBasicSummary
             // 
             // 
             // 
             // 
-            this.metroTextBox15.CustomButton.Image = null;
-            this.metroTextBox15.CustomButton.Location = new System.Drawing.Point(53, 1);
-            this.metroTextBox15.CustomButton.Name = "";
-            this.metroTextBox15.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.metroTextBox15.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroTextBox15.CustomButton.TabIndex = 1;
-            this.metroTextBox15.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTextBox15.CustomButton.UseSelectable = true;
-            this.metroTextBox15.CustomButton.Visible = false;
-            this.metroTextBox15.Lines = new string[0];
-            this.metroTextBox15.Location = new System.Drawing.Point(307, 292);
-            this.metroTextBox15.MaxLength = 32767;
-            this.metroTextBox15.Name = "metroTextBox15";
-            this.metroTextBox15.PasswordChar = '\0';
-            this.metroTextBox15.PromptText = "0-100";
-            this.metroTextBox15.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.metroTextBox15.SelectedText = "";
-            this.metroTextBox15.SelectionLength = 0;
-            this.metroTextBox15.SelectionStart = 0;
-            this.metroTextBox15.ShortcutsEnabled = true;
-            this.metroTextBox15.Size = new System.Drawing.Size(75, 23);
-            this.metroTextBox15.TabIndex = 37;
-            this.metroTextBox15.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.metroTextBox15.UseSelectable = true;
-            this.metroTextBox15.WaterMark = "0-100";
-            this.metroTextBox15.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.metroTextBox15.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // metroTextBox14
-            // 
-            // 
-            // 
-            // 
-            this.metroTextBox14.CustomButton.Image = null;
-            this.metroTextBox14.CustomButton.Location = new System.Drawing.Point(51, 1);
-            this.metroTextBox14.CustomButton.Name = "";
-            this.metroTextBox14.CustomButton.Size = new System.Drawing.Size(27, 27);
-            this.metroTextBox14.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroTextBox14.CustomButton.TabIndex = 1;
-            this.metroTextBox14.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTextBox14.CustomButton.UseSelectable = true;
-            this.metroTextBox14.CustomButton.Visible = false;
-            this.metroTextBox14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroTextBox14.Lines = new string[0];
-            this.metroTextBox14.Location = new System.Drawing.Point(307, 256);
-            this.metroTextBox14.MaxLength = 32767;
-            this.metroTextBox14.Name = "metroTextBox14";
-            this.metroTextBox14.PasswordChar = '\0';
-            this.metroTextBox14.PromptText = "0-100";
-            this.metroTextBox14.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.metroTextBox14.SelectedText = "";
-            this.metroTextBox14.SelectionLength = 0;
-            this.metroTextBox14.SelectionStart = 0;
-            this.metroTextBox14.ShortcutsEnabled = true;
-            this.metroTextBox14.Size = new System.Drawing.Size(79, 29);
-            this.metroTextBox14.TabIndex = 37;
-            this.metroTextBox14.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.metroTextBox14.UseSelectable = true;
-            this.metroTextBox14.WaterMark = "0-100";
-            this.metroTextBox14.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.metroTextBox14.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // metroTextBox13
-            // 
-            // 
-            // 
-            // 
-            this.metroTextBox13.CustomButton.Image = null;
-            this.metroTextBox13.CustomButton.Location = new System.Drawing.Point(51, 1);
-            this.metroTextBox13.CustomButton.Name = "";
-            this.metroTextBox13.CustomButton.Size = new System.Drawing.Size(27, 27);
-            this.metroTextBox13.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroTextBox13.CustomButton.TabIndex = 1;
-            this.metroTextBox13.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTextBox13.CustomButton.UseSelectable = true;
-            this.metroTextBox13.CustomButton.Visible = false;
-            this.metroTextBox13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroTextBox13.Lines = new string[0];
-            this.metroTextBox13.Location = new System.Drawing.Point(307, 220);
-            this.metroTextBox13.MaxLength = 32767;
-            this.metroTextBox13.Name = "metroTextBox13";
-            this.metroTextBox13.PasswordChar = '\0';
-            this.metroTextBox13.PromptText = "0-100";
-            this.metroTextBox13.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.metroTextBox13.SelectedText = "";
-            this.metroTextBox13.SelectionLength = 0;
-            this.metroTextBox13.SelectionStart = 0;
-            this.metroTextBox13.ShortcutsEnabled = true;
-            this.metroTextBox13.Size = new System.Drawing.Size(79, 29);
-            this.metroTextBox13.TabIndex = 37;
-            this.metroTextBox13.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.metroTextBox13.UseSelectable = true;
-            this.metroTextBox13.WaterMark = "0-100";
-            this.metroTextBox13.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.metroTextBox13.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // metroTextBox12
-            // 
-            // 
-            // 
-            // 
-            this.metroTextBox12.CustomButton.Image = null;
-            this.metroTextBox12.CustomButton.Location = new System.Drawing.Point(51, 1);
-            this.metroTextBox12.CustomButton.Name = "";
-            this.metroTextBox12.CustomButton.Size = new System.Drawing.Size(27, 27);
-            this.metroTextBox12.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroTextBox12.CustomButton.TabIndex = 1;
-            this.metroTextBox12.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTextBox12.CustomButton.UseSelectable = true;
-            this.metroTextBox12.CustomButton.Visible = false;
-            this.metroTextBox12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroTextBox12.Lines = new string[0];
-            this.metroTextBox12.Location = new System.Drawing.Point(307, 184);
-            this.metroTextBox12.MaxLength = 32767;
-            this.metroTextBox12.Name = "metroTextBox12";
-            this.metroTextBox12.PasswordChar = '\0';
-            this.metroTextBox12.PromptText = "0-100";
-            this.metroTextBox12.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.metroTextBox12.SelectedText = "";
-            this.metroTextBox12.SelectionLength = 0;
-            this.metroTextBox12.SelectionStart = 0;
-            this.metroTextBox12.ShortcutsEnabled = true;
-            this.metroTextBox12.Size = new System.Drawing.Size(79, 29);
-            this.metroTextBox12.TabIndex = 37;
-            this.metroTextBox12.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.metroTextBox12.UseSelectable = true;
-            this.metroTextBox12.WaterMark = "0-100";
-            this.metroTextBox12.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.metroTextBox12.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // metroTextBox11
-            // 
-            // 
-            // 
-            // 
-            this.metroTextBox11.CustomButton.Image = null;
-            this.metroTextBox11.CustomButton.Location = new System.Drawing.Point(51, 1);
-            this.metroTextBox11.CustomButton.Name = "";
-            this.metroTextBox11.CustomButton.Size = new System.Drawing.Size(27, 27);
-            this.metroTextBox11.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroTextBox11.CustomButton.TabIndex = 1;
-            this.metroTextBox11.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTextBox11.CustomButton.UseSelectable = true;
-            this.metroTextBox11.CustomButton.Visible = false;
-            this.metroTextBox11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroTextBox11.Lines = new string[0];
-            this.metroTextBox11.Location = new System.Drawing.Point(307, 148);
-            this.metroTextBox11.MaxLength = 32767;
-            this.metroTextBox11.Name = "metroTextBox11";
-            this.metroTextBox11.PasswordChar = '\0';
-            this.metroTextBox11.PromptText = "0-100";
-            this.metroTextBox11.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.metroTextBox11.SelectedText = "";
-            this.metroTextBox11.SelectionLength = 0;
-            this.metroTextBox11.SelectionStart = 0;
-            this.metroTextBox11.ShortcutsEnabled = true;
-            this.metroTextBox11.Size = new System.Drawing.Size(79, 29);
-            this.metroTextBox11.TabIndex = 37;
-            this.metroTextBox11.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.metroTextBox11.UseSelectable = true;
-            this.metroTextBox11.WaterMark = "0-100";
-            this.metroTextBox11.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.metroTextBox11.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // metroTextBox10
-            // 
-            // 
-            // 
-            // 
-            this.metroTextBox10.CustomButton.Image = null;
-            this.metroTextBox10.CustomButton.Location = new System.Drawing.Point(51, 1);
-            this.metroTextBox10.CustomButton.Name = "";
-            this.metroTextBox10.CustomButton.Size = new System.Drawing.Size(27, 27);
-            this.metroTextBox10.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroTextBox10.CustomButton.TabIndex = 1;
-            this.metroTextBox10.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTextBox10.CustomButton.UseSelectable = true;
-            this.metroTextBox10.CustomButton.Visible = false;
-            this.metroTextBox10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroTextBox10.Lines = new string[0];
-            this.metroTextBox10.Location = new System.Drawing.Point(307, 112);
-            this.metroTextBox10.MaxLength = 32767;
-            this.metroTextBox10.Name = "metroTextBox10";
-            this.metroTextBox10.PasswordChar = '\0';
-            this.metroTextBox10.PromptText = "0-100";
-            this.metroTextBox10.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.metroTextBox10.SelectedText = "";
-            this.metroTextBox10.SelectionLength = 0;
-            this.metroTextBox10.SelectionStart = 0;
-            this.metroTextBox10.ShortcutsEnabled = true;
-            this.metroTextBox10.Size = new System.Drawing.Size(79, 29);
-            this.metroTextBox10.TabIndex = 37;
-            this.metroTextBox10.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.metroTextBox10.UseSelectable = true;
-            this.metroTextBox10.WaterMark = "0-100";
-            this.metroTextBox10.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.metroTextBox10.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // metroTextBox9
-            // 
-            // 
-            // 
-            // 
-            this.metroTextBox9.CustomButton.Image = null;
-            this.metroTextBox9.CustomButton.Location = new System.Drawing.Point(51, 1);
-            this.metroTextBox9.CustomButton.Name = "";
-            this.metroTextBox9.CustomButton.Size = new System.Drawing.Size(27, 27);
-            this.metroTextBox9.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroTextBox9.CustomButton.TabIndex = 1;
-            this.metroTextBox9.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTextBox9.CustomButton.UseSelectable = true;
-            this.metroTextBox9.CustomButton.Visible = false;
-            this.metroTextBox9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroTextBox9.Lines = new string[0];
-            this.metroTextBox9.Location = new System.Drawing.Point(307, 76);
-            this.metroTextBox9.MaxLength = 32767;
-            this.metroTextBox9.Name = "metroTextBox9";
-            this.metroTextBox9.PasswordChar = '\0';
-            this.metroTextBox9.PromptText = "0-100";
-            this.metroTextBox9.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.metroTextBox9.SelectedText = "";
-            this.metroTextBox9.SelectionLength = 0;
-            this.metroTextBox9.SelectionStart = 0;
-            this.metroTextBox9.ShortcutsEnabled = true;
-            this.metroTextBox9.Size = new System.Drawing.Size(79, 29);
-            this.metroTextBox9.TabIndex = 37;
-            this.metroTextBox9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.metroTextBox9.UseSelectable = true;
-            this.metroTextBox9.WaterMark = "0-100";
-            this.metroTextBox9.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.metroTextBox9.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // metroTextBox8
-            // 
-            // 
-            // 
-            // 
-            this.metroTextBox8.CustomButton.Image = null;
-            this.metroTextBox8.CustomButton.Location = new System.Drawing.Point(51, 1);
-            this.metroTextBox8.CustomButton.Name = "";
-            this.metroTextBox8.CustomButton.Size = new System.Drawing.Size(27, 27);
-            this.metroTextBox8.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroTextBox8.CustomButton.TabIndex = 1;
-            this.metroTextBox8.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTextBox8.CustomButton.UseSelectable = true;
-            this.metroTextBox8.CustomButton.Visible = false;
-            this.metroTextBox8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroTextBox8.Lines = new string[0];
-            this.metroTextBox8.Location = new System.Drawing.Point(307, 40);
-            this.metroTextBox8.MaxLength = 32767;
-            this.metroTextBox8.Name = "metroTextBox8";
-            this.metroTextBox8.PasswordChar = '\0';
-            this.metroTextBox8.PromptText = "0-100";
-            this.metroTextBox8.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.metroTextBox8.SelectedText = "";
-            this.metroTextBox8.SelectionLength = 0;
-            this.metroTextBox8.SelectionStart = 0;
-            this.metroTextBox8.ShortcutsEnabled = true;
-            this.metroTextBox8.Size = new System.Drawing.Size(79, 29);
-            this.metroTextBox8.TabIndex = 37;
-            this.metroTextBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.metroTextBox8.UseSelectable = true;
-            this.metroTextBox8.WaterMark = "0-100";
-            this.metroTextBox8.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.metroTextBox8.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // tbUncertaintyCmt
-            // 
-            // 
-            // 
-            // 
-            this.tbUncertaintyCmt.CustomButton.Image = null;
-            this.tbUncertaintyCmt.CustomButton.Location = new System.Drawing.Point(55, 1);
-            this.tbUncertaintyCmt.CustomButton.Name = "";
-            this.tbUncertaintyCmt.CustomButton.Size = new System.Drawing.Size(139, 139);
-            this.tbUncertaintyCmt.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.tbUncertaintyCmt.CustomButton.TabIndex = 1;
-            this.tbUncertaintyCmt.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.tbUncertaintyCmt.CustomButton.UseSelectable = true;
-            this.tbUncertaintyCmt.CustomButton.Visible = false;
-            this.tbUncertaintyCmt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbUncertaintyCmt.Lines = new string[0];
-            this.tbUncertaintyCmt.Location = new System.Drawing.Point(105, 292);
-            this.tbUncertaintyCmt.MaxLength = 32767;
-            this.tbUncertaintyCmt.Multiline = true;
-            this.tbUncertaintyCmt.Name = "tbUncertaintyCmt";
-            this.tbUncertaintyCmt.PasswordChar = '\0';
-            this.tbUncertaintyCmt.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.tbUncertaintyCmt.SelectedText = "";
-            this.tbUncertaintyCmt.SelectionLength = 0;
-            this.tbUncertaintyCmt.SelectionStart = 0;
-            this.tbUncertaintyCmt.ShortcutsEnabled = true;
-            this.tbUncertaintyCmt.Size = new System.Drawing.Size(195, 141);
-            this.tbUncertaintyCmt.Style = MetroFramework.MetroColorStyle.Brown;
-            this.tbUncertaintyCmt.TabIndex = 35;
-            this.tbUncertaintyCmt.UseSelectable = true;
-            this.tbUncertaintyCmt.UseStyleColors = true;
-            this.tbUncertaintyCmt.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.tbUncertaintyCmt.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.tbBasicSummary.CustomButton.Image = null;
+            this.tbBasicSummary.CustomButton.Location = new System.Drawing.Point(141, 1);
+            this.tbBasicSummary.CustomButton.Name = "";
+            this.tbBasicSummary.CustomButton.Size = new System.Drawing.Size(139, 139);
+            this.tbBasicSummary.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tbBasicSummary.CustomButton.TabIndex = 1;
+            this.tbBasicSummary.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbBasicSummary.CustomButton.UseSelectable = true;
+            this.tbBasicSummary.CustomButton.Visible = false;
+            this.tbBasicSummary.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbBasicSummary.Lines = new string[0];
+            this.tbBasicSummary.Location = new System.Drawing.Point(105, 292);
+            this.tbBasicSummary.MaxLength = 32767;
+            this.tbBasicSummary.Multiline = true;
+            this.tbBasicSummary.Name = "tbBasicSummary";
+            this.tbBasicSummary.PasswordChar = '\0';
+            this.tbBasicSummary.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbBasicSummary.SelectedText = "";
+            this.tbBasicSummary.SelectionLength = 0;
+            this.tbBasicSummary.SelectionStart = 0;
+            this.tbBasicSummary.ShortcutsEnabled = true;
+            this.tbBasicSummary.Size = new System.Drawing.Size(281, 141);
+            this.tbBasicSummary.Style = MetroFramework.MetroColorStyle.Brown;
+            this.tbBasicSummary.TabIndex = 9;
+            this.tbBasicSummary.UseSelectable = true;
+            this.tbBasicSummary.UseStyleColors = true;
+            this.tbBasicSummary.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbBasicSummary.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // metroLabel9
             // 
@@ -1126,95 +852,95 @@
             this.metroLabel9.Text = "요약정리";
             this.metroLabel9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // tbUncertaintyUs
+            // tbBasicChart3
             // 
             // 
             // 
             // 
-            this.tbUncertaintyUs.CustomButton.BackColor = System.Drawing.Color.Red;
-            this.tbUncertaintyUs.CustomButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.tbUncertaintyUs.CustomButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.tbUncertaintyUs.CustomButton.Image = null;
-            this.tbUncertaintyUs.CustomButton.Location = new System.Drawing.Point(167, 1);
-            this.tbUncertaintyUs.CustomButton.Name = "";
-            this.tbUncertaintyUs.CustomButton.Size = new System.Drawing.Size(27, 27);
-            this.tbUncertaintyUs.CustomButton.Style = MetroFramework.MetroColorStyle.Red;
-            this.tbUncertaintyUs.CustomButton.TabIndex = 1;
-            this.tbUncertaintyUs.CustomButton.Tag = "https://fred.stlouisfed.org/series/USEPUINDXD";
-            this.tbUncertaintyUs.CustomButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tbUncertaintyUs.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.tbUncertaintyUs.CustomButton.UseCompatibleTextRendering = true;
-            this.tbUncertaintyUs.CustomButton.UseCustomBackColor = true;
-            this.tbUncertaintyUs.CustomButton.UseCustomForeColor = true;
-            this.tbUncertaintyUs.CustomButton.UseSelectable = true;
-            this.tbUncertaintyUs.CustomButton.UseStyleColors = true;
-            this.tbUncertaintyUs.CustomButton.UseVisualStyleBackColor = false;
-            this.tbUncertaintyUs.CustomButton.Visible = false;
-            this.tbUncertaintyUs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbUncertaintyUs.Lines = new string[0];
-            this.tbUncertaintyUs.Location = new System.Drawing.Point(105, 76);
-            this.tbUncertaintyUs.MaxLength = 32767;
-            this.tbUncertaintyUs.Name = "tbUncertaintyUs";
-            this.tbUncertaintyUs.PasswordChar = '\0';
-            this.tbUncertaintyUs.PromptText = "챠트의 내용을 기술";
-            this.tbUncertaintyUs.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.tbUncertaintyUs.SelectedText = "";
-            this.tbUncertaintyUs.SelectionLength = 0;
-            this.tbUncertaintyUs.SelectionStart = 0;
-            this.tbUncertaintyUs.ShortcutsEnabled = true;
-            this.tbUncertaintyUs.Size = new System.Drawing.Size(195, 29);
-            this.tbUncertaintyUs.Style = MetroFramework.MetroColorStyle.Lime;
-            this.tbUncertaintyUs.TabIndex = 25;
-            this.tbUncertaintyUs.UseSelectable = true;
-            this.tbUncertaintyUs.UseStyleColors = true;
-            this.tbUncertaintyUs.WaterMark = "챠트의 내용을 기술";
-            this.tbUncertaintyUs.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.tbUncertaintyUs.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.tbBasicChart3.CustomButton.BackColor = System.Drawing.Color.Red;
+            this.tbBasicChart3.CustomButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.tbBasicChart3.CustomButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.tbBasicChart3.CustomButton.Image = null;
+            this.tbBasicChart3.CustomButton.Location = new System.Drawing.Point(253, 1);
+            this.tbBasicChart3.CustomButton.Name = "";
+            this.tbBasicChart3.CustomButton.Size = new System.Drawing.Size(27, 27);
+            this.tbBasicChart3.CustomButton.Style = MetroFramework.MetroColorStyle.Red;
+            this.tbBasicChart3.CustomButton.TabIndex = 1;
+            this.tbBasicChart3.CustomButton.Tag = "https://fred.stlouisfed.org/series/USEPUINDXD";
+            this.tbBasicChart3.CustomButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tbBasicChart3.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbBasicChart3.CustomButton.UseCompatibleTextRendering = true;
+            this.tbBasicChart3.CustomButton.UseCustomBackColor = true;
+            this.tbBasicChart3.CustomButton.UseCustomForeColor = true;
+            this.tbBasicChart3.CustomButton.UseSelectable = true;
+            this.tbBasicChart3.CustomButton.UseStyleColors = true;
+            this.tbBasicChart3.CustomButton.UseVisualStyleBackColor = false;
+            this.tbBasicChart3.CustomButton.Visible = false;
+            this.tbBasicChart3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbBasicChart3.Lines = new string[0];
+            this.tbBasicChart3.Location = new System.Drawing.Point(105, 76);
+            this.tbBasicChart3.MaxLength = 32767;
+            this.tbBasicChart3.Name = "tbBasicChart3";
+            this.tbBasicChart3.PasswordChar = '\0';
+            this.tbBasicChart3.PromptText = "챠트의 내용을 기술";
+            this.tbBasicChart3.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbBasicChart3.SelectedText = "";
+            this.tbBasicChart3.SelectionLength = 0;
+            this.tbBasicChart3.SelectionStart = 0;
+            this.tbBasicChart3.ShortcutsEnabled = true;
+            this.tbBasicChart3.Size = new System.Drawing.Size(281, 29);
+            this.tbBasicChart3.Style = MetroFramework.MetroColorStyle.Lime;
+            this.tbBasicChart3.TabIndex = 3;
+            this.tbBasicChart3.UseSelectable = true;
+            this.tbBasicChart3.UseStyleColors = true;
+            this.tbBasicChart3.WaterMark = "챠트의 내용을 기술";
+            this.tbBasicChart3.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbBasicChart3.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
-            // tbUncertaintyFx
-            // 
-            // 
+            // tbBasicChart2
             // 
             // 
-            this.tbUncertaintyFx.CustomButton.BackColor = System.Drawing.Color.Red;
-            this.tbUncertaintyFx.CustomButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.tbUncertaintyFx.CustomButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.tbUncertaintyFx.CustomButton.Image = null;
-            this.tbUncertaintyFx.CustomButton.Location = new System.Drawing.Point(167, 1);
-            this.tbUncertaintyFx.CustomButton.Name = "";
-            this.tbUncertaintyFx.CustomButton.Size = new System.Drawing.Size(27, 27);
-            this.tbUncertaintyFx.CustomButton.Style = MetroFramework.MetroColorStyle.Red;
-            this.tbUncertaintyFx.CustomButton.TabIndex = 1;
-            this.tbUncertaintyFx.CustomButton.Tag = "https://www.investing.com/indices/kospi-volatility";
-            this.tbUncertaintyFx.CustomButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tbUncertaintyFx.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.tbUncertaintyFx.CustomButton.UseCompatibleTextRendering = true;
-            this.tbUncertaintyFx.CustomButton.UseCustomBackColor = true;
-            this.tbUncertaintyFx.CustomButton.UseCustomForeColor = true;
-            this.tbUncertaintyFx.CustomButton.UseSelectable = true;
-            this.tbUncertaintyFx.CustomButton.UseStyleColors = true;
-            this.tbUncertaintyFx.CustomButton.UseVisualStyleBackColor = false;
-            this.tbUncertaintyFx.CustomButton.Visible = false;
-            this.tbUncertaintyFx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbUncertaintyFx.Lines = new string[0];
-            this.tbUncertaintyFx.Location = new System.Drawing.Point(105, 40);
-            this.tbUncertaintyFx.MaxLength = 32767;
-            this.tbUncertaintyFx.Name = "tbUncertaintyFx";
-            this.tbUncertaintyFx.PasswordChar = '\0';
-            this.tbUncertaintyFx.PromptText = "챠트의 내용을 기술";
-            this.tbUncertaintyFx.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.tbUncertaintyFx.SelectedText = "";
-            this.tbUncertaintyFx.SelectionLength = 0;
-            this.tbUncertaintyFx.SelectionStart = 0;
-            this.tbUncertaintyFx.ShortcutsEnabled = true;
-            this.tbUncertaintyFx.Size = new System.Drawing.Size(195, 29);
-            this.tbUncertaintyFx.Style = MetroFramework.MetroColorStyle.Lime;
-            this.tbUncertaintyFx.TabIndex = 26;
-            this.tbUncertaintyFx.UseSelectable = true;
-            this.tbUncertaintyFx.UseStyleColors = true;
-            this.tbUncertaintyFx.WaterMark = "챠트의 내용을 기술";
-            this.tbUncertaintyFx.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.tbUncertaintyFx.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // 
+            this.tbBasicChart2.CustomButton.BackColor = System.Drawing.Color.Red;
+            this.tbBasicChart2.CustomButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.tbBasicChart2.CustomButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.tbBasicChart2.CustomButton.Image = null;
+            this.tbBasicChart2.CustomButton.Location = new System.Drawing.Point(253, 1);
+            this.tbBasicChart2.CustomButton.Name = "";
+            this.tbBasicChart2.CustomButton.Size = new System.Drawing.Size(27, 27);
+            this.tbBasicChart2.CustomButton.Style = MetroFramework.MetroColorStyle.Red;
+            this.tbBasicChart2.CustomButton.TabIndex = 1;
+            this.tbBasicChart2.CustomButton.Tag = "https://www.investing.com/indices/kospi-volatility";
+            this.tbBasicChart2.CustomButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tbBasicChart2.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbBasicChart2.CustomButton.UseCompatibleTextRendering = true;
+            this.tbBasicChart2.CustomButton.UseCustomBackColor = true;
+            this.tbBasicChart2.CustomButton.UseCustomForeColor = true;
+            this.tbBasicChart2.CustomButton.UseSelectable = true;
+            this.tbBasicChart2.CustomButton.UseStyleColors = true;
+            this.tbBasicChart2.CustomButton.UseVisualStyleBackColor = false;
+            this.tbBasicChart2.CustomButton.Visible = false;
+            this.tbBasicChart2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbBasicChart2.Lines = new string[0];
+            this.tbBasicChart2.Location = new System.Drawing.Point(105, 40);
+            this.tbBasicChart2.MaxLength = 32767;
+            this.tbBasicChart2.Name = "tbBasicChart2";
+            this.tbBasicChart2.PasswordChar = '\0';
+            this.tbBasicChart2.PromptText = "챠트의 내용을 기술";
+            this.tbBasicChart2.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbBasicChart2.SelectedText = "";
+            this.tbBasicChart2.SelectionLength = 0;
+            this.tbBasicChart2.SelectionStart = 0;
+            this.tbBasicChart2.ShortcutsEnabled = true;
+            this.tbBasicChart2.Size = new System.Drawing.Size(281, 29);
+            this.tbBasicChart2.Style = MetroFramework.MetroColorStyle.Lime;
+            this.tbBasicChart2.TabIndex = 2;
+            this.tbBasicChart2.UseSelectable = true;
+            this.tbBasicChart2.UseStyleColors = true;
+            this.tbBasicChart2.WaterMark = "챠트의 내용을 기술";
+            this.tbBasicChart2.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbBasicChart2.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // metroLabel8
             // 
@@ -1271,42 +997,42 @@
             this.metroLabel4.Text = "Chart Description";
             this.metroLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // tbUncertaintyCn
+            // tbBasicChart5
             // 
             // 
             // 
             // 
-            this.tbUncertaintyCn.CustomButton.Image = null;
-            this.tbUncertaintyCn.CustomButton.Location = new System.Drawing.Point(167, 1);
-            this.tbUncertaintyCn.CustomButton.Name = "";
-            this.tbUncertaintyCn.CustomButton.Size = new System.Drawing.Size(27, 27);
-            this.tbUncertaintyCn.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.tbUncertaintyCn.CustomButton.TabIndex = 1;
-            this.tbUncertaintyCn.CustomButton.Tag = "https://fred.stlouisfed.org/series/CHIEPUINDXM";
-            this.tbUncertaintyCn.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.tbUncertaintyCn.CustomButton.UseSelectable = true;
-            this.tbUncertaintyCn.CustomButton.Visible = false;
-            this.tbUncertaintyCn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbUncertaintyCn.Lines = new string[0];
-            this.tbUncertaintyCn.Location = new System.Drawing.Point(105, 148);
-            this.tbUncertaintyCn.MaxLength = 32767;
-            this.tbUncertaintyCn.Multiline = true;
-            this.tbUncertaintyCn.Name = "tbUncertaintyCn";
-            this.tbUncertaintyCn.PasswordChar = '\0';
-            this.tbUncertaintyCn.PromptText = "챠트의 내용을 기술";
-            this.tbUncertaintyCn.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.tbUncertaintyCn.SelectedText = "";
-            this.tbUncertaintyCn.SelectionLength = 0;
-            this.tbUncertaintyCn.SelectionStart = 0;
-            this.tbUncertaintyCn.ShortcutsEnabled = true;
-            this.tbUncertaintyCn.Size = new System.Drawing.Size(195, 29);
-            this.tbUncertaintyCn.Style = MetroFramework.MetroColorStyle.Lime;
-            this.tbUncertaintyCn.TabIndex = 4;
-            this.tbUncertaintyCn.UseSelectable = true;
-            this.tbUncertaintyCn.UseStyleColors = true;
-            this.tbUncertaintyCn.WaterMark = "챠트의 내용을 기술";
-            this.tbUncertaintyCn.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.tbUncertaintyCn.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.tbBasicChart5.CustomButton.Image = null;
+            this.tbBasicChart5.CustomButton.Location = new System.Drawing.Point(253, 1);
+            this.tbBasicChart5.CustomButton.Name = "";
+            this.tbBasicChart5.CustomButton.Size = new System.Drawing.Size(27, 27);
+            this.tbBasicChart5.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tbBasicChart5.CustomButton.TabIndex = 1;
+            this.tbBasicChart5.CustomButton.Tag = "https://fred.stlouisfed.org/series/CHIEPUINDXM";
+            this.tbBasicChart5.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbBasicChart5.CustomButton.UseSelectable = true;
+            this.tbBasicChart5.CustomButton.Visible = false;
+            this.tbBasicChart5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbBasicChart5.Lines = new string[0];
+            this.tbBasicChart5.Location = new System.Drawing.Point(105, 148);
+            this.tbBasicChart5.MaxLength = 32767;
+            this.tbBasicChart5.Multiline = true;
+            this.tbBasicChart5.Name = "tbBasicChart5";
+            this.tbBasicChart5.PasswordChar = '\0';
+            this.tbBasicChart5.PromptText = "챠트의 내용을 기술";
+            this.tbBasicChart5.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbBasicChart5.SelectedText = "";
+            this.tbBasicChart5.SelectionLength = 0;
+            this.tbBasicChart5.SelectionStart = 0;
+            this.tbBasicChart5.ShortcutsEnabled = true;
+            this.tbBasicChart5.Size = new System.Drawing.Size(281, 29);
+            this.tbBasicChart5.Style = MetroFramework.MetroColorStyle.Lime;
+            this.tbBasicChart5.TabIndex = 5;
+            this.tbBasicChart5.UseSelectable = true;
+            this.tbBasicChart5.UseStyleColors = true;
+            this.tbBasicChart5.WaterMark = "챠트의 내용을 기술";
+            this.tbBasicChart5.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbBasicChart5.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // metroLabel5
             // 
@@ -1319,43 +1045,43 @@
             this.metroLabel5.Text = "Chart Description";
             this.metroLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // tbUncertaintyKp
+            // tbBasicChart1
             // 
             // 
             // 
             // 
-            this.tbUncertaintyKp.CustomButton.Image = null;
-            this.tbUncertaintyKp.CustomButton.Location = new System.Drawing.Point(167, 1);
-            this.tbUncertaintyKp.CustomButton.Name = "";
-            this.tbUncertaintyKp.CustomButton.Size = new System.Drawing.Size(27, 27);
-            this.tbUncertaintyKp.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.tbUncertaintyKp.CustomButton.TabIndex = 1;
-            this.tbUncertaintyKp.CustomButton.Tag = "https://eiec.kdi.re.kr/issue/epuList.do";
-            this.tbUncertaintyKp.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.tbUncertaintyKp.CustomButton.UseSelectable = true;
-            this.tbUncertaintyKp.CustomButton.Visible = false;
-            this.tbUncertaintyKp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbUncertaintyKp.Lines = new string[0];
-            this.tbUncertaintyKp.Location = new System.Drawing.Point(105, 4);
-            this.tbUncertaintyKp.MaxLength = 32767;
-            this.tbUncertaintyKp.Name = "tbUncertaintyKp";
-            this.tbUncertaintyKp.PasswordChar = '\0';
-            this.tbUncertaintyKp.PromptText = "챠트의 내용을 기술";
-            this.tbUncertaintyKp.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.tbUncertaintyKp.SelectedText = "";
-            this.tbUncertaintyKp.SelectionLength = 0;
-            this.tbUncertaintyKp.SelectionStart = 0;
-            this.tbUncertaintyKp.ShortcutsEnabled = true;
-            this.tbUncertaintyKp.Size = new System.Drawing.Size(195, 29);
-            this.tbUncertaintyKp.Style = MetroFramework.MetroColorStyle.Lime;
-            this.tbUncertaintyKp.TabIndex = 24;
-            this.tbUncertaintyKp.UseCustomBackColor = true;
-            this.tbUncertaintyKp.UseCustomForeColor = true;
-            this.tbUncertaintyKp.UseSelectable = true;
-            this.tbUncertaintyKp.UseStyleColors = true;
-            this.tbUncertaintyKp.WaterMark = "챠트의 내용을 기술";
-            this.tbUncertaintyKp.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.tbUncertaintyKp.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.tbBasicChart1.CustomButton.Image = null;
+            this.tbBasicChart1.CustomButton.Location = new System.Drawing.Point(253, 1);
+            this.tbBasicChart1.CustomButton.Name = "";
+            this.tbBasicChart1.CustomButton.Size = new System.Drawing.Size(27, 27);
+            this.tbBasicChart1.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tbBasicChart1.CustomButton.TabIndex = 1;
+            this.tbBasicChart1.CustomButton.Tag = "https://eiec.kdi.re.kr/issue/epuList.do";
+            this.tbBasicChart1.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbBasicChart1.CustomButton.UseSelectable = true;
+            this.tbBasicChart1.CustomButton.Visible = false;
+            this.tbBasicChart1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbBasicChart1.Lines = new string[0];
+            this.tbBasicChart1.Location = new System.Drawing.Point(105, 4);
+            this.tbBasicChart1.MaxLength = 32767;
+            this.tbBasicChart1.Name = "tbBasicChart1";
+            this.tbBasicChart1.PasswordChar = '\0';
+            this.tbBasicChart1.PromptText = "챠트의 내용을 기술";
+            this.tbBasicChart1.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbBasicChart1.SelectedText = "";
+            this.tbBasicChart1.SelectionLength = 0;
+            this.tbBasicChart1.SelectionStart = 0;
+            this.tbBasicChart1.ShortcutsEnabled = true;
+            this.tbBasicChart1.Size = new System.Drawing.Size(281, 29);
+            this.tbBasicChart1.Style = MetroFramework.MetroColorStyle.Lime;
+            this.tbBasicChart1.TabIndex = 1;
+            this.tbBasicChart1.UseCustomBackColor = true;
+            this.tbBasicChart1.UseCustomForeColor = true;
+            this.tbBasicChart1.UseSelectable = true;
+            this.tbBasicChart1.UseStyleColors = true;
+            this.tbBasicChart1.WaterMark = "챠트의 내용을 기술";
+            this.tbBasicChart1.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbBasicChart1.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // metroLabel6
             // 
@@ -1379,183 +1105,147 @@
             this.metroLabel7.Text = "Chart Description";
             this.metroLabel7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // tbUncertaintyVixUs
+            // tbBasicChart6
             // 
             // 
             // 
             // 
-            this.tbUncertaintyVixUs.CustomButton.Image = null;
-            this.tbUncertaintyVixUs.CustomButton.Location = new System.Drawing.Point(167, 1);
-            this.tbUncertaintyVixUs.CustomButton.Name = "";
-            this.tbUncertaintyVixUs.CustomButton.Size = new System.Drawing.Size(27, 27);
-            this.tbUncertaintyVixUs.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.tbUncertaintyVixUs.CustomButton.TabIndex = 1;
-            this.tbUncertaintyVixUs.CustomButton.Tag = "https://kr.investing.com/indices/volatility-s-p-500";
-            this.tbUncertaintyVixUs.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.tbUncertaintyVixUs.CustomButton.UseSelectable = true;
-            this.tbUncertaintyVixUs.CustomButton.Visible = false;
-            this.tbUncertaintyVixUs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbUncertaintyVixUs.Lines = new string[0];
-            this.tbUncertaintyVixUs.Location = new System.Drawing.Point(105, 184);
-            this.tbUncertaintyVixUs.MaxLength = 32767;
-            this.tbUncertaintyVixUs.Multiline = true;
-            this.tbUncertaintyVixUs.Name = "tbUncertaintyVixUs";
-            this.tbUncertaintyVixUs.PasswordChar = '\0';
-            this.tbUncertaintyVixUs.PromptText = "챠트의 내용을 기술";
-            this.tbUncertaintyVixUs.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.tbUncertaintyVixUs.SelectedText = "";
-            this.tbUncertaintyVixUs.SelectionLength = 0;
-            this.tbUncertaintyVixUs.SelectionStart = 0;
-            this.tbUncertaintyVixUs.ShortcutsEnabled = true;
-            this.tbUncertaintyVixUs.Size = new System.Drawing.Size(195, 29);
-            this.tbUncertaintyVixUs.TabIndex = 13;
-            this.tbUncertaintyVixUs.UseSelectable = true;
-            this.tbUncertaintyVixUs.UseStyleColors = true;
-            this.tbUncertaintyVixUs.WaterMark = "챠트의 내용을 기술";
-            this.tbUncertaintyVixUs.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.tbUncertaintyVixUs.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.tbBasicChart6.CustomButton.Image = null;
+            this.tbBasicChart6.CustomButton.Location = new System.Drawing.Point(253, 1);
+            this.tbBasicChart6.CustomButton.Name = "";
+            this.tbBasicChart6.CustomButton.Size = new System.Drawing.Size(27, 27);
+            this.tbBasicChart6.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tbBasicChart6.CustomButton.TabIndex = 1;
+            this.tbBasicChart6.CustomButton.Tag = "https://kr.investing.com/indices/volatility-s-p-500";
+            this.tbBasicChart6.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbBasicChart6.CustomButton.UseSelectable = true;
+            this.tbBasicChart6.CustomButton.Visible = false;
+            this.tbBasicChart6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbBasicChart6.Lines = new string[0];
+            this.tbBasicChart6.Location = new System.Drawing.Point(105, 184);
+            this.tbBasicChart6.MaxLength = 32767;
+            this.tbBasicChart6.Multiline = true;
+            this.tbBasicChart6.Name = "tbBasicChart6";
+            this.tbBasicChart6.PasswordChar = '\0';
+            this.tbBasicChart6.PromptText = "챠트의 내용을 기술";
+            this.tbBasicChart6.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbBasicChart6.SelectedText = "";
+            this.tbBasicChart6.SelectionLength = 0;
+            this.tbBasicChart6.SelectionStart = 0;
+            this.tbBasicChart6.ShortcutsEnabled = true;
+            this.tbBasicChart6.Size = new System.Drawing.Size(281, 29);
+            this.tbBasicChart6.TabIndex = 6;
+            this.tbBasicChart6.UseSelectable = true;
+            this.tbBasicChart6.UseStyleColors = true;
+            this.tbBasicChart6.WaterMark = "챠트의 내용을 기술";
+            this.tbBasicChart6.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbBasicChart6.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
-            // tbUncertaintyEu
-            // 
-            // 
-            // 
-            // 
-            this.tbUncertaintyEu.CustomButton.Image = null;
-            this.tbUncertaintyEu.CustomButton.Location = new System.Drawing.Point(167, 1);
-            this.tbUncertaintyEu.CustomButton.Name = "";
-            this.tbUncertaintyEu.CustomButton.Size = new System.Drawing.Size(27, 27);
-            this.tbUncertaintyEu.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.tbUncertaintyEu.CustomButton.TabIndex = 1;
-            this.tbUncertaintyEu.CustomButton.Tag = "https://fred.stlouisfed.org/series/EUEPUINDXM";
-            this.tbUncertaintyEu.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.tbUncertaintyEu.CustomButton.UseSelectable = true;
-            this.tbUncertaintyEu.CustomButton.Visible = false;
-            this.tbUncertaintyEu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbUncertaintyEu.Lines = new string[0];
-            this.tbUncertaintyEu.Location = new System.Drawing.Point(105, 112);
-            this.tbUncertaintyEu.MaxLength = 32767;
-            this.tbUncertaintyEu.Multiline = true;
-            this.tbUncertaintyEu.Name = "tbUncertaintyEu";
-            this.tbUncertaintyEu.PasswordChar = '\0';
-            this.tbUncertaintyEu.PromptText = "챠트의 내용을 기술";
-            this.tbUncertaintyEu.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.tbUncertaintyEu.SelectedText = "";
-            this.tbUncertaintyEu.SelectionLength = 0;
-            this.tbUncertaintyEu.SelectionStart = 0;
-            this.tbUncertaintyEu.ShortcutsEnabled = true;
-            this.tbUncertaintyEu.Size = new System.Drawing.Size(195, 29);
-            this.tbUncertaintyEu.Style = MetroFramework.MetroColorStyle.Lime;
-            this.tbUncertaintyEu.TabIndex = 15;
-            this.tbUncertaintyEu.UseSelectable = true;
-            this.tbUncertaintyEu.UseStyleColors = true;
-            this.tbUncertaintyEu.WaterMark = "챠트의 내용을 기술";
-            this.tbUncertaintyEu.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.tbUncertaintyEu.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // tbUncertaintyVixEu
+            // tbBasicChart4
             // 
             // 
             // 
             // 
-            this.tbUncertaintyVixEu.CustomButton.Image = null;
-            this.tbUncertaintyVixEu.CustomButton.Location = new System.Drawing.Point(167, 1);
-            this.tbUncertaintyVixEu.CustomButton.Name = "";
-            this.tbUncertaintyVixEu.CustomButton.Size = new System.Drawing.Size(27, 27);
-            this.tbUncertaintyVixEu.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.tbUncertaintyVixEu.CustomButton.TabIndex = 1;
-            this.tbUncertaintyVixEu.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.tbUncertaintyVixEu.CustomButton.UseSelectable = true;
-            this.tbUncertaintyVixEu.CustomButton.Visible = false;
-            this.tbUncertaintyVixEu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbUncertaintyVixEu.Enabled = false;
-            this.tbUncertaintyVixEu.Lines = new string[0];
-            this.tbUncertaintyVixEu.Location = new System.Drawing.Point(105, 220);
-            this.tbUncertaintyVixEu.MaxLength = 32767;
-            this.tbUncertaintyVixEu.Name = "tbUncertaintyVixEu";
-            this.tbUncertaintyVixEu.PasswordChar = '\0';
-            this.tbUncertaintyVixEu.PromptText = "챠트의 내용을 기술";
-            this.tbUncertaintyVixEu.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.tbUncertaintyVixEu.SelectedText = "";
-            this.tbUncertaintyVixEu.SelectionLength = 0;
-            this.tbUncertaintyVixEu.SelectionStart = 0;
-            this.tbUncertaintyVixEu.ShortcutsEnabled = true;
-            this.tbUncertaintyVixEu.Size = new System.Drawing.Size(195, 29);
-            this.tbUncertaintyVixEu.TabIndex = 28;
-            this.tbUncertaintyVixEu.UseSelectable = true;
-            this.tbUncertaintyVixEu.UseStyleColors = true;
-            this.tbUncertaintyVixEu.WaterMark = "챠트의 내용을 기술";
-            this.tbUncertaintyVixEu.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.tbUncertaintyVixEu.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.tbBasicChart4.CustomButton.Image = null;
+            this.tbBasicChart4.CustomButton.Location = new System.Drawing.Point(253, 1);
+            this.tbBasicChart4.CustomButton.Name = "";
+            this.tbBasicChart4.CustomButton.Size = new System.Drawing.Size(27, 27);
+            this.tbBasicChart4.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tbBasicChart4.CustomButton.TabIndex = 1;
+            this.tbBasicChart4.CustomButton.Tag = "https://fred.stlouisfed.org/series/EUEPUINDXM";
+            this.tbBasicChart4.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbBasicChart4.CustomButton.UseSelectable = true;
+            this.tbBasicChart4.CustomButton.Visible = false;
+            this.tbBasicChart4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbBasicChart4.Lines = new string[0];
+            this.tbBasicChart4.Location = new System.Drawing.Point(105, 112);
+            this.tbBasicChart4.MaxLength = 32767;
+            this.tbBasicChart4.Multiline = true;
+            this.tbBasicChart4.Name = "tbBasicChart4";
+            this.tbBasicChart4.PasswordChar = '\0';
+            this.tbBasicChart4.PromptText = "챠트의 내용을 기술";
+            this.tbBasicChart4.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbBasicChart4.SelectedText = "";
+            this.tbBasicChart4.SelectionLength = 0;
+            this.tbBasicChart4.SelectionStart = 0;
+            this.tbBasicChart4.ShortcutsEnabled = true;
+            this.tbBasicChart4.Size = new System.Drawing.Size(281, 29);
+            this.tbBasicChart4.Style = MetroFramework.MetroColorStyle.Lime;
+            this.tbBasicChart4.TabIndex = 4;
+            this.tbBasicChart4.UseSelectable = true;
+            this.tbBasicChart4.UseStyleColors = true;
+            this.tbBasicChart4.WaterMark = "챠트의 내용을 기술";
+            this.tbBasicChart4.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbBasicChart4.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
-            // tbUncertaintyVixCn
-            // 
-            // 
-            // 
-            // 
-            this.tbUncertaintyVixCn.CustomButton.Image = null;
-            this.tbUncertaintyVixCn.CustomButton.Location = new System.Drawing.Point(167, 1);
-            this.tbUncertaintyVixCn.CustomButton.Name = "";
-            this.tbUncertaintyVixCn.CustomButton.Size = new System.Drawing.Size(27, 27);
-            this.tbUncertaintyVixCn.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.tbUncertaintyVixCn.CustomButton.TabIndex = 1;
-            this.tbUncertaintyVixCn.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.tbUncertaintyVixCn.CustomButton.UseSelectable = true;
-            this.tbUncertaintyVixCn.CustomButton.Visible = false;
-            this.tbUncertaintyVixCn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbUncertaintyVixCn.Enabled = false;
-            this.tbUncertaintyVixCn.Lines = new string[0];
-            this.tbUncertaintyVixCn.Location = new System.Drawing.Point(105, 256);
-            this.tbUncertaintyVixCn.MaxLength = 32767;
-            this.tbUncertaintyVixCn.Multiline = true;
-            this.tbUncertaintyVixCn.Name = "tbUncertaintyVixCn";
-            this.tbUncertaintyVixCn.PasswordChar = '\0';
-            this.tbUncertaintyVixCn.PromptText = "챠트의 내용을 기술";
-            this.tbUncertaintyVixCn.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.tbUncertaintyVixCn.SelectedText = "";
-            this.tbUncertaintyVixCn.SelectionLength = 0;
-            this.tbUncertaintyVixCn.SelectionStart = 0;
-            this.tbUncertaintyVixCn.ShortcutsEnabled = true;
-            this.tbUncertaintyVixCn.Size = new System.Drawing.Size(195, 29);
-            this.tbUncertaintyVixCn.TabIndex = 29;
-            this.tbUncertaintyVixCn.UseSelectable = true;
-            this.tbUncertaintyVixCn.UseStyleColors = true;
-            this.tbUncertaintyVixCn.WaterMark = "챠트의 내용을 기술";
-            this.tbUncertaintyVixCn.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.tbUncertaintyVixCn.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // metroTextBox6
+            // tbBasicChart7
             // 
             // 
             // 
             // 
-            this.metroTextBox6.CustomButton.Image = null;
-            this.metroTextBox6.CustomButton.Location = new System.Drawing.Point(51, 1);
-            this.metroTextBox6.CustomButton.Name = "";
-            this.metroTextBox6.CustomButton.Size = new System.Drawing.Size(27, 27);
-            this.metroTextBox6.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroTextBox6.CustomButton.TabIndex = 1;
-            this.metroTextBox6.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTextBox6.CustomButton.UseSelectable = true;
-            this.metroTextBox6.CustomButton.Visible = false;
-            this.metroTextBox6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroTextBox6.Lines = new string[0];
-            this.metroTextBox6.Location = new System.Drawing.Point(307, 4);
-            this.metroTextBox6.MaxLength = 32767;
-            this.metroTextBox6.Name = "metroTextBox6";
-            this.metroTextBox6.PasswordChar = '\0';
-            this.metroTextBox6.PromptText = "0-100";
-            this.metroTextBox6.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.metroTextBox6.SelectedText = "";
-            this.metroTextBox6.SelectionLength = 0;
-            this.metroTextBox6.SelectionStart = 0;
-            this.metroTextBox6.ShortcutsEnabled = true;
-            this.metroTextBox6.Size = new System.Drawing.Size(79, 29);
-            this.metroTextBox6.TabIndex = 36;
-            this.metroTextBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.metroTextBox6.UseSelectable = true;
-            this.metroTextBox6.WaterMark = "0-100";
-            this.metroTextBox6.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.metroTextBox6.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.tbBasicChart7.CustomButton.Image = null;
+            this.tbBasicChart7.CustomButton.Location = new System.Drawing.Point(253, 1);
+            this.tbBasicChart7.CustomButton.Name = "";
+            this.tbBasicChart7.CustomButton.Size = new System.Drawing.Size(27, 27);
+            this.tbBasicChart7.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tbBasicChart7.CustomButton.TabIndex = 1;
+            this.tbBasicChart7.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbBasicChart7.CustomButton.UseSelectable = true;
+            this.tbBasicChart7.CustomButton.Visible = false;
+            this.tbBasicChart7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbBasicChart7.Lines = new string[0];
+            this.tbBasicChart7.Location = new System.Drawing.Point(105, 220);
+            this.tbBasicChart7.MaxLength = 32767;
+            this.tbBasicChart7.Name = "tbBasicChart7";
+            this.tbBasicChart7.PasswordChar = '\0';
+            this.tbBasicChart7.PromptText = "챠트의 내용을 기술";
+            this.tbBasicChart7.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbBasicChart7.SelectedText = "";
+            this.tbBasicChart7.SelectionLength = 0;
+            this.tbBasicChart7.SelectionStart = 0;
+            this.tbBasicChart7.ShortcutsEnabled = true;
+            this.tbBasicChart7.Size = new System.Drawing.Size(281, 29);
+            this.tbBasicChart7.TabIndex = 7;
+            this.tbBasicChart7.UseSelectable = true;
+            this.tbBasicChart7.UseStyleColors = true;
+            this.tbBasicChart7.WaterMark = "챠트의 내용을 기술";
+            this.tbBasicChart7.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbBasicChart7.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // tbBasicChart8
+            // 
+            // 
+            // 
+            // 
+            this.tbBasicChart8.CustomButton.Image = null;
+            this.tbBasicChart8.CustomButton.Location = new System.Drawing.Point(253, 1);
+            this.tbBasicChart8.CustomButton.Name = "";
+            this.tbBasicChart8.CustomButton.Size = new System.Drawing.Size(27, 27);
+            this.tbBasicChart8.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tbBasicChart8.CustomButton.TabIndex = 1;
+            this.tbBasicChart8.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbBasicChart8.CustomButton.UseSelectable = true;
+            this.tbBasicChart8.CustomButton.Visible = false;
+            this.tbBasicChart8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbBasicChart8.Lines = new string[0];
+            this.tbBasicChart8.Location = new System.Drawing.Point(105, 256);
+            this.tbBasicChart8.MaxLength = 32767;
+            this.tbBasicChart8.Multiline = true;
+            this.tbBasicChart8.Name = "tbBasicChart8";
+            this.tbBasicChart8.PasswordChar = '\0';
+            this.tbBasicChart8.PromptText = "챠트의 내용을 기술";
+            this.tbBasicChart8.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbBasicChart8.SelectedText = "";
+            this.tbBasicChart8.SelectionLength = 0;
+            this.tbBasicChart8.SelectionStart = 0;
+            this.tbBasicChart8.ShortcutsEnabled = true;
+            this.tbBasicChart8.Size = new System.Drawing.Size(281, 29);
+            this.tbBasicChart8.TabIndex = 8;
+            this.tbBasicChart8.UseSelectable = true;
+            this.tbBasicChart8.UseStyleColors = true;
+            this.tbBasicChart8.WaterMark = "챠트의 내용을 기술";
+            this.tbBasicChart8.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbBasicChart8.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // label4
             // 
@@ -1627,47 +1317,40 @@
         private MetroFramework.Controls.MetroPanel metroPanel1;
         private MetroFramework.Controls.MetroPanel metroPanel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private MetroFramework.Controls.MetroTextBox metroTextBox1;
+        private MetroFramework.Controls.MetroTextBox tbIndicatorSummary;
         private MetroFramework.Controls.MetroLabel metroLabel10;
-        private MetroFramework.Controls.MetroTextBox metroTextBox2;
-        private MetroFramework.Controls.MetroTextBox metroTextBox3;
+        private MetroFramework.Controls.MetroTextBox tbIndicator3;
+        private MetroFramework.Controls.MetroTextBox tbIndicator2;
         private MetroFramework.Controls.MetroLabel metroLabel12;
         private MetroFramework.Controls.MetroLabel metroLabel13;
         private MetroFramework.Controls.MetroLabel metroLabel14;
         private MetroFramework.Controls.MetroLabel metroLabel15;
-        private MetroFramework.Controls.MetroTextBox metroTextBox4;
+        private MetroFramework.Controls.MetroTextBox tbIndicator5;
         private MetroFramework.Controls.MetroLabel metroLabel16;
-        private MetroFramework.Controls.MetroTextBox metroTextBox5;
-        private MetroFramework.Controls.MetroTextBox metroTextBox7;
+        private MetroFramework.Controls.MetroTextBox tbIndicator1;
+        private MetroFramework.Controls.MetroTextBox tbIndicator4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private MetroFramework.Controls.MetroTextBox tbUncertaintyCmt;
         private MetroFramework.Controls.MetroLabel metroLabel9;
-        private MetroFramework.Controls.MetroTextBox tbUncertaintyUs;
-        private MetroFramework.Controls.MetroTextBox tbUncertaintyFx;
+        private MetroFramework.Controls.MetroTextBox tbBasicChart3;
+        private MetroFramework.Controls.MetroTextBox tbBasicChart2;
         private MetroFramework.Controls.MetroLabel metroLabel8;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private MetroFramework.Controls.MetroLabel metroLabel2;
         private MetroFramework.Controls.MetroLabel metroLabel3;
         private MetroFramework.Controls.MetroLabel metroLabel4;
-        private MetroFramework.Controls.MetroTextBox tbUncertaintyCn;
+        private MetroFramework.Controls.MetroTextBox tbBasicChart5;
         private MetroFramework.Controls.MetroLabel metroLabel5;
-        private MetroFramework.Controls.MetroTextBox tbUncertaintyKp;
+        private MetroFramework.Controls.MetroTextBox tbBasicChart1;
         private MetroFramework.Controls.MetroLabel metroLabel6;
         private MetroFramework.Controls.MetroLabel metroLabel7;
-        private MetroFramework.Controls.MetroTextBox tbUncertaintyVixUs;
-        private MetroFramework.Controls.MetroTextBox tbUncertaintyEu;
-        private MetroFramework.Controls.MetroTextBox tbUncertaintyVixEu;
-        private MetroFramework.Controls.MetroTextBox tbUncertaintyVixCn;
+        private MetroFramework.Controls.MetroTextBox tbBasicChart6;
+        private MetroFramework.Controls.MetroTextBox tbBasicChart4;
+        private MetroFramework.Controls.MetroTextBox tbBasicChart7;
+        private MetroFramework.Controls.MetroTextBox tbBasicChart8;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private MetroFramework.Controls.MetroTextBox metroTextBox6;
-        private MetroFramework.Controls.MetroTextBox metroTextBox14;
-        private MetroFramework.Controls.MetroTextBox metroTextBox13;
-        private MetroFramework.Controls.MetroTextBox metroTextBox12;
-        private MetroFramework.Controls.MetroTextBox metroTextBox11;
-        private MetroFramework.Controls.MetroTextBox metroTextBox10;
-        private MetroFramework.Controls.MetroTextBox metroTextBox9;
-        private MetroFramework.Controls.MetroTextBox metroTextBox8;
-        private MetroFramework.Controls.MetroTextBox metroTextBox15;
+        private MetroFramework.Controls.MetroTextBox tbBasicSummary;
+        private MetroFramework.Controls.MetroButton btnClear2;
+        private MetroFramework.Controls.MetroButton btnClear;
     }
 }

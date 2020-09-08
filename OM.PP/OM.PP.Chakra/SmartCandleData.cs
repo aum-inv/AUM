@@ -315,57 +315,108 @@ namespace OM.PP.Chakra
         #endregion
 
         #region 변화정보 (시간) 
+        #region 변화_챠트용
+        public double Variance_ChartPrice
+        {
+            get
+            {
+                if (PreviousCandleData == null)
+                    return Double.NaN;
+
+                double tRate =
+                      PPUtils.GetAvgRateOfChange(this.BasicPrice_Open, PreviousCandleData.BasicPrice_Open)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_High, PreviousCandleData.BasicPrice_Open)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Low, PreviousCandleData.BasicPrice_Open)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Close, PreviousCandleData.BasicPrice_Open)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Center, PreviousCandleData.BasicPrice_Open)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Middle, PreviousCandleData.BasicPrice_Open)
+
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Open, PreviousCandleData.BasicPrice_High)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_High, PreviousCandleData.BasicPrice_High)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Low, PreviousCandleData.BasicPrice_High)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Close, PreviousCandleData.BasicPrice_High)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Center, PreviousCandleData.BasicPrice_High)
+                    + PPUtils.GetRateOfChange(this.BasicPrice_Middle, PreviousCandleData.BasicPrice_High)
+
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Open, PreviousCandleData.BasicPrice_Low)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_High, PreviousCandleData.BasicPrice_Low)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Low, PreviousCandleData.BasicPrice_Low)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Close, PreviousCandleData.BasicPrice_Low)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Center, PreviousCandleData.BasicPrice_Low)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Middle, PreviousCandleData.BasicPrice_Low)
+
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Open, PreviousCandleData.BasicPrice_Close)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_High, PreviousCandleData.BasicPrice_Close)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Low, PreviousCandleData.BasicPrice_Close)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Close, PreviousCandleData.BasicPrice_Close)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Center, PreviousCandleData.BasicPrice_Close)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Middle, PreviousCandleData.BasicPrice_Close)
+
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Open, PreviousCandleData.BasicPrice_Center)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_High, PreviousCandleData.BasicPrice_Center)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Low, PreviousCandleData.BasicPrice_Center)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Close, PreviousCandleData.BasicPrice_Center)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Center, PreviousCandleData.BasicPrice_Center)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Middle, PreviousCandleData.BasicPrice_Center)
+
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Open, PreviousCandleData.BasicPrice_Middle)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_High, PreviousCandleData.BasicPrice_Middle)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Low, PreviousCandleData.BasicPrice_Middle)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Close, PreviousCandleData.BasicPrice_Middle)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Center, PreviousCandleData.BasicPrice_Middle)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Middle, PreviousCandleData.BasicPrice_Middle);
+
+                return tRate;
+            }
+        }
+        #endregion
         #region 변화_기본_시가대비
         public double Variance_BasicPrice
         {
             get 
             {
-                if (PreviousCandleData == null) 
-                    return Double.NaN;
-
                 double tRate =
-                      PPUtils.GetRateOfChange(this.BasicPrice_Open, PreviousCandleData.PreviousCandleData.BasicPrice_Open)
-                    + PPUtils.GetRateOfChange(this.BasicPrice_High, PreviousCandleData.PreviousCandleData.BasicPrice_Open)
-                    + PPUtils.GetRateOfChange(this.BasicPrice_Low, PreviousCandleData.PreviousCandleData.BasicPrice_Open)
-                    + PPUtils.GetRateOfChange(this.BasicPrice_Close, PreviousCandleData.PreviousCandleData.BasicPrice_Open)
-                    + PPUtils.GetRateOfChange(this.BasicPrice_Center, PreviousCandleData.PreviousCandleData.BasicPrice_Open)
-                    + PPUtils.GetRateOfChange(this.BasicPrice_Middle, PreviousCandleData.PreviousCandleData.BasicPrice_Open)
+                      PPUtils.GetAvgRateOfChange(this.BasicPrice_Open, this.BasicPrice_Open)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_High, this.BasicPrice_Open)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Low, this.BasicPrice_Open)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Close, this.BasicPrice_Open)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Center, this.BasicPrice_Open)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Middle, this.BasicPrice_Open)
 
-                    + PPUtils.GetRateOfChange(this.BasicPrice_Open, PreviousCandleData.PreviousCandleData.BasicPrice_High)
-                    + PPUtils.GetRateOfChange(this.BasicPrice_High, PreviousCandleData.PreviousCandleData.BasicPrice_High)
-                    + PPUtils.GetRateOfChange(this.BasicPrice_Low, PreviousCandleData.PreviousCandleData.BasicPrice_High)
-                    + PPUtils.GetRateOfChange(this.BasicPrice_Close, PreviousCandleData.PreviousCandleData.BasicPrice_High)
-                    + PPUtils.GetRateOfChange(this.BasicPrice_Center, PreviousCandleData.PreviousCandleData.BasicPrice_High)
-                    + PPUtils.GetRateOfChange(this.BasicPrice_Middle, PreviousCandleData.PreviousCandleData.BasicPrice_High)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Open, this.BasicPrice_High)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_High, this.BasicPrice_High)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Low, this.BasicPrice_High)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Close, this.BasicPrice_High)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Center, this.BasicPrice_High)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Middle, this.BasicPrice_High)
 
-                    + PPUtils.GetRateOfChange(this.BasicPrice_Open, PreviousCandleData.PreviousCandleData.BasicPrice_Low)
-                    + PPUtils.GetRateOfChange(this.BasicPrice_High, PreviousCandleData.PreviousCandleData.BasicPrice_Low)
-                    + PPUtils.GetRateOfChange(this.BasicPrice_Low, PreviousCandleData.PreviousCandleData.BasicPrice_Low)
-                    + PPUtils.GetRateOfChange(this.BasicPrice_Close, PreviousCandleData.PreviousCandleData.BasicPrice_Low)
-                    + PPUtils.GetRateOfChange(this.BasicPrice_Center, PreviousCandleData.PreviousCandleData.BasicPrice_Low)
-                    + PPUtils.GetRateOfChange(this.BasicPrice_Middle, PreviousCandleData.PreviousCandleData.BasicPrice_Low)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Open, BasicPrice_Low)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_High, BasicPrice_Low)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Low, BasicPrice_Low)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Close, BasicPrice_Low)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Center, BasicPrice_Low)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Middle, BasicPrice_Low)
 
-                    + PPUtils.GetRateOfChange(this.BasicPrice_Open, PreviousCandleData.PreviousCandleData.BasicPrice_Close)
-                    + PPUtils.GetRateOfChange(this.BasicPrice_High, PreviousCandleData.PreviousCandleData.BasicPrice_Close)
-                    + PPUtils.GetRateOfChange(this.BasicPrice_Low, PreviousCandleData.PreviousCandleData.BasicPrice_Close)
-                    + PPUtils.GetRateOfChange(this.BasicPrice_Close, PreviousCandleData.PreviousCandleData.BasicPrice_Close)
-                    + PPUtils.GetRateOfChange(this.BasicPrice_Center, PreviousCandleData.PreviousCandleData.BasicPrice_Close)
-                    + PPUtils.GetRateOfChange(this.BasicPrice_Middle, PreviousCandleData.PreviousCandleData.BasicPrice_Close)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Open, BasicPrice_Close)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_High, BasicPrice_Close)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Low, BasicPrice_Close)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Close, BasicPrice_Close)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Center, BasicPrice_Close)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Middle, BasicPrice_Close)
 
-                    + PPUtils.GetRateOfChange(this.BasicPrice_Open, PreviousCandleData.PreviousCandleData.BasicPrice_Center)
-                    + PPUtils.GetRateOfChange(this.BasicPrice_High, PreviousCandleData.PreviousCandleData.BasicPrice_Center)
-                    + PPUtils.GetRateOfChange(this.BasicPrice_Low, PreviousCandleData.PreviousCandleData.BasicPrice_Center)
-                    + PPUtils.GetRateOfChange(this.BasicPrice_Close, PreviousCandleData.PreviousCandleData.BasicPrice_Center)
-                    + PPUtils.GetRateOfChange(this.BasicPrice_Center, PreviousCandleData.PreviousCandleData.BasicPrice_Center)
-                    + PPUtils.GetRateOfChange(this.BasicPrice_Middle, PreviousCandleData.PreviousCandleData.BasicPrice_Center)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Open, BasicPrice_Center)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_High, BasicPrice_Center)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Low, BasicPrice_Center)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Close, BasicPrice_Center)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Center, BasicPrice_Center)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Middle, BasicPrice_Center)
 
-                    + PPUtils.GetRateOfChange(this.BasicPrice_Open, PreviousCandleData.PreviousCandleData.BasicPrice_Middle)
-                    + PPUtils.GetRateOfChange(this.BasicPrice_High, PreviousCandleData.PreviousCandleData.BasicPrice_Middle)
-                    + PPUtils.GetRateOfChange(this.BasicPrice_Low, PreviousCandleData.PreviousCandleData.BasicPrice_Middle)
-                    + PPUtils.GetRateOfChange(this.BasicPrice_Close, PreviousCandleData.PreviousCandleData.BasicPrice_Middle)
-                    + PPUtils.GetRateOfChange(this.BasicPrice_Center, PreviousCandleData.PreviousCandleData.BasicPrice_Middle)
-                    + PPUtils.GetRateOfChange(this.BasicPrice_Middle, PreviousCandleData.PreviousCandleData.BasicPrice_Middle);
-
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Open, BasicPrice_Middle)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_High, BasicPrice_Middle)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Low, BasicPrice_Middle)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Close, BasicPrice_Middle)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Center, BasicPrice_Middle)
+                    + PPUtils.GetAvgRateOfChange(this.BasicPrice_Middle, BasicPrice_Middle);
 
                 return tRate;
             }
@@ -380,49 +431,47 @@ namespace OM.PP.Chakra
                     return Double.NaN;
 
                 double tRate =
-                      PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_Open, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Open)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_High, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Open)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_Low, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Open)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_Close, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Open)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_Center, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Open)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_Middle, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Open)
+                     PPUtils.GetAvgRateOfChange(this.BasicPrice_Open, this.ComparedPreviousDayPrice_Open)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_High, this.ComparedPreviousDayPrice_Open)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_Low, this.ComparedPreviousDayPrice_Open)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_Close, this.ComparedPreviousDayPrice_Open)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_Center, this.ComparedPreviousDayPrice_Open)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_Middle, this.ComparedPreviousDayPrice_Open)
 
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_Open, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_High)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_High, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_High)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_Low, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_High)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_Close, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_High)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_Center, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_High)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_Middle, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_High)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_Open, this.ComparedPreviousDayPrice_High)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_High, this.ComparedPreviousDayPrice_High)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_Low, this.ComparedPreviousDayPrice_High)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_Close,  this.ComparedPreviousDayPrice_High)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_Center, this.ComparedPreviousDayPrice_High)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_Middle, this.ComparedPreviousDayPrice_High)
 
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_Open, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Low)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_High, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Low)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_Low, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Low)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_Close, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Low)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_Center, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Low)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_Middle, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Low)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_Open, ComparedPreviousDayPrice_Low)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_High, ComparedPreviousDayPrice_Low)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_Low, ComparedPreviousDayPrice_Low)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_Close,  ComparedPreviousDayPrice_Low)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_Center, ComparedPreviousDayPrice_Low)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_Middle, ComparedPreviousDayPrice_Low)
 
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_Open, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Close)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_High, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Close)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_Low, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Close)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_Close, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Close)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_Center, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Close)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_Middle, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Close)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_Open, ComparedPreviousDayPrice_Close)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_High, ComparedPreviousDayPrice_Close)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_Low, ComparedPreviousDayPrice_Close)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_Close,  ComparedPreviousDayPrice_Close)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_Center, ComparedPreviousDayPrice_Close)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_Middle, ComparedPreviousDayPrice_Close)
 
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_Open, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Center)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_High, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Center)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_Low, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Center)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_Close, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Center)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_Center, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Center)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_Middle, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Center)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_Open, ComparedPreviousDayPrice_Center)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_High, ComparedPreviousDayPrice_Center)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_Low, ComparedPreviousDayPrice_Center)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_Close,  ComparedPreviousDayPrice_Center)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_Center, ComparedPreviousDayPrice_Center)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_Middle, ComparedPreviousDayPrice_Center)
 
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_Open, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Middle)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_High, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Middle)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_Low, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Middle)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_Close, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Middle)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_Center, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Middle)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayPrice_Middle, PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Middle);
-
-
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_Open, ComparedPreviousDayPrice_Middle)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_High, ComparedPreviousDayPrice_Middle)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_Low, ComparedPreviousDayPrice_Middle)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_Close,  ComparedPreviousDayPrice_Middle)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_Center, ComparedPreviousDayPrice_Middle)
+                   + PPUtils.GetAvgRateOfChange(this.BasicPrice_Middle, ComparedPreviousDayPrice_Middle);
                 return tRate;
             }
         }
@@ -434,49 +483,48 @@ namespace OM.PP.Chakra
             {
                 if (PreviousCandleData == null)                     
                     return Double.NaN;
-
                 double tRate =
-                      PPUtils.GetRateOfChange(this.QuantumPrice_Open, PreviousCandleData.PreviousCandleData.QuantumPrice_Open)
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_High, PreviousCandleData.PreviousCandleData.QuantumPrice_Open)
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_Low, PreviousCandleData.PreviousCandleData.QuantumPrice_Open)
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_Close, PreviousCandleData.PreviousCandleData.QuantumPrice_Open)
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_Center, PreviousCandleData.PreviousCandleData.QuantumPrice_Open)
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_Middle, PreviousCandleData.PreviousCandleData.QuantumPrice_Open)
+                      PPUtils.GetRateOfChange(this.QuantumPrice_Open, QuantumPrice_Open)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_High, QuantumPrice_Open)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Low,  QuantumPrice_Open)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Close,  QuantumPrice_Open)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Center, QuantumPrice_Open)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Middle, QuantumPrice_Open)
 
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_Open, PreviousCandleData.PreviousCandleData.QuantumPrice_High)
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_High, PreviousCandleData.PreviousCandleData.QuantumPrice_High)
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_Low, PreviousCandleData.PreviousCandleData.QuantumPrice_High)
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_Close, PreviousCandleData.PreviousCandleData.QuantumPrice_High)
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_Center, PreviousCandleData.PreviousCandleData.QuantumPrice_High)
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_Middle, PreviousCandleData.PreviousCandleData.QuantumPrice_High)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Open, QuantumPrice_High)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_High, QuantumPrice_High)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Low,  QuantumPrice_High)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Close,  QuantumPrice_High)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Center, QuantumPrice_High)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Middle, QuantumPrice_High)
 
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_Open, PreviousCandleData.PreviousCandleData.QuantumPrice_Low)
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_High, PreviousCandleData.PreviousCandleData.QuantumPrice_Low)
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_Low, PreviousCandleData.PreviousCandleData.QuantumPrice_Low)
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_Close, PreviousCandleData.PreviousCandleData.QuantumPrice_Low)
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_Center, PreviousCandleData.PreviousCandleData.QuantumPrice_Low)
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_Middle, PreviousCandleData.PreviousCandleData.QuantumPrice_Low)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Open, QuantumPrice_Low)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_High, QuantumPrice_Low)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Low,  QuantumPrice_Low)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Close,  QuantumPrice_Low)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Center, QuantumPrice_Low)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Middle, QuantumPrice_Low)
 
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_Open, PreviousCandleData.PreviousCandleData.QuantumPrice_Close)
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_High, PreviousCandleData.PreviousCandleData.QuantumPrice_Close)
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_Low, PreviousCandleData.PreviousCandleData.QuantumPrice_Close)
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_Close, PreviousCandleData.PreviousCandleData.QuantumPrice_Close)
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_Center, PreviousCandleData.PreviousCandleData.QuantumPrice_Close)
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_Middle, PreviousCandleData.PreviousCandleData.QuantumPrice_Close)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Open, QuantumPrice_Close)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_High, QuantumPrice_Close)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Low,  QuantumPrice_Close)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Close,  QuantumPrice_Close)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Center, QuantumPrice_Close)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Middle, QuantumPrice_Close)
 
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_Open, PreviousCandleData.PreviousCandleData.QuantumPrice_Center)
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_High, PreviousCandleData.PreviousCandleData.QuantumPrice_Center)
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_Low, PreviousCandleData.PreviousCandleData.QuantumPrice_Center)
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_Close, PreviousCandleData.PreviousCandleData.QuantumPrice_Center)
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_Center, PreviousCandleData.PreviousCandleData.QuantumPrice_Center)
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_Middle, PreviousCandleData.PreviousCandleData.QuantumPrice_Center)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Open, QuantumPrice_Center)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_High, QuantumPrice_Center)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Low,  QuantumPrice_Center)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Close,  QuantumPrice_Center)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Center, QuantumPrice_Center)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Middle, QuantumPrice_Center)
 
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_Open, PreviousCandleData.PreviousCandleData.QuantumPrice_Middle)
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_High, PreviousCandleData.PreviousCandleData.QuantumPrice_Middle)
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_Low, PreviousCandleData.PreviousCandleData.QuantumPrice_Middle)
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_Close, PreviousCandleData.PreviousCandleData.QuantumPrice_Middle)
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_Center, PreviousCandleData.PreviousCandleData.QuantumPrice_Middle)
-                    + PPUtils.GetRateOfChange(this.QuantumPrice_Middle, PreviousCandleData.PreviousCandleData.QuantumPrice_Middle);
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Open, QuantumPrice_Middle)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_High, QuantumPrice_Middle)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Low,  QuantumPrice_Middle)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Close,  QuantumPrice_Middle)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Center, QuantumPrice_Middle)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Middle, QuantumPrice_Middle);
 
 
                 return tRate;
@@ -492,48 +540,47 @@ namespace OM.PP.Chakra
                     return Double.NaN;
 
                 double tRate =
-                      PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_Open, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_Open)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_High, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_Open)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_Low, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_Open)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_Close, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_Open)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_Center, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_Open)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_Middle, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_Open)
+                      PPUtils.GetRateOfChange(this.QuantumPrice_Open, ComparedPreviousDayQuantumPrice_Open)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_High, ComparedPreviousDayQuantumPrice_Open)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Low, ComparedPreviousDayQuantumPrice_Open)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Close, ComparedPreviousDayQuantumPrice_Open)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Center, ComparedPreviousDayQuantumPrice_Open)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Middle, ComparedPreviousDayQuantumPrice_Open)
 
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_Open, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_High)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_High, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_High)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_Low, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_High)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_Close, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_High)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_Center, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_High)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_Middle, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_High)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Open, ComparedPreviousDayQuantumPrice_High)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_High, ComparedPreviousDayQuantumPrice_High)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Low, ComparedPreviousDayQuantumPrice_High)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Close, ComparedPreviousDayQuantumPrice_High)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Center, ComparedPreviousDayQuantumPrice_High)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Middle, ComparedPreviousDayQuantumPrice_High)
 
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_Open, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_Low)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_High, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_Low)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_Low, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_Low)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_Close, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_Low)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_Center, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_Low)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_Middle, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_Low)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Open, ComparedPreviousDayQuantumPrice_Low)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_High, ComparedPreviousDayQuantumPrice_Low)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Low, ComparedPreviousDayQuantumPrice_Low)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Close, ComparedPreviousDayQuantumPrice_Low)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Center, ComparedPreviousDayQuantumPrice_Low)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Middle, ComparedPreviousDayQuantumPrice_Low)
 
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_Open, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_Close)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_High, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_Close)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_Low, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_Close)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_Close, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_Close)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_Center, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_Close)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_Middle, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_Close)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Open, ComparedPreviousDayQuantumPrice_Close)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_High, ComparedPreviousDayQuantumPrice_Close)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Low, ComparedPreviousDayQuantumPrice_Close)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Close, ComparedPreviousDayQuantumPrice_Close)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Center, ComparedPreviousDayQuantumPrice_Close)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Middle, ComparedPreviousDayQuantumPrice_Close)
 
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_Open, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_Center)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_High, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_Center)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_Low, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_Center)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_Close, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_Center)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_Center, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_Center)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_Middle, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_Center)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Open, ComparedPreviousDayQuantumPrice_Center)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_High, ComparedPreviousDayQuantumPrice_Center)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Low, ComparedPreviousDayQuantumPrice_Center)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Close, ComparedPreviousDayQuantumPrice_Center)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Center, ComparedPreviousDayQuantumPrice_Center)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Middle, ComparedPreviousDayQuantumPrice_Center)
 
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_Open, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_Middle)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_High, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_Middle)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_Low, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_Middle)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_Close, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_Middle)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_Center, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_Middle)
-                    + PPUtils.GetRateOfChange(this.ComparedPreviousDayQuantumPrice_Middle, PreviousCandleData.PreviousCandleData.ComparedPreviousDayQuantumPrice_Middle);
-
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Open, ComparedPreviousDayQuantumPrice_Middle)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_High, ComparedPreviousDayQuantumPrice_Middle)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Low, ComparedPreviousDayQuantumPrice_Middle)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Close, ComparedPreviousDayQuantumPrice_Middle)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Center, ComparedPreviousDayQuantumPrice_Middle)
+                    + PPUtils.GetRateOfChange(this.QuantumPrice_Middle, ComparedPreviousDayQuantumPrice_Middle);
                 return tRate;
             }
         }
@@ -542,7 +589,7 @@ namespace OM.PP.Chakra
         public double VarianceTotalRate
         {
             get
-            {
+            { 
                 return (Variance_BasicPrice
                     + Variance_ComparedPreviousDayPrice
                     + Variance_QuantumPrice
@@ -626,6 +673,8 @@ namespace OM.PP.Chakra
             {
                 double energy = Space_BasicPrice + Space_ComparedPreviousDayPrice + SpaceTotalAverage + SpaceTotalChangeRate;
                 return energy / 4.0;
+
+                //return SpaceTotal;
             }
         }
         public double TimeEnergy
@@ -635,9 +684,12 @@ namespace OM.PP.Chakra
                 double energy1 = PPUtils.GetAvgRateOfChange(Variance_BasicPrice, VarianceTotalRate);
                 double energy2 = PPUtils.GetAvgRateOfChange(Variance_ComparedPreviousDayPrice, VarianceTotalRate);
                 double energy3 = PPUtils.GetAvgRateOfChange(Variance_QuantumPrice, VarianceTotalRate);
-                double energy4 = PPUtils.GetAvgRateOfChange(Variance_ComparedPreviousDayQuantumPrice, VarianceTotalRate); 
+                double energy4 = PPUtils.GetAvgRateOfChange(Variance_ComparedPreviousDayQuantumPrice, VarianceTotalRate);
 
                 return (energy1 + energy2 + energy3 + energy4) / 4.0;
+
+
+                //return VarianceTotalRate;
             }
         }
 

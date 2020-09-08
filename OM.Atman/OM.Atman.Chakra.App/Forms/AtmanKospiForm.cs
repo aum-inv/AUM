@@ -205,5 +205,19 @@ namespace OM.Atman.Chakra.App.Forms
             MessageBox.Show("복사되었습니다.");
         }
         #endregion
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            tbTitle.Text = string.Empty;
+            tbItem.Text = string.Empty;
+            dtPStartDate.Value = DateTime.Today;
+            dtPEndDate.Value = DateTime.Today;
+            tbTendency.Text = string.Empty;
+            tbFund.Text = string.Empty;
+            tbPRevenue.Text = string.Empty;
+            tbPLoss.Text = string.Empty;
+            tbPPosition.Text = string.Empty;
+            tbProgressType.Text = string.Empty;
+        }
     }
 }

@@ -94,12 +94,13 @@ namespace OM.Vikala.Chakra.App.Mains.ChartForm
 
             //표시할 갯수를 맞춘다.
             RemoveSourceData(sourceDatas);
-            
-            var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas, 9);
+
+            var averageDatas = PPUtils.GetBalancedAverageDatas(itemCode, sourceDatas, 4);
+            //var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas, 9);
             sourceDatas = PPUtils.GetCutDatas(sourceDatas, averageDatas[0].DTime);
 
-            chart.LoadDataAndApply(itemCode, sourceDatas, base.timeInterval, 9);
-            chart2.LoadDataAndApply(itemCode, averageDatas, base.timeInterval, 9);
+            chart.LoadDataAndApply(itemCode, sourceDatas, averageDatas,  base.timeInterval, 9);
+            chart2.LoadDataAndApply(itemCode, averageDatas, averageDatas, base.timeInterval, 9);
         }
     }
 }

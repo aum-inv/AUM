@@ -27,9 +27,10 @@ namespace OM.Vikala.Controls.Charts
         private TrackBar trackBar;
 
         public HorizontalLineAnnotation yLine = new HorizontalLineAnnotation();
-        
-       
+        public VerticalLineAnnotation xLine = new VerticalLineAnnotation();
+
         Label yLineLabel = new Label();
+        Label xLineLabel = new Label();
         public int SelectedTrackBarValue
         {
             get; set;
@@ -100,6 +101,11 @@ namespace OM.Vikala.Controls.Charts
         {
             get;
             set;
+        } = true; 
+        public virtual bool IsShowYLine
+        {
+            get;
+            set;
         } = true;
 
         public virtual Lib.Base.Enums.TimeIntervalEnum TimeInterval
@@ -153,23 +159,68 @@ namespace OM.Vikala.Controls.Charts
         public virtual void InitializeControl()
         {
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea = chart.ChartAreas[0];
-            chartArea.AxisX.IsLabelAutoFit = true;
-            chartArea.AxisX.LabelStyle.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea.AxisX.LabelStyle.IsEndLabelVisible = true;
-            chartArea.AxisX.LineColor = System.Drawing.Color.DimGray;
-            chartArea.AxisX.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
 
-            chartArea.AxisY2.IntervalType = DateTimeIntervalType.NotSet;           
-            chartArea.AxisY2.IsLabelAutoFit = true;
+            chartArea.Area3DStyle.Inclination = 15;
+            chartArea.Area3DStyle.IsClustered = true;
+            chartArea.Area3DStyle.IsRightAngleAxes = false;
+            chartArea.Area3DStyle.Perspective = 10;
+            chartArea.Area3DStyle.Rotation = 10;
+            chartArea.Area3DStyle.WallWidth = 0;
+            chartArea.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea.AxisX.IsLabelAutoFit = false;
+            chartArea.AxisX.LabelStyle.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea.AxisX.LabelStyle.Interval = 0D;
+            chartArea.AxisX.LabelStyle.IntervalOffset = 0D;
+            chartArea.AxisX.LineColor = System.Drawing.Color.DimGray;
+            chartArea.AxisX.MajorGrid.LineColor = System.Drawing.Color.White;
+            chartArea.AxisX2.IsLabelAutoFit = false;
+            chartArea.AxisX2.LabelStyle.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea.AxisX2.LabelStyle.ForeColor = System.Drawing.Color.DimGray;
+            chartArea.AxisX2.LineColor = System.Drawing.Color.DimGray;
+            chartArea.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+            chartArea.AxisY.IsLabelAutoFit = false;
+            chartArea.AxisY.IsStartedFromZero = false;
+            chartArea.AxisY.LabelStyle.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea.AxisY.LabelStyle.ForeColor = System.Drawing.Color.DimGray;
+            chartArea.AxisY.LineColor = System.Drawing.Color.White;
+            chartArea.AxisY.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.NotSet;
+            chartArea.AxisY.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            chartArea.AxisY.MajorTickMark.LineColor = System.Drawing.Color.White;
+            chartArea.AxisY.MinorGrid.LineColor = System.Drawing.Color.White;
+            chartArea.AxisY.MinorTickMark.LineColor = System.Drawing.Color.DimGray;
+            chartArea.AxisY2.IsLabelAutoFit = false;
             chartArea.AxisY2.LabelStyle.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             chartArea.AxisY2.LabelStyle.ForeColor = System.Drawing.Color.DimGray;
             chartArea.AxisY2.LineColor = System.Drawing.Color.DimGray;
-
-            chartArea.BackColor = Color.White;
-            chartArea.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.None;
+            chartArea.AxisY2.MajorGrid.LineColor = System.Drawing.Color.White;
+            chartArea.AxisY2.MinorGrid.LineColor = System.Drawing.Color.White;
+            chartArea.AxisY2.MinorTickMark.LineColor = System.Drawing.Color.DimGray;
+            chartArea.BackColor = System.Drawing.Color.White;
+            chartArea.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.TopBottom;
             chartArea.BackSecondaryColor = System.Drawing.Color.White;
             chartArea.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             chartArea.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
+            chartArea.CursorX.LineColor = System.Drawing.Color.Black;
+            chartArea.CursorY.AxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
+            chartArea.CursorY.LineColor = System.Drawing.Color.Black;
+            
+            //chartArea.AxisX.IsLabelAutoFit = true;
+            //chartArea.AxisX.LabelStyle.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            //chartArea.AxisX.LabelStyle.IsEndLabelVisible = true;
+            //chartArea.AxisX.LineColor = System.Drawing.Color.DimGray;
+            //chartArea.AxisX.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+
+            //chartArea.AxisY2.IntervalType = DateTimeIntervalType.NotSet;           
+            //chartArea.AxisY2.IsLabelAutoFit = true;
+            //chartArea.AxisY2.LabelStyle.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            //chartArea.AxisY2.LabelStyle.ForeColor = System.Drawing.Color.DimGray;
+            //chartArea.AxisY2.LineColor = System.Drawing.Color.DimGray;
+
+            //chartArea.BackColor = Color.White;
+            //chartArea.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.None;
+            //chartArea.BackSecondaryColor = System.Drawing.Color.White;
+            //chartArea.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            //chartArea.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
 
             chartArea.InnerPlotPosition.Auto = false;
             chartArea.InnerPlotPosition.Height = 90F;
@@ -185,7 +236,7 @@ namespace OM.Vikala.Controls.Charts
             chartArea.ShadowColor = System.Drawing.Color.Transparent;
 
             if (IsShowXLine) createXYLineAnnotation();
-                        
+            if (IsShowYLine) createYXLineAnnotation();
             chart.MouseClick += Chart_MouseClick;
             
         }
@@ -341,7 +392,10 @@ namespace OM.Vikala.Controls.Charts
         }
         public void SetCandleColor(int idx, string plusColor = "Red", string minusColor = "Blue")
         {
-            this.chart.Series[idx].CustomProperties = $"PriceDownColor={minusColor}, PriceUpColor={plusColor}";
+            this.Invoke(new Action(() =>
+            {
+                this.chart.Series[idx].CustomProperties = $"PriceDownColor={minusColor}, PriceUpColor={plusColor}";
+            }));
         }
 
         public void SetDataPointColor(
@@ -362,7 +416,10 @@ namespace OM.Vikala.Controls.Charts
         private void Chart_MouseMove(object sender, MouseEventArgs e)
         {
             if (chart.Annotations.Count == 0)
+            {
                 createXYLineAnnotation();
+                createYXLineAnnotation();
+            }
 
             HitTestResult result = chart.HitTest(e.X, e.Y);
             if (result.ChartArea == null) return;
@@ -380,7 +437,7 @@ namespace OM.Vikala.Controls.Charts
             if (e.Location.Y > maxY - 20) return;
 
             var xv = chart.ChartAreas[0].AxisX.PixelPositionToValue(e.X);            
-            var yv = chart.ChartAreas[0].AxisY2.PixelPositionToValue(e.Y);
+            var yv = chart.ChartAreas[0].AxisY2.PixelPositionToValue(e.Y);            
 
             if (Double.IsInfinity(xv) || Double.IsNaN(xv) || Double.IsInfinity(yv) || Double.IsNaN(yv))
                 return;            
@@ -389,11 +446,27 @@ namespace OM.Vikala.Controls.Charts
             yLineLabel.Visible = true;
             yLineLabel.Location = new Point(minX, e.Location.Y);
             yLineLabel.Text = Math.Round(yv, ItemCodeSet.GetItemRoundNum(ItemCode)).ToString();
+
+            xLine.AnchorX = xv;            
+            xLineLabel.Location = new Point(e.Location.X - 10,  maxY - 20);
+            if (result.PointIndex > -1)
+            {
+                var dtime = DateTime.FromOADate(result.Series.Points[result.PointIndex].XValue);
+                xLineLabel.Text = dtime.ToString(chartArea.AxisX.LabelStyle.Format);
+                xLineLabel.Visible = true;
+            }
+            else
+            {
+                xLineLabel.Visible = false;
+            }
         }
         private void Chart_MouseLeave(object sender, EventArgs e)
         {
             yLine.AnchorY = 0;
             yLineLabel.Visible = false;
+
+            xLine.AnchorX = 0;
+            xLineLabel.Visible = false;
         }
         public void Chart_MouseDown(object sender, MouseEventArgs e)
         {
@@ -419,11 +492,33 @@ namespace OM.Vikala.Controls.Charts
             yLineLabel.ForeColor = Color.White;
             yLineLabel.BorderStyle = BorderStyle.None;
             yLineLabel.Height = 15;
-            yLineLabel.Font = new System.Drawing.Font("맑은 고딕", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            yLineLabel.Font = new System.Drawing.Font("맑은 고딕", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 
             chart.Controls.Add(yLineLabel);
         }
+        protected void createYXLineAnnotation()
+        {
+            xLine.AxisX = chart.ChartAreas[0].AxisX;
+            xLine.AxisY = chart.ChartAreas[0].AxisY2;
+            xLine.IsSizeAlwaysRelative = false;
+            xLine.AnchorX = 0;
+            xLine.IsInfinitive = true;
+            xLine.ClipToChartArea = chart.ChartAreas[0].Name;
+            xLine.LineColor = Color.Gray;
+            xLine.LineWidth = 1;
+            chart.Annotations.Add(xLine);
 
+            xLineLabel.Text = "";
+            xLineLabel.Visible = false;
+            xLineLabel.AutoSize = true;
+            xLineLabel.BackColor = Color.Gray;
+            xLineLabel.ForeColor = Color.White;
+            xLineLabel.BorderStyle = BorderStyle.None;
+            xLineLabel.Height = 15;
+            xLineLabel.Font = new System.Drawing.Font("맑은 고딕", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
+            chart.Controls.Add(xLineLabel);
+        }
         private void InitializeComponent()
         {
             this.SuspendLayout();

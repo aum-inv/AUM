@@ -47,6 +47,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.metroPanel3 = new MetroFramework.Controls.MetroPanel();
+            this.btnClear = new MetroFramework.Controls.MetroButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.metroLabel11 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel12 = new MetroFramework.Controls.MetroLabel();
@@ -149,7 +150,7 @@
             this.tbSummary.ShortcutsEnabled = true;
             this.tbSummary.Size = new System.Drawing.Size(281, 213);
             this.tbSummary.Style = MetroFramework.MetroColorStyle.Brown;
-            this.tbSummary.TabIndex = 35;
+            this.tbSummary.TabIndex = 7;
             this.tbSummary.UseSelectable = true;
             this.tbSummary.UseStyleColors = true;
             this.tbSummary.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -205,7 +206,7 @@
             this.tbsecuritiesCompany2.ShortcutsEnabled = true;
             this.tbsecuritiesCompany2.Size = new System.Drawing.Size(281, 29);
             this.tbsecuritiesCompany2.Style = MetroFramework.MetroColorStyle.Orange;
-            this.tbsecuritiesCompany2.TabIndex = 25;
+            this.tbsecuritiesCompany2.TabIndex = 3;
             this.tbsecuritiesCompany2.Text = "NH투자증권";
             this.tbsecuritiesCompany2.UseSelectable = true;
             this.tbsecuritiesCompany2.UseStyleColors = true;
@@ -251,7 +252,7 @@
             this.tbinvFund1.ShortcutsEnabled = true;
             this.tbinvFund1.Size = new System.Drawing.Size(281, 29);
             this.tbinvFund1.Style = MetroFramework.MetroColorStyle.Lime;
-            this.tbinvFund1.TabIndex = 26;
+            this.tbinvFund1.TabIndex = 2;
             this.tbinvFund1.UseSelectable = true;
             this.tbinvFund1.UseStyleColors = true;
             this.tbinvFund1.WaterMark = "투자금액";
@@ -334,7 +335,7 @@
             this.tbsecuritiesCompany3.ShortcutsEnabled = true;
             this.tbsecuritiesCompany3.Size = new System.Drawing.Size(281, 29);
             this.tbsecuritiesCompany3.Style = MetroFramework.MetroColorStyle.Blue;
-            this.tbsecuritiesCompany3.TabIndex = 4;
+            this.tbsecuritiesCompany3.TabIndex = 5;
             this.tbsecuritiesCompany3.Text = "KB증권";
             this.tbsecuritiesCompany3.UseSelectable = true;
             this.tbsecuritiesCompany3.UseStyleColors = true;
@@ -384,7 +385,7 @@
             this.tbsecuritiesCompany1.ShortcutsEnabled = true;
             this.tbsecuritiesCompany1.Size = new System.Drawing.Size(281, 29);
             this.tbsecuritiesCompany1.Style = MetroFramework.MetroColorStyle.Lime;
-            this.tbsecuritiesCompany1.TabIndex = 24;
+            this.tbsecuritiesCompany1.TabIndex = 1;
             this.tbsecuritiesCompany1.Text = "삼성증권";
             this.tbsecuritiesCompany1.UseCustomBackColor = true;
             this.tbsecuritiesCompany1.UseCustomForeColor = true;
@@ -435,7 +436,7 @@
             this.tbinvFund3.ShortcutsEnabled = true;
             this.tbinvFund3.Size = new System.Drawing.Size(281, 29);
             this.tbinvFund3.Style = MetroFramework.MetroColorStyle.Blue;
-            this.tbinvFund3.TabIndex = 13;
+            this.tbinvFund3.TabIndex = 6;
             this.tbinvFund3.UseSelectable = true;
             this.tbinvFund3.UseStyleColors = true;
             this.tbinvFund3.WaterMark = "투자금액";
@@ -472,7 +473,7 @@
             this.tbinvFund2.ShortcutsEnabled = true;
             this.tbinvFund2.Size = new System.Drawing.Size(281, 29);
             this.tbinvFund2.Style = MetroFramework.MetroColorStyle.Orange;
-            this.tbinvFund2.TabIndex = 15;
+            this.tbinvFund2.TabIndex = 4;
             this.tbinvFund2.UseSelectable = true;
             this.tbinvFund2.UseStyleColors = true;
             this.tbinvFund2.WaterMark = "투자금액";
@@ -507,6 +508,7 @@
             // 
             // metroPanel3
             // 
+            this.metroPanel3.Controls.Add(this.btnClear);
             this.metroPanel3.Controls.Add(this.groupBox3);
             this.metroPanel3.Controls.Add(this.groupBox2);
             this.metroPanel3.Controls.Add(this.groupBox1);
@@ -524,6 +526,17 @@
             this.metroPanel3.VerticalScrollbarBarColor = true;
             this.metroPanel3.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel3.VerticalScrollbarSize = 10;
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(344, 12);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(76, 23);
+            this.btnClear.TabIndex = 22;
+            this.btnClear.Tag = "10";
+            this.btnClear.Text = "항목비우기";
+            this.btnClear.UseSelectable = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // groupBox3
             // 
@@ -656,7 +669,7 @@
             this.rdoFundMethod2.Location = new System.Drawing.Point(217, 21);
             this.rdoFundMethod2.Name = "rdoFundMethod2";
             this.rdoFundMethod2.Size = new System.Drawing.Size(86, 15);
-            this.rdoFundMethod2.TabIndex = 1;
+            this.rdoFundMethod2.TabIndex = 9;
             this.rdoFundMethod2.Text = "안정적 투자";
             this.rdoFundMethod2.UseSelectable = true;
             // 
@@ -666,7 +679,7 @@
             this.rdoFundMethod1.Location = new System.Drawing.Point(38, 21);
             this.rdoFundMethod1.Name = "rdoFundMethod1";
             this.rdoFundMethod1.Size = new System.Drawing.Size(86, 15);
-            this.rdoFundMethod1.TabIndex = 0;
+            this.rdoFundMethod1.TabIndex = 8;
             this.rdoFundMethod1.Text = "공격적 투자";
             this.rdoFundMethod1.UseSelectable = true;
             // 
@@ -966,7 +979,7 @@
             this.btnSave.Size = new System.Drawing.Size(69, 54);
             this.btnSave.Stroke = false;
             this.btnSave.StrokeColor = System.Drawing.Color.Transparent;
-            this.btnSave.TabIndex = 20;
+            this.btnSave.TabIndex = 11;
             this.btnSave.Transparency = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -1043,5 +1056,6 @@
         private MetroFramework.Controls.MetroLabel metroLabel11;
         private MetroFramework.Controls.MetroLabel metroLabel12;
         private MetroFramework.Controls.MetroLabel metroLabel13;
+        private MetroFramework.Controls.MetroButton btnClear;
     }
 }

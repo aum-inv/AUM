@@ -157,26 +157,45 @@ namespace OM.Vikala.Controls.Charts
                     preSmartData = smartData;
                 }
             }
-            
 
-            for (int i = 3; i < ChartData.Count; i++)
+            double preVariancePrice = 0;
+            for (int i = 2; i < ChartData.Count; i++)
             {
                 var item = ChartData[i];
                 var smart = smartDataList[i];
 
                 int idx = chart.Series[0].Points.AddXY(item.DTime, item.HighPrice, item.LowPrice, item.OpenPrice, item.ClosePrice);
                 //chart.Series[1].Points.AddXY(smart.DTime, smart.SpaceTotalChangeRate);
-                chart.Series[1].Points.AddXY(smart.DTime, smart.Variance_BasicPrice);
+                chart.Series[1].Points.AddXY(smart.DTime, smart.Variance_ChartPrice);
+
+                if (preVariancePrice < smart.Variance_ChartPrice)
+                {
+                    chart.Series[1].Points[idx].Color = Color.Red;
+                    chart.Series[1].Points[idx].MarkerColor = Color.Red;
+                }
+                else if (preVariancePrice > smart.Variance_ChartPrice)
+                {
+                    chart.Series[1].Points[idx].Color = Color.Blue;
+                    chart.Series[1].Points[idx].MarkerColor = Color.Blue;
+                }
+                else
+                {
+                    chart.Series[1].Points[idx].Color = Color.Black;
+                    chart.Series[1].Points[idx].MarkerColor = Color.Black;
+                }
+
+                preVariancePrice = smart.Variance_ChartPrice;
+
                 var dataPoint = chart.Series[0].Points[idx];
                 dataPoint.Tag = item;
 
             }
-            double maxPrice = ChartData.Max(m => m.HighPrice);
-            double minPrice = ChartData.Min(m => m.LowPrice);
-            maxPrice = maxPrice + SpaceMaxMin;
-            minPrice = minPrice - SpaceMaxMin;
-            chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
-            chart.ChartAreas[0].AxisY2.Minimum = minPrice;
+            //double maxPrice = ChartData.Max(m => m.HighPrice);
+            //double minPrice = ChartData.Min(m => m.LowPrice);
+            //maxPrice = maxPrice + SpaceMaxMin;
+            //minPrice = minPrice - SpaceMaxMin;
+            //chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
+            //chart.ChartAreas[0].AxisY2.Minimum = minPrice;
 
             SetScrollBar();
             SetTrackBar();
@@ -270,10 +289,10 @@ namespace OM.Vikala.Controls.Charts
                 chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
                 chart.ChartAreas[0].AxisY2.Minimum = minPrice;
                
-                double maxPrice2 = smartDataList.GetRange(3, smartDataList.Count - 3).Max(m => m.Variance_BasicPrice);
-                double minPrice2 = smartDataList.GetRange(3, smartDataList.Count - 3).Min(m => m.Variance_BasicPrice);
-                maxPrice2 = maxPrice2 + 1;
-                minPrice2 = minPrice2 - 1;
+                double maxPrice2 = smartDataList.GetRange(2, smartDataList.Count - 2).Max(m => m.Variance_ChartPrice);
+                double minPrice2 = smartDataList.GetRange(2, smartDataList.Count - 2).Min(m => m.Variance_ChartPrice);
+                maxPrice2 = maxPrice2 + SpaceMaxMin;
+                minPrice2 = minPrice2 - SpaceMaxMin;
                 chart.ChartAreas[0].AxisY.Maximum = maxPrice2;
                 chart.ChartAreas[0].AxisY.Minimum = minPrice2;
             }

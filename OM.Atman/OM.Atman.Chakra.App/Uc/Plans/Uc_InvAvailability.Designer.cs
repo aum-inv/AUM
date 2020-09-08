@@ -51,24 +51,26 @@
             this.metroPanel7 = new MetroFramework.Controls.MetroPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.metroPanel3 = new MetroFramework.Controls.MetroPanel();
+            this.btnClear2 = new MetroFramework.Controls.MetroButton();
+            this.btnClear = new MetroFramework.Controls.MetroButton();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
+            this.tbVolatilitySummary = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel10 = new MetroFramework.Controls.MetroLabel();
-            this.metroTextBox2 = new MetroFramework.Controls.MetroTextBox();
-            this.metroTextBox3 = new MetroFramework.Controls.MetroTextBox();
+            this.tbVolatility3 = new MetroFramework.Controls.MetroTextBox();
+            this.tbVolatility2 = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel12 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel13 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel14 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel15 = new MetroFramework.Controls.MetroLabel();
-            this.metroTextBox4 = new MetroFramework.Controls.MetroTextBox();
+            this.tbVolatility5 = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel16 = new MetroFramework.Controls.MetroLabel();
-            this.metroTextBox5 = new MetroFramework.Controls.MetroTextBox();
-            this.metroTextBox7 = new MetroFramework.Controls.MetroTextBox();
+            this.tbVolatility1 = new MetroFramework.Controls.MetroTextBox();
+            this.tbVolatility4 = new MetroFramework.Controls.MetroTextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tbUncertaintyCmt = new MetroFramework.Controls.MetroTextBox();
+            this.tbUncertaintySummary = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel9 = new MetroFramework.Controls.MetroLabel();
-            this.tbUncertaintyUs = new MetroFramework.Controls.MetroTextBox();
-            this.tbUncertaintyFx = new MetroFramework.Controls.MetroTextBox();
+            this.tbEpuUs = new MetroFramework.Controls.MetroTextBox();
+            this.tbVixKr = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
@@ -76,7 +78,7 @@
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.tbUncertaintyCn = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
-            this.tbUncertaintyKp = new MetroFramework.Controls.MetroTextBox();
+            this.tbEpuKp = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
             this.tbUncertaintyVixUs = new MetroFramework.Controls.MetroTextBox();
@@ -128,7 +130,7 @@
             this.btnSave.Size = new System.Drawing.Size(69, 54);
             this.btnSave.Stroke = false;
             this.btnSave.StrokeColor = System.Drawing.Color.Transparent;
-            this.btnSave.TabIndex = 20;
+            this.btnSave.TabIndex = 18;
             this.btnSave.Transparency = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -430,6 +432,8 @@
             // 
             // metroPanel3
             // 
+            this.metroPanel3.Controls.Add(this.btnClear2);
+            this.metroPanel3.Controls.Add(this.btnClear);
             this.metroPanel3.Controls.Add(this.tableLayoutPanel2);
             this.metroPanel3.Controls.Add(this.tableLayoutPanel1);
             this.metroPanel3.Controls.Add(this.label4);
@@ -446,24 +450,44 @@
             this.metroPanel3.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel3.VerticalScrollbarSize = 10;
             // 
+            // btnClear2
+            // 
+            this.btnClear2.Location = new System.Drawing.Point(823, 11);
+            this.btnClear2.Name = "btnClear2";
+            this.btnClear2.Size = new System.Drawing.Size(76, 23);
+            this.btnClear2.TabIndex = 17;
+            this.btnClear2.Text = "항목비우기";
+            this.btnClear2.UseSelectable = true;
+            this.btnClear2.Click += new System.EventHandler(this.btnClear2_Click);
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(344, 12);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(76, 23);
+            this.btnClear.TabIndex = 16;
+            this.btnClear.Text = "항목비우기";
+            this.btnClear.UseSelectable = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.metroTextBox1, 1, 5);
+            this.tableLayoutPanel2.Controls.Add(this.tbVolatilitySummary, 1, 5);
             this.tableLayoutPanel2.Controls.Add(this.metroLabel10, 0, 5);
-            this.tableLayoutPanel2.Controls.Add(this.metroTextBox2, 1, 2);
-            this.tableLayoutPanel2.Controls.Add(this.metroTextBox3, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.tbVolatility3, 1, 2);
+            this.tableLayoutPanel2.Controls.Add(this.tbVolatility2, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.metroLabel12, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.metroLabel13, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.metroLabel14, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.metroLabel15, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.metroTextBox4, 1, 4);
+            this.tableLayoutPanel2.Controls.Add(this.tbVolatility5, 1, 4);
             this.tableLayoutPanel2.Controls.Add(this.metroLabel16, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.metroTextBox5, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.metroTextBox7, 1, 3);
+            this.tableLayoutPanel2.Controls.Add(this.tbVolatility1, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.tbVolatility4, 1, 3);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(479, 38);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 6;
@@ -476,39 +500,39 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(420, 437);
             this.tableLayoutPanel2.TabIndex = 19;
             // 
-            // metroTextBox1
+            // tbVolatilitySummary
             // 
             // 
             // 
             // 
-            this.metroTextBox1.CustomButton.Image = null;
-            this.metroTextBox1.CustomButton.Location = new System.Drawing.Point(139, 2);
-            this.metroTextBox1.CustomButton.Name = "";
-            this.metroTextBox1.CustomButton.Size = new System.Drawing.Size(169, 169);
-            this.metroTextBox1.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroTextBox1.CustomButton.TabIndex = 1;
-            this.metroTextBox1.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTextBox1.CustomButton.UseSelectable = true;
-            this.metroTextBox1.CustomButton.Visible = false;
-            this.metroTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroTextBox1.Lines = new string[0];
-            this.metroTextBox1.Location = new System.Drawing.Point(105, 259);
-            this.metroTextBox1.MaxLength = 32767;
-            this.metroTextBox1.Multiline = true;
-            this.metroTextBox1.Name = "metroTextBox1";
-            this.metroTextBox1.PasswordChar = '\0';
-            this.metroTextBox1.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.metroTextBox1.SelectedText = "";
-            this.metroTextBox1.SelectionLength = 0;
-            this.metroTextBox1.SelectionStart = 0;
-            this.metroTextBox1.ShortcutsEnabled = true;
-            this.metroTextBox1.Size = new System.Drawing.Size(311, 174);
-            this.metroTextBox1.Style = MetroFramework.MetroColorStyle.Lime;
-            this.metroTextBox1.TabIndex = 35;
-            this.metroTextBox1.UseSelectable = true;
-            this.metroTextBox1.UseStyleColors = true;
-            this.metroTextBox1.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.metroTextBox1.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.tbVolatilitySummary.CustomButton.Image = null;
+            this.tbVolatilitySummary.CustomButton.Location = new System.Drawing.Point(139, 2);
+            this.tbVolatilitySummary.CustomButton.Name = "";
+            this.tbVolatilitySummary.CustomButton.Size = new System.Drawing.Size(169, 169);
+            this.tbVolatilitySummary.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tbVolatilitySummary.CustomButton.TabIndex = 1;
+            this.tbVolatilitySummary.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbVolatilitySummary.CustomButton.UseSelectable = true;
+            this.tbVolatilitySummary.CustomButton.Visible = false;
+            this.tbVolatilitySummary.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbVolatilitySummary.Lines = new string[0];
+            this.tbVolatilitySummary.Location = new System.Drawing.Point(105, 259);
+            this.tbVolatilitySummary.MaxLength = 32767;
+            this.tbVolatilitySummary.Multiline = true;
+            this.tbVolatilitySummary.Name = "tbVolatilitySummary";
+            this.tbVolatilitySummary.PasswordChar = '\0';
+            this.tbVolatilitySummary.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbVolatilitySummary.SelectedText = "";
+            this.tbVolatilitySummary.SelectionLength = 0;
+            this.tbVolatilitySummary.SelectionStart = 0;
+            this.tbVolatilitySummary.ShortcutsEnabled = true;
+            this.tbVolatilitySummary.Size = new System.Drawing.Size(311, 174);
+            this.tbVolatilitySummary.Style = MetroFramework.MetroColorStyle.Lime;
+            this.tbVolatilitySummary.TabIndex = 15;
+            this.tbVolatilitySummary.UseSelectable = true;
+            this.tbVolatilitySummary.UseStyleColors = true;
+            this.tbVolatilitySummary.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbVolatilitySummary.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // metroLabel10
             // 
@@ -521,97 +545,97 @@
             this.metroLabel10.Text = "요약정리";
             this.metroLabel10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // metroTextBox2
+            // tbVolatility3
             // 
             // 
             // 
             // 
-            this.metroTextBox2.CustomButton.BackColor = System.Drawing.Color.Red;
-            this.metroTextBox2.CustomButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.metroTextBox2.CustomButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.metroTextBox2.CustomButton.Image = null;
-            this.metroTextBox2.CustomButton.Location = new System.Drawing.Point(269, 2);
-            this.metroTextBox2.CustomButton.Name = "";
-            this.metroTextBox2.CustomButton.Size = new System.Drawing.Size(39, 39);
-            this.metroTextBox2.CustomButton.Style = MetroFramework.MetroColorStyle.Red;
-            this.metroTextBox2.CustomButton.TabIndex = 1;
-            this.metroTextBox2.CustomButton.Tag = "https://fred.stlouisfed.org/series/USEPUINDXD";
-            this.metroTextBox2.CustomButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.metroTextBox2.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTextBox2.CustomButton.UseCompatibleTextRendering = true;
-            this.metroTextBox2.CustomButton.UseCustomBackColor = true;
-            this.metroTextBox2.CustomButton.UseCustomForeColor = true;
-            this.metroTextBox2.CustomButton.UseSelectable = true;
-            this.metroTextBox2.CustomButton.UseStyleColors = true;
-            this.metroTextBox2.CustomButton.UseVisualStyleBackColor = false;
-            this.metroTextBox2.CustomButton.Visible = false;
-            this.metroTextBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroTextBox2.Lines = new string[0];
-            this.metroTextBox2.Location = new System.Drawing.Point(105, 106);
-            this.metroTextBox2.MaxLength = 32767;
-            this.metroTextBox2.Multiline = true;
-            this.metroTextBox2.Name = "metroTextBox2";
-            this.metroTextBox2.PasswordChar = '\0';
-            this.metroTextBox2.PromptText = "지표(챠트) 확인";
-            this.metroTextBox2.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.metroTextBox2.SelectedText = "";
-            this.metroTextBox2.SelectionLength = 0;
-            this.metroTextBox2.SelectionStart = 0;
-            this.metroTextBox2.ShortcutsEnabled = true;
-            this.metroTextBox2.Size = new System.Drawing.Size(311, 44);
-            this.metroTextBox2.Style = MetroFramework.MetroColorStyle.Orange;
-            this.metroTextBox2.TabIndex = 25;
-            this.metroTextBox2.UseSelectable = true;
-            this.metroTextBox2.UseStyleColors = true;
-            this.metroTextBox2.WaterMark = "지표(챠트) 확인";
-            this.metroTextBox2.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.metroTextBox2.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.tbVolatility3.CustomButton.BackColor = System.Drawing.Color.Red;
+            this.tbVolatility3.CustomButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.tbVolatility3.CustomButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.tbVolatility3.CustomButton.Image = null;
+            this.tbVolatility3.CustomButton.Location = new System.Drawing.Point(269, 2);
+            this.tbVolatility3.CustomButton.Name = "";
+            this.tbVolatility3.CustomButton.Size = new System.Drawing.Size(39, 39);
+            this.tbVolatility3.CustomButton.Style = MetroFramework.MetroColorStyle.Red;
+            this.tbVolatility3.CustomButton.TabIndex = 1;
+            this.tbVolatility3.CustomButton.Tag = "https://fred.stlouisfed.org/series/USEPUINDXD";
+            this.tbVolatility3.CustomButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tbVolatility3.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbVolatility3.CustomButton.UseCompatibleTextRendering = true;
+            this.tbVolatility3.CustomButton.UseCustomBackColor = true;
+            this.tbVolatility3.CustomButton.UseCustomForeColor = true;
+            this.tbVolatility3.CustomButton.UseSelectable = true;
+            this.tbVolatility3.CustomButton.UseStyleColors = true;
+            this.tbVolatility3.CustomButton.UseVisualStyleBackColor = false;
+            this.tbVolatility3.CustomButton.Visible = false;
+            this.tbVolatility3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbVolatility3.Lines = new string[0];
+            this.tbVolatility3.Location = new System.Drawing.Point(105, 106);
+            this.tbVolatility3.MaxLength = 32767;
+            this.tbVolatility3.Multiline = true;
+            this.tbVolatility3.Name = "tbVolatility3";
+            this.tbVolatility3.PasswordChar = '\0';
+            this.tbVolatility3.PromptText = "지표(챠트) 확인";
+            this.tbVolatility3.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbVolatility3.SelectedText = "";
+            this.tbVolatility3.SelectionLength = 0;
+            this.tbVolatility3.SelectionStart = 0;
+            this.tbVolatility3.ShortcutsEnabled = true;
+            this.tbVolatility3.Size = new System.Drawing.Size(311, 44);
+            this.tbVolatility3.Style = MetroFramework.MetroColorStyle.Orange;
+            this.tbVolatility3.TabIndex = 12;
+            this.tbVolatility3.UseSelectable = true;
+            this.tbVolatility3.UseStyleColors = true;
+            this.tbVolatility3.WaterMark = "지표(챠트) 확인";
+            this.tbVolatility3.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbVolatility3.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
-            // metroTextBox3
-            // 
-            // 
+            // tbVolatility2
             // 
             // 
-            this.metroTextBox3.CustomButton.BackColor = System.Drawing.Color.Red;
-            this.metroTextBox3.CustomButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.metroTextBox3.CustomButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.metroTextBox3.CustomButton.Image = null;
-            this.metroTextBox3.CustomButton.Location = new System.Drawing.Point(269, 2);
-            this.metroTextBox3.CustomButton.Name = "";
-            this.metroTextBox3.CustomButton.Size = new System.Drawing.Size(39, 39);
-            this.metroTextBox3.CustomButton.Style = MetroFramework.MetroColorStyle.Red;
-            this.metroTextBox3.CustomButton.TabIndex = 1;
-            this.metroTextBox3.CustomButton.Tag = "https://www.investing.com/indices/kospi-volatility";
-            this.metroTextBox3.CustomButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.metroTextBox3.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTextBox3.CustomButton.UseCompatibleTextRendering = true;
-            this.metroTextBox3.CustomButton.UseCustomBackColor = true;
-            this.metroTextBox3.CustomButton.UseCustomForeColor = true;
-            this.metroTextBox3.CustomButton.UseSelectable = true;
-            this.metroTextBox3.CustomButton.UseStyleColors = true;
-            this.metroTextBox3.CustomButton.UseVisualStyleBackColor = false;
-            this.metroTextBox3.CustomButton.Visible = false;
-            this.metroTextBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroTextBox3.Lines = new string[0];
-            this.metroTextBox3.Location = new System.Drawing.Point(105, 55);
-            this.metroTextBox3.MaxLength = 32767;
-            this.metroTextBox3.Multiline = true;
-            this.metroTextBox3.Name = "metroTextBox3";
-            this.metroTextBox3.PasswordChar = '\0';
-            this.metroTextBox3.PromptText = "지표(챠트) 확인";
-            this.metroTextBox3.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.metroTextBox3.SelectedText = "";
-            this.metroTextBox3.SelectionLength = 0;
-            this.metroTextBox3.SelectionStart = 0;
-            this.metroTextBox3.ShortcutsEnabled = true;
-            this.metroTextBox3.Size = new System.Drawing.Size(311, 44);
-            this.metroTextBox3.Style = MetroFramework.MetroColorStyle.Lime;
-            this.metroTextBox3.TabIndex = 26;
-            this.metroTextBox3.UseSelectable = true;
-            this.metroTextBox3.UseStyleColors = true;
-            this.metroTextBox3.WaterMark = "지표(챠트) 확인";
-            this.metroTextBox3.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.metroTextBox3.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // 
+            this.tbVolatility2.CustomButton.BackColor = System.Drawing.Color.Red;
+            this.tbVolatility2.CustomButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.tbVolatility2.CustomButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.tbVolatility2.CustomButton.Image = null;
+            this.tbVolatility2.CustomButton.Location = new System.Drawing.Point(269, 2);
+            this.tbVolatility2.CustomButton.Name = "";
+            this.tbVolatility2.CustomButton.Size = new System.Drawing.Size(39, 39);
+            this.tbVolatility2.CustomButton.Style = MetroFramework.MetroColorStyle.Red;
+            this.tbVolatility2.CustomButton.TabIndex = 1;
+            this.tbVolatility2.CustomButton.Tag = "https://www.investing.com/indices/kospi-volatility";
+            this.tbVolatility2.CustomButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tbVolatility2.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbVolatility2.CustomButton.UseCompatibleTextRendering = true;
+            this.tbVolatility2.CustomButton.UseCustomBackColor = true;
+            this.tbVolatility2.CustomButton.UseCustomForeColor = true;
+            this.tbVolatility2.CustomButton.UseSelectable = true;
+            this.tbVolatility2.CustomButton.UseStyleColors = true;
+            this.tbVolatility2.CustomButton.UseVisualStyleBackColor = false;
+            this.tbVolatility2.CustomButton.Visible = false;
+            this.tbVolatility2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbVolatility2.Lines = new string[0];
+            this.tbVolatility2.Location = new System.Drawing.Point(105, 55);
+            this.tbVolatility2.MaxLength = 32767;
+            this.tbVolatility2.Multiline = true;
+            this.tbVolatility2.Name = "tbVolatility2";
+            this.tbVolatility2.PasswordChar = '\0';
+            this.tbVolatility2.PromptText = "지표(챠트) 확인";
+            this.tbVolatility2.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbVolatility2.SelectedText = "";
+            this.tbVolatility2.SelectionLength = 0;
+            this.tbVolatility2.SelectionStart = 0;
+            this.tbVolatility2.ShortcutsEnabled = true;
+            this.tbVolatility2.Size = new System.Drawing.Size(311, 44);
+            this.tbVolatility2.Style = MetroFramework.MetroColorStyle.Lime;
+            this.tbVolatility2.TabIndex = 11;
+            this.tbVolatility2.UseSelectable = true;
+            this.tbVolatility2.UseStyleColors = true;
+            this.tbVolatility2.WaterMark = "지표(챠트) 확인";
+            this.tbVolatility2.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbVolatility2.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // metroLabel12
             // 
@@ -657,42 +681,42 @@
             this.metroLabel15.Text = "보조지표 - ATR";
             this.metroLabel15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // metroTextBox4
+            // tbVolatility5
             // 
             // 
             // 
             // 
-            this.metroTextBox4.CustomButton.Image = null;
-            this.metroTextBox4.CustomButton.Location = new System.Drawing.Point(269, 2);
-            this.metroTextBox4.CustomButton.Name = "";
-            this.metroTextBox4.CustomButton.Size = new System.Drawing.Size(39, 39);
-            this.metroTextBox4.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroTextBox4.CustomButton.TabIndex = 1;
-            this.metroTextBox4.CustomButton.Tag = "https://fred.stlouisfed.org/series/CHIEPUINDXM";
-            this.metroTextBox4.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTextBox4.CustomButton.UseSelectable = true;
-            this.metroTextBox4.CustomButton.Visible = false;
-            this.metroTextBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroTextBox4.Lines = new string[0];
-            this.metroTextBox4.Location = new System.Drawing.Point(105, 208);
-            this.metroTextBox4.MaxLength = 32767;
-            this.metroTextBox4.Multiline = true;
-            this.metroTextBox4.Name = "metroTextBox4";
-            this.metroTextBox4.PasswordChar = '\0';
-            this.metroTextBox4.PromptText = "지표(챠트) 확인";
-            this.metroTextBox4.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.metroTextBox4.SelectedText = "";
-            this.metroTextBox4.SelectionLength = 0;
-            this.metroTextBox4.SelectionStart = 0;
-            this.metroTextBox4.ShortcutsEnabled = true;
-            this.metroTextBox4.Size = new System.Drawing.Size(311, 44);
-            this.metroTextBox4.Style = MetroFramework.MetroColorStyle.Orange;
-            this.metroTextBox4.TabIndex = 4;
-            this.metroTextBox4.UseSelectable = true;
-            this.metroTextBox4.UseStyleColors = true;
-            this.metroTextBox4.WaterMark = "지표(챠트) 확인";
-            this.metroTextBox4.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.metroTextBox4.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.tbVolatility5.CustomButton.Image = null;
+            this.tbVolatility5.CustomButton.Location = new System.Drawing.Point(269, 2);
+            this.tbVolatility5.CustomButton.Name = "";
+            this.tbVolatility5.CustomButton.Size = new System.Drawing.Size(39, 39);
+            this.tbVolatility5.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tbVolatility5.CustomButton.TabIndex = 1;
+            this.tbVolatility5.CustomButton.Tag = "https://fred.stlouisfed.org/series/CHIEPUINDXM";
+            this.tbVolatility5.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbVolatility5.CustomButton.UseSelectable = true;
+            this.tbVolatility5.CustomButton.Visible = false;
+            this.tbVolatility5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbVolatility5.Lines = new string[0];
+            this.tbVolatility5.Location = new System.Drawing.Point(105, 208);
+            this.tbVolatility5.MaxLength = 32767;
+            this.tbVolatility5.Multiline = true;
+            this.tbVolatility5.Name = "tbVolatility5";
+            this.tbVolatility5.PasswordChar = '\0';
+            this.tbVolatility5.PromptText = "지표(챠트) 확인";
+            this.tbVolatility5.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbVolatility5.SelectedText = "";
+            this.tbVolatility5.SelectionLength = 0;
+            this.tbVolatility5.SelectionStart = 0;
+            this.tbVolatility5.ShortcutsEnabled = true;
+            this.tbVolatility5.Size = new System.Drawing.Size(311, 44);
+            this.tbVolatility5.Style = MetroFramework.MetroColorStyle.Orange;
+            this.tbVolatility5.TabIndex = 14;
+            this.tbVolatility5.UseSelectable = true;
+            this.tbVolatility5.UseStyleColors = true;
+            this.tbVolatility5.WaterMark = "지표(챠트) 확인";
+            this.tbVolatility5.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbVolatility5.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // metroLabel16
             // 
@@ -705,81 +729,81 @@
             this.metroLabel16.Text = "보조지표";
             this.metroLabel16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // metroTextBox5
+            // tbVolatility1
             // 
             // 
             // 
             // 
-            this.metroTextBox5.CustomButton.Image = null;
-            this.metroTextBox5.CustomButton.Location = new System.Drawing.Point(269, 2);
-            this.metroTextBox5.CustomButton.Name = "";
-            this.metroTextBox5.CustomButton.Size = new System.Drawing.Size(39, 39);
-            this.metroTextBox5.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroTextBox5.CustomButton.TabIndex = 1;
-            this.metroTextBox5.CustomButton.Tag = "https://eiec.kdi.re.kr/issue/epuList.do";
-            this.metroTextBox5.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTextBox5.CustomButton.UseSelectable = true;
-            this.metroTextBox5.CustomButton.Visible = false;
-            this.metroTextBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroTextBox5.Lines = new string[0];
-            this.metroTextBox5.Location = new System.Drawing.Point(105, 4);
-            this.metroTextBox5.MaxLength = 32767;
-            this.metroTextBox5.Multiline = true;
-            this.metroTextBox5.Name = "metroTextBox5";
-            this.metroTextBox5.PasswordChar = '\0';
-            this.metroTextBox5.PromptText = "지표(챠트) 확인";
-            this.metroTextBox5.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.metroTextBox5.SelectedText = "";
-            this.metroTextBox5.SelectionLength = 0;
-            this.metroTextBox5.SelectionStart = 0;
-            this.metroTextBox5.ShortcutsEnabled = true;
-            this.metroTextBox5.Size = new System.Drawing.Size(311, 44);
-            this.metroTextBox5.Style = MetroFramework.MetroColorStyle.Lime;
-            this.metroTextBox5.TabIndex = 24;
-            this.metroTextBox5.UseCustomBackColor = true;
-            this.metroTextBox5.UseCustomForeColor = true;
-            this.metroTextBox5.UseSelectable = true;
-            this.metroTextBox5.UseStyleColors = true;
-            this.metroTextBox5.WaterMark = "지표(챠트) 확인";
-            this.metroTextBox5.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.metroTextBox5.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.tbVolatility1.CustomButton.Image = null;
+            this.tbVolatility1.CustomButton.Location = new System.Drawing.Point(269, 2);
+            this.tbVolatility1.CustomButton.Name = "";
+            this.tbVolatility1.CustomButton.Size = new System.Drawing.Size(39, 39);
+            this.tbVolatility1.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tbVolatility1.CustomButton.TabIndex = 1;
+            this.tbVolatility1.CustomButton.Tag = "https://eiec.kdi.re.kr/issue/epuList.do";
+            this.tbVolatility1.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbVolatility1.CustomButton.UseSelectable = true;
+            this.tbVolatility1.CustomButton.Visible = false;
+            this.tbVolatility1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbVolatility1.Lines = new string[0];
+            this.tbVolatility1.Location = new System.Drawing.Point(105, 4);
+            this.tbVolatility1.MaxLength = 32767;
+            this.tbVolatility1.Multiline = true;
+            this.tbVolatility1.Name = "tbVolatility1";
+            this.tbVolatility1.PasswordChar = '\0';
+            this.tbVolatility1.PromptText = "지표(챠트) 확인";
+            this.tbVolatility1.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbVolatility1.SelectedText = "";
+            this.tbVolatility1.SelectionLength = 0;
+            this.tbVolatility1.SelectionStart = 0;
+            this.tbVolatility1.ShortcutsEnabled = true;
+            this.tbVolatility1.Size = new System.Drawing.Size(311, 44);
+            this.tbVolatility1.Style = MetroFramework.MetroColorStyle.Lime;
+            this.tbVolatility1.TabIndex = 10;
+            this.tbVolatility1.UseCustomBackColor = true;
+            this.tbVolatility1.UseCustomForeColor = true;
+            this.tbVolatility1.UseSelectable = true;
+            this.tbVolatility1.UseStyleColors = true;
+            this.tbVolatility1.WaterMark = "지표(챠트) 확인";
+            this.tbVolatility1.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbVolatility1.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
-            // metroTextBox7
-            // 
-            // 
+            // tbVolatility4
             // 
             // 
-            this.metroTextBox7.CustomButton.Image = null;
-            this.metroTextBox7.CustomButton.Location = new System.Drawing.Point(269, 2);
-            this.metroTextBox7.CustomButton.Name = "";
-            this.metroTextBox7.CustomButton.Size = new System.Drawing.Size(39, 39);
-            this.metroTextBox7.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroTextBox7.CustomButton.TabIndex = 1;
-            this.metroTextBox7.CustomButton.Tag = "https://fred.stlouisfed.org/series/EUEPUINDXM";
-            this.metroTextBox7.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTextBox7.CustomButton.UseSelectable = true;
-            this.metroTextBox7.CustomButton.Visible = false;
-            this.metroTextBox7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroTextBox7.Lines = new string[0];
-            this.metroTextBox7.Location = new System.Drawing.Point(105, 157);
-            this.metroTextBox7.MaxLength = 32767;
-            this.metroTextBox7.Multiline = true;
-            this.metroTextBox7.Name = "metroTextBox7";
-            this.metroTextBox7.PasswordChar = '\0';
-            this.metroTextBox7.PromptText = "지표(챠트) 확인";
-            this.metroTextBox7.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.metroTextBox7.SelectedText = "";
-            this.metroTextBox7.SelectionLength = 0;
-            this.metroTextBox7.SelectionStart = 0;
-            this.metroTextBox7.ShortcutsEnabled = true;
-            this.metroTextBox7.Size = new System.Drawing.Size(311, 44);
-            this.metroTextBox7.Style = MetroFramework.MetroColorStyle.Orange;
-            this.metroTextBox7.TabIndex = 15;
-            this.metroTextBox7.UseSelectable = true;
-            this.metroTextBox7.UseStyleColors = true;
-            this.metroTextBox7.WaterMark = "지표(챠트) 확인";
-            this.metroTextBox7.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.metroTextBox7.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // 
+            this.tbVolatility4.CustomButton.Image = null;
+            this.tbVolatility4.CustomButton.Location = new System.Drawing.Point(269, 2);
+            this.tbVolatility4.CustomButton.Name = "";
+            this.tbVolatility4.CustomButton.Size = new System.Drawing.Size(39, 39);
+            this.tbVolatility4.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tbVolatility4.CustomButton.TabIndex = 1;
+            this.tbVolatility4.CustomButton.Tag = "https://fred.stlouisfed.org/series/EUEPUINDXM";
+            this.tbVolatility4.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbVolatility4.CustomButton.UseSelectable = true;
+            this.tbVolatility4.CustomButton.Visible = false;
+            this.tbVolatility4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbVolatility4.Lines = new string[0];
+            this.tbVolatility4.Location = new System.Drawing.Point(105, 157);
+            this.tbVolatility4.MaxLength = 32767;
+            this.tbVolatility4.Multiline = true;
+            this.tbVolatility4.Name = "tbVolatility4";
+            this.tbVolatility4.PasswordChar = '\0';
+            this.tbVolatility4.PromptText = "지표(챠트) 확인";
+            this.tbVolatility4.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbVolatility4.SelectedText = "";
+            this.tbVolatility4.SelectionLength = 0;
+            this.tbVolatility4.SelectionStart = 0;
+            this.tbVolatility4.ShortcutsEnabled = true;
+            this.tbVolatility4.Size = new System.Drawing.Size(311, 44);
+            this.tbVolatility4.Style = MetroFramework.MetroColorStyle.Orange;
+            this.tbVolatility4.TabIndex = 13;
+            this.tbVolatility4.UseSelectable = true;
+            this.tbVolatility4.UseStyleColors = true;
+            this.tbVolatility4.WaterMark = "지표(챠트) 확인";
+            this.tbVolatility4.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbVolatility4.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // tableLayoutPanel1
             // 
@@ -787,10 +811,10 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.tbUncertaintyCmt, 1, 8);
+            this.tableLayoutPanel1.Controls.Add(this.tbUncertaintySummary, 1, 8);
             this.tableLayoutPanel1.Controls.Add(this.metroLabel9, 0, 8);
-            this.tableLayoutPanel1.Controls.Add(this.tbUncertaintyUs, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.tbUncertaintyFx, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.tbEpuUs, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.tbVixKr, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.metroLabel8, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.metroLabel1, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.metroLabel2, 0, 0);
@@ -798,7 +822,7 @@
             this.tableLayoutPanel1.Controls.Add(this.metroLabel4, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.tbUncertaintyCn, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.metroLabel5, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.tbUncertaintyKp, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tbEpuKp, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.metroLabel6, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.metroLabel7, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.tbUncertaintyVixUs, 1, 5);
@@ -820,39 +844,39 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(390, 437);
             this.tableLayoutPanel1.TabIndex = 18;
             // 
-            // tbUncertaintyCmt
+            // tbUncertaintySummary
             // 
             // 
             // 
             // 
-            this.tbUncertaintyCmt.CustomButton.Image = null;
-            this.tbUncertaintyCmt.CustomButton.Location = new System.Drawing.Point(141, 1);
-            this.tbUncertaintyCmt.CustomButton.Name = "";
-            this.tbUncertaintyCmt.CustomButton.Size = new System.Drawing.Size(139, 139);
-            this.tbUncertaintyCmt.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.tbUncertaintyCmt.CustomButton.TabIndex = 1;
-            this.tbUncertaintyCmt.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.tbUncertaintyCmt.CustomButton.UseSelectable = true;
-            this.tbUncertaintyCmt.CustomButton.Visible = false;
-            this.tbUncertaintyCmt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbUncertaintyCmt.Lines = new string[0];
-            this.tbUncertaintyCmt.Location = new System.Drawing.Point(105, 292);
-            this.tbUncertaintyCmt.MaxLength = 32767;
-            this.tbUncertaintyCmt.Multiline = true;
-            this.tbUncertaintyCmt.Name = "tbUncertaintyCmt";
-            this.tbUncertaintyCmt.PasswordChar = '\0';
-            this.tbUncertaintyCmt.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.tbUncertaintyCmt.SelectedText = "";
-            this.tbUncertaintyCmt.SelectionLength = 0;
-            this.tbUncertaintyCmt.SelectionStart = 0;
-            this.tbUncertaintyCmt.ShortcutsEnabled = true;
-            this.tbUncertaintyCmt.Size = new System.Drawing.Size(281, 141);
-            this.tbUncertaintyCmt.Style = MetroFramework.MetroColorStyle.Lime;
-            this.tbUncertaintyCmt.TabIndex = 35;
-            this.tbUncertaintyCmt.UseSelectable = true;
-            this.tbUncertaintyCmt.UseStyleColors = true;
-            this.tbUncertaintyCmt.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.tbUncertaintyCmt.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.tbUncertaintySummary.CustomButton.Image = null;
+            this.tbUncertaintySummary.CustomButton.Location = new System.Drawing.Point(141, 1);
+            this.tbUncertaintySummary.CustomButton.Name = "";
+            this.tbUncertaintySummary.CustomButton.Size = new System.Drawing.Size(139, 139);
+            this.tbUncertaintySummary.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tbUncertaintySummary.CustomButton.TabIndex = 1;
+            this.tbUncertaintySummary.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbUncertaintySummary.CustomButton.UseSelectable = true;
+            this.tbUncertaintySummary.CustomButton.Visible = false;
+            this.tbUncertaintySummary.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbUncertaintySummary.Lines = new string[0];
+            this.tbUncertaintySummary.Location = new System.Drawing.Point(105, 292);
+            this.tbUncertaintySummary.MaxLength = 32767;
+            this.tbUncertaintySummary.Multiline = true;
+            this.tbUncertaintySummary.Name = "tbUncertaintySummary";
+            this.tbUncertaintySummary.PasswordChar = '\0';
+            this.tbUncertaintySummary.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbUncertaintySummary.SelectedText = "";
+            this.tbUncertaintySummary.SelectionLength = 0;
+            this.tbUncertaintySummary.SelectionStart = 0;
+            this.tbUncertaintySummary.ShortcutsEnabled = true;
+            this.tbUncertaintySummary.Size = new System.Drawing.Size(281, 141);
+            this.tbUncertaintySummary.Style = MetroFramework.MetroColorStyle.Lime;
+            this.tbUncertaintySummary.TabIndex = 9;
+            this.tbUncertaintySummary.UseSelectable = true;
+            this.tbUncertaintySummary.UseStyleColors = true;
+            this.tbUncertaintySummary.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbUncertaintySummary.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // metroLabel9
             // 
@@ -865,95 +889,96 @@
             this.metroLabel9.Text = "요약정리";
             this.metroLabel9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // tbUncertaintyUs
+            // tbEpuUs
             // 
             // 
             // 
             // 
-            this.tbUncertaintyUs.CustomButton.BackColor = System.Drawing.Color.Red;
-            this.tbUncertaintyUs.CustomButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.tbUncertaintyUs.CustomButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.tbUncertaintyUs.CustomButton.Image = null;
-            this.tbUncertaintyUs.CustomButton.Location = new System.Drawing.Point(253, 1);
-            this.tbUncertaintyUs.CustomButton.Name = "";
-            this.tbUncertaintyUs.CustomButton.Size = new System.Drawing.Size(27, 27);
-            this.tbUncertaintyUs.CustomButton.Style = MetroFramework.MetroColorStyle.Red;
-            this.tbUncertaintyUs.CustomButton.TabIndex = 1;
-            this.tbUncertaintyUs.CustomButton.Tag = "https://fred.stlouisfed.org/series/USEPUINDXD";
-            this.tbUncertaintyUs.CustomButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tbUncertaintyUs.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.tbUncertaintyUs.CustomButton.UseCompatibleTextRendering = true;
-            this.tbUncertaintyUs.CustomButton.UseCustomBackColor = true;
-            this.tbUncertaintyUs.CustomButton.UseCustomForeColor = true;
-            this.tbUncertaintyUs.CustomButton.UseSelectable = true;
-            this.tbUncertaintyUs.CustomButton.UseStyleColors = true;
-            this.tbUncertaintyUs.CustomButton.UseVisualStyleBackColor = false;
-            this.tbUncertaintyUs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbUncertaintyUs.Lines = new string[0];
-            this.tbUncertaintyUs.Location = new System.Drawing.Point(105, 76);
-            this.tbUncertaintyUs.MaxLength = 32767;
-            this.tbUncertaintyUs.Name = "tbUncertaintyUs";
-            this.tbUncertaintyUs.PasswordChar = '\0';
-            this.tbUncertaintyUs.PromptText = "미국 경제정책 불확실성";
-            this.tbUncertaintyUs.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.tbUncertaintyUs.SelectedText = "";
-            this.tbUncertaintyUs.SelectionLength = 0;
-            this.tbUncertaintyUs.SelectionStart = 0;
-            this.tbUncertaintyUs.ShortcutsEnabled = true;
-            this.tbUncertaintyUs.ShowButton = true;
-            this.tbUncertaintyUs.Size = new System.Drawing.Size(281, 29);
-            this.tbUncertaintyUs.Style = MetroFramework.MetroColorStyle.Orange;
-            this.tbUncertaintyUs.TabIndex = 25;
-            this.tbUncertaintyUs.UseSelectable = true;
-            this.tbUncertaintyUs.UseStyleColors = true;
-            this.tbUncertaintyUs.WaterMark = "미국 경제정책 불확실성";
-            this.tbUncertaintyUs.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.tbUncertaintyUs.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.tbEpuUs.CustomButton.BackColor = System.Drawing.Color.Red;
+            this.tbEpuUs.CustomButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.tbEpuUs.CustomButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.tbEpuUs.CustomButton.Image = null;
+            this.tbEpuUs.CustomButton.Location = new System.Drawing.Point(253, 1);
+            this.tbEpuUs.CustomButton.Name = "";
+            this.tbEpuUs.CustomButton.Size = new System.Drawing.Size(27, 27);
+            this.tbEpuUs.CustomButton.Style = MetroFramework.MetroColorStyle.Red;
+            this.tbEpuUs.CustomButton.TabIndex = 1;
+            this.tbEpuUs.CustomButton.Tag = "https://fred.stlouisfed.org/series/USEPUINDXD";
+            this.tbEpuUs.CustomButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tbEpuUs.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbEpuUs.CustomButton.UseCompatibleTextRendering = true;
+            this.tbEpuUs.CustomButton.UseCustomBackColor = true;
+            this.tbEpuUs.CustomButton.UseCustomForeColor = true;
+            this.tbEpuUs.CustomButton.UseSelectable = true;
+            this.tbEpuUs.CustomButton.UseStyleColors = true;
+            this.tbEpuUs.CustomButton.UseVisualStyleBackColor = false;
+            this.tbEpuUs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbEpuUs.Enabled = false;
+            this.tbEpuUs.Lines = new string[0];
+            this.tbEpuUs.Location = new System.Drawing.Point(105, 76);
+            this.tbEpuUs.MaxLength = 32767;
+            this.tbEpuUs.Name = "tbEpuUs";
+            this.tbEpuUs.PasswordChar = '\0';
+            this.tbEpuUs.PromptText = "미국 경제정책 불확실성";
+            this.tbEpuUs.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbEpuUs.SelectedText = "";
+            this.tbEpuUs.SelectionLength = 0;
+            this.tbEpuUs.SelectionStart = 0;
+            this.tbEpuUs.ShortcutsEnabled = true;
+            this.tbEpuUs.ShowButton = true;
+            this.tbEpuUs.Size = new System.Drawing.Size(281, 29);
+            this.tbEpuUs.Style = MetroFramework.MetroColorStyle.Orange;
+            this.tbEpuUs.TabIndex = 3;
+            this.tbEpuUs.UseSelectable = true;
+            this.tbEpuUs.UseStyleColors = true;
+            this.tbEpuUs.WaterMark = "미국 경제정책 불확실성";
+            this.tbEpuUs.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbEpuUs.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
-            // tbUncertaintyFx
+            // tbVixKr
             // 
             // 
             // 
             // 
-            this.tbUncertaintyFx.CustomButton.BackColor = System.Drawing.Color.Red;
-            this.tbUncertaintyFx.CustomButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.tbUncertaintyFx.CustomButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.tbUncertaintyFx.CustomButton.Image = null;
-            this.tbUncertaintyFx.CustomButton.Location = new System.Drawing.Point(253, 1);
-            this.tbUncertaintyFx.CustomButton.Name = "";
-            this.tbUncertaintyFx.CustomButton.Size = new System.Drawing.Size(27, 27);
-            this.tbUncertaintyFx.CustomButton.Style = MetroFramework.MetroColorStyle.Red;
-            this.tbUncertaintyFx.CustomButton.TabIndex = 1;
-            this.tbUncertaintyFx.CustomButton.Tag = "https://www.investing.com/indices/kospi-volatility";
-            this.tbUncertaintyFx.CustomButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tbUncertaintyFx.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.tbUncertaintyFx.CustomButton.UseCompatibleTextRendering = true;
-            this.tbUncertaintyFx.CustomButton.UseCustomBackColor = true;
-            this.tbUncertaintyFx.CustomButton.UseCustomForeColor = true;
-            this.tbUncertaintyFx.CustomButton.UseSelectable = true;
-            this.tbUncertaintyFx.CustomButton.UseStyleColors = true;
-            this.tbUncertaintyFx.CustomButton.UseVisualStyleBackColor = false;
-            this.tbUncertaintyFx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbUncertaintyFx.Lines = new string[0];
-            this.tbUncertaintyFx.Location = new System.Drawing.Point(105, 40);
-            this.tbUncertaintyFx.MaxLength = 32767;
-            this.tbUncertaintyFx.Name = "tbUncertaintyFx";
-            this.tbUncertaintyFx.PasswordChar = '\0';
-            this.tbUncertaintyFx.PromptText = "Kospi 200 주가 불확실성";
-            this.tbUncertaintyFx.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.tbUncertaintyFx.SelectedText = "";
-            this.tbUncertaintyFx.SelectionLength = 0;
-            this.tbUncertaintyFx.SelectionStart = 0;
-            this.tbUncertaintyFx.ShortcutsEnabled = true;
-            this.tbUncertaintyFx.ShowButton = true;
-            this.tbUncertaintyFx.Size = new System.Drawing.Size(281, 29);
-            this.tbUncertaintyFx.Style = MetroFramework.MetroColorStyle.Lime;
-            this.tbUncertaintyFx.TabIndex = 26;
-            this.tbUncertaintyFx.UseSelectable = true;
-            this.tbUncertaintyFx.UseStyleColors = true;
-            this.tbUncertaintyFx.WaterMark = "Kospi 200 주가 불확실성";
-            this.tbUncertaintyFx.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.tbUncertaintyFx.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.tbVixKr.CustomButton.BackColor = System.Drawing.Color.Red;
+            this.tbVixKr.CustomButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.tbVixKr.CustomButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.tbVixKr.CustomButton.Image = null;
+            this.tbVixKr.CustomButton.Location = new System.Drawing.Point(253, 1);
+            this.tbVixKr.CustomButton.Name = "";
+            this.tbVixKr.CustomButton.Size = new System.Drawing.Size(27, 27);
+            this.tbVixKr.CustomButton.Style = MetroFramework.MetroColorStyle.Red;
+            this.tbVixKr.CustomButton.TabIndex = 1;
+            this.tbVixKr.CustomButton.Tag = "https://www.investing.com/indices/kospi-volatility";
+            this.tbVixKr.CustomButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tbVixKr.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbVixKr.CustomButton.UseCompatibleTextRendering = true;
+            this.tbVixKr.CustomButton.UseCustomBackColor = true;
+            this.tbVixKr.CustomButton.UseCustomForeColor = true;
+            this.tbVixKr.CustomButton.UseSelectable = true;
+            this.tbVixKr.CustomButton.UseStyleColors = true;
+            this.tbVixKr.CustomButton.UseVisualStyleBackColor = false;
+            this.tbVixKr.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbVixKr.Lines = new string[0];
+            this.tbVixKr.Location = new System.Drawing.Point(105, 40);
+            this.tbVixKr.MaxLength = 32767;
+            this.tbVixKr.Name = "tbVixKr";
+            this.tbVixKr.PasswordChar = '\0';
+            this.tbVixKr.PromptText = "Kospi 200 주가 불확실성";
+            this.tbVixKr.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbVixKr.SelectedText = "";
+            this.tbVixKr.SelectionLength = 0;
+            this.tbVixKr.SelectionStart = 0;
+            this.tbVixKr.ShortcutsEnabled = true;
+            this.tbVixKr.ShowButton = true;
+            this.tbVixKr.Size = new System.Drawing.Size(281, 29);
+            this.tbVixKr.Style = MetroFramework.MetroColorStyle.Lime;
+            this.tbVixKr.TabIndex = 2;
+            this.tbVixKr.UseSelectable = true;
+            this.tbVixKr.UseStyleColors = true;
+            this.tbVixKr.WaterMark = "Kospi 200 주가 불확실성";
+            this.tbVixKr.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbVixKr.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // metroLabel8
             // 
@@ -1024,6 +1049,7 @@
             this.tbUncertaintyCn.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.tbUncertaintyCn.CustomButton.UseSelectable = true;
             this.tbUncertaintyCn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbUncertaintyCn.Enabled = false;
             this.tbUncertaintyCn.Lines = new string[0];
             this.tbUncertaintyCn.Location = new System.Drawing.Point(105, 148);
             this.tbUncertaintyCn.MaxLength = 32767;
@@ -1039,7 +1065,7 @@
             this.tbUncertaintyCn.ShowButton = true;
             this.tbUncertaintyCn.Size = new System.Drawing.Size(281, 29);
             this.tbUncertaintyCn.Style = MetroFramework.MetroColorStyle.Orange;
-            this.tbUncertaintyCn.TabIndex = 4;
+            this.tbUncertaintyCn.TabIndex = 5;
             this.tbUncertaintyCn.UseSelectable = true;
             this.tbUncertaintyCn.UseStyleColors = true;
             this.tbUncertaintyCn.WaterMark = "중국 경제정책 불확실성";
@@ -1057,43 +1083,43 @@
             this.metroLabel5.Text = "유럽 경제정책";
             this.metroLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // tbUncertaintyKp
+            // tbEpuKp
             // 
             // 
             // 
             // 
-            this.tbUncertaintyKp.CustomButton.Image = null;
-            this.tbUncertaintyKp.CustomButton.Location = new System.Drawing.Point(253, 1);
-            this.tbUncertaintyKp.CustomButton.Name = "";
-            this.tbUncertaintyKp.CustomButton.Size = new System.Drawing.Size(27, 27);
-            this.tbUncertaintyKp.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.tbUncertaintyKp.CustomButton.TabIndex = 1;
-            this.tbUncertaintyKp.CustomButton.Tag = "https://eiec.kdi.re.kr/issue/epuList.do";
-            this.tbUncertaintyKp.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.tbUncertaintyKp.CustomButton.UseSelectable = true;
-            this.tbUncertaintyKp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbUncertaintyKp.Lines = new string[0];
-            this.tbUncertaintyKp.Location = new System.Drawing.Point(105, 4);
-            this.tbUncertaintyKp.MaxLength = 32767;
-            this.tbUncertaintyKp.Name = "tbUncertaintyKp";
-            this.tbUncertaintyKp.PasswordChar = '\0';
-            this.tbUncertaintyKp.PromptText = "국내 경제 불확실성";
-            this.tbUncertaintyKp.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.tbUncertaintyKp.SelectedText = "";
-            this.tbUncertaintyKp.SelectionLength = 0;
-            this.tbUncertaintyKp.SelectionStart = 0;
-            this.tbUncertaintyKp.ShortcutsEnabled = true;
-            this.tbUncertaintyKp.ShowButton = true;
-            this.tbUncertaintyKp.Size = new System.Drawing.Size(281, 29);
-            this.tbUncertaintyKp.Style = MetroFramework.MetroColorStyle.Lime;
-            this.tbUncertaintyKp.TabIndex = 24;
-            this.tbUncertaintyKp.UseCustomBackColor = true;
-            this.tbUncertaintyKp.UseCustomForeColor = true;
-            this.tbUncertaintyKp.UseSelectable = true;
-            this.tbUncertaintyKp.UseStyleColors = true;
-            this.tbUncertaintyKp.WaterMark = "국내 경제 불확실성";
-            this.tbUncertaintyKp.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.tbUncertaintyKp.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.tbEpuKp.CustomButton.Image = null;
+            this.tbEpuKp.CustomButton.Location = new System.Drawing.Point(253, 1);
+            this.tbEpuKp.CustomButton.Name = "";
+            this.tbEpuKp.CustomButton.Size = new System.Drawing.Size(27, 27);
+            this.tbEpuKp.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tbEpuKp.CustomButton.TabIndex = 1;
+            this.tbEpuKp.CustomButton.Tag = "https://eiec.kdi.re.kr/issue/epuList.do";
+            this.tbEpuKp.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbEpuKp.CustomButton.UseSelectable = true;
+            this.tbEpuKp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbEpuKp.Lines = new string[0];
+            this.tbEpuKp.Location = new System.Drawing.Point(105, 4);
+            this.tbEpuKp.MaxLength = 32767;
+            this.tbEpuKp.Name = "tbEpuKp";
+            this.tbEpuKp.PasswordChar = '\0';
+            this.tbEpuKp.PromptText = "국내 경제 불확실성";
+            this.tbEpuKp.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbEpuKp.SelectedText = "";
+            this.tbEpuKp.SelectionLength = 0;
+            this.tbEpuKp.SelectionStart = 0;
+            this.tbEpuKp.ShortcutsEnabled = true;
+            this.tbEpuKp.ShowButton = true;
+            this.tbEpuKp.Size = new System.Drawing.Size(281, 29);
+            this.tbEpuKp.Style = MetroFramework.MetroColorStyle.Lime;
+            this.tbEpuKp.TabIndex = 1;
+            this.tbEpuKp.UseCustomBackColor = true;
+            this.tbEpuKp.UseCustomForeColor = true;
+            this.tbEpuKp.UseSelectable = true;
+            this.tbEpuKp.UseStyleColors = true;
+            this.tbEpuKp.WaterMark = "국내 경제 불확실성";
+            this.tbEpuKp.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbEpuKp.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // metroLabel6
             // 
@@ -1131,6 +1157,7 @@
             this.tbUncertaintyVixUs.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.tbUncertaintyVixUs.CustomButton.UseSelectable = true;
             this.tbUncertaintyVixUs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbUncertaintyVixUs.Enabled = false;
             this.tbUncertaintyVixUs.Lines = new string[0];
             this.tbUncertaintyVixUs.Location = new System.Drawing.Point(105, 184);
             this.tbUncertaintyVixUs.MaxLength = 32767;
@@ -1145,7 +1172,7 @@
             this.tbUncertaintyVixUs.ShortcutsEnabled = true;
             this.tbUncertaintyVixUs.ShowButton = true;
             this.tbUncertaintyVixUs.Size = new System.Drawing.Size(281, 29);
-            this.tbUncertaintyVixUs.TabIndex = 13;
+            this.tbUncertaintyVixUs.TabIndex = 6;
             this.tbUncertaintyVixUs.UseSelectable = true;
             this.tbUncertaintyVixUs.UseStyleColors = true;
             this.tbUncertaintyVixUs.WaterMark = "미국 VIX 지표";
@@ -1167,6 +1194,7 @@
             this.tbUncertaintyEu.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.tbUncertaintyEu.CustomButton.UseSelectable = true;
             this.tbUncertaintyEu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbUncertaintyEu.Enabled = false;
             this.tbUncertaintyEu.Lines = new string[0];
             this.tbUncertaintyEu.Location = new System.Drawing.Point(105, 112);
             this.tbUncertaintyEu.MaxLength = 32767;
@@ -1182,7 +1210,7 @@
             this.tbUncertaintyEu.ShowButton = true;
             this.tbUncertaintyEu.Size = new System.Drawing.Size(281, 29);
             this.tbUncertaintyEu.Style = MetroFramework.MetroColorStyle.Orange;
-            this.tbUncertaintyEu.TabIndex = 15;
+            this.tbUncertaintyEu.TabIndex = 4;
             this.tbUncertaintyEu.UseSelectable = true;
             this.tbUncertaintyEu.UseStyleColors = true;
             this.tbUncertaintyEu.WaterMark = "유럽 경제정책 불확실성";
@@ -1216,7 +1244,7 @@
             this.tbUncertaintyVixEu.ShortcutsEnabled = true;
             this.tbUncertaintyVixEu.ShowButton = true;
             this.tbUncertaintyVixEu.Size = new System.Drawing.Size(281, 29);
-            this.tbUncertaintyVixEu.TabIndex = 28;
+            this.tbUncertaintyVixEu.TabIndex = 7;
             this.tbUncertaintyVixEu.UseSelectable = true;
             this.tbUncertaintyVixEu.UseStyleColors = true;
             this.tbUncertaintyVixEu.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -1250,7 +1278,7 @@
             this.tbUncertaintyVixCn.ShortcutsEnabled = true;
             this.tbUncertaintyVixCn.ShowButton = true;
             this.tbUncertaintyVixCn.Size = new System.Drawing.Size(281, 29);
-            this.tbUncertaintyVixCn.TabIndex = 29;
+            this.tbUncertaintyVixCn.TabIndex = 8;
             this.tbUncertaintyVixCn.UseSelectable = true;
             this.tbUncertaintyVixCn.UseStyleColors = true;
             this.tbUncertaintyVixCn.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -1314,15 +1342,15 @@
         private System.Windows.Forms.Label label3;
         private MetroFramework.Controls.MetroPanel metroPanel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private MetroFramework.Controls.MetroTextBox tbUncertaintyUs;
-        private MetroFramework.Controls.MetroTextBox tbUncertaintyFx;
+        private MetroFramework.Controls.MetroTextBox tbEpuUs;
+        private MetroFramework.Controls.MetroTextBox tbVixKr;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private MetroFramework.Controls.MetroLabel metroLabel2;
         private MetroFramework.Controls.MetroLabel metroLabel3;
         private MetroFramework.Controls.MetroLabel metroLabel4;
         private MetroFramework.Controls.MetroTextBox tbUncertaintyCn;
         private MetroFramework.Controls.MetroLabel metroLabel5;
-        private MetroFramework.Controls.MetroTextBox tbUncertaintyKp;
+        private MetroFramework.Controls.MetroTextBox tbEpuKp;
         private MetroFramework.Controls.MetroLabel metroLabel6;
         private MetroFramework.Controls.MetroLabel metroLabel7;
         private MetroFramework.Controls.MetroTextBox tbUncertaintyVixUs;
@@ -1331,7 +1359,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private MetroFramework.Controls.MetroLabel metroLabel9;
-        private MetroFramework.Controls.MetroTextBox tbUncertaintyCmt;
+        private MetroFramework.Controls.MetroTextBox tbUncertaintySummary;
         private MetroFramework.Controls.MetroPanel metroPanel12;
         private MetroFramework.Controls.MetroButton btnRef7;
         private MetroFramework.Controls.MetroPanel metroPanel11;
@@ -1348,18 +1376,20 @@
         private MetroFramework.Controls.MetroLabel metroLabel8;
         private MetroFramework.Controls.MetroTextBox tbUncertaintyVixCn;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private MetroFramework.Controls.MetroTextBox metroTextBox1;
+        private MetroFramework.Controls.MetroTextBox tbVolatilitySummary;
         private MetroFramework.Controls.MetroLabel metroLabel10;
-        private MetroFramework.Controls.MetroTextBox metroTextBox2;
-        private MetroFramework.Controls.MetroTextBox metroTextBox3;
+        private MetroFramework.Controls.MetroTextBox tbVolatility3;
+        private MetroFramework.Controls.MetroTextBox tbVolatility2;
         private MetroFramework.Controls.MetroLabel metroLabel12;
         private MetroFramework.Controls.MetroLabel metroLabel13;
         private MetroFramework.Controls.MetroLabel metroLabel14;
         private MetroFramework.Controls.MetroLabel metroLabel15;
-        private MetroFramework.Controls.MetroTextBox metroTextBox4;
+        private MetroFramework.Controls.MetroTextBox tbVolatility5;
         private MetroFramework.Controls.MetroLabel metroLabel16;
-        private MetroFramework.Controls.MetroTextBox metroTextBox5;
-        private MetroFramework.Controls.MetroTextBox metroTextBox7;
+        private MetroFramework.Controls.MetroTextBox tbVolatility1;
+        private MetroFramework.Controls.MetroTextBox tbVolatility4;
         private AltoControls.AltoButton btnSave;
+        private MetroFramework.Controls.MetroButton btnClear2;
+        private MetroFramework.Controls.MetroButton btnClear;
     }
 }

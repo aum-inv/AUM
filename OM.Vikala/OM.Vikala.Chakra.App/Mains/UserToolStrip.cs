@@ -62,7 +62,15 @@ namespace OM.Vikala.Chakra.App.Mains
             get { return tsbMdiOut.Visible; }
             set
             {
-                tsbMdiIn.Visible = tsbMdiOut.Visible  = value;
+                tsbMdiIn.Visible = tsbMdiOut.Visible  = value;                
+            }
+        }
+        public bool IsVisibleExpand
+        {
+            get { return tsl_0.Visible; }
+            set
+            {
+                tsl_0.Visible = tsl_1.Visible = tsl_2.Visible = tsl_3.Visible = tsl_4.Visible = value;
             }
         }
 

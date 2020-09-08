@@ -97,6 +97,7 @@
             this.lblTitlePgr = new MetroFramework.Controls.MetroLabel();
             this.btnDelete = new AltoControls.AltoButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnClear = new MetroFramework.Controls.MetroButton();
             ((System.ComponentModel.ISupportInitialize)(this.spMain)).BeginInit();
             this.spMain.Panel1.SuspendLayout();
             this.spMain.Panel2.SuspendLayout();
@@ -171,6 +172,7 @@
             // 
             // metroPanel3
             // 
+            this.metroPanel3.Controls.Add(this.btnClear);
             this.metroPanel3.Controls.Add(this.btnCopy);
             this.metroPanel3.Controls.Add(this.label5);
             this.metroPanel3.Controls.Add(this.btnSave);
@@ -194,7 +196,7 @@
             this.btnCopy.Location = new System.Drawing.Point(7, 364);
             this.btnCopy.Name = "btnCopy";
             this.btnCopy.Size = new System.Drawing.Size(122, 37);
-            this.btnCopy.TabIndex = 20;
+            this.btnCopy.TabIndex = 12;
             this.btnCopy.Text = "계획복제하기";
             this.btnCopy.TileTextFontSize = MetroFramework.MetroTileTextSize.Small;
             this.btnCopy.UseCustomBackColor = true;
@@ -221,7 +223,7 @@
             this.btnSave.Location = new System.Drawing.Point(153, 364);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(132, 37);
-            this.btnSave.TabIndex = 18;
+            this.btnSave.TabIndex = 13;
             this.btnSave.Text = "기본정보수정하기";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             this.btnSave.TileTextFontSize = MetroFramework.MetroTileTextSize.Small;
@@ -298,7 +300,7 @@
             this.tbProgressType.SelectionStart = 0;
             this.tbProgressType.ShortcutsEnabled = false;
             this.tbProgressType.Size = new System.Drawing.Size(176, 26);
-            this.tbProgressType.TabIndex = 29;
+            this.tbProgressType.TabIndex = 11;
             this.tbProgressType.UseSelectable = true;
             this.tbProgressType.WaterMark = "준비중 or 진행중 or 종료";
             this.tbProgressType.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -343,7 +345,7 @@
             this.tbTitle.ShortcutsEnabled = false;
             this.tbTitle.ShowClearButton = true;
             this.tbTitle.Size = new System.Drawing.Size(176, 24);
-            this.tbTitle.TabIndex = 25;
+            this.tbTitle.TabIndex = 1;
             this.tbTitle.UseSelectable = true;
             this.tbTitle.WaterMark = "코스피200지수 투자계획";
             this.tbTitle.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -370,7 +372,7 @@
             this.dtPStartDate.MinimumSize = new System.Drawing.Size(0, 25);
             this.dtPStartDate.Name = "dtPStartDate";
             this.dtPStartDate.Size = new System.Drawing.Size(176, 25);
-            this.dtPStartDate.TabIndex = 18;
+            this.dtPStartDate.TabIndex = 3;
             // 
             // metroLabel1
             // 
@@ -443,7 +445,7 @@
             this.tbFund.SelectionStart = 0;
             this.tbFund.ShortcutsEnabled = false;
             this.tbFund.Size = new System.Drawing.Size(176, 24);
-            this.tbFund.TabIndex = 4;
+            this.tbFund.TabIndex = 7;
             this.tbFund.UseSelectable = true;
             this.tbFund.WaterMark = "삼천만원 ~ 일억";
             this.tbFund.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -489,7 +491,7 @@
             this.tbItem.ShortcutsEnabled = false;
             this.tbItem.ShowClearButton = true;
             this.tbItem.Size = new System.Drawing.Size(176, 24);
-            this.tbItem.TabIndex = 24;
+            this.tbItem.TabIndex = 2;
             this.tbItem.UseSelectable = true;
             this.tbItem.WaterMark = "레버리지 or 인버스";
             this.tbItem.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -556,7 +558,7 @@
             this.tbPRevenue.SelectionStart = 0;
             this.tbPRevenue.ShortcutsEnabled = false;
             this.tbPRevenue.Size = new System.Drawing.Size(176, 24);
-            this.tbPRevenue.TabIndex = 13;
+            this.tbPRevenue.TabIndex = 8;
             this.tbPRevenue.UseSelectable = true;
             this.tbPRevenue.WaterMark = "50% ~100%";
             this.tbPRevenue.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -590,7 +592,7 @@
             this.tbTendency.SelectionStart = 0;
             this.tbTendency.ShortcutsEnabled = true;
             this.tbTendency.Size = new System.Drawing.Size(176, 24);
-            this.tbTendency.TabIndex = 15;
+            this.tbTendency.TabIndex = 6;
             this.tbTendency.UseSelectable = true;
             this.tbTendency.WaterMark = "안정적 or 공격적";
             this.tbTendency.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -624,7 +626,7 @@
             this.tbPLoss.SelectionStart = 0;
             this.tbPLoss.ShortcutsEnabled = false;
             this.tbPLoss.Size = new System.Drawing.Size(176, 24);
-            this.tbPLoss.TabIndex = 28;
+            this.tbPLoss.TabIndex = 9;
             this.tbPLoss.UseSelectable = true;
             this.tbPLoss.WaterMark = "-10% ~ -20%";
             this.tbPLoss.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -662,7 +664,7 @@
             this.tbPPosition.SelectionStart = 0;
             this.tbPPosition.ShortcutsEnabled = false;
             this.tbPPosition.Size = new System.Drawing.Size(176, 24);
-            this.tbPPosition.TabIndex = 29;
+            this.tbPPosition.TabIndex = 10;
             this.tbPPosition.UseSelectable = true;
             this.tbPPosition.WaterMark = "상승 보합 하락 모름";
             this.tbPPosition.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -679,7 +681,7 @@
             this.dtPEndDate.MinimumSize = new System.Drawing.Size(0, 25);
             this.dtPEndDate.Name = "dtPEndDate";
             this.dtPEndDate.Size = new System.Drawing.Size(176, 25);
-            this.dtPEndDate.TabIndex = 30;
+            this.dtPEndDate.TabIndex = 4;
             // 
             // panel3
             // 
@@ -816,7 +818,7 @@
             this.btnLoad.Location = new System.Drawing.Point(269, 0);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(29, 25);
-            this.btnLoad.TabIndex = 3;
+            this.btnLoad.TabIndex = 16;
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
@@ -1179,6 +1181,16 @@
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(209, 6);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(76, 23);
+            this.btnClear.TabIndex = 15;
+            this.btnClear.Text = "항목비우기";
+            this.btnClear.UseSelectable = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
             // AtmanKospiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -1283,5 +1295,6 @@
         private MetroFramework.Controls.MetroTextBox tbTitle;
         private MetroFramework.Controls.MetroTextBox tbProgressType;
         private MetroFramework.Controls.MetroLabel metroLabel9;
+        private MetroFramework.Controls.MetroButton btnClear;
     }
 }

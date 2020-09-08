@@ -206,6 +206,54 @@
     <Compile Include="Mains\MainToolBar.Designer.cs">
       <DependentUpon>MainToolBar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mains\ToolbarChartForms\ANodeLineChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mains\ToolbarChartForms\ANodeLineChartForm.Designer.cs">
+      <DependentUpon>ANodeLineChartForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mains\ToolbarChartForms\AntiMatterChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mains\ToolbarChartForms\AntiMatterChartForm.Designer.cs">
+      <DependentUpon>AntiMatterChartForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mains\ToolbarChartForms\AtomChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mains\ToolbarChartForms\AtomChartForm.Designer.cs">
+      <DependentUpon>AtomChartForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mains\ToolbarChartForms\ComparedCandleChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mains\ToolbarChartForms\ComparedCandleChartForm.Designer.cs">
+      <DependentUpon>ComparedCandleChartForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mains\ToolbarChartForms\DiceChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mains\ToolbarChartForms\DiceChartForm.Designer.cs">
+      <DependentUpon>DiceChartForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mains\ToolbarChartForms\MovingAverageDurationChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mains\ToolbarChartForms\MovingAverageDurationChartForm.Designer.cs">
+      <DependentUpon>MovingAverageDurationChartForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mains\ToolbarChartForms\QuantumChartHLForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mains\ToolbarChartForms\QuantumChartHLForm.Designer.cs">
+      <DependentUpon>QuantumChartHLForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mains\ToolbarChartForms\VelocityChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mains\ToolbarChartForms\VelocityChartForm.Designer.cs">
+      <DependentUpon>VelocityChartForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mains\TrendChartFormL_KR.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -355,6 +403,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mains\MainToolBar.resx">
       <DependentUpon>MainToolBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mains\ToolbarChartForms\ANodeLineChartForm.resx">
+      <DependentUpon>ANodeLineChartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mains\ToolbarChartForms\AntiMatterChartForm.resx">
+      <DependentUpon>AntiMatterChartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mains\ToolbarChartForms\AtomChartForm.resx">
+      <DependentUpon>AtomChartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mains\ToolbarChartForms\ComparedCandleChartForm.resx">
+      <DependentUpon>ComparedCandleChartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mains\ToolbarChartForms\DiceChartForm.resx">
+      <DependentUpon>DiceChartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mains\ToolbarChartForms\MovingAverageDurationChartForm.resx">
+      <DependentUpon>MovingAverageDurationChartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mains\ToolbarChartForms\QuantumChartHLForm.resx">
+      <DependentUpon>QuantumChartHLForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mains\ToolbarChartForms\VelocityChartForm.resx">
+      <DependentUpon>VelocityChartForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mains\TrendChartFormL_KR.resx">
       <DependentUpon>TrendChartFormL_KR.cs</DependentUpon>

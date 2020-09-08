@@ -86,6 +86,7 @@
     <Compile Include="AIForms\AtmanKospiAIForm.Designer.cs">
       <DependentUpon>AtmanKospiAIForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AIForms\EnergyRank.cs" />
     <Compile Include="Alerts\Class1.cs" />
     <Compile Include="Alerts\TelegramUtil.cs" />
     <Compile Include="Cals\RevenueCalculater.cs" />

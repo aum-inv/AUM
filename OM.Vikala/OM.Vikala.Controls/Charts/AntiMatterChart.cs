@@ -73,31 +73,35 @@ namespace OM.Vikala.Controls.Charts
         {
             if (ChartData == null) return;
 
-            foreach (T_AntiMatterItemData item in ChartData)
+            for (int i = 0; i < ChartData.Count; i++)
             {
+                var item = ChartData[i];
+
                 int idx = chart.Series[0].Points.AddXY(item.DTime, item.HighPrice, item.LowPrice, item.OpenPrice, item.ClosePrice);
+
+                item = ChartDataSub[i];
                 chart.Series[1].Points.AddXY(item.DTime, item.U_HighAvg);
                 chart.Series[2].Points.AddXY(item.DTime, item.U_LowAvg);
                 chart.Series[3].Points.AddXY(item.DTime, item.D_HighAvg);
                 chart.Series[4].Points.AddXY(item.DTime, item.D_LowAvg);
             }
 
-            double maxPrice1 = ChartData.Max(m => m.HighPrice);
-            double minPrice1 = ChartData.Min(m => m.LowPrice);
-            double maxPrice2 = ChartData.Max(m => m.U_HighAvg);
-            double minPrice2 = ChartData.Min(m => m.U_LowAvg);
-            double maxPrice3 = ChartData.Max(m => m.D_HighAvg);
-            double minPrice3 = ChartData.Min(m => m.D_LowAvg);
+            //double maxPrice1 = ChartData.Max(m => m.HighPrice);
+            //double minPrice1 = ChartData.Min(m => m.LowPrice);
+            //double maxPrice2 = ChartData.Max(m => m.U_HighAvg);
+            //double minPrice2 = ChartData.Min(m => m.U_LowAvg);
+            //double maxPrice3 = ChartData.Max(m => m.D_HighAvg);
+            //double minPrice3 = ChartData.Min(m => m.D_LowAvg);
 
-            double maxPrice = maxPrice1 > maxPrice2 ? maxPrice1 : maxPrice2;
-            double minPrice = minPrice1 < minPrice2 ? minPrice1 : minPrice2;
-            maxPrice = maxPrice > maxPrice3 ? maxPrice : maxPrice3;
-            minPrice = minPrice < minPrice3 ? minPrice : minPrice3;
+            //double maxPrice = maxPrice1 > maxPrice2 ? maxPrice1 : maxPrice2;
+            //double minPrice = minPrice1 < minPrice2 ? minPrice1 : minPrice2;
+            //maxPrice = maxPrice > maxPrice3 ? maxPrice : maxPrice3;
+            //minPrice = minPrice < minPrice3 ? minPrice : minPrice3;
 
-            maxPrice = maxPrice + SpaceMaxMin;
-            minPrice = minPrice - SpaceMaxMin;
-            chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
-            chart.ChartAreas[0].AxisY2.Minimum = minPrice; 
+            //maxPrice = maxPrice + SpaceMaxMin;
+            //minPrice = minPrice - SpaceMaxMin;
+            //chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
+            //chart.ChartAreas[0].AxisY2.Minimum = minPrice; 
             
             SetScrollBar();
             SetTrackBar();

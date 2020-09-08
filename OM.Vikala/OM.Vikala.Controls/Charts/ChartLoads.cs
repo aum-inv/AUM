@@ -154,7 +154,7 @@ namespace OM.Vikala.Controls.Charts
                 }
                 for (int i = itemCnt; i <= sourceDatasSub.Count; i++)
                 {
-                    T_AtomItemData transData = new T_AtomItemData(transformedDatasSub[i - 1], sourceDatasSub.GetRange(i - itemCnt, itemCnt));
+                    T_AtomItemData transData = new T_AtomItemData(sourceDatasSub[i - 1], sourceDatasSub.GetRange(i - itemCnt, itemCnt));
                     transData.Transform();
                     transformedDatasSub.Add(transData);
                 }

@@ -176,21 +176,23 @@ namespace OM.Vikala.Chakra.App.Mains.ChartForm
             {
                 var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas, 5);
                 sourceDatas = PPUtils.GetCutDatas(sourceDatas, averageDatas[0].DTime);
-                chart1.LoadDataAndApply(itemCode, sourceDatas, base.timeInterval, 5);
-                chart2.LoadDataAndApply(itemCode, averageDatas, base.timeInterval, 5);
+                chart1.LoadDataAndApply(itemCode, sourceDatas, averageDatas, base.timeInterval, 5);
+                chart2.LoadDataAndApply(itemCode, averageDatas, averageDatas, base.timeInterval, 5);
                 chart1.Title = chartTitle + "Normal";
                 chart2.Title = chartTitle + "Normal";
             }
             if (true || AverageType == AverageTypeEnum.Balanced)
             {
                 var averageDatas = PPUtils.GetBalancedAverageDatas(itemCode, sourceDatas, 4);
-                chart3.LoadDataAndApply(itemCode, averageDatas, base.timeInterval, 5);
+                sourceDatas = PPUtils.GetCutDatas(sourceDatas, averageDatas[0].DTime);
+                chart3.LoadDataAndApply(itemCode, sourceDatas, averageDatas, base.timeInterval, 5);
                 chart3.Title = chartTitle + "Balanced";
             }
             if (true || AverageType == AverageTypeEnum.Accumulated)
             {
                 var averageDatas = PPUtils.GetAccumulatedAverageDatas(itemCode, sourceDatas, 9);
-                chart4.LoadDataAndApply(itemCode, averageDatas, base.timeInterval, 5);
+                sourceDatas = PPUtils.GetCutDatas(sourceDatas, averageDatas[0].DTime);
+                chart4.LoadDataAndApply(itemCode, sourceDatas, averageDatas, base.timeInterval, 5);
                 chart4.Title = chartTitle + "Accumulated";
             }
         }

@@ -69,40 +69,44 @@ namespace OM.Vikala.Controls.Charts
         {
             pnlScroll.Visible = IsAutoScrollX;
             if (ChartData == null) return;
-            
-            foreach (var item in ChartData)
+
+            for (int i = 0; i < ChartData.Count; i++)
             {
+                var item = ChartData[i];
+
                 int idx = chart.Series[0].Points.AddXY(item.DTime, item.HighPrice, item.LowPrice, item.OpenPrice, item.ClosePrice);
+
+                item = ChartDataSub[i];
                 chart.Series[1].Points.AddXY(item.DTime, item.T_HighPrice); //red
                 chart.Series[2].Points.AddXY(item.DTime, item.T_LowPrice); //low
                 chart.Series[3].Points.AddXY(item.DTime, item.T_OpenPrice); //gold
                 chart.Series[4].Points.AddXY(item.DTime, item.T_ClosePrice); //black
             }
 
-            double maxPrice = ChartData.Max(m => m.HighPrice);
-            double minPrice = ChartData.Min(m => m.LowPrice);
-            maxPrice = maxPrice + SpaceMaxMin;
-            minPrice = minPrice - SpaceMaxMin;
-            chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
-            chart.ChartAreas[0].AxisY2.Minimum = minPrice;
+            //double maxPrice = ChartData.Max(m => m.HighPrice);
+            //double minPrice = ChartData.Min(m => m.LowPrice);
+            //maxPrice = maxPrice + SpaceMaxMin;
+            //minPrice = minPrice - SpaceMaxMin;
+            //chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
+            //chart.ChartAreas[0].AxisY2.Minimum = minPrice;
 
-            double maxPriceLine = ChartData.Max(m => m.T_OpenPrice);
-            double minPriceLine = ChartData.Min(m => m.T_OpenPrice);
-            double maxPriceLine2 = ChartData.Max(m => m.T_ClosePrice);
-            double minPriceLine2 = ChartData.Min(m => m.T_ClosePrice);
-            double maxPriceLine3 = ChartData.Max(m => m.T_HighPrice);
-            double minPriceLine3 = ChartData.Min(m => m.T_HighPrice);
-            double maxPriceLine4 = ChartData.Max(m => m.T_LowPrice);
-            double minPriceLine4 = ChartData.Min(m => m.T_LowPrice);
-            if (maxPriceLine < maxPriceLine2) maxPriceLine = maxPriceLine2;
-            if (minPriceLine > minPriceLine2) minPriceLine = minPriceLine2;
-            if (maxPriceLine < maxPriceLine3) maxPriceLine = maxPriceLine3;
-            if (minPriceLine > minPriceLine3) minPriceLine = minPriceLine3;
-            if (maxPriceLine < maxPriceLine4) maxPriceLine = maxPriceLine4;
-            if (minPriceLine > minPriceLine4) minPriceLine = minPriceLine4;           
-            chart.ChartAreas[0].AxisY.Maximum = maxPriceLine;
-            chart.ChartAreas[0].AxisY.Minimum = minPriceLine;
-            chart.ChartAreas[0].AxisY.LabelStyle.Format = "{N2}";
+            //double maxPriceLine = ChartDataSub.Max(m => m.T_OpenPrice);
+            //double minPriceLine = ChartData.Min(m => m.T_OpenPrice);
+            //double maxPriceLine2 = ChartData.Max(m => m.T_ClosePrice);
+            //double minPriceLine2 = ChartData.Min(m => m.T_ClosePrice);
+            //double maxPriceLine3 = ChartData.Max(m => m.T_HighPrice);
+            //double minPriceLine3 = ChartData.Min(m => m.T_HighPrice);
+            //double maxPriceLine4 = ChartData.Max(m => m.T_LowPrice);
+            //double minPriceLine4 = ChartData.Min(m => m.T_LowPrice);
+            //if (maxPriceLine < maxPriceLine2) maxPriceLine = maxPriceLine2;
+            //if (minPriceLine > minPriceLine2) minPriceLine = minPriceLine2;
+            //if (maxPriceLine < maxPriceLine3) maxPriceLine = maxPriceLine3;
+            //if (minPriceLine > minPriceLine3) minPriceLine = minPriceLine3;
+            //if (maxPriceLine < maxPriceLine4) maxPriceLine = maxPriceLine4;
+            //if (minPriceLine > minPriceLine4) minPriceLine = minPriceLine4;           
+            //chart.ChartAreas[0].AxisY.Maximum = maxPriceLine;
+            //chart.ChartAreas[0].AxisY.Minimum = minPriceLine;
+            //chart.ChartAreas[0].AxisY.LabelStyle.Format = "{N2}";
 
             SetScrollBar();
             SetTrackBar();
@@ -152,6 +156,7 @@ namespace OM.Vikala.Controls.Charts
             int trackView = trackBar.Value;
             int displayItemCount = DisplayPointCount * trackView;            
             List <T_VelocityItemData> viewLists = null;
+            List <T_VelocityItemData> viewListsSub = null;
             int maxDisplayIndex = 0;
             int minDisplayIndex = 0;
             if (scrollVal == hScrollBar.Minimum)
@@ -159,6 +164,7 @@ namespace OM.Vikala.Controls.Charts
                 int maxIndex = ChartData.Count > displayItemCount ? displayItemCount - 1 : ChartData.Count;
                 if (displayItemCount > ChartData.Count) displayItemCount = ChartData.Count; 
                 viewLists = ChartData.GetRange(0, maxIndex);
+                viewListsSub = ChartDataSub.GetRange(0, maxIndex);
                 maxDisplayIndex = displayItemCount;
                 minDisplayIndex = 0;
             }
@@ -167,6 +173,7 @@ namespace OM.Vikala.Controls.Charts
                 int minIndex = ChartData.Count < displayItemCount ? 0 : ChartData.Count - displayItemCount;
                 if (displayItemCount > ChartData.Count) displayItemCount = ChartData.Count;
                 viewLists = ChartData.GetRange(minIndex, ChartData.Count < displayItemCount ? ChartData.Count : displayItemCount);
+                viewListsSub = ChartDataSub.GetRange(minIndex, ChartData.Count < displayItemCount ? ChartData.Count : displayItemCount);
                 maxDisplayIndex = ChartData.Count;
                 minDisplayIndex = minIndex;
             }
@@ -176,7 +183,7 @@ namespace OM.Vikala.Controls.Charts
                 if (ChartData.Count < currentIndex + displayItemCount)
                     displayItemCount = ChartData.Count - currentIndex;
                 viewLists = ChartData.GetRange(currentIndex, displayItemCount);
-
+                viewListsSub = ChartDataSub.GetRange(currentIndex, displayItemCount);
                 maxDisplayIndex = currentIndex + displayItemCount;
                 minDisplayIndex = currentIndex;
             }
@@ -192,22 +199,22 @@ namespace OM.Vikala.Controls.Charts
                 chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
                 chart.ChartAreas[0].AxisY2.Minimum = minPrice;
 
-                double maxPriceLine = viewLists.Max(m => m.T_OpenPrice);
-                double minPriceLine = viewLists.Min(m => m.T_OpenPrice);
-                double maxPriceLine2 = viewLists.Max(m => m.T_ClosePrice);
-                double minPriceLine2 = viewLists.Min(m => m.T_ClosePrice);
-                double maxPriceLine3 = viewLists.Max(m => m.T_HighPrice);
-                double minPriceLine3 = viewLists.Min(m => m.T_HighPrice);
-                double maxPriceLine4 = viewLists.Max(m => m.T_LowPrice);
-                double minPriceLine4 = viewLists.Min(m => m.T_LowPrice);
+                double maxPriceLine = viewListsSub.Max(m => m.T_OpenPrice);
+                double minPriceLine = viewListsSub.Min(m => m.T_OpenPrice);
+                double maxPriceLine2 = viewListsSub.Max(m => m.T_ClosePrice);
+                double minPriceLine2 = viewListsSub.Min(m => m.T_ClosePrice);
+                double maxPriceLine3 = viewListsSub.Max(m => m.T_HighPrice);
+                double minPriceLine3 = viewListsSub.Min(m => m.T_HighPrice);
+                double maxPriceLine4 = viewListsSub.Max(m => m.T_LowPrice);
+                double minPriceLine4 = viewListsSub.Min(m => m.T_LowPrice);
                 if (maxPriceLine < maxPriceLine2) maxPriceLine = maxPriceLine2;
                 if (minPriceLine > minPriceLine2) minPriceLine = minPriceLine2;
                 if (maxPriceLine < maxPriceLine3) maxPriceLine = maxPriceLine3;
                 if (minPriceLine > minPriceLine3) minPriceLine = minPriceLine3;
                 if (maxPriceLine < maxPriceLine4) maxPriceLine = maxPriceLine4;
-                if (minPriceLine > minPriceLine4) minPriceLine = minPriceLine4;             
-                chart.ChartAreas[0].AxisY.Maximum = maxPriceLine;
-                chart.ChartAreas[0].AxisY.Minimum = minPriceLine;
+                if (minPriceLine > minPriceLine4) minPriceLine = minPriceLine4;
+                chart.ChartAreas[0].AxisY.Maximum = maxPriceLine + SpaceMaxMin;
+                chart.ChartAreas[0].AxisY.Minimum = minPriceLine - SpaceMaxMin;
                 chart.ChartAreas[0].AxisY.LabelStyle.Format = "{N2}";
             }
         }

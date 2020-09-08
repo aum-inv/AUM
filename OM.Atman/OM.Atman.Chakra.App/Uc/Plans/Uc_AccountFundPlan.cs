@@ -96,5 +96,16 @@ namespace OM.Atman.Chakra.App.Uc.Plans
             ShareData.Instance.XmlUtil.Reload();
             MessageBox.Show("저장되었습니다.");
         }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            tbsecuritiesCompany1.Text = string.Empty;
+            tbsecuritiesCompany2.Text = string.Empty;
+            tbsecuritiesCompany3.Text = string.Empty;
+            tbinvFund1.Text = string.Empty;
+            tbinvFund2.Text = string.Empty;
+            tbinvFund3.Text = string.Empty;
+            tbSummary.Text = string.Empty;
+        }
     }
 }
