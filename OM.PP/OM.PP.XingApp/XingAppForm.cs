@@ -594,6 +594,39 @@ namespace OM.PP.XingApp
                 }
             });
         }
+        private void btnRealKr_Click(object sender, EventArgs e)
+        {
+            if (!isLogoned) return;
+
+            btnRealKr.Enabled = false;
+
+            bool isRealKospi = true;
+            bool isRealKospi200 = true;
+            bool isRealKosdaq = true;
+
+            Task.Factory.StartNew(() => {
+                if (isRealKospi)
+                {
+                    Api.Api_IndexReal real = new Api_IndexReal();
+                    real.Query(ItemCodeSet.GetItemSHCodeByName(ItemCode.지수_국내_코스피));
+                    System.Threading.Thread.Sleep(5000);
+                }
+                
+                if (isRealKospi200)
+                {
+                    Api.Api_IndexReal real = new Api_IndexReal();
+                    real.Query(ItemCodeSet.GetItemSHCodeByName(ItemCode.지수_국내_코스피200));
+                    System.Threading.Thread.Sleep(5000);
+                }
+                
+                if (isRealKosdaq)
+                {
+                    Api.Api_IndexReal real = new Api_IndexReal();
+                    real.Query(ItemCodeSet.GetItemSHCodeByName(ItemCode.지수_국내_코스닥));
+                }
+            });
+        }
+
         private void btnOrder_Click(object sender, EventArgs e)
         {
             new OrderAppForm().Show();
@@ -651,7 +684,10 @@ namespace OM.PP.XingApp
         {
             Api_WorldFutureReal.IsSend = chkSendRealtime.Checked;
         }
-
+        private void chkSendRealtimeKr_CheckedChanged(object sender, EventArgs e)
+        {
+            Api_IndexReal.IsSend = chkSendRealtimeKr.Checked;
+        }
         private void btnFileOpen_Click(object sender, EventArgs e)
         {
             string path = Environment.CurrentDirectory;
@@ -746,19 +782,6 @@ namespace OM.PP.XingApp
             }
         }
 
-        private void groupBox7_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void XingAppForm_Load_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox4_Enter(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }

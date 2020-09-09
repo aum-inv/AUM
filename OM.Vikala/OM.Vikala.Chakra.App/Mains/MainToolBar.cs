@@ -160,6 +160,27 @@ namespace OM.Vikala.Chakra.App.Mains
             f.Show();
         }
 
+        private void tsb_MA1_Click(object sender, EventArgs e)
+        {
+            var f = new ToolbarChartForms.MovingAverageFlowChartForm(Lib.Base.Enums.TimeIntervalEnum.Minute_10);
+            f.Text = "ATMAN INV. F MOVING AVERAGE FLOW(M) CHART";
+            f.Show();
+        }
+
+        private void tsb_MA2_Click(object sender, EventArgs e)
+        {
+            var f = new ToolbarChartForms.MovingAverageFlowChartForm(Lib.Base.Enums.TimeIntervalEnum.Hour_01);
+            f.Text = "ATMAN INV. F MOVING AVERAGE FLOW(H) CHART";
+            f.Show();
+        }
+
+        private void tsb_MA3_Click(object sender, EventArgs e)
+        {
+            var f = new ToolbarChartForms.MovingAverageFlowChartForm(Lib.Base.Enums.TimeIntervalEnum.Day);
+            f.Text = "ATMAN INV. F MOVING AVERAGE FLOW(D) CHART";
+            f.Show();
+        }
+
         //List<Form> lstWindows = new List<Form>();
         //private void tsbArrange_Click(object sender, EventArgs e)
         //{

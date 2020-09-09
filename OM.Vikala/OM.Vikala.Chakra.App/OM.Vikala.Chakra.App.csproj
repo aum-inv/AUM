@@ -248,6 +248,12 @@
     <Compile Include="Mains\ToolbarChartForms\QuantumChartHLForm.Designer.cs">
       <DependentUpon>QuantumChartHLForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mains\ToolbarChartForms\MovingAverageFlowChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mains\ToolbarChartForms\MovingAverageFlowChartForm.Designer.cs">
+      <DependentUpon>MovingAverageFlowChartForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mains\ToolbarChartForms\VelocityChartForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -424,6 +430,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mains\ToolbarChartForms\QuantumChartHLForm.resx">
       <DependentUpon>QuantumChartHLForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mains\ToolbarChartForms\MovingAverageFlowChartForm.resx">
+      <DependentUpon>MovingAverageFlowChartForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mains\ToolbarChartForms\VelocityChartForm.resx">
       <DependentUpon>VelocityChartForm.cs</DependentUpon>

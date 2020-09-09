@@ -92,6 +92,24 @@
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.btnThreeFiveRule = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblRate301 = new System.Windows.Forms.Label();
+            this.lblDiff301 = new System.Windows.Forms.Label();
+            this.lblUpDown301 = new System.Windows.Forms.Label();
+            this.lblPrice301 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.lblRate101 = new System.Windows.Forms.Label();
+            this.lblRate001 = new System.Windows.Forms.Label();
+            this.lblDiff101 = new System.Windows.Forms.Label();
+            this.lblDiff001 = new System.Windows.Forms.Label();
+            this.lblUpDown101 = new System.Windows.Forms.Label();
+            this.lblUpDown001 = new System.Windows.Forms.Label();
+            this.lblPrice101 = new System.Windows.Forms.Label();
+            this.lblPrice001 = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
+            this.label49 = new System.Windows.Forms.Label();
+            this.label50 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -99,6 +117,8 @@
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -168,7 +188,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 82F));
             this.tableLayoutPanel2.Controls.Add(this.lblRateES, 4, 7);
             this.tableLayoutPanel2.Controls.Add(this.lblRateURO, 4, 6);
             this.tableLayoutPanel2.Controls.Add(this.lblRateNQ, 4, 5);
@@ -233,7 +253,7 @@
             this.lblRateES.Location = new System.Drawing.Point(220, 183);
             this.lblRateES.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblRateES.Name = "lblRateES";
-            this.lblRateES.Size = new System.Drawing.Size(71, 25);
+            this.lblRateES.Size = new System.Drawing.Size(72, 25);
             this.lblRateES.TabIndex = 43;
             this.lblRateES.Text = "0.00%";
             this.lblRateES.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -246,7 +266,7 @@
             this.lblRateURO.Location = new System.Drawing.Point(220, 157);
             this.lblRateURO.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblRateURO.Name = "lblRateURO";
-            this.lblRateURO.Size = new System.Drawing.Size(71, 25);
+            this.lblRateURO.Size = new System.Drawing.Size(72, 25);
             this.lblRateURO.TabIndex = 42;
             this.lblRateURO.Text = "0.00%";
             this.lblRateURO.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -259,7 +279,7 @@
             this.lblRateNQ.Location = new System.Drawing.Point(220, 131);
             this.lblRateNQ.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblRateNQ.Name = "lblRateNQ";
-            this.lblRateNQ.Size = new System.Drawing.Size(71, 25);
+            this.lblRateNQ.Size = new System.Drawing.Size(72, 25);
             this.lblRateNQ.TabIndex = 41;
             this.lblRateNQ.Text = "0.00%";
             this.lblRateNQ.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -272,7 +292,7 @@
             this.lblRateHSI.Location = new System.Drawing.Point(220, 105);
             this.lblRateHSI.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblRateHSI.Name = "lblRateHSI";
-            this.lblRateHSI.Size = new System.Drawing.Size(71, 25);
+            this.lblRateHSI.Size = new System.Drawing.Size(72, 25);
             this.lblRateHSI.TabIndex = 40;
             this.lblRateHSI.Text = "0.00%";
             this.lblRateHSI.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -285,7 +305,7 @@
             this.lblRateSI.Location = new System.Drawing.Point(220, 79);
             this.lblRateSI.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblRateSI.Name = "lblRateSI";
-            this.lblRateSI.Size = new System.Drawing.Size(71, 25);
+            this.lblRateSI.Size = new System.Drawing.Size(72, 25);
             this.lblRateSI.TabIndex = 39;
             this.lblRateSI.Text = "0.00%";
             this.lblRateSI.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -298,7 +318,7 @@
             this.lblRateGC.Location = new System.Drawing.Point(220, 53);
             this.lblRateGC.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblRateGC.Name = "lblRateGC";
-            this.lblRateGC.Size = new System.Drawing.Size(71, 25);
+            this.lblRateGC.Size = new System.Drawing.Size(72, 25);
             this.lblRateGC.TabIndex = 38;
             this.lblRateGC.Text = "0.00%";
             this.lblRateGC.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -623,7 +643,7 @@
             this.lblRateNG.Location = new System.Drawing.Point(220, 27);
             this.lblRateNG.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblRateNG.Name = "lblRateNG";
-            this.lblRateNG.Size = new System.Drawing.Size(71, 25);
+            this.lblRateNG.Size = new System.Drawing.Size(72, 25);
             this.lblRateNG.TabIndex = 13;
             this.lblRateNG.Text = "0.00%";
             this.lblRateNG.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -636,7 +656,7 @@
             this.lblRateCL.Location = new System.Drawing.Point(220, 1);
             this.lblRateCL.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblRateCL.Name = "lblRateCL";
-            this.lblRateCL.Size = new System.Drawing.Size(71, 25);
+            this.lblRateCL.Size = new System.Drawing.Size(72, 25);
             this.lblRateCL.TabIndex = 12;
             this.lblRateCL.Text = "0.00%";
             this.lblRateCL.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -846,7 +866,7 @@
             this.groupBox2.Controls.Add(this.btnCandleSignal3);
             this.groupBox2.Controls.Add(this.btnCandleSignal2);
             this.groupBox2.Controls.Add(this.btnCandleSignal);
-            this.groupBox2.Location = new System.Drawing.Point(3, 288);
+            this.groupBox2.Location = new System.Drawing.Point(3, 397);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
@@ -872,7 +892,7 @@
             this.groupBox3.Controls.Add(this.btnStrategy);
             this.groupBox3.Controls.Add(this.btnMITOrder);
             this.groupBox3.Controls.Add(this.btnSimpleOrder);
-            this.groupBox3.Location = new System.Drawing.Point(5, 333);
+            this.groupBox3.Location = new System.Drawing.Point(5, 442);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
@@ -899,7 +919,7 @@
             this.groupBox4.Controls.Add(this.btnStrategyMS);
             this.groupBox4.Controls.Add(this.btnStrategySM);
             this.groupBox4.Controls.Add(this.btnStrategySS);
-            this.groupBox4.Location = new System.Drawing.Point(3, 382);
+            this.groupBox4.Location = new System.Drawing.Point(3, 491);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
@@ -934,7 +954,7 @@
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.btnThreeFiveRule);
-            this.groupBox5.Location = new System.Drawing.Point(8, 429);
+            this.groupBox5.Location = new System.Drawing.Point(8, 538);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
@@ -955,11 +975,270 @@
             this.btnThreeFiveRule.UseVisualStyleBackColor = true;
             this.btnThreeFiveRule.Click += new System.EventHandler(this.btnThreeFiveRule_Click);
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panel2.Controls.Add(this.tableLayoutPanel1);
+            this.panel2.Controls.Add(this.label50);
+            this.panel2.Location = new System.Drawing.Point(3, 283);
+            this.panel2.Margin = new System.Windows.Forms.Padding(5);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(302, 119);
+            this.panel2.TabIndex = 21;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel1.ColumnCount = 5;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 82F));
+            this.tableLayoutPanel1.Controls.Add(this.lblRate301, 4, 2);
+            this.tableLayoutPanel1.Controls.Add(this.lblDiff301, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.lblUpDown301, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.lblPrice301, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label39, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.lblRate101, 4, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lblRate001, 4, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lblDiff101, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lblDiff001, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lblUpDown101, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lblUpDown001, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lblPrice101, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lblPrice001, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label48, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label49, 0, 0);
+            this.tableLayoutPanel1.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(5, 22);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(5);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(283, 82);
+            this.tableLayoutPanel1.TabIndex = 5;
+            // 
+            // lblRate301
+            // 
+            this.lblRate301.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblRate301.Font = new System.Drawing.Font("돋움", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblRate301.ForeColor = System.Drawing.Color.White;
+            this.lblRate301.Location = new System.Drawing.Point(220, 53);
+            this.lblRate301.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblRate301.Name = "lblRate301";
+            this.lblRate301.Size = new System.Drawing.Size(72, 28);
+            this.lblRate301.TabIndex = 38;
+            this.lblRate301.Text = "0.00%";
+            this.lblRate301.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblDiff301
+            // 
+            this.lblDiff301.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblDiff301.Font = new System.Drawing.Font("돋움", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblDiff301.ForeColor = System.Drawing.Color.White;
+            this.lblDiff301.Location = new System.Drawing.Point(149, 53);
+            this.lblDiff301.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblDiff301.Name = "lblDiff301";
+            this.lblDiff301.Size = new System.Drawing.Size(60, 28);
+            this.lblDiff301.TabIndex = 32;
+            this.lblDiff301.Text = "000.00";
+            this.lblDiff301.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblUpDown301
+            // 
+            this.lblUpDown301.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblUpDown301.Font = new System.Drawing.Font("돋움", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblUpDown301.ForeColor = System.Drawing.Color.White;
+            this.lblUpDown301.Location = new System.Drawing.Point(128, 53);
+            this.lblUpDown301.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblUpDown301.Name = "lblUpDown301";
+            this.lblUpDown301.Size = new System.Drawing.Size(10, 28);
+            this.lblUpDown301.TabIndex = 26;
+            this.lblUpDown301.Text = "▼";
+            this.lblUpDown301.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblPrice301
+            // 
+            this.lblPrice301.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPrice301.Font = new System.Drawing.Font("돋움", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPrice301.ForeColor = System.Drawing.Color.White;
+            this.lblPrice301.Location = new System.Drawing.Point(57, 53);
+            this.lblPrice301.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblPrice301.Name = "lblPrice301";
+            this.lblPrice301.Size = new System.Drawing.Size(60, 28);
+            this.lblPrice301.TabIndex = 20;
+            this.lblPrice301.Text = "0,000.000";
+            this.lblPrice301.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label39
+            // 
+            this.label39.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label39.Font = new System.Drawing.Font("돋움", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label39.ForeColor = System.Drawing.Color.White;
+            this.label39.Location = new System.Drawing.Point(6, 53);
+            this.label39.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(40, 28);
+            this.label39.TabIndex = 14;
+            this.label39.Text = "KDAQ";
+            this.label39.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblRate101
+            // 
+            this.lblRate101.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblRate101.Font = new System.Drawing.Font("돋움", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblRate101.ForeColor = System.Drawing.Color.White;
+            this.lblRate101.Location = new System.Drawing.Point(220, 27);
+            this.lblRate101.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblRate101.Name = "lblRate101";
+            this.lblRate101.Size = new System.Drawing.Size(72, 25);
+            this.lblRate101.TabIndex = 13;
+            this.lblRate101.Text = "0.00%";
+            this.lblRate101.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblRate001
+            // 
+            this.lblRate001.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblRate001.Font = new System.Drawing.Font("돋움", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblRate001.ForeColor = System.Drawing.Color.White;
+            this.lblRate001.Location = new System.Drawing.Point(220, 1);
+            this.lblRate001.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblRate001.Name = "lblRate001";
+            this.lblRate001.Size = new System.Drawing.Size(72, 25);
+            this.lblRate001.TabIndex = 12;
+            this.lblRate001.Text = "0.00%";
+            this.lblRate001.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblDiff101
+            // 
+            this.lblDiff101.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblDiff101.Font = new System.Drawing.Font("돋움", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblDiff101.ForeColor = System.Drawing.Color.White;
+            this.lblDiff101.Location = new System.Drawing.Point(149, 27);
+            this.lblDiff101.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblDiff101.Name = "lblDiff101";
+            this.lblDiff101.Size = new System.Drawing.Size(60, 25);
+            this.lblDiff101.TabIndex = 11;
+            this.lblDiff101.Text = "000.00";
+            this.lblDiff101.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblDiff001
+            // 
+            this.lblDiff001.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblDiff001.Font = new System.Drawing.Font("돋움", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblDiff001.ForeColor = System.Drawing.Color.White;
+            this.lblDiff001.Location = new System.Drawing.Point(149, 1);
+            this.lblDiff001.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblDiff001.Name = "lblDiff001";
+            this.lblDiff001.Size = new System.Drawing.Size(60, 25);
+            this.lblDiff001.TabIndex = 10;
+            this.lblDiff001.Text = "000.00";
+            this.lblDiff001.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblUpDown101
+            // 
+            this.lblUpDown101.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblUpDown101.Font = new System.Drawing.Font("돋움", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblUpDown101.ForeColor = System.Drawing.Color.White;
+            this.lblUpDown101.Location = new System.Drawing.Point(128, 27);
+            this.lblUpDown101.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblUpDown101.Name = "lblUpDown101";
+            this.lblUpDown101.Size = new System.Drawing.Size(10, 25);
+            this.lblUpDown101.TabIndex = 9;
+            this.lblUpDown101.Text = "▼";
+            this.lblUpDown101.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblUpDown001
+            // 
+            this.lblUpDown001.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblUpDown001.Font = new System.Drawing.Font("돋움", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblUpDown001.ForeColor = System.Drawing.Color.White;
+            this.lblUpDown001.Location = new System.Drawing.Point(128, 1);
+            this.lblUpDown001.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblUpDown001.Name = "lblUpDown001";
+            this.lblUpDown001.Size = new System.Drawing.Size(10, 25);
+            this.lblUpDown001.TabIndex = 8;
+            this.lblUpDown001.Text = "▲";
+            this.lblUpDown001.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblPrice101
+            // 
+            this.lblPrice101.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPrice101.Font = new System.Drawing.Font("돋움", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPrice101.ForeColor = System.Drawing.Color.White;
+            this.lblPrice101.Location = new System.Drawing.Point(57, 27);
+            this.lblPrice101.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblPrice101.Name = "lblPrice101";
+            this.lblPrice101.Size = new System.Drawing.Size(60, 25);
+            this.lblPrice101.TabIndex = 7;
+            this.lblPrice101.Text = "0,000.000";
+            this.lblPrice101.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblPrice001
+            // 
+            this.lblPrice001.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPrice001.Font = new System.Drawing.Font("돋움", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPrice001.ForeColor = System.Drawing.Color.White;
+            this.lblPrice001.Location = new System.Drawing.Point(57, 1);
+            this.lblPrice001.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblPrice001.Name = "lblPrice001";
+            this.lblPrice001.Size = new System.Drawing.Size(60, 25);
+            this.lblPrice001.TabIndex = 6;
+            this.lblPrice001.Text = "0,000.000";
+            this.lblPrice001.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label48
+            // 
+            this.label48.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label48.Font = new System.Drawing.Font("돋움", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label48.ForeColor = System.Drawing.Color.White;
+            this.label48.Location = new System.Drawing.Point(6, 27);
+            this.label48.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(40, 25);
+            this.label48.TabIndex = 5;
+            this.label48.Text = "KP200";
+            this.label48.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label49
+            // 
+            this.label49.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label49.Font = new System.Drawing.Font("돋움", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label49.ForeColor = System.Drawing.Color.White;
+            this.label49.Location = new System.Drawing.Point(6, 1);
+            this.label49.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(40, 25);
+            this.label49.TabIndex = 4;
+            this.label49.Text = "KOSPI";
+            this.label49.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Font = new System.Drawing.Font("돋움", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label50.ForeColor = System.Drawing.Color.White;
+            this.label50.Location = new System.Drawing.Point(5, 1);
+            this.label50.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(133, 16);
+            this.label50.TabIndex = 3;
+            this.label50.Text = "실시간 국내지수";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 11F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(312, 476);
+            this.ClientSize = new System.Drawing.Size(312, 402);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox4);
@@ -986,6 +1265,9 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1055,6 +1337,24 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button btnThreeFiveRule;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Label lblRate301;
+        private System.Windows.Forms.Label lblDiff301;
+        private System.Windows.Forms.Label lblUpDown301;
+        private System.Windows.Forms.Label lblPrice301;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Label lblRate101;
+        private System.Windows.Forms.Label lblRate001;
+        private System.Windows.Forms.Label lblDiff101;
+        private System.Windows.Forms.Label lblDiff001;
+        private System.Windows.Forms.Label lblUpDown101;
+        private System.Windows.Forms.Label lblUpDown001;
+        private System.Windows.Forms.Label lblPrice101;
+        private System.Windows.Forms.Label lblPrice001;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.Label label50;
     }
 }
 

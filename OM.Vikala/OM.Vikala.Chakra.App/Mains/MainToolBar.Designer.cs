@@ -46,11 +46,15 @@
             this.tsb_ANode = new System.Windows.Forms.ToolStripButton();
             this.tsb_TimeSpace = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsb_MA1 = new System.Windows.Forms.ToolStripButton();
+            this.tsb_MA2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tsb_SY_3 = new System.Windows.Forms.ToolStripButton();
             this.tsb_SY_2 = new System.Windows.Forms.ToolStripButton();
             this.tsb_SN_3 = new System.Windows.Forms.ToolStripButton();
             this.tsb_SN_2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsb_MA3 = new System.Windows.Forms.ToolStripButton();
             this.tsMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,6 +80,10 @@
             this.tsb_ANode,
             this.tsb_TimeSpace,
             this.toolStripSeparator2,
+            this.tsb_MA1,
+            this.tsb_MA2,
+            this.tsb_MA3,
+            this.toolStripSeparator4,
             this.tsb_SY_3,
             this.tsb_SY_2,
             this.tsb_SN_3,
@@ -263,6 +271,41 @@
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(34, 6);
             // 
+            // tsb_MA1
+            // 
+            this.tsb_MA1.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.tsb_MA1.AutoSize = false;
+            this.tsb_MA1.BackColor = System.Drawing.Color.Black;
+            this.tsb_MA1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsb_MA1.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold);
+            this.tsb_MA1.ForeColor = System.Drawing.Color.White;
+            this.tsb_MA1.ImageTransparentColor = System.Drawing.Color.White;
+            this.tsb_MA1.Name = "tsb_MA1";
+            this.tsb_MA1.Size = new System.Drawing.Size(30, 30);
+            this.tsb_MA1.Text = "이평";
+            this.tsb_MA1.ToolTipText = "이평캔들";
+            this.tsb_MA1.Click += new System.EventHandler(this.tsb_MA1_Click);
+            // 
+            // tsb_MA2
+            // 
+            this.tsb_MA2.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.tsb_MA2.AutoSize = false;
+            this.tsb_MA2.BackColor = System.Drawing.Color.Black;
+            this.tsb_MA2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsb_MA2.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold);
+            this.tsb_MA2.ForeColor = System.Drawing.Color.White;
+            this.tsb_MA2.ImageTransparentColor = System.Drawing.Color.White;
+            this.tsb_MA2.Name = "tsb_MA2";
+            this.tsb_MA2.Size = new System.Drawing.Size(30, 30);
+            this.tsb_MA2.Text = "이평";
+            this.tsb_MA2.ToolTipText = "이평캔들";
+            this.tsb_MA2.Click += new System.EventHandler(this.tsb_MA2_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(34, 6);
+            // 
             // tsb_SY_3
             // 
             this.tsb_SY_3.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
@@ -328,6 +371,21 @@
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             this.toolStripSeparator6.Size = new System.Drawing.Size(34, 6);
             // 
+            // tsb_MA3
+            // 
+            this.tsb_MA3.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.tsb_MA3.AutoSize = false;
+            this.tsb_MA3.BackColor = System.Drawing.Color.Black;
+            this.tsb_MA3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsb_MA3.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold);
+            this.tsb_MA3.ForeColor = System.Drawing.Color.White;
+            this.tsb_MA3.ImageTransparentColor = System.Drawing.Color.White;
+            this.tsb_MA3.Name = "tsb_MA3";
+            this.tsb_MA3.Size = new System.Drawing.Size(30, 30);
+            this.tsb_MA3.Text = "이평";
+            this.tsb_MA3.ToolTipText = "이평캔들";
+            this.tsb_MA3.Click += new System.EventHandler(this.tsb_MA3_Click);
+            // 
             // MainToolBar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -372,5 +430,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripButton tsb_SY_2;
         private System.Windows.Forms.ToolStripButton tsb_SN_2;
+        private System.Windows.Forms.ToolStripButton tsb_MA2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripButton tsb_MA1;
+        private System.Windows.Forms.ToolStripButton tsb_MA3;
     }
 }

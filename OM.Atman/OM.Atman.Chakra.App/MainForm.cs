@@ -41,6 +41,10 @@ namespace OM.Atman.Chakra.App
             lblPrice.Add("NQ", lblPriceNQ);
             lblPrice.Add("URO", lblPriceURO);
             lblPrice.Add("ES", lblPriceES);
+            lblPrice.Add("001", lblPrice001);
+            lblPrice.Add("101", lblPrice101);
+            lblPrice.Add("301", lblPrice301);
+
 
             lblUpDown.Add("CL", lblUpDownCL);
             lblUpDown.Add("NG", lblUpDownNG);
@@ -50,6 +54,9 @@ namespace OM.Atman.Chakra.App
             lblUpDown.Add("NQ", lblUpDownNQ);
             lblUpDown.Add("URO", lblUpDownURO);
             lblUpDown.Add("ES", lblUpDownES);
+            lblUpDown.Add("001", lblUpDown001);
+            lblUpDown.Add("101", lblUpDown101);
+            lblUpDown.Add("301", lblUpDown301);
 
             lblDiff.Add("CL", lblDiffCL);
             lblDiff.Add("NG", lblDiffNG);
@@ -58,7 +65,10 @@ namespace OM.Atman.Chakra.App
             lblDiff.Add("HMH", lblDiffHSI);
             lblDiff.Add("NQ", lblDiffNQ);
             lblDiff.Add("URO", lblDiffURO);
-            lblDiff.Add("ES", lblDiffES);
+            lblDiff.Add("ES", lblDiffES); 
+            lblDiff.Add("001", lblDiff001);
+            lblDiff.Add("101", lblDiff101);
+            lblDiff.Add("301", lblDiff301);
 
             lblRate.Add("CL", lblRateCL);
             lblRate.Add("NG", lblRateNG);
@@ -68,6 +78,9 @@ namespace OM.Atman.Chakra.App
             lblRate.Add("NQ", lblRateNQ);
             lblRate.Add("URO", lblRateURO);
             lblRate.Add("ES", lblRateES);
+            lblRate.Add("001", lblRate001);
+            lblRate.Add("101", lblRate101);
+            lblRate.Add("301", lblRate301);
         }
         private void serverInfo()
         {
@@ -104,6 +117,7 @@ namespace OM.Atman.Chakra.App
                 btnStart.Enabled = false;
 
                 InitThread();
+                InitThreadKr();
 
                 ExApi.TelegramBotApi.StartReceiving();
             }
@@ -249,7 +263,20 @@ namespace OM.Atman.Chakra.App
               new System.Threading.Thread(new System.Threading.ParameterizedThreadStart(Run));
             tES.Start("ES");
         }
+        private void InitThreadKr()
+        {
+            System.Threading.Thread t001 =
+                new System.Threading.Thread(new System.Threading.ParameterizedThreadStart(RunKr));
+            t001.Start("001");
 
+            System.Threading.Thread t101 =
+                new System.Threading.Thread(new System.Threading.ParameterizedThreadStart(RunKr));
+            t101.Start("101");
+
+            System.Threading.Thread t301 =
+                new System.Threading.Thread(new System.Threading.ParameterizedThreadStart(RunKr));
+            t301.Start("301");
+        }
         bool isSiseBinding = false;
         private void Run(object o)
         {
@@ -307,6 +334,64 @@ namespace OM.Atman.Chakra.App
                 catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
             }
         }
+
+        private void RunKr(object o)
+        {
+            string itemCode = (string)o;
+
+            string lastPrice = "";
+
+            LimitedList<double> ll3 = new LimitedList<double>(3);
+            LimitedList<double> ll5 = new LimitedList<double>(5);
+            LimitedList<double> ll7 = new LimitedList<double>(7);
+
+            int rnd = ItemCodeSet.GetItemRoundNum(itemCode);
+
+            while (true)
+            {
+                try
+                {
+                    if (!SiseStorage.Instance.PricesKr.ContainsKey(itemCode))
+                    {
+                        System.Threading.Thread.Sleep(1000);
+                        continue;
+                    }
+
+                    var priceQueue = SiseStorage.Instance.PricesKr[itemCode];
+
+                    if (priceQueue.Count == 0)
+                    {
+                        System.Threading.Thread.Sleep(100);
+                        continue;
+                    }
+                    CurrentPrice price;
+                    var isDequeue = priceQueue.TryDequeue(out price);
+                    if (isDequeue)
+                    {
+                        if (lastPrice == price.price) continue;
+                        lastPrice = price.price;
+                        double d = Math.Round(Convert.ToDouble(lastPrice), rnd);
+
+                        if (!ll3.Contains(d)) ll3.Insert(d);
+                        if (!ll5.Contains(d)) ll5.Insert(d);
+                        if (!ll7.Contains(d)) ll7.Insert(d);
+
+                        price.price3 = Math.Round(ll3.Average(), rnd);
+                        price.price5 = Math.Round(ll5.Average(), rnd);
+                        price.price7 = Math.Round(ll7.Average(), rnd);
+
+                        SiseEvents.Instance.OnSiseHandler(itemCode, price);
+
+                        if (isSiseBinding)
+                        {
+                            BindSise(itemCode, price);
+                        }
+                    }
+                }
+                catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
+            }
+        }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
         }

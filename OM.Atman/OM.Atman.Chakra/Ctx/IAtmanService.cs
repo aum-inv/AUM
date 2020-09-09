@@ -15,6 +15,9 @@ namespace OM.Atman.Chakra.Ctx
     {       
         
         [OperationContract]
-        void SetCurrentPrice(string itemCode, CurrentPrice price);         
+        void SetCurrentPrice(string itemCode, CurrentPrice price);
+
+        [OperationContract]
+        void SetCurrentPriceKr(string itemCode, CurrentPrice price);
     }
 }

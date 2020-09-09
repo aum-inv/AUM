@@ -1429,6 +1429,25 @@ namespace OM.PP.Chakra
         }
         #endregion
 
+        #region Gap
+        public static void RemoveGapPrice(List<S_CandleItemData> sourceDatas)
+        {
+            S_CandleItemData preData = null;
+            foreach (var data in sourceDatas)
+            {
+                if (preData == null)
+                {
+                    preData = data;
+                    continue;
+                }
+                data.OpenPrice = preData.ClosePrice;
+                if (preData.ClosePrice > data.HighPrice) data.HighPrice = preData.ClosePrice;
+                if (preData.ClosePrice < data.LowPrice) data.LowPrice = preData.ClosePrice;
+
+                preData = data;
+            }
+        }
+        #endregion
         #region ETC
         public static double GetRateOfChange(double changeValue, double standardValue)
         {

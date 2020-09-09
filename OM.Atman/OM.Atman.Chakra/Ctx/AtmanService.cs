@@ -35,5 +35,19 @@ namespace OM.Atman.Chakra.Ctx
             }
             catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
         }
+
+        public void SetCurrentPriceKr(string itemCode, CurrentPrice price)
+        {
+            try
+            {
+                if (!SiseStorage.Instance.PricesKr.ContainsKey(itemCode))
+                    SiseStorage.Instance.PricesKr.Add(itemCode, new System.Collections.Concurrent.ConcurrentQueue<CurrentPrice>());
+
+                var prices = SiseStorage.Instance.PricesKr[itemCode];
+
+                prices.Enqueue(price);
+            }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message); }
+        }
     }
 }

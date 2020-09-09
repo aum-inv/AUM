@@ -37,6 +37,12 @@
             this.lblLogin = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pnlContent = new System.Windows.Forms.Panel();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.chkSendRealtimeKr = new System.Windows.Forms.CheckBox();
+            this.chkRealKosdaq = new System.Windows.Forms.CheckBox();
+            this.chkRealKospi200 = new System.Windows.Forms.CheckBox();
+            this.chkRealKospi = new System.Windows.Forms.CheckBox();
+            this.btnRealKr = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button20 = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
@@ -78,6 +84,7 @@
             this.noti = new System.Windows.Forms.NotifyIcon(this.components);
             this.groupBox3.SuspendLayout();
             this.pnlContent.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -153,6 +160,7 @@
             // 
             // pnlContent
             // 
+            this.pnlContent.Controls.Add(this.groupBox6);
             this.pnlContent.Controls.Add(this.groupBox2);
             this.pnlContent.Controls.Add(this.groupBox4);
             this.pnlContent.Controls.Add(this.groupBox5);
@@ -163,14 +171,84 @@
             this.pnlContent.Location = new System.Drawing.Point(2, 2);
             this.pnlContent.Name = "pnlContent";
             this.pnlContent.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.pnlContent.Size = new System.Drawing.Size(637, 425);
+            this.pnlContent.Size = new System.Drawing.Size(637, 498);
             this.pnlContent.TabIndex = 12;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.chkSendRealtimeKr);
+            this.groupBox6.Controls.Add(this.chkRealKosdaq);
+            this.groupBox6.Controls.Add(this.chkRealKospi200);
+            this.groupBox6.Controls.Add(this.chkRealKospi);
+            this.groupBox6.Controls.Add(this.btnRealKr);
+            this.groupBox6.Location = new System.Drawing.Point(3, 349);
+            this.groupBox6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox6.Size = new System.Drawing.Size(278, 75);
+            this.groupBox6.TabIndex = 19;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "국내지수 실시간 시세받기";
+            // 
+            // chkSendRealtimeKr
+            // 
+            this.chkSendRealtimeKr.AutoSize = true;
+            this.chkSendRealtimeKr.Checked = true;
+            this.chkSendRealtimeKr.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkSendRealtimeKr.Location = new System.Drawing.Point(201, 19);
+            this.chkSendRealtimeKr.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkSendRealtimeKr.Name = "chkSendRealtimeKr";
+            this.chkSendRealtimeKr.Size = new System.Drawing.Size(48, 16);
+            this.chkSendRealtimeKr.TabIndex = 42;
+            this.chkSendRealtimeKr.Text = "전송";
+            this.chkSendRealtimeKr.UseVisualStyleBackColor = true;
+            this.chkSendRealtimeKr.CheckedChanged += new System.EventHandler(this.chkSendRealtimeKr_CheckedChanged);
+            // 
+            // chkRealKosdaq
+            // 
+            this.chkRealKosdaq.AutoSize = true;
+            this.chkRealKosdaq.Location = new System.Drawing.Point(98, 46);
+            this.chkRealKosdaq.Name = "chkRealKosdaq";
+            this.chkRealKosdaq.Size = new System.Drawing.Size(74, 16);
+            this.chkRealKosdaq.TabIndex = 23;
+            this.chkRealKosdaq.Text = "KOSDAQ";
+            this.chkRealKosdaq.UseVisualStyleBackColor = true;
+            // 
+            // chkRealKospi200
+            // 
+            this.chkRealKospi200.AutoSize = true;
+            this.chkRealKospi200.Location = new System.Drawing.Point(9, 46);
+            this.chkRealKospi200.Name = "chkRealKospi200";
+            this.chkRealKospi200.Size = new System.Drawing.Size(78, 16);
+            this.chkRealKospi200.TabIndex = 22;
+            this.chkRealKospi200.Text = "KOSPI200";
+            this.chkRealKospi200.UseVisualStyleBackColor = true;
+            // 
+            // chkRealKospi
+            // 
+            this.chkRealKospi.AutoSize = true;
+            this.chkRealKospi.Location = new System.Drawing.Point(9, 21);
+            this.chkRealKospi.Name = "chkRealKospi";
+            this.chkRealKospi.Size = new System.Drawing.Size(60, 16);
+            this.chkRealKospi.TabIndex = 21;
+            this.chkRealKospi.Text = "KOSPI";
+            this.chkRealKospi.UseVisualStyleBackColor = true;
+            // 
+            // btnRealKr
+            // 
+            this.btnRealKr.Location = new System.Drawing.Point(198, 40);
+            this.btnRealKr.Name = "btnRealKr";
+            this.btnRealKr.Size = new System.Drawing.Size(75, 27);
+            this.btnRealKr.TabIndex = 20;
+            this.btnRealKr.Text = "시작";
+            this.btnRealKr.UseVisualStyleBackColor = true;
+            this.btnRealKr.Click += new System.EventHandler(this.btnRealKr_Click);
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.button20);
             this.groupBox2.Controls.Add(this.button23);
-            this.groupBox2.Location = new System.Drawing.Point(3, 368);
+            this.groupBox2.Location = new System.Drawing.Point(3, 432);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -219,7 +297,6 @@
             this.groupBox4.TabIndex = 17;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "CSV 파일로 시세 받기";
-            this.groupBox4.Enter += new System.EventHandler(this.groupBox4_Enter);
             // 
             // button7
             // 
@@ -441,7 +518,7 @@
             this.groupBox1.Location = new System.Drawing.Point(287, 9);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(9);
-            this.groupBox1.Size = new System.Drawing.Size(348, 417);
+            this.groupBox1.Size = new System.Drawing.Size(348, 481);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Log";
@@ -455,7 +532,7 @@
             this.tbLog.Multiline = true;
             this.tbLog.Name = "tbLog";
             this.tbLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbLog.Size = new System.Drawing.Size(330, 385);
+            this.tbLog.Size = new System.Drawing.Size(330, 449);
             this.tbLog.TabIndex = 0;
             // 
             // groupBox7
@@ -478,7 +555,6 @@
             this.groupBox7.TabIndex = 16;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "실시간 시세받기";
-            this.groupBox7.Enter += new System.EventHandler(this.groupBox7_Enter);
             // 
             // chkRealES
             // 
@@ -607,7 +683,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(641, 429);
+            this.ClientSize = new System.Drawing.Size(641, 502);
             this.Controls.Add(this.pnlContent);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -615,10 +691,11 @@
             this.Padding = new System.Windows.Forms.Padding(2);
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "ATMAN INV..XING SISE DAEMON";
-            this.Load += new System.EventHandler(this.XingAppForm_Load_1);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.pnlContent.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
@@ -678,6 +755,12 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.Button button23;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.CheckBox chkSendRealtimeKr;
+        private System.Windows.Forms.CheckBox chkRealKosdaq;
+        private System.Windows.Forms.CheckBox chkRealKospi200;
+        private System.Windows.Forms.CheckBox chkRealKospi;
+        private System.Windows.Forms.Button btnRealKr;
     }
 }
 

@@ -12,6 +12,8 @@ namespace OM.Lib.Base.Enums
 
         public const string 지수_국내_코스피 = "지수-국내-코스피";
         public const string 지수_국내_코스피200 = "지수-국내-코스피200";
+        public const string 지수_국내_코스닥 = "지수-국내-코스닥";
+
         public const string 지수_해외_다우 = "지수-해외-다우";
         public const string 지수_해외_나스닥 = "지수-해외-나스닥";
         public const string 지수_해외_홍콩 = "지수-해외-홍콩";

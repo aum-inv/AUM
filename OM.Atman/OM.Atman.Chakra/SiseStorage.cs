@@ -29,5 +29,16 @@ namespace OM.Atman.Chakra
                 return prices;
             }
         }
+
+        private Dictionary<string, ConcurrentQueue<CurrentPrice>> pricesKr =
+           new Dictionary<string, ConcurrentQueue<CurrentPrice>>();
+
+        public Dictionary<string, ConcurrentQueue<CurrentPrice>> PricesKr
+        {
+            get
+            {
+                return pricesKr;
+            }
+        }
     }
 }
