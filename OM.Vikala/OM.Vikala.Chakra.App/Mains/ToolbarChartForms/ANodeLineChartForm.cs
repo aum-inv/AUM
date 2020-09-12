@@ -50,7 +50,7 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
         }
 
         private void InitializeControls()
-        {           
+        {
             loadChartControls();
             setTimer();
             userToolStrip.IsVisibleAlignmentButton = false;
@@ -91,7 +91,8 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
             RemoveSourceData(sourceDatas);
             //국내지수인 경우 시간갭이 크기 때문에.. 전일종가를 당일시가로 해야한다. 
 
-            var quantumDatas = PPUtils.GetANodeDatas(sourceDatas);
+            var removeGapSourceDatas = PPUtils.RemoveGapPrice(sourceDatas);
+            var quantumDatas = PPUtils.GetANodeDatas(removeGapSourceDatas);
             var plusQuantumDatas = quantumDatas.plusList;
             var minusQuantumDatas = quantumDatas.minusList;
                       

@@ -56,6 +56,7 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
             chart.InitializeControl();
             chart.InitializeEvent(chartEvent);
             chart.DisplayPointCount = 500;
+           
 
             chart2.InitializeControl();
             chart2.InitializeEvent(chartEvent);

@@ -76,9 +76,10 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
 
             var averageDatas1 = PPUtils.GetBalancedAverageDatas(itemCode, sourceDatas, 4);
 
-            PPUtils.RemoveGapPrice(sourceDatas);    
+            //국내지수인 경우 시간갭이 크기 때문에.. 전일종가를 당일시가로 해야한다. 
+            var removeGapSourceDatas = PPUtils.RemoveGapPrice(sourceDatas);
 
-            var averageDatas2 = PPUtils.GetBalancedAverageDatas(itemCode, sourceDatas, 4);
+            var averageDatas2 = PPUtils.GetBalancedAverageDatas(itemCode, removeGapSourceDatas, 4);
             
             chart1.LoadDataAndApply(itemCode, averageDatas1, averageDatas1, timeInterval, 5);
 

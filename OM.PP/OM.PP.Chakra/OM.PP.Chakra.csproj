@@ -55,6 +55,7 @@
     <Compile Include="Api\Api_WorldFutureTrade.cs" />
     <Compile Include="Api\BaseTradeApi.cs" />
     <Compile Include="A_CLOSE.cs" />
+    <Compile Include="WisdomCandleData.cs" />
     <Compile Include="SmartCandleData.cs" />
     <Compile Include="A_HMML.cs" />
     <Compile Include="Config\AccountInfo.cs" />

@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -209,14 +210,31 @@ namespace OM.Vikala.Chakra.App.Mains
             Bitmap bmp = new Bitmap(pnlContent.Width, pnlContent.Height);
             pnlContent.DrawToBitmap(bmp, new Rectangle(0, 0, pnlContent.Width, pnlContent.Height));
 
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif";
-            saveFileDialog1.Title = "Save an Image File";
-            saveFileDialog1.ShowDialog();
-
-            if (saveFileDialog1.FileName != "")
+            if (sender.ToString().Equals("Draw"))
             {
-                bmp.Save(saveFileDialog1.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                var df = new MainDrawForm(bmp);
+                df.Width = pnlContent.Width + 5;
+                df.Height = pnlContent.Height + 30;
+                df.Text = this.Text + "(EDIT IMAGE)";
+                df.Show();
+            }
+            else
+            {
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                saveFileDialog1.Filter = "JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif";
+                saveFileDialog1.Title = "Save an Image File";
+                saveFileDialog1.ShowDialog();
+
+                if (saveFileDialog1.FileName != "")
+                {
+                    bmp.Save(saveFileDialog1.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+                    var filePath = saveFileDialog1.FileName;
+
+                    ProcessStartInfo startInfo = new ProcessStartInfo(filePath);
+                    startInfo.Verb = "edit";
+                    Process.Start(startInfo);
+                }
             }
         }
 

@@ -17,6 +17,7 @@ namespace OM.Vikala.Chakra.App.Mains
    
     public partial class MainToolBar : Form
     {
+        public string Direction { get; set; } = "Left";
         public MainToolBar()
         {
             InitializeComponent();
@@ -42,7 +43,9 @@ namespace OM.Vikala.Chakra.App.Mains
         }
 
         private void dockWindow(string direction)
-        {           
+        {
+            Direction = direction;
+
             var workingArea = Screen.FromHandle(Handle).WorkingArea;
             int minHW = 35;
             if (direction == "Left")
@@ -132,94 +135,86 @@ namespace OM.Vikala.Chakra.App.Mains
         }
 
 
-        private void tsb_SY_3_Click(object sender, EventArgs e)
+        private void tsb_SYN_Click(object sender, EventArgs e)
         {
+            List<Form> forms = new List<Form>();
             var f = new ToolbarChartForms.MovingAverageDurationChartForm(true, 3);
-            f.Text = "ATMAN INV. F MOVING AVERAGE DURATION CHART";
-            f.Show();
+            f.Text = "ATMAN INV. F MOVING AVERAGE DURATION(TRUE, 3) CHART";
+            forms.Add(f);
+            f = new ToolbarChartForms.MovingAverageDurationChartForm(true, 2);
+            f.Text = "ATMAN INV. F MOVING AVERAGE DURATION(TRUE, 2) CHART";
+            forms.Add(f);
+            f = new ToolbarChartForms.MovingAverageDurationChartForm(false, 3);
+            f.Text = "ATMAN INV. F MOVING AVERAGE DURATION(FALSE, 3) CHART";
+            forms.Add(f);
+            f = new ToolbarChartForms.MovingAverageDurationChartForm(false, 2);
+            f.Text = "ATMAN INV. F MOVING AVERAGE DURATION(FALSE, 2) CHART";
+            forms.Add(f);
+
+            foreach (var w in forms) w.Show();
+            arrangeForms(forms, 2, 2);
+            
         }
 
-        private void tsb_SY_2_Click(object sender, EventArgs e)
+        private void tsb_MA_Click(object sender, EventArgs e)
         {
-            var f = new ToolbarChartForms.MovingAverageDurationChartForm(true, 2);
-            f.Text = "ATMAN INV. F MOVING AVERAGE DURATION CHART";
-            f.Show();
+            List<Form> forms = new List<Form>();
+            var f1 = new ToolbarChartForms.MovingAverageFlowChartForm(Lib.Base.Enums.TimeIntervalEnum.Minute_10);
+            f1.Text = "ATMAN INV. F MOVING AVERAGE FLOW(M) CHART";            
+            forms.Add(f1);
+
+            var f2 = new ToolbarChartForms.MovingAverageFlowChartForm(Lib.Base.Enums.TimeIntervalEnum.Hour_01);
+            f2.Text = "ATMAN INV. F MOVING AVERAGE FLOW(H) CHART";
+            forms.Add(f2);
+           
+            var f3 = new ToolbarChartForms.MovingAverageFlowChartForm(Lib.Base.Enums.TimeIntervalEnum.Day);
+            f3.Text = "ATMAN INV. F MOVING AVERAGE FLOW(D) CHART";
+            forms.Add(f3);
+
+            foreach (var f in forms) f.Show();
+            arrangeForms(forms, 3, 1);            
         }
 
-        private void tsb_SN_3_Click(object sender, EventArgs e)
+        private void arrangeForms(List<Form> forms, int cols, int rows, int padLeft = 0, int padTop = 0, int padRight = 0, int padBottom = 0)
         {
-            var f = new ToolbarChartForms.MovingAverageDurationChartForm(false, 3);
-            f.Text = "ATMAN INV. F MOVING AVERAGE DURATION CHART";
-            f.Show();
+            if (forms.Count == 0) return;
+
+            if (Direction == "Left") padLeft = this.Width;
+            if (Direction == "Right") padRight = this.Width;
+            if (Direction == "Top") padTop = this.Height;
+            if (Direction == "Bottom") padBottom = this.Height;
+
+            int screen_top = Screen.PrimaryScreen.WorkingArea.Top + padTop;
+            int screen_left = Screen.PrimaryScreen.WorkingArea.Left + padLeft;
+            int screen_width = Screen.PrimaryScreen.WorkingArea.Width - padRight;
+            int screen_height = Screen.PrimaryScreen.WorkingArea.Height - padBottom;
+                        
+            int window_width = (int)(screen_width / cols);
+            int window_height = (int)(screen_height / rows);
+
+            // Position the windows.
+            int window_num = 0;
+            int y = screen_top;
+            for (int row = 0; row < rows; row++)
+            {
+                int x = screen_left;
+                for (int col = 0; col < cols; col++, window_num++)
+                {
+                    var form = forms[window_num];
+                    form.WindowState = FormWindowState.Normal;
+
+                    if (window_num >= forms.Count)
+                    {
+                        form.WindowState = FormWindowState.Minimized;                       
+                        continue;
+                    }
+                    form.Size = new Size(window_width, window_height);
+                    form.Location = new Point(x, y);
+                    x += window_width;
+                }
+                y += window_height;
+            }
         }
-
-        private void tsb_SN_2_Click(object sender, EventArgs e)
-        {
-            var f = new ToolbarChartForms.MovingAverageDurationChartForm(false, 2);
-            f.Text = "ATMAN INV. F MOVING AVERAGE DURATION CHART";
-            f.Show();
-        }
-
-        private void tsb_MA1_Click(object sender, EventArgs e)
-        {
-            var f = new ToolbarChartForms.MovingAverageFlowChartForm(Lib.Base.Enums.TimeIntervalEnum.Minute_10);
-            f.Text = "ATMAN INV. F MOVING AVERAGE FLOW(M) CHART";
-            f.Show();
-        }
-
-        private void tsb_MA2_Click(object sender, EventArgs e)
-        {
-            var f = new ToolbarChartForms.MovingAverageFlowChartForm(Lib.Base.Enums.TimeIntervalEnum.Hour_01);
-            f.Text = "ATMAN INV. F MOVING AVERAGE FLOW(H) CHART";
-            f.Show();
-        }
-
-        private void tsb_MA3_Click(object sender, EventArgs e)
-        {
-            var f = new ToolbarChartForms.MovingAverageFlowChartForm(Lib.Base.Enums.TimeIntervalEnum.Day);
-            f.Text = "ATMAN INV. F MOVING AVERAGE FLOW(D) CHART";
-            f.Show();
-        }
-
-        //List<Form> lstWindows = new List<Form>();
-        //private void tsbArrange_Click(object sender, EventArgs e)
-        //{
-        //    if (lstWindows.Count == 0) return;
-
-        //    int rows = 2;
-        //    int cols = 2;
-        //    // Get the form's location and dimensions.
-        //    int screen_top = Screen.PrimaryScreen.WorkingArea.Top;
-        //    int screen_left = Screen.PrimaryScreen.WorkingArea.Left;
-        //    int screen_width = Screen.PrimaryScreen.WorkingArea.Width;
-        //    int screen_height = Screen.PrimaryScreen.WorkingArea.Height;
-
-        //    // See how big the windows should be.
-        //    int window_width = (int)(screen_width / cols);
-        //    int window_height = (int)(screen_height / rows);
-
-        //    // Position the windows.
-        //    int window_num = 0;
-        //    int y = screen_top;
-        //    for (int row = 0; row < rows; row++)
-        //    {
-        //        int x = screen_left;
-        //        for (int col = 0; col < cols; col++, window_num++)
-        //        {
-        //            var form = lstWindows[window_num];
-
-        //            if (window_num >= lstWindows.Count)
-        //            {
-        //                form.WindowState = FormWindowState.Minimized;
-        //                continue;
-        //            }
-        //            form.Size = new Size(window_width, window_height);
-        //            form.Location = new Point(x, y);
-        //            x += window_width;
-        //        }
-        //        y += window_height;
-        //    }
-        //}
 
         //private void tsb_Minimize_Click(object sender, EventArgs e)
         //{

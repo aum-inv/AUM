@@ -69,12 +69,13 @@ namespace OM.Vikala.Controls.Charts
             {
                 var item = ChartData[i];
                 int idx = chart.Series[0].Points.AddXY(item.DTime, item.HighPrice, item.LowPrice, item.OpenPrice, item.ClosePrice);
-                string diceChar = getDiceChar(item);
 
-                item = ChartDataSub[i];
+
+                item = ChartDataSub[i]; 
+                string diceChar = getDiceChar(item);
+                chart.Series[0].Points[idx].Label = diceChar;
                 chart.Series[1].Points.AddXY(item.DTime, item.T_MassAvg);
-                chart.Series[2].Points.AddXY(item.DTime, item.T_QuantumAvg);
-                chart.Series[0].Points[idx].Label = diceChar;         
+                chart.Series[2].Points.AddXY(item.DTime, item.T_QuantumAvg);                     
                 chart.Series[3].Points.AddXY(item.DTime, 0);
                
                 if (bItem != null)
@@ -232,8 +233,8 @@ namespace OM.Vikala.Controls.Charts
                 if (maxPrice < maxPrice2) maxPrice = maxPrice2;
                 if (minPrice > minPrice2) minPrice = minPrice2;
 
-                maxPrice = maxPrice + SpaceMaxMin;
-                minPrice = minPrice - SpaceMaxMin;
+                maxPrice = maxPrice + SpaceMaxMin + SpaceMaxMin;
+                minPrice = minPrice - SpaceMaxMin - SpaceMaxMin;
                 chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
                 chart.ChartAreas[0].AxisY2.Minimum = minPrice;
                 chart.ChartAreas[0].AxisX.Maximum = maxDisplayIndex + 1;

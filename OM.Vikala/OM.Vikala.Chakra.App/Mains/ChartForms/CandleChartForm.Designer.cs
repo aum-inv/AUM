@@ -74,7 +74,7 @@
             this.chart2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chart2.IsAutoScrollX = true;
             this.chart2.IsLoaded = false;
-            this.chart2.IsShowEightRule = true;
+            this.chart2.IsShowCandlePriceInfo = true;
             this.chart2.IsShowXLine = false;
             this.chart2.ItemCode = "";
             this.chart2.LineChartType = OM.Vikala.Controls.Charts.LineChartTypeEnum.기본;
@@ -96,7 +96,7 @@
             this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chart.IsAutoScrollX = true;
             this.chart.IsLoaded = false;
-            this.chart.IsShowEightRule = true;
+            this.chart.IsShowCandlePriceInfo = true;
             this.chart.IsShowXLine = true;
             this.chart.ItemCode = "";
             this.chart.LineChartType = OM.Vikala.Controls.Charts.LineChartTypeEnum.기본;

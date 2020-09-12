@@ -81,8 +81,8 @@ namespace OM.Vikala.Controls.Charts
 
                 item = ChartDataSub[i];
                 chart.Series[1].Points.AddXY(item.DTime, item.U_HighAvg);
-                chart.Series[2].Points.AddXY(item.DTime, item.U_LowAvg);
-                chart.Series[3].Points.AddXY(item.DTime, item.D_HighAvg);
+                chart.Series[2].Points.AddXY(item.DTime, item.D_HighAvg);
+                chart.Series[3].Points.AddXY(item.DTime, item.U_LowAvg);
                 chart.Series[4].Points.AddXY(item.DTime, item.D_LowAvg);
             }
 

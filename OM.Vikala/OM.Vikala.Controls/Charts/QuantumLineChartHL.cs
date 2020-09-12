@@ -32,11 +32,11 @@ namespace OM.Vikala.Controls.Charts
         {
             get
             {
-                return chart.Series[5].Enabled;
+                return chart.Series[3].Enabled;
             }
             set
             {
-                chart.Series[5].Enabled = value;
+                chart.Series[3].Enabled = value;
             }
         }
 
@@ -101,28 +101,23 @@ namespace OM.Vikala.Controls.Charts
                 int idx = chart.Series[0].Points.AddXY(item.DTime, item.HighPrice, item.LowPrice, item.OpenPrice, item.ClosePrice);
 
                 item = ChartDataSub[i];
-                chart.Series[1].Points.AddXY(item.DTime, item.T_VikalaHighAvg);
-                chart.Series[2].Points.AddXY(item.DTime, item.T_HighAvg);
-                chart.Series[3].Points.AddXY(item.DTime, item.T_QuantumHighAvg);
-
-                chart.Series[4].Points.AddXY(item.DTime, item.T_VikalaLowAvg);
-                chart.Series[5].Points.AddXY(item.DTime, item.T_LowAvg);
-                chart.Series[6].Points.AddXY(item.DTime, item.T_QuantumLowAvg);
-
+                chart.Series[1].Points.AddXY(item.DTime, item.T_QuantumHighAvg);
+                chart.Series[2].Points.AddXY(item.DTime, item.T_QuantumLowAvg);       
+                
                 int d = PriceTick.GetTickDiff(ItemCode, item.MassPrice, item.TotalCenterPrice);
-                chart.Series[7].Points.AddXY(item.DTime, d);             
+                chart.Series[3].Points.AddXY(item.DTime, d);             
                 
                 if (bDistance != -1)
                 {
-                    if (d > bDistance) chart.Series[7].Points[idx].Color = Color.DarkRed;
-                    else chart.Series[7].Points[idx].Color = Color.DarkBlue;
+                    if (d > bDistance) chart.Series[3].Points[idx].Color = Color.DarkRed;
+                    else chart.Series[3].Points[idx].Color = Color.DarkBlue;
 
                 }
 
                 if (d == 0)
                 {
                     if(item.T_HighAvg < item.LowPrice || item.T_LowAvg > item.HighPrice)
-                        chart.Series[7].Points[idx].Label = "↑";
+                        chart.Series[3].Points[idx].Label = "↑";
                 }
                 bDistance = d;
                 

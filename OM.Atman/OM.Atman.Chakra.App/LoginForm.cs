@@ -31,7 +31,8 @@ namespace OM.Atman.Chakra.App
                 else if (chkSignalMatching.Checked) ShareConfig.LaunchFormType = 2;
                 else if (chkSignalComplication.Checked) ShareConfig.LaunchFormType = 3;
                 else if (chkDiary.Checked) ShareConfig.LaunchFormType = 4;
-                else if (chkRealBoard.Checked) ShareConfig.LaunchFormType = 9;
+                else if (chkRealBoard.Checked) ShareConfig.LaunchFormType = 8;
+                else if (chkCalculator.Checked) ShareConfig.LaunchFormType = 9;
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 this.Close();
             }

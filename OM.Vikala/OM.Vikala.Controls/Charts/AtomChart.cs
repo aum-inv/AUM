@@ -83,13 +83,17 @@ namespace OM.Vikala.Controls.Charts
                 var item = ChartData[i];
              
                 int idx = chart.Series[0].Points.AddXY(item.DTime, item.HighPrice, item.LowPrice, item.OpenPrice, item.ClosePrice);
-
+                chart.Series[1].Points.AddXY(item.DTime, item.VikalaPrice, item.VikalaPrice, item.ClosePrice, item.VikalaPrice);
+                chart.Series[2].Points.AddXY(item.DTime, item.QuantumPrice, item.QuantumPrice, item.OpenPrice, item.QuantumPrice);
+                
                 item = ChartDataSub[i];
-                chart.Series[1].Points.AddXY(item.DTime, item.LowPrice, item.LowPrice, item.LowPrice, item.LowPrice);
-                chart.Series[2].Points.AddXY(item.DTime, item.HighPrice, item.HighPrice, item.HighPrice, item.HighPrice);
-                chart.Series[3].Points.AddXY(item.DTime, item.T_MassAvg);
-                chart.Series[4].Points.AddXY(item.DTime, item.T_QuantumAvg);
+                //빨강
+                chart.Series[3].Points.AddXY(item.DTime, item.T_QuantumAvg);
+                //주황
+                chart.Series[4].Points.AddXY(item.DTime, item.T_MassAvg);
+                //파랑
                 chart.Series[5].Points.AddXY(item.DTime, item.T_VikalaAvg);
+                //검정
                 chart.Series[6].Points.AddXY(item.DTime, item.T_Avg);
 
                 var dataPoint = chart.Series[1].Points[idx];
@@ -134,7 +138,7 @@ namespace OM.Vikala.Controls.Charts
                     }
 
                     if (bitem.PlusMinusType == PlusMinusTypeEnum.양 && isUpPosition && isUpPosition2)
-                    {
+                    {                       
                         bool isFirst = false;
                         bool isSecond = false;
                         if (bitem.QuantumPrice > item.ClosePrice)
@@ -281,10 +285,10 @@ namespace OM.Vikala.Controls.Charts
             {                
                 double maxPrice1 = viewLists.Max(m => m.HighPrice);
                 double minPrice1 = viewLists.Min(m => m.LowPrice);
-                double maxPrice2 = viewLists.Max(m => m.QuantumHighPrice);
-                double minPrice2 = viewLists.Min(m => m.QuantumLowPrice);
-                double maxPrice3 = viewLists.Max(m => m.VikalaHighPrice);
-                double minPrice3 = viewLists.Min(m => m.VikalaLowPrice);
+                double maxPrice2 = viewLists.Max(m => m.HighPrice);
+                double minPrice2 = viewLists.Min(m => m.LowPrice);
+                double maxPrice3 = viewLists.Max(m => m.HighPrice);
+                double minPrice3 = viewLists.Min(m => m.LowPrice);
 
                 double maxPrice = maxPrice1 > maxPrice2 ? maxPrice1 : maxPrice2;
                 double minPrice = minPrice1 < minPrice2 ? minPrice1 : minPrice2;

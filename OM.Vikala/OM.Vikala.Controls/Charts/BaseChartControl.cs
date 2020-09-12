@@ -3,6 +3,7 @@ using OM.PP.Chakra;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,8 +43,8 @@ namespace OM.Vikala.Controls.Charts
             {
                 int round = ItemCodeSet.GetItemRoundNum(ItemCode);
 
-                if (ItemCode == "101" || ItemCode == "301")
-                    round = 0;
+                if (ItemCode == "001" || ItemCode == "101" || ItemCode == "301")
+                    round = 2;
 
                 if (round == 0) return 1;
                 else if (round == 1) return 0.5;
@@ -108,6 +109,11 @@ namespace OM.Vikala.Controls.Charts
             set;
         } = true;
 
+        public virtual bool IsEnabledDrawLine
+        {
+            get;
+            set;
+        } = true;
         public virtual Lib.Base.Enums.TimeIntervalEnum TimeInterval
         {
             get;
@@ -154,7 +160,7 @@ namespace OM.Vikala.Controls.Charts
             this.chart = chart;
             this.hScrollBar = hScrollBar;
             this.trackBar = trackBar;
-        }               
+        }
 
         public virtual void InitializeControl()
         {
@@ -203,7 +209,7 @@ namespace OM.Vikala.Controls.Charts
             chartArea.CursorX.LineColor = System.Drawing.Color.Black;
             chartArea.CursorY.AxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             chartArea.CursorY.LineColor = System.Drawing.Color.Black;
-            
+
             //chartArea.AxisX.IsLabelAutoFit = true;
             //chartArea.AxisX.LabelStyle.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             //chartArea.AxisX.LabelStyle.IsEndLabelVisible = true;
@@ -237,10 +243,9 @@ namespace OM.Vikala.Controls.Charts
 
             if (IsShowXLine) createXYLineAnnotation();
             if (IsShowYLine) createYXLineAnnotation();
+          
             chart.MouseClick += Chart_MouseClick;
-            
-        }
-
+        }  
         private void Chart_MouseClick(object sender, MouseEventArgs e)
         {            
         }
@@ -470,7 +475,7 @@ namespace OM.Vikala.Controls.Charts
         }
         public void Chart_MouseDown(object sender, MouseEventArgs e)
         {
-            chart.Annotations.Clear();
+            //chart.Annotations.Clear();
         }
 
         protected void createXYLineAnnotation()

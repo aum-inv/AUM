@@ -53,6 +53,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CAnnotations\CLineAnnotation.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Charts\ANodeLineChart.cs">
       <SubType>UserControl</SubType>
     </Compile>

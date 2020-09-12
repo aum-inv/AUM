@@ -25,12 +25,13 @@ namespace OM.Atman.Chakra.App
                 else if (ShareConfig.LaunchFormType == 2)
                     Application.Run(new AIForms.AtmanKospiAIForm());
                 else if (ShareConfig.LaunchFormType == 3)
-                    Application.Run(new TradingRule.ThreeFiveRuleForm());
+                    Application.Run(new TradingRule.ThreeFiveRuleKrForm());
                 else if (ShareConfig.LaunchFormType == 4)
                     Application.Run(new Forms.AtmanInvDiaryForm());
-
-                else if (ShareConfig.LaunchFormType == 9)
+                else if (ShareConfig.LaunchFormType == 8)
                     Application.Run(new MainForm());
+                else if (ShareConfig.LaunchFormType == 9)
+                    Application.Run(new Forms.AtmanInvCalculatorForm());
             }
 
             //Application.Run(new LoginForm());

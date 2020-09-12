@@ -121,6 +121,12 @@
     <Compile Include="Config\ShareData.cs" />
     <Compile Include="Events\SiseListSelectedEvents.cs" />
     <Compile Include="Events\InvestmentPlanSelectedEvents.cs" />
+    <Compile Include="Forms\AtmanInvCalculatorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AtmanInvCalculatorForm.Designer.cs">
+      <DependentUpon>AtmanInvCalculatorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AtmanInvDiaryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -238,6 +244,12 @@
     <Compile Include="TradeRuleForm.Designer.cs">
       <DependentUpon>TradeRuleForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TradingRule\ThreeFiveRuleKrForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TradingRule\ThreeFiveRuleKrForm.Designer.cs">
+      <DependentUpon>ThreeFiveRuleKrForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TradingRule\ThreeFiveRuleForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -249,6 +261,12 @@
     </Compile>
     <Compile Include="TwoLineRuleForm.Designer.cs">
       <DependentUpon>TwoLineRuleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uc\Calculators\Uc_QuantityCalculator.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Uc\Calculators\Uc_QuantityCalculator.Designer.cs">
+      <DependentUpon>Uc_QuantityCalculator.cs</DependentUpon>
     </Compile>
     <Compile Include="Uc\Plans\Uc_PlanBase.cs">
       <SubType>UserControl</SubType>
@@ -325,6 +343,9 @@
     <EmbeddedResource Include="CandleSignalForm.resx">
       <DependentUpon>CandleSignalForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AtmanInvCalculatorForm.resx">
+      <DependentUpon>AtmanInvCalculatorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AtmanInvDiaryForm.resx">
       <DependentUpon>AtmanInvDiaryForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -392,11 +413,17 @@
     <EmbeddedResource Include="TradeRuleForm.resx">
       <DependentUpon>TradeRuleForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TradingRule\ThreeFiveRuleKrForm.resx">
+      <DependentUpon>ThreeFiveRuleKrForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TradingRule\ThreeFiveRuleForm.resx">
       <DependentUpon>ThreeFiveRuleForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TwoLineRuleForm.resx">
       <DependentUpon>TwoLineRuleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uc\Calculators\Uc_QuantityCalculator.resx">
+      <DependentUpon>Uc_QuantityCalculator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Uc\Plans\Uc_RevenuePlan.resx">
       <DependentUpon>Uc_RevenuePlan.cs</DependentUpon>

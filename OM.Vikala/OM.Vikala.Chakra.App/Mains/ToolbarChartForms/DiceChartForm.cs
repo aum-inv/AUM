@@ -64,9 +64,10 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
 
             //표시할 갯수를 맞춘다.
             RemoveSourceData(sourceDatas);
-
-            //var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas, 9);           
-            var averageDatas = PPUtils.GetBalancedAverageDatas(itemCode, sourceDatas, 4);
+            //국내지수인 경우 시간갭이 크기 때문에.. 전일종가를 당일시가로 해야한다. 
+            var removeGapSourceDatas = PPUtils.RemoveGapPrice(sourceDatas);
+         
+            var averageDatas = PPUtils.GetBalancedAverageDatas(itemCode, removeGapSourceDatas, 4);
             sourceDatas = PPUtils.GetCutDatas(sourceDatas, averageDatas[0].DTime);
             chart.LoadDataAndApply(itemCode, sourceDatas, averageDatas, base.timeInterval, 9);          
         }

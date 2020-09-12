@@ -59,7 +59,8 @@ namespace OM.PP.XingApp
             this.tbSecurity.CustomButton.UseSelectable = true;
             this.tbSecurity.CustomButton.Visible = false;
             this.tbSecurity.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.tbSecurity.Lines = new string[0];
+            this.tbSecurity.Lines = new string[] {
+        "atman999"};
             this.tbSecurity.Location = new System.Drawing.Point(22, 183);
             this.tbSecurity.MaxLength = 32767;
             this.tbSecurity.Multiline = true;
@@ -72,6 +73,7 @@ namespace OM.PP.XingApp
             this.tbSecurity.ShortcutsEnabled = true;
             this.tbSecurity.Size = new System.Drawing.Size(141, 21);
             this.tbSecurity.TabIndex = 4;
+            this.tbSecurity.Text = "atman999";
             this.tbSecurity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbSecurity.UseSelectable = true;
             this.tbSecurity.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -114,7 +116,8 @@ namespace OM.PP.XingApp
             this.tbID.CustomButton.UseSelectable = true;
             this.tbID.CustomButton.Visible = false;
             this.tbID.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.tbID.Lines = new string[0];
+            this.tbID.Lines = new string[] {
+        "ljhhh76"};
             this.tbID.Location = new System.Drawing.Point(115, 70);
             this.tbID.MaxLength = 32767;
             this.tbID.Name = "tbID";
@@ -126,6 +129,7 @@ namespace OM.PP.XingApp
             this.tbID.ShortcutsEnabled = true;
             this.tbID.Size = new System.Drawing.Size(141, 21);
             this.tbID.TabIndex = 1;
+            this.tbID.Text = "ljhhh76";
             this.tbID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbID.UseSelectable = true;
             this.tbID.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -146,7 +150,8 @@ namespace OM.PP.XingApp
             this.tbPassword.CustomButton.UseSelectable = true;
             this.tbPassword.CustomButton.Visible = false;
             this.tbPassword.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.tbPassword.Lines = new string[0];
+            this.tbPassword.Lines = new string[] {
+        "wogjsl7^"};
             this.tbPassword.Location = new System.Drawing.Point(115, 97);
             this.tbPassword.MaxLength = 32767;
             this.tbPassword.Name = "tbPassword";
@@ -158,6 +163,7 @@ namespace OM.PP.XingApp
             this.tbPassword.ShortcutsEnabled = true;
             this.tbPassword.Size = new System.Drawing.Size(141, 21);
             this.tbPassword.TabIndex = 2;
+            this.tbPassword.Text = "wogjsl7^";
             this.tbPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbPassword.UseSelectable = true;
             this.tbPassword.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -188,7 +194,8 @@ namespace OM.PP.XingApp
             this.tbAuth.CustomButton.UseSelectable = true;
             this.tbAuth.CustomButton.Visible = false;
             this.tbAuth.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.tbAuth.Lines = new string[0];
+            this.tbAuth.Lines = new string[] {
+        "ijh0707888*"};
             this.tbAuth.Location = new System.Drawing.Point(115, 124);
             this.tbAuth.MaxLength = 32767;
             this.tbAuth.Name = "tbAuth";
@@ -200,6 +207,7 @@ namespace OM.PP.XingApp
             this.tbAuth.ShortcutsEnabled = true;
             this.tbAuth.Size = new System.Drawing.Size(141, 21);
             this.tbAuth.TabIndex = 3;
+            this.tbAuth.Text = "ijh0707888*";
             this.tbAuth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbAuth.UseSelectable = true;
             this.tbAuth.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));

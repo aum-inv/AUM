@@ -1430,8 +1430,10 @@ namespace OM.PP.Chakra
         #endregion
 
         #region Gap
-        public static void RemoveGapPrice(List<S_CandleItemData> sourceDatas)
+        public static List<S_CandleItemData> RemoveGapPrice(List<S_CandleItemData> sourceDatas)
         {
+            List<S_CandleItemData> list = new List<S_CandleItemData>();
+
             S_CandleItemData preData = null;
             foreach (var data in sourceDatas)
             {
@@ -1440,12 +1442,18 @@ namespace OM.PP.Chakra
                     preData = data;
                     continue;
                 }
-                data.OpenPrice = preData.ClosePrice;
-                if (preData.ClosePrice > data.HighPrice) data.HighPrice = preData.ClosePrice;
-                if (preData.ClosePrice < data.LowPrice) data.LowPrice = preData.ClosePrice;
+                var open = preData.ClosePrice;
 
+                var high = (preData.ClosePrice > data.HighPrice) ? preData.ClosePrice : data.HighPrice;
+                var low = (preData.ClosePrice < data.LowPrice) ?  preData.ClosePrice : data.LowPrice;
+                var close = data.ClosePrice;
+
+                list.Add(new S_CandleItemData(data.ItemCode, open, high, low, close, data.Volume, data.DTime));
+            
                 preData = data;
             }
+
+            return list;
         }
         #endregion
         #region ETC

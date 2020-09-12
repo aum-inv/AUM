@@ -200,6 +200,12 @@
     <Compile Include="Mains\ChartForms\CandleChartForm.Designer.cs">
       <DependentUpon>CandleChartForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mains\MainDrawForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mains\MainDrawForm.Designer.cs">
+      <DependentUpon>MainDrawForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mains\MainToolBar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -406,6 +412,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mains\ChartForms\CandleChartForm.resx">
       <DependentUpon>CandleChartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mains\MainDrawForm.resx">
+      <DependentUpon>MainDrawForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mains\MainToolBar.resx">
       <DependentUpon>MainToolBar.cs</DependentUpon>

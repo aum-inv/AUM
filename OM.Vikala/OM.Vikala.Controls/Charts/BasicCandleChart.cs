@@ -33,7 +33,7 @@ namespace OM.Vikala.Controls.Charts
             get;
             set;
         }
-        public bool IsShowEightRule
+        public bool IsShowCandlePriceInfo
         {
             get;
             set;
@@ -221,19 +221,19 @@ namespace OM.Vikala.Controls.Charts
 
         private void chart_MouseClick(object sender, MouseEventArgs e)
         {
+            
             candlePriceInfo1.Visible = false;
             HitTestResult result = chart.HitTest(e.X, e.Y);
            
-            if (result.ChartElementType == ChartElementType.DataPoint && result.Series == chart.Series[0])
+            if (IsShowCandlePriceInfo && result.ChartElementType == ChartElementType.DataPoint && result.Series == chart.Series[0])
             {
-                
                 A_HLOC hloc = ChartData[result.PointIndex];
                 candlePriceInfo1.Location = new Point(e.X - 230, candlePriceInfo1.Location.Y);
                 candlePriceInfo1.Bind(hloc);
 
                 candlePriceInfo1.Visible = true;
             }            
-               }
+        }
 
         private void addImageAnnotation(DataPoint point)
         {

@@ -24,7 +24,7 @@ namespace OM.Vikala.Chakra.App.Mains
         public event EventHandler AutoReloadChangedEvent;
         public event EventHandler ReloadEvent;
         public event EventHandler ItemCountChangedEvent;
-        public event EventHandler ScreenCaptureEvent;
+        public event EventHandler ScreenCaptureEvent;     
         public event EventHandler MdiChangedEvent;
         public event EventHandler TableViewChangedEvent;
         public event EventHandler LineChartWidthChangedEvent;
@@ -285,7 +285,12 @@ namespace OM.Vikala.Chakra.App.Mains
         private void tsbPrint_Click(object sender, EventArgs e)
         {
             if (ScreenCaptureEvent != null)
-                ScreenCaptureEvent(sender, e);
+                ScreenCaptureEvent("Save", e);
+        }
+        private void tsbDraw_Click(object sender, EventArgs e)
+        {
+            if (ScreenCaptureEvent != null)
+                ScreenCaptureEvent("Draw", e);
         }
 
         private void tsbMdiOut_Click(object sender, EventArgs e)
@@ -345,6 +350,8 @@ namespace OM.Vikala.Chakra.App.Mains
             if (LineChartWidthChangedEvent != null)
                 LineChartWidthChangedEvent("-", e);
         }
+
+        
     }
 
     public enum FlowDirectionTypeEnum

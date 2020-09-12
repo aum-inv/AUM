@@ -79,8 +79,8 @@ namespace OM.Vikala.Controls.Charts
                 item = ChartDataSub[i];
                 chart.Series[1].Points.AddXY(item.DTime, item.T_HighPrice); //red
                 chart.Series[2].Points.AddXY(item.DTime, item.T_LowPrice); //low
-                chart.Series[3].Points.AddXY(item.DTime, item.T_OpenPrice); //gold
-                chart.Series[4].Points.AddXY(item.DTime, item.T_ClosePrice); //black
+                //chart.Series[3].Points.AddXY(item.DTime, item.T_OpenPrice); //gold
+                //chart.Series[4].Points.AddXY(item.DTime, item.T_ClosePrice); //black
             }
 
             //double maxPrice = ChartData.Max(m => m.HighPrice);
