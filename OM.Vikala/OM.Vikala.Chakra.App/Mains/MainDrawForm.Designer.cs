@@ -46,6 +46,18 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsddb_DashStyle = new System.Windows.Forms.ToolStripDropDownButton();
+            this.solidToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.dottedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dashDotDotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsddb_WidthStyle = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlContent = new System.Windows.Forms.Panel();
             this.picCanvas = new System.Windows.Forms.PictureBox();
             this.toolStrip1.SuspendLayout();
@@ -72,7 +84,10 @@
             this.toolStripSeparator4,
             this.toolStripButton1,
             this.toolStripButton7,
-            this.toolStripButton3});
+            this.toolStripButton3,
+            this.toolStripSeparator3,
+            this.tsddb_DashStyle,
+            this.tsddb_WidthStyle});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1182, 33);
@@ -244,6 +259,111 @@
             this.toolStripButton3.Text = "Remove ALL";
             this.toolStripButton3.Click += new System.EventHandler(this.tsb_Remove_Click);
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 33);
+            // 
+            // tsddb_DashStyle
+            // 
+            this.tsddb_DashStyle.AutoSize = false;
+            this.tsddb_DashStyle.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsddb_DashStyle.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.solidToolStripMenuItem,
+            this.toolStripMenuItem4,
+            this.dottedToolStripMenuItem,
+            this.dashDotDotToolStripMenuItem});
+            this.tsddb_DashStyle.Image = ((System.Drawing.Image)(resources.GetObject("tsddb_DashStyle.Image")));
+            this.tsddb_DashStyle.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsddb_DashStyle.Name = "tsddb_DashStyle";
+            this.tsddb_DashStyle.Size = new System.Drawing.Size(81, 30);
+            this.tsddb_DashStyle.Text = "DashStyle";
+            this.tsddb_DashStyle.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            // 
+            // solidToolStripMenuItem
+            // 
+            this.solidToolStripMenuItem.Checked = true;
+            this.solidToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.solidToolStripMenuItem.Name = "solidToolStripMenuItem";
+            this.solidToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.solidToolStripMenuItem.Text = "Solid";
+            this.solidToolStripMenuItem.Click += new System.EventHandler(this.DashStyle_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem4.Text = "Dash";
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.DashStyle_Click);
+            // 
+            // dottedToolStripMenuItem
+            // 
+            this.dottedToolStripMenuItem.Name = "dottedToolStripMenuItem";
+            this.dottedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dottedToolStripMenuItem.Text = "Dot";
+            this.dottedToolStripMenuItem.Click += new System.EventHandler(this.DashStyle_Click);
+            // 
+            // dashDotDotToolStripMenuItem
+            // 
+            this.dashDotDotToolStripMenuItem.Name = "dashDotDotToolStripMenuItem";
+            this.dashDotDotToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dashDotDotToolStripMenuItem.Text = "DashDot";
+            this.dashDotDotToolStripMenuItem.Click += new System.EventHandler(this.DashStyle_Click);
+            // 
+            // tsddb_WidthStyle
+            // 
+            this.tsddb_WidthStyle.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsddb_WidthStyle.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem3,
+            this.toolStripMenuItem5,
+            this.toolStripMenuItem6,
+            this.toolStripMenuItem7});
+            this.tsddb_WidthStyle.Image = ((System.Drawing.Image)(resources.GetObject("tsddb_WidthStyle.Image")));
+            this.tsddb_WidthStyle.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsddb_WidthStyle.Name = "tsddb_WidthStyle";
+            this.tsddb_WidthStyle.Size = new System.Drawing.Size(78, 30);
+            this.tsddb_WidthStyle.Text = "WidthStyle";
+            this.tsddb_WidthStyle.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Checked = true;
+            this.toolStripMenuItem2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem2.Text = "1.0";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.WidthStyle_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.CheckOnClick = true;
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem3.Text = "1.5";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.WidthStyle_Click);
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem5.Text = "2.0";
+            this.toolStripMenuItem5.Click += new System.EventHandler(this.WidthStyle_Click);
+            // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem6.Text = "2.5";
+            this.toolStripMenuItem6.Click += new System.EventHandler(this.WidthStyle_Click);
+            // 
+            // toolStripMenuItem7
+            // 
+            this.toolStripMenuItem7.Name = "toolStripMenuItem7";
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem7.Text = "3.0";
+            this.toolStripMenuItem7.Click += new System.EventHandler(this.WidthStyle_Click);
+            // 
             // pnlContent
             // 
             this.pnlContent.Controls.Add(this.picCanvas);
@@ -311,5 +431,17 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripButton toolStripButton7;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripDropDownButton tsddb_DashStyle;
+        private System.Windows.Forms.ToolStripMenuItem solidToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dottedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripDropDownButton tsddb_WidthStyle;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem dashDotDotToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
     }
 }

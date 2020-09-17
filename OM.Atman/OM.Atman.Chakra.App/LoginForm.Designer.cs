@@ -40,6 +40,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.chkRealBoard = new MetroFramework.Controls.MetroRadioButton();
             this.chkCalculator = new MetroFramework.Controls.MetroRadioButton();
+            this.chkTechnicalCalculator = new MetroFramework.Controls.MetroRadioButton();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label5
@@ -66,7 +68,7 @@
             // 
             this.button1.AutoSize = true;
             this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.Location = new System.Drawing.Point(176, 321);
+            this.button1.Location = new System.Drawing.Point(181, 344);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(71, 23);
             this.button1.TabIndex = 20;
@@ -91,7 +93,7 @@
             this.tbSecurity.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.tbSecurity.Lines = new string[] {
         "atman999"};
-            this.tbSecurity.Location = new System.Drawing.Point(13, 321);
+            this.tbSecurity.Location = new System.Drawing.Point(18, 344);
             this.tbSecurity.MaxLength = 32767;
             this.tbSecurity.Name = "tbSecurity";
             this.tbSecurity.PasswordChar = '#';
@@ -216,12 +218,40 @@
             this.chkCalculator.UseCustomForeColor = true;
             this.chkCalculator.UseSelectable = true;
             // 
+            // chkTechnicalCalculator
+            // 
+            this.chkTechnicalCalculator.AutoSize = true;
+            this.chkTechnicalCalculator.BackColor = System.Drawing.Color.Black;
+            this.chkTechnicalCalculator.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
+            this.chkTechnicalCalculator.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold;
+            this.chkTechnicalCalculator.ForeColor = System.Drawing.Color.White;
+            this.chkTechnicalCalculator.Location = new System.Drawing.Point(34, 286);
+            this.chkTechnicalCalculator.Name = "chkTechnicalCalculator";
+            this.chkTechnicalCalculator.Size = new System.Drawing.Size(200, 25);
+            this.chkTechnicalCalculator.TabIndex = 38;
+            this.chkTechnicalCalculator.Text = "기술적 분석표 계산기";
+            this.chkTechnicalCalculator.UseCustomBackColor = true;
+            this.chkTechnicalCalculator.UseCustomForeColor = true;
+            this.chkTechnicalCalculator.UseSelectable = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.DarkRed;
+            this.label2.Location = new System.Drawing.Point(11, 322);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(239, 12);
+            this.label2.TabIndex = 37;
+            this.label2.Text = "---------------------------------------";
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
-            this.ClientSize = new System.Drawing.Size(269, 354);
+            this.ClientSize = new System.Drawing.Size(269, 383);
+            this.Controls.Add(this.chkTechnicalCalculator);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.chkCalculator);
             this.Controls.Add(this.chkRealBoard);
             this.Controls.Add(this.label1);
@@ -258,5 +288,7 @@
         private System.Windows.Forms.Label label1;
         private MetroFramework.Controls.MetroRadioButton chkRealBoard;
         private MetroFramework.Controls.MetroRadioButton chkCalculator;
+        private MetroFramework.Controls.MetroRadioButton chkTechnicalCalculator;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -28,6 +28,8 @@ namespace OM.Atman.Chakra.App
                     Application.Run(new TradingRule.ThreeFiveRuleKrForm());
                 else if (ShareConfig.LaunchFormType == 4)
                     Application.Run(new Forms.AtmanInvDiaryForm());
+                else if (ShareConfig.LaunchFormType == 5)
+                    Application.Run(new Forms.AtmanInvTechnicalForm());
                 else if (ShareConfig.LaunchFormType == 8)
                     Application.Run(new MainForm());
                 else if (ShareConfig.LaunchFormType == 9)

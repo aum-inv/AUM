@@ -15,84 +15,64 @@ using OM.Lib.Base.Enums;
 
 namespace OM.Vikala.Controls.Charts
 {
-    public partial class BasicCandleChart : BaseChartControl
+    public partial class WisdomCandleChart : BaseChartControl
     {
-        public override CandleChartTypeEnum CandleChartType
-        {
-            get;
-            set;
-        } = CandleChartTypeEnum.기본;
-                       
-        public List<S_CandleItemData> ChartData
+          
+        public List<WisdomCandleData> ChartData
         {
             get;
             set;
         }
-        public List<S_CandleItemData> ChartDataSub
-        {
-            get;
-            set;
-        }
-        public bool IsShowCandlePriceInfo
-        {
-            get;
-            set;
-        } = false;
+       
         public void LoadData(string itemCode = ""
-      , List<S_CandleItemData> chartData = null
-      , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day)
-        {
-            LoadData(itemCode, chartData, null, timeInterval);
-        }
-        public void LoadData(string itemCode = ""
-            , List <S_CandleItemData> chartData = null
-             , List<S_CandleItemData> chartDataSub = null
+            , List <WisdomCandleData> chartData = null
             , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day)
         {
             TimeInterval = timeInterval;
             ItemCode = itemCode;
             ChartData = chartData;
-            ChartDataSub = chartDataSub;
+
             this.Invoke(new MethodInvoker(() => {
                 Reset();
-                View();
-                //if (IsShowEightRule)
-                //    Annotation();
+                View();             
             }));
         }
         
-        public BasicCandleChart() 
+        public WisdomCandleChart() 
         {
             InitializeComponent();
             base.SetChartControl(chart, hScrollBar, trackBar);
         }
+        public override void InitializeControl()
+        {
+            base.InitializeControl();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea = chart.ChartAreas[0];
+           
+            chartArea.InnerPlotPosition.Auto = false;
+            chartArea.InnerPlotPosition.Height = 95F;
+            chartArea.InnerPlotPosition.Width = 95F;
+            chartArea.InnerPlotPosition.Y = 2F;
+            chartArea.InnerPlotPosition.X = 2F;
+            chartArea.Name = "chartArea";
+
+            chartArea.Position.Auto = false;
+            chartArea.Position.Height = 96F;
+            chartArea.Position.Width = 99F;
+            chartArea.Position.Y = 2F;
+            chartArea.ShadowColor = System.Drawing.Color.Transparent;
+        }
 
         public override void View()
         {
-            candlePriceInfo1.Visible = false;
             pnlScroll.Visible = IsAutoScrollX;
             if (ChartData == null) return;
             foreach (var item in ChartData)
             {
-                int idx = chart.Series[0].Points.AddXY(item.DTime, item.HighPrice, item.LowPrice, item.OpenPrice, item.ClosePrice);
+                int idx = chart.Series[0].Points.AddXY(item.DTime
+                    , item.high, item.low, item.open, item.close);
                 var dataPoint = chart.Series[0].Points[idx];
-                dataPoint.Tag = item;
-
+                dataPoint.Tag = item;                
             }
-            double maxPrice = ChartData.Max(m => m.HighPrice);
-            double minPrice = ChartData.Min(m => m.LowPrice);
-            if (CandleChartType == CandleChartTypeEnum.천지인)
-            {
-                double maxPrice2 = ChartData.Max(m => m.QuantumPrice);
-                double minPrice2 = ChartData.Min(m => m.QuantumPrice);
-                if (maxPrice < maxPrice2) maxPrice = maxPrice2;
-                if (minPrice > minPrice2) minPrice = minPrice2;
-            }
-            maxPrice = maxPrice + SpaceMaxMin;
-            minPrice = minPrice - SpaceMaxMin;
-            chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
-            chart.ChartAreas[0].AxisY2.Minimum = minPrice;
-
             SetScrollBar();
             SetTrackBar();
             DisplayView();
@@ -141,7 +121,7 @@ namespace OM.Vikala.Controls.Charts
             int trackView = trackBar.Value;
             int displayItemCount = DisplayPointCount * trackView;
 
-            List<S_CandleItemData> viewLists = null;
+            List<WisdomCandleData> viewLists = null;
             int maxDisplayIndex = 0;
             int minDisplayIndex = 0;
             if (scrollVal == hScrollBar.Minimum)
@@ -176,13 +156,12 @@ namespace OM.Vikala.Controls.Charts
                 chart.ChartAreas[0].AxisX.Maximum = maxDisplayIndex + 5;
                 chart.ChartAreas[0].AxisX.Minimum = minDisplayIndex - 1;
 
-                double maxPrice = viewLists.Max(m => m.HighPrice);
-                double minPrice = viewLists.Min(m => m.LowPrice);
-
+                double maxPrice = viewLists.Max(m => m.high);
+                double minPrice = viewLists.Min(m => m.low);
                 maxPrice = maxPrice + SpaceMaxMin;
                 minPrice = minPrice - SpaceMaxMin;
                 chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
-                chart.ChartAreas[0].AxisY2.Minimum = minPrice;              
+                chart.ChartAreas[0].AxisY2.Minimum = minPrice;
             }
         }
 
@@ -212,41 +191,49 @@ namespace OM.Vikala.Controls.Charts
         }
 
         #region CandleChartType
-       
+
         #endregion
 
         #region Chart Util
+        public void ClearChartLabel(string type)
+        {
+            for(int i = chart.Annotations.Count - 1; i >= 0; i--)
+            {
+                var a = chart.Annotations[i];
 
+                if (a.Tag != null && a.Tag.ToString() == type)
+                    chart.Annotations.Remove(a);
+            }
+
+            chart.Update();
+        }
+        public void DisplayChartLabel(WisdomCandleData data, Color color, string type, string title = "▼")
+        {
+            foreach (var p in chart.Series[0].Points)
+            {               
+                if (p.Tag as WisdomCandleData == data)
+                {
+                    TextAnnotation a = new TextAnnotation();
+                    a.Font = new Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+                    a.Text = title;                  
+                    a.ForeColor = color;
+                    a.IsSizeAlwaysRelative = true;
+                    a.AnchorAlignment = ContentAlignment.TopCenter;
+                    a.AnchorDataPoint = p;
+                    a.Tag = type;
+                    a.AnchorOffsetY = -5;
+                    chart.Annotations.Add(a);
+
+                    break;
+                }
+            }
+
+            chart.Update();
+        }
         #endregion
 
         private void chart_MouseClick(object sender, MouseEventArgs e)
         {
-            
-            candlePriceInfo1.Visible = false;
-            HitTestResult result = chart.HitTest(e.X, e.Y);
-           
-            if (IsShowCandlePriceInfo && result.ChartElementType == ChartElementType.DataPoint && result.Series == chart.Series[0])
-            {
-                A_HLOC hloc = ChartData[result.PointIndex];
-                candlePriceInfo1.Location = new Point(e.X - 230, candlePriceInfo1.Location.Y);
-                candlePriceInfo1.Bind(hloc);
-
-                candlePriceInfo1.Visible = true;
-            }            
-        }
-
-        private void addImageAnnotation(DataPoint point)
-        {
-            //return;
-
-          
-            ImageAnnotation ia = new ImageAnnotation();
-            ia.Image = System.Environment.CurrentDirectory + "\\Resources\\" + "" + ".png";
-            ia.IsSizeAlwaysRelative = true;  
-            ia.AnchorAlignment = ContentAlignment.TopCenter;
-            ia.AnchorDataPoint = point;
-            
-            chart.Annotations.Add(ia);
         }
     }
 }

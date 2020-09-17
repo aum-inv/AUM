@@ -207,7 +207,7 @@ namespace OM.Vikala.Controls.Charts
 
                 chart.ChartAreas[0].AxisY2.Maximum = maxPrice1;
                 chart.ChartAreas[0].AxisY2.Minimum = minPrice1;
-                chart.ChartAreas[0].AxisX.Maximum = maxDisplayIndex + 1;
+                chart.ChartAreas[0].AxisX.Maximum = maxDisplayIndex + 5;
                 chart.ChartAreas[0].AxisX.Minimum = minDisplayIndex - 1;               
             }
         }

@@ -49,11 +49,11 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
         }
         public override void loadChartControls()
         {
+            chart.IsShowLine = true;
+            chart.IsShowXLine = chart.IsShowYLine = true;
             chart.InitializeControl();
             chart.InitializeEvent(chartEvent);
             chart.DisplayPointCount = itemCnt;
-
-            chart.IsShowLine = true;            
         }
 
         public override void loadData()

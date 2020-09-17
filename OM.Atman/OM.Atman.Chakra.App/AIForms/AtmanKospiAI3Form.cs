@@ -26,13 +26,13 @@ using System.Xml;
 
 namespace OM.Atman.Chakra.App.AIForms
 {
-    public partial class AtmanKospiAIForm : MetroFramework.Forms.MetroForm
+    public partial class AtmanKospiAI3Form : MetroFramework.Forms.MetroForm
     {
         List<SmartCandleData> scList = new List<SmartCandleData>();
 
         SmartCandleData selCandleData = null;
                
-        public AtmanKospiAIForm()
+        public AtmanKospiAI3Form()
         {
             InitializeComponent();           
             InitializeControls();
@@ -603,16 +603,16 @@ namespace OM.Atman.Chakra.App.AIForms
         {
             MetroTile metroTile = sender as MetroTile;
 
-            if (metroTile.Text == "1") return;
+            if (metroTile.Text == "3") return;
+
+            if (metroTile.Text == "1")
+            {
+                new AtmanKospiAIForm().Show();
+            }
 
             if (metroTile.Text == "2")
             {
                 new AtmanKospiAI2Form().Show();
-            }
-
-            if (metroTile.Text == "3")
-            {
-                new AtmanKospiAI3Form().Show();
             }
 
             if (metroTile.Text == "4")

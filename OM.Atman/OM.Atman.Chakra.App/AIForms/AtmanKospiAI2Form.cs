@@ -26,13 +26,13 @@ using System.Xml;
 
 namespace OM.Atman.Chakra.App.AIForms
 {
-    public partial class AtmanKospiAIForm : MetroFramework.Forms.MetroForm
+    public partial class AtmanKospiAI2Form : MetroFramework.Forms.MetroForm
     {
-        List<SmartCandleData> scList = new List<SmartCandleData>();
+        List<WisdomCandleData> scList = new List<WisdomCandleData>();
 
-        SmartCandleData selCandleData = null;
+        WisdomCandleData selCandleData = null;
                
-        public AtmanKospiAIForm()
+        public AtmanKospiAI2Form()
         {
             InitializeComponent();           
             InitializeControls();
@@ -105,15 +105,15 @@ namespace OM.Atman.Chakra.App.AIForms
                         siseInterval = values[1].Trim() == "시간" ? "분" : "일";
                     }
                 }
-                SmartCandleData preData = null;
-                SmartCandleData nextData = null;
+                WisdomCandleData preData = null;
+                WisdomCandleData nextData = null;
                 for (int i = lines.Count - 1; i > 0; i--)
                 {                    
                     var line = lines[i];
                     string[] values = line.Split("\t".ToCharArray());
                     if (siseInterval == "일")
                     {
-                        SmartCandleData data = new SmartCandleData(
+                        WisdomCandleData data = new WisdomCandleData(
                             itemType,
                             Convert.ToDouble(values[1].Trim()),
                             Convert.ToDouble(values[2].Trim()),
@@ -121,14 +121,13 @@ namespace OM.Atman.Chakra.App.AIForms
                             Convert.ToDouble(values[4].Trim()),
                             Convert.ToDouble(values[7].Trim().Replace(",", "")),
                             Convert.ToDateTime(values[0].Trim()),
-                            preData,
-                            nextData);
+                            preData);
                         preData = data;
                         scList.Add(data);
                     }
                     else
                     {
-                        SmartCandleData data = new SmartCandleData(
+                        WisdomCandleData data = new WisdomCandleData(
                             itemType,
                             Convert.ToDouble(values[2].Trim()),
                             Convert.ToDouble(values[3].Trim()),
@@ -162,11 +161,7 @@ namespace OM.Atman.Chakra.App.AIForms
                         this.Invoke(new Action(() =>
                         {
                             var data = scList[i];
-                            //var item = new Uc.Uc_SiseListItem();
-                            //item.Index = index++;
-                            //item.SetData(data);
-                            //flpList.Controls.Add(item);
-
+                           
                             string title = data.BasicPrice_Close.ToString("N2");
                             string date = Convert.ToDateTime(data.DTime).ToString("yy.MM.dd HH:mm");
                             string tenergy = data.TimeEnergy.ToString("N7");
@@ -208,13 +203,13 @@ namespace OM.Atman.Chakra.App.AIForms
                 lbNoResult.Visible = false;
             }));
 
-            SmartCandleData preData = null;
+            WisdomCandleData preData = null;
 
             for (int i = 0; i < sourceDatas.Count; i++)
             {
                 var value = sourceDatas[i];
 
-                SmartCandleData data = new SmartCandleData(
+                WisdomCandleData data = new WisdomCandleData(
                         value.ItemCode,
                         Convert.ToDouble(value.OpenPrice),
                         Convert.ToDouble(value.HighPrice),
@@ -260,7 +255,7 @@ namespace OM.Atman.Chakra.App.AIForms
             if (e.ColumnIndex < 0 || e.RowIndex < 0)
                 return;
 
-            SmartCandleData chooseData = dgv.Rows[e.RowIndex].Tag as SmartCandleData;
+            WisdomCandleData chooseData = dgv.Rows[e.RowIndex].Tag as WisdomCandleData;
 
             chart.ClearChartLabel("2");
             chart.DisplayChartLabel(chooseData, Color.Orange, "2");
@@ -290,7 +285,7 @@ namespace OM.Atman.Chakra.App.AIForms
 
         private void Searching(bool isUseTotalEnergy = true, bool isUseTimeEnergy = true, bool isUseSpaceEnergy = true)
         {  
-            Dictionary<SmartCandleData, EnergyRank> totalEnergyRank = new Dictionary<SmartCandleData, EnergyRank>();
+            Dictionary<WisdomCandleData, EnergyRank> totalEnergyRank = new Dictionary<WisdomCandleData, EnergyRank>();
                        
             foreach (var data in scList)
             {
@@ -386,9 +381,7 @@ namespace OM.Atman.Chakra.App.AIForms
                         , data.BasicPrice_Open
                         , data.BasicPrice_High
                         , data.BasicPrice_Low
-                        , data.BasicPrice_Close
-                        , data.BasicPriceColorType
-                        , data.ComparedPreviousDayPriceColorType
+                        , data.BasicPrice_Close                       
                         , totalValue
                         , spaceValue
                         , timeValue
@@ -403,12 +396,12 @@ namespace OM.Atman.Chakra.App.AIForms
 
                     if (data.PreviousCandleData != null)
                     {
-                        if (data.PreviousCandleData.BasicPrice_Close > data.BasicPrice_Close)
+                        if (data.PreviousCandleData.close > data.close)
                         {
                             dgv.Rows[idx].Cells["yday1"].Value = "▲";
                             dgv.Rows[idx].Cells["yday1"].Style.ForeColor = Color.Red;
                         }
-                        else if (data.PreviousCandleData.BasicPrice_Close < data.BasicPrice_Close)
+                        else if (data.PreviousCandleData.close < data.close)
                         {
                             dgv.Rows[idx].Cells["yday1"].Value = "▼";
                             dgv.Rows[idx].Cells["yday1"].Style.ForeColor = Color.Blue;
@@ -416,7 +409,7 @@ namespace OM.Atman.Chakra.App.AIForms
                     }
                     if (data.PreviousCandleData != null && data.PreviousCandleData.PreviousCandleData != null)
                     {
-                        if (data.PreviousCandleData.PreviousCandleData.BasicPrice_Close > data.BasicPrice_Close)
+                        if (data.PreviousCandleData.PreviousCandleData.close > data.close)
                         {
                             dgv.Rows[idx].Cells["yday2"].Value = "▲";
                             dgv.Rows[idx].Cells["yday2"].Style.ForeColor = Color.Red;
@@ -446,7 +439,7 @@ namespace OM.Atman.Chakra.App.AIForms
             }));
         }
 
-        private void setTDay(int rIdx, SmartCandleData cData)
+        private void setTDay(int rIdx, WisdomCandleData cData)
         {
             Task.Factory.StartNew(() => 
             {
@@ -461,12 +454,12 @@ namespace OM.Atman.Chakra.App.AIForms
                         {
                             data = scList[j];
                             this.Invoke(new Action(() => { 
-                                if (data.BasicPrice_Close > cData.BasicPrice_Close)
+                                if (data.close > cData.close)
                                 {
                                     dgv.Rows[rIdx].Cells["tday1"].Value = "▲";
                                     dgv.Rows[rIdx].Cells["tday1"].Style.ForeColor = Color.Red;
                                 }
-                                else if (data.BasicPrice_Close < cData.BasicPrice_Close)
+                                else if (data.close < cData.close)
                                 {
                                     dgv.Rows[rIdx].Cells["tday1"].Value = "▼";
                                     dgv.Rows[rIdx].Cells["tday1"].Style.ForeColor = Color.Blue;
@@ -479,12 +472,12 @@ namespace OM.Atman.Chakra.App.AIForms
                             data = scList[j];
 
                             this.Invoke(new Action(() => {
-                                if (data.BasicPrice_Close > cData.BasicPrice_Close)
+                                if (data.close > cData.close)
                                 {
                                     dgv.Rows[rIdx].Cells["tday2"].Value = "▲";
                                     dgv.Rows[rIdx].Cells["tday2"].Style.ForeColor = Color.Red;
                                 }
-                                else if (data.BasicPrice_Close < cData.BasicPrice_Close)
+                                else if (data.close < cData.close)
                                 {
                                     dgv.Rows[rIdx].Cells["tday2"].Value = "▼";
                                     dgv.Rows[rIdx].Cells["tday2"].Style.ForeColor = Color.Blue;
@@ -497,7 +490,7 @@ namespace OM.Atman.Chakra.App.AIForms
             });
         }
 
-        //private int getRank(List<KeyValuePair<SmartCandleData, double>> rankList, SmartCandleData data)
+        //private int getRank(List<KeyValuePair<WisdomCandleData, double>> rankList, WisdomCandleData data)
         //{
         //    int rank = -1;
         //    for (int idx = 0; idx < rankList.Count; idx++)
@@ -511,7 +504,7 @@ namespace OM.Atman.Chakra.App.AIForms
 
         //    return rank;
         //}
-        //private double getValue(List<KeyValuePair<SmartCandleData, double>> rankList, SmartCandleData data)
+        //private double getValue(List<KeyValuePair<WisdomCandleData, double>> rankList, WisdomCandleData data)
         //{
         //    double val = -1;
         //    for (int idx = 0; idx < rankList.Count; idx++)
@@ -533,11 +526,11 @@ namespace OM.Atman.Chakra.App.AIForms
             if (e.ColumnIndex < 0 || e.RowIndex < 0)
                 return;
 
-            SmartCandleData data = dgvList.Rows[e.RowIndex].Tag as SmartCandleData;
+            WisdomCandleData data = dgvList.Rows[e.RowIndex].Tag as WisdomCandleData;
             selCandleData = data;
 
             tbSelectedInfo.Text =
-                $"{data.ItemCode} [{Convert.ToDateTime(data.DTime).ToString("yyyy-MM-dd HH:mm")}] 시가 : {data.BasicPrice_Open} 고가 : {data.BasicPrice_High} 저가 : {data.BasicPrice_Low} 종가 : {data.BasicPrice_Close} 음양 : {data.BasicPriceColorType} Space : {data.SpaceEnergy.ToString("N7")} Time : {data.TimeEnergy.ToString("N7")} Energy : {data.TotalEnergy.ToString("N7")}";
+                $"{data.ItemCode} [{Convert.ToDateTime(data.DTime).ToString("yyyy-MM-dd HH:mm")}] 시가 : {data.BasicPrice_Open} 고가 : {data.BasicPrice_High} 저가 : {data.BasicPrice_Low} 종가 : {data.BasicPrice_Close} Space : {data.SpaceEnergy.ToString("N7")} Time : {data.TimeEnergy.ToString("N7")} Energy : {data.TotalEnergy.ToString("N7")}";
 
             chart.ClearChartLabel("1");
             chart.ClearChartLabel("2");
@@ -603,11 +596,11 @@ namespace OM.Atman.Chakra.App.AIForms
         {
             MetroTile metroTile = sender as MetroTile;
 
-            if (metroTile.Text == "1") return;
+            if (metroTile.Text == "2") return;
 
-            if (metroTile.Text == "2")
+            if (metroTile.Text == "1")
             {
-                new AtmanKospiAI2Form().Show();
+                new AtmanKospiAIForm().Show();
             }
 
             if (metroTile.Text == "3")

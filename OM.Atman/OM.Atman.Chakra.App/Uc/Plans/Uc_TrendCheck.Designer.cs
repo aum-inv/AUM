@@ -591,7 +591,7 @@
             this.tbIndicator2.SelectionStart = 0;
             this.tbIndicator2.ShortcutsEnabled = true;
             this.tbIndicator2.Size = new System.Drawing.Size(311, 44);
-            this.tbIndicator2.Style = MetroFramework.MetroColorStyle.Lime;
+            this.tbIndicator2.Style = MetroFramework.MetroColorStyle.Orange;
             this.tbIndicator2.TabIndex = 11;
             this.tbIndicator2.UseSelectable = true;
             this.tbIndicator2.UseStyleColors = true;
@@ -720,7 +720,7 @@
             this.tbIndicator1.SelectionStart = 0;
             this.tbIndicator1.ShortcutsEnabled = true;
             this.tbIndicator1.Size = new System.Drawing.Size(311, 44);
-            this.tbIndicator1.Style = MetroFramework.MetroColorStyle.Lime;
+            this.tbIndicator1.Style = MetroFramework.MetroColorStyle.Orange;
             this.tbIndicator1.TabIndex = 10;
             this.tbIndicator1.UseCustomBackColor = true;
             this.tbIndicator1.UseCustomForeColor = true;
@@ -834,7 +834,7 @@
             this.tbBasicSummary.SelectionStart = 0;
             this.tbBasicSummary.ShortcutsEnabled = true;
             this.tbBasicSummary.Size = new System.Drawing.Size(281, 141);
-            this.tbBasicSummary.Style = MetroFramework.MetroColorStyle.Brown;
+            this.tbBasicSummary.Style = MetroFramework.MetroColorStyle.Lime;
             this.tbBasicSummary.TabIndex = 9;
             this.tbBasicSummary.UseSelectable = true;
             this.tbBasicSummary.UseStyleColors = true;
@@ -950,7 +950,7 @@
             this.metroLabel8.Name = "metroLabel8";
             this.metroLabel8.Size = new System.Drawing.Size(94, 35);
             this.metroLabel8.TabIndex = 31;
-            this.metroLabel8.Text = "Chart Description";
+            this.metroLabel8.Text = "이평캔들";
             this.metroLabel8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // metroLabel1
@@ -961,7 +961,7 @@
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(94, 35);
             this.metroLabel1.TabIndex = 19;
-            this.metroLabel1.Text = "Chart Description";
+            this.metroLabel1.Text = "주사위차트";
             this.metroLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // metroLabel2
@@ -972,7 +972,7 @@
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(94, 35);
             this.metroLabel2.TabIndex = 20;
-            this.metroLabel2.Text = "Chart Description";
+            this.metroLabel2.Text = "원자차트";
             this.metroLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // metroLabel3
@@ -983,7 +983,7 @@
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(94, 35);
             this.metroLabel3.TabIndex = 21;
-            this.metroLabel3.Text = "Chart Description";
+            this.metroLabel3.Text = "양자차트";
             this.metroLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // metroLabel4
@@ -994,7 +994,7 @@
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(94, 35);
             this.metroLabel4.TabIndex = 22;
-            this.metroLabel4.Text = "Chart Description";
+            this.metroLabel4.Text = "변화차트";
             this.metroLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tbBasicChart5
@@ -1042,7 +1042,7 @@
             this.metroLabel5.Name = "metroLabel5";
             this.metroLabel5.Size = new System.Drawing.Size(94, 35);
             this.metroLabel5.TabIndex = 23;
-            this.metroLabel5.Text = "Chart Description";
+            this.metroLabel5.Text = "반입자차트";
             this.metroLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tbBasicChart1
@@ -1091,7 +1091,7 @@
             this.metroLabel6.Name = "metroLabel6";
             this.metroLabel6.Size = new System.Drawing.Size(94, 35);
             this.metroLabel6.TabIndex = 25;
-            this.metroLabel6.Text = "Chart Description";
+            this.metroLabel6.Text = "양극차트";
             this.metroLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // metroLabel7
@@ -1102,7 +1102,7 @@
             this.metroLabel7.Name = "metroLabel7";
             this.metroLabel7.Size = new System.Drawing.Size(94, 35);
             this.metroLabel7.TabIndex = 26;
-            this.metroLabel7.Text = "Chart Description";
+            this.metroLabel7.Text = "시공차트";
             this.metroLabel7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tbBasicChart6
@@ -1134,6 +1134,7 @@
             this.tbBasicChart6.SelectionStart = 0;
             this.tbBasicChart6.ShortcutsEnabled = true;
             this.tbBasicChart6.Size = new System.Drawing.Size(281, 29);
+            this.tbBasicChart6.Style = MetroFramework.MetroColorStyle.Lime;
             this.tbBasicChart6.TabIndex = 6;
             this.tbBasicChart6.UseSelectable = true;
             this.tbBasicChart6.UseStyleColors = true;
@@ -1205,6 +1206,7 @@
             this.tbBasicChart7.SelectionStart = 0;
             this.tbBasicChart7.ShortcutsEnabled = true;
             this.tbBasicChart7.Size = new System.Drawing.Size(281, 29);
+            this.tbBasicChart7.Style = MetroFramework.MetroColorStyle.Lime;
             this.tbBasicChart7.TabIndex = 7;
             this.tbBasicChart7.UseSelectable = true;
             this.tbBasicChart7.UseStyleColors = true;
@@ -1240,6 +1242,7 @@
             this.tbBasicChart8.SelectionStart = 0;
             this.tbBasicChart8.ShortcutsEnabled = true;
             this.tbBasicChart8.Size = new System.Drawing.Size(281, 29);
+            this.tbBasicChart8.Style = MetroFramework.MetroColorStyle.Lime;
             this.tbBasicChart8.TabIndex = 8;
             this.tbBasicChart8.UseSelectable = true;
             this.tbBasicChart8.UseStyleColors = true;

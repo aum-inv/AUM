@@ -46,10 +46,11 @@ namespace OM.Vikala.Chakra.App.Mains
         private bool IsDrawing = false;
         private Point NewPt1, NewPt2;
 
-        private Pen selectedPen = Pens.Red;
+        private Pen selectedPen = new Pen(Color.Red, 1.0f);
         private string selectedDrawType = "L";
         private List<DrawedInfo> drawedInfos = new List<DrawedInfo>();
-
+        string dashStyle = "Solid";
+        string widthStyle = "1.0";
         private void picCanvas_MouseMove_NotDown(object sender, MouseEventArgs e)
         {
             Cursor new_cursor = Cursors.Cross;
@@ -139,7 +140,10 @@ namespace OM.Vikala.Chakra.App.Mains
             picCanvas.MouseMove += picCanvas_MouseMove_NotDown;
             picCanvas.MouseUp -= picCanvas_MouseUp_Drawing;
 
-            drawedInfos.Add(new DrawedInfo(NewPt1, NewPt2, selectedPen, selectedDrawType));
+            Pen p = new Pen(selectedPen.Color, selectedPen.Width);
+            p.DashStyle = selectedPen.DashStyle;
+
+            drawedInfos.Add(new DrawedInfo(NewPt1, NewPt2, p, selectedDrawType));
             // Redraw.
             picCanvas.Refresh();
         }
@@ -384,7 +388,7 @@ namespace OM.Vikala.Chakra.App.Mains
 
         // Draw the lines.
         private void picCanvas_Paint(object sender, PaintEventArgs e)
-        {
+        {            
             for (int i = 0; i < drawedInfos.Count; i++)
             {
                 if (drawedInfos[i].type != "L") continue;
@@ -462,6 +466,58 @@ namespace OM.Vikala.Chakra.App.Mains
             }
         }
 
+        private void DashStyle_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem selectedItem = sender as ToolStripMenuItem;
+            dashStyle = selectedItem.Text;
+
+            foreach (ToolStripItem item in tsddb_DashStyle.DropDownItems)
+            {
+                if (item is ToolStripMenuItem)
+                {
+                    ToolStripMenuItem menu_item = item as ToolStripMenuItem;
+
+                    if (selectedItem == menu_item) selectedItem.Checked = true;
+                    else menu_item.Checked = false;
+                }
+            }
+
+            var tDashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            if (dashStyle == "Dash") tDashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            if (dashStyle == "Dot") tDashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
+            if (dashStyle == "DashDot") tDashStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
+            var width = Convert.ToSingle(widthStyle);
+
+            selectedPen.DashStyle = tDashStyle;
+            selectedPen.Width = Convert.ToSingle(width);
+        }
+
+        private void WidthStyle_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem selectedItem = sender as ToolStripMenuItem;
+            widthStyle = selectedItem.Text;
+
+            foreach (ToolStripItem item in tsddb_WidthStyle.DropDownItems)
+            {
+                if (item is ToolStripMenuItem)
+                {
+                    ToolStripMenuItem menu_item = item as ToolStripMenuItem;
+
+                    if (selectedItem == menu_item) selectedItem.Checked = true;
+                    else menu_item.Checked = false;
+                }
+            }
+
+            var tDashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            if (dashStyle == "Dash") tDashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            if (dashStyle == "Dot") tDashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
+            if (dashStyle == "DashDot") tDashStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
+            var width = Convert.ToSingle(widthStyle);
+
+            selectedPen.DashStyle = tDashStyle;
+            selectedPen.Width = Convert.ToSingle(width);
+        }
+
         private void tsb_Pen_Click(object sender, EventArgs e)
         {
             ToolStripButton tsb = sender as ToolStripButton;
@@ -476,14 +532,16 @@ namespace OM.Vikala.Chakra.App.Mains
             tsb_R_Black.Checked =
             tsb_R_Magenta.Checked = false;
 
-            if (tsb.ForeColor == Color.Red)
-                selectedPen = Pens.Red;
-            else if (tsb.ForeColor == Color.Blue)
-                selectedPen = Pens.Blue;
-            else if (tsb.ForeColor == Color.Black)
-                selectedPen = Pens.Black;
-            else if (tsb.ForeColor == Color.Magenta)
-                selectedPen = Pens.Magenta;
+            var tDashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            if (dashStyle == "Dash") tDashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            if (dashStyle == "Dot") tDashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
+            if (dashStyle == "DashDot") tDashStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
+
+            var width = Convert.ToSingle(widthStyle);
+
+            selectedPen = new Pen(tsb.ForeColor, width);
+
+            selectedPen.DashStyle = tDashStyle;
 
             if (tsb.Name.IndexOf("_L_") > 0)
                 selectedDrawType = "L";

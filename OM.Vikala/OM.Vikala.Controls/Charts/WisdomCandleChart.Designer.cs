@@ -1,6 +1,6 @@
 ﻿namespace OM.Vikala.Controls.Charts
 {
-    partial class ComparedBasicCandleChart
+    partial class WisdomCandleChart
     {
         /// <summary> 
         /// 필수 디자이너 변수입니다.
@@ -30,9 +30,6 @@
         {
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pnlScroll = new System.Windows.Forms.Panel();
             this.hScrollBar = new System.Windows.Forms.HScrollBar();
@@ -61,29 +58,21 @@
             chartArea1.AxisX.LabelStyle.Interval = 0D;
             chartArea1.AxisX.LabelStyle.IntervalOffset = 0D;
             chartArea1.AxisX.LineColor = System.Drawing.Color.DimGray;
-            chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.White;
+            chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             chartArea1.AxisX2.IsLabelAutoFit = false;
             chartArea1.AxisX2.LabelStyle.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             chartArea1.AxisX2.LabelStyle.ForeColor = System.Drawing.Color.DimGray;
             chartArea1.AxisX2.LineColor = System.Drawing.Color.DimGray;
-            chartArea1.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
             chartArea1.AxisY.IsLabelAutoFit = false;
             chartArea1.AxisY.IsStartedFromZero = false;
             chartArea1.AxisY.LabelStyle.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             chartArea1.AxisY.LabelStyle.ForeColor = System.Drawing.Color.DimGray;
-            chartArea1.AxisY.LineColor = System.Drawing.Color.White;
-            chartArea1.AxisY.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.NotSet;
+            chartArea1.AxisY.LineColor = System.Drawing.Color.DimGray;
             chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            chartArea1.AxisY.MajorTickMark.LineColor = System.Drawing.Color.White;
-            chartArea1.AxisY.MinorGrid.LineColor = System.Drawing.Color.White;
-            chartArea1.AxisY.MinorTickMark.LineColor = System.Drawing.Color.DimGray;
             chartArea1.AxisY2.IsLabelAutoFit = false;
             chartArea1.AxisY2.LabelStyle.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             chartArea1.AxisY2.LabelStyle.ForeColor = System.Drawing.Color.DimGray;
             chartArea1.AxisY2.LineColor = System.Drawing.Color.DimGray;
-            chartArea1.AxisY2.MajorGrid.LineColor = System.Drawing.Color.White;
-            chartArea1.AxisY2.MinorGrid.LineColor = System.Drawing.Color.White;
-            chartArea1.AxisY2.MinorTickMark.LineColor = System.Drawing.Color.DimGray;
             chartArea1.BackColor = System.Drawing.Color.White;
             chartArea1.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.TopBottom;
             chartArea1.BackSecondaryColor = System.Drawing.Color.White;
@@ -113,34 +102,14 @@
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Candlestick;
             series1.Color = System.Drawing.Color.Black;
             series1.CustomProperties = "PriceDownColor=Blue, PriceUpColor=Red";
+            series1.IsVisibleInLegend = false;
             series1.IsXValueIndexed = true;
             series1.Name = "chartSerie";
             series1.ShadowColor = System.Drawing.Color.Transparent;
             series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             series1.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             series1.YValuesPerPoint = 4;
-            series2.ChartArea = "chartArea";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Color = System.Drawing.Color.Black;
-            series2.IsXValueIndexed = true;
-            series2.MarkerColor = System.Drawing.Color.Red;
-            series2.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.None;
-            series2.Name = "cs_Basic";
-            series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-
-            series3.ChartArea = "chartArea";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series3.Color = System.Drawing.Color.Black;
-            series3.IsXValueIndexed = true;
-            series3.MarkerColor = System.Drawing.Color.Blue;
-            series3.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.None;
-            series3.Name = "cs_Basic2";
-            series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-
             this.chart.Series.Add(series1);
-            this.chart.Series.Add(series2);
-            this.chart.Series.Add(series3);
-
             this.chart.Size = new System.Drawing.Size(723, 299);
             this.chart.TabIndex = 2;
             this.chart.PostPaint += new System.EventHandler<System.Windows.Forms.DataVisualization.Charting.ChartPaintEventArgs>(this.chart_PostPaint);
@@ -180,7 +149,7 @@
             this.trackBar.TabIndex = 5;
             this.trackBar.ValueChanged += new System.EventHandler(this.trackBar_ValueChanged);
             // 
-            // ComparedBasicCandleChart
+            // SmartCandleChart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -188,7 +157,7 @@
             this.Controls.Add(this.pnlScroll);
             this.DoubleBuffered = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "ComparedBasicCandleChart";
+            this.Name = "SmartCandleChart";
             this.Size = new System.Drawing.Size(723, 313);
             ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
             this.pnlScroll.ResumeLayout(false);

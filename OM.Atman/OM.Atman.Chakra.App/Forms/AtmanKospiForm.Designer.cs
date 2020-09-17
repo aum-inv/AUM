@@ -33,6 +33,7 @@
             this.pnlLeft = new MetroFramework.Controls.MetroPanel();
             this.pnlLeftContent = new MetroFramework.Controls.MetroPanel();
             this.metroPanel3 = new MetroFramework.Controls.MetroPanel();
+            this.btnClear = new MetroFramework.Controls.MetroButton();
             this.btnCopy = new MetroFramework.Controls.MetroTile();
             this.label5 = new System.Windows.Forms.Label();
             this.btnSave = new MetroFramework.Controls.MetroTile();
@@ -97,7 +98,6 @@
             this.lblTitlePgr = new MetroFramework.Controls.MetroLabel();
             this.btnDelete = new AltoControls.AltoButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnClear = new MetroFramework.Controls.MetroButton();
             ((System.ComponentModel.ISupportInitialize)(this.spMain)).BeginInit();
             this.spMain.Panel1.SuspendLayout();
             this.spMain.Panel2.SuspendLayout();
@@ -188,6 +188,16 @@
             this.metroPanel3.VerticalScrollbarBarColor = true;
             this.metroPanel3.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel3.VerticalScrollbarSize = 10;
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(209, 6);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(76, 23);
+            this.btnClear.TabIndex = 15;
+            this.btnClear.Text = "항목비우기";
+            this.btnClear.UseSelectable = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnCopy
             // 
@@ -1180,16 +1190,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
-            // 
-            // btnClear
-            // 
-            this.btnClear.Location = new System.Drawing.Point(209, 6);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(76, 23);
-            this.btnClear.TabIndex = 15;
-            this.btnClear.Text = "항목비우기";
-            this.btnClear.UseSelectable = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // AtmanKospiForm
             // 

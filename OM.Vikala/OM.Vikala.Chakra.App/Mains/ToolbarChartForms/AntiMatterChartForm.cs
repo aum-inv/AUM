@@ -55,6 +55,7 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
         }
         public override void loadChartControls()
         {
+            chart.IsShowXLine = chart.IsShowYLine = true;
             chart.InitializeControl();
             chart.InitializeEvent(chartEvent);
             chart.DisplayPointCount = itemCnt;

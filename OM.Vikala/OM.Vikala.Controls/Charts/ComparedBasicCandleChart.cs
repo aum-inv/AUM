@@ -78,6 +78,7 @@ namespace OM.Vikala.Controls.Charts
             }));
         }
         List<SmartCandleData> smartDataList = new List<SmartCandleData>();
+        List<WisdomCandleData> wisdomDataList = new List<WisdomCandleData>();
         public ComparedBasicCandleChart() 
         {
             InitializeComponent();
@@ -128,8 +129,10 @@ namespace OM.Vikala.Controls.Charts
             pnlScroll.Visible = IsAutoScrollX;
             if (ChartData == null) return;
 
-            smartDataList.Clear();
-            SmartCandleData preSmartData = null;
+            smartDataList.Clear(); 
+            wisdomDataList.Clear();
+            SmartCandleData preSmartData = null; 
+            WisdomCandleData preWisdomData = null;
 
             if (ChartDataSub == null)
             {
@@ -142,6 +145,12 @@ namespace OM.Vikala.Controls.Charts
                     smartDataList.Add(smartData);
 
                     preSmartData = smartData;
+
+                    WisdomCandleData wisdomData = new WisdomCandleData(cData.ItemCode, cData.OpenPrice, cData.HighPrice, cData.LowPrice, cData.ClosePrice, cData.Volume, cData.DTime, preWisdomData);
+
+                    wisdomDataList.Add(wisdomData);
+
+                    preWisdomData = wisdomData;
                 }
             }
             else
@@ -155,18 +164,26 @@ namespace OM.Vikala.Controls.Charts
                     smartDataList.Add(smartData);
 
                     preSmartData = smartData;
+
+                    WisdomCandleData wisdomData = new WisdomCandleData(cData.ItemCode, cData.OpenPrice, cData.HighPrice, cData.LowPrice, cData.ClosePrice, cData.Volume, cData.DTime, preWisdomData);
+
+                    wisdomDataList.Add(wisdomData);
+
+                    preWisdomData = wisdomData;
                 }
             }
 
             double preVariancePrice = 0;
-            for (int i = 2; i < ChartData.Count; i++)
+            double preVariancePrice2= 0;
+            for (int i = 3; i < ChartData.Count; i++)
             {
                 var item = ChartData[i];
                 var smart = smartDataList[i];
-
+                var wisdom = wisdomDataList[i];
                 int idx = chart.Series[0].Points.AddXY(item.DTime, item.HighPrice, item.LowPrice, item.OpenPrice, item.ClosePrice);
                 //chart.Series[1].Points.AddXY(smart.DTime, smart.SpaceTotalChangeRate);
                 chart.Series[1].Points.AddXY(smart.DTime, smart.Variance_ChartPrice);
+                chart.Series[2].Points.AddXY(wisdom.DTime, wisdom.Variance_ChartPrice);
 
                 if (preVariancePrice < smart.Variance_ChartPrice)
                 {
@@ -175,16 +192,33 @@ namespace OM.Vikala.Controls.Charts
                 }
                 else if (preVariancePrice > smart.Variance_ChartPrice)
                 {
-                    chart.Series[1].Points[idx].Color = Color.Blue;
-                    chart.Series[1].Points[idx].MarkerColor = Color.Blue;
+                    chart.Series[1].Points[idx].Color = Color.Red;
+                    chart.Series[1].Points[idx].MarkerColor = Color.Red;
                 }
                 else
                 {
-                    chart.Series[1].Points[idx].Color = Color.Black;
-                    chart.Series[1].Points[idx].MarkerColor = Color.Black;
+                    chart.Series[1].Points[idx].Color = Color.Red;
+                    chart.Series[1].Points[idx].MarkerColor = Color.Red;
                 }
-
                 preVariancePrice = smart.Variance_ChartPrice;
+
+
+                if (preVariancePrice2 < wisdom.Variance_ChartPrice)
+                {
+                    chart.Series[2].Points[idx].Color = Color.Blue;
+                    chart.Series[2].Points[idx].MarkerColor = Color.Blue;
+                }
+                else if (preVariancePrice2 > wisdom.Variance_ChartPrice)
+                {
+                    chart.Series[2].Points[idx].Color = Color.Blue;
+                    chart.Series[2].Points[idx].MarkerColor = Color.Blue;
+                }
+                else
+                {
+                    chart.Series[2].Points[idx].Color = Color.Blue;
+                    chart.Series[2].Points[idx].MarkerColor = Color.Blue;
+                }
+                preVariancePrice2 = wisdom.Variance_ChartPrice;
 
                 var dataPoint = chart.Series[0].Points[idx];
                 dataPoint.Tag = item;
@@ -278,7 +312,7 @@ namespace OM.Vikala.Controls.Charts
             }
             if (viewLists != null)
             {
-                chart.ChartAreas[0].AxisX.Maximum = maxDisplayIndex + 1;
+                chart.ChartAreas[0].AxisX.Maximum = maxDisplayIndex + 5;
                 chart.ChartAreas[0].AxisX.Minimum = minDisplayIndex - 1;
 
                 double maxPrice = viewLists.Max(m => m.HighPrice);

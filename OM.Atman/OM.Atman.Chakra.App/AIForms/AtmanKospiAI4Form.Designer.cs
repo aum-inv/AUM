@@ -1,6 +1,6 @@
 ﻿namespace OM.Atman.Chakra.App.AIForms
 {
-    partial class AtmanKospiAIForm
+    partial class AtmanKospiAI4Form
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AtmanKospiAIForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AtmanKospiAI4Form));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -89,11 +89,6 @@
             this.pnlResultView = new MetroFramework.Controls.MetroPanel();
             this.lbNoResult = new MetroFramework.Controls.MetroLabel();
             this.dgv = new System.Windows.Forms.DataGridView();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.pnlTitle = new MetroFramework.Controls.MetroPanel();
-            this.tbSelectedInfo = new MetroFramework.Controls.MetroTextBox();
-            this.lblTitlePgr = new MetroFramework.Controls.MetroLabel();
-            this.openFile = new System.Windows.Forms.OpenFileDialog();
             this.시간 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.시가 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.고가 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -109,10 +104,15 @@
             this.SpaceRank = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TimeRank = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.yday2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.yday1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.yday2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tday1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tday2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.pnlTitle = new MetroFramework.Controls.MetroPanel();
+            this.tbSelectedInfo = new MetroFramework.Controls.MetroTextBox();
+            this.lblTitlePgr = new MetroFramework.Controls.MetroLabel();
+            this.openFile = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -134,7 +134,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(235, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(239, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(47, 43);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -303,6 +303,7 @@
             this.ai4.Location = new System.Drawing.Point(91, 151);
             this.ai4.Name = "ai4";
             this.ai4.Size = new System.Drawing.Size(24, 37);
+            this.ai4.Style = MetroFramework.MetroColorStyle.Orange;
             this.ai4.TabIndex = 23;
             this.ai4.Text = "4";
             this.ai4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -342,7 +343,6 @@
             this.ai1.Location = new System.Drawing.Point(3, 151);
             this.ai1.Name = "ai1";
             this.ai1.Size = new System.Drawing.Size(24, 37);
-            this.ai1.Style = MetroFramework.MetroColorStyle.Orange;
             this.ai1.TabIndex = 20;
             this.ai1.Text = "1";
             this.ai1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -687,8 +687,8 @@
             this.SpaceRank,
             this.TimeRank,
             this.Column1,
-            this.yday2,
             this.yday1,
+            this.yday2,
             this.tday1,
             this.tday2});
             this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -704,78 +704,6 @@
             this.dgv.Size = new System.Drawing.Size(1202, 203);
             this.dgv.TabIndex = 3;
             this.dgv.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_CellMouseDoubleClick);
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.Red;
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 25);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1202, 2);
-            this.panel2.TabIndex = 3;
-            // 
-            // pnlTitle
-            // 
-            this.pnlTitle.Controls.Add(this.tbSelectedInfo);
-            this.pnlTitle.Controls.Add(this.lblTitlePgr);
-            this.pnlTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlTitle.HorizontalScrollbarBarColor = true;
-            this.pnlTitle.HorizontalScrollbarHighlightOnWheel = false;
-            this.pnlTitle.HorizontalScrollbarSize = 10;
-            this.pnlTitle.Location = new System.Drawing.Point(0, 0);
-            this.pnlTitle.Name = "pnlTitle";
-            this.pnlTitle.Size = new System.Drawing.Size(1202, 25);
-            this.pnlTitle.TabIndex = 2;
-            this.pnlTitle.VerticalScrollbarBarColor = true;
-            this.pnlTitle.VerticalScrollbarHighlightOnWheel = false;
-            this.pnlTitle.VerticalScrollbarSize = 10;
-            // 
-            // tbSelectedInfo
-            // 
-            // 
-            // 
-            // 
-            this.tbSelectedInfo.CustomButton.Image = null;
-            this.tbSelectedInfo.CustomButton.Location = new System.Drawing.Point(1072, 1);
-            this.tbSelectedInfo.CustomButton.Name = "";
-            this.tbSelectedInfo.CustomButton.Size = new System.Drawing.Size(23, 23);
-            this.tbSelectedInfo.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.tbSelectedInfo.CustomButton.TabIndex = 1;
-            this.tbSelectedInfo.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.tbSelectedInfo.CustomButton.UseSelectable = true;
-            this.tbSelectedInfo.CustomButton.Visible = false;
-            this.tbSelectedInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbSelectedInfo.Lines = new string[0];
-            this.tbSelectedInfo.Location = new System.Drawing.Point(106, 0);
-            this.tbSelectedInfo.MaxLength = 32767;
-            this.tbSelectedInfo.Name = "tbSelectedInfo";
-            this.tbSelectedInfo.PasswordChar = '\0';
-            this.tbSelectedInfo.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.tbSelectedInfo.SelectedText = "";
-            this.tbSelectedInfo.SelectionLength = 0;
-            this.tbSelectedInfo.SelectionStart = 0;
-            this.tbSelectedInfo.ShortcutsEnabled = true;
-            this.tbSelectedInfo.Size = new System.Drawing.Size(1096, 25);
-            this.tbSelectedInfo.TabIndex = 4;
-            this.tbSelectedInfo.UseSelectable = true;
-            this.tbSelectedInfo.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.tbSelectedInfo.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // lblTitlePgr
-            // 
-            this.lblTitlePgr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblTitlePgr.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblTitlePgr.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.lblTitlePgr.Location = new System.Drawing.Point(0, 0);
-            this.lblTitlePgr.Name = "lblTitlePgr";
-            this.lblTitlePgr.Size = new System.Drawing.Size(106, 25);
-            this.lblTitlePgr.TabIndex = 3;
-            this.lblTitlePgr.Text = "선택시세정보";
-            this.lblTitlePgr.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // openFile
-            // 
-            this.openFile.Filter = "텍스트파일|*.txt";
             // 
             // 시간
             // 
@@ -944,25 +872,25 @@
             this.Column1.ReadOnly = true;
             this.Column1.Width = 5;
             // 
-            // yday2
-            // 
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.yday2.DefaultCellStyle = dataGridViewCellStyle20;
-            this.yday2.Frozen = true;
-            this.yday2.HeaderText = "y2-day";
-            this.yday2.Name = "yday2";
-            this.yday2.ReadOnly = true;
-            this.yday2.Width = 50;
-            // 
             // yday1
             // 
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.yday1.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.yday1.DefaultCellStyle = dataGridViewCellStyle20;
             this.yday1.Frozen = true;
             this.yday1.HeaderText = "y1-day";
             this.yday1.Name = "yday1";
             this.yday1.ReadOnly = true;
             this.yday1.Width = 50;
+            // 
+            // yday2
+            // 
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.yday2.DefaultCellStyle = dataGridViewCellStyle21;
+            this.yday2.Frozen = true;
+            this.yday2.HeaderText = "y2-day";
+            this.yday2.Name = "yday2";
+            this.yday2.ReadOnly = true;
+            this.yday2.Width = 50;
             // 
             // tday1
             // 
@@ -984,7 +912,79 @@
             this.tday2.ReadOnly = true;
             this.tday2.Width = 50;
             // 
-            // AtmanKospiAIForm
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Red;
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 25);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1202, 2);
+            this.panel2.TabIndex = 3;
+            // 
+            // pnlTitle
+            // 
+            this.pnlTitle.Controls.Add(this.tbSelectedInfo);
+            this.pnlTitle.Controls.Add(this.lblTitlePgr);
+            this.pnlTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlTitle.HorizontalScrollbarBarColor = true;
+            this.pnlTitle.HorizontalScrollbarHighlightOnWheel = false;
+            this.pnlTitle.HorizontalScrollbarSize = 10;
+            this.pnlTitle.Location = new System.Drawing.Point(0, 0);
+            this.pnlTitle.Name = "pnlTitle";
+            this.pnlTitle.Size = new System.Drawing.Size(1202, 25);
+            this.pnlTitle.TabIndex = 2;
+            this.pnlTitle.VerticalScrollbarBarColor = true;
+            this.pnlTitle.VerticalScrollbarHighlightOnWheel = false;
+            this.pnlTitle.VerticalScrollbarSize = 10;
+            // 
+            // tbSelectedInfo
+            // 
+            // 
+            // 
+            // 
+            this.tbSelectedInfo.CustomButton.Image = null;
+            this.tbSelectedInfo.CustomButton.Location = new System.Drawing.Point(1072, 1);
+            this.tbSelectedInfo.CustomButton.Name = "";
+            this.tbSelectedInfo.CustomButton.Size = new System.Drawing.Size(23, 23);
+            this.tbSelectedInfo.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tbSelectedInfo.CustomButton.TabIndex = 1;
+            this.tbSelectedInfo.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbSelectedInfo.CustomButton.UseSelectable = true;
+            this.tbSelectedInfo.CustomButton.Visible = false;
+            this.tbSelectedInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbSelectedInfo.Lines = new string[0];
+            this.tbSelectedInfo.Location = new System.Drawing.Point(106, 0);
+            this.tbSelectedInfo.MaxLength = 32767;
+            this.tbSelectedInfo.Name = "tbSelectedInfo";
+            this.tbSelectedInfo.PasswordChar = '\0';
+            this.tbSelectedInfo.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbSelectedInfo.SelectedText = "";
+            this.tbSelectedInfo.SelectionLength = 0;
+            this.tbSelectedInfo.SelectionStart = 0;
+            this.tbSelectedInfo.ShortcutsEnabled = true;
+            this.tbSelectedInfo.Size = new System.Drawing.Size(1096, 25);
+            this.tbSelectedInfo.TabIndex = 4;
+            this.tbSelectedInfo.UseSelectable = true;
+            this.tbSelectedInfo.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbSelectedInfo.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // lblTitlePgr
+            // 
+            this.lblTitlePgr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblTitlePgr.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblTitlePgr.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.lblTitlePgr.Location = new System.Drawing.Point(0, 0);
+            this.lblTitlePgr.Name = "lblTitlePgr";
+            this.lblTitlePgr.Size = new System.Drawing.Size(106, 25);
+            this.lblTitlePgr.TabIndex = 3;
+            this.lblTitlePgr.Text = "선택시세정보";
+            this.lblTitlePgr.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // openFile
+            // 
+            this.openFile.Filter = "텍스트파일|*.txt";
+            // 
+            // AtmanKospiAI4Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -992,10 +992,10 @@
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "AtmanKospiAIForm";
+            this.Name = "AtmanKospiAI4Form";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Style = MetroFramework.MetroColorStyle.Lime;
-            this.Text = "ATMAN INV. F AI - 1";
+            this.Text = "ATMAN INV. F AI - 4";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -1055,10 +1055,6 @@
         private System.Windows.Forms.Button btnLoadDaemon;
         private System.Windows.Forms.Button btnLoadDaemon2;
         private System.Windows.Forms.Button btnLoadDaemon3;
-        private MetroFramework.Controls.MetroTile ai1;
-        private MetroFramework.Controls.MetroTile ai4;
-        private MetroFramework.Controls.MetroTile ai3;
-        private MetroFramework.Controls.MetroTile ai2;
         private System.Windows.Forms.DataGridViewTextBoxColumn 시간;
         private System.Windows.Forms.DataGridViewTextBoxColumn 시가;
         private System.Windows.Forms.DataGridViewTextBoxColumn 고가;
@@ -1074,9 +1070,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SpaceRank;
         private System.Windows.Forms.DataGridViewTextBoxColumn TimeRank;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn yday2;
         private System.Windows.Forms.DataGridViewTextBoxColumn yday1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn yday2;
         private System.Windows.Forms.DataGridViewTextBoxColumn tday1;
         private System.Windows.Forms.DataGridViewTextBoxColumn tday2;
+        private MetroFramework.Controls.MetroTile ai1;
+        private MetroFramework.Controls.MetroTile ai4;
+        private MetroFramework.Controls.MetroTile ai3;
+        private MetroFramework.Controls.MetroTile ai2;
     }
 }
