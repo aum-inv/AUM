@@ -311,11 +311,10 @@ namespace OM.Vikala.Controls.Charts
 
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea = chart.ChartAreas[0];
 
-            if (TimeInterval == Lib.Base.Enums.TimeIntervalEnum.Month)
+            if (TimeInterval == Lib.Base.Enums.TimeIntervalEnum.Month
+                || TimeInterval == Lib.Base.Enums.TimeIntervalEnum.Week)
                 chartArea.AxisX.LabelStyle.Format = "yy/MM/dd";
-            else if (TimeInterval == Lib.Base.Enums.TimeIntervalEnum.Day
-                || TimeInterval == Lib.Base.Enums.TimeIntervalEnum.Week               
-                )            
+            else if (TimeInterval == Lib.Base.Enums.TimeIntervalEnum.Day)            
                 chartArea.AxisX.LabelStyle.Format = "MM/dd";            
             else
                 chartArea.AxisX.LabelStyle.Format = "MM/dd HH:mm";

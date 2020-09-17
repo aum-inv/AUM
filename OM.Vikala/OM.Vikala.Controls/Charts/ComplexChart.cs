@@ -127,7 +127,7 @@ namespace OM.Vikala.Controls.Charts
 
             base.View();
 
-            chart.ChartAreas[0].AxisX.LabelStyle.Format = "MM/dd:HH";
+            chart.ChartAreas[0].AxisX.LabelStyle.Format = "yy/MM/dd:HH";
         }
         private List<S_CandleItemData> FindCandles(S_CandleItemData candle)
         {
