@@ -364,7 +364,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainToolBar";
             this.Text = "ATMAN INV. F CHART";
-            this.TopMost = true;
             this.tsMain.ResumeLayout(false);
             this.tsMain.PerformLayout();
             this.ResumeLayout(false);

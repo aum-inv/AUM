@@ -51,6 +51,8 @@ namespace OM.Vikala.Chakra.App.Mains
         private List<DrawedInfo> drawedInfos = new List<DrawedInfo>();
         string dashStyle = "Solid";
         string widthStyle = "1.0";
+
+        private bool IsCanDraw = true;
         private void picCanvas_MouseMove_NotDown(object sender, MouseEventArgs e)
         {
             Cursor new_cursor = Cursors.Cross;
@@ -142,8 +144,8 @@ namespace OM.Vikala.Chakra.App.Mains
 
             Pen p = new Pen(selectedPen.Color, selectedPen.Width);
             p.DashStyle = selectedPen.DashStyle;
-
-            drawedInfos.Add(new DrawedInfo(NewPt1, NewPt2, p, selectedDrawType));
+            if(IsCanDraw)
+                drawedInfos.Add(new DrawedInfo(NewPt1, NewPt2, p, selectedDrawType));
             // Redraw.
             picCanvas.Refresh();
         }
@@ -445,19 +447,56 @@ namespace OM.Vikala.Chakra.App.Mains
                 e.Graphics.DrawEllipse(Pens.Black, rect);
             }
 
-            if (IsDrawing)
+
+            for (int i = 0; i < drawedInfos.Count; i++)
+            {
+                if (drawedInfos[i].type != "C") continue;
+                e.Graphics.DrawEllipse(drawedInfos[i].pen
+                    , drawedInfos[i].pt1.X
+                    , drawedInfos[i].pt1.Y
+                    , (drawedInfos[i].pt2.X - drawedInfos[i].pt1.X)
+                    , (drawedInfos[i].pt2.Y - drawedInfos[i].pt1.Y));
+            }
+            for (int i = 0; i < drawedInfos.Count; i++)
+            {
+                if (drawedInfos[i].type != "C") continue;
+                var pt = drawedInfos[i].pt1;
+                Rectangle rect = new Rectangle(
+                    pt.X - object_radius, pt.Y - object_radius,
+                    2 * object_radius + 1, 2 * object_radius + 1);
+                e.Graphics.FillEllipse(Brushes.White, rect);
+                e.Graphics.DrawEllipse(Pens.Black, rect);
+            }
+            for (int i = 0; i < drawedInfos.Count; i++)
+            {
+                if (drawedInfos[i].type != "C") continue;
+                var pt = drawedInfos[i].pt2;
+                Rectangle rect = new Rectangle(
+                    pt.X - object_radius, pt.Y - object_radius,
+                    2 * object_radius + 1, 2 * object_radius + 1);
+                e.Graphics.FillEllipse(Brushes.White, rect);
+                e.Graphics.DrawEllipse(Pens.Black, rect);
+            }
+
+            if (IsDrawing && IsCanDraw)
             {
                 if (selectedDrawType == "L")
                 {
-                    if (IsDrawing)
-                    {
-                        e.Graphics.DrawLine(selectedPen, NewPt1, NewPt2);
-                    }
+                   e.Graphics.DrawLine(selectedPen, NewPt1, NewPt2);
                 }
 
                 if (selectedDrawType == "R")
                 {
                     e.Graphics.DrawRectangle(selectedPen
+                        , NewPt1.X
+                        , NewPt1.Y
+                        , (NewPt2.X - NewPt1.X)
+                        , (NewPt2.Y - NewPt1.Y));
+                }
+
+                if (selectedDrawType == "C")
+                {
+                    e.Graphics.DrawEllipse(selectedPen
                         , NewPt1.X
                         , NewPt1.Y
                         , (NewPt2.X - NewPt1.X)
@@ -518,19 +557,31 @@ namespace OM.Vikala.Chakra.App.Mains
             selectedPen.Width = Convert.ToSingle(width);
         }
 
+        private void tsb_Cursor_Click(object sender, EventArgs e)
+        {
+            IsCanDraw = false;
+        }
+
         private void tsb_Pen_Click(object sender, EventArgs e)
         {
             ToolStripButton tsb = sender as ToolStripButton;
             if (tsb == null) return;
-           
+
+            IsCanDraw = true;
+
+            tsb_Cursor.Checked =
             tsb_L_Red.Checked =
             tsb_L_Blue.Checked = 
             tsb_L_Black.Checked =                 
-            tsb_L_Magenta.Checked = 
+            tsb_L_Magenta.Checked =            
             tsb_R_Red.Checked =
-            tsb_R_Blue.Checked =            
+            tsb_R_Blue.Checked =
             tsb_R_Black.Checked =
-            tsb_R_Magenta.Checked = false;
+            tsb_R_Magenta.Checked =
+            tsb_C_Red.Checked =
+            tsb_C_Blue.Checked =            
+            tsb_C_Black.Checked =
+            tsb_C_Magenta.Checked = false;
 
             var tDashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
             if (dashStyle == "Dash") tDashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
@@ -547,6 +598,8 @@ namespace OM.Vikala.Chakra.App.Mains
                 selectedDrawType = "L";
             else if (tsb.Name.IndexOf("_R_") > 0)
                 selectedDrawType = "R";
+            else if (tsb.Name.IndexOf("_C_") > 0)
+                selectedDrawType = "C";
 
             tsb.Checked = true;
         }
