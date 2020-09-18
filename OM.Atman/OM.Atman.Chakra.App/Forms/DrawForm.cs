@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OM.Vikala.Chakra.App.Mains
+namespace OM.Atman.Chakra.App.Forms
 {
     public partial class MainDrawForm : Form
     {
@@ -30,19 +30,10 @@ namespace OM.Vikala.Chakra.App.Mains
             this.KeyPreview = true;
         }
 
-        // The "size" of an object for mouse over purposes.
         private const int object_radius = 3;
 
-        // We're over an object if the distance squared
-        // between the mouse and the object is less than this.
         private const int over_dist_squared = object_radius * object_radius;
 
-        // The points that make up the line segments.
-        //private List<Point> Pt1 = new List<Point>();
-        //private List<Point> Pt2 = new List<Point>();
-        //private List<Pen> PenList = new List<Pen>();
-
-        // Points for the new line.
         private bool IsDrawing = false;
         private Point NewPt1, NewPt2;
 
@@ -56,8 +47,6 @@ namespace OM.Vikala.Chakra.App.Mains
         private void picCanvas_MouseMove_NotDown(object sender, MouseEventArgs e)
         {
             Cursor new_cursor = Cursors.Cross;
-
-            // See what we're over.
             Point hit_point;
             int segment_number;
 
@@ -65,8 +54,6 @@ namespace OM.Vikala.Chakra.App.Mains
                 new_cursor = Cursors.Arrow;
             else if (MouseIsOverSegment(e.Location, out segment_number))
                 new_cursor = Cursors.Hand;
-
-            // Set the new cursor.
             if (picCanvas.Cursor != new_cursor)
                 picCanvas.Cursor = new_cursor;
         }
@@ -144,7 +131,7 @@ namespace OM.Vikala.Chakra.App.Mains
 
             Pen p = new Pen(selectedPen.Color, selectedPen.Width);
             p.DashStyle = selectedPen.DashStyle;
-            if (IsCanDraw)
+            if(IsCanDraw)
                 drawedInfos.Add(new DrawedInfo(NewPt1, NewPt2, p, selectedDrawType, tstb.Text));
             // Redraw.
             picCanvas.Refresh();
@@ -416,7 +403,8 @@ namespace OM.Vikala.Chakra.App.Mains
                 e.Graphics.FillEllipse(Brushes.White, rect);
                 e.Graphics.DrawEllipse(Pens.Black, rect);
             }
-            
+            ///////////////////////////////////////////////
+
             for (int i = 0; i < drawedInfos.Count; i++)
             {
                 if (drawedInfos[i].type != "R") continue;
@@ -446,7 +434,7 @@ namespace OM.Vikala.Chakra.App.Mains
                 e.Graphics.FillEllipse(Brushes.White, rect);
                 e.Graphics.DrawEllipse(Pens.Black, rect);
             }
-
+            /////////////////////////////////////////////////////////
 
             for (int i = 0; i < drawedInfos.Count; i++)
             {
@@ -477,7 +465,7 @@ namespace OM.Vikala.Chakra.App.Mains
                 e.Graphics.FillEllipse(Brushes.White, rect);
                 e.Graphics.DrawEllipse(Pens.Black, rect);
             }
-
+            /////////////////////////////////////////////////////////////
             for (int i = 0; i < drawedInfos.Count; i++)
             {
                 if (drawedInfos[i].type != "T") continue;
@@ -497,7 +485,17 @@ namespace OM.Vikala.Chakra.App.Mains
                 e.Graphics.FillEllipse(Brushes.White, rect);
                 e.Graphics.DrawEllipse(Pens.Black, rect);
             }
-
+            //for (int i = 0; i < drawedInfos.Count; i++)
+            //{
+            //    if (drawedInfos[i].type != "S") continue;
+            //    var pt = drawedInfos[i].pt2;
+            //    Rectangle rect = new Rectangle(
+            //        pt.X - object_radius, pt.Y - object_radius,
+            //        2 * object_radius + 1, 2 * object_radius + 1);
+            //    e.Graphics.FillEllipse(Brushes.White, rect);
+            //    e.Graphics.DrawEllipse(Pens.Black, rect);
+            //}
+            ///////////////////////////////////////////////////////////////////
             if (IsDrawing && IsCanDraw)
             {
                 if (selectedDrawType == "L")
@@ -527,7 +525,7 @@ namespace OM.Vikala.Chakra.App.Mains
                 {
                     e.Graphics.DrawString(tstb.Text
                         , this.Font
-                        , Brushes.Black
+                        , Brushes.Black 
                         , NewPt1.X
                         , NewPt1.Y);
                 }
@@ -600,17 +598,17 @@ namespace OM.Vikala.Chakra.App.Mains
 
             tsb_Cursor.Checked =
             tsb_L_Red.Checked =
-            tsb_L_Blue.Checked =
-            tsb_L_Black.Checked =
-            tsb_L_Magenta.Checked =
+            tsb_L_Blue.Checked = 
+            tsb_L_Black.Checked =                 
+            tsb_L_Magenta.Checked =            
             tsb_R_Red.Checked =
             tsb_R_Blue.Checked =
             tsb_R_Black.Checked =
             tsb_R_Magenta.Checked =
             tsb_C_Red.Checked =
-            tsb_C_Blue.Checked =
+            tsb_C_Blue.Checked =            
             tsb_C_Black.Checked =
-            tsb_C_Magenta.Checked =
+            tsb_C_Magenta.Checked = 
             tsb_T_Black.Checked = false;
 
             var tDashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
@@ -660,6 +658,7 @@ namespace OM.Vikala.Chakra.App.Mains
             picCanvas.Refresh();
         }
     }
+
     class DrawedInfo
     {
         public DrawedInfo()
@@ -673,7 +672,7 @@ namespace OM.Vikala.Chakra.App.Mains
             this.type = type;
             this.text = text;
         }
-        public Point pt1 = new Point(0, 0);
+        public Point pt1 = new Point(0,0);
         public Point pt2 = new Point(0, 0);
         public Pen pen = Pens.Red;
         public string type = "L";

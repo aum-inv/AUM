@@ -41,8 +41,10 @@ namespace OM.Atman.Chakra.App.AIForms
               
         private void InitializeControls()
         {
-            chart.InitializeControl();
-            chart.InitializeEvent(null);
+            chart1.InitializeControl();
+            chart1.InitializeEvent(null);
+            chart2.InitializeControl();
+            chart2.InitializeEvent(null);
         }
         private void InitializeEvents()
         {
@@ -183,7 +185,8 @@ namespace OM.Atman.Chakra.App.AIForms
                         lblCnt.Text = scList.Count.ToString("N0");
                     }));
 
-                    chart.LoadData("101", scList, Lib.Base.Enums.TimeIntervalEnum.Day);                    
+                    chart1.LoadData("101", scList, Lib.Base.Enums.TimeIntervalEnum.Day);
+                    chart2.LoadData("101", scList, Lib.Base.Enums.TimeIntervalEnum.Day);
                 }
             }
             catch (Exception ex)
@@ -249,7 +252,8 @@ namespace OM.Atman.Chakra.App.AIForms
                 dgvList.ClearSelection();
                 lblCnt.Text = scList.Count.ToString("N0");
 
-                chart.LoadData("101", scList, Lib.Base.Enums.TimeIntervalEnum.Day);
+                chart1.LoadData("101", scList, timeInterval);
+                chart2.LoadData("101", scList, timeInterval);
             }));           
         }
         #endregion
@@ -262,8 +266,13 @@ namespace OM.Atman.Chakra.App.AIForms
 
             SmartCandleData chooseData = dgv.Rows[e.RowIndex].Tag as SmartCandleData;
 
-            chart.ClearChartLabel("2");
-            chart.DisplayChartLabel(chooseData, Color.Orange, "2");
+            chart1.ClearChartLabel("2");
+            chart1.DisplayChartLabel(chooseData, Color.Orange, "2");
+
+            chart2.ClearChartLabel("2");
+            chart2.DisplayChartLabel(chooseData, Color.Orange, "2");
+          
+            chart1.MoveView(chooseData);
         }
         #endregion
 
@@ -357,7 +366,8 @@ namespace OM.Atman.Chakra.App.AIForms
             this.Invoke(new Action(() =>
             {
                 dgv.Rows.Clear();
-                chart.ClearChartLabel("2");               
+                chart1.ClearChartLabel("2");
+                chart2.ClearChartLabel("2");
             }));
 
             int resultCount = 0;
@@ -432,7 +442,7 @@ namespace OM.Atman.Chakra.App.AIForms
 
                     dgv.Rows[idx].Tag = data;
 
-                    chart.DisplayChartLabel(data, Color.Orange, "2", resultCount + Environment.NewLine + "▼");
+                    chart1.DisplayChartLabel(data, Color.Orange, "2", resultCount + Environment.NewLine + "▼");
                 }));
             }
             
@@ -539,14 +549,20 @@ namespace OM.Atman.Chakra.App.AIForms
             tbSelectedInfo.Text =
                 $"{data.ItemCode} [{Convert.ToDateTime(data.DTime).ToString("yyyy-MM-dd HH:mm")}] 시가 : {data.BasicPrice_Open} 고가 : {data.BasicPrice_High} 저가 : {data.BasicPrice_Low} 종가 : {data.BasicPrice_Close} 음양 : {data.BasicPriceColorType} Space : {data.SpaceEnergy.ToString("N7")} Time : {data.TimeEnergy.ToString("N7")} Energy : {data.TotalEnergy.ToString("N7")}";
 
-            chart.ClearChartLabel("1");
-            chart.ClearChartLabel("2");
-            chart.DisplayChartLabel(data, Color.Black, "1");
+            chart1.ClearChartLabel("1");
+            chart1.ClearChartLabel("2");
+            chart1.DisplayChartLabel(data, Color.Black, "1");
+
+            chart2.ClearChartLabel("1");
+            chart2.ClearChartLabel("2");
+            chart2.DisplayChartLabel(data, Color.Black, "1");
 
             dgv.Rows.Clear();
             lbNoResult.Visible = false;
-
+                        
             btnSearch.PerformClick();
+
+            chart1.DisplayView();
         }
         private void btnLoadDaemon_Click(object sender, EventArgs e)
         {
@@ -585,7 +601,6 @@ namespace OM.Atman.Chakra.App.AIForms
         {
             try
             {
-
                 Task.Factory.StartNew(() =>
                 {
                     loadSiseDataFromDaemon(TimeIntervalEnum.Hour_01);
@@ -609,16 +624,18 @@ namespace OM.Atman.Chakra.App.AIForms
             {
                 new AtmanKospiAI2Form().Show();
             }
+        }
 
-            if (metroTile.Text == "3")
-            {
-                new AtmanKospiAI3Form().Show();
-            }
+        private void metroTile2_Click(object sender, EventArgs e)
+        {
+            Bitmap bmp = new Bitmap(tlpChart.Width, tlpChart.Height);
+            tlpChart.DrawToBitmap(bmp, new Rectangle(0, 0, tlpChart.Width, tlpChart.Height));
 
-            if (metroTile.Text == "4")
-            {
-                new AtmanKospiAI4Form().Show();
-            }
+            var df = new Forms.MainDrawForm(bmp);
+            df.Width = tlpChart.Width + 5;
+            df.Height = tlpChart.Height + 30;
+            df.Text = this.Text + "(EDIT IMAGE)";
+            df.Show();
         }
     }
 }

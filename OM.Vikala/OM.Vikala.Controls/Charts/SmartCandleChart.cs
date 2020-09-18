@@ -50,7 +50,7 @@ namespace OM.Vikala.Controls.Charts
            
             chartArea.InnerPlotPosition.Auto = false;
             chartArea.InnerPlotPosition.Height = 95F;
-            chartArea.InnerPlotPosition.Width = 95F;
+            chartArea.InnerPlotPosition.Width = 92F;
             chartArea.InnerPlotPosition.Y = 2F;
             chartArea.InnerPlotPosition.X = 2F;
             chartArea.Name = "chartArea";
@@ -151,6 +151,7 @@ namespace OM.Vikala.Controls.Charts
                 maxDisplayIndex = currentIndex + displayItemCount;
                 minDisplayIndex = currentIndex;
             }
+            
             if (viewLists != null)
             {
                 chart.ChartAreas[0].AxisX.Maximum = maxDisplayIndex + 5;
@@ -163,6 +164,44 @@ namespace OM.Vikala.Controls.Charts
                 chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
                 chart.ChartAreas[0].AxisY2.Minimum = minPrice;
             }
+
+            chart.Update();
+        }
+
+        public void MoveView(SmartCandleData data)
+        {
+            List<SmartCandleData> viewLists = null;
+            int maxDisplayIndex = 0;
+            int minDisplayIndex = 0;
+
+            foreach (var m in ChartData)
+            {
+                if (m == data)
+                {
+                    break;
+                }
+                maxDisplayIndex++;
+            }
+            int trackView = trackBar.Value;
+            int displayItemCount = DisplayPointCount * trackView;
+            minDisplayIndex = (maxDisplayIndex - displayItemCount);
+            if (minDisplayIndex < 0) minDisplayIndex = 0;
+
+            viewLists = ChartData.GetRange(minDisplayIndex, displayItemCount);
+
+            chart.ChartAreas[0].AxisX.Maximum = maxDisplayIndex + 7;
+            chart.ChartAreas[0].AxisX.Minimum = minDisplayIndex - 1;
+
+            double maxPrice = viewLists.Max(m => m.BasicPrice_High);
+            double minPrice = viewLists.Min(m => m.BasicPrice_Low);
+           
+            maxPrice = maxPrice + SpaceMaxMin;
+            minPrice = minPrice - SpaceMaxMin;
+
+            chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
+            chart.ChartAreas[0].AxisY2.Minimum = minPrice;
+
+            chart.Update();
         }
 
         private void hScrollBar_ValueChanged(object sender, EventArgs e)

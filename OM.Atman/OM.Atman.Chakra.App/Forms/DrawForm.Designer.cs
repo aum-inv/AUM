@@ -1,4 +1,4 @@
-﻿namespace OM.Vikala.Chakra.App.Mains
+﻿namespace OM.Atman.Chakra.App.Forms
 {
     partial class MainDrawForm
     {
@@ -56,7 +56,6 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsddb_DashStyle = new System.Windows.Forms.ToolStripDropDownButton();
@@ -72,6 +71,7 @@
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlContent = new System.Windows.Forms.Panel();
             this.picCanvas = new System.Windows.Forms.PictureBox();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.pnlContent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCanvas)).BeginInit();
@@ -114,7 +114,7 @@
             this.tsddb_WidthStyle});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1264, 33);
+            this.toolStrip1.Size = new System.Drawing.Size(1309, 33);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -383,16 +383,6 @@
             this.toolStripButton2.Text = "R-Ellipses";
             this.toolStripButton2.Click += new System.EventHandler(this.tsb_Remove_Click);
             // 
-            // toolStripButton4
-            // 
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(45, 30);
-            this.toolStripButton4.Tag = "T";
-            this.toolStripButton4.Text = "R-Text";
-            this.toolStripButton4.Click += new System.EventHandler(this.tsb_Remove_Click);
-            // 
             // toolStripButton3
             // 
             this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -514,7 +504,7 @@
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContent.Location = new System.Drawing.Point(0, 33);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(1264, 724);
+            this.pnlContent.Size = new System.Drawing.Size(1309, 724);
             this.pnlContent.TabIndex = 1;
             // 
             // picCanvas
@@ -523,7 +513,7 @@
             this.picCanvas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picCanvas.Location = new System.Drawing.Point(0, 0);
             this.picCanvas.Name = "picCanvas";
-            this.picCanvas.Size = new System.Drawing.Size(1264, 724);
+            this.picCanvas.Size = new System.Drawing.Size(1309, 724);
             this.picCanvas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picCanvas.TabIndex = 0;
             this.picCanvas.TabStop = false;
@@ -531,12 +521,22 @@
             this.picCanvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picCanvas_MouseDown);
             this.picCanvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picCanvas_MouseMove_NotDown);
             // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(45, 30);
+            this.toolStripButton4.Tag = "T";
+            this.toolStripButton4.Text = "R-Text";
+            this.toolStripButton4.Click += new System.EventHandler(this.tsb_Remove_Click);
+            // 
             // MainDrawForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1264, 757);
+            this.ClientSize = new System.Drawing.Size(1309, 757);
             this.Controls.Add(this.pnlContent);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -595,9 +595,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripButton tsb_Cursor;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
-        private System.Windows.Forms.ToolStripButton toolStripButton4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripButton tsb_T_Black;
         private System.Windows.Forms.ToolStripTextBox tstb;
+        private System.Windows.Forms.ToolStripButton toolStripButton4;
     }
 }

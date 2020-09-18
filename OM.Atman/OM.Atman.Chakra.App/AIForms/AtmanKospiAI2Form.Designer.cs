@@ -59,8 +59,6 @@
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.metroPanel3 = new MetroFramework.Controls.MetroPanel();
-            this.ai4 = new MetroFramework.Controls.MetroTile();
-            this.ai3 = new MetroFramework.Controls.MetroTile();
             this.ai2 = new MetroFramework.Controls.MetroTile();
             this.ai1 = new MetroFramework.Controls.MetroTile();
             this.label5 = new System.Windows.Forms.Label();
@@ -81,17 +79,12 @@
             this.btnLoadDaemon2 = new System.Windows.Forms.Button();
             this.btnLoadDaemon3 = new System.Windows.Forms.Button();
             this.pnlMain = new MetroFramework.Controls.MetroPanel();
-            this.pnlChartView = new MetroFramework.Controls.MetroPanel();
-            this.chart = new OM.Vikala.Controls.Charts.WisdomCandleChart();
+            this.tlpChart = new System.Windows.Forms.TableLayoutPanel();
+            this.chart1 = new OM.Vikala.Controls.Charts.WisdomCandleChart();
+            this.chart2 = new OM.Vikala.Controls.Charts.WisdomCandleChart();
             this.pnlResultView = new MetroFramework.Controls.MetroPanel();
             this.lbNoResult = new MetroFramework.Controls.MetroLabel();
             this.dgv = new System.Windows.Forms.DataGridView();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.pnlTitle = new MetroFramework.Controls.MetroPanel();
-            this.tbSelectedInfo = new MetroFramework.Controls.MetroTextBox();
-            this.lblTitlePgr = new MetroFramework.Controls.MetroLabel();
-            this.openFile = new System.Windows.Forms.OpenFileDialog();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.시간 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.시가 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.고가 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -109,6 +102,13 @@
             this.yday1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tday1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tday2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.pnlTitle = new MetroFramework.Controls.MetroPanel();
+            this.tbSelectedInfo = new MetroFramework.Controls.MetroTextBox();
+            this.lblTitlePgr = new MetroFramework.Controls.MetroLabel();
+            this.openFile = new System.Windows.Forms.OpenFileDialog();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.metroTile2 = new MetroFramework.Controls.MetroTile();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -120,7 +120,7 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.pnlLeftTop.SuspendLayout();
             this.pnlMain.SuspendLayout();
-            this.pnlChartView.SuspendLayout();
+            this.tlpChart.SuspendLayout();
             this.pnlResultView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.pnlTitle.SuspendLayout();
@@ -142,7 +142,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.pnlMain);
             this.splitContainer1.Size = new System.Drawing.Size(1560, 720);
-            this.splitContainer1.SplitterDistance = 354;
+            this.splitContainer1.SplitterDistance = 200;
             this.splitContainer1.TabIndex = 3;
             // 
             // pnlLeft
@@ -156,7 +156,7 @@
             this.pnlLeft.HorizontalScrollbarSize = 10;
             this.pnlLeft.Location = new System.Drawing.Point(0, 0);
             this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.Size = new System.Drawing.Size(354, 720);
+            this.pnlLeft.Size = new System.Drawing.Size(200, 720);
             this.pnlLeft.TabIndex = 7;
             this.pnlLeft.VerticalScrollbarBarColor = true;
             this.pnlLeft.VerticalScrollbarHighlightOnWheel = false;
@@ -174,7 +174,7 @@
             this.pnlLeftContent.Location = new System.Drawing.Point(0, 27);
             this.pnlLeftContent.Name = "pnlLeftContent";
             this.pnlLeftContent.Padding = new System.Windows.Forms.Padding(5);
-            this.pnlLeftContent.Size = new System.Drawing.Size(354, 693);
+            this.pnlLeftContent.Size = new System.Drawing.Size(200, 693);
             this.pnlLeftContent.TabIndex = 5;
             this.pnlLeftContent.VerticalScrollbarBarColor = true;
             this.pnlLeftContent.VerticalScrollbarHighlightOnWheel = false;
@@ -212,7 +212,7 @@
             this.dgvList.RowHeadersVisible = false;
             this.dgvList.RowTemplate.Height = 23;
             this.dgvList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvList.Size = new System.Drawing.Size(342, 490);
+            this.dgvList.Size = new System.Drawing.Size(188, 490);
             this.dgvList.TabIndex = 21;
             this.dgvList.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvList_CellContentDoubleClick);
             // 
@@ -264,8 +264,6 @@
             // 
             // metroPanel3
             // 
-            this.metroPanel3.Controls.Add(this.ai4);
-            this.metroPanel3.Controls.Add(this.ai3);
             this.metroPanel3.Controls.Add(this.ai2);
             this.metroPanel3.Controls.Add(this.ai1);
             this.metroPanel3.Controls.Add(this.label5);
@@ -277,37 +275,11 @@
             this.metroPanel3.HorizontalScrollbarSize = 10;
             this.metroPanel3.Location = new System.Drawing.Point(5, 495);
             this.metroPanel3.Name = "metroPanel3";
-            this.metroPanel3.Size = new System.Drawing.Size(342, 191);
+            this.metroPanel3.Size = new System.Drawing.Size(188, 191);
             this.metroPanel3.TabIndex = 19;
             this.metroPanel3.VerticalScrollbarBarColor = true;
             this.metroPanel3.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel3.VerticalScrollbarSize = 10;
-            // 
-            // ai4
-            // 
-            this.ai4.ActiveControl = null;
-            this.ai4.Location = new System.Drawing.Point(91, 151);
-            this.ai4.Name = "ai4";
-            this.ai4.Size = new System.Drawing.Size(24, 37);
-            this.ai4.TabIndex = 23;
-            this.ai4.Text = "4";
-            this.ai4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.ai4.TileTextFontSize = MetroFramework.MetroTileTextSize.Small;
-            this.ai4.UseSelectable = true;
-            this.ai4.Click += new System.EventHandler(this.ai_Click);
-            // 
-            // ai3
-            // 
-            this.ai3.ActiveControl = null;
-            this.ai3.Location = new System.Drawing.Point(61, 151);
-            this.ai3.Name = "ai3";
-            this.ai3.Size = new System.Drawing.Size(24, 37);
-            this.ai3.TabIndex = 22;
-            this.ai3.Text = "3";
-            this.ai3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.ai3.TileTextFontSize = MetroFramework.MetroTileTextSize.Small;
-            this.ai3.UseSelectable = true;
-            this.ai3.Click += new System.EventHandler(this.ai_Click);
             // 
             // ai2
             // 
@@ -386,8 +358,6 @@
             // 
             // chkMatchTotal
             // 
-            this.chkMatchTotal.Checked = true;
-            this.chkMatchTotal.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkMatchTotal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkMatchTotal.Location = new System.Drawing.Point(105, 4);
             this.chkMatchTotal.Name = "chkMatchTotal";
@@ -418,8 +388,6 @@
             // 
             // chkMatchSpace
             // 
-            this.chkMatchSpace.Checked = true;
-            this.chkMatchSpace.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkMatchSpace.Location = new System.Drawing.Point(105, 40);
             this.chkMatchSpace.Name = "chkMatchSpace";
             this.chkMatchSpace.Size = new System.Drawing.Size(230, 29);
@@ -454,7 +422,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 25);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(354, 2);
+            this.panel1.Size = new System.Drawing.Size(200, 2);
             this.panel1.TabIndex = 4;
             // 
             // pnlLeftTop
@@ -472,7 +440,7 @@
             this.pnlLeftTop.HorizontalScrollbarSize = 10;
             this.pnlLeftTop.Location = new System.Drawing.Point(0, 0);
             this.pnlLeftTop.Name = "pnlLeftTop";
-            this.pnlLeftTop.Size = new System.Drawing.Size(354, 25);
+            this.pnlLeftTop.Size = new System.Drawing.Size(200, 25);
             this.pnlLeftTop.TabIndex = 3;
             this.pnlLeftTop.VerticalScrollbarBarColor = true;
             this.pnlLeftTop.VerticalScrollbarHighlightOnWheel = false;
@@ -480,13 +448,13 @@
             // 
             // lblCnt
             // 
-            this.lblCnt.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lblCnt.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblCnt.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.lblCnt.Location = new System.Drawing.Point(167, 0);
+            this.lblCnt.Location = new System.Drawing.Point(18, 0);
             this.lblCnt.Name = "lblCnt";
-            this.lblCnt.Size = new System.Drawing.Size(69, 23);
+            this.lblCnt.Size = new System.Drawing.Size(58, 23);
             this.lblCnt.TabIndex = 5;
-            this.lblCnt.Text = "000,000";
+            this.lblCnt.Text = "0";
             this.lblCnt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // metroLabel10
@@ -495,9 +463,9 @@
             this.metroLabel10.FontSize = MetroFramework.MetroLabelSize.Small;
             this.metroLabel10.Location = new System.Drawing.Point(0, 0);
             this.metroLabel10.Name = "metroLabel10";
-            this.metroLabel10.Size = new System.Drawing.Size(106, 23);
+            this.metroLabel10.Size = new System.Drawing.Size(18, 23);
             this.metroLabel10.TabIndex = 4;
-            this.metroLabel10.Text = " ♣ 데이터 리스트";
+            this.metroLabel10.Text = " ♣";
             this.metroLabel10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnLoad
@@ -508,7 +476,7 @@
             this.btnLoad.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnLoad.FlatAppearance.BorderSize = 0;
             this.btnLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLoad.Location = new System.Drawing.Point(236, 0);
+            this.btnLoad.Location = new System.Drawing.Point(82, 0);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(29, 23);
             this.btnLoad.TabIndex = 6;
@@ -521,7 +489,7 @@
             this.btnLoadDaemon.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnLoadDaemon.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnLoadDaemon.FlatAppearance.BorderSize = 0;
-            this.btnLoadDaemon.Location = new System.Drawing.Point(265, 0);
+            this.btnLoadDaemon.Location = new System.Drawing.Point(111, 0);
             this.btnLoadDaemon.Name = "btnLoadDaemon";
             this.btnLoadDaemon.Size = new System.Drawing.Size(29, 23);
             this.btnLoadDaemon.TabIndex = 7;
@@ -535,7 +503,7 @@
             this.btnLoadDaemon2.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnLoadDaemon2.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnLoadDaemon2.FlatAppearance.BorderSize = 0;
-            this.btnLoadDaemon2.Location = new System.Drawing.Point(294, 0);
+            this.btnLoadDaemon2.Location = new System.Drawing.Point(140, 0);
             this.btnLoadDaemon2.Name = "btnLoadDaemon2";
             this.btnLoadDaemon2.Size = new System.Drawing.Size(29, 23);
             this.btnLoadDaemon2.TabIndex = 8;
@@ -549,7 +517,7 @@
             this.btnLoadDaemon3.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnLoadDaemon3.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnLoadDaemon3.FlatAppearance.BorderSize = 0;
-            this.btnLoadDaemon3.Location = new System.Drawing.Point(323, 0);
+            this.btnLoadDaemon3.Location = new System.Drawing.Point(169, 0);
             this.btnLoadDaemon3.Name = "btnLoadDaemon3";
             this.btnLoadDaemon3.Size = new System.Drawing.Size(29, 23);
             this.btnLoadDaemon3.TabIndex = 9;
@@ -559,7 +527,7 @@
             // 
             // pnlMain
             // 
-            this.pnlMain.Controls.Add(this.pnlChartView);
+            this.pnlMain.Controls.Add(this.tlpChart);
             this.pnlMain.Controls.Add(this.pnlResultView);
             this.pnlMain.Controls.Add(this.panel2);
             this.pnlMain.Controls.Add(this.pnlTitle);
@@ -569,49 +537,72 @@
             this.pnlMain.HorizontalScrollbarSize = 10;
             this.pnlMain.Location = new System.Drawing.Point(0, 0);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(1202, 720);
+            this.pnlMain.Size = new System.Drawing.Size(1356, 720);
             this.pnlMain.TabIndex = 7;
             this.pnlMain.VerticalScrollbarBarColor = true;
             this.pnlMain.VerticalScrollbarHighlightOnWheel = false;
             this.pnlMain.VerticalScrollbarSize = 10;
             // 
-            // pnlChartView
+            // tlpChart
             // 
-            this.pnlChartView.Controls.Add(this.chart);
-            this.pnlChartView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlChartView.HorizontalScrollbarBarColor = true;
-            this.pnlChartView.HorizontalScrollbarHighlightOnWheel = false;
-            this.pnlChartView.HorizontalScrollbarSize = 10;
-            this.pnlChartView.Location = new System.Drawing.Point(0, 27);
-            this.pnlChartView.Name = "pnlChartView";
-            this.pnlChartView.Size = new System.Drawing.Size(1202, 490);
-            this.pnlChartView.TabIndex = 11;
-            this.pnlChartView.VerticalScrollbarBarColor = true;
-            this.pnlChartView.VerticalScrollbarHighlightOnWheel = false;
-            this.pnlChartView.VerticalScrollbarSize = 10;
+            this.tlpChart.ColumnCount = 2;
+            this.tlpChart.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpChart.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpChart.Controls.Add(this.chart1, 0, 0);
+            this.tlpChart.Controls.Add(this.chart2, 1, 0);
+            this.tlpChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpChart.Location = new System.Drawing.Point(0, 27);
+            this.tlpChart.Name = "tlpChart";
+            this.tlpChart.RowCount = 1;
+            this.tlpChart.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpChart.Size = new System.Drawing.Size(1356, 490);
+            this.tlpChart.TabIndex = 12;
             // 
-            // chart
+            // chart1
             // 
-            this.chart.CandleChartType = OM.Vikala.Controls.Charts.CandleChartTypeEnum.기본;
-            this.chart.ChartData = null;
-            this.chart.ChartEventInstance = null;
-            this.chart.DisplayPointCount = 60;
-            this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chart.IsAutoScrollX = true;
-            this.chart.IsEnabledDrawLine = true;
-            this.chart.IsLoaded = false;
-            this.chart.IsShowXLine = true;
-            this.chart.IsShowYLine = true;
-            this.chart.ItemCode = "";
-            this.chart.LineChartType = OM.Vikala.Controls.Charts.LineChartTypeEnum.기본;
-            this.chart.Location = new System.Drawing.Point(0, 0);
-            this.chart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.chart.Name = "chart";
-            this.chart.SelectedTrackBarValue = 1;
-            this.chart.Size = new System.Drawing.Size(1202, 490);
-            this.chart.TabIndex = 2;
-            this.chart.TimeInterval = OM.Lib.Base.Enums.TimeIntervalEnum.Day;
-            this.chart.Title = null;
+            this.chart1.CandleChartType = OM.Vikala.Controls.Charts.CandleChartTypeEnum.기본;
+            this.chart1.ChartData = null;
+            this.chart1.ChartEventInstance = null;
+            this.chart1.DisplayPointCount = 120;
+            this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chart1.IsAutoScrollX = true;
+            this.chart1.IsEnabledDrawLine = true;
+            this.chart1.IsLoaded = false;
+            this.chart1.IsShowXLine = true;
+            this.chart1.IsShowYLine = true;
+            this.chart1.ItemCode = "";
+            this.chart1.LineChartType = OM.Vikala.Controls.Charts.LineChartTypeEnum.기본;
+            this.chart1.Location = new System.Drawing.Point(3, 4);
+            this.chart1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.chart1.Name = "chart1";
+            this.chart1.SelectedTrackBarValue = 1;
+            this.chart1.Size = new System.Drawing.Size(672, 482);
+            this.chart1.TabIndex = 0;
+            this.chart1.TimeInterval = OM.Lib.Base.Enums.TimeIntervalEnum.Day;
+            this.chart1.Title = null;
+            // 
+            // chart2
+            // 
+            this.chart2.CandleChartType = OM.Vikala.Controls.Charts.CandleChartTypeEnum.기본;
+            this.chart2.ChartData = null;
+            this.chart2.ChartEventInstance = null;
+            this.chart2.DisplayPointCount = 120;
+            this.chart2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chart2.IsAutoScrollX = true;
+            this.chart2.IsEnabledDrawLine = true;
+            this.chart2.IsLoaded = false;
+            this.chart2.IsShowXLine = true;
+            this.chart2.IsShowYLine = true;
+            this.chart2.ItemCode = "";
+            this.chart2.LineChartType = OM.Vikala.Controls.Charts.LineChartTypeEnum.기본;
+            this.chart2.Location = new System.Drawing.Point(681, 4);
+            this.chart2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.chart2.Name = "chart2";
+            this.chart2.SelectedTrackBarValue = 1;
+            this.chart2.Size = new System.Drawing.Size(672, 482);
+            this.chart2.TabIndex = 1;
+            this.chart2.TimeInterval = OM.Lib.Base.Enums.TimeIntervalEnum.Day;
+            this.chart2.Title = null;
             // 
             // pnlResultView
             // 
@@ -623,7 +614,7 @@
             this.pnlResultView.HorizontalScrollbarSize = 10;
             this.pnlResultView.Location = new System.Drawing.Point(0, 517);
             this.pnlResultView.Name = "pnlResultView";
-            this.pnlResultView.Size = new System.Drawing.Size(1202, 203);
+            this.pnlResultView.Size = new System.Drawing.Size(1356, 203);
             this.pnlResultView.TabIndex = 10;
             this.pnlResultView.VerticalScrollbarBarColor = true;
             this.pnlResultView.VerticalScrollbarHighlightOnWheel = false;
@@ -685,91 +676,9 @@
             this.dgv.RowTemplate.Height = 23;
             this.dgv.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1202, 203);
+            this.dgv.Size = new System.Drawing.Size(1356, 203);
             this.dgv.TabIndex = 3;
             this.dgv.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_CellMouseDoubleClick);
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.Red;
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 25);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1202, 2);
-            this.panel2.TabIndex = 3;
-            // 
-            // pnlTitle
-            // 
-            this.pnlTitle.Controls.Add(this.tbSelectedInfo);
-            this.pnlTitle.Controls.Add(this.lblTitlePgr);
-            this.pnlTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlTitle.HorizontalScrollbarBarColor = true;
-            this.pnlTitle.HorizontalScrollbarHighlightOnWheel = false;
-            this.pnlTitle.HorizontalScrollbarSize = 10;
-            this.pnlTitle.Location = new System.Drawing.Point(0, 0);
-            this.pnlTitle.Name = "pnlTitle";
-            this.pnlTitle.Size = new System.Drawing.Size(1202, 25);
-            this.pnlTitle.TabIndex = 2;
-            this.pnlTitle.VerticalScrollbarBarColor = true;
-            this.pnlTitle.VerticalScrollbarHighlightOnWheel = false;
-            this.pnlTitle.VerticalScrollbarSize = 10;
-            // 
-            // tbSelectedInfo
-            // 
-            // 
-            // 
-            // 
-            this.tbSelectedInfo.CustomButton.Image = null;
-            this.tbSelectedInfo.CustomButton.Location = new System.Drawing.Point(1072, 1);
-            this.tbSelectedInfo.CustomButton.Name = "";
-            this.tbSelectedInfo.CustomButton.Size = new System.Drawing.Size(23, 23);
-            this.tbSelectedInfo.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.tbSelectedInfo.CustomButton.TabIndex = 1;
-            this.tbSelectedInfo.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.tbSelectedInfo.CustomButton.UseSelectable = true;
-            this.tbSelectedInfo.CustomButton.Visible = false;
-            this.tbSelectedInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbSelectedInfo.Lines = new string[0];
-            this.tbSelectedInfo.Location = new System.Drawing.Point(106, 0);
-            this.tbSelectedInfo.MaxLength = 32767;
-            this.tbSelectedInfo.Name = "tbSelectedInfo";
-            this.tbSelectedInfo.PasswordChar = '\0';
-            this.tbSelectedInfo.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.tbSelectedInfo.SelectedText = "";
-            this.tbSelectedInfo.SelectionLength = 0;
-            this.tbSelectedInfo.SelectionStart = 0;
-            this.tbSelectedInfo.ShortcutsEnabled = true;
-            this.tbSelectedInfo.Size = new System.Drawing.Size(1096, 25);
-            this.tbSelectedInfo.TabIndex = 4;
-            this.tbSelectedInfo.UseSelectable = true;
-            this.tbSelectedInfo.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.tbSelectedInfo.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // lblTitlePgr
-            // 
-            this.lblTitlePgr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblTitlePgr.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblTitlePgr.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.lblTitlePgr.Location = new System.Drawing.Point(0, 0);
-            this.lblTitlePgr.Name = "lblTitlePgr";
-            this.lblTitlePgr.Size = new System.Drawing.Size(106, 25);
-            this.lblTitlePgr.TabIndex = 3;
-            this.lblTitlePgr.Text = "선택시세정보";
-            this.lblTitlePgr.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // openFile
-            // 
-            this.openFile.Filter = "텍스트파일|*.txt";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(236, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(47, 43);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
             // 
             // 시간
             // 
@@ -956,6 +865,103 @@
             this.tday2.ReadOnly = true;
             this.tday2.Width = 50;
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Red;
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 25);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1356, 2);
+            this.panel2.TabIndex = 3;
+            // 
+            // pnlTitle
+            // 
+            this.pnlTitle.Controls.Add(this.metroTile2);
+            this.pnlTitle.Controls.Add(this.tbSelectedInfo);
+            this.pnlTitle.Controls.Add(this.lblTitlePgr);
+            this.pnlTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlTitle.HorizontalScrollbarBarColor = true;
+            this.pnlTitle.HorizontalScrollbarHighlightOnWheel = false;
+            this.pnlTitle.HorizontalScrollbarSize = 10;
+            this.pnlTitle.Location = new System.Drawing.Point(0, 0);
+            this.pnlTitle.Name = "pnlTitle";
+            this.pnlTitle.Size = new System.Drawing.Size(1356, 25);
+            this.pnlTitle.TabIndex = 2;
+            this.pnlTitle.VerticalScrollbarBarColor = true;
+            this.pnlTitle.VerticalScrollbarHighlightOnWheel = false;
+            this.pnlTitle.VerticalScrollbarSize = 10;
+            // 
+            // tbSelectedInfo
+            // 
+            // 
+            // 
+            // 
+            this.tbSelectedInfo.CustomButton.Image = null;
+            this.tbSelectedInfo.CustomButton.Location = new System.Drawing.Point(1226, 1);
+            this.tbSelectedInfo.CustomButton.Name = "";
+            this.tbSelectedInfo.CustomButton.Size = new System.Drawing.Size(23, 23);
+            this.tbSelectedInfo.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tbSelectedInfo.CustomButton.TabIndex = 1;
+            this.tbSelectedInfo.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.tbSelectedInfo.CustomButton.UseSelectable = true;
+            this.tbSelectedInfo.CustomButton.Visible = false;
+            this.tbSelectedInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbSelectedInfo.Lines = new string[0];
+            this.tbSelectedInfo.Location = new System.Drawing.Point(106, 0);
+            this.tbSelectedInfo.MaxLength = 32767;
+            this.tbSelectedInfo.Name = "tbSelectedInfo";
+            this.tbSelectedInfo.PasswordChar = '\0';
+            this.tbSelectedInfo.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbSelectedInfo.SelectedText = "";
+            this.tbSelectedInfo.SelectionLength = 0;
+            this.tbSelectedInfo.SelectionStart = 0;
+            this.tbSelectedInfo.ShortcutsEnabled = true;
+            this.tbSelectedInfo.Size = new System.Drawing.Size(1250, 25);
+            this.tbSelectedInfo.TabIndex = 4;
+            this.tbSelectedInfo.UseSelectable = true;
+            this.tbSelectedInfo.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.tbSelectedInfo.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // lblTitlePgr
+            // 
+            this.lblTitlePgr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblTitlePgr.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblTitlePgr.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.lblTitlePgr.Location = new System.Drawing.Point(0, 0);
+            this.lblTitlePgr.Name = "lblTitlePgr";
+            this.lblTitlePgr.Size = new System.Drawing.Size(106, 25);
+            this.lblTitlePgr.TabIndex = 3;
+            this.lblTitlePgr.Text = "선택시세정보";
+            this.lblTitlePgr.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // openFile
+            // 
+            this.openFile.Filter = "텍스트파일|*.txt";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(236, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(47, 43);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            // 
+            // metroTile2
+            // 
+            this.metroTile2.ActiveControl = null;
+            this.metroTile2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.metroTile2.Location = new System.Drawing.Point(1332, 0);
+            this.metroTile2.Name = "metroTile2";
+            this.metroTile2.Size = new System.Drawing.Size(24, 25);
+            this.metroTile2.Style = MetroFramework.MetroColorStyle.Brown;
+            this.metroTile2.TabIndex = 23;
+            this.metroTile2.Text = "...";
+            this.metroTile2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.metroTile2.UseSelectable = true;
+            this.metroTile2.Click += new System.EventHandler(this.metroTile2_Click);
+            // 
             // AtmanKospiAI2Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -979,7 +985,7 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.pnlLeftTop.ResumeLayout(false);
             this.pnlMain.ResumeLayout(false);
-            this.pnlChartView.ResumeLayout(false);
+            this.tlpChart.ResumeLayout(false);
             this.pnlResultView.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.pnlTitle.ResumeLayout(false);
@@ -1012,8 +1018,6 @@
         private MetroFramework.Controls.MetroLabel metroLabel4;
         private MetroFramework.Controls.MetroPanel pnlResultView;
         private System.Windows.Forms.DataGridView dgv;
-        private MetroFramework.Controls.MetroPanel pnlChartView;
-        private Vikala.Controls.Charts.WisdomCandleChart chart;
         private MetroFramework.Controls.MetroCheckBox chkMatchTime;
         private MetroFramework.Controls.MetroCheckBox chkMatchSpace;
         private MetroFramework.Controls.MetroCheckBox chkMatchTotal;
@@ -1028,8 +1032,6 @@
         private System.Windows.Forms.Button btnLoadDaemon2;
         private System.Windows.Forms.Button btnLoadDaemon3;
         private MetroFramework.Controls.MetroTile ai1;
-        private MetroFramework.Controls.MetroTile ai4;
-        private MetroFramework.Controls.MetroTile ai3;
         private MetroFramework.Controls.MetroTile ai2;
         private System.Windows.Forms.DataGridViewTextBoxColumn 시간;
         private System.Windows.Forms.DataGridViewTextBoxColumn 시가;
@@ -1048,5 +1050,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn yday1;
         private System.Windows.Forms.DataGridViewTextBoxColumn tday1;
         private System.Windows.Forms.DataGridViewTextBoxColumn tday2;
+        private System.Windows.Forms.TableLayoutPanel tlpChart;
+        private Vikala.Controls.Charts.WisdomCandleChart chart1;
+        private Vikala.Controls.Charts.WisdomCandleChart chart2;
+        private MetroFramework.Controls.MetroTile metroTile2;
     }
 }
