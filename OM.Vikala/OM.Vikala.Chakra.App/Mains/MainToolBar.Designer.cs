@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainToolBar));
             this.tsMain = new System.Windows.Forms.ToolStrip();
             this.tsbLeft = new System.Windows.Forms.ToolStripButton();
@@ -57,6 +58,8 @@
             this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
             this.tsb_SY_3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbAutoLoad = new System.Windows.Forms.ToolStripButton();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tsMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,7 +95,8 @@
             this.tsb_MA1,
             this.toolStripSeparator15,
             this.tsb_SY_3,
-            this.toolStripSeparator17});
+            this.toolStripSeparator17,
+            this.tsbAutoLoad});
             this.tsMain.Location = new System.Drawing.Point(0, 0);
             this.tsMain.Name = "tsMain";
             this.tsMain.Size = new System.Drawing.Size(35, 800);
@@ -354,6 +358,25 @@
             this.toolStripSeparator17.Name = "toolStripSeparator17";
             this.toolStripSeparator17.Size = new System.Drawing.Size(32, 6);
             // 
+            // tsbAutoLoad
+            // 
+            this.tsbAutoLoad.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbAutoLoad.AutoSize = false;
+            this.tsbAutoLoad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.tsbAutoLoad.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbAutoLoad.Image = ((System.Drawing.Image)(resources.GetObject("tsbAutoLoad.Image")));
+            this.tsbAutoLoad.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbAutoLoad.Name = "tsbAutoLoad";
+            this.tsbAutoLoad.Size = new System.Drawing.Size(30, 30);
+            this.tsbAutoLoad.Text = "자동";
+            this.tsbAutoLoad.Click += new System.EventHandler(this.tsbAutoLoad_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // MainToolBar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -401,5 +424,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator15;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator17;
+        private System.Windows.Forms.ToolStripButton tsbAutoLoad;
+        private System.Windows.Forms.Timer timer1;
     }
 }

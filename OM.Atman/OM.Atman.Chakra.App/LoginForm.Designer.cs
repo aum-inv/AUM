@@ -31,17 +31,25 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.button1 = new MetroFramework.Controls.MetroButton();
+            this.btnLogin = new MetroFramework.Controls.MetroButton();
             this.tbSecurity = new MetroFramework.Controls.MetroTextBox();
-            this.chkPlanResult = new MetroFramework.Controls.MetroRadioButton();
-            this.chkSignalMatching = new MetroFramework.Controls.MetroRadioButton();
-            this.chkSignalComplication = new MetroFramework.Controls.MetroRadioButton();
-            this.chkDiary = new MetroFramework.Controls.MetroRadioButton();
+            this.chkPlanResultKR = new MetroFramework.Controls.MetroCheckBox();
+            this.chkPatternMatching1 = new MetroFramework.Controls.MetroCheckBox();
+            this.chkSignalComplication = new MetroFramework.Controls.MetroCheckBox();
+            this.chkDiary = new MetroFramework.Controls.MetroCheckBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.chkRealBoard = new MetroFramework.Controls.MetroRadioButton();
-            this.chkCalculator = new MetroFramework.Controls.MetroRadioButton();
-            this.chkTechnicalCalculator = new MetroFramework.Controls.MetroRadioButton();
+            this.chkRealBoard = new MetroFramework.Controls.MetroCheckBox();
+            this.chkQuantityCalculator = new MetroFramework.Controls.MetroCheckBox();
+            this.chkTechnicalCalculatorKR = new MetroFramework.Controls.MetroCheckBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.chkPlanResultFF = new MetroFramework.Controls.MetroCheckBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.chkTechnicalCalculatorFF = new MetroFramework.Controls.MetroCheckBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.chkPatternMatching2 = new MetroFramework.Controls.MetroCheckBox();
+            this.chkPatternMatching4 = new MetroFramework.Controls.MetroCheckBox();
+            this.chkPatternMatching3 = new MetroFramework.Controls.MetroCheckBox();
             this.SuspendLayout();
             // 
             // label5
@@ -58,23 +66,23 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.DarkRed;
-            this.label4.Location = new System.Drawing.Point(11, 164);
+            this.label4.Location = new System.Drawing.Point(11, 146);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(239, 12);
             this.label4.TabIndex = 27;
             this.label4.Text = "---------------------------------------";
             // 
-            // button1
+            // btnLogin
             // 
-            this.button1.AutoSize = true;
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.Location = new System.Drawing.Point(181, 344);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(71, 23);
-            this.button1.TabIndex = 20;
-            this.button1.Text = "LOGIN";
-            this.button1.UseSelectable = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnLogin.AutoSize = true;
+            this.btnLogin.BackColor = System.Drawing.Color.Transparent;
+            this.btnLogin.Location = new System.Drawing.Point(349, 348);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(71, 23);
+            this.btnLogin.TabIndex = 20;
+            this.btnLogin.Text = "LOGIN";
+            this.btnLogin.UseSelectable = true;
+            this.btnLogin.Click += new System.EventHandler(this.button1_Click);
             // 
             // tbSecurity
             // 
@@ -93,7 +101,7 @@
             this.tbSecurity.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.tbSecurity.Lines = new string[] {
         "atman999"};
-            this.tbSecurity.Location = new System.Drawing.Point(18, 344);
+            this.tbSecurity.Location = new System.Drawing.Point(182, 348);
             this.tbSecurity.MaxLength = 32767;
             this.tbSecurity.Name = "tbSecurity";
             this.tbSecurity.PasswordChar = '#';
@@ -110,39 +118,39 @@
             this.tbSecurity.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.tbSecurity.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
-            // chkPlanResult
+            // chkPlanResultKR
             // 
-            this.chkPlanResult.AutoSize = true;
-            this.chkPlanResult.BackColor = System.Drawing.Color.Black;
-            this.chkPlanResult.Checked = true;
-            this.chkPlanResult.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
-            this.chkPlanResult.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold;
-            this.chkPlanResult.ForeColor = System.Drawing.Color.White;
-            this.chkPlanResult.Location = new System.Drawing.Point(34, 75);
-            this.chkPlanResult.Name = "chkPlanResult";
-            this.chkPlanResult.Size = new System.Drawing.Size(177, 25);
-            this.chkPlanResult.TabIndex = 30;
-            this.chkPlanResult.TabStop = true;
-            this.chkPlanResult.Text = "국내지수 투자전략";
-            this.chkPlanResult.UseCustomBackColor = true;
-            this.chkPlanResult.UseCustomForeColor = true;
-            this.chkPlanResult.UseSelectable = true;
+            this.chkPlanResultKR.AutoSize = true;
+            this.chkPlanResultKR.BackColor = System.Drawing.Color.Black;
+            this.chkPlanResultKR.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
+            this.chkPlanResultKR.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold;
+            this.chkPlanResultKR.ForeColor = System.Drawing.Color.White;
+            this.chkPlanResultKR.Location = new System.Drawing.Point(34, 75);
+            this.chkPlanResultKR.Name = "chkPlanResultKR";
+            this.chkPlanResultKR.Size = new System.Drawing.Size(218, 25);
+            this.chkPlanResultKR.TabIndex = 30;
+            this.chkPlanResultKR.Text = "국내지수 투자전략 작성";
+            this.chkPlanResultKR.UseCustomBackColor = true;
+            this.chkPlanResultKR.UseCustomForeColor = true;
+            this.chkPlanResultKR.UseSelectable = true;
+            this.chkPlanResultKR.CheckedChanged += new System.EventHandler(this.RadioButton_Click);
             // 
-            // chkSignalMatching
+            // chkPatternMatching1
             // 
-            this.chkSignalMatching.AutoSize = true;
-            this.chkSignalMatching.BackColor = System.Drawing.Color.Black;
-            this.chkSignalMatching.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
-            this.chkSignalMatching.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold;
-            this.chkSignalMatching.ForeColor = System.Drawing.Color.White;
-            this.chkSignalMatching.Location = new System.Drawing.Point(34, 106);
-            this.chkSignalMatching.Name = "chkSignalMatching";
-            this.chkSignalMatching.Size = new System.Drawing.Size(154, 25);
-            this.chkSignalMatching.TabIndex = 31;
-            this.chkSignalMatching.Text = "패턴매칭시그널";
-            this.chkSignalMatching.UseCustomBackColor = true;
-            this.chkSignalMatching.UseCustomForeColor = true;
-            this.chkSignalMatching.UseSelectable = true;
+            this.chkPatternMatching1.AutoSize = true;
+            this.chkPatternMatching1.BackColor = System.Drawing.Color.Black;
+            this.chkPatternMatching1.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
+            this.chkPatternMatching1.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold;
+            this.chkPatternMatching1.ForeColor = System.Drawing.Color.White;
+            this.chkPatternMatching1.Location = new System.Drawing.Point(349, 161);
+            this.chkPatternMatching1.Name = "chkPatternMatching1";
+            this.chkPatternMatching1.Size = new System.Drawing.Size(192, 25);
+            this.chkPatternMatching1.TabIndex = 31;
+            this.chkPatternMatching1.Text = "캔들 패턴매칭 AI - 1";
+            this.chkPatternMatching1.UseCustomBackColor = true;
+            this.chkPatternMatching1.UseCustomForeColor = true;
+            this.chkPatternMatching1.UseSelectable = true;
+            this.chkPatternMatching1.CheckedChanged += new System.EventHandler(this.RadioButton_Click);
             // 
             // chkSignalComplication
             // 
@@ -151,14 +159,15 @@
             this.chkSignalComplication.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
             this.chkSignalComplication.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold;
             this.chkSignalComplication.ForeColor = System.Drawing.Color.White;
-            this.chkSignalComplication.Location = new System.Drawing.Point(34, 137);
+            this.chkSignalComplication.Location = new System.Drawing.Point(349, 118);
             this.chkSignalComplication.Name = "chkSignalComplication";
-            this.chkSignalComplication.Size = new System.Drawing.Size(154, 25);
+            this.chkSignalComplication.Size = new System.Drawing.Size(220, 25);
             this.chkSignalComplication.TabIndex = 32;
-            this.chkSignalComplication.Text = "삼오매매시그널";
+            this.chkSignalComplication.Text = "가격 모니터링 && 시그널";
             this.chkSignalComplication.UseCustomBackColor = true;
             this.chkSignalComplication.UseCustomForeColor = true;
             this.chkSignalComplication.UseSelectable = true;
+            this.chkSignalComplication.CheckedChanged += new System.EventHandler(this.RadioButton_Click);
             // 
             // chkDiary
             // 
@@ -167,7 +176,7 @@
             this.chkDiary.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
             this.chkDiary.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold;
             this.chkDiary.ForeColor = System.Drawing.Color.White;
-            this.chkDiary.Location = new System.Drawing.Point(34, 179);
+            this.chkDiary.Location = new System.Drawing.Point(34, 294);
             this.chkDiary.Name = "chkDiary";
             this.chkDiary.Size = new System.Drawing.Size(136, 25);
             this.chkDiary.TabIndex = 33;
@@ -175,12 +184,13 @@
             this.chkDiary.UseCustomBackColor = true;
             this.chkDiary.UseCustomForeColor = true;
             this.chkDiary.UseSelectable = true;
+            this.chkDiary.CheckedChanged += new System.EventHandler(this.RadioButton_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.DarkRed;
-            this.label1.Location = new System.Drawing.Point(11, 209);
+            this.label1.Location = new System.Drawing.Point(11, 239);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(239, 12);
             this.label1.TabIndex = 34;
@@ -193,7 +203,7 @@
             this.chkRealBoard.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
             this.chkRealBoard.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold;
             this.chkRealBoard.ForeColor = System.Drawing.Color.White;
-            this.chkRealBoard.Location = new System.Drawing.Point(34, 224);
+            this.chkRealBoard.Location = new System.Drawing.Point(349, 75);
             this.chkRealBoard.Name = "chkRealBoard";
             this.chkRealBoard.Size = new System.Drawing.Size(182, 25);
             this.chkRealBoard.TabIndex = 35;
@@ -201,38 +211,41 @@
             this.chkRealBoard.UseCustomBackColor = true;
             this.chkRealBoard.UseCustomForeColor = true;
             this.chkRealBoard.UseSelectable = true;
+            this.chkRealBoard.CheckedChanged += new System.EventHandler(this.RadioButton_Click);
             // 
-            // chkCalculator
+            // chkQuantityCalculator
             // 
-            this.chkCalculator.AutoSize = true;
-            this.chkCalculator.BackColor = System.Drawing.Color.Black;
-            this.chkCalculator.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
-            this.chkCalculator.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold;
-            this.chkCalculator.ForeColor = System.Drawing.Color.White;
-            this.chkCalculator.Location = new System.Drawing.Point(34, 255);
-            this.chkCalculator.Name = "chkCalculator";
-            this.chkCalculator.Size = new System.Drawing.Size(159, 25);
-            this.chkCalculator.TabIndex = 36;
-            this.chkCalculator.Text = "매수매도 계산기";
-            this.chkCalculator.UseCustomBackColor = true;
-            this.chkCalculator.UseCustomForeColor = true;
-            this.chkCalculator.UseSelectable = true;
+            this.chkQuantityCalculator.AutoSize = true;
+            this.chkQuantityCalculator.BackColor = System.Drawing.Color.Black;
+            this.chkQuantityCalculator.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
+            this.chkQuantityCalculator.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold;
+            this.chkQuantityCalculator.ForeColor = System.Drawing.Color.White;
+            this.chkQuantityCalculator.Location = new System.Drawing.Point(34, 253);
+            this.chkQuantityCalculator.Name = "chkQuantityCalculator";
+            this.chkQuantityCalculator.Size = new System.Drawing.Size(200, 25);
+            this.chkQuantityCalculator.TabIndex = 36;
+            this.chkQuantityCalculator.Text = "매수매도 수량 계산기";
+            this.chkQuantityCalculator.UseCustomBackColor = true;
+            this.chkQuantityCalculator.UseCustomForeColor = true;
+            this.chkQuantityCalculator.UseSelectable = true;
+            this.chkQuantityCalculator.CheckedChanged += new System.EventHandler(this.RadioButton_Click);
             // 
-            // chkTechnicalCalculator
+            // chkTechnicalCalculatorKR
             // 
-            this.chkTechnicalCalculator.AutoSize = true;
-            this.chkTechnicalCalculator.BackColor = System.Drawing.Color.Black;
-            this.chkTechnicalCalculator.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
-            this.chkTechnicalCalculator.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold;
-            this.chkTechnicalCalculator.ForeColor = System.Drawing.Color.White;
-            this.chkTechnicalCalculator.Location = new System.Drawing.Point(34, 286);
-            this.chkTechnicalCalculator.Name = "chkTechnicalCalculator";
-            this.chkTechnicalCalculator.Size = new System.Drawing.Size(200, 25);
-            this.chkTechnicalCalculator.TabIndex = 38;
-            this.chkTechnicalCalculator.Text = "기술적 분석표 계산기";
-            this.chkTechnicalCalculator.UseCustomBackColor = true;
-            this.chkTechnicalCalculator.UseCustomForeColor = true;
-            this.chkTechnicalCalculator.UseSelectable = true;
+            this.chkTechnicalCalculatorKR.AutoSize = true;
+            this.chkTechnicalCalculatorKR.BackColor = System.Drawing.Color.Black;
+            this.chkTechnicalCalculatorKR.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
+            this.chkTechnicalCalculatorKR.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold;
+            this.chkTechnicalCalculatorKR.ForeColor = System.Drawing.Color.White;
+            this.chkTechnicalCalculatorKR.Location = new System.Drawing.Point(34, 161);
+            this.chkTechnicalCalculatorKR.Name = "chkTechnicalCalculatorKR";
+            this.chkTechnicalCalculatorKR.Size = new System.Drawing.Size(236, 25);
+            this.chkTechnicalCalculatorKR.TabIndex = 38;
+            this.chkTechnicalCalculatorKR.Text = "국내지수 기술분석 계산기";
+            this.chkTechnicalCalculatorKR.UseCustomBackColor = true;
+            this.chkTechnicalCalculatorKR.UseCustomForeColor = true;
+            this.chkTechnicalCalculatorKR.UseSelectable = true;
+            this.chkTechnicalCalculatorKR.CheckedChanged += new System.EventHandler(this.RadioButton_Click);
             // 
             // label2
             // 
@@ -244,24 +257,148 @@
             this.label2.TabIndex = 37;
             this.label2.Text = "---------------------------------------";
             // 
+            // chkPlanResultFF
+            // 
+            this.chkPlanResultFF.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkPlanResultFF.AutoSize = true;
+            this.chkPlanResultFF.BackColor = System.Drawing.Color.Black;
+            this.chkPlanResultFF.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
+            this.chkPlanResultFF.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold;
+            this.chkPlanResultFF.ForeColor = System.Drawing.Color.White;
+            this.chkPlanResultFF.Location = new System.Drawing.Point(34, 117);
+            this.chkPlanResultFF.Name = "chkPlanResultFF";
+            this.chkPlanResultFF.Size = new System.Drawing.Size(218, 25);
+            this.chkPlanResultFF.TabIndex = 39;
+            this.chkPlanResultFF.Text = "해외선물 투자전략 작성";
+            this.chkPlanResultFF.UseCustomBackColor = true;
+            this.chkPlanResultFF.UseCustomForeColor = true;
+            this.chkPlanResultFF.UseSelectable = true;
+            this.chkPlanResultFF.CheckedChanged += new System.EventHandler(this.RadioButton_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.DarkRed;
+            this.label3.Location = new System.Drawing.Point(333, 146);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(239, 12);
+            this.label3.TabIndex = 40;
+            this.label3.Text = "---------------------------------------";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.DarkRed;
+            this.label6.Location = new System.Drawing.Point(333, 59);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(239, 12);
+            this.label6.TabIndex = 41;
+            this.label6.Text = "---------------------------------------";
+            // 
+            // chkTechnicalCalculatorFF
+            // 
+            this.chkTechnicalCalculatorFF.AutoSize = true;
+            this.chkTechnicalCalculatorFF.BackColor = System.Drawing.Color.Black;
+            this.chkTechnicalCalculatorFF.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
+            this.chkTechnicalCalculatorFF.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold;
+            this.chkTechnicalCalculatorFF.ForeColor = System.Drawing.Color.White;
+            this.chkTechnicalCalculatorFF.Location = new System.Drawing.Point(34, 202);
+            this.chkTechnicalCalculatorFF.Name = "chkTechnicalCalculatorFF";
+            this.chkTechnicalCalculatorFF.Size = new System.Drawing.Size(236, 25);
+            this.chkTechnicalCalculatorFF.TabIndex = 42;
+            this.chkTechnicalCalculatorFF.Text = "해외선물 기술분석 계산기";
+            this.chkTechnicalCalculatorFF.UseCustomBackColor = true;
+            this.chkTechnicalCalculatorFF.UseCustomForeColor = true;
+            this.chkTechnicalCalculatorFF.UseSelectable = true;
+            this.chkTechnicalCalculatorFF.CheckedChanged += new System.EventHandler(this.RadioButton_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.DarkRed;
+            this.label7.Location = new System.Drawing.Point(333, 322);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(239, 12);
+            this.label7.TabIndex = 43;
+            this.label7.Text = "---------------------------------------";
+            // 
+            // chkPatternMatching2
+            // 
+            this.chkPatternMatching2.AutoSize = true;
+            this.chkPatternMatching2.BackColor = System.Drawing.Color.Black;
+            this.chkPatternMatching2.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
+            this.chkPatternMatching2.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold;
+            this.chkPatternMatching2.ForeColor = System.Drawing.Color.White;
+            this.chkPatternMatching2.Location = new System.Drawing.Point(349, 202);
+            this.chkPatternMatching2.Name = "chkPatternMatching2";
+            this.chkPatternMatching2.Size = new System.Drawing.Size(192, 25);
+            this.chkPatternMatching2.TabIndex = 44;
+            this.chkPatternMatching2.Text = "캔들 패턴매칭 AI - 2";
+            this.chkPatternMatching2.UseCustomBackColor = true;
+            this.chkPatternMatching2.UseCustomForeColor = true;
+            this.chkPatternMatching2.UseSelectable = true;
+            this.chkPatternMatching2.CheckedChanged += new System.EventHandler(this.RadioButton_Click);
+            // 
+            // chkPatternMatching4
+            // 
+            this.chkPatternMatching4.AutoSize = true;
+            this.chkPatternMatching4.BackColor = System.Drawing.Color.Black;
+            this.chkPatternMatching4.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
+            this.chkPatternMatching4.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold;
+            this.chkPatternMatching4.ForeColor = System.Drawing.Color.White;
+            this.chkPatternMatching4.Location = new System.Drawing.Point(349, 283);
+            this.chkPatternMatching4.Name = "chkPatternMatching4";
+            this.chkPatternMatching4.Size = new System.Drawing.Size(192, 25);
+            this.chkPatternMatching4.TabIndex = 46;
+            this.chkPatternMatching4.Text = "캔들 패턴매칭 AI - 4";
+            this.chkPatternMatching4.UseCustomBackColor = true;
+            this.chkPatternMatching4.UseCustomForeColor = true;
+            this.chkPatternMatching4.UseSelectable = true;
+            this.chkPatternMatching4.CheckedChanged += new System.EventHandler(this.RadioButton_Click);
+            // 
+            // chkPatternMatching3
+            // 
+            this.chkPatternMatching3.AutoSize = true;
+            this.chkPatternMatching3.BackColor = System.Drawing.Color.Black;
+            this.chkPatternMatching3.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
+            this.chkPatternMatching3.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold;
+            this.chkPatternMatching3.ForeColor = System.Drawing.Color.White;
+            this.chkPatternMatching3.Location = new System.Drawing.Point(349, 242);
+            this.chkPatternMatching3.Name = "chkPatternMatching3";
+            this.chkPatternMatching3.Size = new System.Drawing.Size(192, 25);
+            this.chkPatternMatching3.TabIndex = 45;
+            this.chkPatternMatching3.Text = "캔들 패턴매칭 AI - 3";
+            this.chkPatternMatching3.UseCustomBackColor = true;
+            this.chkPatternMatching3.UseCustomForeColor = true;
+            this.chkPatternMatching3.UseSelectable = true;
+            this.chkPatternMatching3.CheckedChanged += new System.EventHandler(this.RadioButton_Click);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
-            this.ClientSize = new System.Drawing.Size(269, 383);
-            this.Controls.Add(this.chkTechnicalCalculator);
+            this.ClientSize = new System.Drawing.Size(587, 383);
+            this.Controls.Add(this.chkPatternMatching4);
+            this.Controls.Add(this.chkPatternMatching3);
+            this.Controls.Add(this.chkPatternMatching2);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.chkTechnicalCalculatorFF);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.chkPlanResultFF);
+            this.Controls.Add(this.chkTechnicalCalculatorKR);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.chkCalculator);
+            this.Controls.Add(this.chkQuantityCalculator);
             this.Controls.Add(this.chkRealBoard);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.chkDiary);
             this.Controls.Add(this.chkSignalComplication);
-            this.Controls.Add(this.chkSignalMatching);
-            this.Controls.Add(this.chkPlanResult);
+            this.Controls.Add(this.chkPatternMatching1);
+            this.Controls.Add(this.chkPlanResultKR);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.tbSecurity);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -269,8 +406,9 @@
             this.Resizable = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Style = MetroFramework.MetroColorStyle.Red;
-            this.Text = "ATMAN LOGIN";
+            this.Text = "ATMAN UTILITY";
             this.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.Load += new System.EventHandler(this.LoginForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -279,16 +417,24 @@
         #endregion
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private MetroFramework.Controls.MetroButton button1;
+        private MetroFramework.Controls.MetroButton btnLogin;
         private MetroFramework.Controls.MetroTextBox tbSecurity;
-        private MetroFramework.Controls.MetroRadioButton chkPlanResult;
-        private MetroFramework.Controls.MetroRadioButton chkSignalMatching;
-        private MetroFramework.Controls.MetroRadioButton chkSignalComplication;
-        private MetroFramework.Controls.MetroRadioButton chkDiary;
+        private MetroFramework.Controls.MetroCheckBox chkPlanResultKR;
+        private MetroFramework.Controls.MetroCheckBox chkPatternMatching1;
+        private MetroFramework.Controls.MetroCheckBox chkSignalComplication;
+        private MetroFramework.Controls.MetroCheckBox chkDiary;
         private System.Windows.Forms.Label label1;
-        private MetroFramework.Controls.MetroRadioButton chkRealBoard;
-        private MetroFramework.Controls.MetroRadioButton chkCalculator;
-        private MetroFramework.Controls.MetroRadioButton chkTechnicalCalculator;
+        private MetroFramework.Controls.MetroCheckBox chkRealBoard;
+        private MetroFramework.Controls.MetroCheckBox chkQuantityCalculator;
+        private MetroFramework.Controls.MetroCheckBox chkTechnicalCalculatorKR;
         private System.Windows.Forms.Label label2;
+        private MetroFramework.Controls.MetroCheckBox chkPlanResultFF;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label6;
+        private MetroFramework.Controls.MetroCheckBox chkTechnicalCalculatorFF;
+        private System.Windows.Forms.Label label7;
+        private MetroFramework.Controls.MetroCheckBox chkPatternMatching2;
+        private MetroFramework.Controls.MetroCheckBox chkPatternMatching4;
+        private MetroFramework.Controls.MetroCheckBox chkPatternMatching3;
     }
 }

@@ -226,6 +226,76 @@ namespace OM.PP.Chakra.Ctx
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
+        //실시간 시세에 맞게 데이터 업데이트
+        public void SetCandleSourceDataReal(string itemCode, S_CandleItemData entity)
+        {
+            try
+            {
+                LimitedList<S_CandleItemData> list = null;
+                TimeIntervalEnum timeInterval = TimeIntervalEnum.Day;
+                switch (timeInterval)
+                {
+                    case TimeIntervalEnum.Minute_01:
+                        list = PPStorage.Instance.StorageMin01[itemCode];
+                        break;
+                    case TimeIntervalEnum.Minute_05:
+                        list = PPStorage.Instance.StorageMin05[itemCode];
+                        break;
+                    case TimeIntervalEnum.Minute_10:
+                        list = PPStorage.Instance.StorageMin10[itemCode];
+                        break;
+                    case TimeIntervalEnum.Minute_30:
+                        list = PPStorage.Instance.StorageMin30[itemCode];
+                        break;
+                    case TimeIntervalEnum.Hour_01:
+                        list = PPStorage.Instance.StorageMin60[itemCode];
+                        break;
+                    case TimeIntervalEnum.Hour_02:
+                        list = PPStorage.Instance.StorageMin120[itemCode];
+                        break;
+                    case TimeIntervalEnum.Hour_03:
+                        list = PPStorage.Instance.StorageMin180[itemCode];
+                        break;
+                    case TimeIntervalEnum.Hour_04:
+                        list = PPStorage.Instance.StorageMin240[itemCode];
+                        break;
+                    case TimeIntervalEnum.Hour_05:
+                        list = PPStorage.Instance.StorageMin300[itemCode];
+                        break;
+                    case TimeIntervalEnum.Hour_06:
+                        list = PPStorage.Instance.StorageMin360[itemCode];
+                        break;
+                    case TimeIntervalEnum.Hour_08:
+                        list = PPStorage.Instance.StorageMin480[itemCode];
+                        break;
+                    case TimeIntervalEnum.Hour_12:
+                        list = PPStorage.Instance.StorageMin720[itemCode];
+                        break;
+                    case TimeIntervalEnum.Day:
+                        list = PPStorage.Instance.StorageDay[itemCode];
+                        break;
+                    case TimeIntervalEnum.Week:
+                        list = PPStorage.Instance.StorageWeek[itemCode];
+                        break;
+                }
+                if (list == null) return;
+
+                var m = list.Find(t => t.DTime == entity.DTime);
+                if (m != null)
+                {
+                    m.OpenPrice = entity.OpenPrice;
+                    m.HighPrice = entity.HighPrice;
+                    m.LowPrice = entity.LowPrice;
+                    m.ClosePrice = entity.ClosePrice;
+                }
+                else
+                    list.Insert(entity);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+        }
 
         public void ClearSourceData(string itemCode, TimeIntervalEnum timeInterval)
         {

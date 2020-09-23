@@ -36,6 +36,8 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
 
             userToolStrip.IsVisibleExpand = false;
             userToolStrip.IsVisibleMdiButton = false;
+
+            App.Events.MainFormToolBarEvents.Instance.ManualReloadHandler += () => { loadData(); };
         }
 
         private void UserToolStrip_LineChartWidthChangedEvent(object sender, EventArgs e)

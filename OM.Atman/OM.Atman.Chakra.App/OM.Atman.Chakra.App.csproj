@@ -262,12 +262,6 @@
     <Compile Include="TradeRuleForm.Designer.cs">
       <DependentUpon>TradeRuleForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TradingRule\ThreeFiveRuleKrForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TradingRule\ThreeFiveRuleKrForm.Designer.cs">
-      <DependentUpon>ThreeFiveRuleKrForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="TradingRule\ThreeFiveRuleForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -439,9 +433,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TradeRuleForm.resx">
       <DependentUpon>TradeRuleForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TradingRule\ThreeFiveRuleKrForm.resx">
-      <DependentUpon>ThreeFiveRuleKrForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TradingRule\ThreeFiveRuleForm.resx">
       <DependentUpon>ThreeFiveRuleForm.cs</DependentUpon>

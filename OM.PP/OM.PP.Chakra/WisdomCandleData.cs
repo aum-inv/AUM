@@ -180,6 +180,44 @@ namespace OM.PP.Chakra
                 return tRate;
             }
         }
+
+        public double Variance_ChartPrice2
+        {
+            get
+            {
+                if (PreviousCandleData == null)
+                    return Double.NaN;
+                if (PreviousCandleData.PreviousCandleData == null)
+                    return Double.NaN;
+                double tRate = Variance_ChartPrice
+                     + PreviousCandleData.BasicPrice_Open
+                     + PreviousCandleData.BasicPrice_High
+                     + PreviousCandleData.BasicPrice_Low
+                     + PreviousCandleData.BasicPrice_Close
+                     + PreviousCandleData.BasicPrice_Center
+                     + PreviousCandleData.BasicPrice_Middle
+                     + PreviousCandleData.ComparedPreviousDayPrice_Open
+                     + PreviousCandleData.ComparedPreviousDayPrice_High
+                     + PreviousCandleData.ComparedPreviousDayPrice_Low
+                     + PreviousCandleData.ComparedPreviousDayPrice_Close
+                     + PreviousCandleData.ComparedPreviousDayPrice_Center
+                     + PreviousCandleData.ComparedPreviousDayPrice_Middle
+                     + PreviousCandleData.PreviousCandleData.BasicPrice_Open
+                     + PreviousCandleData.PreviousCandleData.BasicPrice_High
+                     + PreviousCandleData.PreviousCandleData.BasicPrice_Low
+                     + PreviousCandleData.PreviousCandleData.BasicPrice_Close
+                     + PreviousCandleData.PreviousCandleData.BasicPrice_Center
+                     + PreviousCandleData.PreviousCandleData.BasicPrice_Middle
+                     + PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Open
+                     + PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_High
+                     + PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Low
+                     + PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Close
+                     + PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Center
+                     + PreviousCandleData.PreviousCandleData.ComparedPreviousDayPrice_Middle;
+
+                return tRate;
+            }
+        }
         #endregion
         #region 변화_기본_시가대비
         public double Variance_BasicPrice
@@ -389,6 +427,19 @@ namespace OM.PP.Chakra
 
 
                 return Variance_ChartPrice;
+            }
+        }
+        public double TimeEnergy2
+        {
+            get
+            {
+                //double energy1 = PPUtils.GetAvgRateOfChange(Variance_BasicPrice, VarianceTotalRate);
+                //double energy2 = PPUtils.GetAvgRateOfChange(Variance_ComparedPreviousDayPrice, VarianceTotalRate);
+
+                //return (energy1 + energy2) / 2.0;
+
+
+                return Variance_ChartPrice2;
             }
         }
 

@@ -31,7 +31,10 @@ namespace OM.Atman.Chakra.App.AIForms
         List<SmartCandleData> scList = new List<SmartCandleData>();
 
         SmartCandleData selCandleData = null;
-               
+
+        int displayCnt = 30;
+        string itemCode = "101";
+        TimeIntervalEnum timeInterval = TimeIntervalEnum.Day;
         public AtmanKospiAIForm()
         {
             InitializeComponent();           
@@ -54,6 +57,17 @@ namespace OM.Atman.Chakra.App.AIForms
         private void AtmanForm_Load(object sender, EventArgs e)
         {
             serverInfo();
+            setItems();
+        }
+        private void setItems()
+        {
+            ItemData[] itemDatas = new ItemData[ItemCodeSet.Items.Length];
+            ItemCodeSet.Items.CopyTo(itemDatas, 0);
+
+            cbxItem.DataSource = itemDatas;
+            cbxItem.DisplayMember = "Name";
+            cbxItem.ValueMember = "Code";
+            cbxItem.SelectedIndex = 0;
         }
         private void serverInfo()
         {
@@ -185,8 +199,8 @@ namespace OM.Atman.Chakra.App.AIForms
                         lblCnt.Text = scList.Count.ToString("N0");
                     }));
 
-                    chart1.LoadData("101", scList, Lib.Base.Enums.TimeIntervalEnum.Day);
-                    chart2.LoadData("101", scList, Lib.Base.Enums.TimeIntervalEnum.Day);
+                    chart1.LoadData("CL", scList, Lib.Base.Enums.TimeIntervalEnum.Day);
+                    chart2.LoadData("CL", scList, Lib.Base.Enums.TimeIntervalEnum.Day);
                 }
             }
             catch (Exception ex)
@@ -197,8 +211,10 @@ namespace OM.Atman.Chakra.App.AIForms
         
         void loadSiseDataFromDaemon(TimeIntervalEnum timeInterval = TimeIntervalEnum.Day)
         {
+            this.timeInterval = timeInterval;
+
             var sourceDatas = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
-                      "101"
+                      itemCode
                     , timeInterval);
             if (sourceDatas == null || sourceDatas.Count == 0) return;
 
@@ -252,9 +268,16 @@ namespace OM.Atman.Chakra.App.AIForms
                 dgvList.ClearSelection();
                 lblCnt.Text = scList.Count.ToString("N0");
 
-                chart1.LoadData("101", scList, timeInterval);
-                chart2.LoadData("101", scList, timeInterval);
+                Display();
             }));           
+        }
+
+        private void Display()
+        {
+            chart1.DisplayPointCount = displayCnt;
+            chart2.DisplayPointCount = displayCnt;
+            chart1.LoadData(itemCode, scList, timeInterval);
+            chart2.LoadData(itemCode, scList, timeInterval);
         }
         #endregion
 
@@ -286,9 +309,11 @@ namespace OM.Atman.Chakra.App.AIForms
                 bool isUseTotalEnergy = chkMatchTotal.Checked;
                 bool isUseTimeEnergy = chkMatchTime.Checked;
                 bool isUseSpaceEnergy = chkMatchSpace.Checked;
+                bool isUseMultiCandle = chkMultiCandle.Checked;
+
                 Task.Factory.StartNew(() =>
                 {
-                    Searching(isUseTotalEnergy, isUseTimeEnergy, isUseSpaceEnergy);
+                    Searching(isUseTotalEnergy, isUseTimeEnergy, isUseSpaceEnergy, isUseMultiCandle);
                 });
             }
             catch (Exception ex)
@@ -297,7 +322,7 @@ namespace OM.Atman.Chakra.App.AIForms
             }
         }
 
-        private void Searching(bool isUseTotalEnergy = true, bool isUseTimeEnergy = true, bool isUseSpaceEnergy = true)
+        private void Searching(bool isUseTotalEnergy = true, bool isUseTimeEnergy = true, bool isUseSpaceEnergy = true, bool isUseMulti = false)
         {  
             Dictionary<SmartCandleData, EnergyRank> totalEnergyRank = new Dictionary<SmartCandleData, EnergyRank>();
                        
@@ -308,15 +333,30 @@ namespace OM.Atman.Chakra.App.AIForms
 
                 EnergyRank energyRank = new EnergyRank();
 
-                double diffTime = Math.Abs(selCandleData.TimeEnergy - data.TimeEnergy);
-                energyRank.TimeEnergy = isUseTimeEnergy ? diffTime : 0;
-               
-                double diffSpace = Math.Abs(selCandleData.SpaceEnergy - data.SpaceEnergy);
-                energyRank.SpaceEnergy = isUseSpaceEnergy ? diffSpace : 0;
+                if (isUseMulti)
+                {
+                    double diffTime = Math.Abs(selCandleData.TimeEnergy2 - data.TimeEnergy2);
+                    energyRank.TimeEnergy = isUseTimeEnergy ? diffTime : 0;
 
-                energyRank.SumEnergy = isUseTotalEnergy ? (diffTime + diffSpace) : 0;
+                    double diffSpace = Math.Abs(selCandleData.SpaceEnergy - data.SpaceEnergy);
+                    energyRank.SpaceEnergy = isUseSpaceEnergy ? diffSpace : 0;
 
-                totalEnergyRank.Add(data, energyRank);
+                    energyRank.SumEnergy = isUseTotalEnergy ? (diffTime + diffSpace) : 0;
+
+                    totalEnergyRank.Add(data, energyRank);
+                }
+                else 
+                {
+                    double diffTime = Math.Abs(selCandleData.TimeEnergy - data.TimeEnergy);
+                    energyRank.TimeEnergy = isUseTimeEnergy ? diffTime : 0;
+
+                    double diffSpace = Math.Abs(selCandleData.SpaceEnergy - data.SpaceEnergy);
+                    energyRank.SpaceEnergy = isUseSpaceEnergy ? diffSpace : 0;
+
+                    energyRank.SumEnergy = isUseTotalEnergy ? (diffTime + diffSpace) : 0;
+
+                    totalEnergyRank.Add(data, energyRank);
+                }
             }
 
             int rank = 0;
@@ -446,8 +486,6 @@ namespace OM.Atman.Chakra.App.AIForms
                 }));
             }
             
-           
-
             this.Invoke(new Action(() =>
             {
                 dgv.ClearSelection();
@@ -507,34 +545,6 @@ namespace OM.Atman.Chakra.App.AIForms
             });
         }
 
-        //private int getRank(List<KeyValuePair<SmartCandleData, double>> rankList, SmartCandleData data)
-        //{
-        //    int rank = -1;
-        //    for (int idx = 0; idx < rankList.Count; idx++)
-        //    {
-        //        if (rankList[idx].Key == data)
-        //        {
-        //            rank = ++idx;
-        //            break;
-        //        }
-        //    }
-
-        //    return rank;
-        //}
-        //private double getValue(List<KeyValuePair<SmartCandleData, double>> rankList, SmartCandleData data)
-        //{
-        //    double val = -1;
-        //    for (int idx = 0; idx < rankList.Count; idx++)
-        //    {
-        //        if (rankList[idx].Key == data)
-        //        {
-        //            val =  rankList[idx].Value;
-        //            break;
-        //        }
-        //    }
-
-        //    return val;
-        //}
         #endregion
 
         #region Control Event
@@ -636,6 +646,23 @@ namespace OM.Atman.Chakra.App.AIForms
             df.Height = tlpChart.Height + 30;
             df.Text = this.Text + "(EDIT IMAGE)";
             df.Show();
+        }
+
+        private void metroLabel11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nudDisplay_ValueChanged(object sender, EventArgs e)
+        {
+            displayCnt = Convert.ToInt32(nudDisplay.Value);
+            Display();
+        }
+
+        private void cbxItem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            itemCode = (cbxItem.SelectedItem as ItemData).Code;
+            loadSiseDataFromDaemon(timeInterval);
         }
     }
 }

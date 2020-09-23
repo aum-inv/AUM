@@ -169,6 +169,14 @@ namespace OM.PP.XingApp
         {
             session._IXASessionEvents_Event_Login += Session__IXASessionEvents_Event_Login;
             session.Disconnect += Session_Disconnect;
+
+            Task.Factory.StartNew(() => {
+                System.Threading.Thread.Sleep(1000 * 2);
+                this.Invoke(new MethodInvoker(() =>
+                {
+                    btnLogin.PerformClick();
+                }));
+            });
         }
 
         private void Session_Disconnect()
@@ -782,6 +790,9 @@ namespace OM.PP.XingApp
             }
         }
 
-       
+        private void XingAppForm_Load_1(object sender, EventArgs e)
+        {
+            btnLogin.PerformClick();
+        }
     }
 }

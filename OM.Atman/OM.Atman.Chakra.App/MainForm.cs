@@ -19,7 +19,7 @@ using System.Windows.Forms;
 
 namespace OM.Atman.Chakra.App
 {
-    public partial class MainForm : Form
+    public partial class MainForm : MetroFramework.Forms.MetroForm
     {
         Dictionary<string, Label> lblPrice = new Dictionary<string, Label>();
         Dictionary<string, Label> lblUpDown = new Dictionary<string, Label>();
@@ -30,7 +30,14 @@ namespace OM.Atman.Chakra.App
         {
             InitializeComponent();
             InitializeControls();
+            this.Load += MainForm_Load1;
         }
+
+        private void MainForm_Load1(object sender, EventArgs e)
+        {
+            btnStart.PerformClick();
+        }
+
         private void InitializeControls()
         {
             lblPrice.Add("CL", lblPriceCL);
@@ -315,7 +322,7 @@ namespace OM.Atman.Chakra.App
                         lastPrice = price.price;
                         double d = Math.Round(Convert.ToDouble(lastPrice), rnd);
 
-                        if(! ll3.Contains(d)) ll3.Insert(d);
+                        if (!ll3.Contains(d)) ll3.Insert(d);
                         if (!ll5.Contains(d)) ll5.Insert(d);
                         if (!ll7.Contains(d)) ll7.Insert(d);
 

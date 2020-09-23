@@ -175,14 +175,14 @@ namespace OM.Vikala.Controls.Charts
 
             double preVariancePrice = 0;
             double preVariancePrice2= 0;
-            for (int i = 3; i < ChartData.Count; i++)
+            for (int i = 4; i < ChartData.Count; i++)
             {
                 var item = ChartData[i];
                 var smart = smartDataList[i];
                 var wisdom = wisdomDataList[i];
                 int idx = chart.Series[0].Points.AddXY(item.DTime, item.HighPrice, item.LowPrice, item.OpenPrice, item.ClosePrice);
                 //chart.Series[1].Points.AddXY(smart.DTime, smart.SpaceTotalChangeRate);
-                chart.Series[1].Points.AddXY(smart.DTime, smart.Variance_ChartPrice);
+                chart.Series[1].Points.AddXY(smart.DTime, smart.Variance_ChartPrice2);
                 chart.Series[2].Points.AddXY(wisdom.DTime, wisdom.Variance_ChartPrice);
 
                 if (preVariancePrice < smart.Variance_ChartPrice)
@@ -323,8 +323,8 @@ namespace OM.Vikala.Controls.Charts
                 chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
                 chart.ChartAreas[0].AxisY2.Minimum = minPrice;
                
-                double maxPrice2 = smartDataList.GetRange(2, smartDataList.Count - 2).Max(m => m.Variance_ChartPrice);
-                double minPrice2 = smartDataList.GetRange(2, smartDataList.Count - 2).Min(m => m.Variance_ChartPrice);
+                double maxPrice2 = smartDataList.GetRange(2, smartDataList.Count - 3).Max(m => m.Variance_ChartPrice2);
+                double minPrice2 = smartDataList.GetRange(2, smartDataList.Count - 3).Min(m => m.Variance_ChartPrice2);
                 maxPrice2 = maxPrice2 + SpaceMaxMin;
                 minPrice2 = minPrice2 - SpaceMaxMin;
                 chart.ChartAreas[0].AxisY.Maximum = maxPrice2;

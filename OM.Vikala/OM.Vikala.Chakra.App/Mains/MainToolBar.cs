@@ -1,5 +1,6 @@
 ﻿using MaterialSkin.Controls;
 using OM.PP.Chakra.Ctx;
+using OM.Vikala.Chakra.App.Events;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -214,6 +215,27 @@ namespace OM.Vikala.Chakra.App.Mains
                 }
                 y += window_height;
             }
+        }
+
+        bool isAutoLoad = false;
+        DateTime lastReloadDT = DateTime.Now;
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (DateTime.Now.Minute != lastReloadDT.Minute)
+            {
+                if (isAutoLoad)
+                {
+                    MainFormToolBarEvents.Instance.OnManualReloadHandler();
+                    lastReloadDT = DateTime.Now;
+                }
+            }
+        }
+
+        private void tsbAutoLoad_Click(object sender, EventArgs e)
+        {
+            isAutoLoad = !isAutoLoad;
+
+            tsbAutoLoad.Checked = isAutoLoad;
         }
 
         //private void tsb_Minimize_Click(object sender, EventArgs e)

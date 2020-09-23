@@ -413,7 +413,7 @@
             this.chk76.Size = new System.Drawing.Size(18, 24);
             this.chk76.Style = MetroFramework.MetroColorStyle.Black;
             this.chk76.TabIndex = 55;
-            this.chk76.Tag = "4";
+            this.chk76.Tag = "10";
             this.chk76.UseSelectable = true;
             this.chk76.CheckedChanged += new System.EventHandler(this.chk_CheckedChanged);
             // 
@@ -424,7 +424,7 @@
             this.chk75.Size = new System.Drawing.Size(18, 24);
             this.chk75.Style = MetroFramework.MetroColorStyle.Blue;
             this.chk75.TabIndex = 54;
-            this.chk75.Tag = "3";
+            this.chk75.Tag = "5";
             this.chk75.UseSelectable = true;
             this.chk75.CheckedChanged += new System.EventHandler(this.chk_CheckedChanged);
             // 
@@ -446,7 +446,7 @@
             this.chk74.Size = new System.Drawing.Size(18, 24);
             this.chk74.Style = MetroFramework.MetroColorStyle.Green;
             this.chk74.TabIndex = 53;
-            this.chk74.Tag = "1";
+            this.chk74.Tag = "3";
             this.chk74.UseSelectable = true;
             this.chk74.CheckedChanged += new System.EventHandler(this.chk_CheckedChanged);
             // 
@@ -490,7 +490,7 @@
             this.chk72.Size = new System.Drawing.Size(18, 24);
             this.chk72.Style = MetroFramework.MetroColorStyle.Orange;
             this.chk72.TabIndex = 51;
-            this.chk72.Tag = "1";
+            this.chk72.Tag = "3";
             this.chk72.UseSelectable = true;
             this.chk72.CheckedChanged += new System.EventHandler(this.chk_CheckedChanged);
             // 
@@ -512,7 +512,7 @@
             this.chk71.Size = new System.Drawing.Size(18, 24);
             this.chk71.Style = MetroFramework.MetroColorStyle.Red;
             this.chk71.TabIndex = 50;
-            this.chk71.Tag = "3";
+            this.chk71.Tag = "5";
             this.chk71.UseSelectable = true;
             this.chk71.CheckedChanged += new System.EventHandler(this.chk_CheckedChanged);
             // 
@@ -721,7 +721,7 @@
             this.chk25.Size = new System.Drawing.Size(18, 24);
             this.chk25.Style = MetroFramework.MetroColorStyle.Blue;
             this.chk25.TabIndex = 24;
-            this.chk25.Tag = "3";
+            this.chk25.Tag = "4";
             this.chk25.UseSelectable = true;
             this.chk25.CheckedChanged += new System.EventHandler(this.chk_CheckedChanged);
             // 
@@ -743,7 +743,7 @@
             this.chk24.Size = new System.Drawing.Size(18, 24);
             this.chk24.Style = MetroFramework.MetroColorStyle.Green;
             this.chk24.TabIndex = 23;
-            this.chk24.Tag = "1";
+            this.chk24.Tag = "2";
             this.chk24.UseSelectable = true;
             this.chk24.CheckedChanged += new System.EventHandler(this.chk_CheckedChanged);
             // 
@@ -787,7 +787,7 @@
             this.chk22.Size = new System.Drawing.Size(18, 24);
             this.chk22.Style = MetroFramework.MetroColorStyle.Orange;
             this.chk22.TabIndex = 21;
-            this.chk22.Tag = "1";
+            this.chk22.Tag = "2";
             this.chk22.UseSelectable = true;
             this.chk22.CheckedChanged += new System.EventHandler(this.chk_CheckedChanged);
             // 
@@ -798,7 +798,7 @@
             this.chk21.Size = new System.Drawing.Size(18, 24);
             this.chk21.Style = MetroFramework.MetroColorStyle.Red;
             this.chk21.TabIndex = 20;
-            this.chk21.Tag = "3";
+            this.chk21.Tag = "4";
             this.chk21.UseSelectable = true;
             this.chk21.CheckedChanged += new System.EventHandler(this.chk_CheckedChanged);
             // 

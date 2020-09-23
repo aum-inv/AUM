@@ -62,17 +62,17 @@
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.metroPanel3 = new MetroFramework.Controls.MetroPanel();
-            this.ai2 = new MetroFramework.Controls.MetroTile();
-            this.ai1 = new MetroFramework.Controls.MetroTile();
             this.label5 = new System.Windows.Forms.Label();
             this.btnSearch = new MetroFramework.Controls.MetroTile();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.chkMultiCandle = new MetroFramework.Controls.MetroCheckBox();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.chkMatchTotal = new MetroFramework.Controls.MetroCheckBox();
             this.metroLabel11 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
             this.chkMatchSpace = new MetroFramework.Controls.MetroCheckBox();
-            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.chkMatchTime = new MetroFramework.Controls.MetroCheckBox();
+            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnlLeftTop = new MetroFramework.Controls.MetroPanel();
             this.lblCnt = new MetroFramework.Controls.MetroLabel();
@@ -109,10 +109,12 @@
             this.tday2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pnlTitle = new MetroFramework.Controls.MetroPanel();
+            this.metroTile2 = new MetroFramework.Controls.MetroTile();
             this.tbSelectedInfo = new MetroFramework.Controls.MetroTextBox();
             this.lblTitlePgr = new MetroFramework.Controls.MetroLabel();
             this.openFile = new System.Windows.Forms.OpenFileDialog();
-            this.metroTile2 = new MetroFramework.Controls.MetroTile();
+            this.nudDisplay = new System.Windows.Forms.NumericUpDown();
+            this.cbxItem = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -129,6 +131,7 @@
             this.pnlResultView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.pnlTitle.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDisplay)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -226,7 +229,7 @@
             this.dgvList.RowHeadersVisible = false;
             this.dgvList.RowTemplate.Height = 23;
             this.dgvList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvList.Size = new System.Drawing.Size(189, 490);
+            this.dgvList.Size = new System.Drawing.Size(189, 466);
             this.dgvList.TabIndex = 21;
             this.dgvList.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvList_CellContentDoubleClick);
             // 
@@ -278,8 +281,6 @@
             // 
             // metroPanel3
             // 
-            this.metroPanel3.Controls.Add(this.ai2);
-            this.metroPanel3.Controls.Add(this.ai1);
             this.metroPanel3.Controls.Add(this.label5);
             this.metroPanel3.Controls.Add(this.btnSearch);
             this.metroPanel3.Controls.Add(this.tableLayoutPanel2);
@@ -287,39 +288,13 @@
             this.metroPanel3.HorizontalScrollbarBarColor = true;
             this.metroPanel3.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel3.HorizontalScrollbarSize = 10;
-            this.metroPanel3.Location = new System.Drawing.Point(5, 495);
+            this.metroPanel3.Location = new System.Drawing.Point(5, 471);
             this.metroPanel3.Name = "metroPanel3";
-            this.metroPanel3.Size = new System.Drawing.Size(189, 191);
+            this.metroPanel3.Size = new System.Drawing.Size(189, 215);
             this.metroPanel3.TabIndex = 19;
             this.metroPanel3.VerticalScrollbarBarColor = true;
             this.metroPanel3.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel3.VerticalScrollbarSize = 10;
-            // 
-            // ai2
-            // 
-            this.ai2.ActiveControl = null;
-            this.ai2.Location = new System.Drawing.Point(33, 151);
-            this.ai2.Name = "ai2";
-            this.ai2.Size = new System.Drawing.Size(24, 37);
-            this.ai2.TabIndex = 21;
-            this.ai2.Text = "2";
-            this.ai2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.ai2.TileTextFontSize = MetroFramework.MetroTileTextSize.Small;
-            this.ai2.UseSelectable = true;
-            this.ai2.Click += new System.EventHandler(this.ai_Click);
-            // 
-            // ai1
-            // 
-            this.ai1.ActiveControl = null;
-            this.ai1.Location = new System.Drawing.Point(3, 151);
-            this.ai1.Name = "ai1";
-            this.ai1.Size = new System.Drawing.Size(24, 37);
-            this.ai1.Style = MetroFramework.MetroColorStyle.Orange;
-            this.ai1.TabIndex = 20;
-            this.ai1.Text = "1";
-            this.ai1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.ai1.UseSelectable = true;
-            this.ai1.Click += new System.EventHandler(this.ai_Click);
             // 
             // label5
             // 
@@ -328,7 +303,7 @@
             this.label5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label5.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(3, 3);
+            this.label5.Location = new System.Drawing.Point(3, 5);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(126, 23);
             this.label5.TabIndex = 19;
@@ -352,30 +327,52 @@
             // 
             this.tableLayoutPanel2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.chkMultiCandle, 1, 3);
+            this.tableLayoutPanel2.Controls.Add(this.metroLabel1, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.chkMatchTotal, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.metroLabel11, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.metroLabel3, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.chkMatchSpace, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.metroLabel4, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.chkMatchTime, 1, 2);
+            this.tableLayoutPanel2.Controls.Add(this.metroLabel4, 0, 2);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 30);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 4;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(183, 117);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(183, 139);
             this.tableLayoutPanel2.TabIndex = 17;
+            // 
+            // chkMultiCandle
+            // 
+            this.chkMultiCandle.Location = new System.Drawing.Point(85, 106);
+            this.chkMultiCandle.Name = "chkMultiCandle";
+            this.chkMultiCandle.Size = new System.Drawing.Size(74, 29);
+            this.chkMultiCandle.Style = MetroFramework.MetroColorStyle.Pink;
+            this.chkMultiCandle.TabIndex = 28;
+            this.chkMultiCandle.Text = "사용함";
+            this.chkMultiCandle.UseSelectable = true;
+            // 
+            // metroLabel1
+            // 
+            this.metroLabel1.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel1.Location = new System.Drawing.Point(4, 103);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(74, 35);
+            this.metroLabel1.TabIndex = 27;
+            this.metroLabel1.Text = "Multi Candle";
+            this.metroLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // chkMatchTotal
             // 
             this.chkMatchTotal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkMatchTotal.Location = new System.Drawing.Point(105, 4);
+            this.chkMatchTotal.Location = new System.Drawing.Point(85, 4);
             this.chkMatchTotal.Name = "chkMatchTotal";
-            this.chkMatchTotal.Size = new System.Drawing.Size(74, 29);
+            this.chkMatchTotal.Size = new System.Drawing.Size(94, 27);
             this.chkMatchTotal.TabIndex = 23;
             this.chkMatchTotal.Text = "사용함";
             this.chkMatchTotal.UseSelectable = true;
@@ -385,50 +382,51 @@
             this.metroLabel11.FontSize = MetroFramework.MetroLabelSize.Small;
             this.metroLabel11.Location = new System.Drawing.Point(4, 1);
             this.metroLabel11.Name = "metroLabel11";
-            this.metroLabel11.Size = new System.Drawing.Size(94, 35);
+            this.metroLabel11.Size = new System.Drawing.Size(74, 33);
             this.metroLabel11.TabIndex = 21;
             this.metroLabel11.Text = "전체 에너지";
             this.metroLabel11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.metroLabel11.Click += new System.EventHandler(this.metroLabel11_Click);
             // 
             // metroLabel3
             // 
             this.metroLabel3.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel3.Location = new System.Drawing.Point(4, 37);
+            this.metroLabel3.Location = new System.Drawing.Point(4, 35);
             this.metroLabel3.Name = "metroLabel3";
-            this.metroLabel3.Size = new System.Drawing.Size(94, 35);
+            this.metroLabel3.Size = new System.Drawing.Size(74, 33);
             this.metroLabel3.TabIndex = 21;
             this.metroLabel3.Text = "Space Energy";
             this.metroLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // chkMatchSpace
             // 
-            this.chkMatchSpace.Location = new System.Drawing.Point(105, 40);
+            this.chkMatchSpace.Location = new System.Drawing.Point(85, 38);
             this.chkMatchSpace.Name = "chkMatchSpace";
-            this.chkMatchSpace.Size = new System.Drawing.Size(74, 29);
+            this.chkMatchSpace.Size = new System.Drawing.Size(74, 27);
             this.chkMatchSpace.TabIndex = 25;
             this.chkMatchSpace.Text = "사용함";
             this.chkMatchSpace.UseSelectable = true;
-            // 
-            // metroLabel4
-            // 
-            this.metroLabel4.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel4.Location = new System.Drawing.Point(4, 73);
-            this.metroLabel4.Name = "metroLabel4";
-            this.metroLabel4.Size = new System.Drawing.Size(94, 35);
-            this.metroLabel4.TabIndex = 22;
-            this.metroLabel4.Text = "Time Energy";
-            this.metroLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // chkMatchTime
             // 
             this.chkMatchTime.Checked = true;
             this.chkMatchTime.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkMatchTime.Location = new System.Drawing.Point(105, 76);
+            this.chkMatchTime.Location = new System.Drawing.Point(85, 72);
             this.chkMatchTime.Name = "chkMatchTime";
-            this.chkMatchTime.Size = new System.Drawing.Size(74, 29);
+            this.chkMatchTime.Size = new System.Drawing.Size(74, 27);
             this.chkMatchTime.TabIndex = 26;
             this.chkMatchTime.Text = "사용함";
             this.chkMatchTime.UseSelectable = true;
+            // 
+            // metroLabel4
+            // 
+            this.metroLabel4.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel4.Location = new System.Drawing.Point(4, 69);
+            this.metroLabel4.Name = "metroLabel4";
+            this.metroLabel4.Size = new System.Drawing.Size(74, 33);
+            this.metroLabel4.TabIndex = 22;
+            this.metroLabel4.Text = "Time Energy";
+            this.metroLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel1
             // 
@@ -914,6 +912,8 @@
             // 
             // pnlTitle
             // 
+            this.pnlTitle.Controls.Add(this.cbxItem);
+            this.pnlTitle.Controls.Add(this.nudDisplay);
             this.pnlTitle.Controls.Add(this.metroTile2);
             this.pnlTitle.Controls.Add(this.tbSelectedInfo);
             this.pnlTitle.Controls.Add(this.lblTitlePgr);
@@ -928,6 +928,20 @@
             this.pnlTitle.VerticalScrollbarBarColor = true;
             this.pnlTitle.VerticalScrollbarHighlightOnWheel = false;
             this.pnlTitle.VerticalScrollbarSize = 10;
+            // 
+            // metroTile2
+            // 
+            this.metroTile2.ActiveControl = null;
+            this.metroTile2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.metroTile2.Location = new System.Drawing.Point(1185, 0);
+            this.metroTile2.Name = "metroTile2";
+            this.metroTile2.Size = new System.Drawing.Size(24, 25);
+            this.metroTile2.Style = MetroFramework.MetroColorStyle.Brown;
+            this.metroTile2.TabIndex = 22;
+            this.metroTile2.Text = "...";
+            this.metroTile2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.metroTile2.UseSelectable = true;
+            this.metroTile2.Click += new System.EventHandler(this.metroTile2_Click);
             // 
             // tbSelectedInfo
             // 
@@ -976,19 +990,49 @@
             // 
             this.openFile.Filter = "텍스트파일|*.txt";
             // 
-            // metroTile2
+            // nudDisplay
             // 
-            this.metroTile2.ActiveControl = null;
-            this.metroTile2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.metroTile2.Location = new System.Drawing.Point(1185, 0);
-            this.metroTile2.Name = "metroTile2";
-            this.metroTile2.Size = new System.Drawing.Size(24, 25);
-            this.metroTile2.Style = MetroFramework.MetroColorStyle.Brown;
-            this.metroTile2.TabIndex = 22;
-            this.metroTile2.Text = "...";
-            this.metroTile2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.metroTile2.UseSelectable = true;
-            this.metroTile2.Click += new System.EventHandler(this.metroTile2_Click);
+            this.nudDisplay.AutoSize = true;
+            this.nudDisplay.BackColor = System.Drawing.Color.White;
+            this.nudDisplay.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.nudDisplay.Dock = System.Windows.Forms.DockStyle.Right;
+            this.nudDisplay.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.nudDisplay.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudDisplay.Location = new System.Drawing.Point(1138, 0);
+            this.nudDisplay.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudDisplay.Name = "nudDisplay";
+            this.nudDisplay.Size = new System.Drawing.Size(47, 23);
+            this.nudDisplay.TabIndex = 23;
+            this.nudDisplay.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudDisplay.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.nudDisplay.ValueChanged += new System.EventHandler(this.nudDisplay_ValueChanged);
+            // 
+            // cbxItem
+            // 
+            this.cbxItem.Dock = System.Windows.Forms.DockStyle.Right;
+            this.cbxItem.DropDownHeight = 120;
+            this.cbxItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbxItem.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbxItem.FormattingEnabled = true;
+            this.cbxItem.IntegralHeight = false;
+            this.cbxItem.ItemHeight = 13;
+            this.cbxItem.Location = new System.Drawing.Point(896, 0);
+            this.cbxItem.Name = "cbxItem";
+            this.cbxItem.Size = new System.Drawing.Size(242, 21);
+            this.cbxItem.TabIndex = 24;
+            this.cbxItem.SelectedIndexChanged += new System.EventHandler(this.cbxItem_SelectedIndexChanged);
             // 
             // AtmanKospiAIForm
             // 
@@ -1018,6 +1062,8 @@
             this.pnlResultView.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.pnlTitle.ResumeLayout(false);
+            this.pnlTitle.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDisplay)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1051,8 +1097,6 @@
         private System.Windows.Forms.Button btnLoadDaemon;
         private System.Windows.Forms.Button btnLoadDaemon2;
         private System.Windows.Forms.Button btnLoadDaemon3;
-        private MetroFramework.Controls.MetroTile ai1;
-        private MetroFramework.Controls.MetroTile ai2;
         private MetroFramework.Controls.MetroPanel pnlMain;
         private MetroFramework.Controls.MetroPanel pnlResultView;
         private MetroFramework.Controls.MetroLabel lbNoResult;
@@ -1084,5 +1128,9 @@
         private Vikala.Controls.Charts.SmartCandleChart chart1;
         private Vikala.Controls.Charts.SmartCandleChart chart2;
         private MetroFramework.Controls.MetroTile metroTile2;
+        private MetroFramework.Controls.MetroCheckBox chkMultiCandle;
+        private MetroFramework.Controls.MetroLabel metroLabel1;
+        private System.Windows.Forms.NumericUpDown nudDisplay;
+        private System.Windows.Forms.ComboBox cbxItem;
     }
 }

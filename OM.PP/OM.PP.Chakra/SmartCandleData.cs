@@ -390,6 +390,62 @@ namespace OM.PP.Chakra
                 return tRate;
             }
         }
+
+        public double Variance_ChartPrice2
+        {
+            get
+            {
+                if (PreviousCandleData == null)
+                    return Double.NaN; 
+                if (PreviousCandleData.PreviousCandleData == null)
+                    return Double.NaN;
+
+                double tRate = Variance_ChartPrice
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_Open, PreviousCandleData.PreviousCandleData.BasicPrice_Open)
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_High, PreviousCandleData.PreviousCandleData.BasicPrice_Open)
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_Low, PreviousCandleData.PreviousCandleData.BasicPrice_Open)
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_Close, PreviousCandleData.PreviousCandleData.BasicPrice_Open)
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_Center, PreviousCandleData.PreviousCandleData.BasicPrice_Open)
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_Middle, PreviousCandleData.PreviousCandleData.BasicPrice_Open)
+                                         
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_Open, PreviousCandleData.PreviousCandleData.BasicPrice_High)
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_High, PreviousCandleData.PreviousCandleData.BasicPrice_High)
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_Low, PreviousCandleData.PreviousCandleData.BasicPrice_High)
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_Close, PreviousCandleData.PreviousCandleData.BasicPrice_High)
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_Center, PreviousCandleData.PreviousCandleData.BasicPrice_High)
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_Middle, PreviousCandleData.PreviousCandleData.BasicPrice_High)
+                                             
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_Open, PreviousCandleData.PreviousCandleData.BasicPrice_Low)
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_High, PreviousCandleData.PreviousCandleData.BasicPrice_Low)
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_Low, PreviousCandleData.PreviousCandleData.BasicPrice_Low)
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_Close, PreviousCandleData.PreviousCandleData.BasicPrice_Low)
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_Center, PreviousCandleData.PreviousCandleData.BasicPrice_Low)
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_Middle, PreviousCandleData.PreviousCandleData.BasicPrice_Low)
+                                             
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_Open, PreviousCandleData.PreviousCandleData.BasicPrice_Close)
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_High, PreviousCandleData.PreviousCandleData.BasicPrice_Close)
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_Low, PreviousCandleData.PreviousCandleData.BasicPrice_Close)
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_Close, PreviousCandleData.PreviousCandleData.BasicPrice_Close)
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_Center, PreviousCandleData.PreviousCandleData.BasicPrice_Close)
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_Middle, PreviousCandleData.PreviousCandleData.BasicPrice_Close)
+                                              
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_Open, PreviousCandleData.PreviousCandleData.BasicPrice_Center)
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_High, PreviousCandleData.PreviousCandleData.BasicPrice_Center)
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_Low, PreviousCandleData.PreviousCandleData.BasicPrice_Center)
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_Close, PreviousCandleData.PreviousCandleData.BasicPrice_Center)
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_Center, PreviousCandleData.PreviousCandleData.BasicPrice_Center)
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_Middle, PreviousCandleData.PreviousCandleData.BasicPrice_Center)
+                                              
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_Open, PreviousCandleData.PreviousCandleData.BasicPrice_Middle)
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_High, PreviousCandleData.PreviousCandleData.BasicPrice_Middle)
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_Low, PreviousCandleData.PreviousCandleData.BasicPrice_Middle)
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_Close, PreviousCandleData.PreviousCandleData.BasicPrice_Middle)
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_Center, PreviousCandleData.PreviousCandleData.BasicPrice_Middle)
+                     + PPUtils.GetRateOfChange(PreviousCandleData.BasicPrice_Middle, PreviousCandleData.PreviousCandleData.BasicPrice_Middle);
+
+                return tRate;
+            }
+        }
         #endregion
         #region 변화_기본_시가대비
         public double Variance_BasicPrice
@@ -711,6 +767,21 @@ namespace OM.PP.Chakra
 
 
                 return Variance_ChartPrice;
+            }
+        }
+        public double TimeEnergy2
+        {
+            get
+            {
+                //double energy1 = PPUtils.GetAvgRateOfChange(Variance_BasicPrice, VarianceTotalRate);
+                //double energy2 = PPUtils.GetAvgRateOfChange(Variance_ComparedPreviousDayPrice, VarianceTotalRate);
+                //double energy3 = PPUtils.GetAvgRateOfChange(Variance_QuantumPrice, VarianceTotalRate);
+                //double energy4 = PPUtils.GetAvgRateOfChange(Variance_ComparedPreviousDayQuantumPrice, VarianceTotalRate);
+
+                //return (energy1 + energy2 + energy3 + energy4) / 4.0;
+
+
+                return Variance_ChartPrice2;
             }
         }
 

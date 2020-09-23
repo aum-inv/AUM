@@ -33,7 +33,7 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
         private void InitializeControls()
         {
             loadChartControls();
-            setTimer();
+            //setTimer();
             userToolStrip.IsVisibleAlignmentButton = false;
             userToolStrip.TableViewChangedEvent += UserToolStrip_TableViewChangedEvent;
             userToolStrip.LineChartWidthChangedEvent += UserToolStrip_LineChartWidthChangedEvent;
@@ -41,6 +41,8 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
             userToolStrip.IsVisibleExpand = false;
             userToolStrip.IsVisibleMdiButton = false;
             userToolStrip.IsVisibleTimeIntervalButton = false;
+
+            App.Events.MainFormToolBarEvents.Instance.ManualReloadHandler += () => { loadData(); };
         }
         private void UserToolStrip_LineChartWidthChangedEvent(object sender, EventArgs e)
         {

@@ -49,6 +49,11 @@ namespace OM.PP.Chakra.Ctx
             , S_CandleItemData data);
 
         [OperationContract]
+        void SetCandleSourceDataReal(
+              string itemCode            
+            , S_CandleItemData data);
+
+        [OperationContract]
         void InitSourceData(string item);
 
         [OperationContract]

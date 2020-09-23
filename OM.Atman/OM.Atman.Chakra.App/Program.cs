@@ -18,25 +18,7 @@ namespace OM.Atman.Chakra.App
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             LoginForm login_form = new LoginForm();
-            if (login_form.ShowDialog() == DialogResult.OK)
-            {
-                if(ShareConfig.LaunchFormType == 1)
-                    Application.Run(new Forms.AtmanKospiForm());
-                else if (ShareConfig.LaunchFormType == 2)
-                    Application.Run(new AIForms.AtmanKospiAIForm());
-                else if (ShareConfig.LaunchFormType == 3)
-                    Application.Run(new TradingRule.ThreeFiveRuleKrForm());
-                else if (ShareConfig.LaunchFormType == 4)
-                    Application.Run(new Forms.AtmanInvDiaryForm());
-                else if (ShareConfig.LaunchFormType == 5)
-                    Application.Run(new Forms.AtmanInvTechnicalForm());
-                else if (ShareConfig.LaunchFormType == 8)
-                    Application.Run(new MainForm());
-                else if (ShareConfig.LaunchFormType == 9)
-                    Application.Run(new Forms.AtmanInvCalculatorForm());
-            }
-
-            //Application.Run(new LoginForm());
+            Application.Run(login_form);
         }
     }
 }
