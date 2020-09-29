@@ -32,7 +32,6 @@
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pnlScroll = new System.Windows.Forms.Panel();
             this.hScrollBar = new System.Windows.Forms.HScrollBar();
@@ -105,7 +104,7 @@
             this.chart.ChartAreas.Add(chartArea1);
             this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chart.Location = new System.Drawing.Point(0, 0);
-            this.chart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.chart.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.chart.Name = "chart";
             this.chart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             series1.BorderColor = System.Drawing.Color.Transparent;
@@ -120,28 +119,23 @@
             series1.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             series1.YValuesPerPoint = 4;
             series2.ChartArea = "chartArea";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series2.Color = System.Drawing.Color.Black;
             series2.IsXValueIndexed = true;
             series2.MarkerColor = System.Drawing.Color.Red;
-            series2.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.None;
             series2.Name = "cs_Basic";
             series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-
             series3.ChartArea = "chartArea";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series3.Color = System.Drawing.Color.Black;
             series3.IsXValueIndexed = true;
             series3.MarkerColor = System.Drawing.Color.Blue;
-            series3.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.None;
             series3.Name = "cs_Basic2";
             series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-
             this.chart.Series.Add(series1);
             this.chart.Series.Add(series2);
             this.chart.Series.Add(series3);
-
-            this.chart.Size = new System.Drawing.Size(723, 299);
+            this.chart.Size = new System.Drawing.Size(1033, 449);
             this.chart.TabIndex = 2;
             this.chart.PostPaint += new System.EventHandler<System.Windows.Forms.DataVisualization.Charting.ChartPaintEventArgs>(this.chart_PostPaint);
             this.chart.MouseClick += new System.Windows.Forms.MouseEventHandler(this.chart_MouseClick);
@@ -151,10 +145,9 @@
             this.pnlScroll.Controls.Add(this.hScrollBar);
             this.pnlScroll.Controls.Add(this.trackBar);
             this.pnlScroll.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlScroll.Location = new System.Drawing.Point(0, 299);
-            this.pnlScroll.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlScroll.Location = new System.Drawing.Point(0, 449);
             this.pnlScroll.Name = "pnlScroll";
-            this.pnlScroll.Size = new System.Drawing.Size(723, 14);
+            this.pnlScroll.Size = new System.Drawing.Size(1033, 21);
             this.pnlScroll.TabIndex = 4;
             // 
             // hScrollBar
@@ -164,7 +157,7 @@
             this.hScrollBar.Location = new System.Drawing.Point(0, 0);
             this.hScrollBar.Maximum = 1;
             this.hScrollBar.Name = "hScrollBar";
-            this.hScrollBar.Size = new System.Drawing.Size(651, 14);
+            this.hScrollBar.Size = new System.Drawing.Size(930, 21);
             this.hScrollBar.TabIndex = 4;
             this.hScrollBar.Value = 1;
             this.hScrollBar.ValueChanged += new System.EventHandler(this.hScrollBar_ValueChanged);
@@ -173,23 +166,22 @@
             // 
             this.trackBar.Dock = System.Windows.Forms.DockStyle.Right;
             this.trackBar.LargeChange = 1;
-            this.trackBar.Location = new System.Drawing.Point(651, 0);
-            this.trackBar.Margin = new System.Windows.Forms.Padding(2);
+            this.trackBar.Location = new System.Drawing.Point(930, 0);
             this.trackBar.Name = "trackBar";
-            this.trackBar.Size = new System.Drawing.Size(72, 14);
+            this.trackBar.Size = new System.Drawing.Size(103, 21);
             this.trackBar.TabIndex = 5;
             this.trackBar.ValueChanged += new System.EventHandler(this.trackBar_ValueChanged);
             // 
             // ComparedBasicCandleChart
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.chart);
             this.Controls.Add(this.pnlScroll);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.Name = "ComparedBasicCandleChart";
-            this.Size = new System.Drawing.Size(723, 313);
+            this.Size = new System.Drawing.Size(1033, 470);
             ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
             this.pnlScroll.ResumeLayout(false);
             this.pnlScroll.PerformLayout();

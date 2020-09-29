@@ -52,9 +52,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\Api_IndexFutureTrade.cs" />
+    <Compile Include="Api\Api_Jongmok.cs" />
+    <Compile Include="Api\Api_Upjong.cs" />
+    <Compile Include="Api\Api_UpjongJongmok.cs" />
     <Compile Include="Api\Api_WorldFutureTrade.cs" />
+    <Compile Include="Api\BaseApi.cs" />
     <Compile Include="Api\BaseTradeApi.cs" />
     <Compile Include="A_CLOSE.cs" />
+    <Compile Include="UpJongJongMokData.cs" />
     <Compile Include="WisdomCandleData.cs" />
     <Compile Include="SmartCandleData.cs" />
     <Compile Include="A_HMML.cs" />

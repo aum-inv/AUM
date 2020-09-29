@@ -48,8 +48,9 @@
             this.chkTechnicalCalculatorFF = new MetroFramework.Controls.MetroCheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.chkPatternMatching2 = new MetroFramework.Controls.MetroCheckBox();
-            this.chkPatternMatching4 = new MetroFramework.Controls.MetroCheckBox();
-            this.chkPatternMatching3 = new MetroFramework.Controls.MetroCheckBox();
+            this.chkItemFinder2 = new MetroFramework.Controls.MetroCheckBox();
+            this.chkItemFinder1 = new MetroFramework.Controls.MetroCheckBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label5
@@ -339,39 +340,49 @@
             this.chkPatternMatching2.UseSelectable = true;
             this.chkPatternMatching2.CheckedChanged += new System.EventHandler(this.RadioButton_Click);
             // 
-            // chkPatternMatching4
+            // chkItemFinder2
             // 
-            this.chkPatternMatching4.AutoSize = true;
-            this.chkPatternMatching4.BackColor = System.Drawing.Color.Black;
-            this.chkPatternMatching4.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
-            this.chkPatternMatching4.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold;
-            this.chkPatternMatching4.ForeColor = System.Drawing.Color.White;
-            this.chkPatternMatching4.Location = new System.Drawing.Point(349, 283);
-            this.chkPatternMatching4.Name = "chkPatternMatching4";
-            this.chkPatternMatching4.Size = new System.Drawing.Size(192, 25);
-            this.chkPatternMatching4.TabIndex = 46;
-            this.chkPatternMatching4.Text = "캔들 패턴매칭 AI - 4";
-            this.chkPatternMatching4.UseCustomBackColor = true;
-            this.chkPatternMatching4.UseCustomForeColor = true;
-            this.chkPatternMatching4.UseSelectable = true;
-            this.chkPatternMatching4.CheckedChanged += new System.EventHandler(this.RadioButton_Click);
+            this.chkItemFinder2.AutoSize = true;
+            this.chkItemFinder2.BackColor = System.Drawing.Color.Black;
+            this.chkItemFinder2.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
+            this.chkItemFinder2.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold;
+            this.chkItemFinder2.ForeColor = System.Drawing.Color.White;
+            this.chkItemFinder2.Location = new System.Drawing.Point(349, 294);
+            this.chkItemFinder2.Name = "chkItemFinder2";
+            this.chkItemFinder2.Size = new System.Drawing.Size(209, 25);
+            this.chkItemFinder2.TabIndex = 46;
+            this.chkItemFinder2.Text = "스마트 종목 파인더 - 2";
+            this.chkItemFinder2.UseCustomBackColor = true;
+            this.chkItemFinder2.UseCustomForeColor = true;
+            this.chkItemFinder2.UseSelectable = true;
+            this.chkItemFinder2.CheckedChanged += new System.EventHandler(this.RadioButton_Click);
             // 
-            // chkPatternMatching3
+            // chkItemFinder1
             // 
-            this.chkPatternMatching3.AutoSize = true;
-            this.chkPatternMatching3.BackColor = System.Drawing.Color.Black;
-            this.chkPatternMatching3.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
-            this.chkPatternMatching3.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold;
-            this.chkPatternMatching3.ForeColor = System.Drawing.Color.White;
-            this.chkPatternMatching3.Location = new System.Drawing.Point(349, 242);
-            this.chkPatternMatching3.Name = "chkPatternMatching3";
-            this.chkPatternMatching3.Size = new System.Drawing.Size(192, 25);
-            this.chkPatternMatching3.TabIndex = 45;
-            this.chkPatternMatching3.Text = "캔들 패턴매칭 AI - 3";
-            this.chkPatternMatching3.UseCustomBackColor = true;
-            this.chkPatternMatching3.UseCustomForeColor = true;
-            this.chkPatternMatching3.UseSelectable = true;
-            this.chkPatternMatching3.CheckedChanged += new System.EventHandler(this.RadioButton_Click);
+            this.chkItemFinder1.AutoSize = true;
+            this.chkItemFinder1.BackColor = System.Drawing.Color.Black;
+            this.chkItemFinder1.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
+            this.chkItemFinder1.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold;
+            this.chkItemFinder1.ForeColor = System.Drawing.Color.White;
+            this.chkItemFinder1.Location = new System.Drawing.Point(349, 253);
+            this.chkItemFinder1.Name = "chkItemFinder1";
+            this.chkItemFinder1.Size = new System.Drawing.Size(209, 25);
+            this.chkItemFinder1.TabIndex = 45;
+            this.chkItemFinder1.Text = "스마트 종목 파인더 - 1";
+            this.chkItemFinder1.UseCustomBackColor = true;
+            this.chkItemFinder1.UseCustomForeColor = true;
+            this.chkItemFinder1.UseSelectable = true;
+            this.chkItemFinder1.CheckedChanged += new System.EventHandler(this.RadioButton_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.DarkRed;
+            this.label8.Location = new System.Drawing.Point(330, 239);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(239, 12);
+            this.label8.TabIndex = 47;
+            this.label8.Text = "---------------------------------------";
             // 
             // LoginForm
             // 
@@ -379,8 +390,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(587, 383);
-            this.Controls.Add(this.chkPatternMatching4);
-            this.Controls.Add(this.chkPatternMatching3);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.chkItemFinder2);
+            this.Controls.Add(this.chkItemFinder1);
             this.Controls.Add(this.chkPatternMatching2);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.chkTechnicalCalculatorFF);
@@ -434,7 +446,8 @@
         private MetroFramework.Controls.MetroCheckBox chkTechnicalCalculatorFF;
         private System.Windows.Forms.Label label7;
         private MetroFramework.Controls.MetroCheckBox chkPatternMatching2;
-        private MetroFramework.Controls.MetroCheckBox chkPatternMatching4;
-        private MetroFramework.Controls.MetroCheckBox chkPatternMatching3;
+        private MetroFramework.Controls.MetroCheckBox chkItemFinder2;
+        private MetroFramework.Controls.MetroCheckBox chkItemFinder1;
+        private System.Windows.Forms.Label label8;
     }
 }

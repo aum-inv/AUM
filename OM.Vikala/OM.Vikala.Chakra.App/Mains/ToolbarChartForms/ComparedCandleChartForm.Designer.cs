@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ComparedCandleChartForm));
             this.pnlContent = new System.Windows.Forms.Panel();
-            this.userToolStrip1 = new OM.Vikala.Chakra.App.Mains.UserToolStrip();
             this.chart = new OM.Vikala.Controls.Charts.ComparedBasicCandleChart();
+            this.userToolStrip1 = new OM.Vikala.Chakra.App.Mains.UserToolStrip();
             this.pnlContent.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,8 +43,34 @@
             this.pnlContent.Location = new System.Drawing.Point(0, 23);
             this.pnlContent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(856, 501);
+            this.pnlContent.Size = new System.Drawing.Size(1160, 587);
             this.pnlContent.TabIndex = 4;
+            // 
+            // chart
+            // 
+            this.chart.BaseCandleChartType = OM.Vikala.Controls.Charts.BaseCandleChartTypeEnum.인;
+            this.chart.CandleChartType = OM.Vikala.Controls.Charts.CandleChartTypeEnum.기본;
+            this.chart.ChartData = null;
+            this.chart.ChartDataSub = null;
+            this.chart.ChartEventInstance = null;
+            this.chart.DisplayPointCount = 30;
+            this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chart.IsAutoScrollX = true;
+            this.chart.IsEnabledDrawLine = true;
+            this.chart.IsLoaded = false;
+            this.chart.IsShowEightRule = true;
+            this.chart.IsShowXLine = true;
+            this.chart.IsShowYLine = true;
+            this.chart.ItemCode = "";
+            this.chart.LineChartType = OM.Vikala.Controls.Charts.LineChartTypeEnum.기본;
+            this.chart.Location = new System.Drawing.Point(0, 0);
+            this.chart.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            this.chart.Name = "chart";
+            this.chart.SelectedTrackBarValue = 1;
+            this.chart.Size = new System.Drawing.Size(1160, 587);
+            this.chart.TabIndex = 1;
+            this.chart.TimeInterval = OM.Lib.Base.Enums.TimeIntervalEnum.Day;
+            this.chart.Title = null;
             // 
             // userToolStrip1
             // 
@@ -57,40 +83,15 @@
             this.userToolStrip1.Location = new System.Drawing.Point(0, 0);
             this.userToolStrip1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.userToolStrip1.Name = "userToolStrip1";
-            this.userToolStrip1.Size = new System.Drawing.Size(856, 23);
+            this.userToolStrip1.Size = new System.Drawing.Size(1160, 23);
             this.userToolStrip1.TabIndex = 0;
-            // 
-            // chart
-            // 
-            this.chart.BaseCandleChartType = OM.Vikala.Controls.Charts.BaseCandleChartTypeEnum.인;
-            this.chart.CandleChartType = OM.Vikala.Controls.Charts.CandleChartTypeEnum.기본;
-            this.chart.ChartData = null;
-            this.chart.ChartDataSub = null;
-            this.chart.ChartEventInstance = null;
-            this.chart.DisplayPointCount = 30;
-            this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chart.IsAutoScrollX = true;
-            this.chart.IsLoaded = false;
-            this.chart.IsShowEightRule = true;
-            this.chart.IsShowXLine = true;
-            this.chart.IsShowYLine = true;
-            this.chart.ItemCode = "";
-            this.chart.LineChartType = OM.Vikala.Controls.Charts.LineChartTypeEnum.기본;
-            this.chart.Location = new System.Drawing.Point(0, 0);
-            this.chart.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.chart.Name = "chart";
-            this.chart.SelectedTrackBarValue = 1;
-            this.chart.Size = new System.Drawing.Size(856, 501);
-            this.chart.TabIndex = 1;
-            this.chart.TimeInterval = OM.Lib.Base.Enums.TimeIntervalEnum.Day;
-            this.chart.Title = null;
             // 
             // ComparedCandleChartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(856, 524);
+            this.ClientSize = new System.Drawing.Size(1160, 610);
             this.Controls.Add(this.pnlContent);
             this.Controls.Add(this.userToolStrip1);
             this.DoubleBuffered = true;

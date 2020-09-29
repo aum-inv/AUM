@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using XA_DATASETLib;
 
-namespace OM.PP.XingApp.Api
+namespace OM.PP.XingApp.Ex.Api
 {
     public delegate void LogDelegate(string log);
    

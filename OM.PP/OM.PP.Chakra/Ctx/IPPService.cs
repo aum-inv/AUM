@@ -59,6 +59,7 @@ namespace OM.PP.Chakra.Ctx
         [OperationContract]
         void ClearSourceData(string item, TimeIntervalEnum timeInterval);
 
-      
+
+        
     }
 }

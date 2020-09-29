@@ -80,6 +80,13 @@ namespace OM.PP.Chakra.App
                 //한국업종지수 코스피200 , 코스닥
                 PPStorage.Instance.Init("101");
                 PPStorage.Instance.Init("301");
+
+                PPStorage.Instance.Init("DJI@DJI");
+                PPStorage.Instance.Init("NAS@IXIC");
+                PPStorage.Instance.Init("SPI@SPX");
+                PPStorage.Instance.Init("NII@NI225");
+                PPStorage.Instance.Init("SHS@000002");
+                PPStorage.Instance.Init("HSI@HSI");
             }
             catch (System.Exception ex)
             {

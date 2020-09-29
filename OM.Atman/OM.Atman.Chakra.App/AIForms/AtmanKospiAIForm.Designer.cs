@@ -109,12 +109,12 @@
             this.tday2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pnlTitle = new MetroFramework.Controls.MetroPanel();
+            this.cbxItem = new System.Windows.Forms.ComboBox();
+            this.nudDisplay = new System.Windows.Forms.NumericUpDown();
             this.metroTile2 = new MetroFramework.Controls.MetroTile();
             this.tbSelectedInfo = new MetroFramework.Controls.MetroTextBox();
             this.lblTitlePgr = new MetroFramework.Controls.MetroLabel();
             this.openFile = new System.Windows.Forms.OpenFileDialog();
-            this.nudDisplay = new System.Windows.Forms.NumericUpDown();
-            this.cbxItem = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -929,6 +929,50 @@
             this.pnlTitle.VerticalScrollbarHighlightOnWheel = false;
             this.pnlTitle.VerticalScrollbarSize = 10;
             // 
+            // cbxItem
+            // 
+            this.cbxItem.Dock = System.Windows.Forms.DockStyle.Right;
+            this.cbxItem.DropDownHeight = 120;
+            this.cbxItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbxItem.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbxItem.FormattingEnabled = true;
+            this.cbxItem.IntegralHeight = false;
+            this.cbxItem.ItemHeight = 13;
+            this.cbxItem.Location = new System.Drawing.Point(896, 0);
+            this.cbxItem.Name = "cbxItem";
+            this.cbxItem.Size = new System.Drawing.Size(242, 21);
+            this.cbxItem.TabIndex = 24;
+            this.cbxItem.SelectedIndexChanged += new System.EventHandler(this.cbxItem_SelectedIndexChanged);
+            // 
+            // nudDisplay
+            // 
+            this.nudDisplay.AutoSize = true;
+            this.nudDisplay.BackColor = System.Drawing.Color.White;
+            this.nudDisplay.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.nudDisplay.Dock = System.Windows.Forms.DockStyle.Right;
+            this.nudDisplay.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.nudDisplay.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudDisplay.Location = new System.Drawing.Point(1138, 0);
+            this.nudDisplay.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudDisplay.Name = "nudDisplay";
+            this.nudDisplay.Size = new System.Drawing.Size(47, 23);
+            this.nudDisplay.TabIndex = 23;
+            this.nudDisplay.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudDisplay.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.nudDisplay.ValueChanged += new System.EventHandler(this.nudDisplay_ValueChanged);
+            // 
             // metroTile2
             // 
             this.metroTile2.ActiveControl = null;
@@ -989,50 +1033,6 @@
             // openFile
             // 
             this.openFile.Filter = "텍스트파일|*.txt";
-            // 
-            // nudDisplay
-            // 
-            this.nudDisplay.AutoSize = true;
-            this.nudDisplay.BackColor = System.Drawing.Color.White;
-            this.nudDisplay.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nudDisplay.Dock = System.Windows.Forms.DockStyle.Right;
-            this.nudDisplay.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.nudDisplay.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nudDisplay.Location = new System.Drawing.Point(1138, 0);
-            this.nudDisplay.Minimum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nudDisplay.Name = "nudDisplay";
-            this.nudDisplay.Size = new System.Drawing.Size(47, 23);
-            this.nudDisplay.TabIndex = 23;
-            this.nudDisplay.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudDisplay.Value = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            this.nudDisplay.ValueChanged += new System.EventHandler(this.nudDisplay_ValueChanged);
-            // 
-            // cbxItem
-            // 
-            this.cbxItem.Dock = System.Windows.Forms.DockStyle.Right;
-            this.cbxItem.DropDownHeight = 120;
-            this.cbxItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbxItem.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbxItem.FormattingEnabled = true;
-            this.cbxItem.IntegralHeight = false;
-            this.cbxItem.ItemHeight = 13;
-            this.cbxItem.Location = new System.Drawing.Point(896, 0);
-            this.cbxItem.Name = "cbxItem";
-            this.cbxItem.Size = new System.Drawing.Size(242, 21);
-            this.cbxItem.TabIndex = 24;
-            this.cbxItem.SelectedIndexChanged += new System.EventHandler(this.cbxItem_SelectedIndexChanged);
             // 
             // AtmanKospiAIForm
             // 
@@ -1101,6 +1101,18 @@
         private MetroFramework.Controls.MetroPanel pnlResultView;
         private MetroFramework.Controls.MetroLabel lbNoResult;
         private System.Windows.Forms.DataGridView dgv;
+        private System.Windows.Forms.Panel panel2;
+        private MetroFramework.Controls.MetroPanel pnlTitle;
+        private MetroFramework.Controls.MetroTextBox tbSelectedInfo;
+        private MetroFramework.Controls.MetroLabel lblTitlePgr;
+        private System.Windows.Forms.TableLayoutPanel tlpChart;
+        private Vikala.Controls.Charts.SmartCandleChart chart1;
+        private Vikala.Controls.Charts.SmartCandleChart chart2;
+        private MetroFramework.Controls.MetroTile metroTile2;
+        private MetroFramework.Controls.MetroCheckBox chkMultiCandle;
+        private MetroFramework.Controls.MetroLabel metroLabel1;
+        private System.Windows.Forms.NumericUpDown nudDisplay;
+        private System.Windows.Forms.ComboBox cbxItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn 시간;
         private System.Windows.Forms.DataGridViewTextBoxColumn 시가;
         private System.Windows.Forms.DataGridViewTextBoxColumn 고가;
@@ -1120,17 +1132,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn yday1;
         private System.Windows.Forms.DataGridViewTextBoxColumn tday1;
         private System.Windows.Forms.DataGridViewTextBoxColumn tday2;
-        private System.Windows.Forms.Panel panel2;
-        private MetroFramework.Controls.MetroPanel pnlTitle;
-        private MetroFramework.Controls.MetroTextBox tbSelectedInfo;
-        private MetroFramework.Controls.MetroLabel lblTitlePgr;
-        private System.Windows.Forms.TableLayoutPanel tlpChart;
-        private Vikala.Controls.Charts.SmartCandleChart chart1;
-        private Vikala.Controls.Charts.SmartCandleChart chart2;
-        private MetroFramework.Controls.MetroTile metroTile2;
-        private MetroFramework.Controls.MetroCheckBox chkMultiCandle;
-        private MetroFramework.Controls.MetroLabel metroLabel1;
-        private System.Windows.Forms.NumericUpDown nudDisplay;
-        private System.Windows.Forms.ComboBox cbxItem;
     }
 }

@@ -15,7 +15,7 @@ using XA_DATASETLib;
 
 namespace OM.PP.XingApp.Ex.Api
 {
-    class Api_Jongmok : BaseApi
+    class Api_Upjong : BaseApi
     {
         public ManualResetEvent manualEvent = new ManualResetEvent(false);
         public string ItemCode
@@ -30,10 +30,9 @@ namespace OM.PP.XingApp.Ex.Api
             set;
         }
 
-        public Api_Jongmok() : base("t4201")
+        public Api_Upjong() : base("t4203")
         {
         }
-
         List<S_CandleItemData> returnList = new List<S_CandleItemData>();
         #region Query
         /// <summary>
@@ -44,14 +43,14 @@ namespace OM.PP.XingApp.Ex.Api
         public List<S_CandleItemData> Query(
               string shcode
             , string gubun = "1" //1:분 2:일 3:주
-            , string ncnt = "" // 분일때 60 120  일일때 0      
+            , string ncnt = "0" // 분일때 60 120  일일때 0         
             , string qrycnt = "500"
             )
         {
-           
+            
                 TimeInterval = EnumUtil.GetTimeIntervalValue(gubun, ncnt);
                 string tdgb = "0";  //당일구분
-                string sdate = DateTime.Now.AddYears(Convert.ToInt32(qrycnt) * -1).ToString("yyyyMMdd");
+                string sdate = DateTime.Now.AddDays(Convert.ToInt32(qrycnt) * -1).ToString("yyyyMMdd");
                 string edate = DateTime.Now.ToString("yyyyMMdd"); ;
                 string cts_date = "";
                 string cts_time = "";
@@ -72,10 +71,11 @@ namespace OM.PP.XingApp.Ex.Api
                 query.SetFieldData(inBlock, "cts_date", 0, cts_date);
                 query.SetFieldData(inBlock, "cts_time", 0, cts_time);
                 query.SetFieldData(inBlock, "cts_daygb", 0, cts_daygb);
-                query.Request(false);               
-           
+                query.Request(false);                
+            
             manualEvent.WaitOne();
-            return returnList.OrderBy(t => t.DTime).ToList(); ;
+            
+            return returnList.OrderBy(t => t.DTime).ToList();
         }
 
         protected override void query_ReceiveData(string szTrCode)
@@ -112,8 +112,8 @@ namespace OM.PP.XingApp.Ex.Api
 
                     returnList.Add(data);
                 }
-
-                OnApiLog("Api_Jongmok ::: query_ReceiveData");
+                
+                OnApiLog("Api_Upjong ::: query_ReceiveData");
             }
             catch (Exception ex)
             {
@@ -124,7 +124,7 @@ namespace OM.PP.XingApp.Ex.Api
                 manualEvent.Set();
             }
         }
-
+       
     }
 
     #endregion

@@ -86,6 +86,12 @@
     <Compile Include="AIForms\AtmanKospiAI2Form.Designer.cs">
       <DependentUpon>AtmanKospiAI2Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="FinderForms\AtmanKRItemFinderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FinderForms\AtmanKRItemFinderForm.Designer.cs">
+      <DependentUpon>AtmanKRItemFinderForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AIForms\AtmanKospiAIForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -343,6 +349,9 @@
     <EmbeddedResource Include="AIForms\AtmanKospiAI2Form.resx">
       <DependentUpon>AtmanKospiAI2Form.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FinderForms\AtmanKRItemFinderForm.resx">
+      <DependentUpon>AtmanKRItemFinderForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AIForms\AtmanKospiAIForm.resx">
       <DependentUpon>AtmanKospiAIForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -486,6 +495,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="atman.ico" />
+    <Content Include="FinderForms\업종.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\begin-tune.wav" />
     <None Include="Resources\money.wav" />
     <None Include="Resources\signal.png" />

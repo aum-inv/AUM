@@ -14,11 +14,27 @@ namespace OM.Lib.Base.Enums
             , new ItemData(){ Name = "지수-국내-코스피200" , Code = "101", Length = 2, SHCode = "101", Tick=0.01}
             , new ItemData(){ Name = "지수-국내-코스피" , Code = "001", Length = 2, SHCode = "001", Tick=0.01}
             , new ItemData(){ Name = "지수-국내-코스닥" , Code = "301", Length = 2, SHCode = "301", Tick=0.01}
-            //, new ItemData(){ Name = "지수-해외-다우" , Code = "DJI", Length = 2}
-            //, new ItemData(){ Name = "지수-해외-나스닥" , Code = "NAS", Length = 2}
-            //, new ItemData(){ Name = "지수-해외-홍콩" , Code = "HMH", Length = 2}
-            //, new ItemData(){ Name = "지수-해외-상해종합" , Code = "SHS", Length = 2}
-            //, new ItemData(){ Name = "지수-해외-니케이225" , Code = "NII", Length = 2}
+
+
+//DJI@DJI       : 다우산업
+//NAS@IXIC      : 나스닥 종합
+//SPI@SPX       : S&P 500
+//USI@SOXX      : 필라델피아 반도체
+//NII@NI225     : 니케이 225
+//TWS@TI01      : 대만 가권
+//SHS@000002    : 상해 A
+//SHS@000003    : 상해 B
+//SGI@STI       : 싱가폴 STI
+//HSI@HSI       : 항셍
+//PAS@CAC40     : 프랑스 CAC 40
+//LNS@FTSE100   : 영국 FTSE 100
+//XTR@DAX30     : 독일 DAX 30
+            , new ItemData(){ Name = "지수-해외-다우" , Code = "DJI@DJI", SHCode = "DJI@DJI", Length = 2, Tick=0.01}
+            , new ItemData(){ Name = "지수-해외-나스닥" , Code = "NAS@IXIC", SHCode = "NAS@IXIC", Length = 2, Tick=0.01}
+            , new ItemData(){ Name = "지수-해외-SNP" , Code = "SPI@SPX", SHCode = "SPI@SPX", Length = 2, Tick=0.01}
+            , new ItemData(){ Name = "지수-해외-홍콩" , Code = "HSI@HSI", SHCode = "HSI@HSI", Length = 2, Tick=0.01}
+            , new ItemData(){ Name = "지수-해외-상해종합" , Code = "SHS@000002", SHCode = "SHS@000002", Length = 2, Tick=0.01}
+            , new ItemData(){ Name = "지수-해외-니케이225" , Code = "NII@NI225", SHCode = "NII@NI225", Length = 2, Tick=0.01}
             //, new ItemData(){ Name = "-" , Code = ""}
             //, new ItemData(){ Name = "선물-국내-코스피200" , Code = "KS", Length = 2}
             , new ItemData(){ Name = "해선-WTI" , Code = "CL", Length = 2, SHCode = "CLJ20", Tick=0.01} //6-20  

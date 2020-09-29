@@ -27,7 +27,8 @@ namespace OM.PP.XingApp
         //xing 인증
         private XASessionClass session = new XASessionClass();
 
-        System.Threading.Timer timer = null;
+        System.Threading.Timer timer = null; 
+        System.Threading.Timer timerKr = null;
 
         bool isRuning = false;
       
@@ -42,6 +43,8 @@ namespace OM.PP.XingApp
         bool isAutoFFURO = false;
         bool isAutoFFES = false;
 
+        bool isAutoKospi = false;
+        bool isAutoKosdaq = false;
         public XingAppForm()
         {
             InitializeComponent();           
@@ -100,11 +103,34 @@ namespace OM.PP.XingApp
 
         private void InitializeTimer()
         {
-            if(timer == null)
+            if (timerKr == null)
+                timerKr = new System.Threading.Timer(timer_TickKr, null, TimeSpan.FromSeconds(30), TimeSpan.FromSeconds(15));
+
+            if (timer == null)
                 timer = new System.Threading.Timer(timer_Tick, null, TimeSpan.FromSeconds(30), TimeSpan.FromSeconds(15));
 
             //if(timerTick == null)
             //    timerTick = new System.Threading.Timer(timer_TickTick, null, TimeSpan.FromSeconds(50), TimeSpan.FromSeconds(15));
+        }
+        private void timer_TickKr(object state)
+        {
+            if (!isLogoned) return;
+            if (isRuning) return;
+            isRuning = true;
+            Task.Factory.StartNew(() => {
+                if (isAutoKospi)
+                {
+                    queryUpjong(ItemCodeSet.GetItemCode(ItemCode.지수_국내_코스피200));                   
+                    System.Threading.Thread.Sleep(3000 * 6);
+                }
+                if (isAutoKosdaq)
+                {
+                    queryUpjong(ItemCodeSet.GetItemCode(ItemCode.지수_국내_코스닥));
+                    System.Threading.Thread.Sleep(3000 * 6);
+                }                
+            });
+            if (!isAutoKospi && !isAutoKosdaq)
+                isRuning = false;
         }
         private void timer_Tick(object state)
         {
@@ -290,6 +316,13 @@ namespace OM.PP.XingApp
             Button btn = sender as Button;
             string itemCode = btn.Tag.ToString();
             queryUpjong(itemCode);
+        }
+        private void btnWorldIndex_Click(object sender, EventArgs e)
+        {
+            if (!isLogoned) return;
+            Button btn = sender as Button;
+            string itemCode = btn.Tag.ToString();
+            queryWorldIndex(itemCode);
         }
         private void queryFF(string itemCode)
         {
@@ -538,6 +571,28 @@ namespace OM.PP.XingApp
                 isRuning = false;
             });
         }
+
+        private void queryWorldIndex(string itemCode)
+        {
+            Task.Factory.StartNew(() =>
+            {
+                {
+                    Api_WorldIndex api = new Api.Api_WorldIndex();
+                    api.ApiLogHandler += (log) => { LogWrite(log); };
+                    api.Query("S", itemCode, "0");
+                    api.manualEvent.WaitOne();
+                    System.Threading.Thread.Sleep(1000);
+                }
+                {
+                    Api_WorldIndex api = new Api.Api_WorldIndex();
+                    api.ApiLogHandler += (log) => { LogWrite(log); };
+                    api.Query("S", itemCode, "1");
+                    System.Threading.Thread.Sleep(1000);
+                }                
+
+                isRuning = false;
+            });
+        }
         private void btnReal_Click(object sender, EventArgs e)
         {
             if (!isLogoned) return;
@@ -651,6 +706,14 @@ namespace OM.PP.XingApp
             if (c.Text == "NQ") isAutoFFNQ = c.Checked;
             if (c.Text == "URO") isAutoFFURO = c.Checked;
             if (c.Text == "ES") isAutoFFES = c.Checked;
+        }
+        private void chkAutoKr_Changed(object sender, EventArgs e)
+        {
+            var c = sender as CheckBox;
+
+            if (c.Tag.ToString() == "KOSPI") isAutoKospi = c.Checked;
+            if (c.Tag.ToString() == "KOSDAQ") isAutoKosdaq = c.Checked;
+           
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -794,5 +857,7 @@ namespace OM.PP.XingApp
         {
             btnLogin.PerformClick();
         }
+
+       
     }
 }

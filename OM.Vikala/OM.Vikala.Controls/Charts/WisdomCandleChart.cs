@@ -153,7 +153,7 @@ namespace OM.Vikala.Controls.Charts
             }
             if (viewLists != null)
             {
-                chart.ChartAreas[0].AxisX.Maximum = maxDisplayIndex + 5;
+                chart.ChartAreas[0].AxisX.Maximum = maxDisplayIndex + 1;
                 chart.ChartAreas[0].AxisX.Minimum = minDisplayIndex - 1;
 
                 double maxPrice = viewLists.Max(m => m.high);

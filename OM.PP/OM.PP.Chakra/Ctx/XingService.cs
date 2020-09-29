@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
@@ -56,6 +57,48 @@ namespace OM.PP.Chakra.Ctx
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+        }
+
+
+        public List<S_CandleItemData> GetUpJongSiseData(string upjongCode, string gubun,  string ncnt, string qrycnt)
+        {
+            try
+            {
+                OM.PP.XingApp.Ex.Api.Api_Upjong api = new XingApp.Ex.Api.Api_Upjong();
+                return api.Query(upjongCode, gubun, ncnt, qrycnt);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return null;
+            }
+        }
+        public List<S_CandleItemData> GetJongmokSiseData(string upjongCode, string gubun, string ncnt, string qrycnt)
+        {
+            try
+            {
+                OM.PP.XingApp.Ex.Api.Api_Jongmok api = new XingApp.Ex.Api.Api_Jongmok();
+                return api.Query(upjongCode, gubun, ncnt, qrycnt);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
+        public List<UpJongJongMokData> GetUpJongJongMokData(string upjongCode)
+        {            
+            try
+            {
+                OM.PP.XingApp.Ex.Api.Api_UpjongJongmok api = new XingApp.Ex.Api.Api_UpjongJongmok();
+                return api.Query(upjongCode);
+            }   
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return null;
             }
         }
     }

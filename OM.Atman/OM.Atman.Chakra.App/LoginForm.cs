@@ -102,11 +102,11 @@ namespace OM.Atman.Chakra.App
                 case "캔들패턴매칭AI-2":
                     form = new AtmanKospiAI2Form();
                     break;
-                case "캔들패턴매칭AI-3":
-                    form = new AtmanKospiAIForm();
+                case "스마트종목파인더-1":
+                    form = new FinderForms.AtmanKRItemAIForm();
                     break;
-                case "캔들패턴매칭AI-4":
-                    form = new AtmanKospiAIForm();
+                case "스마트종목파인더-2":
+                    form = new FinderForms.AtmanKRItemAIForm();
                     break;
                 default:
                     form = new MainForm();
