@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using OM.Lib.Base.Enums;
 using OM.Vikala.Chakra.App.Config;
 using OM.Vikala.Chakra.App.Events;
+using System.IO;
 
 namespace OM.Vikala.Chakra.App.Mains
 {
@@ -81,6 +82,66 @@ namespace OM.Vikala.Chakra.App.Mains
 
             MainFormToolBarEvents.Instance.ManualReloadHandler += Instance_ManualReloadHandler;
             MainFormToolBarEvents.Instance.ItemSelectedChangedHandler += Instance_ItemSelectedChangedHandler;
+
+              
+        }
+        private void setTimeIntervalButton()
+        {
+            if (SharedData.SelectedType == "국내지수")
+            {
+                tsbTime12.Visible =
+                tsbTime13.Visible =
+                tsbTime14.Visible =
+                tsbTime15.Visible =
+                tsbTime16.Visible =
+                tsbTime17.Visible =
+                tsbTime18.Visible = false;
+            }
+            else if (SharedData.SelectedType == "해외지수")
+            {
+                tsbTime01.Visible =
+                tsbTime02.Visible =
+                tsbTime03.Visible =
+                tsbTime04.Visible =
+                tsbTime11.Visible =
+                tsbTime12.Visible =
+                tsbTime13.Visible =
+                tsbTime14.Visible =
+                tsbTime15.Visible =
+                tsbTime16.Visible =
+                tsbTime17.Visible =
+                tsbTime18.Visible = false;
+            }
+            else if (SharedData.SelectedType == "해외선물")
+            {
+            }
+            else if (SharedData.SelectedType == "국내업종")
+            {
+                tsbTime01.Visible =
+                tsbTime02.Visible =
+                tsbTime03.Visible =
+                tsbTime04.Visible =
+                tsbTime11.Visible =
+                tsbTime12.Visible =
+                tsbTime13.Visible =
+                tsbTime14.Visible =
+                tsbTime15.Visible =
+                tsbTime16.Visible =
+                tsbTime17.Visible =
+                tsbTime18.Visible = false;
+            }
+            else if (SharedData.SelectedType == "국내종목")
+            {
+                tsbTime01.Visible =
+                tsbTime02.Visible =                
+                tsbTime12.Visible =
+                tsbTime13.Visible =
+                tsbTime14.Visible =
+                tsbTime15.Visible =
+                tsbTime16.Visible =
+                tsbTime17.Visible =
+                tsbTime18.Visible = false;
+            }
         }
 
         private void Instance_ItemSelectedChangedHandler(int selectedIndex)
@@ -98,6 +159,7 @@ namespace OM.Vikala.Chakra.App.Mains
 
         private void UserToolStrip_Load(object sender, EventArgs e)
         {
+            setTimeIntervalButton();
             setItems();
             setInterval();
             tscbCnt.SelectedIndex = 3;
@@ -105,23 +167,12 @@ namespace OM.Vikala.Chakra.App.Mains
 
         public void setProgressValue(int n)
         {
-            //try
-            //{
-            //    if (n > 60) n = 60;
-
-            //    this.Invoke(new MethodInvoker(() => { tspb.Value = n; }));
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw ex;
-            //}
         }
         public void setTimeValue(int n)
         {
             try
             {
-                this.Invoke(new MethodInvoker(() => {
-                    //tslTime.Text = n.ToString("N0");
+                this.Invoke(new MethodInvoker(() => {                   
                     tspb.Value = n;
                 }));
             }
@@ -132,13 +183,46 @@ namespace OM.Vikala.Chakra.App.Mains
         }
         private void setItems()
         {
-            ItemData[] itemDatas = new ItemData[ItemCodeSet.Items.Length];
-            ItemCodeSet.Items.CopyTo(itemDatas, 0);
-
+            List<ItemData> itemDatas = new List<ItemData>();
+            
+            if (SharedData.SelectedType == "국내지수")
+            {
+                this.tscbItem.SelectedIndexChanged += new System.EventHandler(this.tscbItem_SelectedIndexChanged);
+                foreach (var m in ItemCodeSet.Items)
+                {
+                    if (m.Name.StartsWith("지수-국내") || m.Code.Length == 0)
+                        itemDatas.Add(m);
+                }
+            }
+            else if (SharedData.SelectedType == "해외지수")
+            {
+                this.tscbItem.SelectedIndexChanged += new System.EventHandler(this.tscbItem_SelectedIndexChanged);
+                foreach (var m in ItemCodeSet.Items)
+                {
+                    if (m.Name.StartsWith("지수-해외") || m.Code.Length == 0)
+                        itemDatas.Add(m);
+                }
+            }
+            else if (SharedData.SelectedType == "해외선물")
+            {
+                this.tscbItem.SelectedIndexChanged += new System.EventHandler(this.tscbItem_SelectedIndexChanged);
+                foreach (var m in ItemCodeSet.Items)
+                {
+                    if (m.Name.StartsWith("해선") || m.Code.Length == 0)
+                        itemDatas.Add(m);
+                }
+            }
+            else if (SharedData.SelectedType == "국내업종")
+            {
+                this.tscbItem.TextChanged += new System.EventHandler(this.tscbItem_TextChanged);
+            }
+            else if (SharedData.SelectedType == "국내종목")
+            {
+                this.tscbItem.TextChanged += new System.EventHandler(this.tscbItem_TextChanged);
+            }
             tscbItem.ComboBox.DataSource = itemDatas;
             tscbItem.ComboBox.DisplayMember = "Name";
-            tscbItem.ComboBox.ValueMember = "Code";
-            tscbItem.SelectedIndex = 0;
+            tscbItem.ComboBox.ValueMember = "Code";            
         }
         private void setInterval()
         {
@@ -196,6 +280,56 @@ namespace OM.Vikala.Chakra.App.Mains
             tscbItem.Enabled = true;
             tscbCnt.Enabled = false;
             tscbCnt.Enabled = true;
+        }
+        private void tscbItem_TextChanged(object sender, EventArgs e)
+        {
+            ItemData data = new ItemData();
+            data.Code = tscbItem.Text;
+            data.Name = SharedData.SelectedType;
+            data.Length = 0;
+            data.Tick = 1;
+
+            if (SharedData.SelectedType == "국내업종")
+            {
+                if (tscbItem.Text.Length != 3) return;
+            }
+            if (SharedData.SelectedType == "국내종목")
+            {
+                if (tscbItem.Text.Length != 6) return;
+            }
+
+            if (ItemCodeChangedEvent != null)
+            {
+                ItemCodeChangedEvent(data, e);
+                SharedData.SelectedItem = data;
+            }
+
+            if (SharedData.SelectedType == "국내업종")
+            {
+                string filePath = System.IO.Path.Combine(Environment.CurrentDirectory, "Db", "업종.txt");
+                var lines = File.ReadLines(filePath, Encoding.UTF8).ToList();
+                foreach (var line in lines)
+                {
+                    string[] values = line.Split("\t".ToCharArray());
+                    if (values[1] == data.Code)
+                    {
+                        lblName.Text += values[0];                      
+                    }
+                }
+            }
+            else if (SharedData.SelectedType == "국내종목")
+            {
+                string filePath = System.IO.Path.Combine(Environment.CurrentDirectory, "Db", "종목.txt");
+                var lines = File.ReadLines(filePath, Encoding.UTF8).ToList();
+                foreach (var line in lines)
+                {
+                    string[] values = line.Split("\t".ToCharArray());
+                    if (values[1] == data.Code)
+                    {
+                        lblName.Text += values[0];                        
+                    }
+                }
+            }
         }
 
         private void IntervalButton_Click(object sender, EventArgs e)

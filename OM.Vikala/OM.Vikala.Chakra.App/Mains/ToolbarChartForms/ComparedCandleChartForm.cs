@@ -2,6 +2,7 @@
 using OM.Lib.Base.Utils;
 using OM.PP.Chakra;
 using OM.PP.Chakra.Ctx;
+using OM.Vikala.Chakra.App.Config;
 using OM.Vikala.Controls.Charts;
 using System;
 using System.Collections.Generic;
@@ -65,9 +66,32 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
 
             string itemCode = base.SelectedItemData.Code;
 
-            var sourceDatas = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(                 
+            List<S_CandleItemData> sourceDatas = null;
+            if (SharedData.SelectedType == "국내업종")
+            {
+                if (timeInterval == TimeIntervalEnum.Day)
+                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(itemCode, "2", "0", "500");
+                else if (timeInterval == TimeIntervalEnum.Week)
+                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(itemCode, "3", "0", "500");
+            }
+            else if (SharedData.SelectedType == "국내종목")
+            {
+                if (timeInterval == TimeIntervalEnum.Day)
+                    sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(itemCode, "2", "0", "500");
+                else if (timeInterval == TimeIntervalEnum.Week)
+                    sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(itemCode, "3", "0", "500");
+                else if (timeInterval == TimeIntervalEnum.Minute_10)
+                    sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(itemCode, "1", "10", "500");
+                else if (timeInterval == TimeIntervalEnum.Minute_30)
+                    sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(itemCode, "1", "30", "500");
+                else if (timeInterval == TimeIntervalEnum.Hour_01)
+                    sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(itemCode, "1", "60", "500");
+            }
+            else
+                sourceDatas = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                   itemCode
                 , base.timeInterval);
+
             if (sourceDatas == null || sourceDatas.Count == 0) return;
 
             //표시할 갯수를 맞춘다.

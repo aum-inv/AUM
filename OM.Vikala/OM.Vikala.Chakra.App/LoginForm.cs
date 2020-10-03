@@ -38,29 +38,22 @@ namespace OM.Vikala.Chakra.App
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
-        {    
+        {   
             if (tbPwd.Text == "atman999")
             {
-                SharedData.SelectedType = "KR";                
+                Button btn = sender as Button;
+
+                SharedData.SelectedType = btn.Text;              
+                
                 SharedData.SecurityType = "1";
+
                 SharedData.StartWindowType = chkStartWindowType.Checked ? "2" : "1";
                     
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
+
                 this.Close();
             }
         }
 
-        private void btnLogin2_Click(object sender, EventArgs e)
-        {
-            if (tbPwd.Text == "atman999")
-            {
-                SharedData.SelectedType = "US";               
-                SharedData.SecurityType = "1";
-                SharedData.StartWindowType = chkStartWindowType.Checked ? "2" : "1";
-
-                this.DialogResult = System.Windows.Forms.DialogResult.OK;
-                this.Close();
-            }
-        }
     }
 }

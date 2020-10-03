@@ -56,6 +56,10 @@ namespace OM.Vikala.Chakra.App.Mains
             PPServerConfigData.IP = ConfigurationManager.AppSettings["PPService_IP"];
             PPServerConfigData.Port = Convert.ToInt32(ConfigurationManager.AppSettings["PPService_Port"]);
             PPContext.Instance.OnCreateClient();
+
+            XingServerConfigData.IP = ConfigurationManager.AppSettings["XingService_IP"];
+            XingServerConfigData.Port = Convert.ToInt32(ConfigurationManager.AppSettings["XingService_Port"]);
+            XingContext.Instance.OnCreateClient();
         }
         private void setItems()
         {

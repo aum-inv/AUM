@@ -15,7 +15,6 @@ namespace OM.Lib.Base.Enums
             , new ItemData(){ Name = "지수-국내-코스피" , Code = "001", Length = 2, SHCode = "001", Tick=0.01}
             , new ItemData(){ Name = "지수-국내-코스닥" , Code = "301", Length = 2, SHCode = "301", Tick=0.01}
 
-
 //DJI@DJI       : 다우산업
 //NAS@IXIC      : 나스닥 종합
 //SPI@SPX       : S&P 500
@@ -44,7 +43,7 @@ namespace OM.Lib.Base.Enums
             , new ItemData(){ Name = "해선-항셍" , Code = "HMH", Length = 0, SHCode = "HMHM20", Tick=1.0} //4-29
             , new ItemData(){ Name = "해선-나스닥" , Code = "NQ", Length = 0, SHCode = "NQM20", Tick=0.25}  //6-21
             , new ItemData(){ Name = "해선-유로FX" , Code = "URO", Length = 5, SHCode = "UROM20", Tick=0.00005} //6-17
-             , new ItemData(){ Name = "해선-SNP" , Code = "ES", Length = 2, SHCode = "ESM20", Tick=0.25} //6-21
+            , new ItemData(){ Name = "해선-SNP" , Code = "ES", Length = 2, SHCode = "ESM20", Tick=0.25} //6-21
             //, new ItemData(){ Name = "-" , Code = ""}
             //, new ItemData(){ Name = "환율-EUR/USD" , Code = "EURUSD", Length = 2}
             //, new ItemData(){ Name = "환율-USD/JPY" , Code = "USDJPY", Length = 2}
@@ -70,6 +69,7 @@ namespace OM.Lib.Base.Enums
             //, new ItemData(){ Name = "주식-해외-Netflix" , Code = "", Length = 2}
             //, new ItemData(){ Name = "주식-해외-Facebook" , Code = "", Length = 2}
         };
+
         public static List<ItemData> GetItems(string group)
         {
             List<ItemData> list = new List<ItemData>();

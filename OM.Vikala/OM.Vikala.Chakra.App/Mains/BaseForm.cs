@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -82,15 +83,6 @@ namespace OM.Vikala.Chakra.App.Mains
                isPermission = true;           
             else if (SharedData.SecurityType == "1") 
                 isPermission = true;
-
-            if (SharedData.SelectedType == "KR")
-            {
-
-            }
-            else if (SharedData.SelectedType == "US")
-            {
-                
-            }
 
             if (!isPermission) this.Close();
         }

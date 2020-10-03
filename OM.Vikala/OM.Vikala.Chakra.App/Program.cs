@@ -24,7 +24,14 @@ namespace OM.Vikala.Chakra.App
             {
                 if(SharedData.StartWindowType == "1")
                     Application.Run(new Mains.MainForm());
+
                 else if (SharedData.StartWindowType == "2")
+                    Application.Run(new Mains.MainToolBar());
+
+                else if (SharedData.StartWindowType == "3")
+                    Application.Run(new Mains.MainToolBar());
+
+                else if (SharedData.StartWindowType == "4")
                     Application.Run(new Mains.MainToolBar());
             }
         }
