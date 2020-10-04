@@ -197,7 +197,9 @@ namespace OM.Vikala.Chakra.App.Mains
 
         private void UserToolStrip1_ScreenCaptureEvent(object sender, EventArgs e)
         {
-            Panel pnlContent = this.Controls["pnlContent"] as Panel;
+            Control pnlContent = this.Controls["pnlContent"] as Panel;
+            if(pnlContent == null)
+                pnlContent = this.Controls["sContainer"] as SplitContainer;
 
             Bitmap bmp = new Bitmap(pnlContent.Width, pnlContent.Height);
             pnlContent.DrawToBitmap(bmp, new Rectangle(0, 0, pnlContent.Width, pnlContent.Height));

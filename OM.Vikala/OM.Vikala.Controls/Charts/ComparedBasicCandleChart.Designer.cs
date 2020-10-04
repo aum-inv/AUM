@@ -32,6 +32,7 @@
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pnlScroll = new System.Windows.Forms.Panel();
             this.hScrollBar = new System.Windows.Forms.HScrollBar();
@@ -104,7 +105,7 @@
             this.chart.ChartAreas.Add(chartArea1);
             this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chart.Location = new System.Drawing.Point(0, 0);
-            this.chart.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.chart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chart.Name = "chart";
             this.chart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             series1.BorderColor = System.Drawing.Color.Transparent;
@@ -132,10 +133,22 @@
             series3.MarkerColor = System.Drawing.Color.Blue;
             series3.Name = "cs_Basic2";
             series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            series4.BorderColor = System.Drawing.Color.Transparent;
+            series4.ChartArea = "chartArea";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Candlestick;
+            series4.Color = System.Drawing.Color.Black;
+            series4.CustomProperties = "PriceDownColor=Black, PriceUpColor=Black";
+            series4.IsXValueIndexed = true;
+            series4.Name = "Series4";
+            series4.ShadowColor = System.Drawing.Color.Transparent;
+            series4.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            series4.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
+            series4.YValuesPerPoint = 4;
             this.chart.Series.Add(series1);
             this.chart.Series.Add(series2);
             this.chart.Series.Add(series3);
-            this.chart.Size = new System.Drawing.Size(1033, 449);
+            this.chart.Series.Add(series4);
+            this.chart.Size = new System.Drawing.Size(1119, 586);
             this.chart.TabIndex = 2;
             this.chart.PostPaint += new System.EventHandler<System.Windows.Forms.DataVisualization.Charting.ChartPaintEventArgs>(this.chart_PostPaint);
             this.chart.MouseClick += new System.Windows.Forms.MouseEventHandler(this.chart_MouseClick);
@@ -145,9 +158,10 @@
             this.pnlScroll.Controls.Add(this.hScrollBar);
             this.pnlScroll.Controls.Add(this.trackBar);
             this.pnlScroll.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlScroll.Location = new System.Drawing.Point(0, 449);
+            this.pnlScroll.Location = new System.Drawing.Point(0, 586);
+            this.pnlScroll.Margin = new System.Windows.Forms.Padding(2);
             this.pnlScroll.Name = "pnlScroll";
-            this.pnlScroll.Size = new System.Drawing.Size(1033, 21);
+            this.pnlScroll.Size = new System.Drawing.Size(1119, 14);
             this.pnlScroll.TabIndex = 4;
             // 
             // hScrollBar
@@ -157,7 +171,7 @@
             this.hScrollBar.Location = new System.Drawing.Point(0, 0);
             this.hScrollBar.Maximum = 1;
             this.hScrollBar.Name = "hScrollBar";
-            this.hScrollBar.Size = new System.Drawing.Size(930, 21);
+            this.hScrollBar.Size = new System.Drawing.Size(1047, 14);
             this.hScrollBar.TabIndex = 4;
             this.hScrollBar.Value = 1;
             this.hScrollBar.ValueChanged += new System.EventHandler(this.hScrollBar_ValueChanged);
@@ -166,22 +180,23 @@
             // 
             this.trackBar.Dock = System.Windows.Forms.DockStyle.Right;
             this.trackBar.LargeChange = 1;
-            this.trackBar.Location = new System.Drawing.Point(930, 0);
+            this.trackBar.Location = new System.Drawing.Point(1047, 0);
+            this.trackBar.Margin = new System.Windows.Forms.Padding(2);
             this.trackBar.Name = "trackBar";
-            this.trackBar.Size = new System.Drawing.Size(103, 21);
+            this.trackBar.Size = new System.Drawing.Size(72, 14);
             this.trackBar.TabIndex = 5;
             this.trackBar.ValueChanged += new System.EventHandler(this.trackBar_ValueChanged);
             // 
             // ComparedBasicCandleChart
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.chart);
             this.Controls.Add(this.pnlScroll);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ComparedBasicCandleChart";
-            this.Size = new System.Drawing.Size(1033, 470);
+            this.Size = new System.Drawing.Size(1119, 600);
             ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
             this.pnlScroll.ResumeLayout(false);
             this.pnlScroll.PerformLayout();

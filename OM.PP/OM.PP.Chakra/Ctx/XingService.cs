@@ -87,6 +87,19 @@ namespace OM.PP.Chakra.Ctx
                 return null;
             }
         }
+        public List<S_CandleItemData> GetWorldIndexSiseData(string code, string gubun)
+        {
+            try
+            {
+                OM.PP.XingApp.Ex.Api.Api_WorldIndex api = new XingApp.Ex.Api.Api_WorldIndex();
+                return api.Query(code, gubun);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return null;
+            }
+        }
 
         public List<UpJongJongMokData> GetUpJongJongMokData(string upjongCode)
         {            

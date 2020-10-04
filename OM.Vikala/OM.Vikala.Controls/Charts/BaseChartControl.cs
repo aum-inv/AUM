@@ -271,7 +271,7 @@ namespace OM.Vikala.Controls.Charts
                     if (this.chart == e) return;
                     if (this.trackBar.Maximum < v) v = this.trackBar.Maximum;
                     this.trackBar.Value = v;
-                };
+                };                
             }
             if (IsShowXLine)
             {
@@ -417,8 +417,6 @@ namespace OM.Vikala.Controls.Charts
             if (bodyColor != null) dataPoint.SetCustomProperty("PriceDownColor", bodyColor.Value.Name);
             dataPoint.BorderWidth = borderWidth;
         }
-
-        
         private void Chart_MouseMove(object sender, MouseEventArgs e)
         {
             if (chart.Annotations.Count == 0)
@@ -459,7 +457,7 @@ namespace OM.Vikala.Controls.Charts
             {
                 var dtime = DateTime.FromOADate(result.Series.Points[result.PointIndex].XValue);
                 xLineLabel.Text = dtime.ToString(chartArea.AxisX.LabelStyle.Format);
-                xLineLabel.Visible = true;
+                xLineLabel.Visible = true;                
             }
             else
             {

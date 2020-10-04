@@ -46,17 +46,22 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
 
         private void UserToolStrip_LineChartWidthChangedEvent(object sender, EventArgs e)
         {
-            chart.BoldLine(sender.ToString());
+            chart1.BoldLine(sender.ToString());
+            chart2.BoldLine(sender.ToString());
         }
         private void UserToolStrip_TableViewChangedEvent(object sender, EventArgs e)
         {
         }
         public override void loadChartControls()
         {
-            chart.IsShowXLine = chart.IsShowYLine = true;
-            chart.InitializeControl();
-            chart.InitializeEvent(chartEvent);
-            chart.DisplayPointCount = itemCnt;
+            chart1.IsShowXLine = chart1.IsShowYLine = true;
+            chart1.InitializeControl();
+            chart1.InitializeEvent(chartEvent);
+            chart1.DisplayPointCount = itemCnt;
+
+            chart2.InitializeControl();
+            chart2.InitializeEvent(chartEvent);
+            chart2.DisplayPointCount = itemCnt;
         }
 
         public override void loadData()
@@ -87,6 +92,13 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
                 else if (timeInterval == TimeIntervalEnum.Hour_01)
                     sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(itemCode, "1", "60", "500");
             }
+            else if (SharedData.SelectedType == "해외지수")
+            {
+                if (timeInterval == TimeIntervalEnum.Day)
+                    sourceDatas = XingContext.Instance.ClientContext.GetWorldIndexSiseData(itemCode, "0");
+                else if (timeInterval == TimeIntervalEnum.Week)
+                    sourceDatas = XingContext.Instance.ClientContext.GetWorldIndexSiseData(itemCode, "1");
+            }
             else
                 sourceDatas = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                   itemCode
@@ -100,7 +112,16 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
             //var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas, 9);
             var averageDatas = PPUtils.GetBalancedAverageDatas(itemCode, sourceDatas, 4);
             sourceDatas = PPUtils.GetCutDatas(sourceDatas, averageDatas[0].DTime);
-            chart.LoadDataAndApply(itemCode, sourceDatas, averageDatas, base.timeInterval, 9);            
+            chart1.LoadDataAndApply(itemCode, sourceDatas, averageDatas, base.timeInterval, 9);
+
+            //var removeGapSourceDatas = PPUtils.RemoveGapPrice(sourceDatas);
+            //var averageDatas2 = PPUtils.GetBalancedAverageDatas(itemCode, removeGapSourceDatas, 4);
+
+            averageDatas.RemoveAt(0);
+            averageDatas.RemoveAt(0);
+            averageDatas.RemoveAt(0);
+            averageDatas.RemoveAt(0);
+            chart2.LoadDataAndApply(itemCode, averageDatas, averageDatas, timeInterval, 5);
         }
     }
 }

@@ -162,7 +162,7 @@ namespace OM.Vikala.Chakra.App.Mains
             setTimeIntervalButton();
             setItems();
             setInterval();
-            tscbCnt.SelectedIndex = 3;
+            tscbCnt.SelectedIndex = 0;
         }
 
         public void setProgressValue(int n)
