@@ -106,7 +106,7 @@ namespace OM.Atman.Chakra.App
                     form = new FinderForms.AtmanKRItemAIForm();
                     break;
                 case "스마트종목파인더-2":
-                    form = new FinderForms.AtmanKRItemAIForm();
+                    form = new FinderForms.AtmanKRItemFinderByVolRankForm();
                     break;
                 default:
                     form = new MainForm();

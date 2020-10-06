@@ -100,6 +100,19 @@ namespace OM.PP.Chakra.Ctx
                 return null;
             }
         }
+        public List<S_CandleItemData> GetWorldFutureSiseData(string code, string gubun)
+        {
+            try
+            {
+                OM.PP.XingApp.Ex.Api.Api_WorldFuture api = new XingApp.Ex.Api.Api_WorldFuture();
+                return api.Query(code, gubun);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return null;
+            }
+        }
 
         public List<UpJongJongMokData> GetUpJongJongMokData(string upjongCode)
         {            
@@ -108,6 +121,19 @@ namespace OM.PP.Chakra.Ctx
                 OM.PP.XingApp.Ex.Api.Api_UpjongJongmok api = new XingApp.Ex.Api.Api_UpjongJongmok();
                 return api.Query(upjongCode);
             }   
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return null;
+            }
+        }
+        public List<UpJongJongMokData> GetJongMokRankData(string gubun, string sdiff, string ediff)
+        {
+            try
+            {
+                OM.PP.XingApp.Ex.Api.Api_JongmokRank api = new XingApp.Ex.Api.Api_JongmokRank();
+                return api.Query(gubun, sdiff, ediff);
+            }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);

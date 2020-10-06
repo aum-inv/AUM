@@ -114,6 +114,16 @@ namespace OM.Vikala.Chakra.App.Mains
             }
             else if (SharedData.SelectedType == "해외선물")
             {
+                tsbTime01.Visible =                  
+                tsbTime03.Visible =
+                tsbTime04.Visible =                  
+                tsbTime12.Visible =
+                tsbTime13.Visible =
+                   tsbTime14.Visible =
+                   tsbTime15.Visible =
+                   tsbTime16.Visible =
+                   tsbTime17.Visible =
+                   tsbTime18.Visible = false;
             }
             else if (SharedData.SelectedType == "국내업종")
             {

@@ -343,6 +343,7 @@
             this.btnSearchUpjong.Location = new System.Drawing.Point(312, 5);
             this.btnSearchUpjong.Name = "btnSearchUpjong";
             this.btnSearchUpjong.Size = new System.Drawing.Size(41, 100);
+            this.btnSearchUpjong.Style = MetroFramework.MetroColorStyle.Pink;
             this.btnSearchUpjong.TabIndex = 18;
             this.btnSearchUpjong.Text = "△\r\n업\r\n종\r\n찾\r\n기";
             this.btnSearchUpjong.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -641,7 +642,7 @@
             this.name.HeaderText = "name";
             this.name.Name = "name";
             this.name.ReadOnly = true;
-            this.name.Width = 120;
+            this.name.Width = 150;
             // 
             // 시가
             // 
@@ -1085,6 +1086,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn WisdomLine1;
         private System.Windows.Forms.DataGridViewTextBoxColumn SmartWisdom1;
         private System.Windows.Forms.DataGridViewTextBoxColumn SmartWisdom2;
+        private MetroFramework.Controls.MetroTextBox tbSelectedName2;
+        private MetroFramework.Controls.MetroTextBox tbSelectedCode2;
+        private MetroFramework.Controls.MetroLabel metroLabel5;
         private System.Windows.Forms.DataGridViewLinkColumn 시간;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn 시가;
@@ -1104,8 +1108,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn W;
         private System.Windows.Forms.DataGridViewTextBoxColumn SW1;
         private System.Windows.Forms.DataGridViewTextBoxColumn SW2;
-        private MetroFramework.Controls.MetroTextBox tbSelectedName2;
-        private MetroFramework.Controls.MetroTextBox tbSelectedCode2;
-        private MetroFramework.Controls.MetroLabel metroLabel5;
     }
 }

@@ -54,7 +54,9 @@
     <Compile Include="Api\Api_IndexFutureTrade.cs" />
     <Compile Include="Api\Api_Jongmok.cs" />
     <Compile Include="Api\Api_Upjong.cs" />
+    <Compile Include="Api\Api_JongmokRank.cs" />
     <Compile Include="Api\Api_UpjongJongmok.cs" />
+    <Compile Include="Api\Api_WorldFuture.cs" />
     <Compile Include="Api\Api_WorldFutureTrade.cs" />
     <Compile Include="Api\Api_WorldIndex.cs" />
     <Compile Include="Api\BaseApi.cs" />

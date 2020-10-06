@@ -1,19 +1,28 @@
-﻿using OM.Lib.Base.Enums;
+﻿using Microsoft.SqlServer.Server;
+using OM.Lib.Base.Enums;
+using OM.Lib.Base.Utils;
+using OM.Lib.Framework.Utility;
+using OM.PP.Chakra;
 using OM.PP.Chakra.Ctx;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using XA_DATASETLib;
 
-namespace OM.PP.XingApp.Api
+namespace OM.PP.XingApp.Ex.Api
 {
     class Api_WorldFuture : BaseApi
     {
+        public ManualResetEvent manualEvent = new ManualResetEvent(false);
+
         public string ItemCode
         {
             get;
@@ -30,18 +39,121 @@ namespace OM.PP.XingApp.Api
         {
         }
 
+        List<S_CandleItemData> returnList = new List<S_CandleItemData>();
+
+        #region Query Http
+        public List<S_CandleItemData> Query(
+             string itemCode           
+           , string gubun = "D" //M : 15Min, H : Hour, D : Day, W : Week, M : Month
+           )
+        {
+            this.ItemCode = itemCode;
+            int round = ItemCodeUtil.GetItemCodeRoundNum(ItemCode);
+
+            Task.Factory.StartNew(() => {
+                try
+                {
+                    string symbol = "8849";
+                    if(itemCode == "GC") symbol = "8830";
+                    else if (itemCode == "NG") symbol = "8862";
+                    else if (itemCode == "SI") symbol = "8836";
+                    
+                    else if (itemCode == "HMH") symbol = "8984";
+                    else if (itemCode == "NQ") symbol = "8874";
+                    else if (itemCode == "URO") symbol = "8830";
+                    else if (itemCode == "ES") symbol = "8839";
+                  
+
+                    string resolution = gubun;
+                    if (gubun == "H") resolution = "60";
+                    else if(gubun == "M") resolution = "5";
+
+                    Int32 from = (Int32)(DateTime.UtcNow.AddYears(-1).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                    Int32 to = (Int32)(DateTime.UtcNow.AddDays(1).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+
+                    if (gubun == "M")
+                    {
+                        from = (Int32)(DateTime.UtcNow.AddDays(-2).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                        to = (Int32)(DateTime.UtcNow.AddDays(1).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                    }
+                    else if (gubun == "H")
+                    {
+                        from = (Int32)(DateTime.UtcNow.AddDays(-7).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                        to = (Int32)(DateTime.UtcNow.AddDays(1).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                    }
+                    else if (gubun == "W")
+                    {
+                        from = (Int32)(DateTime.UtcNow.AddYears(-2).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                        to = (Int32)(DateTime.UtcNow.AddDays(1).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                    }
+                    else if (gubun == "M")
+                    {
+                        from = (Int32)(DateTime.UtcNow.AddYears(-10).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                        to = (Int32)(DateTime.UtcNow.AddDays(1).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                    }
+
+                    string urlPath = $"https://tvc4.forexpros.com/1cc1f0b6f392b9fad2b50b7aebef1f7c/1601866558/18/18/88/history?symbol={symbol}&resolution={resolution}&from={from}&to={to}";
+                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(urlPath);
+                    request.MaximumAutomaticRedirections = 4;
+                    request.MaximumResponseHeadersLength = 4;
+                    request.Credentials = CredentialCache.DefaultCredentials;
+                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+                    Stream receiveStream = response.GetResponseStream();
+                    StreamReader readStream = new StreamReader(receiveStream, Encoding.UTF8);
+
+                    string content = readStream.ReadToEnd();
+
+                    var dyObj = JsonConverter.JsonToDynamicObject(content);
+                    int cnt = dyObj.t.Count;
+                    for (int i = 0; i < cnt; i++)
+                    {
+                        Int64 t = dyObj.t[i];
+                        double o = dyObj.o[i];
+                        double c = dyObj.c[i];
+                        double h = dyObj.h[i];
+                        double l = dyObj.l[i];
+                        DateTime cTime = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(t);
+                        //Console.WriteLine($"DT : {cTime.ToLongDateString()} O : {Math.Round(o, 2)}, H : {Math.Round(h, 2)}, L : {Math.Round(l, 2)}, C : {Math.Round(c, 2)}");
+
+
+                        S_CandleItemData data = new S_CandleItemData();
+                        data.DTime = cTime;
+                        data.ItemCode = ItemCode;
+                        data.OpenPrice = (Single)Math.Round(o, round);
+                        data.HighPrice = (Single)Math.Round(h, round);
+                        data.LowPrice = (Single)Math.Round(l, round);
+                        data.ClosePrice = (Single)Math.Round(c, round);
+                        data.Volume = 0;
+
+                        returnList.Add(data);
+                    }
+                }
+                catch (Exception ex)
+                {
+                }
+                finally
+                {
+                    manualEvent.Set();
+                }
+            });
+            manualEvent.WaitOne();
+
+            return returnList;
+        }
+        #endregion
         #region Query
-        /// <summary>
-        /// 분 쿼리일때는 qrycnt
-        /// 일 이상 쿼리일때는 날짜로 가져온다.
-        /// </summary>
-        /// <param name="shcode">101</param>
-        /// <param name="ncnt"></param>
-        /// <param name="qrycnt"></param>
-        /// <param name="cts_date"></param>
-        /// <param name="cts_time"></param>
-        /// <param name="cts_daygb">연속당일구분(0. 연속전체, 1.연속당)</param>
-        public void Query(
+            /// <summary>
+            /// 분 쿼리일때는 qrycnt
+            /// 일 이상 쿼리일때는 날짜로 가져온다.
+            /// </summary>
+            /// <param name="shcode">101</param>
+            /// <param name="ncnt"></param>
+            /// <param name="qrycnt"></param>
+            /// <param name="cts_date"></param>
+            /// <param name="cts_time"></param>
+            /// <param name="cts_daygb">연속당일구분(0. 연속전체, 1.연속당)</param>
+            public void Query(
               string shcode
             , string gubun = "1"
             , string ncnt = "1"

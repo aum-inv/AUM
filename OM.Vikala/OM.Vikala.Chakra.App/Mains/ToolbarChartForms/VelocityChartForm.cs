@@ -103,6 +103,17 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
                 else if (timeInterval == TimeIntervalEnum.Week)
                     sourceDatas = XingContext.Instance.ClientContext.GetWorldIndexSiseData(itemCode, "1");
             }
+            else if (SharedData.SelectedType == "해외선물")
+            {
+                if (timeInterval == TimeIntervalEnum.Day)
+                    sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "D");
+                else if (timeInterval == TimeIntervalEnum.Week)
+                    sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "W");
+                else if (timeInterval == TimeIntervalEnum.Hour_01)
+                    sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "H");
+                else if (timeInterval == TimeIntervalEnum.Minute_05)
+                    sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "M");
+            }
             else
                 sourceDatas = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(                 
                   itemCode
