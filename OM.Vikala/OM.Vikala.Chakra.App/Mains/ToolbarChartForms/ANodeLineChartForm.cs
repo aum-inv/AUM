@@ -100,6 +100,23 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
                 else if (timeInterval == TimeIntervalEnum.Week)
                     sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(itemCode, "3", "0", "500");
             }
+            else if (SharedData.SelectedType == "국내지수")
+            {
+                if (timeInterval == TimeIntervalEnum.Day)
+                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(itemCode, "2", "0", "500");
+                else if (timeInterval == TimeIntervalEnum.Week)
+                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(itemCode, "3", "0", "500");
+                else if (timeInterval == TimeIntervalEnum.Minute_01)
+                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(itemCode, "1", "1", "500");
+                else if (timeInterval == TimeIntervalEnum.Minute_05)
+                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(itemCode, "1", "5", "500");
+                else if (timeInterval == TimeIntervalEnum.Minute_10)
+                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(itemCode, "1", "10", "500");
+                else if (timeInterval == TimeIntervalEnum.Minute_30)
+                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(itemCode, "1", "30", "500");
+                else if (timeInterval == TimeIntervalEnum.Hour_01)
+                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(itemCode, "1", "60", "500");
+            }
             else if (SharedData.SelectedType == "국내종목")
             {
                 if (timeInterval == TimeIntervalEnum.Day)
@@ -146,9 +163,16 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
             var quantumDatas = PPUtils.GetANodeDatas(removeGapSourceDatas);
             var plusQuantumDatas = quantumDatas.plusList;
             var minusQuantumDatas = quantumDatas.minusList;
-                      
-            var pAverageDatas = PPUtils.GetBalancedAverageDatas(itemCode, plusQuantumDatas, 4);
-            var mAverageDatas = PPUtils.GetBalancedAverageDatas(itemCode, minusQuantumDatas, 4);
+
+            int averageCount = 4;
+            if (timeInterval == TimeIntervalEnum.Minute_01
+               || timeInterval == TimeIntervalEnum.Minute_05
+               || timeInterval == TimeIntervalEnum.Minute_10
+               || timeInterval == TimeIntervalEnum.Minute_30)
+                averageCount = 8;
+
+            var pAverageDatas = PPUtils.GetBalancedAverageDatas(itemCode, plusQuantumDatas, averageCount);
+            var mAverageDatas = PPUtils.GetBalancedAverageDatas(itemCode, minusQuantumDatas, averageCount);
 
             sourceDatas = PPUtils.GetCutDatas(sourceDatas, pAverageDatas[0].DTime);
             chart.LoadDataAndApply(itemCode, sourceDatas, pAverageDatas, mAverageDatas, base.timeInterval, 5);

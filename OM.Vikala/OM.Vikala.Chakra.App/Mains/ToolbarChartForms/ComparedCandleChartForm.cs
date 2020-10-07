@@ -79,6 +79,23 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
                 else if (timeInterval == TimeIntervalEnum.Week)
                     sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(itemCode, "3", "0", "500");
             }
+            else if (SharedData.SelectedType == "국내지수")
+            {
+                if (timeInterval == TimeIntervalEnum.Day)
+                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(itemCode, "2", "0", "500");
+                else if (timeInterval == TimeIntervalEnum.Week)
+                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(itemCode, "3", "0", "500");
+                else if (timeInterval == TimeIntervalEnum.Minute_01)
+                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(itemCode, "1", "1", "500");
+                else if (timeInterval == TimeIntervalEnum.Minute_05)
+                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(itemCode, "1", "5", "500");
+                else if (timeInterval == TimeIntervalEnum.Minute_10)
+                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(itemCode, "1", "10", "500");
+                else if (timeInterval == TimeIntervalEnum.Minute_30)
+                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(itemCode, "1", "30", "500");
+                else if (timeInterval == TimeIntervalEnum.Hour_01)
+                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(itemCode, "1", "60", "500");
+            }
             else if (SharedData.SelectedType == "국내종목")
             {
                 if (timeInterval == TimeIntervalEnum.Day)
@@ -120,8 +137,17 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
             //표시할 갯수를 맞춘다.
             RemoveSourceData(sourceDatas);
 
+            int averageCount = 4;
+
+            if (timeInterval == TimeIntervalEnum.Minute_01
+                || timeInterval == TimeIntervalEnum.Minute_05
+                || timeInterval == TimeIntervalEnum.Minute_10
+                || timeInterval == TimeIntervalEnum.Minute_30)
+                averageCount = 8;
+
             //var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas, 9);
-            var averageDatas = PPUtils.GetBalancedAverageDatas(itemCode, sourceDatas, 4);
+            var averageDatas = PPUtils.GetBalancedAverageDatas(itemCode, sourceDatas, averageCount);
+           
             sourceDatas = PPUtils.GetCutDatas(sourceDatas, averageDatas[0].DTime);
             chart1.LoadDataAndApply(itemCode, sourceDatas, averageDatas, base.timeInterval, 9);
 

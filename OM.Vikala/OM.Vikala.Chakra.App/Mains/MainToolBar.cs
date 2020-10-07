@@ -1,5 +1,6 @@
 ﻿using MaterialSkin.Controls;
 using OM.PP.Chakra.Ctx;
+using OM.Vikala.Chakra.App.Config;
 using OM.Vikala.Chakra.App.Events;
 using System;
 using System.Collections.Generic;
@@ -240,6 +241,19 @@ namespace OM.Vikala.Chakra.App.Mains
             isAutoLoad = !isAutoLoad;
 
             tsbAutoLoad.Checked = isAutoLoad;
+        }
+
+        private void selectedType_Click(object sender, EventArgs e)
+        {
+            toolStripButton1.Checked =
+                toolStripButton2.Checked =
+                toolStripButton3.Checked =
+                toolStripButton4.Checked =
+                toolStripButton5.Checked = false;
+
+            var btn = sender as ToolStripButton;
+            SharedData.SelectedType = btn.Tag.ToString();
+            btn.Checked = true;
         }
 
         //private void tsb_Minimize_Click(object sender, EventArgs e)
