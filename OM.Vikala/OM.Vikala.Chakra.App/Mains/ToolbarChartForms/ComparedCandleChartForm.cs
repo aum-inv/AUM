@@ -149,7 +149,7 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
             var averageDatas = PPUtils.GetBalancedAverageDatas(itemCode, sourceDatas, averageCount);
            
             sourceDatas = PPUtils.GetCutDatas(sourceDatas, averageDatas[0].DTime);
-            chart1.LoadDataAndApply(itemCode, sourceDatas, averageDatas, base.timeInterval, 9);
+            chart1.LoadDataAndApply(itemCode, sourceDatas, averageDatas, base.timeInterval, averageCount);
 
             //var removeGapSourceDatas = PPUtils.RemoveGapPrice(sourceDatas);
             //var averageDatas2 = PPUtils.GetBalancedAverageDatas(itemCode, removeGapSourceDatas, 4);

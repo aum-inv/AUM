@@ -66,7 +66,7 @@ namespace OM.Atman.Chakra.App.FinderForms
             foreach (var line in lines) 
             {
                 string[] values = line.Split("\t".ToCharArray());
-                int rIdx = dgvList.Rows.Add(values[0], "-", "-", "-", "-");
+                int rIdx = dgvList.Rows.Add(values[0]);
                 dgvList.Rows[rIdx].Tag = values[1];
             }
         }
@@ -252,23 +252,38 @@ namespace OM.Atman.Chakra.App.FinderForms
                             preWisdomData = wisdomData;
                         }
 
-                        var sR = getSmartLine(smartDataList);
-                        var wR = getWisdomLine(wisdomDataList);
+                        var sR0 = getSmartLine(0, smartDataList);
+                        var sR1 = getSmartLine(1, smartDataList);
+                        var sR2 = getSmartLine(2, smartDataList);
+                        var sR3 = getSmartLine(3, smartDataList);
+
+                        var swR4 = getSmartWisdomLine(4, smartDataList, wisdomDataList);
+                        var swR3 = getSmartWisdomLine(3, smartDataList, wisdomDataList);
+                        var swR2 = getSmartWisdomLine(2, smartDataList, wisdomDataList);
                         var swR1 = getSmartWisdomLine(1, smartDataList, wisdomDataList);
                         var swR0 = getSmartWisdomLine(0, smartDataList, wisdomDataList);
-                    
+
                         //this.Invoke(new Action(() => {
-                            row.Cells[1].Value = sR.Item1;
-                            row.Cells[1].Style.ForeColor = sR.Item2;
+                        row.Cells["S3"].Value = sR3.Item1;
+                        row.Cells["S3"].Style.ForeColor = sR3.Item2;
+                        row.Cells["S2"].Value = sR2.Item1;
+                        row.Cells["S2"].Style.ForeColor = sR2.Item2;
+                        row.Cells["S1"].Value = sR1.Item1;
+                        row.Cells["S1"].Style.ForeColor = sR1.Item2;
+                        row.Cells["S0"].Value = sR0.Item1;
+                        row.Cells["S0"].Style.ForeColor = sR0.Item2;
 
-                            row.Cells[2].Value = wR.Item1;
-                            row.Cells[2].Style.ForeColor = wR.Item2;
+                        row.Cells["SW4"].Value = swR4.Item1;
+                        row.Cells["SW4"].Style.ForeColor = swR4.Item2;
+                        row.Cells["SW3"].Value = swR3.Item1;
+                        row.Cells["SW3"].Style.ForeColor = swR3.Item2;
+                        row.Cells["SW2"].Value = swR2.Item1;
+                        row.Cells["SW2"].Style.ForeColor = swR2.Item2;
+                        row.Cells["SW1"].Value = swR1.Item1;
+                        row.Cells["SW1"].Style.ForeColor = swR1.Item2;
+                        row.Cells["SW0"].Value = swR0.Item1;
+                        row.Cells["SW0"].Style.ForeColor = swR0.Item2;
 
-                            row.Cells[3].Value = swR1.Item1;
-                            row.Cells[3].Style.ForeColor = swR1.Item2;
-
-                            row.Cells[4].Value = swR0.Item1;
-                            row.Cells[4].Style.ForeColor = swR0.Item2;
                         //}));                                                 
                     });
 
@@ -314,24 +329,37 @@ namespace OM.Atman.Chakra.App.FinderForms
                             preWisdomData = wisdomData;
                         }
 
-                        var sR = getSmartLine(smartDataList);
-                        var wR = getWisdomLine(wisdomDataList);
+                        var sR0 = getSmartLine(0, smartDataList);
+                        var sR1 = getSmartLine(1, smartDataList);
+                        var sR2 = getSmartLine(2, smartDataList);
+                        var sR3 = getSmartLine(3, smartDataList);
+
+                        var swR4 = getSmartWisdomLine(4, smartDataList, wisdomDataList);
+                        var swR3 = getSmartWisdomLine(3, smartDataList, wisdomDataList);
+                        var swR2 = getSmartWisdomLine(2, smartDataList, wisdomDataList);
                         var swR1 = getSmartWisdomLine(1, smartDataList, wisdomDataList);
                         var swR0 = getSmartWisdomLine(0, smartDataList, wisdomDataList);
 
                         //this.Invoke(new Action(() => {
-                        row.Cells["S"].Value = sR.Item1;
-                        row.Cells["S"].Style.ForeColor = sR.Item2;
+                        row.Cells["IS3"].Value = sR3.Item1;
+                        row.Cells["IS3"].Style.ForeColor = sR3.Item2;
+                        row.Cells["IS2"].Value = sR2.Item1;
+                        row.Cells["IS2"].Style.ForeColor = sR2.Item2;
+                        row.Cells["IS1"].Value = sR1.Item1;
+                        row.Cells["IS1"].Style.ForeColor = sR1.Item2;
+                        row.Cells["IS0"].Value = sR0.Item1;
+                        row.Cells["IS0"].Style.ForeColor = sR0.Item2;
 
-                        row.Cells["W"].Value = wR.Item1;
-                        row.Cells["W"].Style.ForeColor = wR.Item2;
-
-                        row.Cells["SW1"].Value = swR1.Item1;
-                        row.Cells["SW1"].Style.ForeColor = swR1.Item2;
-
-                        row.Cells["SW2"].Value = swR0.Item1;
-                        row.Cells["SW2"].Style.ForeColor = swR0.Item2;
-                        //}));                                                 
+                        row.Cells["ISW4"].Value = swR4.Item1;
+                        row.Cells["ISW4"].Style.ForeColor = swR4.Item2;
+                        row.Cells["ISW3"].Value = swR3.Item1;
+                        row.Cells["ISW3"].Style.ForeColor = swR3.Item2;
+                        row.Cells["ISW2"].Value = swR2.Item1;
+                        row.Cells["ISW2"].Style.ForeColor = swR2.Item2;
+                        row.Cells["ISW1"].Value = swR1.Item1;
+                        row.Cells["ISW1"].Style.ForeColor = swR1.Item2;
+                        row.Cells["ISW0"].Value = swR0.Item1;
+                        row.Cells["ISW0"].Style.ForeColor = swR0.Item2;
                     });
 
                     System.Threading.Thread.Sleep(2000);
@@ -339,19 +367,19 @@ namespace OM.Atman.Chakra.App.FinderForms
             });
         }
 
-        private (string, Color) getSmartLine(List<SmartCandleData> list)
+        private (string, Color) getSmartLine(int preCount, List<SmartCandleData> list)
         {
-            var m1 = list[list.Count - 2];
-            var m0 = list[list.Count - 1];
+            var m1 = list[list.Count - 2 - preCount];
+            var m0 = list[list.Count - 1 - preCount];
 
             if (m1.Variance_ChartPrice2 < m0.Variance_ChartPrice2) return ("▲", Color.Red);
             else if (m1.Variance_ChartPrice2 > m0.Variance_ChartPrice2) return ("▼", Color.Blue);
             else return ("◇", Color.Black);
         }
-        private (string, Color) getWisdomLine(List<WisdomCandleData> list)
+        private (string, Color) getWisdomLine(int preCount, List<WisdomCandleData> list)
         {
-            var m1 = list[list.Count - 2];
-            var m0 = list[list.Count - 1];
+            var m1 = list[list.Count - 2 - preCount];
+            var m0 = list[list.Count - 1 - preCount];
 
             if (m1.Variance_ChartPrice < m0.Variance_ChartPrice) return ("▲", Color.Red);
             else if (m1.Variance_ChartPrice > m0.Variance_ChartPrice) return ("▼", Color.Blue);
@@ -367,6 +395,13 @@ namespace OM.Atman.Chakra.App.FinderForms
             else return ("◇", Color.Black);
         }
 
-       
+        private void btnGoNaver_Click(object sender, EventArgs e)
+        {
+            if (tbSelectedCode2.Text.Length == 0) return;
+
+            string url = "https://finance.naver.com/item/main.nhn?code=" + tbSelectedCode2.Text;
+
+            System.Diagnostics.Process.Start("chrome", url);
+        }
     }
 }

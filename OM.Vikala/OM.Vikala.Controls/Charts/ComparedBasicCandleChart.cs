@@ -23,12 +23,12 @@ namespace OM.Vikala.Controls.Charts
             set;
         } = CandleChartTypeEnum.기본;
                        
-        public List<S_CandleItemData> ChartData
+        public List<T_QuantumItemData> ChartData
         {
             get;
             set;
         }
-        public List<S_CandleItemData> ChartDataSub
+        public List<T_QuantumItemData> ChartDataSub
         {
             get;
             set;
@@ -46,7 +46,7 @@ namespace OM.Vikala.Controls.Charts
         } = BaseCandleChartTypeEnum.인;
 
         public void LoadData(string itemCode = ""
-            , List <S_CandleItemData> chartData = null
+            , List <T_QuantumItemData> chartData = null
             , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day)
         {
             TimeInterval = timeInterval;
@@ -61,8 +61,8 @@ namespace OM.Vikala.Controls.Charts
             }));
         }
         public void LoadData(string itemCode = ""
-           , List<S_CandleItemData> chartData = null
-           , List<S_CandleItemData> chartDataSub = null
+           , List<T_QuantumItemData> chartData = null
+           , List<T_QuantumItemData> chartDataSub = null
            , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day)
         {
             TimeInterval = timeInterval;
@@ -84,46 +84,7 @@ namespace OM.Vikala.Controls.Charts
             InitializeComponent();
             base.SetChartControl(chart, hScrollBar, trackBar);
         }
-        //public override void InitializeControl()
-        //{
-        //    System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea = chart.ChartAreas[0];
-        //    //chartArea.AxisX.IsLabelAutoFit = true;
-        //    //chartArea.AxisX.LabelStyle.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-        //    //chartArea.AxisX.LabelStyle.IsEndLabelVisible = true;
-        //    //chartArea.AxisX.LineColor = System.Drawing.Color.WhiteSmoke;
-        //    //chartArea.AxisX.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-
-        //    //chartArea.AxisY.IntervalType = DateTimeIntervalType.NotSet;
-        //    //chartArea.AxisY.IsLabelAutoFit = true;
-        //    //chartArea.AxisY.LabelStyle.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-        //    //chartArea.AxisY.LabelStyle.ForeColor = System.Drawing.Color.DimGray;
-        //    //chartArea.AxisY.LineColor = System.Drawing.Color.WhiteSmoke;
-
-        //    //chartArea.AxisY2.IntervalType = DateTimeIntervalType.NotSet;
-        //    //chartArea.AxisY2.IsLabelAutoFit = true;
-        //    //chartArea.AxisY2.LabelStyle.Font = new System.Drawing.Font("돋움", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-        //    //chartArea.AxisY2.LabelStyle.ForeColor = System.Drawing.Color.DimGray;
-        //    //chartArea.AxisY2.LineColor = System.Drawing.Color.WhiteSmoke;
-
-        //    //chartArea.BackColor = Color.White;
-        //    //chartArea.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.None;
-        //    //chartArea.BackSecondaryColor = System.Drawing.Color.White;
-        //    //chartArea.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-        //    //chartArea.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.NotSet;
-
-        //    chartArea.InnerPlotPosition.Auto = false;
-        //    chartArea.InnerPlotPosition.Height = 90F;
-        //    chartArea.InnerPlotPosition.Width = 95F;
-        //    chartArea.InnerPlotPosition.Y = 2F;
-        //    chartArea.InnerPlotPosition.X = 2F;
-        //    chartArea.Name = "chartArea";
-
-        //    chartArea.Position.Auto = false;
-        //    chartArea.Position.Height = 95F;
-        //    chartArea.Position.Width = 98F;
-        //    chartArea.Position.Y = 2F;
-        //    chartArea.ShadowColor = System.Drawing.Color.Transparent;
-        //}
+       
         public override void View()
         {
             pnlScroll.Visible = IsAutoScrollX;
@@ -185,7 +146,11 @@ namespace OM.Vikala.Controls.Charts
                 //chart.Series[1].Points.AddXY(smart.DTime, smart.SpaceTotalChangeRate);
                 chart.Series[1].Points.AddXY(smart.DTime, smart.Variance_ChartPrice2);
                 chart.Series[2].Points.AddXY(wisdom.DTime, wisdom.Variance_ChartPrice);
+                
                 chart.Series[3].Points.AddXY(item2.DTime, item2.HighPrice, item2.LowPrice, item2.OpenPrice, item2.ClosePrice);
+               
+                chart.Series[4].Points.AddXY(item2.DTime, item2.T_QuantumHighAvg);
+                chart.Series[5].Points.AddXY(item2.DTime, item2.T_QuantumLowAvg);
 
                 chart.Series[1].Points[idx].Color = Color.Red;
                 chart.Series[2].Points[idx].Color = Color.Blue;
@@ -280,7 +245,7 @@ namespace OM.Vikala.Controls.Charts
             int trackView = trackBar.Value;
             int displayItemCount = DisplayPointCount * trackView;
 
-            List<S_CandleItemData> viewLists = null;
+            List<T_QuantumItemData> viewLists = null;
             int maxDisplayIndex = 0;
             int minDisplayIndex = 0;
             if (scrollVal == hScrollBar.Minimum)

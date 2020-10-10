@@ -51,6 +51,7 @@
             this.chkItemFinder2 = new MetroFramework.Controls.MetroCheckBox();
             this.chkItemFinder1 = new MetroFramework.Controls.MetroCheckBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.metroCheckBox1 = new MetroFramework.Controls.MetroCheckBox();
             this.SuspendLayout();
             // 
             // label5
@@ -59,9 +60,9 @@
             this.label5.ForeColor = System.Drawing.Color.DarkRed;
             this.label5.Location = new System.Drawing.Point(11, 59);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(239, 12);
+            this.label5.Size = new System.Drawing.Size(305, 12);
             this.label5.TabIndex = 28;
-            this.label5.Text = "---------------------------------------";
+            this.label5.Text = "--------------------------------------------------";
             // 
             // label4
             // 
@@ -69,15 +70,15 @@
             this.label4.ForeColor = System.Drawing.Color.DarkRed;
             this.label4.Location = new System.Drawing.Point(11, 146);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(239, 12);
+            this.label4.Size = new System.Drawing.Size(305, 12);
             this.label4.TabIndex = 27;
-            this.label4.Text = "---------------------------------------";
+            this.label4.Text = "--------------------------------------------------";
             // 
             // btnLogin
             // 
             this.btnLogin.AutoSize = true;
             this.btnLogin.BackColor = System.Drawing.Color.Transparent;
-            this.btnLogin.Location = new System.Drawing.Point(349, 348);
+            this.btnLogin.Location = new System.Drawing.Point(199, 375);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(71, 23);
             this.btnLogin.TabIndex = 20;
@@ -102,7 +103,7 @@
             this.tbSecurity.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.tbSecurity.Lines = new string[] {
         "atman999"};
-            this.tbSecurity.Location = new System.Drawing.Point(182, 348);
+            this.tbSecurity.Location = new System.Drawing.Point(32, 375);
             this.tbSecurity.MaxLength = 32767;
             this.tbSecurity.Name = "tbSecurity";
             this.tbSecurity.PasswordChar = '#';
@@ -177,7 +178,7 @@
             this.chkDiary.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
             this.chkDiary.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold;
             this.chkDiary.ForeColor = System.Drawing.Color.White;
-            this.chkDiary.Location = new System.Drawing.Point(34, 294);
+            this.chkDiary.Location = new System.Drawing.Point(34, 287);
             this.chkDiary.Name = "chkDiary";
             this.chkDiary.Size = new System.Drawing.Size(136, 25);
             this.chkDiary.TabIndex = 33;
@@ -193,9 +194,9 @@
             this.label1.ForeColor = System.Drawing.Color.DarkRed;
             this.label1.Location = new System.Drawing.Point(11, 239);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(239, 12);
+            this.label1.Size = new System.Drawing.Size(305, 12);
             this.label1.TabIndex = 34;
-            this.label1.Text = "---------------------------------------";
+            this.label1.Text = "--------------------------------------------------";
             // 
             // chkRealBoard
             // 
@@ -252,11 +253,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.DarkRed;
-            this.label2.Location = new System.Drawing.Point(11, 322);
+            this.label2.Location = new System.Drawing.Point(11, 347);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(239, 12);
+            this.label2.Size = new System.Drawing.Size(305, 12);
             this.label2.TabIndex = 37;
-            this.label2.Text = "---------------------------------------";
+            this.label2.Text = "--------------------------------------------------";
             // 
             // chkPlanResultFF
             // 
@@ -317,7 +318,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.Color.DarkRed;
-            this.label7.Location = new System.Drawing.Point(333, 322);
+            this.label7.Location = new System.Drawing.Point(333, 347);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(239, 12);
             this.label7.TabIndex = 43;
@@ -347,7 +348,7 @@
             this.chkItemFinder2.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
             this.chkItemFinder2.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold;
             this.chkItemFinder2.ForeColor = System.Drawing.Color.White;
-            this.chkItemFinder2.Location = new System.Drawing.Point(349, 294);
+            this.chkItemFinder2.Location = new System.Drawing.Point(349, 287);
             this.chkItemFinder2.Name = "chkItemFinder2";
             this.chkItemFinder2.Size = new System.Drawing.Size(209, 25);
             this.chkItemFinder2.TabIndex = 46;
@@ -384,12 +385,30 @@
             this.label8.TabIndex = 47;
             this.label8.Text = "---------------------------------------";
             // 
+            // metroCheckBox1
+            // 
+            this.metroCheckBox1.AutoSize = true;
+            this.metroCheckBox1.BackColor = System.Drawing.Color.Black;
+            this.metroCheckBox1.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
+            this.metroCheckBox1.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold;
+            this.metroCheckBox1.ForeColor = System.Drawing.Color.White;
+            this.metroCheckBox1.Location = new System.Drawing.Point(349, 322);
+            this.metroCheckBox1.Name = "metroCheckBox1";
+            this.metroCheckBox1.Size = new System.Drawing.Size(164, 25);
+            this.metroCheckBox1.TabIndex = 48;
+            this.metroCheckBox1.Text = "픽업된 종목 관리";
+            this.metroCheckBox1.UseCustomBackColor = true;
+            this.metroCheckBox1.UseCustomForeColor = true;
+            this.metroCheckBox1.UseSelectable = true;
+            this.metroCheckBox1.CheckedChanged += new System.EventHandler(this.RadioButton_Click);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
-            this.ClientSize = new System.Drawing.Size(587, 383);
+            this.ClientSize = new System.Drawing.Size(587, 412);
+            this.Controls.Add(this.metroCheckBox1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.chkItemFinder2);
             this.Controls.Add(this.chkItemFinder1);
@@ -449,5 +468,6 @@
         private MetroFramework.Controls.MetroCheckBox chkItemFinder2;
         private MetroFramework.Controls.MetroCheckBox chkItemFinder1;
         private System.Windows.Forms.Label label8;
+        private MetroFramework.Controls.MetroCheckBox metroCheckBox1;
     }
 }

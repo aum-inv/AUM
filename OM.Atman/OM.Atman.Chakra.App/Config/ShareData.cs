@@ -30,5 +30,11 @@ namespace OM.Atman.Chakra.App.Config
             get;
             set;
         } = null;
+
+        public XmlNodeList PickItemList
+        {
+            get;
+            set;
+        } = null;
     }
 }

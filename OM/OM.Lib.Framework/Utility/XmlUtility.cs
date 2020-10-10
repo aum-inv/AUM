@@ -764,6 +764,25 @@ namespace OM.Lib.Framework.Utility
             }
             return;
         }
+        public void InsertElement2(string parentElementName, string elementName, string xmlContent)
+        {
+            if (xmlDoc == null) return;
+
+            XmlNode pnode = xmlDoc.SelectSingleNode("//" + parentElementName);
+            
+            XmlNode newNode = xmlDoc.CreateNode(XmlNodeType.Element, elementName, "");
+            newNode.InnerXml = xmlContent;
+
+            if (pnode != null)
+            {
+                if (pnode.ChildNodes.Count > 0)
+                    pnode.InsertBefore(newNode, pnode.FirstChild);
+                else
+                    pnode.AppendChild(newNode);
+            }
+            return;
+        }
+
         #endregion
         /// <summary>
         /// 메모리에 있는 XMLDocument 정보를 파일로 저장한다.

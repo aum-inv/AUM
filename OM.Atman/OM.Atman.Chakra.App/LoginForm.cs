@@ -108,6 +108,9 @@ namespace OM.Atman.Chakra.App
                 case "스마트종목파인더-2":
                     form = new FinderForms.AtmanKRItemFinderByVolRankForm();
                     break;
+                case "픽업된종목관리":
+                    form = new FinderForms.AtmanKRPickItemForm();
+                    break;
                 default:
                     form = new MainForm();
                     break;

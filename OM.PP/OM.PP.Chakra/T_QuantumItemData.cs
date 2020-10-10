@@ -90,7 +90,7 @@ namespace OM.PP.Chakra
                 t_highAvg = (Single)sourceDataArray.Average(t => t.HighPrice);
                 t_lowAvg = (Single)sourceDataArray.Average(t => t.LowPrice);
 
-                t_quantumAvg = (Single)sourceDataArray.Average(t => t.QuantumPrice);
+                t_quantumAvg = (Single)sourceDataArray.Average(t => t.QuantumBasePrice);
                 t_quantumHighAvg = (Single)sourceDataArray.Average(t => t.QuantumHighPrice);
                 t_quantumLowAvg = (Single)sourceDataArray.Average(t => t.QuantumLowPrice);
 

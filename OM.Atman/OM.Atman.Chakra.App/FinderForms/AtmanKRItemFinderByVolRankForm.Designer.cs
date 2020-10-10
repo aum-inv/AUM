@@ -39,12 +39,18 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pnlLeft = new MetroFramework.Controls.MetroPanel();
             this.pnlLeftContent = new MetroFramework.Controls.MetroPanel();
             this.chart = new OM.Vikala.Controls.Charts.ComparedBasicCandleChart();
             this.pnlTitle = new MetroFramework.Controls.MetroPanel();
+            this.btnGoNaver = new System.Windows.Forms.Button();
             this.tbSelectedName2 = new MetroFramework.Controls.MetroTextBox();
             this.tbSelectedCode2 = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
@@ -57,10 +63,15 @@
             this.rate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Change = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dummy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.S = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.W = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SW1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.S3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.S2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.S1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.S0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SW4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SW3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SW2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SW1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SW0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.metroPanel3 = new MetroFramework.Controls.MetroPanel();
             this.btnSearchRank = new MetroFramework.Controls.MetroTile();
             this.label1 = new System.Windows.Forms.Label();
@@ -192,6 +203,7 @@
             // 
             // pnlTitle
             // 
+            this.pnlTitle.Controls.Add(this.btnGoNaver);
             this.pnlTitle.Controls.Add(this.tbSelectedName2);
             this.pnlTitle.Controls.Add(this.tbSelectedCode2);
             this.pnlTitle.Controls.Add(this.metroLabel5);
@@ -206,6 +218,23 @@
             this.pnlTitle.VerticalScrollbarBarColor = true;
             this.pnlTitle.VerticalScrollbarHighlightOnWheel = false;
             this.pnlTitle.VerticalScrollbarSize = 10;
+            // 
+            // btnGoNaver
+            // 
+            this.btnGoNaver.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnGoNaver.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnGoNaver.FlatAppearance.BorderSize = 0;
+            this.btnGoNaver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGoNaver.Font = new System.Drawing.Font("굴림", 9F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
+                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnGoNaver.ForeColor = System.Drawing.Color.White;
+            this.btnGoNaver.Location = new System.Drawing.Point(395, 0);
+            this.btnGoNaver.Name = "btnGoNaver";
+            this.btnGoNaver.Size = new System.Drawing.Size(75, 25);
+            this.btnGoNaver.TabIndex = 29;
+            this.btnGoNaver.Text = "Go Naver";
+            this.btnGoNaver.UseVisualStyleBackColor = false;
+            this.btnGoNaver.Click += new System.EventHandler(this.btnGoNaver_Click);
             // 
             // tbSelectedName2
             // 
@@ -327,10 +356,15 @@
             this.rate,
             this.Change,
             this.dummy,
-            this.S,
-            this.W,
+            this.S3,
+            this.S2,
+            this.S1,
+            this.S0,
+            this.SW4,
+            this.SW3,
+            this.SW2,
             this.SW1,
-            this.SW2});
+            this.SW0});
             this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv.GridColor = System.Drawing.Color.LightGray;
             this.dgv.Location = new System.Drawing.Point(356, 0);
@@ -419,45 +453,95 @@
             this.dummy.ReadOnly = true;
             this.dummy.Width = 5;
             // 
-            // S
+            // S3
             // 
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.S.DefaultCellStyle = dataGridViewCellStyle7;
-            this.S.Frozen = true;
-            this.S.HeaderText = "S";
-            this.S.Name = "S";
-            this.S.ReadOnly = true;
-            this.S.Width = 50;
+            this.S3.DefaultCellStyle = dataGridViewCellStyle7;
+            this.S3.Frozen = true;
+            this.S3.HeaderText = "S";
+            this.S3.Name = "S3";
+            this.S3.ReadOnly = true;
+            this.S3.Width = 25;
             // 
-            // W
+            // S2
             // 
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.W.DefaultCellStyle = dataGridViewCellStyle8;
-            this.W.Frozen = true;
-            this.W.HeaderText = "W";
-            this.W.Name = "W";
-            this.W.ReadOnly = true;
-            this.W.Width = 50;
+            this.S2.DefaultCellStyle = dataGridViewCellStyle8;
+            this.S2.Frozen = true;
+            this.S2.HeaderText = "";
+            this.S2.Name = "S2";
+            this.S2.ReadOnly = true;
+            this.S2.Width = 25;
             // 
-            // SW1
+            // S1
             // 
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.SW1.DefaultCellStyle = dataGridViewCellStyle9;
-            this.SW1.Frozen = true;
-            this.SW1.HeaderText = "S-W";
-            this.SW1.Name = "SW1";
-            this.SW1.ReadOnly = true;
-            this.SW1.Width = 50;
+            this.S1.DefaultCellStyle = dataGridViewCellStyle9;
+            this.S1.Frozen = true;
+            this.S1.HeaderText = "";
+            this.S1.Name = "S1";
+            this.S1.ReadOnly = true;
+            this.S1.Width = 25;
+            // 
+            // S0
+            // 
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.S0.DefaultCellStyle = dataGridViewCellStyle10;
+            this.S0.Frozen = true;
+            this.S0.HeaderText = "";
+            this.S0.Name = "S0";
+            this.S0.ReadOnly = true;
+            this.S0.Width = 25;
+            // 
+            // SW4
+            // 
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.SW4.DefaultCellStyle = dataGridViewCellStyle11;
+            this.SW4.Frozen = true;
+            this.SW4.HeaderText = "SW";
+            this.SW4.Name = "SW4";
+            this.SW4.ReadOnly = true;
+            this.SW4.Width = 25;
+            // 
+            // SW3
+            // 
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.SW3.DefaultCellStyle = dataGridViewCellStyle12;
+            this.SW3.Frozen = true;
+            this.SW3.HeaderText = "";
+            this.SW3.Name = "SW3";
+            this.SW3.ReadOnly = true;
+            this.SW3.Width = 20;
             // 
             // SW2
             // 
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.SW2.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.SW2.DefaultCellStyle = dataGridViewCellStyle13;
             this.SW2.Frozen = true;
-            this.SW2.HeaderText = "S-W";
+            this.SW2.HeaderText = "";
             this.SW2.Name = "SW2";
             this.SW2.ReadOnly = true;
-            this.SW2.Width = 50;
+            this.SW2.Width = 20;
+            // 
+            // SW1
+            // 
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.SW1.DefaultCellStyle = dataGridViewCellStyle14;
+            this.SW1.Frozen = true;
+            this.SW1.HeaderText = "";
+            this.SW1.Name = "SW1";
+            this.SW1.ReadOnly = true;
+            this.SW1.Width = 20;
+            // 
+            // SW0
+            // 
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.SW0.DefaultCellStyle = dataGridViewCellStyle15;
+            this.SW0.Frozen = true;
+            this.SW0.HeaderText = "";
+            this.SW0.Name = "SW0";
+            this.SW0.ReadOnly = true;
+            this.SW0.Width = 20;
             // 
             // metroPanel3
             // 
@@ -858,9 +942,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn rate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Change;
         private System.Windows.Forms.DataGridViewTextBoxColumn dummy;
-        private System.Windows.Forms.DataGridViewTextBoxColumn S;
-        private System.Windows.Forms.DataGridViewTextBoxColumn W;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SW1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn S3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn S2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn S1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn S0;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SW4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SW3;
         private System.Windows.Forms.DataGridViewTextBoxColumn SW2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SW1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SW0;
+        private System.Windows.Forms.Button btnGoNaver;
     }
 }

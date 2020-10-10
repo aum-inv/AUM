@@ -51,9 +51,26 @@ namespace OM.Vikala.Controls.Charts
             , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
             , int itemCnt = 7)
         {
+            //try
+            //{
+            //    c.LoadData(itemCode, sourceDatas, timeInterval);
+            //}
+            //catch (Exception ex)
+            //{
+            //    System.Diagnostics.Debug.WriteLine(ex.Message);
+            //}
+
             try
             {
-                c.LoadData(itemCode, sourceDatas, timeInterval);
+                List<T_QuantumItemData> transformedDatas = new List<T_QuantumItemData>();
+
+                for (int i = itemCnt; i <= sourceDatas.Count; i++)
+                {
+                    T_QuantumItemData transData = new T_QuantumItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemCnt, itemCnt));
+                    transData.Transform();
+                    transformedDatas.Add(transData);
+                }
+                c.LoadData(itemCode, transformedDatas, timeInterval);
             }
             catch (Exception ex)
             {
@@ -67,9 +84,35 @@ namespace OM.Vikala.Controls.Charts
             , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
             , int itemCnt = 7)
         {
+            //try
+            //{
+            //    c.LoadData(itemCode, sourceDatas, sourceDataSubs, timeInterval);
+            //}
+            //catch (Exception ex)
+            //{
+            //    System.Diagnostics.Debug.WriteLine(ex.Message);
+            //}
+
             try
             {
-                c.LoadData(itemCode, sourceDatas, sourceDataSubs, timeInterval);
+                List<T_QuantumItemData> transformedDatas = new List<T_QuantumItemData>();
+
+                for (int i = itemCnt; i <= sourceDatas.Count; i++)
+                {
+                    T_QuantumItemData transData = new T_QuantumItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemCnt, itemCnt));
+                    transData.Transform();
+                    transformedDatas.Add(transData);
+                }
+
+                List<T_QuantumItemData> transformedDatasSub = new List<T_QuantumItemData>();
+
+                for (int i = itemCnt; i <= sourceDataSubs.Count; i++)
+                {
+                    T_QuantumItemData transData = new T_QuantumItemData(sourceDataSubs[i - 1], sourceDataSubs.GetRange(i - itemCnt, itemCnt));
+                    transData.Transform();
+                    transformedDatasSub.Add(transData);
+                }
+                c.LoadData(itemCode, transformedDatas, transformedDatasSub, timeInterval);
             }
             catch (Exception ex)
             {

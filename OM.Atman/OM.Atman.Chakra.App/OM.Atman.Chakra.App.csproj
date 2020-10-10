@@ -86,6 +86,12 @@
     <Compile Include="AIForms\AtmanKospiAI2Form.Designer.cs">
       <DependentUpon>AtmanKospiAI2Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="FinderForms\AtmanKRPickItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FinderForms\AtmanKRPickItemForm.Designer.cs">
+      <DependentUpon>AtmanKRPickItemForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FinderForms\AtmanKRItemFinderByVolRankForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -355,6 +361,9 @@
     <EmbeddedResource Include="AIForms\AtmanKospiAI2Form.resx">
       <DependentUpon>AtmanKospiAI2Form.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FinderForms\AtmanKRPickItemForm.resx">
+      <DependentUpon>AtmanKRPickItemForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FinderForms\AtmanKRItemFinderByVolRankForm.resx">
       <DependentUpon>AtmanKRItemFinderByVolRankForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -504,6 +513,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="atman.ico" />
+    <Content Include="DataSchema\AtmanKospiPickItemDataSchema.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="FinderForms\업종.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
