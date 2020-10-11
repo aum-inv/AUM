@@ -535,7 +535,7 @@ namespace OM.Lib.Framework.Utility
             if (nodeList != null)
             {
                 foreach (XmlNode node in nodeList)
-                    node.RemoveAll();
+                    node.ParentNode.RemoveAll();
             }
         }
 
@@ -552,7 +552,7 @@ namespace OM.Lib.Framework.Utility
 
             if (nodeList != null && nodeList[index] != null)
             {
-                nodeList[index].RemoveAll();
+                nodeList[index].ParentNode.RemoveChild(nodeList[index]);                
             }
         }
         #endregion

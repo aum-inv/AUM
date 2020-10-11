@@ -124,7 +124,9 @@
             series2.ChartArea = "chartArea";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series2.Color = System.Drawing.Color.Black;
+            series2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             series2.IsXValueIndexed = true;
+            series2.LabelBorderWidth = 2;
             series2.MarkerColor = System.Drawing.Color.Red;
             series2.Name = "cs_Basic";
             series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;

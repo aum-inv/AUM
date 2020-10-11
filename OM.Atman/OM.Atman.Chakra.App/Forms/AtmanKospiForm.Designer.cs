@@ -1180,6 +1180,7 @@
             this.btnDelete.StrokeColor = System.Drawing.Color.Gray;
             this.btnDelete.TabIndex = 8;
             this.btnDelete.Transparency = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // pictureBox1
             // 

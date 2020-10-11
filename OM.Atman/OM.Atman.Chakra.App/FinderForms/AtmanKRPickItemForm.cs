@@ -33,6 +33,7 @@ namespace OM.Atman.Chakra.App.FinderForms
 
         XmlUtility xmlUtil = null;
         XmlNode selectedNode = null;
+        int selectedIndex = -1;
         public AtmanKRPickItemForm()
         {
             InitializeComponent();           
@@ -107,10 +108,12 @@ namespace OM.Atman.Chakra.App.FinderForms
 
             string code = dgv.Rows[e.RowIndex].Cells[1].Value as string;
             string name = dgv.Rows[e.RowIndex].Cells[2].Value as string;
+            DateTime dt = Convert.ToDateTime(dgv.Rows[e.RowIndex].Cells[0].Value);
 
             tbSelectedCode2.Text = code;
             tbSelectedName2.Text = name;
             selectedNode = dgv.Rows[e.RowIndex].Tag as XmlNode;
+            selectedIndex = e.RowIndex;
 
             Task.Factory.StartNew(() => {
                 var sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(code, "2", "0", "300");
@@ -123,6 +126,9 @@ namespace OM.Atman.Chakra.App.FinderForms
                
                 chart.LoadDataAndApply(code, sourceDatas, averageDatas, TimeIntervalEnum.Day, 9);
                 chart.SetYFormat("N0");
+
+                chart.ClearChartLabel("★");
+                chart.DisplayChartLabel(dt, Color.DarkRed, "★", "★");
             });
         }
 
@@ -141,7 +147,7 @@ namespace OM.Atman.Chakra.App.FinderForms
             xmlUtil.InsertElement("Atman", "PickItem", nodeXml);
             xmlUtil.Save();
                      
-            int idx = dgv.Rows.Add(pickDT, code, name, reason);           
+            dgv.Rows.Insert(0, pickDT, code, name, reason);           
         }
 
         private void btnGoNaver_Click(object sender, EventArgs e)
@@ -151,6 +157,18 @@ namespace OM.Atman.Chakra.App.FinderForms
             string url = "https://finance.naver.com/item/main.nhn?code=" + tbSelectedCode2.Text;
 
             System.Diagnostics.Process.Start("chrome", url);
+        }
+
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            if (selectedIndex < 0) return;
+
+            xmlUtil.DelElement(selectedIndex, "PickItem");
+            xmlUtil.Save();
+
+            dgv.Rows.RemoveAt(selectedIndex);
+
+            selectedIndex = -1;
         }
     }
 }

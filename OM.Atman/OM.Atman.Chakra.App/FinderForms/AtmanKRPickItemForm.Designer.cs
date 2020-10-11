@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AtmanKRPickItemForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pnlResultView = new MetroFramework.Controls.MetroPanel();
@@ -55,13 +55,13 @@
             this.tbReason = new System.Windows.Forms.TextBox();
             this.pnlLeft = new MetroFramework.Controls.MetroPanel();
             this.pnlLeftContent = new MetroFramework.Controls.MetroPanel();
-            this.chart = new OM.Vikala.Controls.Charts.ComparedBasicCandleChart();
             this.pnlTitle = new MetroFramework.Controls.MetroPanel();
+            this.btnGoNaver = new System.Windows.Forms.Button();
             this.btnDel = new System.Windows.Forms.Button();
             this.tbSelectedName2 = new MetroFramework.Controls.MetroTextBox();
             this.tbSelectedCode2 = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
-            this.btnGoNaver = new System.Windows.Forms.Button();
+            this.chart = new OM.Vikala.Controls.Charts.ComparedBasicCandleChart();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -102,7 +102,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.pnlLeft);
-            this.splitContainer1.Size = new System.Drawing.Size(1243, 800);
+            this.splitContainer1.Size = new System.Drawing.Size(1258, 709);
             this.splitContainer1.SplitterDistance = 400;
             this.splitContainer1.TabIndex = 3;
             // 
@@ -117,7 +117,7 @@
             this.pnlResultView.Location = new System.Drawing.Point(0, 0);
             this.pnlResultView.Name = "pnlResultView";
             this.pnlResultView.Padding = new System.Windows.Forms.Padding(5);
-            this.pnlResultView.Size = new System.Drawing.Size(400, 800);
+            this.pnlResultView.Size = new System.Drawing.Size(400, 709);
             this.pnlResultView.TabIndex = 11;
             this.pnlResultView.VerticalScrollbarBarColor = true;
             this.pnlResultView.VerticalScrollbarHighlightOnWheel = false;
@@ -131,14 +131,14 @@
             this.dgv.AllowUserToResizeRows = false;
             this.dgv.BackgroundColor = System.Drawing.Color.White;
             this.dgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv.ColumnHeadersHeight = 25;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -146,14 +146,14 @@
             this.시간,
             this.name,
             this.Sign});
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv.GridColor = System.Drawing.Color.LightGray;
             this.dgv.Location = new System.Drawing.Point(5, 5);
@@ -161,33 +161,36 @@
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
             this.dgv.RowHeadersVisible = false;
+            this.dgv.RowHeadersWidth = 62;
             this.dgv.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Transparent;
             this.dgv.RowTemplate.Height = 23;
             this.dgv.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgv.Size = new System.Drawing.Size(390, 658);
+            this.dgv.Size = new System.Drawing.Size(390, 567);
             this.dgv.TabIndex = 25;
             this.dgv.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellContentDoubleClick);
             // 
             // 종가
             // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.Format = "MM.dd";
-            dataGridViewCellStyle7.NullValue = null;
-            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.종가.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Format = "MM.dd";
+            dataGridViewCellStyle2.NullValue = null;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
+            this.종가.DefaultCellStyle = dataGridViewCellStyle2;
             this.종가.Frozen = true;
             this.종가.HeaderText = "date";
+            this.종가.MinimumWidth = 8;
             this.종가.Name = "종가";
             this.종가.ReadOnly = true;
             this.종가.Width = 80;
             // 
             // 시간
             // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.시간.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.시간.DefaultCellStyle = dataGridViewCellStyle3;
             this.시간.Frozen = true;
             this.시간.HeaderText = "code";
+            this.시간.MinimumWidth = 8;
             this.시간.Name = "시간";
             this.시간.ReadOnly = true;
             this.시간.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -197,16 +200,19 @@
             // name
             // 
             this.name.HeaderText = "name";
+            this.name.MinimumWidth = 8;
             this.name.Name = "name";
             this.name.ReadOnly = true;
+            this.name.Width = 150;
             // 
             // Sign
             // 
             this.Sign.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.Sign.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.Sign.DefaultCellStyle = dataGridViewCellStyle4;
             this.Sign.HeaderText = "reason";
+            this.Sign.MinimumWidth = 8;
             this.Sign.Name = "Sign";
             this.Sign.ReadOnly = true;
             // 
@@ -215,7 +221,7 @@
             this.panel1.Controls.Add(this.btnReg);
             this.panel1.Controls.Add(this.tableLayoutPanel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(5, 663);
+            this.panel1.Location = new System.Drawing.Point(5, 572);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(5);
             this.panel1.Size = new System.Drawing.Size(390, 132);
@@ -357,7 +363,7 @@
             this.pnlLeft.HorizontalScrollbarSize = 10;
             this.pnlLeft.Location = new System.Drawing.Point(0, 0);
             this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.Size = new System.Drawing.Size(839, 800);
+            this.pnlLeft.Size = new System.Drawing.Size(854, 709);
             this.pnlLeft.TabIndex = 7;
             this.pnlLeft.VerticalScrollbarBarColor = true;
             this.pnlLeft.VerticalScrollbarHighlightOnWheel = false;
@@ -375,37 +381,11 @@
             this.pnlLeftContent.Location = new System.Drawing.Point(0, 0);
             this.pnlLeftContent.Name = "pnlLeftContent";
             this.pnlLeftContent.Padding = new System.Windows.Forms.Padding(5);
-            this.pnlLeftContent.Size = new System.Drawing.Size(839, 800);
+            this.pnlLeftContent.Size = new System.Drawing.Size(854, 709);
             this.pnlLeftContent.TabIndex = 5;
             this.pnlLeftContent.VerticalScrollbarBarColor = true;
             this.pnlLeftContent.VerticalScrollbarHighlightOnWheel = false;
             this.pnlLeftContent.VerticalScrollbarSize = 10;
-            // 
-            // chart
-            // 
-            this.chart.BaseCandleChartType = OM.Vikala.Controls.Charts.BaseCandleChartTypeEnum.인;
-            this.chart.CandleChartType = OM.Vikala.Controls.Charts.CandleChartTypeEnum.기본;
-            this.chart.ChartData = null;
-            this.chart.ChartDataSub = null;
-            this.chart.ChartEventInstance = null;
-            this.chart.DisplayPointCount = 120;
-            this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chart.IsAutoScrollX = true;
-            this.chart.IsEnabledDrawLine = true;
-            this.chart.IsLoaded = false;
-            this.chart.IsShowEightRule = false;
-            this.chart.IsShowXLine = true;
-            this.chart.IsShowYLine = true;
-            this.chart.ItemCode = "";
-            this.chart.LineChartType = OM.Vikala.Controls.Charts.LineChartTypeEnum.기본;
-            this.chart.Location = new System.Drawing.Point(5, 30);
-            this.chart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.chart.Name = "chart";
-            this.chart.SelectedTrackBarValue = 1;
-            this.chart.Size = new System.Drawing.Size(827, 763);
-            this.chart.TabIndex = 4;
-            this.chart.TimeInterval = OM.Lib.Base.Enums.TimeIntervalEnum.Day;
-            this.chart.Title = null;
             // 
             // pnlTitle
             // 
@@ -420,22 +400,40 @@
             this.pnlTitle.HorizontalScrollbarSize = 10;
             this.pnlTitle.Location = new System.Drawing.Point(5, 5);
             this.pnlTitle.Name = "pnlTitle";
-            this.pnlTitle.Size = new System.Drawing.Size(827, 25);
+            this.pnlTitle.Size = new System.Drawing.Size(842, 25);
             this.pnlTitle.TabIndex = 3;
             this.pnlTitle.VerticalScrollbarBarColor = true;
             this.pnlTitle.VerticalScrollbarHighlightOnWheel = false;
             this.pnlTitle.VerticalScrollbarSize = 10;
             // 
+            // btnGoNaver
+            // 
+            this.btnGoNaver.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnGoNaver.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnGoNaver.FlatAppearance.BorderSize = 0;
+            this.btnGoNaver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGoNaver.Font = new System.Drawing.Font("굴림", 9F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
+                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnGoNaver.ForeColor = System.Drawing.Color.White;
+            this.btnGoNaver.Location = new System.Drawing.Point(395, 0);
+            this.btnGoNaver.Name = "btnGoNaver";
+            this.btnGoNaver.Size = new System.Drawing.Size(75, 25);
+            this.btnGoNaver.TabIndex = 30;
+            this.btnGoNaver.Text = "Go Naver";
+            this.btnGoNaver.UseVisualStyleBackColor = false;
+            this.btnGoNaver.Click += new System.EventHandler(this.btnGoNaver_Click);
+            // 
             // btnDel
             // 
             this.btnDel.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDel.Location = new System.Drawing.Point(674, 0);
+            this.btnDel.Location = new System.Drawing.Point(689, 0);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(153, 25);
             this.btnDel.TabIndex = 28;
             this.btnDel.Text = "Delete SelectedItem";
             this.btnDel.UseVisualStyleBackColor = true;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // tbSelectedName2
             // 
@@ -515,28 +513,37 @@
             this.metroLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.metroLabel5.UseCustomBackColor = true;
             // 
-            // btnGoNaver
+            // chart
             // 
-            this.btnGoNaver.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnGoNaver.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnGoNaver.FlatAppearance.BorderSize = 0;
-            this.btnGoNaver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGoNaver.Font = new System.Drawing.Font("굴림", 9F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
-                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnGoNaver.ForeColor = System.Drawing.Color.White;
-            this.btnGoNaver.Location = new System.Drawing.Point(395, 0);
-            this.btnGoNaver.Name = "btnGoNaver";
-            this.btnGoNaver.Size = new System.Drawing.Size(75, 25);
-            this.btnGoNaver.TabIndex = 30;
-            this.btnGoNaver.Text = "Go Naver";
-            this.btnGoNaver.UseVisualStyleBackColor = false;
-            this.btnGoNaver.Click += new System.EventHandler(this.btnGoNaver_Click);
+            this.chart.BaseCandleChartType = OM.Vikala.Controls.Charts.BaseCandleChartTypeEnum.인;
+            this.chart.CandleChartType = OM.Vikala.Controls.Charts.CandleChartTypeEnum.기본;
+            this.chart.ChartData = null;
+            this.chart.ChartDataSub = null;
+            this.chart.ChartEventInstance = null;
+            this.chart.DisplayPointCount = 120;
+            this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chart.IsAutoScrollX = true;
+            this.chart.IsEnabledDrawLine = true;
+            this.chart.IsLoaded = false;
+            this.chart.IsShowEightRule = false;
+            this.chart.IsShowXLine = true;
+            this.chart.IsShowYLine = true;
+            this.chart.ItemCode = "";
+            this.chart.LineChartType = OM.Vikala.Controls.Charts.LineChartTypeEnum.기본;
+            this.chart.Location = new System.Drawing.Point(5, 30);
+            this.chart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.chart.Name = "chart";
+            this.chart.SelectedTrackBarValue = 1;
+            this.chart.Size = new System.Drawing.Size(842, 672);
+            this.chart.TabIndex = 4;
+            this.chart.TimeInterval = OM.Lib.Base.Enums.TimeIntervalEnum.Day;
+            this.chart.Title = null;
             // 
             // AtmanKRPickItemForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1283, 880);
+            this.ClientSize = new System.Drawing.Size(1298, 789);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

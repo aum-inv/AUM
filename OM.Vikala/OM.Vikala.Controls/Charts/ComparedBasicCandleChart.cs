@@ -156,7 +156,7 @@ namespace OM.Vikala.Controls.Charts
                 chart.Series[2].Points[idx].Color = Color.Blue;
 
                 if (preVariancePrice < preVariancePrice2 && wisdom.Variance_ChartPrice < smart.Variance_ChartPrice2)
-                {
+                {                  
                     chart.Series[1].Points[idx].LabelForeColor = Color.Red;
                     chart.Series[1].Points[idx].Label = "▲";
                 }
@@ -317,7 +317,7 @@ namespace OM.Vikala.Controls.Charts
 
             SelectedTrackBarValue = (int)trackBar.Value;
         }
-
+        
         private void chart_PostPaint(object sender, ChartPaintEventArgs e)
         {
             DrawChartTitle(e);
@@ -351,5 +351,49 @@ namespace OM.Vikala.Controls.Charts
 
             if (borderWidth != null) dataPoint.BorderWidth = borderWidth.Value;
         }
+
+
+        #region Chart Util
+        public void ClearChartLabel(string type)
+        {
+            for (int i = chart.Annotations.Count - 1; i >= 0; i--)
+            {
+                var a = chart.Annotations[i];
+
+                if (a.Tag != null && a.Tag.ToString() == type)
+                    chart.Annotations.Remove(a);
+            }
+
+            chart.Update();
+        }
+        public void DisplayChartLabel(DateTime dt, Color color, string type, string title = "★")
+        {
+            foreach (var p in chart.Series[0].Points)
+            {
+                var d = p.Tag as T_QuantumItemData;
+
+                if (d.DTime.Year == dt.Year 
+                    && d.DTime.Month == dt.Month 
+                    && d.DTime.Day == dt.Day 
+                    && d.DTime.Hour == dt.Hour 
+                    && d.DTime.Minute == dt.Minute)
+                {
+                    TextAnnotation a = new TextAnnotation();
+                    a.Font = new Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+                    a.Text = title;
+                    a.ForeColor = color;
+                    a.IsSizeAlwaysRelative = true;
+                    a.AnchorAlignment = ContentAlignment.TopCenter;
+                    a.AnchorDataPoint = p;
+                    a.Tag = type;
+                    a.AnchorOffsetY = -5;
+                    chart.Annotations.Add(a);
+                    break;
+                }
+            }
+
+            chart.Update();
+        }
+        #endregion
     }
 }

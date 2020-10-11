@@ -219,5 +219,10 @@ namespace OM.Atman.Chakra.App.Forms
             tbPPosition.Text = string.Empty;
             tbProgressType.Text = string.Empty;
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
