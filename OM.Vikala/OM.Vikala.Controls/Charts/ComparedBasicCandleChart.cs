@@ -136,6 +136,7 @@ namespace OM.Vikala.Controls.Charts
 
             double preVariancePrice = 0;
             double preVariancePrice2= 0;
+            double preVariancePrice3 = 0;
             for (int i = 4; i < ChartData.Count; i++)
             {
                 var item = ChartData[i];
@@ -146,11 +147,12 @@ namespace OM.Vikala.Controls.Charts
                 //chart.Series[1].Points.AddXY(smart.DTime, smart.SpaceTotalChangeRate);
                 chart.Series[1].Points.AddXY(smart.DTime, smart.Variance_ChartPrice2);
                 chart.Series[2].Points.AddXY(wisdom.DTime, wisdom.Variance_ChartPrice);
-                
-                chart.Series[3].Points.AddXY(item2.DTime, item2.HighPrice, item2.LowPrice, item2.OpenPrice, item2.ClosePrice);
+                chart.Series[3].Points.AddXY(wisdom.DTime, smart.Variance_ChartPrice);
+
+                chart.Series[4].Points.AddXY(item2.DTime, item2.HighPrice, item2.LowPrice, item2.OpenPrice, item2.ClosePrice);
                
-                chart.Series[4].Points.AddXY(item2.DTime, item2.T_QuantumHighAvg);
-                chart.Series[5].Points.AddXY(item2.DTime, item2.T_QuantumLowAvg);
+                chart.Series[5].Points.AddXY(item2.DTime, item2.T_QuantumHighAvg);
+                chart.Series[6].Points.AddXY(item2.DTime, item2.T_QuantumLowAvg);
 
                 chart.Series[1].Points[idx].Color = Color.Red;
                 chart.Series[2].Points[idx].Color = Color.Blue;
@@ -165,9 +167,21 @@ namespace OM.Vikala.Controls.Charts
                     chart.Series[1].Points[idx].LabelForeColor = Color.Blue;
                     chart.Series[1].Points[idx].Label = "▼";
                 }
-               
+
+                if (preVariancePrice3 < preVariancePrice2 && wisdom.Variance_ChartPrice < smart.Variance_ChartPrice)
+                {
+                    chart.Series[3].Points[idx].LabelForeColor = Color.Coral;
+                    chart.Series[3].Points[idx].Label = "▲";
+                }
+                else if (preVariancePrice3 > preVariancePrice2 && wisdom.Variance_ChartPrice > smart.Variance_ChartPrice)
+                {
+                    chart.Series[3].Points[idx].LabelForeColor = Color.Lime;
+                    chart.Series[3].Points[idx].Label = "▼";
+                }
+
                 preVariancePrice = smart.Variance_ChartPrice2;
                 preVariancePrice2 = wisdom.Variance_ChartPrice;
+                preVariancePrice3 = smart.Variance_ChartPrice;
 
                 //if (preVariancePrice2 < wisdom.Variance_ChartPrice)
                 //{

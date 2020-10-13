@@ -130,8 +130,16 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
                     sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "W");
                 else if (timeInterval == TimeIntervalEnum.Hour_01)
                     sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "H");
-                else if (timeInterval == TimeIntervalEnum.Minute_05)
+                else if (timeInterval == TimeIntervalEnum.Hour_02)
+                    sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "2H");
+                else if (timeInterval == TimeIntervalEnum.Hour_04)
+                    sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "4H");
+                else if (timeInterval == TimeIntervalEnum.Minute_01)
                     sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "M");
+                else if (timeInterval == TimeIntervalEnum.Minute_05)
+                    sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "5M");
+                else if (timeInterval == TimeIntervalEnum.Minute_30)
+                    sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "30M");
             }
             else
                 sourceDatas = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(

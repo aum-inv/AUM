@@ -124,7 +124,7 @@ namespace OM.Lib.Base.Enums
                 if (m.Code == code) return m.Length;
             }
 
-            return 2;
+            return 0;
         }
         public static double GetTick(string code)
         {

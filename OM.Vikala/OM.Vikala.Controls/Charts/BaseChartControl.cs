@@ -56,7 +56,7 @@ namespace OM.Vikala.Controls.Charts
                 else if (round == 4) return 0.0005;
                 else if (round == 5) return 0.00005;
 
-                return 0.01;
+                return 1;
             }
         }
         

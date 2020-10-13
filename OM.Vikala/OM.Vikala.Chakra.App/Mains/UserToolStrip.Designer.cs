@@ -72,8 +72,8 @@
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbWeb1 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tsbWeb2 = new System.Windows.Forms.ToolStripButton();
             this.tscbType = new System.Windows.Forms.ToolStripComboBox();
+            this.tsbWeb2 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -527,16 +527,6 @@
             this.toolStrip1.Size = new System.Drawing.Size(1504, 23);
             this.toolStrip1.TabIndex = 5;
             // 
-            // tsbWeb2
-            // 
-            this.tsbWeb2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbWeb2.Image = ((System.Drawing.Image)(resources.GetObject("tsbWeb2.Image")));
-            this.tsbWeb2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbWeb2.Name = "tsbWeb2";
-            this.tsbWeb2.Size = new System.Drawing.Size(28, 20);
-            this.tsbWeb2.Text = "toolStripButton1";
-            this.tsbWeb2.Click += new System.EventHandler(this.tsbWeb2_Click);
-            // 
             // tscbType
             // 
             this.tscbType.Items.AddRange(new object[] {
@@ -548,6 +538,16 @@
             this.tscbType.Name = "tscbType";
             this.tscbType.Size = new System.Drawing.Size(121, 23);
             this.tscbType.SelectedIndexChanged += new System.EventHandler(this.tscbType_SelectedIndexChanged);
+            // 
+            // tsbWeb2
+            // 
+            this.tsbWeb2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbWeb2.Image = ((System.Drawing.Image)(resources.GetObject("tsbWeb2.Image")));
+            this.tsbWeb2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbWeb2.Name = "tsbWeb2";
+            this.tsbWeb2.Size = new System.Drawing.Size(28, 20);
+            this.tsbWeb2.Text = "toolStripButton1";
+            this.tsbWeb2.Click += new System.EventHandler(this.tsbWeb2_Click);
             // 
             // UserToolStrip
             // 

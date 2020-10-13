@@ -113,13 +113,9 @@ namespace OM.Vikala.Chakra.App.Mains
                 tsbTime18.Visible = false;
             }
             else if (SharedData.SelectedType == "해외선물")
-            {
-                tsbTime01.Visible =                  
-                tsbTime03.Visible =
-                tsbTime04.Visible =                  
-                tsbTime12.Visible =
+            {                               
+                tsbTime03.Visible =               
                 tsbTime13.Visible =
-                   tsbTime14.Visible =
                    tsbTime15.Visible =
                    tsbTime16.Visible =
                    tsbTime17.Visible =
@@ -141,9 +137,7 @@ namespace OM.Vikala.Chakra.App.Mains
                 tsbTime18.Visible = false;
             }
             else if (SharedData.SelectedType == "국내종목")
-            {
-                //tsbTime01.Visible =
-                //tsbTime02.Visible =                
+            {                         
                 tsbTime12.Visible =
                 tsbTime13.Visible =
                 tsbTime14.Visible =
@@ -153,7 +147,23 @@ namespace OM.Vikala.Chakra.App.Mains
                 tsbTime18.Visible = false;
             }
         }
-
+        private void clearTimeIntervalButton()
+        {
+            tsbTime01.Visible = 
+            tsbTime02.Visible = 
+            tsbTime03.Visible = 
+            tsbTime04.Visible = 
+            tsbTime11.Visible = 
+            tsbTime12.Visible = 
+            tsbTime13.Visible = 
+            tsbTime14.Visible = 
+            tsbTime15.Visible = 
+            tsbTime16.Visible = 
+            tsbTime17.Visible = 
+            tsbTime18.Visible = 
+            tsbTime20.Visible = 
+            tsbTime30.Visible = true;
+        }
         private void Instance_ItemSelectedChangedHandler(int selectedIndex)
         {
             if (selectedIndex == 0) return;
@@ -235,13 +245,28 @@ namespace OM.Vikala.Chakra.App.Mains
             }
             else if (SharedData.SelectedType == "국내업종")
             {
+                string path = System.IO.Path.Combine(Environment.CurrentDirectory, "DB", "UPJONG.txt");
+                List<string> lst = System.IO.File.ReadAllLines(path).ToList();
+                tscbItem.ComboBox.DataSource = lst;
+                tscbItem.ComboBox.SelectedIndex = -1;
                 this.tscbItem.TextChanged += new System.EventHandler(this.tscbItem_TextChanged);
             }
             else if (SharedData.SelectedType == "국내종목")
             {
+                string path = System.IO.Path.Combine(Environment.CurrentDirectory, "DB", "JONGMOK.txt");
+                List<string> lst = System.IO.File.ReadAllLines(path).ToList();
+                tscbItem.ComboBox.DataSource = lst;
+                tscbItem.ComboBox.SelectedIndex = -1;
                 this.tscbItem.TextChanged += new System.EventHandler(this.tscbItem_TextChanged);
             }               
         }
+        private void clearItems()
+        {
+            this.tscbItem.SelectedIndexChanged -= new System.EventHandler(this.tscbItem_SelectedIndexChanged);
+            this.tscbItem.TextChanged -= new System.EventHandler(this.tscbItem_TextChanged);
+            this.tscbItem.ComboBox.DataSource = null;
+        }
+         
         private void setInterval()
         {
             tsbTime01.BackColor = Color.WhiteSmoke;
@@ -334,6 +359,15 @@ namespace OM.Vikala.Chakra.App.Mains
                         lblName.Text = values[0];                      
                     }
                 }
+
+                string path = System.IO.Path.Combine(Environment.CurrentDirectory, "DB", "UPJONG.txt");
+                List<string> lst = System.IO.File.ReadAllLines(path).ToList();
+                if (lst.Count > 0 && lst[0] != data.Code)
+                {
+                    lst.Remove(data.Code);
+                    lst.Insert(0, data.Code);                   
+                }
+                System.IO.File.WriteAllLines(path, lst);
             }
             else if (SharedData.SelectedType == "국내종목")
             {
@@ -347,6 +381,15 @@ namespace OM.Vikala.Chakra.App.Mains
                         lblName.Text = values[0];                        
                     }
                 }
+
+                string path = System.IO.Path.Combine(Environment.CurrentDirectory, "DB", "JONGMOK.txt");
+                List<string> lst = System.IO.File.ReadAllLines(path).ToList();
+                if (lst.Count > 0 && lst[0] != data.Code)
+                {
+                    lst.Remove(data.Code);
+                    lst.Insert(0, data.Code);                    
+                }
+                System.IO.File.WriteAllLines(path, lst);
             }
         }
 
@@ -520,6 +563,12 @@ namespace OM.Vikala.Chakra.App.Mains
         private void tscbType_SelectedIndexChanged(object sender, EventArgs e)
         {
             SharedData.SelectedType = tscbType.SelectedItem.ToString();
+            clearItems();
+            setItems();
+            clearTimeIntervalButton();
+            setTimeIntervalButton();
+            setInterval();
+
         }
     }
 

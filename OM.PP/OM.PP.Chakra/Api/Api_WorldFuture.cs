@@ -65,20 +65,44 @@ namespace OM.PP.XingApp.Ex.Api
                   
 
                     string resolution = gubun;
-                    if (gubun == "H") resolution = "60";
-                    else if(gubun == "M") resolution = "5";
+                    if (gubun == "H" || gubun == "1H") resolution = "60";
+                    else if (gubun == "2H") resolution = "120";
+                    else if (gubun == "4H") resolution = "240";                    
+                    else if (gubun == "M" || gubun == "1M") resolution = "1";
+                    else if (gubun == "5M") resolution = "5";
+                    else if (gubun == "30M") resolution = "30";
 
                     Int32 from = (Int32)(DateTime.UtcNow.AddYears(-1).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                     Int32 to = (Int32)(DateTime.UtcNow.AddDays(1).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
 
-                    if (gubun == "M")
+                    if (gubun == "M" || gubun == "1M")
                     {
-                        from = (Int32)(DateTime.UtcNow.AddDays(-2).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                        from = (Int32)(DateTime.UtcNow.AddHours(-5).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                         to = (Int32)(DateTime.UtcNow.AddDays(1).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                     }
-                    else if (gubun == "H")
+                    else if (gubun == "5M")
+                    {
+                        from = (Int32)(DateTime.UtcNow.AddDays(-1).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                        to = (Int32)(DateTime.UtcNow.AddDays(1).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                    }
+                    else if (gubun == "30M")
+                    {
+                        from = (Int32)(DateTime.UtcNow.AddDays(-5).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                        to = (Int32)(DateTime.UtcNow.AddDays(1).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                    }
+                    else if (gubun == "H" || gubun == "1H")
                     {
                         from = (Int32)(DateTime.UtcNow.AddDays(-7).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                        to = (Int32)(DateTime.UtcNow.AddDays(1).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                    }
+                    else if (gubun == "2H")
+                    {
+                        from = (Int32)(DateTime.UtcNow.AddMonths(-1).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                        to = (Int32)(DateTime.UtcNow.AddDays(1).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                    }
+                    else if (gubun == "4H")
+                    {
+                        from = (Int32)(DateTime.UtcNow.AddMonths(-2).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                         to = (Int32)(DateTime.UtcNow.AddDays(1).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                     }
                     else if (gubun == "W")
@@ -115,7 +139,6 @@ namespace OM.PP.XingApp.Ex.Api
                         double l = dyObj.l[i];
                         DateTime cTime = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(t);
                         //Console.WriteLine($"DT : {cTime.ToLongDateString()} O : {Math.Round(o, 2)}, H : {Math.Round(h, 2)}, L : {Math.Round(l, 2)}, C : {Math.Round(c, 2)}");
-
 
                         S_CandleItemData data = new S_CandleItemData();
                         data.DTime = cTime;
