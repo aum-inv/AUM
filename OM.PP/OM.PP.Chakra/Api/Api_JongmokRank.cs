@@ -43,9 +43,35 @@ namespace OM.PP.XingApp.Ex.Api
             query.SetFieldData(inBlock, "eprice", 0, "");
             query.SetFieldData(inBlock, "volume", 0, "");
             query.SetFieldData(inBlock, "idx", 0, "");
-            query.Request(false);           
-
+            query.Request(false);              
             manualEvent.WaitOne();
+
+            query.SetFieldData(inBlock, "gubun", 0, gubun);
+            query.SetFieldData(inBlock, "jnilgubun", 0, jnilgubun);
+            query.SetFieldData(inBlock, "sdiff", 0, sdiff);
+            query.SetFieldData(inBlock, "ediff", 0, ediff);
+            query.SetFieldData(inBlock, "jc_num", 0, jc_num);
+            query.SetFieldData(inBlock, "sprice", 0, "");
+            query.SetFieldData(inBlock, "eprice", 0, "");
+            query.SetFieldData(inBlock, "volume", 0, "");
+            query.SetFieldData(inBlock, "idx", 0, "41");
+            query.Request(true);
+            manualEvent.Reset();
+            manualEvent.WaitOne();
+
+            //query.SetFieldData(inBlock, "gubun", 0, gubun);
+            //query.SetFieldData(inBlock, "jnilgubun", 0, jnilgubun);
+            //query.SetFieldData(inBlock, "sdiff", 0, sdiff);
+            //query.SetFieldData(inBlock, "ediff", 0, ediff);
+            //query.SetFieldData(inBlock, "jc_num", 0, jc_num);
+            //query.SetFieldData(inBlock, "sprice", 0, "");
+            //query.SetFieldData(inBlock, "eprice", 0, "");
+            //query.SetFieldData(inBlock, "volume", 0, "");
+            //query.SetFieldData(inBlock, "idx", 0, "80");
+            //query.Request(true);
+            //manualEvent.Reset();
+            //manualEvent.WaitOne();
+
             return returnList;
         }
 
@@ -77,7 +103,7 @@ namespace OM.PP.XingApp.Ex.Api
 
                     returnList.Add(data);
                 }
-                OnApiLog("Api_JongmokRank ::: query_ReceiveData");
+                //OnApiLog("Api_JongmokRank ::: query_ReceiveData");
             }
             catch (Exception ex)
             {

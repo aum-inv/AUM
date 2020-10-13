@@ -245,12 +245,6 @@ namespace OM.Vikala.Chakra.App.Mains
 
         private void selectedType_Click(object sender, EventArgs e)
         {
-            toolStripButton1.Checked =
-                toolStripButton2.Checked =
-                toolStripButton3.Checked =
-                toolStripButton4.Checked =
-                toolStripButton5.Checked = false;
-
             var btn = sender as ToolStripButton;
             SharedData.SelectedType = btn.Tag.ToString();
             btn.Checked = true;

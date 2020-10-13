@@ -126,13 +126,14 @@
             this.ISW0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pnlTitle = new MetroFramework.Controls.MetroPanel();
+            this.btnGoNaver = new System.Windows.Forms.Button();
             this.tbSelectedName2 = new MetroFramework.Controls.MetroTextBox();
             this.tbSelectedCode2 = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
             this.tbSelectedName = new MetroFramework.Controls.MetroTextBox();
             this.tbSelectedCode = new MetroFramework.Controls.MetroTextBox();
             this.lblTitlePgr = new MetroFramework.Controls.MetroLabel();
-            this.btnGoNaver = new System.Windows.Forms.Button();
+            this.btnGoAlpha = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -974,6 +975,7 @@
             // 
             // pnlTitle
             // 
+            this.pnlTitle.Controls.Add(this.btnGoAlpha);
             this.pnlTitle.Controls.Add(this.btnGoNaver);
             this.pnlTitle.Controls.Add(this.tbSelectedName2);
             this.pnlTitle.Controls.Add(this.tbSelectedCode2);
@@ -992,6 +994,23 @@
             this.pnlTitle.VerticalScrollbarBarColor = true;
             this.pnlTitle.VerticalScrollbarHighlightOnWheel = false;
             this.pnlTitle.VerticalScrollbarSize = 10;
+            // 
+            // btnGoNaver
+            // 
+            this.btnGoNaver.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnGoNaver.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnGoNaver.FlatAppearance.BorderSize = 0;
+            this.btnGoNaver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGoNaver.Font = new System.Drawing.Font("굴림", 9F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
+                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnGoNaver.ForeColor = System.Drawing.Color.White;
+            this.btnGoNaver.Location = new System.Drawing.Point(790, 0);
+            this.btnGoNaver.Name = "btnGoNaver";
+            this.btnGoNaver.Size = new System.Drawing.Size(75, 25);
+            this.btnGoNaver.TabIndex = 28;
+            this.btnGoNaver.Text = "Go Naver";
+            this.btnGoNaver.UseVisualStyleBackColor = false;
+            this.btnGoNaver.Click += new System.EventHandler(this.btnGoNaver_Click);
             // 
             // tbSelectedName2
             // 
@@ -1149,22 +1168,22 @@
             this.lblTitlePgr.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblTitlePgr.UseCustomBackColor = true;
             // 
-            // btnGoNaver
+            // btnGoAlpha
             // 
-            this.btnGoNaver.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnGoNaver.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnGoNaver.FlatAppearance.BorderSize = 0;
-            this.btnGoNaver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGoNaver.Font = new System.Drawing.Font("굴림", 9F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
+            this.btnGoAlpha.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnGoAlpha.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnGoAlpha.FlatAppearance.BorderSize = 0;
+            this.btnGoAlpha.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGoAlpha.Font = new System.Drawing.Font("굴림", 9F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnGoNaver.ForeColor = System.Drawing.Color.White;
-            this.btnGoNaver.Location = new System.Drawing.Point(790, 0);
-            this.btnGoNaver.Name = "btnGoNaver";
-            this.btnGoNaver.Size = new System.Drawing.Size(75, 25);
-            this.btnGoNaver.TabIndex = 28;
-            this.btnGoNaver.Text = "Go Naver";
-            this.btnGoNaver.UseVisualStyleBackColor = false;
-            this.btnGoNaver.Click += new System.EventHandler(this.btnGoNaver_Click);
+            this.btnGoAlpha.ForeColor = System.Drawing.Color.White;
+            this.btnGoAlpha.Location = new System.Drawing.Point(865, 0);
+            this.btnGoAlpha.Name = "btnGoAlpha";
+            this.btnGoAlpha.Size = new System.Drawing.Size(75, 25);
+            this.btnGoAlpha.TabIndex = 31;
+            this.btnGoAlpha.Text = "Go Alpha";
+            this.btnGoAlpha.UseVisualStyleBackColor = false;
+            this.btnGoAlpha.Click += new System.EventHandler(this.btnGoAlpha_Click);
             // 
             // AtmanKRItemAIForm
             // 
@@ -1268,5 +1287,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ISW1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ISW0;
         private System.Windows.Forms.Button btnGoNaver;
+        private System.Windows.Forms.Button btnGoAlpha;
     }
 }

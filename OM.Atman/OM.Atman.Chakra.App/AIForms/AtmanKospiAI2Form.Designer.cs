@@ -144,7 +144,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.pnlMain);
-            this.splitContainer1.Size = new System.Drawing.Size(1560, 720);
+            this.splitContainer1.Size = new System.Drawing.Size(1169, 645);
             this.splitContainer1.SplitterDistance = 200;
             this.splitContainer1.TabIndex = 3;
             // 
@@ -159,7 +159,7 @@
             this.pnlLeft.HorizontalScrollbarSize = 10;
             this.pnlLeft.Location = new System.Drawing.Point(0, 0);
             this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.Size = new System.Drawing.Size(200, 720);
+            this.pnlLeft.Size = new System.Drawing.Size(200, 645);
             this.pnlLeft.TabIndex = 7;
             this.pnlLeft.VerticalScrollbarBarColor = true;
             this.pnlLeft.VerticalScrollbarHighlightOnWheel = false;
@@ -176,8 +176,8 @@
             this.pnlLeftContent.HorizontalScrollbarSize = 10;
             this.pnlLeftContent.Location = new System.Drawing.Point(0, 27);
             this.pnlLeftContent.Name = "pnlLeftContent";
-            this.pnlLeftContent.Padding = new System.Windows.Forms.Padding(5);
-            this.pnlLeftContent.Size = new System.Drawing.Size(200, 693);
+            this.pnlLeftContent.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.pnlLeftContent.Size = new System.Drawing.Size(200, 618);
             this.pnlLeftContent.TabIndex = 5;
             this.pnlLeftContent.VerticalScrollbarBarColor = true;
             this.pnlLeftContent.VerticalScrollbarHighlightOnWheel = false;
@@ -213,9 +213,10 @@
             this.dgvList.Name = "dgvList";
             this.dgvList.ReadOnly = true;
             this.dgvList.RowHeadersVisible = false;
+            this.dgvList.RowHeadersWidth = 62;
             this.dgvList.RowTemplate.Height = 23;
             this.dgvList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvList.Size = new System.Drawing.Size(188, 466);
+            this.dgvList.Size = new System.Drawing.Size(188, 391);
             this.dgvList.TabIndex = 21;
             this.dgvList.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvList_CellContentDoubleClick);
             // 
@@ -227,6 +228,7 @@
             this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTextBoxColumn1.Frozen = true;
             this.dataGridViewTextBoxColumn1.HeaderText = "dtime";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
             this.dataGridViewTextBoxColumn1.Width = 90;
@@ -239,6 +241,7 @@
             this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewTextBoxColumn5.Frozen = true;
             this.dataGridViewTextBoxColumn5.HeaderText = "close";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
             this.dataGridViewTextBoxColumn5.Width = 60;
@@ -250,6 +253,7 @@
             this.dataGridViewTextBoxColumn11.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewTextBoxColumn11.Frozen = true;
             this.dataGridViewTextBoxColumn11.HeaderText = "senergy";
+            this.dataGridViewTextBoxColumn11.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
             this.dataGridViewTextBoxColumn11.ReadOnly = true;
             this.dataGridViewTextBoxColumn11.Width = 80;
@@ -261,6 +265,7 @@
             this.dataGridViewTextBoxColumn12.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewTextBoxColumn12.Frozen = true;
             this.dataGridViewTextBoxColumn12.HeaderText = "tenergy";
+            this.dataGridViewTextBoxColumn12.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
             this.dataGridViewTextBoxColumn12.ReadOnly = true;
             this.dataGridViewTextBoxColumn12.Width = 80;
@@ -274,7 +279,7 @@
             this.metroPanel3.HorizontalScrollbarBarColor = true;
             this.metroPanel3.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel3.HorizontalScrollbarSize = 10;
-            this.metroPanel3.Location = new System.Drawing.Point(5, 471);
+            this.metroPanel3.Location = new System.Drawing.Point(5, 396);
             this.metroPanel3.Name = "metroPanel3";
             this.metroPanel3.Size = new System.Drawing.Size(188, 215);
             this.metroPanel3.TabIndex = 19;
@@ -534,7 +539,7 @@
             this.pnlMain.HorizontalScrollbarSize = 10;
             this.pnlMain.Location = new System.Drawing.Point(0, 0);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(1356, 720);
+            this.pnlMain.Size = new System.Drawing.Size(965, 645);
             this.pnlMain.TabIndex = 7;
             this.pnlMain.VerticalScrollbarBarColor = true;
             this.pnlMain.VerticalScrollbarHighlightOnWheel = false;
@@ -552,7 +557,7 @@
             this.tlpChart.Name = "tlpChart";
             this.tlpChart.RowCount = 1;
             this.tlpChart.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpChart.Size = new System.Drawing.Size(1356, 490);
+            this.tlpChart.Size = new System.Drawing.Size(965, 415);
             this.tlpChart.TabIndex = 12;
             // 
             // chart1
@@ -573,7 +578,7 @@
             this.chart1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chart1.Name = "chart1";
             this.chart1.SelectedTrackBarValue = 1;
-            this.chart1.Size = new System.Drawing.Size(672, 482);
+            this.chart1.Size = new System.Drawing.Size(476, 407);
             this.chart1.TabIndex = 0;
             this.chart1.TimeInterval = OM.Lib.Base.Enums.TimeIntervalEnum.Day;
             this.chart1.Title = null;
@@ -592,11 +597,11 @@
             this.chart2.IsShowYLine = true;
             this.chart2.ItemCode = "";
             this.chart2.LineChartType = OM.Vikala.Controls.Charts.LineChartTypeEnum.기본;
-            this.chart2.Location = new System.Drawing.Point(681, 4);
+            this.chart2.Location = new System.Drawing.Point(485, 4);
             this.chart2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chart2.Name = "chart2";
             this.chart2.SelectedTrackBarValue = 1;
-            this.chart2.Size = new System.Drawing.Size(672, 482);
+            this.chart2.Size = new System.Drawing.Size(477, 407);
             this.chart2.TabIndex = 1;
             this.chart2.TimeInterval = OM.Lib.Base.Enums.TimeIntervalEnum.Day;
             this.chart2.Title = null;
@@ -609,9 +614,9 @@
             this.pnlResultView.HorizontalScrollbarBarColor = true;
             this.pnlResultView.HorizontalScrollbarHighlightOnWheel = false;
             this.pnlResultView.HorizontalScrollbarSize = 10;
-            this.pnlResultView.Location = new System.Drawing.Point(0, 517);
+            this.pnlResultView.Location = new System.Drawing.Point(0, 442);
             this.pnlResultView.Name = "pnlResultView";
-            this.pnlResultView.Size = new System.Drawing.Size(1356, 203);
+            this.pnlResultView.Size = new System.Drawing.Size(965, 203);
             this.pnlResultView.TabIndex = 10;
             this.pnlResultView.VerticalScrollbarBarColor = true;
             this.pnlResultView.VerticalScrollbarHighlightOnWheel = false;
@@ -670,10 +675,11 @@
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
             this.dgv.RowHeadersVisible = false;
+            this.dgv.RowHeadersWidth = 62;
             this.dgv.RowTemplate.Height = 23;
             this.dgv.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1356, 203);
+            this.dgv.Size = new System.Drawing.Size(965, 203);
             this.dgv.TabIndex = 3;
             this.dgv.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_CellMouseDoubleClick);
             // 
@@ -685,6 +691,7 @@
             this.시간.DefaultCellStyle = dataGridViewCellStyle7;
             this.시간.Frozen = true;
             this.시간.HeaderText = "dtime";
+            this.시간.MinimumWidth = 8;
             this.시간.Name = "시간";
             this.시간.ReadOnly = true;
             this.시간.Width = 120;
@@ -697,6 +704,7 @@
             this.시가.DefaultCellStyle = dataGridViewCellStyle8;
             this.시가.Frozen = true;
             this.시가.HeaderText = "open";
+            this.시가.MinimumWidth = 8;
             this.시가.Name = "시가";
             this.시가.ReadOnly = true;
             this.시가.Width = 70;
@@ -709,6 +717,7 @@
             this.고가.DefaultCellStyle = dataGridViewCellStyle9;
             this.고가.Frozen = true;
             this.고가.HeaderText = "high";
+            this.고가.MinimumWidth = 8;
             this.고가.Name = "고가";
             this.고가.ReadOnly = true;
             this.고가.Width = 70;
@@ -721,6 +730,7 @@
             this.저가.DefaultCellStyle = dataGridViewCellStyle10;
             this.저가.Frozen = true;
             this.저가.HeaderText = "low";
+            this.저가.MinimumWidth = 8;
             this.저가.Name = "저가";
             this.저가.ReadOnly = true;
             this.저가.Width = 70;
@@ -733,6 +743,7 @@
             this.종가.DefaultCellStyle = dataGridViewCellStyle11;
             this.종가.Frozen = true;
             this.종가.HeaderText = "close";
+            this.종가.MinimumWidth = 8;
             this.종가.Name = "종가";
             this.종가.ReadOnly = true;
             this.종가.Width = 70;
@@ -745,6 +756,7 @@
             this.tenergy.DefaultCellStyle = dataGridViewCellStyle12;
             this.tenergy.Frozen = true;
             this.tenergy.HeaderText = "aenergy";
+            this.tenergy.MinimumWidth = 8;
             this.tenergy.Name = "tenergy";
             this.tenergy.ReadOnly = true;
             this.tenergy.Width = 90;
@@ -757,6 +769,7 @@
             this.SpaceEnergy.DefaultCellStyle = dataGridViewCellStyle13;
             this.SpaceEnergy.Frozen = true;
             this.SpaceEnergy.HeaderText = "senergy";
+            this.SpaceEnergy.MinimumWidth = 8;
             this.SpaceEnergy.Name = "SpaceEnergy";
             this.SpaceEnergy.ReadOnly = true;
             this.SpaceEnergy.Width = 90;
@@ -769,6 +782,7 @@
             this.TimeEnergy.DefaultCellStyle = dataGridViewCellStyle14;
             this.TimeEnergy.Frozen = true;
             this.TimeEnergy.HeaderText = "tenergy";
+            this.TimeEnergy.MinimumWidth = 8;
             this.TimeEnergy.Name = "TimeEnergy";
             this.TimeEnergy.ReadOnly = true;
             this.TimeEnergy.Width = 90;
@@ -777,9 +791,10 @@
             // 
             this.Blank.Frozen = true;
             this.Blank.HeaderText = "-";
+            this.Blank.MinimumWidth = 8;
             this.Blank.Name = "Blank";
             this.Blank.ReadOnly = true;
-            this.Blank.Width = 5;
+            this.Blank.Width = 8;
             // 
             // t_rank
             // 
@@ -788,6 +803,7 @@
             this.t_rank.DefaultCellStyle = dataGridViewCellStyle15;
             this.t_rank.Frozen = true;
             this.t_rank.HeaderText = "arank";
+            this.t_rank.MinimumWidth = 8;
             this.t_rank.Name = "t_rank";
             this.t_rank.ReadOnly = true;
             this.t_rank.Width = 50;
@@ -799,6 +815,7 @@
             this.SpaceRank.DefaultCellStyle = dataGridViewCellStyle16;
             this.SpaceRank.Frozen = true;
             this.SpaceRank.HeaderText = "srank";
+            this.SpaceRank.MinimumWidth = 8;
             this.SpaceRank.Name = "SpaceRank";
             this.SpaceRank.ReadOnly = true;
             this.SpaceRank.Width = 50;
@@ -810,6 +827,7 @@
             this.TimeRank.DefaultCellStyle = dataGridViewCellStyle17;
             this.TimeRank.Frozen = true;
             this.TimeRank.HeaderText = "trank";
+            this.TimeRank.MinimumWidth = 8;
             this.TimeRank.Name = "TimeRank";
             this.TimeRank.ReadOnly = true;
             this.TimeRank.Width = 50;
@@ -818,9 +836,10 @@
             // 
             this.Column1.Frozen = true;
             this.Column1.HeaderText = "-";
+            this.Column1.MinimumWidth = 8;
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
-            this.Column1.Width = 5;
+            this.Column1.Width = 8;
             // 
             // yday2
             // 
@@ -828,6 +847,7 @@
             this.yday2.DefaultCellStyle = dataGridViewCellStyle18;
             this.yday2.Frozen = true;
             this.yday2.HeaderText = "y2-day";
+            this.yday2.MinimumWidth = 8;
             this.yday2.Name = "yday2";
             this.yday2.ReadOnly = true;
             this.yday2.Width = 50;
@@ -838,6 +858,7 @@
             this.yday1.DefaultCellStyle = dataGridViewCellStyle19;
             this.yday1.Frozen = true;
             this.yday1.HeaderText = "y1-day";
+            this.yday1.MinimumWidth = 8;
             this.yday1.Name = "yday1";
             this.yday1.ReadOnly = true;
             this.yday1.Width = 50;
@@ -848,6 +869,7 @@
             this.tday1.DefaultCellStyle = dataGridViewCellStyle20;
             this.tday1.Frozen = true;
             this.tday1.HeaderText = "t1-day";
+            this.tday1.MinimumWidth = 8;
             this.tday1.Name = "tday1";
             this.tday1.ReadOnly = true;
             this.tday1.Width = 50;
@@ -858,6 +880,7 @@
             this.tday2.DefaultCellStyle = dataGridViewCellStyle21;
             this.tday2.Frozen = true;
             this.tday2.HeaderText = "t2-day";
+            this.tday2.MinimumWidth = 8;
             this.tday2.Name = "tday2";
             this.tday2.ReadOnly = true;
             this.tday2.Width = 50;
@@ -868,7 +891,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 25);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1356, 2);
+            this.panel2.Size = new System.Drawing.Size(965, 2);
             this.panel2.TabIndex = 3;
             // 
             // pnlTitle
@@ -884,7 +907,7 @@
             this.pnlTitle.HorizontalScrollbarSize = 10;
             this.pnlTitle.Location = new System.Drawing.Point(0, 0);
             this.pnlTitle.Name = "pnlTitle";
-            this.pnlTitle.Size = new System.Drawing.Size(1356, 25);
+            this.pnlTitle.Size = new System.Drawing.Size(965, 25);
             this.pnlTitle.TabIndex = 2;
             this.pnlTitle.VerticalScrollbarBarColor = true;
             this.pnlTitle.VerticalScrollbarHighlightOnWheel = false;
@@ -899,7 +922,7 @@
             this.cbxItem.FormattingEnabled = true;
             this.cbxItem.IntegralHeight = false;
             this.cbxItem.ItemHeight = 13;
-            this.cbxItem.Location = new System.Drawing.Point(1074, 0);
+            this.cbxItem.Location = new System.Drawing.Point(683, 0);
             this.cbxItem.Name = "cbxItem";
             this.cbxItem.Size = new System.Drawing.Size(211, 21);
             this.cbxItem.TabIndex = 26;
@@ -917,7 +940,7 @@
             0,
             0,
             0});
-            this.nudDisplay.Location = new System.Drawing.Point(1285, 0);
+            this.nudDisplay.Location = new System.Drawing.Point(894, 0);
             this.nudDisplay.Minimum = new decimal(new int[] {
             10,
             0,
@@ -938,7 +961,7 @@
             // 
             this.metroTile2.ActiveControl = null;
             this.metroTile2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.metroTile2.Location = new System.Drawing.Point(1332, 0);
+            this.metroTile2.Location = new System.Drawing.Point(941, 0);
             this.metroTile2.Name = "metroTile2";
             this.metroTile2.Size = new System.Drawing.Size(24, 25);
             this.metroTile2.Style = MetroFramework.MetroColorStyle.Brown;
@@ -954,9 +977,9 @@
             // 
             // 
             this.tbSelectedInfo.CustomButton.Image = null;
-            this.tbSelectedInfo.CustomButton.Location = new System.Drawing.Point(839, 1);
+            this.tbSelectedInfo.CustomButton.Location = new System.Drawing.Point(587, 1);
             this.tbSelectedInfo.CustomButton.Name = "";
-            this.tbSelectedInfo.CustomButton.Size = new System.Drawing.Size(23, 23);
+            this.tbSelectedInfo.CustomButton.Size = new System.Drawing.Size(16, 15);
             this.tbSelectedInfo.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.tbSelectedInfo.CustomButton.TabIndex = 1;
             this.tbSelectedInfo.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -1009,7 +1032,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1600, 800);
+            this.ClientSize = new System.Drawing.Size(1209, 725);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

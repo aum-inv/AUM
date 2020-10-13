@@ -34,7 +34,7 @@ namespace OM.Vikala.Chakra.App.Mains
             get { return tsbSplit.Visible; }
             set
             {
-                tsbSplit.Visible = tsbTable.Visible = tsbFTab.Visible = tsbList.Visible = value;
+                tsbSplit.Visible = value;
             }
         }
         public bool IsVisibleTimeIntervalButton
@@ -142,8 +142,8 @@ namespace OM.Vikala.Chakra.App.Mains
             }
             else if (SharedData.SelectedType == "국내종목")
             {
-                tsbTime01.Visible =
-                tsbTime02.Visible =                
+                //tsbTime01.Visible =
+                //tsbTime02.Visible =                
                 tsbTime12.Visible =
                 tsbTime13.Visible =
                 tsbTime14.Visible =
@@ -173,6 +173,8 @@ namespace OM.Vikala.Chakra.App.Mains
             setItems();
             setInterval();
             tscbCnt.SelectedIndex = 0;
+
+            tscbType.SelectedItem = SharedData.SelectedType;
         }
 
         public void setProgressValue(int n)
@@ -203,6 +205,9 @@ namespace OM.Vikala.Chakra.App.Mains
                     if (m.Name.StartsWith("지수-국내") || m.Code.Length == 0)
                         itemDatas.Add(m);
                 }
+                tscbItem.ComboBox.DataSource = itemDatas;
+                tscbItem.ComboBox.DisplayMember = "Name";
+                tscbItem.ComboBox.ValueMember = "Code";
             }
             else if (SharedData.SelectedType == "해외지수")
             {
@@ -212,6 +217,9 @@ namespace OM.Vikala.Chakra.App.Mains
                     if (m.Name.StartsWith("지수-해외") || m.Code.Length == 0)
                         itemDatas.Add(m);
                 }
+                tscbItem.ComboBox.DataSource = itemDatas;
+                tscbItem.ComboBox.DisplayMember = "Name";
+                tscbItem.ComboBox.ValueMember = "Code";
             }
             else if (SharedData.SelectedType == "해외선물")
             {
@@ -221,6 +229,9 @@ namespace OM.Vikala.Chakra.App.Mains
                     if (m.Name.StartsWith("해선") || m.Code.Length == 0)
                         itemDatas.Add(m);
                 }
+                tscbItem.ComboBox.DataSource = itemDatas;
+                tscbItem.ComboBox.DisplayMember = "Name";
+                tscbItem.ComboBox.ValueMember = "Code";
             }
             else if (SharedData.SelectedType == "국내업종")
             {
@@ -229,10 +240,7 @@ namespace OM.Vikala.Chakra.App.Mains
             else if (SharedData.SelectedType == "국내종목")
             {
                 this.tscbItem.TextChanged += new System.EventHandler(this.tscbItem_TextChanged);
-            }
-            tscbItem.ComboBox.DataSource = itemDatas;
-            tscbItem.ComboBox.DisplayMember = "Name";
-            tscbItem.ComboBox.ValueMember = "Code";            
+            }               
         }
         private void setInterval()
         {
@@ -323,7 +331,7 @@ namespace OM.Vikala.Chakra.App.Mains
                     string[] values = line.Split("\t".ToCharArray());
                     if (values[1] == data.Code)
                     {
-                        lblName.Text += values[0];                      
+                        lblName.Text = values[0];                      
                     }
                 }
             }
@@ -336,7 +344,7 @@ namespace OM.Vikala.Chakra.App.Mains
                     string[] values = line.Split("\t".ToCharArray());
                     if (values[1] == data.Code)
                     {
-                        lblName.Text += values[0];                        
+                        lblName.Text = values[0];                        
                     }
                 }
             }
@@ -408,9 +416,9 @@ namespace OM.Vikala.Chakra.App.Mains
                 FlowDirectionChangedEvent(type, e);
             }
 
-            tsbTable.BackColor = Color.WhiteSmoke;
-            tsbList.BackColor = Color.WhiteSmoke;
-            tsbFTab.BackColor = Color.WhiteSmoke;
+            //tsbTable.BackColor = Color.WhiteSmoke;
+            //tsbList.BackColor = Color.WhiteSmoke;
+            //tsbFTab.BackColor = Color.WhiteSmoke;
 
             ((ToolStripButton)sender).BackColor = Color.Yellow;
         }
@@ -495,7 +503,24 @@ namespace OM.Vikala.Chakra.App.Mains
                 LineChartWidthChangedEvent("-", e);
         }
 
-        
+        private void tsbWeb1_Click(object sender, EventArgs e)
+        {
+            if (tscbItem.Text.Length == 0) return;
+            string url = "https://finance.naver.com/item/main.nhn?code=" + tscbItem.Text;
+            System.Diagnostics.Process.Start("chrome", url);
+        }
+
+        private void tsbWeb2_Click(object sender, EventArgs e)
+        {
+            if (tscbItem.Text.Length == 0) return;
+            string url = "https://www.alphasquare.co.kr/home/stock/stock-summary?code=" + tscbItem.Text;
+            System.Diagnostics.Process.Start("chrome", url);
+        }
+
+        private void tscbType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SharedData.SelectedType = tscbType.SelectedItem.ToString();
+        }
     }
 
     public enum FlowDirectionTypeEnum

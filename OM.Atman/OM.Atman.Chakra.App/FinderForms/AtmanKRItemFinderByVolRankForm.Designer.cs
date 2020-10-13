@@ -50,6 +50,7 @@
             this.pnlLeftContent = new MetroFramework.Controls.MetroPanel();
             this.chart = new OM.Vikala.Controls.Charts.ComparedBasicCandleChart();
             this.pnlTitle = new MetroFramework.Controls.MetroPanel();
+            this.btnGoAlpha = new System.Windows.Forms.Button();
             this.btnGoNaver = new System.Windows.Forms.Button();
             this.tbSelectedName2 = new MetroFramework.Controls.MetroTextBox();
             this.tbSelectedCode2 = new MetroFramework.Controls.MetroTextBox();
@@ -203,6 +204,7 @@
             // 
             // pnlTitle
             // 
+            this.pnlTitle.Controls.Add(this.btnGoAlpha);
             this.pnlTitle.Controls.Add(this.btnGoNaver);
             this.pnlTitle.Controls.Add(this.tbSelectedName2);
             this.pnlTitle.Controls.Add(this.tbSelectedCode2);
@@ -218,6 +220,23 @@
             this.pnlTitle.VerticalScrollbarBarColor = true;
             this.pnlTitle.VerticalScrollbarHighlightOnWheel = false;
             this.pnlTitle.VerticalScrollbarSize = 10;
+            // 
+            // btnGoAlpha
+            // 
+            this.btnGoAlpha.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnGoAlpha.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnGoAlpha.FlatAppearance.BorderSize = 0;
+            this.btnGoAlpha.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGoAlpha.Font = new System.Drawing.Font("굴림", 9F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
+                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnGoAlpha.ForeColor = System.Drawing.Color.White;
+            this.btnGoAlpha.Location = new System.Drawing.Point(470, 0);
+            this.btnGoAlpha.Name = "btnGoAlpha";
+            this.btnGoAlpha.Size = new System.Drawing.Size(75, 25);
+            this.btnGoAlpha.TabIndex = 30;
+            this.btnGoAlpha.Text = "Go Alpha";
+            this.btnGoAlpha.UseVisualStyleBackColor = false;
+            this.btnGoAlpha.Click += new System.EventHandler(this.btnGoAlpha_Click);
             // 
             // btnGoNaver
             // 
@@ -952,5 +971,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SW1;
         private System.Windows.Forms.DataGridViewTextBoxColumn SW0;
         private System.Windows.Forms.Button btnGoNaver;
+        private System.Windows.Forms.Button btnGoAlpha;
     }
 }

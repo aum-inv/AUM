@@ -403,5 +403,12 @@ namespace OM.Atman.Chakra.App.FinderForms
 
             System.Diagnostics.Process.Start("chrome", url);
         }
+
+        private void btnGoAlpha_Click(object sender, EventArgs e)
+        {
+            if (tbSelectedCode2.Text.Length == 0) return;
+            string url = "https://www.alphasquare.co.kr/home/stock/stock-summary?code=" + tbSelectedCode2.Text;
+            System.Diagnostics.Process.Start("chrome", url);
+        }
     }
 }

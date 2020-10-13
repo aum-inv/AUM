@@ -72,7 +72,7 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
             string itemCode = base.SelectedItemData.Code;
 
             List<S_CandleItemData> sourceDatas = null;
-            if (SharedData.SelectedType == "국내업종")
+            if (SharedData.SelectedType == "국내업종")   
             {
                 if (timeInterval == TimeIntervalEnum.Day)
                     sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(itemCode, "2", "0", "500");
@@ -102,6 +102,10 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
                     sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(itemCode, "2", "0", "500");
                 else if (timeInterval == TimeIntervalEnum.Week)
                     sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(itemCode, "3", "0", "500");
+                else if (timeInterval == TimeIntervalEnum.Minute_01)
+                    sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(itemCode, "1", "1", "500");
+                else if (timeInterval == TimeIntervalEnum.Minute_05)
+                    sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(itemCode, "1", "5", "500");
                 else if (timeInterval == TimeIntervalEnum.Minute_10)
                     sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(itemCode, "1", "10", "500");
                 else if (timeInterval == TimeIntervalEnum.Minute_30)

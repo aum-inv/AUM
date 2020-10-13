@@ -149,16 +149,7 @@ namespace OM.Atman.Chakra.App.FinderForms
                      
             dgv.Rows.Insert(0, pickDT, code, name, reason);           
         }
-
-        private void btnGoNaver_Click(object sender, EventArgs e)
-        {
-            if (tbSelectedCode2.Text.Length == 0) return;
-
-            string url = "https://finance.naver.com/item/main.nhn?code=" + tbSelectedCode2.Text;
-
-            System.Diagnostics.Process.Start("chrome", url);
-        }
-
+               
         private void btnDel_Click(object sender, EventArgs e)
         {
             if (selectedIndex < 0) return;
@@ -169,6 +160,20 @@ namespace OM.Atman.Chakra.App.FinderForms
             dgv.Rows.RemoveAt(selectedIndex);
 
             selectedIndex = -1;
+        }
+        private void btnGoNaver_Click(object sender, EventArgs e)
+        {
+            if (tbSelectedCode2.Text.Length == 0) return;
+
+            string url = "https://finance.naver.com/item/main.nhn?code=" + tbSelectedCode2.Text;
+
+            System.Diagnostics.Process.Start("chrome", url);
+        }
+        private void btnGoAlpha_Click(object sender, EventArgs e)
+        {
+            if (tbSelectedCode2.Text.Length == 0) return;
+            string url = "https://www.alphasquare.co.kr/home/stock/stock-summary?code=" + tbSelectedCode2.Text;
+            System.Diagnostics.Process.Start("chrome", url);
         }
     }
 }
