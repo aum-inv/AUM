@@ -20,6 +20,7 @@ namespace OM.Vikala.Chakra.App.Mains
     public class BaseForm : Form
     {
         protected bool autoReload = false;
+        protected bool isLoading = false;
 
         protected int itemCnt = 60;
         protected int loadCnt = 120;

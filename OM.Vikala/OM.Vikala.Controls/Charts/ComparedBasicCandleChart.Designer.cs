@@ -132,14 +132,14 @@
             series2.Name = "cs_Basic";
             series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             series3.ChartArea = "chartArea";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             series3.Color = System.Drawing.Color.Black;
             series3.IsXValueIndexed = true;
             series3.MarkerColor = System.Drawing.Color.Blue;
             series3.Name = "cs_Basic2";
             series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             series4.ChartArea = "chartArea";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             series4.Color = System.Drawing.Color.Coral;
             series4.IsXValueIndexed = true;
             series4.Name = "cs_Basic3";

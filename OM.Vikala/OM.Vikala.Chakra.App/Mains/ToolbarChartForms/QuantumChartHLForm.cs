@@ -72,12 +72,15 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
 
         public override void loadData()
         {
+            if (isLoading) return;
             if (base.SelectedItemData == null) return;
             if (string.IsNullOrEmpty(base.SelectedItemData.Code)) return;
 
             string itemCode = base.SelectedItemData.Code;
 
             List<S_CandleItemData> sourceDatas = null;
+            isLoading = true;
+
             if (SharedData.SelectedType == "국내업종")
             {
                 if (timeInterval == TimeIntervalEnum.Day)
@@ -146,21 +149,23 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
                   itemCode
                 , base.timeInterval);
 
+            isLoading = false;
+
             if (sourceDatas == null || sourceDatas.Count == 0) return;
 
             //표시할 갯수를 맞춘다.
             RemoveSourceData(sourceDatas);
             //국내지수인 경우 시간갭이 크기 때문에.. 전일종가를 당일시가로 해야한다. 
-            var removeGapSourceDatas = PPUtils.RemoveGapPrice(sourceDatas);
+            //var removeGapSourceDatas = PPUtils.RemoveGapPrice(sourceDatas);
 
-            int averageCount = 4;
+            int averageCount = 9;
             if (timeInterval == TimeIntervalEnum.Minute_01
                || timeInterval == TimeIntervalEnum.Minute_05
                || timeInterval == TimeIntervalEnum.Minute_10
                || timeInterval == TimeIntervalEnum.Minute_30)
-                averageCount = 8;
+                averageCount = 9;
 
-            var averageDatas = PPUtils.GetBalancedAverageDatas(itemCode, removeGapSourceDatas, averageCount);
+            var averageDatas = PPUtils.GetBalancedAverageDatas(itemCode, sourceDatas, averageCount);
             sourceDatas = PPUtils.GetCutDatas(sourceDatas, averageDatas[0].DTime);
             chart.LoadDataAndApply(itemCode, sourceDatas, averageDatas, base.timeInterval, 5);
         }

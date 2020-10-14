@@ -74,12 +74,15 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
 
         public override void loadData()
         {
+            if (isLoading) return;
             if (base.SelectedItemData == null) return;
             if (string.IsNullOrEmpty(base.SelectedItemData.Code)) return;
 
             string itemCode = base.SelectedItemData.Code;
 
             List<S_CandleItemData> sourceDatas = null;
+            isLoading = true;
+
             if (SharedData.SelectedType == "국내업종")
             {
                 if (timeInterval == TimeIntervalEnum.Day)
@@ -147,6 +150,8 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
                 sourceDatas = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                   itemCode
                 , base.timeInterval);
+
+            isLoading = false;
 
             if (sourceDatas == null || sourceDatas.Count == 0) return;
                      
