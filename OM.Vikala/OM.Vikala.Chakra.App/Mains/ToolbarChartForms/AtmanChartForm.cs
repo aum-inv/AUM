@@ -16,9 +16,9 @@ using System.Windows.Forms;
 
 namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
 {
-    public partial class ComparedCandleChartForm : BaseForm
+    public partial class AtmanChartForm : BaseForm
     {      
-        public ComparedCandleChartForm()
+        public AtmanChartForm()
         {
             InitializeComponent();
             base.setToolStrip(userToolStrip1);
@@ -46,22 +46,17 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
 
         private void UserToolStrip_LineChartWidthChangedEvent(object sender, EventArgs e)
         {
-            chart1.BoldLine(sender.ToString());
-            chart2.BoldLine(sender.ToString());
+            chart.BoldLine(sender.ToString());          
         }
         private void UserToolStrip_TableViewChangedEvent(object sender, EventArgs e)
         {
         }
         public override void loadChartControls()
         {
-            chart1.IsShowXLine = chart1.IsShowYLine = true;
-            chart1.InitializeControl();
-            chart1.InitializeEvent(chartEvent);
-            chart1.DisplayPointCount = itemCnt / 2;
-
-            chart2.InitializeControl();
-            chart2.InitializeEvent(chartEvent);
-            chart2.DisplayPointCount = itemCnt / 2;
+            chart.IsShowXLine = chart.IsShowYLine = true;
+            chart.InitializeControl();
+            chart.InitializeEvent(chartEvent);
+            chart.DisplayPointCount = itemCnt;
         }
 
         public override void loadData()
@@ -155,29 +150,25 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
             RemoveSourceData(sourceDatas);
 
             int averageCount = 9;
-
             if (timeInterval == TimeIntervalEnum.Minute_01
                 || timeInterval == TimeIntervalEnum.Minute_05
                 || timeInterval == TimeIntervalEnum.Minute_10
                 || timeInterval == TimeIntervalEnum.Minute_30)
-                averageCount = 18;
+                averageCount = 9;
+
+            int averageBCount = 4;
+            if (timeInterval == TimeIntervalEnum.Minute_01
+                || timeInterval == TimeIntervalEnum.Minute_05
+                || timeInterval == TimeIntervalEnum.Minute_10
+                || timeInterval == TimeIntervalEnum.Minute_30)
+                averageBCount = 8;
 
             var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas, averageCount, false);        
-            //var averageDatas = PPUtils.GetBalancedAverageDatas(itemCode, sourceDatas, averageCount);
-
+            var averageBDatas = PPUtils.GetBalancedAverageDatas(itemCode, sourceDatas, averageBCount, false);
             sourceDatas = PPUtils.GetCutDatas(sourceDatas, averageDatas[0].DTime);
-            chart1.LoadDataAndApply(itemCode, sourceDatas, averageDatas, base.timeInterval, averageCount);
+            averageBDatas = PPUtils.GetCutDatas(averageBDatas, averageDatas[0].DTime);
 
-            //var removeGapSourceDatas = PPUtils.RemoveGapPrice(sourceDatas);
-            //var averageDatas2 = PPUtils.GetBalancedAverageDatas(itemCode, removeGapSourceDatas, 4);
-
-            for(int i = 0; i < averageCount; i++)
-                averageDatas.RemoveAt(0);
-
-            averageDatas.RemoveAt(0);
-            averageDatas.RemoveAt(0);
-            averageDatas.RemoveAt(0);
-            chart2.LoadDataAndApply(itemCode, averageDatas, averageDatas, timeInterval, averageCount);
+            chart.LoadDataAndApply(itemCode, sourceDatas, averageDatas, averageBDatas, base.timeInterval, averageCount);                 
         }
     }
 }

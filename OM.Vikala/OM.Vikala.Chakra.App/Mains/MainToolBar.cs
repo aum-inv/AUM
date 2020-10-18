@@ -138,8 +138,18 @@ namespace OM.Vikala.Chakra.App.Mains
             var f = new ToolbarChartForms.ComparedCandleChartForm();
             f.Text = "ATMAN INV. F TIMESPACE CHART";
             f.Show();
+
+            var f2 = new ToolbarChartForms.ComparedCandleChartForm2();
+            f2.Text = "ATMAN INV. F BALANCE TIMESPACE CHART";
+            f2.Show();
         }
 
+        private void tsb_Atman_Click(object sender, EventArgs e)
+        {
+            var f = new ToolbarChartForms.AtmanChartForm();
+            f.Text = "ATMAN INV. F ATMAN CHART";
+            f.Show();
+        }
 
         private void tsb_SYN_Click(object sender, EventArgs e)
         {
@@ -250,6 +260,10 @@ namespace OM.Vikala.Chakra.App.Mains
             btn.Checked = true;
         }
 
+        private void tsbHidden_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
         //private void tsb_Minimize_Click(object sender, EventArgs e)
         //{
         //    foreach (var f in lstWindows)

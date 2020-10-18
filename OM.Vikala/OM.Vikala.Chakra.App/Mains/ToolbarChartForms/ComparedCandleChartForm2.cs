@@ -16,9 +16,9 @@ using System.Windows.Forms;
 
 namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
 {
-    public partial class ComparedCandleChartForm : BaseForm
+    public partial class ComparedCandleChartForm2 : BaseForm
     {      
-        public ComparedCandleChartForm()
+        public ComparedCandleChartForm2()
         {
             InitializeComponent();
             base.setToolStrip(userToolStrip1);
@@ -154,16 +154,16 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
             //표시할 갯수를 맞춘다.
             RemoveSourceData(sourceDatas);
 
-            int averageCount = 9;
+            int averageCount = 4;
 
             if (timeInterval == TimeIntervalEnum.Minute_01
                 || timeInterval == TimeIntervalEnum.Minute_05
                 || timeInterval == TimeIntervalEnum.Minute_10
                 || timeInterval == TimeIntervalEnum.Minute_30)
-                averageCount = 18;
+                averageCount = 8;
 
-            var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas, averageCount, false);        
-            //var averageDatas = PPUtils.GetBalancedAverageDatas(itemCode, sourceDatas, averageCount);
+            //var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas, averageCount, false);        
+            var averageDatas = PPUtils.GetBalancedAverageDatas(itemCode, sourceDatas, averageCount);
 
             sourceDatas = PPUtils.GetCutDatas(sourceDatas, averageDatas[0].DTime);
             chart1.LoadDataAndApply(itemCode, sourceDatas, averageDatas, base.timeInterval, averageCount);
@@ -171,9 +171,7 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
             //var removeGapSourceDatas = PPUtils.RemoveGapPrice(sourceDatas);
             //var averageDatas2 = PPUtils.GetBalancedAverageDatas(itemCode, removeGapSourceDatas, 4);
 
-            for(int i = 0; i < averageCount; i++)
-                averageDatas.RemoveAt(0);
-
+            averageDatas.RemoveAt(0);
             averageDatas.RemoveAt(0);
             averageDatas.RemoveAt(0);
             averageDatas.RemoveAt(0);

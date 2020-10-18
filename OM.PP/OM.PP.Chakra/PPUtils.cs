@@ -44,8 +44,11 @@ namespace OM.PP.Chakra
 
             return modifyDatas;
         }
-        public static List<S_CandleItemData> GetAverageDatas(string itemCode, List<S_CandleItemData> sourceDatas, int averageCnt)
+        public static List<S_CandleItemData> GetAverageDatas(string itemCode, List<S_CandleItemData> sourceDatas, int averageCnt, bool isQuantumAverage = false)
         {
+            if (isQuantumAverage)
+                sourceDatas = GetQuantumDatas(sourceDatas);
+
             List<S_CandleItemData> averageDatas = new List<S_CandleItemData>();
             try
             {               
@@ -61,8 +64,13 @@ namespace OM.PP.Chakra
             }
             return averageDatas;
         }
-        public static List<S_CandleItemData> GetBalancedAverageDatas(string itemCode, List<S_CandleItemData> sourceDatas, int averageCnt)
+      
+
+        public static List<S_CandleItemData> GetBalancedAverageDatas(string itemCode, List<S_CandleItemData> sourceDatas, int averageCnt, bool isQuantumAverage = false)
         {
+            if (isQuantumAverage)
+                sourceDatas = GetQuantumDatas(sourceDatas);
+
             List<S_CandleItemData> averageDatas = new List<S_CandleItemData>();
 
             try
@@ -72,7 +80,7 @@ namespace OM.PP.Chakra
                     DateTime dTime = sourceDatas[i].DTime;
 
                     int idx = i - averageCnt;
-                    int cnt = averageCnt + averageCnt;
+                    int cnt = averageCnt + (averageCnt / 2);
 
                     if (sourceDatas.Count - (idx + cnt) < 0)
                         cnt -= ((idx + cnt) - sourceDatas.Count);
@@ -87,8 +95,11 @@ namespace OM.PP.Chakra
             }
             return averageDatas;
         }
-        public static List<S_CandleItemData> GetAccumulatedAverageDatas(string itemCode, List<S_CandleItemData> sourceDatas, int averageCnt)
+        public static List<S_CandleItemData> GetAccumulatedAverageDatas(string itemCode, List<S_CandleItemData> sourceDatas, int averageCnt, bool isQuantumAverage = false)
         {
+            if (isQuantumAverage)
+                sourceDatas = GetQuantumDatas(sourceDatas);
+
             List<S_CandleItemData> averageDatas = new List<S_CandleItemData>();
             try
             {

@@ -32,6 +32,7 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbSave = new System.Windows.Forms.ToolStripButton();
             this.tsbCopy = new System.Windows.Forms.ToolStripButton();
+            this.tsbPrint = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.tsb_Cursor = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -72,6 +73,8 @@
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlContent = new System.Windows.Forms.Panel();
             this.picCanvas = new System.Windows.Forms.PictureBox();
+            this.pd = new System.Drawing.Printing.PrintDocument();
+            this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.toolStrip1.SuspendLayout();
             this.pnlContent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCanvas)).BeginInit();
@@ -83,6 +86,7 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbSave,
             this.tsbCopy,
+            this.tsbPrint,
             this.toolStripSeparator6,
             this.tsb_Cursor,
             this.toolStripSeparator2,
@@ -137,6 +141,16 @@
             this.tsbCopy.Size = new System.Drawing.Size(50, 30);
             this.tsbCopy.Text = "Copy";
             this.tsbCopy.Click += new System.EventHandler(this.tsbCopy_Click);
+            // 
+            // tsbPrint
+            // 
+            this.tsbPrint.AutoSize = false;
+            this.tsbPrint.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbPrint.Name = "tsbPrint";
+            this.tsbPrint.Size = new System.Drawing.Size(50, 30);
+            this.tsbPrint.Text = "Print";
+            this.tsbPrint.Click += new System.EventHandler(this.tsbPrint_Click);
             // 
             // toolStripSeparator6
             // 
@@ -531,6 +545,18 @@
             this.picCanvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picCanvas_MouseDown);
             this.picCanvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picCanvas_MouseMove_NotDown);
             // 
+            // pd
+            // 
+            this.pd.DocumentName = "Atman Chart";
+            this.pd.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.pd_PrintPage);
+            // 
+            // printDialog1
+            // 
+            this.printDialog1.AllowCurrentPage = true;
+            this.printDialog1.Document = this.pd;
+            this.printDialog1.PrintToFile = true;
+            this.printDialog1.UseEXDialog = true;
+            // 
             // MainDrawForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -599,5 +625,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripButton tsb_T_Black;
         private System.Windows.Forms.ToolStripTextBox tstb;
+        private System.Windows.Forms.ToolStripButton tsbPrint;
+        private System.Drawing.Printing.PrintDocument pd;
+        private System.Windows.Forms.PrintDialog printDialog1;
     }
 }

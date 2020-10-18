@@ -74,6 +74,7 @@ namespace OM.Vikala.Controls.Charts
                 item = ChartDataSub[i]; 
                 string diceChar = getDiceChar(item);
                 chart.Series[0].Points[idx].Label = diceChar;
+              
                 chart.Series[1].Points.AddXY(item.DTime, item.T_MassAvg);
                 chart.Series[2].Points.AddXY(item.DTime, item.T_QuantumAvg);                     
                 chart.Series[3].Points.AddXY(item.DTime, 0);
@@ -291,12 +292,12 @@ namespace OM.Vikala.Controls.Charts
             if (item.DiceNum == 5 && item.PlusMinusType == PlusMinusTypeEnum.음) return "❺";
             if (item.DiceNum == 6 && item.PlusMinusType == PlusMinusTypeEnum.음) return "❻";
 
-            if (item.DiceNum == 1 && item.PlusMinusType == PlusMinusTypeEnum.무) return "⚀";
-            if (item.DiceNum == 2 && item.PlusMinusType == PlusMinusTypeEnum.무) return "⚁";
-            if (item.DiceNum == 3 && item.PlusMinusType == PlusMinusTypeEnum.무) return "⚂";
-            if (item.DiceNum == 4 && item.PlusMinusType == PlusMinusTypeEnum.무) return "⚃";
-            if (item.DiceNum == 5 && item.PlusMinusType == PlusMinusTypeEnum.무) return "⚄";
-            if (item.DiceNum == 6 && item.PlusMinusType == PlusMinusTypeEnum.무) return "⚅";
+            if (item.DiceNum == 1 && item.PlusMinusType == PlusMinusTypeEnum.무) return "◆";
+            if (item.DiceNum == 2 && item.PlusMinusType == PlusMinusTypeEnum.무) return "◆";
+            if (item.DiceNum == 3 && item.PlusMinusType == PlusMinusTypeEnum.무) return "◆";
+            if (item.DiceNum == 4 && item.PlusMinusType == PlusMinusTypeEnum.무) return "◆";
+            if (item.DiceNum == 5 && item.PlusMinusType == PlusMinusTypeEnum.무) return "◆";
+            if (item.DiceNum == 6 && item.PlusMinusType == PlusMinusTypeEnum.무) return "◆";
 
             return "";
         }

@@ -224,11 +224,11 @@ namespace OM.Vikala.Chakra.App.Mains
                 {
                     bmp.Save(saveFileDialog1.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
 
-                    var filePath = saveFileDialog1.FileName;
+                    //var filePath = saveFileDialog1.FileName;
 
-                    ProcessStartInfo startInfo = new ProcessStartInfo(filePath);
-                    startInfo.Verb = "edit";
-                    Process.Start(startInfo);
+                    //ProcessStartInfo startInfo = new ProcessStartInfo(filePath);
+                    //startInfo.Verb = "edit";
+                    //Process.Start(startInfo);
                 }
             }
         }

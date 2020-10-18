@@ -45,6 +45,7 @@ namespace OM.Vikala.Controls.Charts
             set;
         } = BaseCandleChartTypeEnum.인;
 
+        public bool IsBalanceAverage { get; set; } = false;
         public void LoadData(string itemCode = ""
             , List <T_QuantumItemData> chartData = null
             , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day)
@@ -69,7 +70,7 @@ namespace OM.Vikala.Controls.Charts
             ItemCode = itemCode;
             ChartData = chartData;
             ChartDataSub = chartDataSub;
-
+           
             this.Invoke(new MethodInvoker(() => {
                 Reset();
                 View();
@@ -143,7 +144,12 @@ namespace OM.Vikala.Controls.Charts
                 var item2 = ChartDataSub[i];
                 var smart = smartDataList[i];
                 var wisdom = wisdomDataList[i];
-                int idx = chart.Series[0].Points.AddXY(item.DTime, item.HighPrice, item.LowPrice, item.OpenPrice, item.ClosePrice);               
+                int idx = chart.Series[0].Points.AddXY(item.DTime, item.HighPrice, item.LowPrice, item.OpenPrice, item.ClosePrice);
+                string diceChar = getDiceChar(item);
+                chart.Series[0].Points[idx].Label = diceChar;
+                if (diceChar == "◆")
+                    chart.Series[0].Points[idx].LabelForeColor = Color.Red;
+
                 //chart.Series[1].Points.AddXY(smart.DTime, smart.SpaceTotalChangeRate);
                 chart.Series[1].Points.AddXY(smart.DTime, smart.Variance_ChartPrice2);
                 chart.Series[2].Points.AddXY(wisdom.DTime, wisdom.Variance_ChartPrice);
@@ -151,22 +157,23 @@ namespace OM.Vikala.Controls.Charts
 
                 chart.Series[4].Points.AddXY(item2.DTime, item2.HighPrice, item2.LowPrice, item2.OpenPrice, item2.ClosePrice);
                
-                chart.Series[5].Points.AddXY(item2.DTime, item2.T_QuantumHighAvg);
-                chart.Series[6].Points.AddXY(item2.DTime, item2.T_QuantumLowAvg);
+                chart.Series[5].Points.AddXY(item2.DTime, item2.T_MassAvg);
+                chart.Series[6].Points.AddXY(item2.DTime, item2.T_QuantumAvg);
 
                 chart.Series[1].Points[idx].Color = Color.Red;
                 chart.Series[2].Points[idx].Color = Color.Blue;
 
                 if (preVariancePrice < preVariancePrice2 && wisdom.Variance_ChartPrice < smart.Variance_ChartPrice2)
-                {                  
+                {
                     chart.Series[1].Points[idx].LabelForeColor = Color.Red;
-                    chart.Series[1].Points[idx].Label = "▲";
+                    chart.Series[1].Points[idx].Label = "◎";
                 }
                 else if (preVariancePrice > preVariancePrice2 && wisdom.Variance_ChartPrice > smart.Variance_ChartPrice2)
                 {
                     chart.Series[1].Points[idx].LabelForeColor = Color.Blue;
-                    chart.Series[1].Points[idx].Label = "▼";
+                    chart.Series[1].Points[idx].Label = "◎";
                 }
+              
 
                 if (preVariancePrice3 < preVariancePrice2 && wisdom.Variance_ChartPrice < smart.Variance_ChartPrice)
                 {
@@ -204,6 +211,8 @@ namespace OM.Vikala.Controls.Charts
                 dataPoint.Tag = item;
 
             }
+            //chart.Series[1].Enabled = false;
+            chart.Series[4].Enabled = false;
             //double maxPrice = ChartData.Max(m => m.HighPrice);
             //double minPrice = ChartData.Min(m => m.LowPrice);
             //maxPrice = maxPrice + SpaceMaxMin;
@@ -409,5 +418,40 @@ namespace OM.Vikala.Controls.Charts
             chart.Update();
         }
         #endregion
+
+        private string getDiceChar(A_HLOC item)
+        {
+            //if (n == 1) return "⚀";
+            //if (n == 2) return "⚁";
+            //if (n == 3) return "⚂";
+            //if (n == 4) return "⚃";
+            //if (n == 5) return "⚄";
+            //if (n == 6) return "⚅";
+            //❶❷❸❹❺❻❼❽❾❿
+            //➀➁➂➃➄➅➆➇➈➉
+
+            if (item.DiceNum == 1 && item.PlusMinusType == PlusMinusTypeEnum.양) return "➀";
+            if (item.DiceNum == 2 && item.PlusMinusType == PlusMinusTypeEnum.양) return "➁";
+            if (item.DiceNum == 3 && item.PlusMinusType == PlusMinusTypeEnum.양) return "➂";
+            if (item.DiceNum == 4 && item.PlusMinusType == PlusMinusTypeEnum.양) return "➃";
+            if (item.DiceNum == 5 && item.PlusMinusType == PlusMinusTypeEnum.양) return "➄";
+            if (item.DiceNum == 6 && item.PlusMinusType == PlusMinusTypeEnum.양) return "➅";
+
+            if (item.DiceNum == 1 && item.PlusMinusType == PlusMinusTypeEnum.음) return "❶";
+            if (item.DiceNum == 2 && item.PlusMinusType == PlusMinusTypeEnum.음) return "❷";
+            if (item.DiceNum == 3 && item.PlusMinusType == PlusMinusTypeEnum.음) return "❸";
+            if (item.DiceNum == 4 && item.PlusMinusType == PlusMinusTypeEnum.음) return "❹";
+            if (item.DiceNum == 5 && item.PlusMinusType == PlusMinusTypeEnum.음) return "❺";
+            if (item.DiceNum == 6 && item.PlusMinusType == PlusMinusTypeEnum.음) return "❻";
+
+            if (item.DiceNum == 1 && item.PlusMinusType == PlusMinusTypeEnum.무) return "◆";
+            if (item.DiceNum == 2 && item.PlusMinusType == PlusMinusTypeEnum.무) return "◆";
+            if (item.DiceNum == 3 && item.PlusMinusType == PlusMinusTypeEnum.무) return "◆";
+            if (item.DiceNum == 4 && item.PlusMinusType == PlusMinusTypeEnum.무) return "◆";
+            if (item.DiceNum == 5 && item.PlusMinusType == PlusMinusTypeEnum.무) return "◆";
+            if (item.DiceNum == 6 && item.PlusMinusType == PlusMinusTypeEnum.무) return "◆";
+
+            return "";
+        }
     }
 }

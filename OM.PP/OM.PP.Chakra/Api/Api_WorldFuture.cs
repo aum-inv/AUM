@@ -72,42 +72,42 @@ namespace OM.PP.XingApp.Ex.Api
                     else if (gubun == "5M") resolution = "5";
                     else if (gubun == "30M") resolution = "30";
 
-                    Int32 from = (Int32)(DateTime.UtcNow.AddYears(-1).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                    Int32 from = (Int32)(DateTime.UtcNow.AddYears(-2).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                     Int32 to = (Int32)(DateTime.UtcNow.AddDays(1).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
 
                     if (gubun == "M" || gubun == "1M")
                     {
-                        from = (Int32)(DateTime.UtcNow.AddHours(-5).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                        from = (Int32)(DateTime.UtcNow.AddDays(-1).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                         to = (Int32)(DateTime.UtcNow.AddDays(1).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                     }
                     else if (gubun == "5M")
                     {
-                        from = (Int32)(DateTime.UtcNow.AddDays(-1).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                        from = (Int32)(DateTime.UtcNow.AddDays(-5).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                         to = (Int32)(DateTime.UtcNow.AddDays(1).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                     }
                     else if (gubun == "30M")
                     {
-                        from = (Int32)(DateTime.UtcNow.AddDays(-5).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                        from = (Int32)(DateTime.UtcNow.AddMonths(-1).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                         to = (Int32)(DateTime.UtcNow.AddDays(1).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                     }
                     else if (gubun == "H" || gubun == "1H")
                     {
-                        from = (Int32)(DateTime.UtcNow.AddDays(-7).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                        from = (Int32)(DateTime.UtcNow.AddMonths(-2).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                         to = (Int32)(DateTime.UtcNow.AddDays(1).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                     }
                     else if (gubun == "2H")
                     {
-                        from = (Int32)(DateTime.UtcNow.AddMonths(-1).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                        from = (Int32)(DateTime.UtcNow.AddMonths(-4).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                         to = (Int32)(DateTime.UtcNow.AddDays(1).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                     }
                     else if (gubun == "4H")
                     {
-                        from = (Int32)(DateTime.UtcNow.AddMonths(-2).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                        from = (Int32)(DateTime.UtcNow.AddMonths(-8).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                         to = (Int32)(DateTime.UtcNow.AddDays(1).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                     }
                     else if (gubun == "W")
                     {
-                        from = (Int32)(DateTime.UtcNow.AddYears(-2).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                        from = (Int32)(DateTime.UtcNow.AddYears(-5).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                         to = (Int32)(DateTime.UtcNow.AddDays(1).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                     }
                     else if (gubun == "M")

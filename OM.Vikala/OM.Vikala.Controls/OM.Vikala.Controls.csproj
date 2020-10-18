@@ -66,6 +66,12 @@
     <Compile Include="Charts\ChakraChart.Designer.cs">
       <DependentUpon>ChakraChart.cs</DependentUpon>
     </Compile>
+    <Compile Include="Charts\AtmanChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Charts\AtmanChart.Designer.cs">
+      <DependentUpon>AtmanChart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Charts\WisdomCandleChart.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -247,6 +253,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Charts\ChakraChart.resx">
       <DependentUpon>ChakraChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Charts\AtmanChart.resx">
+      <DependentUpon>AtmanChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Charts\WisdomCandleChart.resx">
       <DependentUpon>WisdomCandleChart.cs</DependentUpon>

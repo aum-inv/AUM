@@ -85,10 +85,10 @@ namespace OM.PP.Chakra
                 ClosePrice = sourceData.ClosePrice;
                 DTime = sourceData.DTime;
 
-                t_openAvg = (Single)sourceDataArray.Average(t => t.OpenPrice);
-                t_closeAvg = (Single)sourceDataArray.Average(t => t.ClosePrice);
-                t_highAvg = (Single)sourceDataArray.Average(t => t.HighPrice);
-                t_lowAvg = (Single)sourceDataArray.Average(t => t.LowPrice);
+                t_openAvg = OpenPriceAvg = (Single)sourceDataArray.Average(t => t.OpenPrice);
+                t_closeAvg = ClosePriceAvg =  (Single)sourceDataArray.Average(t => t.ClosePrice);
+                t_highAvg = HighPriceAvg = (Single)sourceDataArray.Average(t => t.HighPrice);
+                t_lowAvg = LowPriceAvg = (Single)sourceDataArray.Average(t => t.LowPrice);
 
                 t_quantumAvg = (Single)sourceDataArray.Average(t => t.QuantumBasePrice);
                 t_quantumHighAvg = (Single)sourceDataArray.Average(t => t.QuantumHighPrice);

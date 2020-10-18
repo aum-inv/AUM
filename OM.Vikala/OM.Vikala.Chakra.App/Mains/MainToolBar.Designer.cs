@@ -52,6 +52,8 @@
             this.tsb_ANode = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.tsb_TimeSpace = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsb_Atman = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.tsb_MA1 = new System.Windows.Forms.ToolStripButton();
@@ -61,6 +63,8 @@
             this.tsbAutoLoad = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.tsbHidden = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
             this.tsMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,6 +80,8 @@
             this.tsbBottom,
             this.toolStripSeparator5,
             this.tsbExit,
+            this.toolStripSeparator14,
+            this.tsbHidden,
             this.toolStripSeparator3,
             this.toolStripSeparator1,
             this.tsb_Atom,
@@ -91,6 +97,8 @@
             this.tsb_ANode,
             this.toolStripSeparator12,
             this.tsb_TimeSpace,
+            this.toolStripSeparator6,
+            this.tsb_Atman,
             this.toolStripSeparator2,
             this.toolStripSeparator13,
             this.tsb_MA1,
@@ -310,6 +318,25 @@
             this.tsb_TimeSpace.ToolTipText = "비교챠트";
             this.tsb_TimeSpace.Click += new System.EventHandler(this.tsb_TimeSpace_Click);
             // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(32, 6);
+            // 
+            // tsb_Atman
+            // 
+            this.tsb_Atman.AutoSize = false;
+            this.tsb_Atman.BackColor = System.Drawing.Color.Purple;
+            this.tsb_Atman.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsb_Atman.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold);
+            this.tsb_Atman.ForeColor = System.Drawing.Color.White;
+            this.tsb_Atman.ImageTransparentColor = System.Drawing.Color.White;
+            this.tsb_Atman.Name = "tsb_Atman";
+            this.tsb_Atman.Size = new System.Drawing.Size(30, 30);
+            this.tsb_Atman.Text = "아트";
+            this.tsb_Atman.ToolTipText = "비교챠트";
+            this.tsb_Atman.Click += new System.EventHandler(this.tsb_Atman_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -385,6 +412,25 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // tsbHidden
+            // 
+            this.tsbHidden.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbHidden.AutoSize = false;
+            this.tsbHidden.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.tsbHidden.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbHidden.Image = ((System.Drawing.Image)(resources.GetObject("tsbHidden.Image")));
+            this.tsbHidden.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbHidden.Name = "tsbHidden";
+            this.tsbHidden.Size = new System.Drawing.Size(30, 30);
+            this.tsbHidden.Text = "히든";
+            this.tsbHidden.Click += new System.EventHandler(this.tsbHidden_Click);
+            // 
+            // toolStripSeparator14
+            // 
+            this.toolStripSeparator14.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator14.Name = "toolStripSeparator14";
+            this.toolStripSeparator14.Size = new System.Drawing.Size(32, 6);
+            // 
             // MainToolBar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -435,5 +481,9 @@
         private System.Windows.Forms.ToolStripButton tsbAutoLoad;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripButton tsb_Atman;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripButton tsbHidden;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
     }
 }

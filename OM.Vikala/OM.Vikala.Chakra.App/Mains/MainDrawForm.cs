@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -352,6 +353,23 @@ namespace OM.Vikala.Chakra.App.Mains
             {
             }           
         }
+
+        private void tsbPrint_Click(object sender, EventArgs e)
+        {
+            if (printDialog1.ShowDialog() == DialogResult.OK)
+            {               
+               pd.Print();
+            }
+            pd.Dispose();
+        }
+
+        private void pd_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            Bitmap bmp = new Bitmap(pnlContent.Width, pnlContent.Height);
+            pnlContent.DrawToBitmap(bmp, new Rectangle(0, 0, pnlContent.Width, pnlContent.Height));
+
+            e.Graphics.DrawImage(bmp, 0, 0);
+        }
         private double FindDistanceToSegmentSquared(Point pt, Point p1, Point p2, out PointF closest)
         {
             float dx = p2.X - p1.X;
@@ -590,6 +608,7 @@ namespace OM.Vikala.Chakra.App.Mains
         {
             IsCanDraw = false;
         }
+       
 
         private void tsb_Pen_Click(object sender, EventArgs e)
         {

@@ -31,9 +31,7 @@ namespace OM.Vikala.Controls.Charts
         public VerticalLineAnnotation xLine = new VerticalLineAnnotation();
 
         Label yLineLabel = new Label();
-        private ContextMenuStrip contextMenuStrip1;
         private System.ComponentModel.IContainer components;
-        private ToolStripMenuItem dRAWLINEToolStripMenuItem;
         Label xLineLabel = new Label();
         public int SelectedTrackBarValue
         {
@@ -309,17 +307,18 @@ namespace OM.Vikala.Controls.Charts
                 }
             }
 
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea = chart.ChartAreas[0];
+            foreach (var ca in chart.ChartAreas)
+            {
+                if (TimeInterval == Lib.Base.Enums.TimeIntervalEnum.Month
+                    || TimeInterval == Lib.Base.Enums.TimeIntervalEnum.Week
+                    || TimeInterval == Lib.Base.Enums.TimeIntervalEnum.Day)
+                    ca.AxisX.LabelStyle.Format = "yy/MM/dd";
+                else
+                    ca.AxisX.LabelStyle.Format = "MM/dd HH:mm";
 
-            if (TimeInterval == Lib.Base.Enums.TimeIntervalEnum.Month
-                || TimeInterval == Lib.Base.Enums.TimeIntervalEnum.Week
-                || TimeInterval == Lib.Base.Enums.TimeIntervalEnum.Day)
-                chartArea.AxisX.LabelStyle.Format = "yy/MM/dd";                   
-            else
-                chartArea.AxisX.LabelStyle.Format = "MM/dd HH:mm";
-            
-            chartArea.AxisY2.LabelStyle.Format = "{N" + RoundLength + "}";
-            chartArea.AxisY.LabelStyle.Format = "{N" + RoundLength + "}";
+                ca.AxisY2.LabelStyle.Format = "{N" + RoundLength + "}";
+                ca.AxisY.LabelStyle.Format = "{N" + RoundLength + "}";
+            }
         }
         public virtual void SetYFormat(string format)
         {
@@ -525,37 +524,13 @@ namespace OM.Vikala.Controls.Charts
         }
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.dRAWLINEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dRAWLINEToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
-            // 
-            // dRAWLINEToolStripMenuItem
-            // 
-            this.dRAWLINEToolStripMenuItem.Name = "dRAWLINEToolStripMenuItem";
-            this.dRAWLINEToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.dRAWLINEToolStripMenuItem.Text = "DRAW LINE";
-            this.dRAWLINEToolStripMenuItem.Click += new System.EventHandler(this.dRAWLINEToolStripMenuItem_Click);
             // 
             // BaseChartControl
             // 
             this.Name = "BaseChartControl";
             this.Size = new System.Drawing.Size(1083, 749);
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
-
-        }
-
-        private void dRAWLINEToolStripMenuItem_Click(object sender, EventArgs e)
-        {
 
         }
     }
