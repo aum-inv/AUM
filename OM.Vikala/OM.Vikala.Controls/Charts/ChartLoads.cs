@@ -10,6 +10,60 @@ namespace OM.Vikala.Controls.Charts
 {
     public static class ChartDataLoads
     {
+        #region BuySellLineChart
+        public static void loadDataAndApply(this BuySellLineChart c
+           , string itemCode           
+           , List<S_CandleItemData> sourceDataSub1
+           , List<S_CandleItemData> sourceDataSub2
+           , List<S_CandleItemData> sourceDataSub3
+           , List<S_CandleItemData> sourceDataSub4
+           , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+           , int itemCnt = 7)
+        {
+
+            try
+            {               
+                List<T_QuantumItemData> transformedDataSub1 = new List<T_QuantumItemData>();
+                for (int i = itemCnt; i <= sourceDataSub1.Count; i++)
+                {
+                    T_QuantumItemData transData = new T_QuantumItemData(sourceDataSub1[i - 1], sourceDataSub1.GetRange(i - itemCnt, itemCnt));
+                    transData.Transform();
+                    transformedDataSub1.Add(transData);
+                }
+
+                List<T_QuantumItemData> transformedDataSub2 = new List<T_QuantumItemData>();
+                for (int i = itemCnt; i <= sourceDataSub2.Count; i++)
+                {
+                    T_QuantumItemData transData = new T_QuantumItemData(sourceDataSub2[i - 1], sourceDataSub2.GetRange(i - itemCnt, itemCnt));
+                    transData.Transform();
+                    transformedDataSub2.Add(transData);
+                }
+
+                List<T_QuantumItemData> transformedDataSub3 = new List<T_QuantumItemData>();
+                for (int i = itemCnt; i <= sourceDataSub3.Count; i++)
+                {
+                    T_QuantumItemData transData = new T_QuantumItemData(sourceDataSub3[i - 1], sourceDataSub3.GetRange(i - itemCnt, itemCnt));
+                    transData.Transform();
+                    transformedDataSub3.Add(transData);
+                }
+
+                List<T_QuantumItemData> transformedDataSub4 = new List<T_QuantumItemData>();
+                for (int i = itemCnt; i <= sourceDataSub4.Count; i++)
+                {
+                    T_QuantumItemData transData = new T_QuantumItemData(sourceDataSub4[i - 1], sourceDataSub4.GetRange(i - itemCnt, itemCnt));
+                    transData.Transform();
+                    transformedDataSub4.Add(transData);
+                }
+
+                c.LoadData(itemCode, transformedDataSub1, transformedDataSub2, transformedDataSub3, transformedDataSub4, timeInterval);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+        }
+        #endregion
+
         #region AtmanChart
         public static void loadDataAndApply(this AtmanChart c
            , string itemCode
@@ -1031,6 +1085,19 @@ namespace OM.Vikala.Controls.Charts
             if (c is ANodeLineChart) ((ANodeLineChart)c).loadDataAndApply(itemCode, sourceDatas, sourceDatasSub1, sourceDatasSub2, timeInterval, itemsCnt);
             if (c is AtmanChart) ((AtmanChart)c).loadDataAndApply(itemCode, sourceDatas, sourceDatasSub1, sourceDatasSub2, timeInterval, itemsCnt);
         }
-        
+        public static void LoadDataAndApply(this BaseChartControl c
+           , string itemCode
+           , List<S_CandleItemData> sourceDatasSub1
+           , List<S_CandleItemData> sourceDatasSub2
+           , List<S_CandleItemData> sourceDatasSub3
+           , List<S_CandleItemData> sourceDatasSub4
+           , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day
+           , int itemsCnt = 9)
+        {
+            if (sourceDatasSub1.Count == 0) return;
+            itemsCnt = 9;
+            if (c is BuySellLineChart) ((BuySellLineChart)c).loadDataAndApply(itemCode, sourceDatasSub1, sourceDatasSub2, sourceDatasSub3, sourceDatasSub4, timeInterval, itemsCnt);
+            
+        }
     }
 }

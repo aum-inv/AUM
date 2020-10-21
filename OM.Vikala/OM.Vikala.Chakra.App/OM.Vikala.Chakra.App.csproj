@@ -236,6 +236,12 @@
     <Compile Include="Mains\ToolbarChartForms\AtmanChartForm.Designer.cs">
       <DependentUpon>AtmanChartForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mains\ToolbarChartForms\BuySellLineChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mains\ToolbarChartForms\BuySellLineChartForm.Designer.cs">
+      <DependentUpon>BuySellLineChartForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mains\ToolbarChartForms\ComparedCandleChartForm2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -442,6 +448,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mains\ToolbarChartForms\AtmanChartForm.resx">
       <DependentUpon>AtmanChartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mains\ToolbarChartForms\BuySellLineChartForm.resx">
+      <DependentUpon>BuySellLineChartForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mains\ToolbarChartForms\ComparedCandleChartForm2.resx">
       <DependentUpon>ComparedCandleChartForm2.cs</DependentUpon>

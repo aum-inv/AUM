@@ -150,7 +150,12 @@ namespace OM.Vikala.Chakra.App.Mains
             f.Text = "ATMAN INV. F ATMAN CHART";
             f.Show();
         }
-
+        private void tsb_BS_Click(object sender, EventArgs e)
+        {
+            var f = new ToolbarChartForms.BuySellLineChartForm();
+            f.Text = "ATMAN INV. F BUYSELL LINE CHART";
+            f.Show();
+        }
         private void tsb_SYN_Click(object sender, EventArgs e)
         {
             List<Form> forms = new List<Form>();
@@ -264,6 +269,8 @@ namespace OM.Vikala.Chakra.App.Mains
         {
             this.WindowState = FormWindowState.Minimized;
         }
+
+        
         //private void tsb_Minimize_Click(object sender, EventArgs e)
         //{
         //    foreach (var f in lstWindows)

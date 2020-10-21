@@ -103,10 +103,10 @@ namespace OM.Atman.Chakra.App
                     form = new AtmanKospiAI2Form();
                     break;
                 case "스마트종목파인더-1":
-                    form = new FinderForms.AtmanKRItemAIForm();
+                    form = new FinderForms.AtmanKRItemAIForm2();
                     break;
                 case "스마트종목파인더-2":
-                    form = new FinderForms.AtmanKRItemFinderByVolRankForm();
+                    form = new FinderForms.AtmanKRItemFinderByVolRankForm2();
                     break;
                 case "픽업된종목관리":
                     form = new FinderForms.AtmanKRPickItemForm();

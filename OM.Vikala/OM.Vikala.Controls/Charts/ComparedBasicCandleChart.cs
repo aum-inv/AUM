@@ -153,7 +153,7 @@ namespace OM.Vikala.Controls.Charts
                 //chart.Series[1].Points.AddXY(smart.DTime, smart.SpaceTotalChangeRate);
                 chart.Series[1].Points.AddXY(smart.DTime, smart.Variance_ChartPrice2);
                 chart.Series[2].Points.AddXY(wisdom.DTime, wisdom.Variance_ChartPrice);
-                chart.Series[3].Points.AddXY(wisdom.DTime, smart.Variance_ChartPrice);
+                chart.Series[3].Points.AddXY(wisdom.DTime, smart.Variance_ChartPrice1);
 
                 chart.Series[4].Points.AddXY(item2.DTime, item2.HighPrice, item2.LowPrice, item2.OpenPrice, item2.ClosePrice);
                
@@ -175,12 +175,12 @@ namespace OM.Vikala.Controls.Charts
                 }
               
 
-                if (preVariancePrice3 < preVariancePrice2 && wisdom.Variance_ChartPrice < smart.Variance_ChartPrice)
+                if (preVariancePrice3 < preVariancePrice2 && wisdom.Variance_ChartPrice < smart.Variance_ChartPrice1)
                 {
                     chart.Series[3].Points[idx].LabelForeColor = Color.Coral;
                     chart.Series[3].Points[idx].Label = "▲";
                 }
-                else if (preVariancePrice3 > preVariancePrice2 && wisdom.Variance_ChartPrice > smart.Variance_ChartPrice)
+                else if (preVariancePrice3 > preVariancePrice2 && wisdom.Variance_ChartPrice > smart.Variance_ChartPrice1)
                 {
                     chart.Series[3].Points[idx].LabelForeColor = Color.Lime;
                     chart.Series[3].Points[idx].Label = "▼";
@@ -188,7 +188,7 @@ namespace OM.Vikala.Controls.Charts
 
                 preVariancePrice = smart.Variance_ChartPrice2;
                 preVariancePrice2 = wisdom.Variance_ChartPrice;
-                preVariancePrice3 = smart.Variance_ChartPrice;
+                preVariancePrice3 = smart.Variance_ChartPrice1;
 
                 //if (preVariancePrice2 < wisdom.Variance_ChartPrice)
                 //{

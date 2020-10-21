@@ -22,6 +22,10 @@ namespace OM.Vikala.Controls.Charts
         {
             get;
         } = "";
+        public string SelectedPType
+        {
+            get; set;
+        } = "";
 
         private Chart chart;
         private HScrollBar hScrollBar;

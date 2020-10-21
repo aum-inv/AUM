@@ -37,6 +37,8 @@
             this.tsbBottom = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbExit = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbHidden = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsb_Atom = new System.Windows.Forms.ToolStripButton();
@@ -63,8 +65,6 @@
             this.tsbAutoLoad = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.tsbHidden = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
             this.tsMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -178,6 +178,25 @@
             this.tsbExit.Text = "Ｘ";
             this.tsbExit.ToolTipText = "종료";
             this.tsbExit.Click += new System.EventHandler(this.toolStripButton5_Click);
+            // 
+            // toolStripSeparator14
+            // 
+            this.toolStripSeparator14.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator14.Name = "toolStripSeparator14";
+            this.toolStripSeparator14.Size = new System.Drawing.Size(32, 6);
+            // 
+            // tsbHidden
+            // 
+            this.tsbHidden.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbHidden.AutoSize = false;
+            this.tsbHidden.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.tsbHidden.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbHidden.Image = ((System.Drawing.Image)(resources.GetObject("tsbHidden.Image")));
+            this.tsbHidden.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbHidden.Name = "tsbHidden";
+            this.tsbHidden.Size = new System.Drawing.Size(30, 30);
+            this.tsbHidden.Text = "히든";
+            this.tsbHidden.Click += new System.EventHandler(this.tsbHidden_Click);
             // 
             // toolStripSeparator3
             // 
@@ -411,25 +430,6 @@
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // tsbHidden
-            // 
-            this.tsbHidden.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbHidden.AutoSize = false;
-            this.tsbHidden.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.tsbHidden.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbHidden.Image = ((System.Drawing.Image)(resources.GetObject("tsbHidden.Image")));
-            this.tsbHidden.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbHidden.Name = "tsbHidden";
-            this.tsbHidden.Size = new System.Drawing.Size(30, 30);
-            this.tsbHidden.Text = "히든";
-            this.tsbHidden.Click += new System.EventHandler(this.tsbHidden_Click);
-            // 
-            // toolStripSeparator14
-            // 
-            this.toolStripSeparator14.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripSeparator14.Name = "toolStripSeparator14";
-            this.toolStripSeparator14.Size = new System.Drawing.Size(32, 6);
             // 
             // MainToolBar
             // 

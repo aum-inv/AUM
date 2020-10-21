@@ -1,6 +1,6 @@
 ﻿namespace OM.Vikala.Controls.Charts
 {
-    partial class ComparedBasicCandleChart
+    partial class BuySellLineChart
     {
         /// <summary> 
         /// 필수 디자이너 변수입니다.
@@ -33,9 +33,6 @@
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pnlScroll = new System.Windows.Forms.Panel();
             this.hScrollBar = new System.Windows.Forms.HScrollBar();
@@ -111,72 +108,41 @@
             this.chart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chart.Name = "chart";
             this.chart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            series1.BorderColor = System.Drawing.Color.Transparent;
             series1.ChartArea = "chartArea";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Candlestick;
-            series1.Color = System.Drawing.Color.Black;
-            series1.CustomProperties = "PriceDownColor=Blue, PriceUpColor=Red";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Color = System.Drawing.Color.Red;
+            series1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             series1.IsXValueIndexed = true;
-            series1.Name = "chartSerie";
-            series1.ShadowColor = System.Drawing.Color.Transparent;
+            series1.LabelBorderWidth = 2;
+            series1.MarkerColor = System.Drawing.Color.Red;
+            series1.Name = "lineC1";
             series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             series1.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
-            series1.YValuesPerPoint = 4;
             series2.ChartArea = "chartArea";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Color = System.Drawing.Color.Black;
-            series2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            series2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             series2.IsXValueIndexed = true;
-            series2.LabelBorderWidth = 2;
-            series2.MarkerColor = System.Drawing.Color.Red;
-            series2.Name = "cs_Basic";
+            series2.MarkerColor = System.Drawing.Color.Blue;
+            series2.Name = "lineC2";
             series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            series2.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             series3.ChartArea = "chartArea";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series3.Color = System.Drawing.Color.Red;
-            series3.Enabled = false;
+            series3.Color = System.Drawing.Color.Blue;
             series3.IsXValueIndexed = true;
-            series3.MarkerColor = System.Drawing.Color.Blue;
-            series3.Name = "cs_Basic2";
+            series3.Name = "lineC3";
             series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             series4.ChartArea = "chartArea";
             series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series4.Color = System.Drawing.Color.Blue;
+            series4.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             series4.IsXValueIndexed = true;
-            series4.Name = "cs_Basic3";
+            series4.Name = "lineC4";
             series4.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-            series5.BorderColor = System.Drawing.Color.Transparent;
-            series5.ChartArea = "chartArea";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Candlestick;
-            series5.Color = System.Drawing.Color.Black;
-            series5.CustomProperties = "PriceDownColor=Black, PriceUpColor=Black";
-            series5.IsXValueIndexed = true;
-            series5.Name = "Series4";
-            series5.ShadowColor = System.Drawing.Color.Transparent;
-            series5.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-            series5.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
-            series5.YValuesPerPoint = 4;
-            series6.ChartArea = "chartArea";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series6.Color = System.Drawing.Color.Fuchsia;
-            series6.IsXValueIndexed = true;
-            series6.Name = "Series5";
-            series6.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-            series6.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
-            series7.ChartArea = "chartArea";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series7.Color = System.Drawing.Color.Maroon;
-            series7.IsXValueIndexed = true;
-            series7.Name = "Series6";
-            series7.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-            series7.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
+            series4.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             this.chart.Series.Add(series1);
             this.chart.Series.Add(series2);
             this.chart.Series.Add(series3);
             this.chart.Series.Add(series4);
-            this.chart.Series.Add(series5);
-            this.chart.Series.Add(series6);
-            this.chart.Series.Add(series7);
             this.chart.Size = new System.Drawing.Size(1119, 586);
             this.chart.TabIndex = 2;
             this.chart.PostPaint += new System.EventHandler<System.Windows.Forms.DataVisualization.Charting.ChartPaintEventArgs>(this.chart_PostPaint);
@@ -216,7 +182,7 @@
             this.trackBar.TabIndex = 5;
             this.trackBar.ValueChanged += new System.EventHandler(this.trackBar_ValueChanged);
             // 
-            // ComparedBasicCandleChart
+            // BuySellLineChart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -224,7 +190,7 @@
             this.Controls.Add(this.pnlScroll);
             this.DoubleBuffered = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "ComparedBasicCandleChart";
+            this.Name = "BuySellLineChart";
             this.Size = new System.Drawing.Size(1119, 600);
             ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
             this.pnlScroll.ResumeLayout(false);

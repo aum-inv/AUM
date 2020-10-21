@@ -81,9 +81,7 @@ namespace OM.Vikala.Chakra.App.Mains
             this.Load += UserToolStrip_Load;
 
             MainFormToolBarEvents.Instance.ManualReloadHandler += Instance_ManualReloadHandler;
-            MainFormToolBarEvents.Instance.ItemSelectedChangedHandler += Instance_ItemSelectedChangedHandler;
-
-              
+            MainFormToolBarEvents.Instance.ItemSelectedChangedHandler += Instance_ItemSelectedChangedHandler;        
         }
         private void setTimeIntervalButton()
         {
@@ -114,12 +112,14 @@ namespace OM.Vikala.Chakra.App.Mains
             }
             else if (SharedData.SelectedType == "해외선물")
             {                               
-                tsbTime03.Visible =               
+                tsbTime03.Visible =
+                tsbTime12.Visible =
                 tsbTime13.Visible =
-                   tsbTime15.Visible =
-                   tsbTime16.Visible =
-                   tsbTime17.Visible =
-                   tsbTime18.Visible = false;
+                tsbTime14.Visible =
+                tsbTime15.Visible =
+                tsbTime16.Visible =
+                tsbTime17.Visible =
+                tsbTime18.Visible = false;
             }
             else if (SharedData.SelectedType == "국내업종")
             {
@@ -563,12 +563,14 @@ namespace OM.Vikala.Chakra.App.Mains
         private void tscbType_SelectedIndexChanged(object sender, EventArgs e)
         {
             SharedData.SelectedType = tscbType.SelectedItem.ToString();
+
+            (this.ParentForm as BaseForm).SelectedType = SharedData.SelectedType;
+
             clearItems();
             setItems();
             clearTimeIntervalButton();
             setTimeIntervalButton();
             setInterval();
-
         }
     }
 

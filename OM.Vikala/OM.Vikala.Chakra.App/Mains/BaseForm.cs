@@ -53,6 +53,13 @@ namespace OM.Vikala.Chakra.App.Mains
                 return ItemCodeSet.GetItemRoundNum(SelectedItemData.Code);
             }
         }
+        
+        public string SelectedType
+        {
+            get;
+            set;
+        } = "";
+
         public AverageTypeEnum AverageType
         {
             get; set;

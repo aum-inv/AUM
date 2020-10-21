@@ -116,12 +116,13 @@ namespace OM.Vikala.Controls.Charts
                 preWisdomData = wisdomData;
             }
 
+            double preSPrice1 = 0;
             double preSPrice2 = 0;
-            double preWPrice= 0;
-            double preSPrice = 0;
-            double preSBPrice2 = 0;
-            double preWBPrice = 0;
-            double preSBPrice = 0;
+            double preSPrice3 = 0;
+
+            double preMassAvg = 0;
+            double preQuantumAvg = 0;
+
             for (int i = 4; i < ChartData.Count; i++)
             {
                 var item = ChartData[i];
@@ -135,7 +136,7 @@ namespace OM.Vikala.Controls.Charts
                 int idx = chart.Series["candleBasic"].Points.AddXY(item.DTime, item.HighPrice, item.LowPrice, item.OpenPrice, item.ClosePrice);
                 string diceChar = getDiceChar(itemAvg);
                 chart.Series["candleBasic"].Points[idx].Label = diceChar;
-                if (diceChar == "◆") 
+                if (diceChar == "★") 
                     chart.Series["candleBasic"].Points[idx].LabelForeColor = Color.Red;
 
                 chart.Series["lineMess"].Points.AddXY(itemAvg.DTime, itemAvg.T_MassAvg);
@@ -146,61 +147,151 @@ namespace OM.Vikala.Controls.Charts
                 chart.Series["candleAverage"].Points.AddXY(itemAvg.DTime, itemAvg.HighPrice, itemAvg.LowPrice, itemAvg.OpenPrice, itemAvg.ClosePrice);
                 chart.Series["candleBAverage"].Points.AddXY(itemAvg2.DTime, itemAvg2.HighPrice, itemAvg2.LowPrice, itemAvg2.OpenPrice, itemAvg2.ClosePrice);
 
-                chart.Series["lineSmartEnergy2"].Points.AddXY(smart.DTime, smart.Variance_ChartPrice2);
-                chart.Series["lineWisdomEnergy"].Points.AddXY(wisdom.DTime, wisdom.Variance_ChartPrice);
-                chart.Series["lineSmartEnergy"].Points.AddXY(smart.DTime, smart.Variance_ChartPrice);
+                chart.Series["lineSmartEnergy1"].Points.AddXY(smart.DTime, smart.Variance_ChartPrice1);
+                chart.Series["lineSmartEnergy2"].Points.AddXY(wisdom.DTime, smart.Variance_ChartPrice2);
+                chart.Series["lineSmartEnergy3"].Points.AddXY(smart.DTime, smart.Variance_ChartPrice3);
 
                 chart.Series["lineSmartBEnergy2"].Points.AddXY(smartB.DTime, smartB.Variance_ChartPrice2);
                 chart.Series["lineWisdomBEnergy"].Points.AddXY(wisdomB.DTime, wisdomB.Variance_ChartPrice);
-                chart.Series["lineSmartBEnergy"].Points.AddXY(smartB.DTime, smartB.Variance_ChartPrice);
+                chart.Series["lineSmartBEnergy"].Points.AddXY(smartB.DTime, smartB.Variance_ChartPrice1);
 
-                if (preSPrice2 < preWPrice && wisdom.Variance_ChartPrice < smart.Variance_ChartPrice2)
+                var bitem = ChartData[i - 1];
+                chart.Series["stackHL"].Points.AddXY(item.DTime, item.TotalLength);
+                chart.Series["stackHL2"].Points.AddXY(item.DTime, (bitem.TotalLength - item.TotalLength) <=0 ? 0 : (bitem.TotalLength - item.TotalLength));
+
+                if (SelectedPType == "국내지수")
                 {
-                    chart.Series["lineSmartEnergy2"].Points[idx].LabelForeColor = Color.Red;
-                    chart.Series["lineSmartEnergy2"].Points[idx].Label = "▲";
+                    if (preSPrice1 > preSPrice2 && preSPrice2 > preSPrice3)
+                    {
+                        if (smart.Variance_ChartPrice1 > smart.Variance_ChartPrice2 && smart.Variance_ChartPrice2 > smart.Variance_ChartPrice3)
+                        {
+                            if (preSPrice3 < smart.Variance_ChartPrice3)
+                            {
+                                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Red;
+                                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▲";    
+                            }
+                        }
+                    }
+                    if (preSPrice1 < preSPrice2 && preSPrice2 < preSPrice3)
+                    {
+                        if (smart.Variance_ChartPrice1 < smart.Variance_ChartPrice2 && smart.Variance_ChartPrice2 < smart.Variance_ChartPrice3)
+                        {
+                            if (preSPrice3 > smart.Variance_ChartPrice3)
+                            {
+                                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Blue;
+                                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▼";                               
+                            }
+                        }
+                    }
                 }
-                else if (preSPrice2 > preWPrice && wisdom.Variance_ChartPrice > smart.Variance_ChartPrice2)
+
+                if (SelectedPType == "해외지수")
                 {
-                    chart.Series["lineSmartEnergy2"].Points[idx].LabelForeColor = Color.Blue;
-                    chart.Series["lineSmartEnergy2"].Points[idx].Label = "▼";
-                }              
-                if (preSPrice < preWPrice && wisdom.Variance_ChartPrice < smart.Variance_ChartPrice)
-                {
-                    chart.Series["lineSmartEnergy"].Points[idx].LabelForeColor = Color.Coral;
-                    chart.Series["lineSmartEnergy"].Points[idx].Label = "▲";
+                    if (preSPrice1 > preSPrice2 && preSPrice2 > preSPrice3)
+                    {
+                        if (smart.Variance_ChartPrice1 > smart.Variance_ChartPrice2 && smart.Variance_ChartPrice2 > smart.Variance_ChartPrice3)
+                        {
+                            if (preSPrice3 < smart.Variance_ChartPrice3)
+                            {
+                                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Red;
+                                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▲";
+                            }
+                        }
+                    }
+                    if (preSPrice1 < preSPrice2 && preSPrice2 < preSPrice3)
+                    {
+                        if (smart.Variance_ChartPrice1 < smart.Variance_ChartPrice2 && smart.Variance_ChartPrice2 < smart.Variance_ChartPrice3)
+                        {
+                            if (preSPrice3 > smart.Variance_ChartPrice3)
+                            {
+                                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Blue;
+                                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▼";
+                            }
+                        }
+                    }
                 }
-                else if (preSPrice > preWPrice && wisdom.Variance_ChartPrice > smart.Variance_ChartPrice)
+                if (SelectedPType == "해외선물")
                 {
-                    chart.Series["lineSmartEnergy"].Points[idx].LabelForeColor = Color.Lime;
-                    chart.Series["lineSmartEnergy"].Points[idx].Label = "▼";
+                    if (preSPrice1 > preSPrice2 && preSPrice2 > preSPrice3)
+                    {
+                        if (preSPrice1 < smart.Variance_ChartPrice1)
+                        {
+                            if (item.HighPrice < itemAvg.T_MassAvg && item.HighPrice < itemAvg.T_QuantumAvg)
+                            {
+                                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Red;
+                                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▲";
+                            }
+                        }
+                    }
+                    if (preSPrice1 < preSPrice2 && preSPrice2 < preSPrice3)
+                    {
+                        if (preSPrice1 > smart.Variance_ChartPrice1)
+                        {
+                            if (item.LowPrice > itemAvg.T_MassAvg && item.LowPrice > itemAvg.T_QuantumAvg)
+                            {
+                                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Blue;
+                                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▼";
+                            }
+                        }
+                    }
                 }
+                if (SelectedPType == "국내업종")
+                {
+                    if (preSPrice1 > preSPrice2 && preSPrice2 > preSPrice3)
+                    {
+                        if (smart.Variance_ChartPrice1 > smart.Variance_ChartPrice2 && smart.Variance_ChartPrice2 > smart.Variance_ChartPrice3)
+                        {
+                            if (preSPrice3 < smart.Variance_ChartPrice3)
+                            {
+                                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Red;
+                                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▲";
+                            }
+                        }
+                    }
+                    if (preSPrice1 < preSPrice2 && preSPrice2 < preSPrice3)
+                    {
+                        if (smart.Variance_ChartPrice1 < smart.Variance_ChartPrice2 && smart.Variance_ChartPrice2 < smart.Variance_ChartPrice3)
+                        {
+                            if (preSPrice3 > smart.Variance_ChartPrice3)
+                            {
+                                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Blue;
+                                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▼";
+                            }
+                        }
+                    }
+                }
+                if (SelectedPType == "국내종목")
+                {
+                    if (preSPrice1 > preSPrice2 && preSPrice2 > preSPrice3)
+                    {
+                        if (smart.Variance_ChartPrice1 > smart.Variance_ChartPrice2 && smart.Variance_ChartPrice2 > smart.Variance_ChartPrice3)
+                        {
+                            if (preSPrice3 < smart.Variance_ChartPrice3)
+                            {
+                                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Red;
+                                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▲";
+                            }
+                        }
+                    }
+                    if (preSPrice1 < preSPrice2 && preSPrice2 < preSPrice3)
+                    {
+                        if (smart.Variance_ChartPrice1 < smart.Variance_ChartPrice2 && smart.Variance_ChartPrice2 < smart.Variance_ChartPrice3)
+                        {
+                            if (preSPrice3 > smart.Variance_ChartPrice3)
+                            {
+                                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Blue;
+                                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▼";
+                            }
+                        }
+                    }
+                }
+
+                preSPrice1 = smart.Variance_ChartPrice1;
                 preSPrice2 = smart.Variance_ChartPrice2;
-                preWPrice = wisdom.Variance_ChartPrice;
-                preSPrice = smart.Variance_ChartPrice;
+                preSPrice3 = smart.Variance_ChartPrice3;
 
-                if (preSBPrice2 < preWBPrice && wisdomB.Variance_ChartPrice < smartB.Variance_ChartPrice2)
-                {
-                    chart.Series["lineSmartBEnergy2"].Points[idx].LabelForeColor = Color.Red;
-                    chart.Series["lineSmartBEnergy2"].Points[idx].Label = "▲";
-                }
-                else if (preSBPrice2 > preWBPrice && wisdomB.Variance_ChartPrice > smartB.Variance_ChartPrice2)
-                {
-                    chart.Series["lineSmartBEnergy2"].Points[idx].LabelForeColor = Color.Blue;
-                    chart.Series["lineSmartBEnergy2"].Points[idx].Label = "▼";
-                }
-                if (preSBPrice < preWBPrice && wisdomB.Variance_ChartPrice < smartB.Variance_ChartPrice)
-                {
-                    chart.Series["lineSmartBEnergy"].Points[idx].LabelForeColor = Color.Coral;
-                    chart.Series["lineSmartBEnergy"].Points[idx].Label = "▲";
-                }
-                else if (preSBPrice > preWBPrice && wisdomB.Variance_ChartPrice > smartB.Variance_ChartPrice)
-                {
-                    chart.Series["lineSmartBEnergy"].Points[idx].LabelForeColor = Color.Lime;
-                    chart.Series["lineSmartBEnergy"].Points[idx].Label = "▼";
-                }
-                preSBPrice2 = smartB.Variance_ChartPrice2;
-                preWBPrice = wisdomB.Variance_ChartPrice;
-                preSBPrice = smartB.Variance_ChartPrice;
+                preMassAvg = itemAvg.T_MassAvg;
+                preQuantumAvg = itemAvg.T_QuantumAvg;
 
                 var dataPoint = chart.Series[0].Points[idx];
                 dataPoint.Tag = item;
@@ -325,22 +416,22 @@ namespace OM.Vikala.Controls.Charts
 
                 maxPrice = viewAvgBLists.Max(m => m.HighPrice);
                 minPrice = viewAvgBLists.Min(m => m.LowPrice);
-                maxPrice = maxPrice + SpaceMaxMin;
-                minPrice = minPrice - SpaceMaxMin;
+                maxPrice = maxPrice + SpaceMaxMin + 1;
+                minPrice = minPrice - SpaceMaxMin - 1;
                 chart.ChartAreas["ca3"].AxisY2.Maximum = maxPrice;
                 chart.ChartAreas["ca3"].AxisY2.Minimum = minPrice;
 
-                maxPrice = viewSmartLists.Max(m => m.Variance_ChartPrice2);
-                minPrice = viewSmartLists.Min(m => m.Variance_ChartPrice2);
-                maxPrice = maxPrice + SpaceMaxMin;
-                minPrice = minPrice - SpaceMaxMin;
+                maxPrice = viewSmartLists.Max(m => m.Variance_ChartPrice3);
+                minPrice = viewSmartLists.Min(m => m.Variance_ChartPrice3);
+                maxPrice = maxPrice + SpaceMaxMin + 1;
+                minPrice = minPrice - SpaceMaxMin - 1;
                 //maxPrice = smartDataList.GetRange(2, smartDataList.Count - 3).Max(m => m.Variance_ChartPrice2);
                 //maxPrice = smartDataList.GetRange(2, smartDataList.Count - 3).Min(m => m.Variance_ChartPrice2);              
                 chart.ChartAreas["ca4"].AxisY2.Maximum = maxPrice;
                 chart.ChartAreas["ca4"].AxisY2.Minimum = minPrice;
 
-                maxPrice = viewSmartBLists.Max(m => m.Variance_ChartPrice2);
-                minPrice = viewSmartBLists.Min(m => m.Variance_ChartPrice2);
+                maxPrice = viewSmartBLists.Max(m => m.Variance_ChartPrice3);
+                minPrice = viewSmartBLists.Min(m => m.Variance_ChartPrice3);
                 maxPrice = maxPrice + SpaceMaxMin;
                 minPrice = minPrice - SpaceMaxMin;
                 //maxPrice = smartBDataList.GetRange(2, smartBDataList.Count - 3).Max(m => m.Variance_ChartPrice2);

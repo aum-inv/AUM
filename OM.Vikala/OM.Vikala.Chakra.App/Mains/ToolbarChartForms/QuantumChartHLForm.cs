@@ -81,14 +81,18 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
             List<S_CandleItemData> sourceDatas = null;
             isLoading = true;
 
-            if (SharedData.SelectedType == "국내업종")
+            string selectedType = this.SelectedType;
+            if (string.IsNullOrEmpty(selectedType))
+                selectedType = SharedData.SelectedType;
+
+            if (selectedType == "국내업종")
             {
                 if (timeInterval == TimeIntervalEnum.Day)
                     sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(itemCode, "2", "0", "500");
                 else if (timeInterval == TimeIntervalEnum.Week)
                     sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(itemCode, "3", "0", "500");
             }
-            else if (SharedData.SelectedType == "국내지수")
+            else if (selectedType == "국내지수")
             {
                 if (timeInterval == TimeIntervalEnum.Day)
                     sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(itemCode, "2", "0", "500");
@@ -105,7 +109,7 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
                 else if (timeInterval == TimeIntervalEnum.Hour_01)
                     sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(itemCode, "1", "60", "500");
             }
-            else if(SharedData.SelectedType == "국내종목")
+            else if(selectedType == "국내종목")
             {
                 if (timeInterval == TimeIntervalEnum.Day)
                     sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(itemCode, "2", "0", "500");
@@ -118,14 +122,14 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
                 else if (timeInterval == TimeIntervalEnum.Hour_01)
                     sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(itemCode, "1", "60", "500");
             }
-            else if (SharedData.SelectedType == "해외지수")
+            else if (selectedType == "해외지수")
             {
                 if (timeInterval == TimeIntervalEnum.Day)
                     sourceDatas = XingContext.Instance.ClientContext.GetWorldIndexSiseData(itemCode, "0");
                 else if (timeInterval == TimeIntervalEnum.Week)
                     sourceDatas = XingContext.Instance.ClientContext.GetWorldIndexSiseData(itemCode, "1");
             }
-            else if (SharedData.SelectedType == "해외선물")
+            else if (selectedType == "해외선물")
             {
                 if (timeInterval == TimeIntervalEnum.Day)
                     sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "D");
