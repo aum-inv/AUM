@@ -7,6 +7,7 @@ using OM.PP.Chakra;
 using OM.PP.Chakra.Ctx;
 using OM.PP.XingApp.Api;
 using OM.PP.XingApp.Config;
+using OM.Upaya.Chakra.Ctx;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -87,7 +88,11 @@ namespace OM.PP.XingApp
             AtmanServerConfigData.IP = ConfigurationManager.AppSettings["AtmanService_IP"];
             AtmanServerConfigData.Port = Convert.ToInt32(ConfigurationManager.AppSettings["AtmanService_Port"]);
             AtmanContext.Instance.OnCreateClient();
-            
+
+            UpayaServerConfigData.IP = ConfigurationManager.AppSettings["UpayaService_IP"];
+            UpayaServerConfigData.Port = Convert.ToInt32(ConfigurationManager.AppSettings["UpayaService_Port"]);
+            UpayaContext.Instance.OnCreateClient();
+
             try
             {
                 XingServerConfigData.IP = ConfigurationManager.AppSettings["XingService_IP"];
@@ -193,6 +198,8 @@ namespace OM.PP.XingApp
         #region XingLoginLogout
         private void XingAppForm_Load(object sender, EventArgs e)
         {
+            cbLogin.SelectedIndex = 1;
+
             session._IXASessionEvents_Event_Login += Session__IXASessionEvents_Event_Login;
             session.Disconnect += Session_Disconnect;
 
@@ -221,6 +228,7 @@ namespace OM.PP.XingApp
             LogWrite("IsAliveServer => " + isAliveServer.ToString());
             bool isSuccess = false;
 
+            
             if (cbLogin.SelectedIndex == 0)
             {
                 isSuccess = session.Login(

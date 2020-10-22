@@ -2,6 +2,7 @@
 using OM.Lib.Base.Enums;
 using OM.Lib.Entity;
 using OM.PP.Chakra.Ctx;
+using OM.Upaya.Chakra.Ctx;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -88,7 +89,7 @@ namespace OM.PP.XingApp.Api
                 {
                     try
                     {
-                        AtmanContext.Instance.ClientContext.SetCurrentPrice(ItemCode, item);
+                        UpayaContext.Instance.ClientContext.SetCurrentPrice(ItemCode, item);
                     }
                     catch (Exception) { }
                 });

@@ -192,6 +192,10 @@
       <Project>{a4ff7895-81a8-459a-adba-a4d7a91995bf}</Project>
       <Name>OM.Atman.Chakra</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\OM.Upaya\OM.Upaya.Chakra\OM.Upaya.Chakra.csproj">
+      <Project>{d5ab1afa-ed35-46ec-ac13-9899ce92202b}</Project>
+      <Name>OM.Upaya.Chakra</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\OM\OM.Lib.Base\OM.Lib.Base.csproj">
       <Project>{1796ffd0-4eaf-4f72-8db2-923345b88c7e}</Project>
       <Name>OM.Lib.Base</Name>

@@ -73,6 +73,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OM.Vikala.ChartTest", "OM.V
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OM.Vikala.Chakra.Daemon", "OM.Vikala\OM.Vikala.Chakra.Daemon\OM.Vikala.Chakra.Daemon.csproj", "{DA10093D-B961-46A2-A0C3-F6F6CA509700}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OM.Upaya.Chakra", "OM.Upaya\OM.Upaya.Chakra\OM.Upaya.Chakra.csproj", "{D5AB1AFA-ED35-46EC-AC13-9899CE92202B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OM.Upaya.Chakra.App", "OM.Upaya\OM.Upaya.Chakra.App\OM.Upaya.Chakra.App.csproj", "{B062FAD8-D764-4678-A061-3E768F1F4B38}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -139,6 +143,14 @@ Global
 		{DA10093D-B961-46A2-A0C3-F6F6CA509700}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA10093D-B961-46A2-A0C3-F6F6CA509700}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA10093D-B961-46A2-A0C3-F6F6CA509700}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5AB1AFA-ED35-46EC-AC13-9899CE92202B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5AB1AFA-ED35-46EC-AC13-9899CE92202B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5AB1AFA-ED35-46EC-AC13-9899CE92202B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5AB1AFA-ED35-46EC-AC13-9899CE92202B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B062FAD8-D764-4678-A061-3E768F1F4B38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B062FAD8-D764-4678-A061-3E768F1F4B38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B062FAD8-D764-4678-A061-3E768F1F4B38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B062FAD8-D764-4678-A061-3E768F1F4B38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -159,10 +171,12 @@ Global
 		{A2DFF7DB-5324-40AC-8447-29EE1A4249D5} = {8372456F-9F33-4F42-A778-8DC3799A0D0D}
 		{D8A2F7E7-A478-49ED-BCAE-296EBCD2BBC0} = {539136A5-A45F-4DD3-B89B-A6212614D9B6}
 		{DA10093D-B961-46A2-A0C3-F6F6CA509700} = {539136A5-A45F-4DD3-B89B-A6212614D9B6}
+		{D5AB1AFA-ED35-46EC-AC13-9899CE92202B} = {46C860CE-4782-4537-AEEC-7F653DCB9CEA}
+		{B062FAD8-D764-4678-A061-3E768F1F4B38} = {46C860CE-4782-4537-AEEC-7F653DCB9CEA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		VisualSVNWorkingCopyRoot = .
 		SolutionGuid = {52E07AD0-FB7F-4B3D-A93D-C27D36E06B4F}
+		VisualSVNWorkingCopyRoot = .
 	EndGlobalSection
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True

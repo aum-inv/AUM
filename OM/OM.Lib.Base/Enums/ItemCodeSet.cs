@@ -36,8 +36,8 @@ namespace OM.Lib.Base.Enums
             , new ItemData(){ Name = "지수-해외-니케이225" , Code = "NII@NI225", SHCode = "NII@NI225", Length = 2, Tick=0.01}
             //, new ItemData(){ Name = "-" , Code = ""}
             //, new ItemData(){ Name = "선물-국내-코스피200" , Code = "KS", Length = 2}
-            , new ItemData(){ Name = "해선-WTI" , Code = "CL", Length = 2, SHCode = "CLJ20", Tick=0.01} //6-20  
-            , new ItemData(){ Name = "해선-NG" , Code = "NG", Length = 3, SHCode = "NGU20", Tick=0.001}//6-29
+            , new ItemData(){ Name = "해선-WTI" , Code = "CL", Length = 2, SHCode = "CLZ20", Tick=0.01} //6-20  
+            //, new ItemData(){ Name = "해선-NG" , Code = "NG", Length = 3, SHCode = "NGU20", Tick=0.001}//6-29
             , new ItemData(){ Name = "해선-GOLD" , Code = "GC", Length = 1, SHCode = "GCZ20", Tick=0.1}//5-29
             , new ItemData(){ Name = "해선-SILVER" , Code = "SI", Length = 3, SHCode = "SIN20", Tick=0.1}//4-29
             , new ItemData(){ Name = "해선-항셍" , Code = "HMH", Length = 0, SHCode = "HMHM20", Tick=1.0} //4-29

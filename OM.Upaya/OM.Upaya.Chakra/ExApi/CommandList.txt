@@ -1,0 +1,7 @@
+﻿#Order
+
+1. 주문
+	ORD:종목명:포지션(1 or 2):수량(1-1000)
+
+2. XingApp Restart And Run
+	APP:

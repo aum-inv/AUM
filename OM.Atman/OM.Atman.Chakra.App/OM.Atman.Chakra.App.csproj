@@ -292,12 +292,6 @@
     <Compile Include="TradeRuleForm.Designer.cs">
       <DependentUpon>TradeRuleForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TradingRule\ThreeFiveRuleForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TradingRule\ThreeFiveRuleForm.Designer.cs">
-      <DependentUpon>ThreeFiveRuleForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="TwoLineRuleForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -478,9 +472,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TradeRuleForm.resx">
       <DependentUpon>TradeRuleForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TradingRule\ThreeFiveRuleForm.resx">
-      <DependentUpon>ThreeFiveRuleForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TwoLineRuleForm.resx">
       <DependentUpon>TwoLineRuleForm.cs</DependentUpon>

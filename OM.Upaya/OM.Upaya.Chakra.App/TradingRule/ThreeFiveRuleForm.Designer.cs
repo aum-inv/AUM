@@ -1,4 +1,4 @@
-﻿namespace OM.Atman.Chakra.App.TradingRule
+﻿namespace OM.Upaya.Chakra.App.TradingRule
 {
     partial class ThreeFiveRuleForm
     {

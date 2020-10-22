@@ -1,0 +1,120 @@
+﻿using OM.Lib.Base;
+using OM.Lib.Base.Utils;
+using OM.Lib.Entity;
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OM.Upaya.Chakra
+{   
+    public abstract class BaseTradeRule
+    {
+        protected LimitedList<double> PriceList = null;
+        
+        public BaseTradeRule(int limit = 6006)
+        {
+            PriceList = new LimitedList<double>(limit);
+        }
+        
+        public int RoundNum
+        {
+            get
+            {
+                return ItemCodeUtil.GetItemCodeRoundNum(ItemCode);
+            }
+        }
+        public abstract string AtmanName { get; }
+        public string ItemCode { get; set; } = "";
+        public double CPrice { get; set; } = 0;
+        public double RPrice { get; set; } = 0;
+        public double BPrice { get; set; } = 0;
+        public double HPrice { get; set; } = 0;
+        public double LPrice { get; set; } = 9999999;
+
+        public string StrategyType { get; set; } = "1";
+        public string PriceType { get; set; } = "0";
+        public bool IsUse { get; set; } = false;
+        public string Position { get; set; } = "1";
+        public int Quantity { get; set; } = 1;
+        public double BuyPrice { get; set; } = 0;
+
+        private bool _IsBuyed = false;
+        public bool IsBuyed
+        {
+            get
+            {
+                return _IsBuyed;
+            }
+            set
+            {
+                _IsBuyed = value;
+
+                if (_IsBuyed)
+                    InitHighLowPrice();
+            }
+        }
+        public double LosscutPrice { get; set; } = 0;
+        public int LosscutPriceTick { get; set; } = 0;
+        public bool IsUseLosscut { get; set; } = false;
+        public bool IsLosscuted { get; set; } = false;
+
+        public double RevenuePrice { get; set; } = 0;
+        public int RevenuePriceTick { get; set; } = 0;
+        public bool IsUseRevenue { get; set; } = false;
+        public bool IsRevenued { get; set; } = false;
+        public TimeSpan ValidTimeSpan { get; set; }
+        public bool IsStoped { get; set; } = true;
+        public bool IsUseBuy { get; set; } = false;
+        public abstract void AnalysisAsync(CurrentPrice price);
+        public abstract void Analysis(CurrentPrice price);
+
+        public abstract void InitRule();
+        public abstract void Close();
+
+        public virtual void InitHighLowPrice()
+        {
+            LPrice = RPrice;
+            HPrice = RPrice;
+        }
+
+        public virtual void SellBuy(string type, string position)
+        {
+            try
+            {
+                if (type == "진입")
+                    ExApi.XingApi.Order(type, ItemCode, position, Quantity.ToString(), CPrice.ToString());
+                else if (type == "청산")
+                    ExApi.XingApi.Order(type, ItemCode, position, Quantity.ToString(), CPrice.ToString(), BuyPrice.ToString());           
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                InitHighLowPrice();
+            }
+        }
+        public virtual void ForceSell()
+        {
+            try
+            {
+                if (!IsBuyed) return;
+
+                string type = "청산";
+                string position = Position == "1" ? "2" : "1";                
+                ExApi.XingApi.Order(type, ItemCode, position, Quantity.ToString(), CPrice.ToString(), BuyPrice.ToString());
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+            }
+        }
+    }
+}

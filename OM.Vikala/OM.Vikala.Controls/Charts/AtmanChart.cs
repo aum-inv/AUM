@@ -159,132 +159,132 @@ namespace OM.Vikala.Controls.Charts
                 chart.Series["stackHL"].Points.AddXY(item.DTime, item.TotalLength);
                 chart.Series["stackHL2"].Points.AddXY(item.DTime, (bitem.TotalLength - item.TotalLength) <=0 ? 0 : (bitem.TotalLength - item.TotalLength));
 
-                if (SelectedPType == "국내지수")
-                {
-                    if (preSPrice1 > preSPrice2 && preSPrice2 > preSPrice3)
-                    {
-                        if (smart.Variance_ChartPrice1 > smart.Variance_ChartPrice2 && smart.Variance_ChartPrice2 > smart.Variance_ChartPrice3)
-                        {
-                            if (preSPrice3 < smart.Variance_ChartPrice3)
-                            {
-                                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Red;
-                                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▲";    
-                            }
-                        }
-                    }
-                    if (preSPrice1 < preSPrice2 && preSPrice2 < preSPrice3)
-                    {
-                        if (smart.Variance_ChartPrice1 < smart.Variance_ChartPrice2 && smart.Variance_ChartPrice2 < smart.Variance_ChartPrice3)
-                        {
-                            if (preSPrice3 > smart.Variance_ChartPrice3)
-                            {
-                                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Blue;
-                                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▼";                               
-                            }
-                        }
-                    }
-                }
+                //if (SelectedPType == "국내지수")
+                //{
+                //    if (preSPrice1 > preSPrice2 && preSPrice2 > preSPrice3)
+                //    {
+                //        if (smart.Variance_ChartPrice1 > smart.Variance_ChartPrice2 && smart.Variance_ChartPrice2 > smart.Variance_ChartPrice3)
+                //        {
+                //            if (preSPrice3 < smart.Variance_ChartPrice3)
+                //            {
+                //                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Red;
+                //                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▲";    
+                //            }
+                //        }
+                //    }
+                //    if (preSPrice1 < preSPrice2 && preSPrice2 < preSPrice3)
+                //    {
+                //        if (smart.Variance_ChartPrice1 < smart.Variance_ChartPrice2 && smart.Variance_ChartPrice2 < smart.Variance_ChartPrice3)
+                //        {
+                //            if (preSPrice3 > smart.Variance_ChartPrice3)
+                //            {
+                //                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Blue;
+                //                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▼";                               
+                //            }
+                //        }
+                //    }
+                //}
 
-                if (SelectedPType == "해외지수")
-                {
-                    if (preSPrice1 > preSPrice2 && preSPrice2 > preSPrice3)
-                    {
-                        if (smart.Variance_ChartPrice1 > smart.Variance_ChartPrice2 && smart.Variance_ChartPrice2 > smart.Variance_ChartPrice3)
-                        {
-                            if (preSPrice3 < smart.Variance_ChartPrice3)
-                            {
-                                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Red;
-                                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▲";
-                            }
-                        }
-                    }
-                    if (preSPrice1 < preSPrice2 && preSPrice2 < preSPrice3)
-                    {
-                        if (smart.Variance_ChartPrice1 < smart.Variance_ChartPrice2 && smart.Variance_ChartPrice2 < smart.Variance_ChartPrice3)
-                        {
-                            if (preSPrice3 > smart.Variance_ChartPrice3)
-                            {
-                                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Blue;
-                                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▼";
-                            }
-                        }
-                    }
-                }
-                if (SelectedPType == "해외선물")
-                {
-                    if (preSPrice1 > preSPrice2 && preSPrice2 > preSPrice3)
-                    {
-                        if (preSPrice1 < smart.Variance_ChartPrice1)
-                        {
-                            if (item.HighPrice < itemAvg.T_MassAvg && item.HighPrice < itemAvg.T_QuantumAvg)
-                            {
-                                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Red;
-                                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▲";
-                            }
-                        }
-                    }
-                    if (preSPrice1 < preSPrice2 && preSPrice2 < preSPrice3)
-                    {
-                        if (preSPrice1 > smart.Variance_ChartPrice1)
-                        {
-                            if (item.LowPrice > itemAvg.T_MassAvg && item.LowPrice > itemAvg.T_QuantumAvg)
-                            {
-                                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Blue;
-                                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▼";
-                            }
-                        }
-                    }
-                }
-                if (SelectedPType == "국내업종")
-                {
-                    if (preSPrice1 > preSPrice2 && preSPrice2 > preSPrice3)
-                    {
-                        if (smart.Variance_ChartPrice1 > smart.Variance_ChartPrice2 && smart.Variance_ChartPrice2 > smart.Variance_ChartPrice3)
-                        {
-                            if (preSPrice3 < smart.Variance_ChartPrice3)
-                            {
-                                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Red;
-                                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▲";
-                            }
-                        }
-                    }
-                    if (preSPrice1 < preSPrice2 && preSPrice2 < preSPrice3)
-                    {
-                        if (smart.Variance_ChartPrice1 < smart.Variance_ChartPrice2 && smart.Variance_ChartPrice2 < smart.Variance_ChartPrice3)
-                        {
-                            if (preSPrice3 > smart.Variance_ChartPrice3)
-                            {
-                                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Blue;
-                                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▼";
-                            }
-                        }
-                    }
-                }
-                if (SelectedPType == "국내종목")
-                {
-                    if (preSPrice1 > preSPrice2 && preSPrice2 > preSPrice3)
-                    {
-                        if (smart.Variance_ChartPrice1 > smart.Variance_ChartPrice2 && smart.Variance_ChartPrice2 > smart.Variance_ChartPrice3)
-                        {
-                            if (preSPrice3 < smart.Variance_ChartPrice3)
-                            {
-                                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Red;
-                                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▲";
-                            }
-                        }
-                    }
-                    if (preSPrice1 < preSPrice2 && preSPrice2 < preSPrice3)
-                    {
-                        if (smart.Variance_ChartPrice1 < smart.Variance_ChartPrice2 && smart.Variance_ChartPrice2 < smart.Variance_ChartPrice3)
-                        {
-                            if (preSPrice3 > smart.Variance_ChartPrice3)
-                            {
-                                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Blue;
-                                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▼";
-                            }
-                        }
-                    }
-                }
+                //if (SelectedPType == "해외지수")
+                //{
+                //    if (preSPrice1 > preSPrice2 && preSPrice2 > preSPrice3)
+                //    {
+                //        if (smart.Variance_ChartPrice1 > smart.Variance_ChartPrice2 && smart.Variance_ChartPrice2 > smart.Variance_ChartPrice3)
+                //        {
+                //            if (preSPrice3 < smart.Variance_ChartPrice3)
+                //            {
+                //                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Red;
+                //                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▲";
+                //            }
+                //        }
+                //    }
+                //    if (preSPrice1 < preSPrice2 && preSPrice2 < preSPrice3)
+                //    {
+                //        if (smart.Variance_ChartPrice1 < smart.Variance_ChartPrice2 && smart.Variance_ChartPrice2 < smart.Variance_ChartPrice3)
+                //        {
+                //            if (preSPrice3 > smart.Variance_ChartPrice3)
+                //            {
+                //                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Blue;
+                //                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▼";
+                //            }
+                //        }
+                //    }
+                //}
+                //if (SelectedPType == "해외선물")
+                //{
+                //    if (preSPrice1 > preSPrice2 && preSPrice2 > preSPrice3)
+                //    {
+                //        if (preSPrice1 < smart.Variance_ChartPrice1)
+                //        {
+                //            if (item.HighPrice < itemAvg.T_MassAvg && item.HighPrice < itemAvg.T_QuantumAvg)
+                //            {
+                //                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Red;
+                //                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▲";
+                //            }
+                //        }
+                //    }
+                //    if (preSPrice1 < preSPrice2 && preSPrice2 < preSPrice3)
+                //    {
+                //        if (preSPrice1 > smart.Variance_ChartPrice1)
+                //        {
+                //            if (item.LowPrice > itemAvg.T_MassAvg && item.LowPrice > itemAvg.T_QuantumAvg)
+                //            {
+                //                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Blue;
+                //                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▼";
+                //            }
+                //        }
+                //    }
+                //}
+                //if (SelectedPType == "국내업종")
+                //{
+                //    if (preSPrice1 > preSPrice2 && preSPrice2 > preSPrice3)
+                //    {
+                //        if (smart.Variance_ChartPrice1 > smart.Variance_ChartPrice2 && smart.Variance_ChartPrice2 > smart.Variance_ChartPrice3)
+                //        {
+                //            if (preSPrice3 < smart.Variance_ChartPrice3)
+                //            {
+                //                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Red;
+                //                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▲";
+                //            }
+                //        }
+                //    }
+                //    if (preSPrice1 < preSPrice2 && preSPrice2 < preSPrice3)
+                //    {
+                //        if (smart.Variance_ChartPrice1 < smart.Variance_ChartPrice2 && smart.Variance_ChartPrice2 < smart.Variance_ChartPrice3)
+                //        {
+                //            if (preSPrice3 > smart.Variance_ChartPrice3)
+                //            {
+                //                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Blue;
+                //                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▼";
+                //            }
+                //        }
+                //    }
+                //}
+                //if (SelectedPType == "국내종목")
+                //{
+                //    if (preSPrice1 > preSPrice2 && preSPrice2 > preSPrice3)
+                //    {
+                //        if (smart.Variance_ChartPrice1 > smart.Variance_ChartPrice2 && smart.Variance_ChartPrice2 > smart.Variance_ChartPrice3)
+                //        {
+                //            if (preSPrice3 < smart.Variance_ChartPrice3)
+                //            {
+                //                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Red;
+                //                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▲";
+                //            }
+                //        }
+                //    }
+                //    if (preSPrice1 < preSPrice2 && preSPrice2 < preSPrice3)
+                //    {
+                //        if (smart.Variance_ChartPrice1 < smart.Variance_ChartPrice2 && smart.Variance_ChartPrice2 < smart.Variance_ChartPrice3)
+                //        {
+                //            if (preSPrice3 > smart.Variance_ChartPrice3)
+                //            {
+                //                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Blue;
+                //                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▼";
+                //            }
+                //        }
+                //    }
+                //}
 
                 preSPrice1 = smart.Variance_ChartPrice1;
                 preSPrice2 = smart.Variance_ChartPrice2;

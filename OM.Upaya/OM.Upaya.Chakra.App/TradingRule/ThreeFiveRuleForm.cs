@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tulpep.NotificationWindow;
 
-namespace OM.Atman.Chakra.App.TradingRule
+namespace OM.Upaya.Chakra.App.TradingRule
 {
     public partial class ThreeFiveRuleForm : Form
     {
@@ -162,8 +162,7 @@ namespace OM.Atman.Chakra.App.TradingRule
                 popup.TitleFont = new Font("고딕", 24.0f);
                 popup.ContentFont = new Font("굴림", 12.0f);
                 popup.TitleText = title;
-                popup.ContentText = message;
-                popup.Image = global::OM.Atman.Chakra.App.Properties.Resources.signal;
+                popup.ContentText = message;                
                 popup.ImageSize = new Size(50, 40);
                 popup.Delay = 1000 * 60;
                 popup.Popup();// show  

@@ -43,7 +43,6 @@
             this.chkTechnicalCalculatorKR = new MetroFramework.Controls.MetroCheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.chkPlanResultFF = new MetroFramework.Controls.MetroCheckBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.chkTechnicalCalculatorFF = new MetroFramework.Controls.MetroCheckBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -146,9 +145,9 @@
             this.chkPatternMatching1.ForeColor = System.Drawing.Color.White;
             this.chkPatternMatching1.Location = new System.Drawing.Point(349, 161);
             this.chkPatternMatching1.Name = "chkPatternMatching1";
-            this.chkPatternMatching1.Size = new System.Drawing.Size(192, 25);
+            this.chkPatternMatching1.Size = new System.Drawing.Size(218, 25);
             this.chkPatternMatching1.TabIndex = 31;
-            this.chkPatternMatching1.Text = "캔들 패턴매칭 AI - 1";
+            this.chkPatternMatching1.Text = "국내지수 캔들 패턴매칭";
             this.chkPatternMatching1.UseCustomBackColor = true;
             this.chkPatternMatching1.UseCustomForeColor = true;
             this.chkPatternMatching1.UseSelectable = true;
@@ -163,9 +162,9 @@
             this.chkSignalComplication.ForeColor = System.Drawing.Color.White;
             this.chkSignalComplication.Location = new System.Drawing.Point(349, 118);
             this.chkSignalComplication.Name = "chkSignalComplication";
-            this.chkSignalComplication.Size = new System.Drawing.Size(220, 25);
+            this.chkSignalComplication.Size = new System.Drawing.Size(218, 25);
             this.chkSignalComplication.TabIndex = 32;
-            this.chkSignalComplication.Text = "가격 모니터링 && 시그널";
+            this.chkSignalComplication.Text = "해외선물 캔들 패턴매칭";
             this.chkSignalComplication.UseCustomBackColor = true;
             this.chkSignalComplication.UseCustomForeColor = true;
             this.chkSignalComplication.UseSelectable = true;
@@ -207,9 +206,9 @@
             this.chkRealBoard.ForeColor = System.Drawing.Color.White;
             this.chkRealBoard.Location = new System.Drawing.Point(349, 75);
             this.chkRealBoard.Name = "chkRealBoard";
-            this.chkRealBoard.Size = new System.Drawing.Size(182, 25);
+            this.chkRealBoard.Size = new System.Drawing.Size(218, 25);
             this.chkRealBoard.TabIndex = 35;
-            this.chkRealBoard.Text = "실시간 시세 전광판";
+            this.chkRealBoard.Text = "해외지수 캔들 패턴매칭";
             this.chkRealBoard.UseCustomBackColor = true;
             this.chkRealBoard.UseCustomForeColor = true;
             this.chkRealBoard.UseSelectable = true;
@@ -277,16 +276,6 @@
             this.chkPlanResultFF.UseSelectable = true;
             this.chkPlanResultFF.CheckedChanged += new System.EventHandler(this.RadioButton_Click);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.DarkRed;
-            this.label3.Location = new System.Drawing.Point(333, 146);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(239, 12);
-            this.label3.TabIndex = 40;
-            this.label3.Text = "---------------------------------------";
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -333,9 +322,9 @@
             this.chkPatternMatching2.ForeColor = System.Drawing.Color.White;
             this.chkPatternMatching2.Location = new System.Drawing.Point(349, 202);
             this.chkPatternMatching2.Name = "chkPatternMatching2";
-            this.chkPatternMatching2.Size = new System.Drawing.Size(192, 25);
+            this.chkPatternMatching2.Size = new System.Drawing.Size(218, 25);
             this.chkPatternMatching2.TabIndex = 44;
-            this.chkPatternMatching2.Text = "캔들 패턴매칭 AI - 2";
+            this.chkPatternMatching2.Text = "국내종목 캔들 패턴매칭";
             this.chkPatternMatching2.UseCustomBackColor = true;
             this.chkPatternMatching2.UseCustomForeColor = true;
             this.chkPatternMatching2.UseSelectable = true;
@@ -416,7 +405,6 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.chkTechnicalCalculatorFF);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.chkPlanResultFF);
             this.Controls.Add(this.chkTechnicalCalculatorKR);
             this.Controls.Add(this.label2);
@@ -460,7 +448,6 @@
         private MetroFramework.Controls.MetroCheckBox chkTechnicalCalculatorKR;
         private System.Windows.Forms.Label label2;
         private MetroFramework.Controls.MetroCheckBox chkPlanResultFF;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label6;
         private MetroFramework.Controls.MetroCheckBox chkTechnicalCalculatorFF;
         private System.Windows.Forms.Label label7;

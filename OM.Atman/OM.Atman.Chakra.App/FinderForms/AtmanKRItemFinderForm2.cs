@@ -232,7 +232,7 @@ namespace OM.Atman.Chakra.App.FinderForms
                 
                     Task.Factory.StartNew(() => 
                     {
-                        var sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(code, "2", "0", "20");
+                        var sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(code, "2", "0", "50");
                         if (sourceDatas == null || sourceDatas.Count == 0) return;                                    
                         var averageDatas = PPUtils.GetAverageDatas(code, sourceDatas, 9);
                   
@@ -305,7 +305,7 @@ namespace OM.Atman.Chakra.App.FinderForms
 
                     Task.Factory.StartNew(() =>
                     {
-                        var sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(code, "2", "0", "20");
+                        var sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(code, "2", "0", "50");
                         if (sourceDatas == null || sourceDatas.Count == 0) return;
                         var averageDatas = PPUtils.GetAverageDatas(code, sourceDatas, 9);
 

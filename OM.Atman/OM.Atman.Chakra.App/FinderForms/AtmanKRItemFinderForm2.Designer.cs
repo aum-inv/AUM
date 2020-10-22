@@ -155,9 +155,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(352, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(503, 18);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(47, 43);
+            this.pictureBox1.Size = new System.Drawing.Size(67, 64);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
@@ -166,7 +167,8 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer1.Location = new System.Drawing.Point(20, 60);
+            this.splitContainer1.Location = new System.Drawing.Point(29, 90);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -176,8 +178,9 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.pnlMain);
-            this.splitContainer1.Size = new System.Drawing.Size(1523, 800);
+            this.splitContainer1.Size = new System.Drawing.Size(2175, 1200);
             this.splitContainer1.SplitterDistance = 368;
+            this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 3;
             // 
             // pnlLeft
@@ -188,14 +191,15 @@
             this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlLeft.HorizontalScrollbarBarColor = true;
             this.pnlLeft.HorizontalScrollbarHighlightOnWheel = false;
-            this.pnlLeft.HorizontalScrollbarSize = 10;
+            this.pnlLeft.HorizontalScrollbarSize = 15;
             this.pnlLeft.Location = new System.Drawing.Point(0, 0);
+            this.pnlLeft.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.Size = new System.Drawing.Size(368, 800);
+            this.pnlLeft.Size = new System.Drawing.Size(368, 1200);
             this.pnlLeft.TabIndex = 7;
             this.pnlLeft.VerticalScrollbarBarColor = true;
             this.pnlLeft.VerticalScrollbarHighlightOnWheel = false;
-            this.pnlLeft.VerticalScrollbarSize = 10;
+            this.pnlLeft.VerticalScrollbarSize = 14;
             // 
             // pnlLeftContent
             // 
@@ -205,15 +209,16 @@
             this.pnlLeftContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlLeftContent.HorizontalScrollbarBarColor = true;
             this.pnlLeftContent.HorizontalScrollbarHighlightOnWheel = false;
-            this.pnlLeftContent.HorizontalScrollbarSize = 10;
-            this.pnlLeftContent.Location = new System.Drawing.Point(0, 27);
+            this.pnlLeftContent.HorizontalScrollbarSize = 15;
+            this.pnlLeftContent.Location = new System.Drawing.Point(0, 39);
+            this.pnlLeftContent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlLeftContent.Name = "pnlLeftContent";
-            this.pnlLeftContent.Padding = new System.Windows.Forms.Padding(5);
-            this.pnlLeftContent.Size = new System.Drawing.Size(368, 773);
+            this.pnlLeftContent.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
+            this.pnlLeftContent.Size = new System.Drawing.Size(368, 1161);
             this.pnlLeftContent.TabIndex = 5;
             this.pnlLeftContent.VerticalScrollbarBarColor = true;
             this.pnlLeftContent.VerticalScrollbarHighlightOnWheel = false;
-            this.pnlLeftContent.VerticalScrollbarSize = 10;
+            this.pnlLeftContent.VerticalScrollbarSize = 14;
             // 
             // dgvList
             // 
@@ -253,16 +258,18 @@
             this.dgvList.DefaultCellStyle = dataGridViewCellStyle47;
             this.dgvList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvList.GridColor = System.Drawing.Color.LightGray;
-            this.dgvList.Location = new System.Drawing.Point(5, 5);
+            this.dgvList.Location = new System.Drawing.Point(7, 8);
+            this.dgvList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvList.MultiSelect = false;
             this.dgvList.Name = "dgvList";
             this.dgvList.ReadOnly = true;
             this.dgvList.RowHeadersVisible = false;
+            this.dgvList.RowHeadersWidth = 62;
             this.dgvList.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Transparent;
             this.dgvList.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.dgvList.RowTemplate.Height = 23;
             this.dgvList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvList.Size = new System.Drawing.Size(356, 588);
+            this.dgvList.Size = new System.Drawing.Size(352, 883);
             this.dgvList.TabIndex = 21;
             this.dgvList.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvList_CellContentDoubleClick);
             // 
@@ -274,6 +281,7 @@
             this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle37;
             this.dataGridViewTextBoxColumn1.Frozen = true;
             this.dataGridViewTextBoxColumn1.HeaderText = "HName";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
             this.dataGridViewTextBoxColumn1.Width = 120;
@@ -285,6 +293,7 @@
             this.S3.DefaultCellStyle = dataGridViewCellStyle38;
             this.S3.Frozen = true;
             this.S3.HeaderText = "S";
+            this.S3.MinimumWidth = 8;
             this.S3.Name = "S3";
             this.S3.ReadOnly = true;
             this.S3.Width = 25;
@@ -295,6 +304,7 @@
             this.S2.DefaultCellStyle = dataGridViewCellStyle39;
             this.S2.Frozen = true;
             this.S2.HeaderText = "";
+            this.S2.MinimumWidth = 8;
             this.S2.Name = "S2";
             this.S2.ReadOnly = true;
             this.S2.Width = 25;
@@ -305,6 +315,7 @@
             this.S1.DefaultCellStyle = dataGridViewCellStyle40;
             this.S1.Frozen = true;
             this.S1.HeaderText = "";
+            this.S1.MinimumWidth = 8;
             this.S1.Name = "S1";
             this.S1.ReadOnly = true;
             this.S1.Width = 25;
@@ -315,6 +326,7 @@
             this.S0.DefaultCellStyle = dataGridViewCellStyle41;
             this.S0.Frozen = true;
             this.S0.HeaderText = "";
+            this.S0.MinimumWidth = 8;
             this.S0.Name = "S0";
             this.S0.ReadOnly = true;
             this.S0.Width = 25;
@@ -325,6 +337,7 @@
             this.SW4.DefaultCellStyle = dataGridViewCellStyle42;
             this.SW4.Frozen = true;
             this.SW4.HeaderText = "SS";
+            this.SW4.MinimumWidth = 8;
             this.SW4.Name = "SW4";
             this.SW4.ReadOnly = true;
             this.SW4.Width = 25;
@@ -335,6 +348,7 @@
             this.SW3.DefaultCellStyle = dataGridViewCellStyle43;
             this.SW3.Frozen = true;
             this.SW3.HeaderText = "";
+            this.SW3.MinimumWidth = 8;
             this.SW3.Name = "SW3";
             this.SW3.ReadOnly = true;
             this.SW3.Width = 20;
@@ -345,6 +359,7 @@
             this.SW2.DefaultCellStyle = dataGridViewCellStyle44;
             this.SW2.Frozen = true;
             this.SW2.HeaderText = "";
+            this.SW2.MinimumWidth = 8;
             this.SW2.Name = "SW2";
             this.SW2.ReadOnly = true;
             this.SW2.Width = 20;
@@ -355,6 +370,7 @@
             this.SW1.DefaultCellStyle = dataGridViewCellStyle45;
             this.SW1.Frozen = true;
             this.SW1.HeaderText = "";
+            this.SW1.MinimumWidth = 8;
             this.SW1.Name = "SW1";
             this.SW1.ReadOnly = true;
             this.SW1.Width = 20;
@@ -365,6 +381,7 @@
             this.SW0.DefaultCellStyle = dataGridViewCellStyle46;
             this.SW0.Frozen = true;
             this.SW0.HeaderText = "";
+            this.SW0.MinimumWidth = 8;
             this.SW0.Name = "SW0";
             this.SW0.ReadOnly = true;
             this.SW0.Width = 20;
@@ -378,21 +395,23 @@
             this.metroPanel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.metroPanel3.HorizontalScrollbarBarColor = true;
             this.metroPanel3.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroPanel3.HorizontalScrollbarSize = 10;
-            this.metroPanel3.Location = new System.Drawing.Point(5, 593);
+            this.metroPanel3.HorizontalScrollbarSize = 15;
+            this.metroPanel3.Location = new System.Drawing.Point(7, 891);
+            this.metroPanel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.metroPanel3.Name = "metroPanel3";
-            this.metroPanel3.Size = new System.Drawing.Size(356, 173);
+            this.metroPanel3.Size = new System.Drawing.Size(352, 260);
             this.metroPanel3.TabIndex = 19;
             this.metroPanel3.VerticalScrollbarBarColor = true;
             this.metroPanel3.VerticalScrollbarHighlightOnWheel = false;
-            this.metroPanel3.VerticalScrollbarSize = 10;
+            this.metroPanel3.VerticalScrollbarSize = 14;
             // 
             // btnSearchJongmok
             // 
             this.btnSearchJongmok.ActiveControl = null;
-            this.btnSearchJongmok.Location = new System.Drawing.Point(192, 133);
+            this.btnSearchJongmok.Location = new System.Drawing.Point(274, 200);
+            this.btnSearchJongmok.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSearchJongmok.Name = "btnSearchJongmok";
-            this.btnSearchJongmok.Size = new System.Drawing.Size(161, 37);
+            this.btnSearchJongmok.Size = new System.Drawing.Size(230, 56);
             this.btnSearchJongmok.TabIndex = 20;
             this.btnSearchJongmok.Text = "종목찾기 ▷";
             this.btnSearchJongmok.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -407,9 +426,10 @@
             this.label5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label5.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(3, 5);
+            this.label5.Location = new System.Drawing.Point(4, 8);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(126, 23);
+            this.label5.Size = new System.Drawing.Size(179, 34);
             this.label5.TabIndex = 19;
             this.label5.Text = "매칭설정정보";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -417,9 +437,10 @@
             // btnSearchUpjong
             // 
             this.btnSearchUpjong.ActiveControl = null;
-            this.btnSearchUpjong.Location = new System.Drawing.Point(312, 5);
+            this.btnSearchUpjong.Location = new System.Drawing.Point(446, 8);
+            this.btnSearchUpjong.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSearchUpjong.Name = "btnSearchUpjong";
-            this.btnSearchUpjong.Size = new System.Drawing.Size(41, 100);
+            this.btnSearchUpjong.Size = new System.Drawing.Size(59, 150);
             this.btnSearchUpjong.Style = MetroFramework.MetroColorStyle.Pink;
             this.btnSearchUpjong.TabIndex = 18;
             this.btnSearchUpjong.Text = "△\r\n업\r\n종\r\n찾\r\n기";
@@ -432,7 +453,7 @@
             // 
             this.tableLayoutPanel2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 229F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.chkPattern4, 1, 3);
             this.tableLayoutPanel2.Controls.Add(this.metroLabel1, 0, 3);
@@ -442,14 +463,15 @@
             this.tableLayoutPanel2.Controls.Add(this.chkPattern2, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.chkPattern3, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.metroLabel4, 0, 2);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 31);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 46);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 4;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(183, 139);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(261, 208);
             this.tableLayoutPanel2.TabIndex = 17;
             // 
             // chkPattern4
@@ -457,9 +479,10 @@
             this.chkPattern4.Checked = true;
             this.chkPattern4.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkPattern4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkPattern4.Location = new System.Drawing.Point(165, 106);
+            this.chkPattern4.Location = new System.Drawing.Point(235, 158);
+            this.chkPattern4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkPattern4.Name = "chkPattern4";
-            this.chkPattern4.Size = new System.Drawing.Size(14, 29);
+            this.chkPattern4.Size = new System.Drawing.Size(21, 45);
             this.chkPattern4.Style = MetroFramework.MetroColorStyle.Pink;
             this.chkPattern4.TabIndex = 28;
             this.chkPattern4.UseSelectable = true;
@@ -469,9 +492,10 @@
             this.metroLabel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroLabel1.FontSize = MetroFramework.MetroLabelSize.Small;
             this.metroLabel1.ForeColor = System.Drawing.Color.Fuchsia;
-            this.metroLabel1.Location = new System.Drawing.Point(4, 103);
+            this.metroLabel1.Location = new System.Drawing.Point(5, 154);
+            this.metroLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(154, 35);
+            this.metroLabel1.Size = new System.Drawing.Size(221, 53);
             this.metroLabel1.TabIndex = 27;
             this.metroLabel1.Text = "스마트>와이즈 첫출";
             this.metroLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -480,9 +504,10 @@
             // chkPattern1
             // 
             this.chkPattern1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkPattern1.Location = new System.Drawing.Point(165, 4);
+            this.chkPattern1.Location = new System.Drawing.Point(235, 5);
+            this.chkPattern1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkPattern1.Name = "chkPattern1";
-            this.chkPattern1.Size = new System.Drawing.Size(14, 27);
+            this.chkPattern1.Size = new System.Drawing.Size(21, 42);
             this.chkPattern1.TabIndex = 23;
             this.chkPattern1.UseSelectable = true;
             // 
@@ -490,9 +515,10 @@
             // 
             this.metroLabel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroLabel11.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel11.Location = new System.Drawing.Point(4, 1);
+            this.metroLabel11.Location = new System.Drawing.Point(5, 1);
+            this.metroLabel11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.metroLabel11.Name = "metroLabel11";
-            this.metroLabel11.Size = new System.Drawing.Size(154, 33);
+            this.metroLabel11.Size = new System.Drawing.Size(221, 50);
             this.metroLabel11.TabIndex = 21;
             this.metroLabel11.Text = "스마트라인-전일대비상승";
             this.metroLabel11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -501,9 +527,10 @@
             // 
             this.metroLabel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroLabel3.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel3.Location = new System.Drawing.Point(4, 35);
+            this.metroLabel3.Location = new System.Drawing.Point(5, 52);
+            this.metroLabel3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.metroLabel3.Name = "metroLabel3";
-            this.metroLabel3.Size = new System.Drawing.Size(154, 33);
+            this.metroLabel3.Size = new System.Drawing.Size(221, 50);
             this.metroLabel3.TabIndex = 21;
             this.metroLabel3.Text = "와이즈라인-전일대비상승";
             this.metroLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -511,18 +538,20 @@
             // chkPattern2
             // 
             this.chkPattern2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkPattern2.Location = new System.Drawing.Point(165, 38);
+            this.chkPattern2.Location = new System.Drawing.Point(235, 56);
+            this.chkPattern2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkPattern2.Name = "chkPattern2";
-            this.chkPattern2.Size = new System.Drawing.Size(14, 27);
+            this.chkPattern2.Size = new System.Drawing.Size(21, 42);
             this.chkPattern2.TabIndex = 25;
             this.chkPattern2.UseSelectable = true;
             // 
             // chkPattern3
             // 
             this.chkPattern3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkPattern3.Location = new System.Drawing.Point(165, 72);
+            this.chkPattern3.Location = new System.Drawing.Point(235, 107);
+            this.chkPattern3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkPattern3.Name = "chkPattern3";
-            this.chkPattern3.Size = new System.Drawing.Size(14, 27);
+            this.chkPattern3.Size = new System.Drawing.Size(21, 42);
             this.chkPattern3.TabIndex = 26;
             this.chkPattern3.UseSelectable = true;
             // 
@@ -530,9 +559,10 @@
             // 
             this.metroLabel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroLabel4.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel4.Location = new System.Drawing.Point(4, 69);
+            this.metroLabel4.Location = new System.Drawing.Point(5, 103);
+            this.metroLabel4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.metroLabel4.Name = "metroLabel4";
-            this.metroLabel4.Size = new System.Drawing.Size(154, 33);
+            this.metroLabel4.Size = new System.Drawing.Size(221, 50);
             this.metroLabel4.TabIndex = 22;
             this.metroLabel4.Text = "스마트라인>와이즈라인";
             this.metroLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -541,9 +571,10 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.Red;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 25);
+            this.panel1.Location = new System.Drawing.Point(0, 36);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(368, 2);
+            this.panel1.Size = new System.Drawing.Size(368, 3);
             this.panel1.TabIndex = 4;
             // 
             // pnlLeftTop
@@ -553,14 +584,15 @@
             this.pnlLeftTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlLeftTop.HorizontalScrollbarBarColor = true;
             this.pnlLeftTop.HorizontalScrollbarHighlightOnWheel = false;
-            this.pnlLeftTop.HorizontalScrollbarSize = 10;
+            this.pnlLeftTop.HorizontalScrollbarSize = 15;
             this.pnlLeftTop.Location = new System.Drawing.Point(0, 0);
+            this.pnlLeftTop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlLeftTop.Name = "pnlLeftTop";
-            this.pnlLeftTop.Size = new System.Drawing.Size(368, 25);
+            this.pnlLeftTop.Size = new System.Drawing.Size(368, 36);
             this.pnlLeftTop.TabIndex = 3;
             this.pnlLeftTop.VerticalScrollbarBarColor = true;
             this.pnlLeftTop.VerticalScrollbarHighlightOnWheel = false;
-            this.pnlLeftTop.VerticalScrollbarSize = 10;
+            this.pnlLeftTop.VerticalScrollbarSize = 14;
             // 
             // metroLabel2
             // 
@@ -569,8 +601,9 @@
             this.metroLabel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.metroLabel2.FontSize = MetroFramework.MetroLabelSize.Small;
             this.metroLabel2.Location = new System.Drawing.Point(0, 0);
+            this.metroLabel2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(91, 23);
+            this.metroLabel2.Size = new System.Drawing.Size(129, 34);
             this.metroLabel2.TabIndex = 4;
             this.metroLabel2.Text = "업종리스트";
             this.metroLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -585,14 +618,15 @@
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.HorizontalScrollbarBarColor = true;
             this.pnlMain.HorizontalScrollbarHighlightOnWheel = false;
-            this.pnlMain.HorizontalScrollbarSize = 10;
+            this.pnlMain.HorizontalScrollbarSize = 15;
             this.pnlMain.Location = new System.Drawing.Point(0, 0);
+            this.pnlMain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(1151, 800);
+            this.pnlMain.Size = new System.Drawing.Size(1801, 1200);
             this.pnlMain.TabIndex = 7;
             this.pnlMain.VerticalScrollbarBarColor = true;
             this.pnlMain.VerticalScrollbarHighlightOnWheel = false;
-            this.pnlMain.VerticalScrollbarSize = 10;
+            this.pnlMain.VerticalScrollbarSize = 14;
             // 
             // tlpChart
             // 
@@ -600,11 +634,12 @@
             this.tlpChart.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpChart.Controls.Add(this.chart, 0, 0);
             this.tlpChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpChart.Location = new System.Drawing.Point(0, 27);
+            this.tlpChart.Location = new System.Drawing.Point(0, 41);
+            this.tlpChart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tlpChart.Name = "tlpChart";
             this.tlpChart.RowCount = 1;
             this.tlpChart.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpChart.Size = new System.Drawing.Size(1151, 594);
+            this.tlpChart.Size = new System.Drawing.Size(1801, 891);
             this.tlpChart.TabIndex = 11;
             // 
             // chart
@@ -624,11 +659,12 @@
             this.chart.IsShowYLine = true;
             this.chart.ItemCode = "";
             this.chart.LineChartType = OM.Vikala.Controls.Charts.LineChartTypeEnum.기본;
-            this.chart.Location = new System.Drawing.Point(3, 4);
-            this.chart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.chart.Location = new System.Drawing.Point(4, 6);
+            this.chart.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.chart.Name = "chart";
+            this.chart.SelectedPType = "";
             this.chart.SelectedTrackBarValue = 1;
-            this.chart.Size = new System.Drawing.Size(1145, 586);
+            this.chart.Size = new System.Drawing.Size(1793, 879);
             this.chart.TabIndex = 0;
             this.chart.TimeInterval = OM.Lib.Base.Enums.TimeIntervalEnum.Day;
             this.chart.Title = null;
@@ -639,14 +675,15 @@
             this.pnlResultView.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlResultView.HorizontalScrollbarBarColor = true;
             this.pnlResultView.HorizontalScrollbarHighlightOnWheel = false;
-            this.pnlResultView.HorizontalScrollbarSize = 10;
-            this.pnlResultView.Location = new System.Drawing.Point(0, 621);
+            this.pnlResultView.HorizontalScrollbarSize = 15;
+            this.pnlResultView.Location = new System.Drawing.Point(0, 932);
+            this.pnlResultView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlResultView.Name = "pnlResultView";
-            this.pnlResultView.Size = new System.Drawing.Size(1151, 179);
+            this.pnlResultView.Size = new System.Drawing.Size(1801, 268);
             this.pnlResultView.TabIndex = 10;
             this.pnlResultView.VerticalScrollbarBarColor = true;
             this.pnlResultView.VerticalScrollbarHighlightOnWheel = false;
-            this.pnlResultView.VerticalScrollbarSize = 10;
+            this.pnlResultView.VerticalScrollbarSize = 14;
             // 
             // dgv
             // 
@@ -694,15 +731,17 @@
             this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv.GridColor = System.Drawing.Color.LightGray;
             this.dgv.Location = new System.Drawing.Point(0, 0);
+            this.dgv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
             this.dgv.RowHeadersVisible = false;
+            this.dgv.RowHeadersWidth = 62;
             this.dgv.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Transparent;
             this.dgv.RowTemplate.Height = 23;
             this.dgv.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgv.Size = new System.Drawing.Size(1151, 179);
+            this.dgv.Size = new System.Drawing.Size(1801, 268);
             this.dgv.TabIndex = 5;
             this.dgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellContentDoubleClick);
             // 
@@ -712,6 +751,7 @@
             this.시간.DefaultCellStyle = dataGridViewCellStyle49;
             this.시간.Frozen = true;
             this.시간.HeaderText = "code";
+            this.시간.MinimumWidth = 8;
             this.시간.Name = "시간";
             this.시간.ReadOnly = true;
             this.시간.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -722,6 +762,7 @@
             // 
             this.name.Frozen = true;
             this.name.HeaderText = "name";
+            this.name.MinimumWidth = 8;
             this.name.Name = "name";
             this.name.ReadOnly = true;
             this.name.Width = 150;
@@ -734,6 +775,7 @@
             this.시가.DefaultCellStyle = dataGridViewCellStyle50;
             this.시가.Frozen = true;
             this.시가.HeaderText = "open";
+            this.시가.MinimumWidth = 8;
             this.시가.Name = "시가";
             this.시가.ReadOnly = true;
             this.시가.Width = 80;
@@ -746,6 +788,7 @@
             this.고가.DefaultCellStyle = dataGridViewCellStyle51;
             this.고가.Frozen = true;
             this.고가.HeaderText = "high";
+            this.고가.MinimumWidth = 8;
             this.고가.Name = "고가";
             this.고가.ReadOnly = true;
             this.고가.Width = 80;
@@ -758,6 +801,7 @@
             this.저가.DefaultCellStyle = dataGridViewCellStyle52;
             this.저가.Frozen = true;
             this.저가.HeaderText = "low";
+            this.저가.MinimumWidth = 8;
             this.저가.Name = "저가";
             this.저가.ReadOnly = true;
             this.저가.Width = 80;
@@ -770,6 +814,7 @@
             this.종가.DefaultCellStyle = dataGridViewCellStyle53;
             this.종가.Frozen = true;
             this.종가.HeaderText = "close";
+            this.종가.MinimumWidth = 8;
             this.종가.Name = "종가";
             this.종가.ReadOnly = true;
             this.종가.Width = 80;
@@ -780,6 +825,7 @@
             this.Sign.DefaultCellStyle = dataGridViewCellStyle54;
             this.Sign.Frozen = true;
             this.Sign.HeaderText = "sign";
+            this.Sign.MinimumWidth = 8;
             this.Sign.Name = "Sign";
             this.Sign.ReadOnly = true;
             this.Sign.Width = 50;
@@ -792,6 +838,7 @@
             this.rate.DefaultCellStyle = dataGridViewCellStyle55;
             this.rate.Frozen = true;
             this.rate.HeaderText = "rate";
+            this.rate.MinimumWidth = 8;
             this.rate.Name = "rate";
             this.rate.ReadOnly = true;
             this.rate.Width = 60;
@@ -803,6 +850,7 @@
             this.Change.DefaultCellStyle = dataGridViewCellStyle56;
             this.Change.Frozen = true;
             this.Change.HeaderText = "change";
+            this.Change.MinimumWidth = 8;
             this.Change.Name = "Change";
             this.Change.ReadOnly = true;
             this.Change.Width = 70;
@@ -815,6 +863,7 @@
             this.ColorEnergy.DefaultCellStyle = dataGridViewCellStyle57;
             this.ColorEnergy.Frozen = true;
             this.ColorEnergy.HeaderText = "F-V";
+            this.ColorEnergy.MinimumWidth = 8;
             this.ColorEnergy.Name = "ColorEnergy";
             this.ColorEnergy.ReadOnly = true;
             this.ColorEnergy.Width = 70;
@@ -826,6 +875,7 @@
             this.ColorRank.DefaultCellStyle = dataGridViewCellStyle58;
             this.ColorRank.Frozen = true;
             this.ColorRank.HeaderText = "G-V";
+            this.ColorRank.MinimumWidth = 8;
             this.ColorRank.Name = "ColorRank";
             this.ColorRank.ReadOnly = true;
             this.ColorRank.Width = 70;
@@ -838,6 +888,7 @@
             this.SpaceEnergy.DefaultCellStyle = dataGridViewCellStyle59;
             this.SpaceEnergy.Frozen = true;
             this.SpaceEnergy.HeaderText = "Volume";
+            this.SpaceEnergy.MinimumWidth = 8;
             this.SpaceEnergy.Name = "SpaceEnergy";
             this.SpaceEnergy.ReadOnly = true;
             this.SpaceEnergy.Width = 80;
@@ -850,6 +901,7 @@
             this.TimeEnergy.DefaultCellStyle = dataGridViewCellStyle60;
             this.TimeEnergy.Frozen = true;
             this.TimeEnergy.HeaderText = "V-Rate";
+            this.TimeEnergy.MinimumWidth = 8;
             this.TimeEnergy.Name = "TimeEnergy";
             this.TimeEnergy.ReadOnly = true;
             this.TimeEnergy.Width = 70;
@@ -862,6 +914,7 @@
             this.tenergy.DefaultCellStyle = dataGridViewCellStyle61;
             this.tenergy.Frozen = true;
             this.tenergy.HeaderText = "Total";
+            this.tenergy.MinimumWidth = 8;
             this.tenergy.Name = "tenergy";
             this.tenergy.ReadOnly = true;
             this.tenergy.Width = 80;
@@ -870,9 +923,10 @@
             // 
             this.dummy.Frozen = true;
             this.dummy.HeaderText = "-";
+            this.dummy.MinimumWidth = 8;
             this.dummy.Name = "dummy";
             this.dummy.ReadOnly = true;
-            this.dummy.Width = 5;
+            this.dummy.Width = 8;
             // 
             // IS3
             // 
@@ -880,6 +934,7 @@
             this.IS3.DefaultCellStyle = dataGridViewCellStyle62;
             this.IS3.Frozen = true;
             this.IS3.HeaderText = "S";
+            this.IS3.MinimumWidth = 8;
             this.IS3.Name = "IS3";
             this.IS3.ReadOnly = true;
             this.IS3.Width = 25;
@@ -890,6 +945,7 @@
             this.IS2.DefaultCellStyle = dataGridViewCellStyle63;
             this.IS2.Frozen = true;
             this.IS2.HeaderText = "";
+            this.IS2.MinimumWidth = 8;
             this.IS2.Name = "IS2";
             this.IS2.ReadOnly = true;
             this.IS2.Width = 25;
@@ -900,6 +956,7 @@
             this.IS1.DefaultCellStyle = dataGridViewCellStyle64;
             this.IS1.Frozen = true;
             this.IS1.HeaderText = "";
+            this.IS1.MinimumWidth = 8;
             this.IS1.Name = "IS1";
             this.IS1.ReadOnly = true;
             this.IS1.Width = 25;
@@ -910,6 +967,7 @@
             this.IS0.DefaultCellStyle = dataGridViewCellStyle65;
             this.IS0.Frozen = true;
             this.IS0.HeaderText = "";
+            this.IS0.MinimumWidth = 8;
             this.IS0.Name = "IS0";
             this.IS0.ReadOnly = true;
             this.IS0.Width = 25;
@@ -920,6 +978,7 @@
             this.ISW4.DefaultCellStyle = dataGridViewCellStyle66;
             this.ISW4.Frozen = true;
             this.ISW4.HeaderText = "SS";
+            this.ISW4.MinimumWidth = 8;
             this.ISW4.Name = "ISW4";
             this.ISW4.ReadOnly = true;
             this.ISW4.Width = 25;
@@ -930,6 +989,7 @@
             this.ISW3.DefaultCellStyle = dataGridViewCellStyle67;
             this.ISW3.Frozen = true;
             this.ISW3.HeaderText = "";
+            this.ISW3.MinimumWidth = 8;
             this.ISW3.Name = "ISW3";
             this.ISW3.ReadOnly = true;
             this.ISW3.Width = 20;
@@ -940,6 +1000,7 @@
             this.ISW2.DefaultCellStyle = dataGridViewCellStyle68;
             this.ISW2.Frozen = true;
             this.ISW2.HeaderText = "";
+            this.ISW2.MinimumWidth = 8;
             this.ISW2.Name = "ISW2";
             this.ISW2.ReadOnly = true;
             this.ISW2.Width = 20;
@@ -950,6 +1011,7 @@
             this.ISW1.DefaultCellStyle = dataGridViewCellStyle69;
             this.ISW1.Frozen = true;
             this.ISW1.HeaderText = "";
+            this.ISW1.MinimumWidth = 8;
             this.ISW1.Name = "ISW1";
             this.ISW1.ReadOnly = true;
             this.ISW1.Width = 20;
@@ -960,6 +1022,7 @@
             this.ISW0.DefaultCellStyle = dataGridViewCellStyle70;
             this.ISW0.Frozen = true;
             this.ISW0.HeaderText = "";
+            this.ISW0.MinimumWidth = 8;
             this.ISW0.Name = "ISW0";
             this.ISW0.ReadOnly = true;
             this.ISW0.Width = 20;
@@ -968,9 +1031,10 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.Red;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 25);
+            this.panel2.Location = new System.Drawing.Point(0, 38);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1151, 2);
+            this.panel2.Size = new System.Drawing.Size(1801, 3);
             this.panel2.TabIndex = 3;
             // 
             // pnlTitle
@@ -986,14 +1050,15 @@
             this.pnlTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTitle.HorizontalScrollbarBarColor = true;
             this.pnlTitle.HorizontalScrollbarHighlightOnWheel = false;
-            this.pnlTitle.HorizontalScrollbarSize = 10;
+            this.pnlTitle.HorizontalScrollbarSize = 15;
             this.pnlTitle.Location = new System.Drawing.Point(0, 0);
+            this.pnlTitle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlTitle.Name = "pnlTitle";
-            this.pnlTitle.Size = new System.Drawing.Size(1151, 25);
+            this.pnlTitle.Size = new System.Drawing.Size(1801, 38);
             this.pnlTitle.TabIndex = 2;
             this.pnlTitle.VerticalScrollbarBarColor = true;
             this.pnlTitle.VerticalScrollbarHighlightOnWheel = false;
-            this.pnlTitle.VerticalScrollbarSize = 10;
+            this.pnlTitle.VerticalScrollbarSize = 14;
             // 
             // btnGoAlpha
             // 
@@ -1004,9 +1069,10 @@
             this.btnGoAlpha.Font = new System.Drawing.Font("굴림", 9F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnGoAlpha.ForeColor = System.Drawing.Color.White;
-            this.btnGoAlpha.Location = new System.Drawing.Point(865, 0);
+            this.btnGoAlpha.Location = new System.Drawing.Point(1235, 0);
+            this.btnGoAlpha.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnGoAlpha.Name = "btnGoAlpha";
-            this.btnGoAlpha.Size = new System.Drawing.Size(75, 25);
+            this.btnGoAlpha.Size = new System.Drawing.Size(107, 38);
             this.btnGoAlpha.TabIndex = 31;
             this.btnGoAlpha.Text = "Go Alpha";
             this.btnGoAlpha.UseVisualStyleBackColor = false;
@@ -1021,9 +1087,10 @@
             this.btnGoNaver.Font = new System.Drawing.Font("굴림", 9F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnGoNaver.ForeColor = System.Drawing.Color.White;
-            this.btnGoNaver.Location = new System.Drawing.Point(790, 0);
+            this.btnGoNaver.Location = new System.Drawing.Point(1128, 0);
+            this.btnGoNaver.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnGoNaver.Name = "btnGoNaver";
-            this.btnGoNaver.Size = new System.Drawing.Size(75, 25);
+            this.btnGoNaver.Size = new System.Drawing.Size(107, 38);
             this.btnGoNaver.TabIndex = 28;
             this.btnGoNaver.Text = "Go Naver";
             this.btnGoNaver.UseVisualStyleBackColor = false;
@@ -1035,9 +1102,10 @@
             // 
             // 
             this.tbSelectedName2.CustomButton.Image = null;
-            this.tbSelectedName2.CustomButton.Location = new System.Drawing.Point(183, 1);
+            this.tbSelectedName2.CustomButton.Location = new System.Drawing.Point(371, 3);
+            this.tbSelectedName2.CustomButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbSelectedName2.CustomButton.Name = "";
-            this.tbSelectedName2.CustomButton.Size = new System.Drawing.Size(23, 23);
+            this.tbSelectedName2.CustomButton.Size = new System.Drawing.Size(47, 50);
             this.tbSelectedName2.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.tbSelectedName2.CustomButton.TabIndex = 1;
             this.tbSelectedName2.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -1045,7 +1113,8 @@
             this.tbSelectedName2.CustomButton.Visible = false;
             this.tbSelectedName2.Dock = System.Windows.Forms.DockStyle.Left;
             this.tbSelectedName2.Lines = new string[0];
-            this.tbSelectedName2.Location = new System.Drawing.Point(583, 0);
+            this.tbSelectedName2.Location = new System.Drawing.Point(832, 0);
+            this.tbSelectedName2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbSelectedName2.MaxLength = 32767;
             this.tbSelectedName2.Name = "tbSelectedName2";
             this.tbSelectedName2.PasswordChar = '\0';
@@ -1054,7 +1123,7 @@
             this.tbSelectedName2.SelectionLength = 0;
             this.tbSelectedName2.SelectionStart = 0;
             this.tbSelectedName2.ShortcutsEnabled = true;
-            this.tbSelectedName2.Size = new System.Drawing.Size(207, 25);
+            this.tbSelectedName2.Size = new System.Drawing.Size(296, 38);
             this.tbSelectedName2.TabIndex = 27;
             this.tbSelectedName2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbSelectedName2.UseSelectable = true;
@@ -1067,9 +1136,10 @@
             // 
             // 
             this.tbSelectedCode2.CustomButton.Image = null;
-            this.tbSelectedCode2.CustomButton.Location = new System.Drawing.Point(58, 1);
+            this.tbSelectedCode2.CustomButton.Location = new System.Drawing.Point(116, 3);
+            this.tbSelectedCode2.CustomButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbSelectedCode2.CustomButton.Name = "";
-            this.tbSelectedCode2.CustomButton.Size = new System.Drawing.Size(23, 23);
+            this.tbSelectedCode2.CustomButton.Size = new System.Drawing.Size(47, 50);
             this.tbSelectedCode2.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.tbSelectedCode2.CustomButton.TabIndex = 1;
             this.tbSelectedCode2.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -1077,7 +1147,8 @@
             this.tbSelectedCode2.CustomButton.Visible = false;
             this.tbSelectedCode2.Dock = System.Windows.Forms.DockStyle.Left;
             this.tbSelectedCode2.Lines = new string[0];
-            this.tbSelectedCode2.Location = new System.Drawing.Point(501, 0);
+            this.tbSelectedCode2.Location = new System.Drawing.Point(715, 0);
+            this.tbSelectedCode2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbSelectedCode2.MaxLength = 32767;
             this.tbSelectedCode2.Name = "tbSelectedCode2";
             this.tbSelectedCode2.PasswordChar = '\0';
@@ -1086,7 +1157,7 @@
             this.tbSelectedCode2.SelectionLength = 0;
             this.tbSelectedCode2.SelectionStart = 0;
             this.tbSelectedCode2.ShortcutsEnabled = true;
-            this.tbSelectedCode2.Size = new System.Drawing.Size(82, 25);
+            this.tbSelectedCode2.Size = new System.Drawing.Size(117, 38);
             this.tbSelectedCode2.TabIndex = 26;
             this.tbSelectedCode2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbSelectedCode2.UseSelectable = true;
@@ -1099,9 +1170,10 @@
             this.metroLabel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.metroLabel5.Dock = System.Windows.Forms.DockStyle.Left;
             this.metroLabel5.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel5.Location = new System.Drawing.Point(395, 0);
+            this.metroLabel5.Location = new System.Drawing.Point(564, 0);
+            this.metroLabel5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.metroLabel5.Name = "metroLabel5";
-            this.metroLabel5.Size = new System.Drawing.Size(106, 25);
+            this.metroLabel5.Size = new System.Drawing.Size(151, 38);
             this.metroLabel5.TabIndex = 25;
             this.metroLabel5.Text = "선택종목";
             this.metroLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1114,9 +1186,10 @@
             // 
             // 
             this.tbSelectedName.CustomButton.Image = null;
-            this.tbSelectedName.CustomButton.Location = new System.Drawing.Point(183, 1);
+            this.tbSelectedName.CustomButton.Location = new System.Drawing.Point(371, 3);
+            this.tbSelectedName.CustomButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbSelectedName.CustomButton.Name = "";
-            this.tbSelectedName.CustomButton.Size = new System.Drawing.Size(23, 23);
+            this.tbSelectedName.CustomButton.Size = new System.Drawing.Size(47, 50);
             this.tbSelectedName.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.tbSelectedName.CustomButton.TabIndex = 1;
             this.tbSelectedName.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -1124,7 +1197,8 @@
             this.tbSelectedName.CustomButton.Visible = false;
             this.tbSelectedName.Dock = System.Windows.Forms.DockStyle.Left;
             this.tbSelectedName.Lines = new string[0];
-            this.tbSelectedName.Location = new System.Drawing.Point(188, 0);
+            this.tbSelectedName.Location = new System.Drawing.Point(268, 0);
+            this.tbSelectedName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbSelectedName.MaxLength = 32767;
             this.tbSelectedName.Name = "tbSelectedName";
             this.tbSelectedName.PasswordChar = '\0';
@@ -1133,7 +1207,7 @@
             this.tbSelectedName.SelectionLength = 0;
             this.tbSelectedName.SelectionStart = 0;
             this.tbSelectedName.ShortcutsEnabled = true;
-            this.tbSelectedName.Size = new System.Drawing.Size(207, 25);
+            this.tbSelectedName.Size = new System.Drawing.Size(296, 38);
             this.tbSelectedName.TabIndex = 24;
             this.tbSelectedName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbSelectedName.UseSelectable = true;
@@ -1146,9 +1220,10 @@
             // 
             // 
             this.tbSelectedCode.CustomButton.Image = null;
-            this.tbSelectedCode.CustomButton.Location = new System.Drawing.Point(58, 1);
+            this.tbSelectedCode.CustomButton.Location = new System.Drawing.Point(116, 3);
+            this.tbSelectedCode.CustomButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbSelectedCode.CustomButton.Name = "";
-            this.tbSelectedCode.CustomButton.Size = new System.Drawing.Size(23, 23);
+            this.tbSelectedCode.CustomButton.Size = new System.Drawing.Size(47, 50);
             this.tbSelectedCode.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.tbSelectedCode.CustomButton.TabIndex = 1;
             this.tbSelectedCode.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -1156,7 +1231,8 @@
             this.tbSelectedCode.CustomButton.Visible = false;
             this.tbSelectedCode.Dock = System.Windows.Forms.DockStyle.Left;
             this.tbSelectedCode.Lines = new string[0];
-            this.tbSelectedCode.Location = new System.Drawing.Point(106, 0);
+            this.tbSelectedCode.Location = new System.Drawing.Point(151, 0);
+            this.tbSelectedCode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbSelectedCode.MaxLength = 32767;
             this.tbSelectedCode.Name = "tbSelectedCode";
             this.tbSelectedCode.PasswordChar = '\0';
@@ -1165,7 +1241,7 @@
             this.tbSelectedCode.SelectionLength = 0;
             this.tbSelectedCode.SelectionStart = 0;
             this.tbSelectedCode.ShortcutsEnabled = true;
-            this.tbSelectedCode.Size = new System.Drawing.Size(82, 25);
+            this.tbSelectedCode.Size = new System.Drawing.Size(117, 38);
             this.tbSelectedCode.TabIndex = 4;
             this.tbSelectedCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbSelectedCode.UseSelectable = true;
@@ -1179,8 +1255,9 @@
             this.lblTitlePgr.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblTitlePgr.FontSize = MetroFramework.MetroLabelSize.Small;
             this.lblTitlePgr.Location = new System.Drawing.Point(0, 0);
+            this.lblTitlePgr.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitlePgr.Name = "lblTitlePgr";
-            this.lblTitlePgr.Size = new System.Drawing.Size(106, 25);
+            this.lblTitlePgr.Size = new System.Drawing.Size(151, 38);
             this.lblTitlePgr.TabIndex = 3;
             this.lblTitlePgr.Text = "선택업종";
             this.lblTitlePgr.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1189,13 +1266,15 @@
             // 
             // AtmanKRItemAIForm2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1563, 880);
+            this.ClientSize = new System.Drawing.Size(2233, 1320);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "AtmanKRItemAIForm2";
+            this.Padding = new System.Windows.Forms.Padding(29, 90, 29, 30);
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Style = MetroFramework.MetroColorStyle.Pink;
             this.Text = "ATMAN INV. F KR ITEM FINDER";
