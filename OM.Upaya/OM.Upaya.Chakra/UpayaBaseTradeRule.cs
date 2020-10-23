@@ -38,7 +38,7 @@ namespace OM.Upaya.Chakra
         {
             try
             {
-                ExApi.XingApi.UpayaOrder(ItemCode, position, qty, tradeType, CPrice.ToString());           
+                ExApi.XingApi.UpayaOrder(Item, position, qty, tradeType, CPrice.ToString());           
             }
             catch (Exception ex)
             {

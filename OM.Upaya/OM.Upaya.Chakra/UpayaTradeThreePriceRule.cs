@@ -115,6 +115,7 @@ namespace OM.Upaya.Chakra
                 CPrice = Math.Round(Convert.ToDouble(price.price), RoundNum);
                 if (!IsUse) return;
 
+                #region P2
                 #region P2 Buy
                 //P2 Buy 1
                 if (IsUseP2Buy1 && ! IsBuyP2Done1 && P2BuyPrice1 > 0 && P2BuyQty1 > 0)
@@ -213,6 +214,109 @@ namespace OM.Upaya.Chakra
                     }
                 }
                 #endregion
+                #endregion
+
+                #region P1
+                #region P1 Buy
+                //P1 Buy 1
+                if (IsUseP1Buy1 && !IsBuyP1Done1 && P1BuyPrice1 > 0 && P1BuyQty1 > 0)
+                {
+                    if (CPrice == P1BuyPrice1)
+                    {
+                        SellBuy("1", P1BuyQty1.ToString(), TradeType);
+
+                        IsBuyP1Done1 = true;
+                    }
+                }
+
+                //P1 Buy 2
+                if (IsUseP1Buy2 && !IsBuyP1Done2 && P1BuyPrice2 > 0 && P1BuyQty2 > 0)
+                {
+                    if (CPrice == P1BuyPrice2)
+                    {
+                        SellBuy("1", P1BuyQty2.ToString(), TradeType);
+
+                        IsBuyP1Done2 = true;
+                    }
+                }
+
+                //P1 Buy 3
+                if (IsUseP1Buy3 && !IsBuyP1Done3 && P1BuyPrice3 > 0 && P1BuyQty3 > 0)
+                {
+                    if (CPrice == P1BuyPrice3)
+                    {
+                        SellBuy("1", P1BuyQty3.ToString(), TradeType);
+
+                        IsBuyP1Done3 = true;
+                    }
+                }
+                #endregion
+
+                #region P1 Revenue
+                //P1 Revenue 1
+                if (IsUseP1Revenue1 && !IsRevenueP1Done1 && P1RevenuePrice1 > 0 && P1RevenueQty1 > 0)
+                {
+                    if (CPrice == P1RevenuePrice1)
+                    {
+                        SellBuy("2", P1RevenueQty1.ToString(), TradeType);
+                        IsRevenueP1Done1 = true;
+                    }
+                }
+
+                //P1 Revenue 2
+                if (IsUseP1Revenue2 && !IsRevenueP1Done2 && P1RevenuePrice2 > 0 && P1RevenueQty2 > 0)
+                {
+                    if (CPrice == P1RevenuePrice2)
+                    {
+                        SellBuy("2", P1RevenueQty2.ToString(), TradeType);
+                        IsRevenueP1Done2 = true;
+                    }
+                }
+
+                //P1 Revenue 3
+                if (IsUseP1Revenue3 && !IsRevenueP1Done3 && P1RevenuePrice3 > 0 && P1RevenueQty3 > 0)
+                {
+                    if (CPrice == P1RevenuePrice3)
+                    {
+                        SellBuy("2", P1RevenueQty3.ToString(), TradeType);
+                        IsRevenueP1Done3 = true;
+                    }
+                }
+                #endregion
+
+                #region P1 Losscut
+                //P1 Losscut 1
+                if (IsUseP1Losscut1 && !IsLosscutP1Done1 && P1LosscutPrice1 > 0 && P1LosscutQty1 > 0)
+                {
+                    if (CPrice == P1LosscutPrice1)
+                    {
+                        SellBuy("2", P1LosscutQty1.ToString(), TradeType);
+                        IsLosscutP1Done1 = true;
+                    }
+                }
+
+                //P1 Losscut 2
+                if (IsUseP1Losscut2 && !IsLosscutP1Done2 && P1LosscutPrice2 > 0 && P1LosscutQty2 > 0)
+                {
+                    if (CPrice == P1LosscutPrice2)
+                    {
+                        SellBuy("2", P1LosscutQty2.ToString(), TradeType);
+                        IsLosscutP1Done2 = true;
+                    }
+                }
+
+                //P1 Losscut 3
+                if (IsUseP1Losscut3 && !IsLosscutP1Done3 && P1LosscutPrice3 > 0 && P1LosscutQty3 > 0)
+                {
+                    if (CPrice == P1LosscutPrice3)
+                    {
+                        SellBuy("2", P1LosscutQty3.ToString(), TradeType);
+                        IsLosscutP1Done3 = true;
+                    }
+                }
+                #endregion
+                #endregion
+
             }
             catch (Exception)
             {

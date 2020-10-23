@@ -96,11 +96,17 @@ namespace OM.Atman.Chakra.App
                 case "가격모니터링&&시그널":
                     form = new MainForm();
                     break;
-                case "캔들패턴매칭AI-1":
+                case "해외지수캔들패턴매칭":
                     form = new AtmanKospiAIForm();
                     break;
-                case "캔들패턴매칭AI-2":
-                    form = new AtmanKospiAI2Form();
+                case "국내지수캔들패턴매칭":
+                    form = new AtmanKospiAIForm();
+                    break;
+                case "해외선물캔들패턴매칭":
+                    form = new AtmanWorldFutureAIForm();
+                    break;
+                case "국내종목캔들패턴매칭":
+                    form = new AtmanKospiAIForm();
                     break;
                 case "스마트종목파인더-1":
                     form = new FinderForms.AtmanKRItemAIForm2();

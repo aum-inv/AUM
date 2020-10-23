@@ -152,7 +152,7 @@
             this.groupBox3.Size = new System.Drawing.Size(267, 96);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "진입설정(매수포지션)";
+            this.groupBox3.Text = "진입설정(매도포지션)";
             // 
             // chkIsUseP2Buy3
             // 
@@ -343,6 +343,7 @@
             this.groupBox4.TabIndex = 18;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "종목코드";
+            this.groupBox4.Visible = false;
             // 
             // tbItemCode
             // 
@@ -378,7 +379,7 @@
             this.groupBox1.Size = new System.Drawing.Size(267, 96);
             this.groupBox1.TabIndex = 19;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "수익설정(매수포지션)";
+            this.groupBox1.Text = "수익설정(매도포지션)";
             // 
             // chkIsUseP2Revenue3
             // 
@@ -531,7 +532,7 @@
             this.groupBox5.Size = new System.Drawing.Size(267, 96);
             this.groupBox5.TabIndex = 20;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "손실설정(매수포지션)";
+            this.groupBox5.Text = "손실설정(매도포지션)";
             // 
             // chkIsUseP2Losscut3
             // 
@@ -684,7 +685,7 @@
             this.groupBox6.Size = new System.Drawing.Size(267, 96);
             this.groupBox6.TabIndex = 24;
             this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "손실설정(매도포지션)";
+            this.groupBox6.Text = "손실설정(매수포지션)";
             // 
             // chkIsUseP1Losscut3
             // 
@@ -837,7 +838,7 @@
             this.groupBox8.Size = new System.Drawing.Size(267, 96);
             this.groupBox8.TabIndex = 23;
             this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "수익설정(매도포지션)";
+            this.groupBox8.Text = "수익설정(매수포지션)";
             // 
             // chkIsUseP1Revenue3
             // 
@@ -990,7 +991,7 @@
             this.groupBox10.Size = new System.Drawing.Size(267, 96);
             this.groupBox10.TabIndex = 21;
             this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "진입설정(매도포지션)";
+            this.groupBox10.Text = "진입설정(매수포지션)";
             // 
             // chkIsUseP1Buy3
             // 
@@ -1145,10 +1146,12 @@
             // rdoTradeType1
             // 
             this.rdoTradeType1.AutoSize = true;
+            this.rdoTradeType1.Checked = true;
             this.rdoTradeType1.Location = new System.Drawing.Point(87, 23);
             this.rdoTradeType1.Name = "rdoTradeType1";
             this.rdoTradeType1.Size = new System.Drawing.Size(59, 16);
             this.rdoTradeType1.TabIndex = 1;
+            this.rdoTradeType1.TabStop = true;
             this.rdoTradeType1.Text = "시장가";
             this.rdoTradeType1.UseVisualStyleBackColor = true;
             this.rdoTradeType1.CheckedChanged += new System.EventHandler(this.rdoTradeType1_CheckedChanged);
@@ -1156,12 +1159,10 @@
             // rdoTradeType2
             // 
             this.rdoTradeType2.AutoSize = true;
-            this.rdoTradeType2.Checked = true;
             this.rdoTradeType2.Location = new System.Drawing.Point(9, 23);
             this.rdoTradeType2.Name = "rdoTradeType2";
             this.rdoTradeType2.Size = new System.Drawing.Size(59, 16);
             this.rdoTradeType2.TabIndex = 0;
-            this.rdoTradeType2.TabStop = true;
             this.rdoTradeType2.Text = "지정가";
             this.rdoTradeType2.UseVisualStyleBackColor = true;
             this.rdoTradeType2.CheckedChanged += new System.EventHandler(this.rdoTradeType2_CheckedChanged);

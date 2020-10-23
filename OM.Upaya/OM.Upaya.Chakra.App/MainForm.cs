@@ -334,6 +334,9 @@ namespace OM.Upaya.Chakra.App
         private void chkSise_CheckedChanged(object sender, EventArgs e)
         {
             isSiseBinding = chkSise.Checked;
+
+            Process currentProcess = Process.GetCurrentProcess();
+            currentProcess.Kill();
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)

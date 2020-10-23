@@ -86,6 +86,12 @@
     <Compile Include="AIForms\AtmanKospiAI2Form.Designer.cs">
       <DependentUpon>AtmanKospiAI2Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="AIForms\AtmanWorldFutureAIForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AIForms\AtmanWorldFutureAIForm.Designer.cs">
+      <DependentUpon>AtmanWorldFutureAIForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FinderForms\AtmanKRItemFinderByVolRankForm2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -366,6 +372,9 @@
     </Compile>
     <EmbeddedResource Include="AIForms\AtmanKospiAI2Form.resx">
       <DependentUpon>AtmanKospiAI2Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AIForms\AtmanWorldFutureAIForm.resx">
+      <DependentUpon>AtmanWorldFutureAIForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FinderForms\AtmanKRItemFinderByVolRankForm2.resx">
       <DependentUpon>AtmanKRItemFinderByVolRankForm2.cs</DependentUpon>
