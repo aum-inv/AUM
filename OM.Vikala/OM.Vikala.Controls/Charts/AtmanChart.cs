@@ -123,6 +123,8 @@ namespace OM.Vikala.Controls.Charts
             double preMassAvg = 0;
             double preQuantumAvg = 0;
 
+            int uItemCount = 0;
+            int dItemCount = 0;
             for (int i = 4; i < ChartData.Count; i++)
             {
                 var item = ChartData[i];
@@ -141,8 +143,8 @@ namespace OM.Vikala.Controls.Charts
 
                 chart.Series["lineMess"].Points.AddXY(itemAvg.DTime, itemAvg.T_MassAvg);
                 chart.Series["lineQuantum"].Points.AddXY(itemAvg.DTime, itemAvg.T_QuantumAvg);
-                chart.Series["lineMessB"].Points.AddXY(itemAvg2.DTime, itemAvg2.T_MassAvg);
-                chart.Series["lineQuantumB"].Points.AddXY(itemAvg2.DTime, itemAvg2.T_QuantumAvg);
+                chart.Series["lineMessB"].Points.AddXY(itemAvg2.DTime, item.T_MassAvg2);
+                chart.Series["lineQuantumB"].Points.AddXY(itemAvg2.DTime, item.T_QuantumAvg2);
 
                 chart.Series["candleAverage"].Points.AddXY(itemAvg.DTime, itemAvg.HighPrice, itemAvg.LowPrice, itemAvg.OpenPrice, itemAvg.ClosePrice);
                 chart.Series["candleBAverage"].Points.AddXY(itemAvg2.DTime, itemAvg2.HighPrice, itemAvg2.LowPrice, itemAvg2.OpenPrice, itemAvg2.ClosePrice);
@@ -210,31 +212,81 @@ namespace OM.Vikala.Controls.Charts
                 //        }
                 //    }
                 //}
-                //if (SelectedPType == "해외선물")
-                //{
-                //    if (preSPrice1 > preSPrice2 && preSPrice2 > preSPrice3)
-                //    {
-                //        if (preSPrice1 < smart.Variance_ChartPrice1)
-                //        {
-                //            if (item.HighPrice < itemAvg.T_MassAvg && item.HighPrice < itemAvg.T_QuantumAvg)
-                //            {
-                //                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Red;
-                //                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▲";
-                //            }
-                //        }
-                //    }
-                //    if (preSPrice1 < preSPrice2 && preSPrice2 < preSPrice3)
-                //    {
-                //        if (preSPrice1 > smart.Variance_ChartPrice1)
-                //        {
-                //            if (item.LowPrice > itemAvg.T_MassAvg && item.LowPrice > itemAvg.T_QuantumAvg)
-                //            {
-                //                chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Blue;
-                //                chart.Series["lineSmartEnergy3"].Points[idx].Label = "▼";
-                //            }
-                //        }
-                //    }
-                //}
+
+                if (SelectedPType == "해외선물" || SelectedPType == "국내종목")
+                {
+                    if (preSPrice1 > preSPrice2 && preSPrice2 > preSPrice3)
+                    {
+                        if (TimeInterval == TimeIntervalEnum.Day || TimeInterval == TimeIntervalEnum.Week)
+                        {
+                            if (preSPrice1 < smart.Variance_ChartPrice1)
+                            {
+                                uItemCount++;
+                                if (item.HighPrice < itemAvg.T_MassAvg && item.HighPrice < itemAvg.T_QuantumAvg)
+                                {
+                                    if (uItemCount >= 5)
+                                    {
+                                        uItemCount = 0;
+                                        chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Red;
+                                        chart.Series["lineSmartEnergy3"].Points[idx].Label = "▲";
+                                    }
+                                }
+                            }
+                        }                        
+                        if (TimeInterval == TimeIntervalEnum.Hour_01 || TimeInterval == TimeIntervalEnum.Minute_15 || TimeInterval == TimeIntervalEnum.Minute_30)
+                        {
+                            if (preSPrice3 < smart.Variance_ChartPrice3)
+                            {
+                                uItemCount++;
+                                if (item.HighPrice < itemAvg.T_MassAvg && item.HighPrice < itemAvg.T_QuantumAvg)
+                                {
+                                    if (uItemCount >= 5)
+                                    {
+                                        uItemCount = 0;
+                                        chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Red;
+                                        chart.Series["lineSmartEnergy3"].Points[idx].Label = "▲";
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if (preSPrice1 < preSPrice2 && preSPrice2 < preSPrice3)
+                    {
+                        if (TimeInterval == TimeIntervalEnum.Day || TimeInterval == TimeIntervalEnum.Week)
+                        {
+                            if (preSPrice1 > smart.Variance_ChartPrice1)
+                            {
+                                dItemCount++;
+                                if (item.LowPrice > itemAvg.T_MassAvg && item.LowPrice > itemAvg.T_QuantumAvg)
+                                {
+                                    if (dItemCount >= 5)
+                                    {
+                                        dItemCount = 0;
+                                        chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Blue;
+                                        chart.Series["lineSmartEnergy3"].Points[idx].Label = "▼";
+                                    }
+                                }
+                            }
+                        }                        
+                        if (TimeInterval == TimeIntervalEnum.Hour_01 || TimeInterval == TimeIntervalEnum.Minute_15 || TimeInterval == TimeIntervalEnum.Minute_30)
+                        {
+                            if (preSPrice3 > smart.Variance_ChartPrice3)
+                            {
+                                dItemCount++;
+                                if (item.LowPrice > itemAvg.T_MassAvg && item.LowPrice > itemAvg.T_QuantumAvg)
+                                {
+                                    if (dItemCount >= 5)
+                                    {
+                                        dItemCount = 0;
+                                        chart.Series["lineSmartEnergy3"].Points[idx].LabelForeColor = Color.Blue;
+                                        chart.Series["lineSmartEnergy3"].Points[idx].Label = "▼";
+                                    }
+                                }
+                            }
+                        }                        
+                    }
+                }
                 //if (SelectedPType == "국내업종")
                 //{
                 //    if (preSPrice1 > preSPrice2 && preSPrice2 > preSPrice3)
@@ -295,7 +347,8 @@ namespace OM.Vikala.Controls.Charts
 
                 var dataPoint = chart.Series[0].Points[idx];
                 dataPoint.Tag = item;
-            }          
+            }        
+            
             SetScrollBar();
             SetTrackBar();
             DisplayView();

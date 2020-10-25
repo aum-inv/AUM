@@ -18,8 +18,7 @@ namespace OM.Vikala.Chakra.App.Mains.ChartForm
     public partial class CandleChartForm : BaseForm
     {
         CandleChartTypeEnum candleChartType = CandleChartTypeEnum.기본;
-        BaseCandleChartTypeEnum baseCandleChartType = BaseCandleChartTypeEnum.인;
-
+       
         public CandleChartForm()
         {
             InitializeComponent();

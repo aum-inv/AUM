@@ -79,7 +79,8 @@ namespace OM.Vikala.Controls.Charts
                 List<T_QuantumItemData> transformedDatas = new List<T_QuantumItemData>();
                 for (int i = itemCnt; i <= sourceDatas.Count; i++)
                 {
-                    T_QuantumItemData transData = new T_QuantumItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemCnt, itemCnt));
+                    T_QuantumItemData transData = new T_QuantumItemData(sourceDatas[i - 1]
+                        , sourceDatas.GetRange(i - itemCnt, itemCnt));
                     transData.Transform();
                     transformedDatas.Add(transData);
                 }
@@ -87,7 +88,8 @@ namespace OM.Vikala.Controls.Charts
                 List<T_QuantumItemData> transformedDataSub1 = new List<T_QuantumItemData>();
                 for (int i = itemCnt; i <= sourceDataSub1.Count; i++)
                 {
-                    T_QuantumItemData transData = new T_QuantumItemData(sourceDataSub1[i - 1], sourceDataSub1.GetRange(i - itemCnt, itemCnt));
+                    T_QuantumItemData transData = new T_QuantumItemData(sourceDataSub1[i - 1]
+                        , sourceDataSub1.GetRange(i - itemCnt, itemCnt));
                     transData.Transform();
                     transformedDataSub1.Add(transData);
                 }
@@ -95,7 +97,8 @@ namespace OM.Vikala.Controls.Charts
                 List<T_QuantumItemData> transformedDataSub2 = new List<T_QuantumItemData>();
                 for (int i = itemCnt; i <= sourceDataSub2.Count; i++)
                 {
-                    T_QuantumItemData transData = new T_QuantumItemData(sourceDataSub2[i - 1], sourceDataSub2.GetRange(i - itemCnt, itemCnt));
+                    T_QuantumItemData transData = new T_QuantumItemData(sourceDataSub2[i - 1]
+                        , sourceDataSub2.GetRange(i - itemCnt, itemCnt));
                     transData.Transform();
                     transformedDataSub2.Add(transData);
                 }
@@ -164,7 +167,8 @@ namespace OM.Vikala.Controls.Charts
 
                 for (int i = itemCnt; i <= sourceDatas.Count; i++)
                 {
-                    T_QuantumItemData transData = new T_QuantumItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemCnt, itemCnt));
+                    T_QuantumItemData transData = new T_QuantumItemData(sourceDatas[i - 1]
+                        , sourceDatas.GetRange(i - itemCnt, itemCnt));
                     transData.Transform();
                     transformedDatas.Add(transData);
                 }
@@ -197,7 +201,8 @@ namespace OM.Vikala.Controls.Charts
 
                 for (int i = itemCnt; i <= sourceDatas.Count; i++)
                 {
-                    T_QuantumItemData transData = new T_QuantumItemData(sourceDatas[i - 1], sourceDatas.GetRange(i - itemCnt, itemCnt));
+                    T_QuantumItemData transData = new T_QuantumItemData(sourceDatas[i - 1]
+                        , sourceDatas.GetRange(i - itemCnt, itemCnt));
                     transData.Transform();
                     transformedDatas.Add(transData);
                 }
@@ -206,7 +211,8 @@ namespace OM.Vikala.Controls.Charts
 
                 for (int i = itemCnt; i <= sourceDataSubs.Count; i++)
                 {
-                    T_QuantumItemData transData = new T_QuantumItemData(sourceDataSubs[i - 1], sourceDataSubs.GetRange(i - itemCnt, itemCnt));
+                    T_QuantumItemData transData = new T_QuantumItemData(sourceDataSubs[i - 1]
+                        , sourceDataSubs.GetRange(i - itemCnt, itemCnt));
                     transData.Transform();
                     transformedDatasSub.Add(transData);
                 }
@@ -526,7 +532,8 @@ namespace OM.Vikala.Controls.Charts
                
                 for (int i = itemsCnt; i <= sourceDatas.Count; i++)
                 {
-                    T_QuantumItemData transData = new T_QuantumItemData(sourceDatas[i-1], sourceDatas.GetRange(i - itemsCnt, itemsCnt));
+                    T_QuantumItemData transData = new T_QuantumItemData(sourceDatas[i-1]
+                        , sourceDatas.GetRange(i - itemsCnt, itemsCnt));
                     transData.Transform();
                     transformedDatas.Add(transData);
                 }

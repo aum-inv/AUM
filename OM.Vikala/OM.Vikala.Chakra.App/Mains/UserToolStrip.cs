@@ -45,7 +45,7 @@ namespace OM.Vikala.Chakra.App.Mains
                 tsbTime01.Visible = 
                 tsbTime02.Visible = 
                 tsbTime03.Visible =
-                tsbTime04.Visible =
+                tsbTime05.Visible =
                 tsbTime11.Visible =
                 tsbTime12.Visible =
                 tsbTime13.Visible =
@@ -87,6 +87,11 @@ namespace OM.Vikala.Chakra.App.Mains
         {
             if (SharedData.SelectedType == "국내지수")
             {
+                tsbTime01.Visible =
+                tsbTime02.Visible =
+                tsbTime03.Visible =
+                tsbTime04.Visible =
+                tsbTime05.Visible =
                 tsbTime12.Visible =
                 tsbTime13.Visible =
                 tsbTime14.Visible =
@@ -101,6 +106,7 @@ namespace OM.Vikala.Chakra.App.Mains
                 tsbTime02.Visible =
                 tsbTime03.Visible =
                 tsbTime04.Visible =
+                tsbTime05.Visible =
                 tsbTime11.Visible =
                 tsbTime12.Visible =
                 tsbTime13.Visible =
@@ -111,7 +117,8 @@ namespace OM.Vikala.Chakra.App.Mains
                 tsbTime18.Visible = false;
             }
             else if (SharedData.SelectedType == "해외선물")
-            {                               
+            {
+                tsbTime01.Visible =
                 tsbTime03.Visible =
                 tsbTime12.Visible =
                 tsbTime13.Visible =
@@ -125,8 +132,9 @@ namespace OM.Vikala.Chakra.App.Mains
             {
                 tsbTime01.Visible =
                 tsbTime02.Visible =
-                tsbTime03.Visible =
+                tsbTime03.Visible = 
                 tsbTime04.Visible =
+                tsbTime05.Visible =
                 tsbTime11.Visible =
                 tsbTime12.Visible =
                 tsbTime13.Visible =
@@ -137,7 +145,12 @@ namespace OM.Vikala.Chakra.App.Mains
                 tsbTime18.Visible = false;
             }
             else if (SharedData.SelectedType == "국내종목")
-            {                         
+            {
+                tsbTime01.Visible =
+                tsbTime02.Visible =
+                tsbTime03.Visible =
+                tsbTime04.Visible =
+                //tsbTime05.Visible =
                 tsbTime12.Visible =
                 tsbTime13.Visible =
                 tsbTime14.Visible =
@@ -151,8 +164,9 @@ namespace OM.Vikala.Chakra.App.Mains
         {
             tsbTime01.Visible = 
             tsbTime02.Visible = 
-            tsbTime03.Visible = 
-            tsbTime04.Visible = 
+            tsbTime03.Visible =
+            tsbTime04.Visible =
+            tsbTime05.Visible = 
             tsbTime11.Visible = 
             tsbTime12.Visible = 
             tsbTime13.Visible = 
@@ -273,6 +287,7 @@ namespace OM.Vikala.Chakra.App.Mains
             tsbTime02.BackColor = Color.WhiteSmoke;
             tsbTime03.BackColor = Color.WhiteSmoke;
             tsbTime04.BackColor = Color.WhiteSmoke;
+            tsbTime05.BackColor = Color.WhiteSmoke;
             tsbTime11.BackColor = Color.WhiteSmoke;
             tsbTime12.BackColor = Color.WhiteSmoke;
             tsbTime13.BackColor = Color.WhiteSmoke;
@@ -289,7 +304,8 @@ namespace OM.Vikala.Chakra.App.Mains
                 case TimeIntervalEnum.Minute_01 : tsbTime01.BackColor = Color.Yellow; break;
                 case TimeIntervalEnum.Minute_05: tsbTime02.BackColor = Color.Yellow; break;
                 case TimeIntervalEnum.Minute_10: tsbTime03.BackColor = Color.Yellow; break;
-                case TimeIntervalEnum.Minute_30: tsbTime04.BackColor = Color.Yellow; break;
+                case TimeIntervalEnum.Minute_15: tsbTime04.BackColor = Color.Yellow; break;
+                case TimeIntervalEnum.Minute_30: tsbTime05.BackColor = Color.Yellow; break;
                 case TimeIntervalEnum.Hour_01: tsbTime11.BackColor = Color.Yellow; break;
                 case TimeIntervalEnum.Hour_02: tsbTime12.BackColor = Color.Yellow; break;
                 case TimeIntervalEnum.Hour_03: tsbTime13.BackColor = Color.Yellow; break;
@@ -403,6 +419,7 @@ namespace OM.Vikala.Chakra.App.Mains
                 case "01m": timeInterval = TimeIntervalEnum.Minute_01; break;
                 case "05m": timeInterval = TimeIntervalEnum.Minute_05; break;
                 case "10m": timeInterval = TimeIntervalEnum.Minute_10; break;
+                case "15m": timeInterval = TimeIntervalEnum.Minute_15; break;
                 case "30m": timeInterval = TimeIntervalEnum.Minute_30; break;
                 case "01h": timeInterval = TimeIntervalEnum.Hour_01; break;                
                 case "02h": timeInterval = TimeIntervalEnum.Hour_02; break;

@@ -91,8 +91,6 @@ namespace OM.Vikala.Controls.Charts
             if (ChartData == null) return;
             if (ChartDataSub == null) return;
 
-            double maxPrice = 0.0;
-            double minPrice = 0.0;
             int bDistance = -1;
             for (int i = 0; i < ChartData.Count; i++)
             {

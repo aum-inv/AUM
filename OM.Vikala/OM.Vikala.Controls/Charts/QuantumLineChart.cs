@@ -94,9 +94,7 @@ namespace OM.Vikala.Controls.Charts
 
             if (IsShowCandle)
                 chart.Series[3].Enabled = chart.Series[4].Enabled = false;
-
-            double maxPrice = 0.0;
-            double minPrice = 0.0;
+                      
             int bDistance = -1;
             T_QuantumItemData bItem = null;
 

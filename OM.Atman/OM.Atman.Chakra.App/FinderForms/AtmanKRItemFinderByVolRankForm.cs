@@ -31,7 +31,6 @@ namespace OM.Atman.Chakra.App.FinderForms
     {
         int displayCnt = 60;
 
-        bool isRunningUpjong = false;
         bool isRunningJongmok = false;
 
         public AtmanKRItemFinderByVolRankForm()

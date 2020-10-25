@@ -97,7 +97,7 @@ namespace OM.Atman.Chakra.App
                         }
                     }
                 }
-                catch (Exception ex) { }
+                catch (Exception ex) { string err = ex.Message; }
             }
         }
         private void TradeRuleForm_Load(object sender, EventArgs e)

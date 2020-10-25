@@ -68,7 +68,7 @@ namespace OM.Upaya.Chakra.App
                         if (IsAutoRevenueCal) calculateRevenueTick(price.price);
                     }
                 }
-                catch (Exception ex) { }
+                catch (Exception ex) { string err = ex.Message; }
             }
         }
         private void TradeRuleForm_Load(object sender, EventArgs e)

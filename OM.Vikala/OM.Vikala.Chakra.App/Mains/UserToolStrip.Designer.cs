@@ -36,7 +36,7 @@
             this.tsbTime01 = new System.Windows.Forms.ToolStripButton();
             this.tsbTime02 = new System.Windows.Forms.ToolStripButton();
             this.tsbTime03 = new System.Windows.Forms.ToolStripButton();
-            this.tsbTime04 = new System.Windows.Forms.ToolStripButton();
+            this.tsbTime05 = new System.Windows.Forms.ToolStripButton();
             this.tsbTime11 = new System.Windows.Forms.ToolStripButton();
             this.tsbTime12 = new System.Windows.Forms.ToolStripButton();
             this.tsbTime13 = new System.Windows.Forms.ToolStripButton();
@@ -73,6 +73,7 @@
             this.tsbWeb1 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tscbType = new System.Windows.Forms.ToolStripComboBox();
+            this.tsbTime04 = new System.Windows.Forms.ToolStripButton();
             this.tsbWeb2 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -137,17 +138,17 @@
             this.tsbTime03.Text = "10m";
             this.tsbTime03.Click += new System.EventHandler(this.IntervalButton_Click);
             // 
-            // tsbTime04
+            // tsbTime05
             // 
-            this.tsbTime04.AutoToolTip = false;
-            this.tsbTime04.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbTime04.Image = ((System.Drawing.Image)(resources.GetObject("tsbTime04.Image")));
-            this.tsbTime04.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbTime04.Name = "tsbTime04";
-            this.tsbTime04.Size = new System.Drawing.Size(36, 20);
-            this.tsbTime04.Tag = "30m";
-            this.tsbTime04.Text = "30m";
-            this.tsbTime04.Click += new System.EventHandler(this.IntervalButton_Click);
+            this.tsbTime05.AutoToolTip = false;
+            this.tsbTime05.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbTime05.Image = ((System.Drawing.Image)(resources.GetObject("tsbTime05.Image")));
+            this.tsbTime05.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbTime05.Name = "tsbTime05";
+            this.tsbTime05.Size = new System.Drawing.Size(36, 20);
+            this.tsbTime05.Tag = "30m";
+            this.tsbTime05.Text = "30m";
+            this.tsbTime05.Click += new System.EventHandler(this.IntervalButton_Click);
             // 
             // tsbTime11
             // 
@@ -486,6 +487,7 @@
             this.tsbTime02,
             this.tsbTime03,
             this.tsbTime04,
+            this.tsbTime05,
             this.tsbTime11,
             this.tsbTime12,
             this.tsbTime13,
@@ -539,6 +541,18 @@
             this.tscbType.Size = new System.Drawing.Size(121, 23);
             this.tscbType.SelectedIndexChanged += new System.EventHandler(this.tscbType_SelectedIndexChanged);
             // 
+            // tsbTime04
+            // 
+            this.tsbTime04.AutoToolTip = false;
+            this.tsbTime04.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbTime04.Image = ((System.Drawing.Image)(resources.GetObject("tsbTime04.Image")));
+            this.tsbTime04.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbTime04.Name = "tsbTime04";
+            this.tsbTime04.Size = new System.Drawing.Size(36, 20);
+            this.tsbTime04.Tag = "15m";
+            this.tsbTime04.Text = "15m";
+            this.tsbTime04.Click += new System.EventHandler(this.IntervalButton_Click);
+            // 
             // tsbWeb2
             // 
             this.tsbWeb2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -573,7 +587,7 @@
         public System.Windows.Forms.ToolStripButton tsbTime01;
         public System.Windows.Forms.ToolStripButton tsbTime02;
         public System.Windows.Forms.ToolStripButton tsbTime03;
-        public System.Windows.Forms.ToolStripButton tsbTime04;
+        public System.Windows.Forms.ToolStripButton tsbTime05;
         public System.Windows.Forms.ToolStripButton tsbTime11;
         public System.Windows.Forms.ToolStripButton tsbTime12;
         public System.Windows.Forms.ToolStripButton tsbTime13;
@@ -611,5 +625,6 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton tsbWeb2;
         private System.Windows.Forms.ToolStripComboBox tscbType;
+        public System.Windows.Forms.ToolStripButton tsbTime04;
     }
 }

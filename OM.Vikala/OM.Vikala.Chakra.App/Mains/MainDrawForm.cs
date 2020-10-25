@@ -351,6 +351,7 @@ namespace OM.Vikala.Chakra.App.Mains
             }
             catch(Exception ex)
             {
+                string err = ex.Message;
             }           
         }
 

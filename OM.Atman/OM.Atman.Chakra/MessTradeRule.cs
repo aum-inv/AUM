@@ -235,7 +235,7 @@ namespace OM.Atman.Chakra
                 if (ruleInfo.Position == "매수" && lossPrice <= CPrice) lossPrice = 0;
                 if (ruleInfo.Position == "매도" && lossPrice >= CPrice) lossPrice = 0;
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { string err = ex.Message; }
 
             return lossPrice;
         }
@@ -265,7 +265,7 @@ namespace OM.Atman.Chakra
                 if (ruleInfo.Position == "매수" && revenuePrice <= basePrice) revenuePrice = 0;
                 if (ruleInfo.Position == "매도" && revenuePrice >= basePrice) revenuePrice = 0;
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { string err = ex.Message; }
 
             return revenuePrice;
         }
@@ -292,7 +292,7 @@ namespace OM.Atman.Chakra
                         buyPrice = PriceTick.GetUpPriceOfRate(ItemCode, basePrice, Convert.ToDouble(ruleInfo.BuyRate));
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { string err = ex.Message; }
 
             return buyPrice;
         }       

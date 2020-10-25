@@ -123,7 +123,6 @@ namespace OM.Atman.Chakra.App.AIForms
                     }
                 }
                 WisdomCandleData preData = null;
-                WisdomCandleData nextData = null;
                 for (int i = lines.Count - 1; i > 0; i--)
                 {                    
                     var line = lines[i];

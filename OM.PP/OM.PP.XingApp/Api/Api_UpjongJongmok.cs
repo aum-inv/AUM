@@ -58,8 +58,7 @@ namespace OM.PP.XingApp.Api
                   try
                   {
                       int blockCnt = Convert.ToInt32(query.GetBlockCount(outBlock1));
-                      int round = 2;
-
+                     
                       var list = new List<UpJongJongMokData>();
                       for (int idx = 0; idx < blockCnt; idx++)
                       {                          

@@ -62,8 +62,6 @@ namespace OM.Vikala.Controls.Charts
             pnlScroll.Visible = IsAutoScrollX;
             if (ChartData == null) return;
           
-            double maxPrice = 0.0;
-            double minPrice = 0.0;
             T_QuantumItemData bItem = null;
             for (int i = 0; i < ChartData.Count; i++)
             {

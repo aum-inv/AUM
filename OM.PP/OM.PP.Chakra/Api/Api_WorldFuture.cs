@@ -70,6 +70,7 @@ namespace OM.PP.XingApp.Ex.Api
                     else if (gubun == "4H") resolution = "240";                    
                     else if (gubun == "M" || gubun == "1M") resolution = "1";
                     else if (gubun == "5M") resolution = "5";
+                    else if (gubun == "15M") resolution = "15";
                     else if (gubun == "30M") resolution = "30";
 
                     Int32 from = (Int32)(DateTime.UtcNow.AddYears(-2).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
@@ -83,6 +84,11 @@ namespace OM.PP.XingApp.Ex.Api
                     else if (gubun == "5M")
                     {
                         from = (Int32)(DateTime.UtcNow.AddDays(-5).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                        to = (Int32)(DateTime.UtcNow.AddDays(10).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                    }
+                    else if (gubun == "15M")
+                    {
+                        from = (Int32)(DateTime.UtcNow.AddDays(-15).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                         to = (Int32)(DateTime.UtcNow.AddDays(10).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                     }
                     else if (gubun == "30M")
@@ -154,6 +160,7 @@ namespace OM.PP.XingApp.Ex.Api
                 }
                 catch (Exception ex)
                 {
+                    string err = ex.Message;
                 }
                 finally
                 {

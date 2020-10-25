@@ -11,6 +11,7 @@ namespace OM.Lib.Base.Enums
             Minute_01
         ,   Minute_05
         ,   Minute_10
+        ,   Minute_15
         ,   Minute_30
         ,   Hour_01 
         ,   Hour_02

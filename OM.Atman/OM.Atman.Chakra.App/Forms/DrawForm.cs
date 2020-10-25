@@ -337,6 +337,7 @@ namespace OM.Atman.Chakra.App.Forms
             }
             catch(Exception ex)
             {
+                string err = ex.Message;
             }           
         }
         private double FindDistanceToSegmentSquared(Point pt, Point p1, Point p2, out PointF closest)

@@ -1481,6 +1481,7 @@ namespace OM.PP.Chakra
             }
             catch (Exception ex)
             {
+                string err = ex.Message;
                 return 0d;
             }
         }
@@ -1497,6 +1498,7 @@ namespace OM.PP.Chakra
             }
             catch (Exception ex)
             {
+                string err = ex.Message;
                 return 0d;
             }
         }
@@ -1513,6 +1515,7 @@ namespace OM.PP.Chakra
             }
             catch (Exception ex)
             {
+                string err = ex.Message;
                 return -1;
             }
         }

@@ -48,6 +48,7 @@ namespace OM.Atman.Chakra.App
             }
             catch (Exception ex)
             {
+                string err = ex.Message;
             }
         }
 

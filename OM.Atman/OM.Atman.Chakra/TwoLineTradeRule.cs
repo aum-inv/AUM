@@ -219,7 +219,7 @@ namespace OM.Atman.Chakra
                 if (ruleInfo.Position == "매수" && lossPrice < CPrice) lossPrice = 0;
                 if (ruleInfo.Position == "매도" && lossPrice > CPrice) lossPrice = 0;
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { string err = ex.Message; }
 
             return lossPrice;
         }
@@ -235,7 +235,7 @@ namespace OM.Atman.Chakra
                 if (ruleInfo.Position == "매수" && CPrice < buyPrice) revenuePrice = 0;
                 if (ruleInfo.Position == "매도" && CPrice > buyPrice) revenuePrice = 0;
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { string err = ex.Message; }
 
             return revenuePrice;
         }
@@ -267,7 +267,7 @@ namespace OM.Atman.Chakra
                     }
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { string err = ex.Message; }
 
             return touchPrice;
         }
@@ -299,7 +299,7 @@ namespace OM.Atman.Chakra
                     }
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { string err = ex.Message; }
 
             return buyPrice;
         }
@@ -365,6 +365,7 @@ namespace OM.Atman.Chakra
                 }
                 catch (Exception ex)
                 {
+                    string err = ex.Message;
                 }
             }
             catch (Exception)
