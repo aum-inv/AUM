@@ -26,7 +26,7 @@ using System.Xml;
 
 namespace OM.Atman.Chakra.App.AIForms
 {
-    public partial class AtmanWorldFutureAIForm : MetroFramework.Forms.MetroForm
+    public partial class AtmanWorldIndexAIForm : MetroFramework.Forms.MetroForm
     {
         List<SmartCandleData> scList = new List<SmartCandleData>();
 
@@ -35,7 +35,7 @@ namespace OM.Atman.Chakra.App.AIForms
         int displayCnt = 30;
         string itemCode = "CL";
         TimeIntervalEnum timeInterval = TimeIntervalEnum.Day;
-        public AtmanWorldFutureAIForm()
+        public AtmanWorldIndexAIForm()
         {
             InitializeComponent();           
             InitializeControls();
@@ -67,7 +67,7 @@ namespace OM.Atman.Chakra.App.AIForms
             List<ItemData> list = new List<ItemData>();
             foreach (var m in ItemCodeSet.Items)
             {
-                if (m.Name.StartsWith("해선"))
+                if (m.Name.StartsWith("지수-해외"))
                     list.Add(m);
 
                 if(m.Code == "") 
@@ -98,15 +98,12 @@ namespace OM.Atman.Chakra.App.AIForms
         {
             this.timeInterval = timeInterval;
             List<S_CandleItemData> sourceDatas = null;
-           
+
             if (timeInterval == TimeIntervalEnum.Day)
-                sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "D");
+                sourceDatas = XingContext.Instance.ClientContext.GetWorldIndexSiseData(itemCode, "0");
             else if (timeInterval == TimeIntervalEnum.Week)
-                sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "W");
-            else if (timeInterval == TimeIntervalEnum.Hour_01)
-                sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "H");
-            else if (timeInterval == TimeIntervalEnum.Minute_30)
-                sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "30M");
+                sourceDatas = XingContext.Instance.ClientContext.GetWorldIndexSiseData(itemCode, "1");
+
 
             if (sourceDatas == null || sourceDatas.Count == 0) return;
 
@@ -150,7 +147,7 @@ namespace OM.Atman.Chakra.App.AIForms
                 {
                     var data = scList[i];
                     string title = data.BasicPrice_Close.ToString("N2");
-                    string date = Convert.ToDateTime(data.DTime).ToString("yy.MM.dd HH:mm");
+                    string date = Convert.ToDateTime(data.DTime).ToString("yy.MM.dd");
                     string tenergy = data.TimeEnergy.ToString("N7");
                     string senergy = data.SpaceEnergy.ToString("N7");
 

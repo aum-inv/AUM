@@ -13,8 +13,7 @@ namespace OM.PP.Chakra
     {
         private S_CandleItemData sourceData = null;
         List<S_CandleItemData> sourceDataArray = null; 
-        List<S_CandleItemData> sourceDataArray2 = null;
-
+      
         private Single t_openAvg = 0;
         private Single t_closeAvg = 0;
         private Single t_highAvg = 0;
@@ -96,6 +95,7 @@ namespace OM.PP.Chakra
                 LowPrice = sourceData.LowPrice;
                 ClosePrice = sourceData.ClosePrice;
                 DTime = sourceData.DTime;
+                VirtualData = sourceData.VirtualData;
 
                 //t_openAvg = OpenPriceAvg = (Single)sourceDataArray.Average(t => t.OpenPrice);
                 t_closeAvg = ClosePriceAvg = (Single)sourceDataArray.Average(t => t.ClosePrice);

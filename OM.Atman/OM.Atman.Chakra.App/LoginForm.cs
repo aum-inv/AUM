@@ -97,7 +97,7 @@ namespace OM.Atman.Chakra.App
                     form = new MainForm();
                     break;
                 case "해외지수캔들패턴매칭":
-                    form = new AtmanKospiAIForm();
+                    form = new AtmanWorldIndexAIForm();
                     break;
                 case "국내지수캔들패턴매칭":
                     form = new AtmanKospiAIForm();
@@ -106,7 +106,7 @@ namespace OM.Atman.Chakra.App
                     form = new AtmanWorldFutureAIForm();
                     break;
                 case "국내종목캔들패턴매칭":
-                    form = new AtmanKospiAIForm();
+                    form = new AtmanKJongmokAIForm();
                     break;
                 case "스마트종목파인더-1":
                     form = new FinderForms.AtmanKRItemAIForm2();

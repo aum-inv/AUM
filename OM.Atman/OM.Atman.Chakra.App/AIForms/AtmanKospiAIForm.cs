@@ -61,10 +61,17 @@ namespace OM.Atman.Chakra.App.AIForms
         }
         private void setItems()
         {
-            ItemData[] itemDatas = new ItemData[ItemCodeSet.Items.Length];
-            ItemCodeSet.Items.CopyTo(itemDatas, 0);
+            List<ItemData> list = new List<ItemData>();
+            foreach (var m in ItemCodeSet.Items)
+            {
+                if (m.Name.StartsWith("지수-국내"))
+                    list.Add(m);
 
-            cbxItem.DataSource = itemDatas;
+                if (m.Code == "")
+                    list.Add(m);
+            }
+
+            cbxItem.DataSource = list;
             cbxItem.DisplayMember = "Name";
             cbxItem.ValueMember = "Code";
             cbxItem.SelectedIndex = 0;
@@ -213,9 +220,23 @@ namespace OM.Atman.Chakra.App.AIForms
         {
             this.timeInterval = timeInterval;
 
-            var sourceDatas = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
-                      itemCode
-                    , timeInterval);
+            List<S_CandleItemData> sourceDatas = null;
+
+            if (timeInterval == TimeIntervalEnum.Day)
+                sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(itemCode, "2", "0", "500");
+            else if (timeInterval == TimeIntervalEnum.Week)
+                sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(itemCode, "3", "0", "500");
+            else if (timeInterval == TimeIntervalEnum.Minute_01)
+                sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(itemCode, "1", "1", "500");
+            else if (timeInterval == TimeIntervalEnum.Minute_05)
+                sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(itemCode, "1", "5", "500");
+            else if (timeInterval == TimeIntervalEnum.Minute_10)
+                sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(itemCode, "1", "10", "500");
+            else if (timeInterval == TimeIntervalEnum.Minute_30)
+                sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(itemCode, "1", "30", "500");
+            else if (timeInterval == TimeIntervalEnum.Hour_01)
+                sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(itemCode, "1", "60", "500");
+
             if (sourceDatas == null || sourceDatas.Count == 0) return;
 
             scList.Clear();
@@ -335,17 +356,22 @@ namespace OM.Atman.Chakra.App.AIForms
 
                 if (isUseMulti)
                 {
-                    double diffTime = Math.Abs(selCandleData.TimeEnergy2 - data.TimeEnergy2);
+                    double diffTime = Math.Abs(selCandleData.TimeEnergy3 - data.TimeEnergy3)
+                                    + Math.Abs(selCandleData.PreviousCandleData.TimeEnergy3 - data.PreviousCandleData.TimeEnergy3)
+                                    + Math.Abs(selCandleData.PreviousCandleData.PreviousCandleData.TimeEnergy3 - data.PreviousCandleData.PreviousCandleData.TimeEnergy3);
                     energyRank.TimeEnergy = isUseTimeEnergy ? diffTime : 0;
 
-                    double diffSpace = Math.Abs(selCandleData.SpaceEnergy - data.SpaceEnergy);
+                    double diffSpace = Math.Abs(selCandleData.SpaceEnergy - data.SpaceEnergy)
+                                    + Math.Abs(selCandleData.PreviousCandleData.SpaceEnergy - data.PreviousCandleData.SpaceEnergy)
+                                    + Math.Abs(selCandleData.PreviousCandleData.PreviousCandleData.SpaceEnergy - data.PreviousCandleData.PreviousCandleData.SpaceEnergy);
                     energyRank.SpaceEnergy = isUseSpaceEnergy ? diffSpace : 0;
 
                     energyRank.SumEnergy = isUseTotalEnergy ? (diffTime + diffSpace) : 0;
 
-                    totalEnergyRank.Add(data, energyRank);
+                    if (energyRank.TimeEnergy != double.NaN && energyRank.SpaceEnergy != double.NaN && energyRank.SumEnergy != double.NaN)
+                        totalEnergyRank.Add(data, energyRank);
                 }
-                else 
+                else
                 {
                     double diffTime = Math.Abs(selCandleData.TimeEnergy - data.TimeEnergy);
                     energyRank.TimeEnergy = isUseTimeEnergy ? diffTime : 0;
@@ -355,7 +381,8 @@ namespace OM.Atman.Chakra.App.AIForms
 
                     energyRank.SumEnergy = isUseTotalEnergy ? (diffTime + diffSpace) : 0;
 
-                    totalEnergyRank.Add(data, energyRank);
+                    if (energyRank.TimeEnergy != double.NaN && energyRank.SpaceEnergy != double.NaN && energyRank.SumEnergy != double.NaN)
+                        totalEnergyRank.Add(data, energyRank);
                 }
             }
 

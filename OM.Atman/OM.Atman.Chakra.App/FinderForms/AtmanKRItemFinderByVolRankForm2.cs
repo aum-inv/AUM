@@ -83,8 +83,11 @@ namespace OM.Atman.Chakra.App.FinderForms
             tbSelectedCode2.Text = code;
             tbSelectedName2.Text = name;
 
+            TimeIntervalEnum timeInterval = chkTD.Checked ? TimeIntervalEnum.Day : TimeIntervalEnum.Week;
+            string timeIntervalStr = chkTD.Checked ? "2" : "3";
+
             Task.Factory.StartNew(() => {
-                var sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(code, "2", "0", "300");
+                var sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(code, timeIntervalStr, "0", "300");
                 if (sourceDatas == null || sourceDatas.Count == 0) return;
                 int totalCnt = sourceDatas.Count;
                 if (totalCnt > 300)
@@ -92,7 +95,7 @@ namespace OM.Atman.Chakra.App.FinderForms
 
                 var averageDatas = PPUtils.GetAverageDatas(code, sourceDatas, 9);
                 sourceDatas = PPUtils.GetCutDatas(sourceDatas, averageDatas[0].DTime);               
-                chart.LoadDataAndApply(code, sourceDatas, averageDatas, averageDatas, TimeIntervalEnum.Day, 9);
+                chart.LoadDataAndApply(code, sourceDatas, averageDatas, averageDatas, timeInterval, 9);
                 chart.SetYFormat("N0");
             });
         }
@@ -172,6 +175,9 @@ namespace OM.Atman.Chakra.App.FinderForms
                 return;
             }
 
+            TimeIntervalEnum timeInterval = chkTD.Checked ? TimeIntervalEnum.Day : TimeIntervalEnum.Week;
+            string timeIntervalStr = chkTD.Checked ? "2" : "3";
+
             Task.Factory.StartNew(() =>
             {
                 foreach (DataGridViewRow row in dgv.Rows)
@@ -181,7 +187,7 @@ namespace OM.Atman.Chakra.App.FinderForms
 
                     Task.Factory.StartNew(() =>
                     {
-                        var sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(code, "2", "0", "20");
+                        var sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(code, timeIntervalStr, "0", "20");
                         if (sourceDatas == null || sourceDatas.Count == 0) return;
                         var averageDatas = PPUtils.GetAverageDatas(code, sourceDatas, 9);
 
@@ -199,14 +205,24 @@ namespace OM.Atman.Chakra.App.FinderForms
                         var sR1 = getSmartLine(1, smartDataList);
                         var sR2 = getSmartLine(2, smartDataList);
                         var sR3 = getSmartLine(3, smartDataList);
-                     
-                        var swR4 = getSmartSmartLine(4, smartDataList);
-                        var swR3 = getSmartSmartLine(3, smartDataList);
-                        var swR2 = getSmartSmartLine(2, smartDataList);
-                        var swR1 = getSmartSmartLine(1, smartDataList);
-                        var swR0 = getSmartSmartLine(0, smartDataList);
+                        var sR4 = getSmartLine(4, smartDataList);
+                        var sR5 = getSmartLine(5, smartDataList);
+                        var sR6 = getSmartLine(6, smartDataList);
+                        var sR7 = getSmartLine(7, smartDataList);
+                        var sR8 = getSmartLine(8, smartDataList);
 
                         //this.Invoke(new Action(() => {
+
+                        row.Cells["S8"].Value = sR8.Item1;
+                        row.Cells["S8"].Style.ForeColor = sR8.Item2;
+                        row.Cells["S7"].Value = sR7.Item1;
+                        row.Cells["S7"].Style.ForeColor = sR7.Item2;
+                        row.Cells["S6"].Value = sR6.Item1;
+                        row.Cells["S6"].Style.ForeColor = sR6.Item2;
+                        row.Cells["S5"].Value = sR5.Item1;
+                        row.Cells["S5"].Style.ForeColor = sR5.Item2;
+                        row.Cells["S4"].Value = sR4.Item1;
+                        row.Cells["S4"].Style.ForeColor = sR4.Item2;
                         row.Cells["S3"].Value = sR3.Item1;
                         row.Cells["S3"].Style.ForeColor = sR3.Item2;
                         row.Cells["S2"].Value = sR2.Item1;
@@ -215,17 +231,6 @@ namespace OM.Atman.Chakra.App.FinderForms
                         row.Cells["S1"].Style.ForeColor = sR1.Item2;
                         row.Cells["S0"].Value = sR0.Item1;
                         row.Cells["S0"].Style.ForeColor = sR0.Item2;
-
-                        row.Cells["SW4"].Value = swR4.Item1;
-                        row.Cells["SW4"].Style.ForeColor = swR4.Item2;
-                        row.Cells["SW3"].Value = swR3.Item1;
-                        row.Cells["SW3"].Style.ForeColor = swR3.Item2;
-                        row.Cells["SW2"].Value = swR2.Item1;
-                        row.Cells["SW2"].Style.ForeColor = swR2.Item2;
-                        row.Cells["SW1"].Value = swR1.Item1;
-                        row.Cells["SW1"].Style.ForeColor = swR1.Item2;
-                        row.Cells["SW0"].Value = swR0.Item1;
-                        row.Cells["SW0"].Style.ForeColor = swR0.Item2;
 
                         //}));                                                            
                     });
@@ -240,8 +245,11 @@ namespace OM.Atman.Chakra.App.FinderForms
             var m1 = list[list.Count - 2 - preCount];
             var m0 = list[list.Count - 1 - preCount];
 
-            if (m1.Variance_ChartPrice2 < m0.Variance_ChartPrice2) return ("▲", Color.Red);
-            else if (m1.Variance_ChartPrice2 > m0.Variance_ChartPrice2) return ("▼", Color.Blue);
+            if (m0.Variance_ChartPrice3 < 0 && m1.Variance_ChartPrice3 < m0.Variance_ChartPrice3) return ("▲", Color.Red);
+            else if (m0.Variance_ChartPrice3 > 0 && m1.Variance_ChartPrice3 > m0.Variance_ChartPrice3) return ("▼", Color.Blue);
+            else if (m0.Variance_ChartPrice3 > 0 && m1.Variance_ChartPrice3 < m0.Variance_ChartPrice3) return ("△", Color.Red);
+            else if (m0.Variance_ChartPrice3 < 0 && m1.Variance_ChartPrice3 > m0.Variance_ChartPrice3) return ("▽", Color.Blue);
+
             else return ("◇", Color.Black);
         }
         private (string, Color) getSmartSmartLine(int preCount, List<SmartCandleData> list)
@@ -272,8 +280,11 @@ namespace OM.Atman.Chakra.App.FinderForms
         {
             string code = tbSelectedCode2.Text;
 
+            TimeIntervalEnum timeInterval = chkTD.Checked ? TimeIntervalEnum.Day : TimeIntervalEnum.Week;
+            string timeIntervalStr = chkTD.Checked ? "2" : "3";
+
             Task.Factory.StartNew(() => {
-                var sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(code, "2", "0", "300");
+                var sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(code, timeIntervalStr, "0", "300");
                 if (sourceDatas == null || sourceDatas.Count == 0) return;
                 int totalCnt = sourceDatas.Count;
                 if (totalCnt > 300)
@@ -281,7 +292,7 @@ namespace OM.Atman.Chakra.App.FinderForms
 
                 var averageDatas = PPUtils.GetAverageDatas(code, sourceDatas, 9);
                 sourceDatas = PPUtils.GetCutDatas(sourceDatas, averageDatas[0].DTime);
-                chart.LoadDataAndApply(code, sourceDatas, averageDatas, averageDatas, TimeIntervalEnum.Day, 9);
+                chart.LoadDataAndApply(code, sourceDatas, averageDatas, averageDatas, timeInterval, 9);
                 chart.SetYFormat("N0");
             });
         }

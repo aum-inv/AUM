@@ -64,15 +64,15 @@
             this.rate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Change = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dummy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.S8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.S7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.S6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.S5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.S4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.S3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.S2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.S1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.S0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SW4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SW3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SW2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SW1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SW0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.metroPanel3 = new MetroFramework.Controls.MetroPanel();
             this.btnSearchRank = new MetroFramework.Controls.MetroTile();
             this.label1 = new System.Windows.Forms.Label();
@@ -86,6 +86,8 @@
             this.nudSdiff = new System.Windows.Forms.NumericUpDown();
             this.nudEdiff = new System.Windows.Forms.NumericUpDown();
             this.btnSearchJongmok = new MetroFramework.Controls.MetroTile();
+            this.chkTD = new System.Windows.Forms.RadioButton();
+            this.chkTW = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -185,6 +187,7 @@
             this.chart.Location = new System.Drawing.Point(5, 30);
             this.chart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chart.Name = "chart";
+            this.chart.SelectedPType = "";
             this.chart.SelectedTrackBarValue = 1;
             this.chart.Size = new System.Drawing.Size(1231, 609);
             this.chart.TabIndex = 4;
@@ -193,6 +196,8 @@
             // 
             // pnlTitle
             // 
+            this.pnlTitle.Controls.Add(this.chkTD);
+            this.pnlTitle.Controls.Add(this.chkTW);
             this.pnlTitle.Controls.Add(this.btnGoAlpha);
             this.pnlTitle.Controls.Add(this.btnGoNaver);
             this.pnlTitle.Controls.Add(this.tbSelectedName2);
@@ -365,15 +370,15 @@
             this.rate,
             this.Change,
             this.dummy,
+            this.S8,
+            this.S7,
+            this.S6,
+            this.S5,
+            this.S4,
             this.S3,
             this.S2,
             this.S1,
-            this.S0,
-            this.SW4,
-            this.SW3,
-            this.SW2,
-            this.SW1,
-            this.SW0});
+            this.S0});
             this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv.GridColor = System.Drawing.Color.LightGray;
             this.dgv.Location = new System.Drawing.Point(356, 0);
@@ -462,95 +467,95 @@
             this.dummy.ReadOnly = true;
             this.dummy.Width = 5;
             // 
-            // S3
+            // S8
             // 
             dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.S3.DefaultCellStyle = dataGridViewCellStyle22;
+            this.S8.DefaultCellStyle = dataGridViewCellStyle22;
+            this.S8.Frozen = true;
+            this.S8.HeaderText = "S9";
+            this.S8.Name = "S8";
+            this.S8.ReadOnly = true;
+            this.S8.Width = 25;
+            // 
+            // S7
+            // 
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.S7.DefaultCellStyle = dataGridViewCellStyle23;
+            this.S7.Frozen = true;
+            this.S7.HeaderText = "";
+            this.S7.Name = "S7";
+            this.S7.ReadOnly = true;
+            this.S7.Width = 25;
+            // 
+            // S6
+            // 
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.S6.DefaultCellStyle = dataGridViewCellStyle24;
+            this.S6.Frozen = true;
+            this.S6.HeaderText = "";
+            this.S6.Name = "S6";
+            this.S6.ReadOnly = true;
+            this.S6.Width = 25;
+            // 
+            // S5
+            // 
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.S5.DefaultCellStyle = dataGridViewCellStyle25;
+            this.S5.Frozen = true;
+            this.S5.HeaderText = "";
+            this.S5.Name = "S5";
+            this.S5.ReadOnly = true;
+            this.S5.Width = 25;
+            // 
+            // S4
+            // 
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.S4.DefaultCellStyle = dataGridViewCellStyle26;
+            this.S4.Frozen = true;
+            this.S4.HeaderText = "S5";
+            this.S4.Name = "S4";
+            this.S4.ReadOnly = true;
+            this.S4.Width = 25;
+            // 
+            // S3
+            // 
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.S3.DefaultCellStyle = dataGridViewCellStyle27;
             this.S3.Frozen = true;
-            this.S3.HeaderText = "S";
+            this.S3.HeaderText = "";
             this.S3.Name = "S3";
             this.S3.ReadOnly = true;
-            this.S3.Width = 25;
+            this.S3.Width = 20;
             // 
             // S2
             // 
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.S2.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.S2.DefaultCellStyle = dataGridViewCellStyle28;
             this.S2.Frozen = true;
             this.S2.HeaderText = "";
             this.S2.Name = "S2";
             this.S2.ReadOnly = true;
-            this.S2.Width = 25;
+            this.S2.Width = 20;
             // 
             // S1
             // 
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.S1.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.S1.DefaultCellStyle = dataGridViewCellStyle29;
             this.S1.Frozen = true;
             this.S1.HeaderText = "";
             this.S1.Name = "S1";
             this.S1.ReadOnly = true;
-            this.S1.Width = 25;
+            this.S1.Width = 20;
             // 
             // S0
             // 
-            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.S0.DefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.S0.DefaultCellStyle = dataGridViewCellStyle30;
             this.S0.Frozen = true;
             this.S0.HeaderText = "";
             this.S0.Name = "S0";
             this.S0.ReadOnly = true;
-            this.S0.Width = 25;
-            // 
-            // SW4
-            // 
-            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.SW4.DefaultCellStyle = dataGridViewCellStyle26;
-            this.SW4.Frozen = true;
-            this.SW4.HeaderText = "SS";
-            this.SW4.Name = "SW4";
-            this.SW4.ReadOnly = true;
-            this.SW4.Width = 25;
-            // 
-            // SW3
-            // 
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.SW3.DefaultCellStyle = dataGridViewCellStyle27;
-            this.SW3.Frozen = true;
-            this.SW3.HeaderText = "";
-            this.SW3.Name = "SW3";
-            this.SW3.ReadOnly = true;
-            this.SW3.Width = 20;
-            // 
-            // SW2
-            // 
-            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.SW2.DefaultCellStyle = dataGridViewCellStyle28;
-            this.SW2.Frozen = true;
-            this.SW2.HeaderText = "";
-            this.SW2.Name = "SW2";
-            this.SW2.ReadOnly = true;
-            this.SW2.Width = 20;
-            // 
-            // SW1
-            // 
-            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.SW1.DefaultCellStyle = dataGridViewCellStyle29;
-            this.SW1.Frozen = true;
-            this.SW1.HeaderText = "";
-            this.SW1.Name = "SW1";
-            this.SW1.ReadOnly = true;
-            this.SW1.Width = 20;
-            // 
-            // SW0
-            // 
-            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.SW0.DefaultCellStyle = dataGridViewCellStyle30;
-            this.SW0.Frozen = true;
-            this.SW0.HeaderText = "";
-            this.SW0.Name = "SW0";
-            this.SW0.ReadOnly = true;
-            this.SW0.Width = 20;
+            this.S0.Width = 20;
             // 
             // metroPanel3
             // 
@@ -753,6 +758,29 @@
             this.btnSearchJongmok.UseSelectable = true;
             this.btnSearchJongmok.Click += new System.EventHandler(this.btnSearchJongmok_Click);
             // 
+            // chkTD
+            // 
+            this.chkTD.AutoSize = true;
+            this.chkTD.Checked = true;
+            this.chkTD.Dock = System.Windows.Forms.DockStyle.Right;
+            this.chkTD.Location = new System.Drawing.Point(1165, 0);
+            this.chkTD.Name = "chkTD";
+            this.chkTD.Size = new System.Drawing.Size(32, 25);
+            this.chkTD.TabIndex = 35;
+            this.chkTD.Text = "D";
+            this.chkTD.UseVisualStyleBackColor = true;
+            // 
+            // chkTW
+            // 
+            this.chkTW.AutoSize = true;
+            this.chkTW.Dock = System.Windows.Forms.DockStyle.Right;
+            this.chkTW.Location = new System.Drawing.Point(1197, 0);
+            this.chkTW.Name = "chkTW";
+            this.chkTW.Size = new System.Drawing.Size(34, 25);
+            this.chkTW.TabIndex = 34;
+            this.chkTW.Text = "W";
+            this.chkTW.UseVisualStyleBackColor = true;
+            // 
             // AtmanKRItemFinderByVolRankForm2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -773,6 +801,7 @@
             this.pnlLeft.ResumeLayout(false);
             this.pnlLeftContent.ResumeLayout(false);
             this.pnlTitle.ResumeLayout(false);
+            this.pnlTitle.PerformLayout();
             this.pnlResultView.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.metroPanel3.ResumeLayout(false);
@@ -817,14 +846,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn rate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Change;
         private System.Windows.Forms.DataGridViewTextBoxColumn dummy;
+        private System.Windows.Forms.DataGridViewTextBoxColumn S8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn S7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn S6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn S5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn S4;
         private System.Windows.Forms.DataGridViewTextBoxColumn S3;
         private System.Windows.Forms.DataGridViewTextBoxColumn S2;
         private System.Windows.Forms.DataGridViewTextBoxColumn S1;
         private System.Windows.Forms.DataGridViewTextBoxColumn S0;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SW4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SW3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SW2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SW1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SW0;
+        private System.Windows.Forms.RadioButton chkTD;
+        private System.Windows.Forms.RadioButton chkTW;
     }
 }

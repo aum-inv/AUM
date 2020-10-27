@@ -43,7 +43,7 @@ namespace OM.PP.XingApp.Ex.Api
 
         #region Query Http
         public List<S_CandleItemData> Query(
-             string itemCode           
+             string itemCode
            , string gubun = "D" //M : 15Min, H : Hour, D : Day, W : Week, M : Month
            )
         {
@@ -54,20 +54,20 @@ namespace OM.PP.XingApp.Ex.Api
                 try
                 {
                     string symbol = "8849";
-                    if(itemCode == "GC") symbol = "8830";
+                    if (itemCode == "GC") symbol = "8830";
                     else if (itemCode == "NG") symbol = "8862";
                     else if (itemCode == "SI") symbol = "8836";
-                    
+
                     else if (itemCode == "HMH") symbol = "8984";
                     else if (itemCode == "NQ") symbol = "8874";
                     else if (itemCode == "URO") symbol = "8830";
                     else if (itemCode == "ES") symbol = "8839";
-                  
+
 
                     string resolution = gubun;
                     if (gubun == "H" || gubun == "1H") resolution = "60";
                     else if (gubun == "2H") resolution = "120";
-                    else if (gubun == "4H") resolution = "240";                    
+                    else if (gubun == "4H") resolution = "240";
                     else if (gubun == "M" || gubun == "1M") resolution = "1";
                     else if (gubun == "5M") resolution = "5";
                     else if (gubun == "15M") resolution = "15";
@@ -122,6 +122,92 @@ namespace OM.PP.XingApp.Ex.Api
                         to = (Int32)(DateTime.UtcNow.AddDays(10).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                     }
 
+                    string urlPath = $"https://tvc4.forexpros.com/1cc1f0b6f392b9fad2b50b7aebef1f7c/1601866558/18/18/88/history?symbol={symbol}&resolution={resolution}&from={from}&to={to}";
+                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(urlPath);
+                    request.MaximumAutomaticRedirections = 4;
+                    request.MaximumResponseHeadersLength = 4;
+                    request.Credentials = CredentialCache.DefaultCredentials;
+                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+                    Stream receiveStream = response.GetResponseStream();
+                    StreamReader readStream = new StreamReader(receiveStream, Encoding.UTF8);
+
+                    string content = readStream.ReadToEnd();
+
+                    var dyObj = JsonConverter.JsonToDynamicObject(content);
+                    int cnt = dyObj.t.Count;
+                    for (int i = 0; i < cnt; i++)
+                    {
+                        Int64 t = dyObj.t[i];
+                        double o = dyObj.o[i];
+                        double c = dyObj.c[i];
+                        double h = dyObj.h[i];
+                        double l = dyObj.l[i];
+                        DateTime cTime = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(t);
+                        //Console.WriteLine($"DT : {cTime.ToLongDateString()} O : {Math.Round(o, 2)}, H : {Math.Round(h, 2)}, L : {Math.Round(l, 2)}, C : {Math.Round(c, 2)}");
+
+                        S_CandleItemData data = new S_CandleItemData();
+                        data.DTime = cTime;
+                        data.ItemCode = ItemCode;
+                        data.OpenPrice = (Single)Math.Round(o, round);
+                        data.HighPrice = (Single)Math.Round(h, round);
+                        data.LowPrice = (Single)Math.Round(l, round);
+                        data.ClosePrice = (Single)Math.Round(c, round);
+                        data.Volume = 0;
+
+                        returnList.Add(data);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    string err = ex.Message;
+                }
+                finally
+                {
+                    manualEvent.Set();
+                }
+            });
+            manualEvent.WaitOne();
+
+            return returnList;
+        }
+
+        public List<S_CandleItemData> Query(
+                string itemCode           
+            ,   string gubun//M : 15Min, H : Hour, D : Day, W : Week, M : Month
+            ,   DateTime sDT
+            ,   DateTime dDT
+           )
+        {
+            this.ItemCode = itemCode;
+            int round = ItemCodeUtil.GetItemCodeRoundNum(ItemCode);
+
+            Int32 from = (Int32)(sDT.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+            Int32 to = (Int32)(dDT.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+
+            Task.Factory.StartNew(() => {
+                try
+                {
+                    string symbol = "8849";
+                    if(itemCode == "GC") symbol = "8830";
+                    else if (itemCode == "NG") symbol = "8862";
+                    else if (itemCode == "SI") symbol = "8836";
+                    
+                    else if (itemCode == "HMH") symbol = "8984";
+                    else if (itemCode == "NQ") symbol = "8874";
+                    else if (itemCode == "URO") symbol = "8830";
+                    else if (itemCode == "ES") symbol = "8839";
+                  
+
+                    string resolution = gubun;
+                    if (gubun == "H" || gubun == "1H") resolution = "60";
+                    else if (gubun == "2H") resolution = "120";
+                    else if (gubun == "4H") resolution = "240";                    
+                    else if (gubun == "M" || gubun == "1M") resolution = "1";
+                    else if (gubun == "5M") resolution = "5";
+                    else if (gubun == "15M") resolution = "15";
+                    else if (gubun == "30M") resolution = "30";
+                                       
                     string urlPath = $"https://tvc4.forexpros.com/1cc1f0b6f392b9fad2b50b7aebef1f7c/1601866558/18/18/88/history?symbol={symbol}&resolution={resolution}&from={from}&to={to}";
                     HttpWebRequest request = (HttpWebRequest)WebRequest.Create(urlPath);
                     request.MaximumAutomaticRedirections = 4;

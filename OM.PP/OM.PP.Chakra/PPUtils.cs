@@ -7,6 +7,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace OM.PP.Chakra
@@ -1520,5 +1521,97 @@ namespace OM.PP.Chakra
             }
         }
         #endregion
+
+        #region Reverse
+        public static List<S_CandleItemData> GetVirtualCandle(string command, List<S_CandleItemData> sourceDatas)
+        {
+            List<S_CandleItemData> modifyDatas = new List<S_CandleItemData>();
+            var descList = sourceDatas.OrderByDescending(t => t.DTime).ToList();
+            int second = 1;
+            if (command == "↗↗")
+            {              
+                foreach (var m in descList)
+                {
+                    var gap = Math.Abs(descList[0].OpenPrice - m.OpenPrice);
+                    var open = descList[0].OpenPrice + gap;                   
+                    var high = open + m.BodyLength + m.HeadLength;
+                    var low = open - m.LegLength;
+                    var close = open + m.BodyLength;                                 
+                     
+                    modifyDatas.Add(new S_CandleItemData(m.ItemCode, open, high, low, close, m.Volume, descList[0].DTime.AddSeconds(second++), true));
+                }
+            }
+            else if (command == "↘↘")
+            {
+                foreach (var m in descList)
+                {
+                    var gap = Math.Abs(descList[0].OpenPrice - m.OpenPrice);
+                    var open = descList[0].OpenPrice - gap;
+                    var high = open + m.HeadLength;
+                    var low = open - m.BodyLength - m.LegLength;
+                    var close = open - m.BodyLength;
+
+                    modifyDatas.Add(new S_CandleItemData(m.ItemCode, open, high, low, close, m.Volume, descList[0].DTime.AddSeconds(second++), true));
+                }
+            }
+            else if (command == "↗↘")
+            {
+                foreach (var m in descList)
+                {
+                    if (second % 2 == 1)
+                    {
+                        var open = m.ClosePrice;
+                        var high = open + m.BodyLength + m.HeadLength;
+                        var low = open - m.LegLength;
+                        var close = open + m.BodyLength;
+                        modifyDatas.Add(new S_CandleItemData(m.ItemCode, open, high, low, close, m.Volume, descList[0].DTime.AddSeconds(second++), true));
+                    }
+                    else if (second % 2 == 0)
+                    {
+                        var open = m.ClosePrice;
+                        var high = open + m.HeadLength;
+                        var low = open - m.BodyLength - m.LegLength;
+                        var close = open - m.BodyLength;
+                        modifyDatas.Add(new S_CandleItemData(m.ItemCode, open, high, low, close, m.Volume, descList[0].DTime.AddSeconds(second++), true));
+                    }
+                }
+            }
+            else if (command == "↘↗")
+            {
+                foreach (var m in descList)
+                {
+                    if (second % 2 == 0)
+                    {
+                        var open = m.ClosePrice;
+                        var high = open + m.BodyLength + m.HeadLength;
+                        var low = open - m.LegLength;
+                        var close = open + m.BodyLength;
+                        modifyDatas.Add(new S_CandleItemData(m.ItemCode, open, high, low, close, m.Volume, descList[0].DTime.AddSeconds(second++), true));
+                    }
+                    else if (second % 2 == 1)
+                    {
+                        var open = m.ClosePrice;
+                        var high = open + m.HeadLength;
+                        var low = open - m.BodyLength - m.LegLength;
+                        var close = open - m.BodyLength;
+                        modifyDatas.Add(new S_CandleItemData(m.ItemCode, open, high, low, close, m.Volume, descList[0].DTime.AddSeconds(second++), true));
+                    }
+                }
+            }
+            else if (command == "→→")
+            {
+                foreach (var m in descList)
+                {
+                    var open = descList[0].OpenPrice;                    
+                    var high = descList[0].HighPrice;
+                    var low = descList[0].LowPrice;
+                    var close = descList[0].ClosePrice;
+                    modifyDatas.Add(new S_CandleItemData(m.ItemCode, open, high, low, close, m.Volume, descList[0].DTime.AddSeconds(second++), true));
+                }
+            }
+
+            return modifyDatas;
+        }
+        # endregion        
     }
 }

@@ -86,6 +86,18 @@
     <Compile Include="AIForms\AtmanKospiAI2Form.Designer.cs">
       <DependentUpon>AtmanKospiAI2Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="AIForms\AtmanKJongmokAIForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AIForms\AtmanKJongmokAIForm.Designer.cs">
+      <DependentUpon>AtmanKJongmokAIForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AIForms\AtmanWorldIndexAIForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AIForms\AtmanWorldIndexAIForm.Designer.cs">
+      <DependentUpon>AtmanWorldIndexAIForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AIForms\AtmanWorldFutureAIForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -372,6 +384,12 @@
     </Compile>
     <EmbeddedResource Include="AIForms\AtmanKospiAI2Form.resx">
       <DependentUpon>AtmanKospiAI2Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AIForms\AtmanKJongmokAIForm.resx">
+      <DependentUpon>AtmanKJongmokAIForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AIForms\AtmanWorldIndexAIForm.resx">
+      <DependentUpon>AtmanWorldIndexAIForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AIForms\AtmanWorldFutureAIForm.resx">
       <DependentUpon>AtmanWorldFutureAIForm.cs</DependentUpon>

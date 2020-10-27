@@ -328,15 +328,20 @@ namespace OM.Atman.Chakra.App.AIForms
 
                 if (isUseMulti)
                 {
-                    double diffTime = Math.Abs(selCandleData.TimeEnergy2 - data.TimeEnergy2);
+                    double diffTime = Math.Abs(selCandleData.TimeEnergy - data.TimeEnergy)
+                                    + Math.Abs(selCandleData.PreviousCandleData.TimeEnergy - data.PreviousCandleData.TimeEnergy)
+                                    + Math.Abs(selCandleData.PreviousCandleData.PreviousCandleData.TimeEnergy - data.PreviousCandleData.PreviousCandleData.TimeEnergy);
                     energyRank.TimeEnergy = isUseTimeEnergy ? diffTime : 0;
 
-                    double diffSpace = Math.Abs(selCandleData.SpaceEnergy - data.SpaceEnergy);
+                    double diffSpace = Math.Abs(selCandleData.SpaceEnergy - data.SpaceEnergy)
+                                    + Math.Abs(selCandleData.PreviousCandleData.SpaceEnergy - data.PreviousCandleData.SpaceEnergy)
+                                    + Math.Abs(selCandleData.PreviousCandleData.PreviousCandleData.SpaceEnergy - data.PreviousCandleData.PreviousCandleData.SpaceEnergy);
                     energyRank.SpaceEnergy = isUseSpaceEnergy ? diffSpace : 0;
 
                     energyRank.SumEnergy = isUseTotalEnergy ? (diffTime + diffSpace) : 0;
 
-                    totalEnergyRank.Add(data, energyRank);
+                    if (energyRank.TimeEnergy != double.NaN && energyRank.SpaceEnergy != double.NaN && energyRank.SumEnergy != double.NaN)
+                        totalEnergyRank.Add(data, energyRank);
                 }
                 else
                 {
@@ -348,9 +353,10 @@ namespace OM.Atman.Chakra.App.AIForms
 
                     energyRank.SumEnergy = isUseTotalEnergy ? (diffTime + diffSpace) : 0;
 
-                    totalEnergyRank.Add(data, energyRank);
+                    if (energyRank.TimeEnergy != double.NaN && energyRank.SpaceEnergy != double.NaN && energyRank.SumEnergy != double.NaN)
+                        totalEnergyRank.Add(data, energyRank);
                 }
-                
+
             }
 
             int rank = 0;
@@ -406,7 +412,7 @@ namespace OM.Atman.Chakra.App.AIForms
 
             int resultCount = 0;
                         
-            foreach (var item in totalEnergyRank.OrderBy(t => t.Value.TotalRank))
+            foreach (var item in totalEnergyRank.OrderBy(t => t.Value.TotalRank ))
             {
                 var data = item.Key;
                 var totalRank = item.Value.TotalRank;

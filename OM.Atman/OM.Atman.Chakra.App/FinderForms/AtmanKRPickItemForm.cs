@@ -115,20 +115,22 @@ namespace OM.Atman.Chakra.App.FinderForms
             selectedNode = dgv.Rows[e.RowIndex].Tag as XmlNode;
             selectedIndex = e.RowIndex;
 
+            TimeIntervalEnum timeInterval = chkTD.Checked ? TimeIntervalEnum.Day : TimeIntervalEnum.Week;
+            string timeIntervalStr = chkTD.Checked ? "2" : "3";
+
             Task.Factory.StartNew(() => {
-                var sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(code, "2", "0", "300");
+
+                var sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(code, timeIntervalStr, "0", "300");
                 if (sourceDatas == null || sourceDatas.Count == 0) return;
                 int totalCnt = sourceDatas.Count;
                 if (totalCnt > 300)
                     sourceDatas.RemoveRange(0, totalCnt - 300);
-                var averageDatas = PPUtils.GetBalancedAverageDatas(code, sourceDatas, 4);
+                var averageDatas = PPUtils.GetAverageDatas(code, sourceDatas, 9);
                 sourceDatas = PPUtils.GetCutDatas(sourceDatas, averageDatas[0].DTime);
-               
-                chart.LoadDataAndApply(code, sourceDatas, averageDatas, TimeIntervalEnum.Day, 9);
+                chart.LoadDataAndApply(code, sourceDatas, averageDatas, averageDatas, timeInterval, 9);
                 chart.SetYFormat("N0");
-
-                chart.ClearChartLabel("★");
-                chart.DisplayChartLabel(dt, Color.DarkRed, "★", "★");
+                chart.ClearChartLabel("↓");
+                chart.DisplayChartLabel(dt, Color.DarkRed, "↓", "↓");
             });
         }
 

@@ -30,10 +30,10 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
             loadChartControls();
             //setTimer();
             userToolStrip.IsVisibleAlignmentButton = false;
-            userToolStrip.TableViewChangedEvent += UserToolStrip_TableViewChangedEvent; userToolStrip.LineChartWidthChangedEvent += UserToolStrip_LineChartWidthChangedEvent;
-            userToolStrip.IsVisibleExpand = false;
+            userToolStrip.LineChartWidthChangedEvent += UserToolStrip_LineChartWidthChangedEvent;
+            userToolStrip.IsVisibleExpand = true;
             userToolStrip.IsVisibleMdiButton = false;
-
+            userToolStrip.VirtualCandleCreateEvent += UserToolStrip_VirtualCandleCreateEvent;
             App.Events.MainFormToolBarEvents.Instance.ManualReloadHandler += () =>
             {
                 Task.Factory.StartNew(() =>
@@ -44,13 +44,16 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
             };
         }
 
+        private void UserToolStrip_VirtualCandleCreateEvent(object sender, EventArgs e)
+        {
+            
+        }
+
         private void UserToolStrip_LineChartWidthChangedEvent(object sender, EventArgs e)
         {
             chart.BoldLine(sender.ToString());          
         }
-        private void UserToolStrip_TableViewChangedEvent(object sender, EventArgs e)
-        {
-        }
+        
         public override void loadChartControls()
         {
             chart.IsShowXLine = chart.IsShowYLine = true;
@@ -58,7 +61,7 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
             chart.InitializeEvent(chartEvent);
             chart.DisplayPointCount = itemCnt;
         }
-
+       
         public override void loadData()
         {
             if (isLoading) return;
@@ -82,6 +85,8 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
             //표시할 갯수를 맞춘다.
             RemoveSourceData(sourceDatas);
 
+            CreateVirtualData(sourceDatas);
+
             int averageCount = 9;
             if (timeInterval == TimeIntervalEnum.Minute_01
                 || timeInterval == TimeIntervalEnum.Minute_05
@@ -104,6 +109,22 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
             averageBDatas = PPUtils.GetCutDatas(averageBDatas, averageDatas[0].DTime);
 
             chart.LoadDataAndApply(itemCode, sourceDatas, averageDatas, averageBDatas, base.timeInterval, 5);                 
+        }
+
+        public override void createVirtualData(string command)
+        {
+            if (command == "〓〓")
+            {
+                appendVirtualData = false;
+                appendVirtualDataType = "";
+            }
+            else 
+            {
+                appendVirtualData = true;
+                appendVirtualDataType = command;
+            }
+
+            loadData();
         }
     }
 }

@@ -19,7 +19,8 @@ namespace OM.PP.Chakra
            , Single low
            , Single close
            , Single volume
-           , DateTime dt)
+           , DateTime dt
+           , bool virtualData = false)
         {
             base.ItemCode = itemCode;
             base.OpenPrice = open;
@@ -28,6 +29,7 @@ namespace OM.PP.Chakra
             base.ClosePrice = close;
             base.Volume = volume;
             base.DTime = dt;
+            this.VirtualData = virtualData;
         }
         public S_CandleItemData(
              string itemCode
@@ -68,7 +70,10 @@ namespace OM.PP.Chakra
             base.DTime = dtime;
         }
 
-
+        public bool VirtualData
+        {
+            get; set;
+        } = false;
         public Single OpenPriceAvg
         {
             get; set;

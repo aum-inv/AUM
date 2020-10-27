@@ -53,14 +53,11 @@
             this.tspb = new System.Windows.Forms.ToolStripProgressBar();
             this.tsbAutoReload = new System.Windows.Forms.ToolStripButton();
             this.tsbReload = new System.Windows.Forms.ToolStripButton();
-            this.tsbReload2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbMdiOut = new System.Windows.Forms.ToolStripButton();
             this.tsbMdiIn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsl_0 = new System.Windows.Forms.ToolStripLabel();
             this.tsl_1 = new System.Windows.Forms.ToolStripLabel();
-            this.tsl_2 = new System.Windows.Forms.ToolStripLabel();
             this.tsl_3 = new System.Windows.Forms.ToolStripLabel();
             this.tsl_4 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
@@ -74,7 +71,10 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tscbType = new System.Windows.Forms.ToolStripComboBox();
             this.tsbTime04 = new System.Windows.Forms.ToolStripButton();
+            this.tsl_0 = new System.Windows.Forms.ToolStripLabel();
             this.tsbWeb2 = new System.Windows.Forms.ToolStripButton();
+            this.tsl_2 = new System.Windows.Forms.ToolStripLabel();
+            this.tsl_5 = new System.Windows.Forms.ToolStripLabel();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -331,16 +331,6 @@
             this.tsbReload.Size = new System.Drawing.Size(40, 40);
             this.tsbReload.Click += new System.EventHandler(this.tsbReload_Click);
             // 
-            // tsbReload2
-            // 
-            this.tsbReload2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbReload2.Image = global::OM.Vikala.Chakra.App.Properties.Resources.refreshing_3;
-            this.tsbReload2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbReload2.Name = "tsbReload2";
-            this.tsbReload2.Size = new System.Drawing.Size(28, 20);
-            this.tsbReload2.Text = "toolStripButton1";
-            this.tsbReload2.Click += new System.EventHandler(this.TsbReload2_Click);
-            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -370,40 +360,26 @@
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 23);
             // 
-            // tsl_0
-            // 
-            this.tsl_0.ForeColor = System.Drawing.Color.Coral;
-            this.tsl_0.Name = "tsl_0";
-            this.tsl_0.Size = new System.Drawing.Size(14, 20);
-            this.tsl_0.Text = "0";
-            this.tsl_0.Click += new System.EventHandler(this.lblTableView_Click);
-            // 
             // tsl_1
             // 
             this.tsl_1.Name = "tsl_1";
-            this.tsl_1.Size = new System.Drawing.Size(14, 20);
-            this.tsl_1.Text = "1";
+            this.tsl_1.Size = new System.Drawing.Size(29, 20);
+            this.tsl_1.Text = "↘↘";
             this.tsl_1.Click += new System.EventHandler(this.lblTableView_Click);
-            // 
-            // tsl_2
-            // 
-            this.tsl_2.Name = "tsl_2";
-            this.tsl_2.Size = new System.Drawing.Size(14, 20);
-            this.tsl_2.Text = "2";
-            this.tsl_2.Click += new System.EventHandler(this.lblTableView_Click);
             // 
             // tsl_3
             // 
             this.tsl_3.Name = "tsl_3";
-            this.tsl_3.Size = new System.Drawing.Size(14, 20);
-            this.tsl_3.Text = "3";
+            this.tsl_3.Size = new System.Drawing.Size(29, 20);
+            this.tsl_3.Text = "↘↗";
+            this.tsl_3.Visible = false;
             this.tsl_3.Click += new System.EventHandler(this.lblTableView_Click);
             // 
             // tsl_4
             // 
             this.tsl_4.Name = "tsl_4";
-            this.tsl_4.Size = new System.Drawing.Size(14, 20);
-            this.tsl_4.Text = "4";
+            this.tsl_4.Size = new System.Drawing.Size(29, 20);
+            this.tsl_4.Text = "→→";
             this.tsl_4.Click += new System.EventHandler(this.lblTableView_Click);
             // 
             // toolStripSeparator6
@@ -468,7 +444,7 @@
             this.tsbWeb1.Image = ((System.Drawing.Image)(resources.GetObject("tsbWeb1.Image")));
             this.tsbWeb1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbWeb1.Name = "tsbWeb1";
-            this.tsbWeb1.Size = new System.Drawing.Size(28, 20);
+            this.tsbWeb1.Size = new System.Drawing.Size(28, 28);
             this.tsbWeb1.Text = "toolStripButton1";
             this.tsbWeb1.Click += new System.EventHandler(this.tsbWeb1_Click);
             // 
@@ -504,7 +480,6 @@
             this.tspb,
             this.tsbAutoReload,
             this.tsbReload,
-            this.tsbReload2,
             this.toolStripSeparator2,
             this.tsbMdiOut,
             this.tsbMdiIn,
@@ -514,6 +489,7 @@
             this.tsl_2,
             this.tsl_3,
             this.tsl_4,
+            this.tsl_5,
             this.toolStripSeparator6,
             this.tsbLineBold,
             this.tsbLineBold2,
@@ -553,15 +529,38 @@
             this.tsbTime04.Text = "15m";
             this.tsbTime04.Click += new System.EventHandler(this.IntervalButton_Click);
             // 
+            // tsl_0
+            // 
+            this.tsl_0.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.tsl_0.Name = "tsl_0";
+            this.tsl_0.Size = new System.Drawing.Size(29, 20);
+            this.tsl_0.Text = "↗↗";
+            this.tsl_0.Click += new System.EventHandler(this.lblTableView_Click);
+            // 
             // tsbWeb2
             // 
             this.tsbWeb2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbWeb2.Image = ((System.Drawing.Image)(resources.GetObject("tsbWeb2.Image")));
             this.tsbWeb2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbWeb2.Name = "tsbWeb2";
-            this.tsbWeb2.Size = new System.Drawing.Size(28, 20);
+            this.tsbWeb2.Size = new System.Drawing.Size(28, 28);
             this.tsbWeb2.Text = "toolStripButton1";
             this.tsbWeb2.Click += new System.EventHandler(this.tsbWeb2_Click);
+            // 
+            // tsl_2
+            // 
+            this.tsl_2.Name = "tsl_2";
+            this.tsl_2.Size = new System.Drawing.Size(29, 20);
+            this.tsl_2.Text = "↗↘";
+            this.tsl_2.Visible = false;
+            this.tsl_2.Click += new System.EventHandler(this.lblTableView_Click);
+            // 
+            // tsl_5
+            // 
+            this.tsl_5.Name = "tsl_5";
+            this.tsl_5.Size = new System.Drawing.Size(31, 20);
+            this.tsl_5.Text = "〓〓";
+            this.tsl_5.Click += new System.EventHandler(this.lblTableView_Click);
             // 
             // UserToolStrip
             // 
@@ -604,14 +603,11 @@
         private System.Windows.Forms.ToolStripProgressBar tspb;
         private System.Windows.Forms.ToolStripButton tsbAutoReload;
         private System.Windows.Forms.ToolStripButton tsbReload;
-        private System.Windows.Forms.ToolStripButton tsbReload2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton tsbMdiOut;
         private System.Windows.Forms.ToolStripButton tsbMdiIn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        private System.Windows.Forms.ToolStripLabel tsl_0;
         private System.Windows.Forms.ToolStripLabel tsl_1;
-        private System.Windows.Forms.ToolStripLabel tsl_2;
         private System.Windows.Forms.ToolStripLabel tsl_3;
         private System.Windows.Forms.ToolStripLabel tsl_4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
@@ -626,5 +622,8 @@
         private System.Windows.Forms.ToolStripButton tsbWeb2;
         private System.Windows.Forms.ToolStripComboBox tscbType;
         public System.Windows.Forms.ToolStripButton tsbTime04;
+        private System.Windows.Forms.ToolStripLabel tsl_0;
+        private System.Windows.Forms.ToolStripLabel tsl_2;
+        private System.Windows.Forms.ToolStripLabel tsl_5;
     }
 }

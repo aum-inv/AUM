@@ -26,14 +26,14 @@ namespace OM.Vikala.Controls.Charts
         {
             get; set;
         } = "";
-
+              
         private Chart chart;
         private HScrollBar hScrollBar;
         private TrackBar trackBar;
 
-        public HorizontalLineAnnotation yLine = new HorizontalLineAnnotation();
+        public List<HorizontalLineAnnotation> yLines = new List<HorizontalLineAnnotation>();       
         public List<VerticalLineAnnotation> xLines = new List<VerticalLineAnnotation>();
-
+    
         Label yLineLabel = new Label();
         Label xLineLabel = new Label();
         public int SelectedTrackBarValue
@@ -370,7 +370,7 @@ namespace OM.Vikala.Controls.Charts
         {
             foreach (var s in chart.Series)
             {
-                if (s.ChartType == SeriesChartType.Line || s.ChartType == SeriesChartType.Spline)
+                if (s.ChartType == SeriesChartType.Line || s.ChartType == SeriesChartType.Spline || s.ChartType == SeriesChartType.StepLine)
                 {
                     if (type == "+")
                         s.BorderWidth += 1;
@@ -430,34 +430,38 @@ namespace OM.Vikala.Controls.Charts
             HitTestResult result = chart.HitTest(e.X, e.Y);
             if (result.ChartArea == null) return;
 
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea = result.ChartArea;           
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea = result.ChartArea;
             int minX = 0, minY = 0, maxX = 0, maxY = 0;
 
-            if (chartArea.Name == "ca1" || chart.ChartAreas.Count == 1)
-            {
-                minX = (int)chartArea.Position.X;
-                maxX = (int)chartArea.Position.X + (int)(chartArea.Position.Width * chart.Width / 100);
-                minY = (int)chartArea.Position.Y;
-                maxY = (int)chartArea.Position.Y + (int)(chartArea.Position.Height * chart.Height / 100);
+            minX = (int)chartArea.Position.X;
+            maxX = (int)chartArea.Position.X + (int)(chartArea.Position.Width * chart.Width / 100);
+            minY = (int)chartArea.Position.Y;
+            maxY = (int)chartArea.Position.Y + (int)(chartArea.Position.Height * chart.Height / 100);
 
-                if (e.Location.X < minX) return;
-                if (e.Location.X > maxX - 50) return;
-                if (e.Location.Y < minY) return;
-                if (e.Location.Y > maxY - 20) return;
+            if (e.Location.X < minX) return;
+            if (e.Location.X > maxX - 50) return;
+            //if (e.Location.Y < minY) return;
+            //if (e.Location.Y > maxY - 20) return;
 
-               
-                var yv = chart.ChartAreas[0].AxisY2.PixelPositionToValue(e.Y);
+            var yv = chartArea.AxisY2.PixelPositionToValue(e.Y);
 
-                if (Double.IsInfinity(yv) || Double.IsNaN(yv))
-                    return;
+            if (Double.IsInfinity(yv) || Double.IsNaN(yv))
+                return;
+            
+            if (result.ChartArea.Name == "ca1") yLines[0].AnchorY = yv;
+            else if (result.ChartArea.Name == "ca2") yLines[1].AnchorY = yv;
+            else if (result.ChartArea.Name == "ca3") yLines[2].AnchorY = yv;
+            else if (result.ChartArea.Name == "ca4") yLines[3].AnchorY = yv;
+            else if (result.ChartArea.Name == "ca5") yLines[4].AnchorY = yv;
+            else if (result.ChartArea.Name == "ca6") yLines[5].AnchorY = yv;
+            else yLines[0].AnchorY = yv;
 
-                yLine.AnchorY = yv;
-                yLineLabel.Visible = true;
-                yLineLabel.Location = new Point(minX, e.Location.Y);
-                yLineLabel.Text = Math.Round(yv, ItemCodeSet.GetItemRoundNum(ItemCode)).ToString();
-            }
+            yLineLabel.Visible = true;
+            yLineLabel.Location = new Point(minX, e.Location.Y);
+            yLineLabel.Text = Math.Round(yv, ItemCodeSet.GetItemRoundNum(ItemCode)).ToString();
+            
 
-            var xv = chart.ChartAreas[0].AxisX.PixelPositionToValue(e.X);
+            var xv = chartArea.AxisX.PixelPositionToValue(e.X);
             if (Double.IsInfinity(xv) || Double.IsNaN(xv))
                 return;
 
@@ -478,8 +482,11 @@ namespace OM.Vikala.Controls.Charts
         }
         private void Chart_MouseLeave(object sender, EventArgs e)
         {
-            yLine.AnchorY = 0;
-            yLineLabel.Visible = false;
+            foreach (var yLine in yLines)
+            {
+                yLine.AnchorY = 0;
+                yLineLabel.Visible = false;
+            }
 
             foreach (var xLine in xLines)
             {
@@ -494,16 +501,21 @@ namespace OM.Vikala.Controls.Charts
 
         protected void createXYLineAnnotation()
         {
-            yLine.AxisX = chart.ChartAreas[0].AxisX;
-            yLine.AxisY = chart.ChartAreas[0].AxisY2;
-            yLine.IsSizeAlwaysRelative = false;
-            yLine.AnchorY = 0;
-            yLine.IsInfinitive = true;
-            yLine.ClipToChartArea = chart.ChartAreas[0].Name;
-            yLine.LineColor = Color.Gray;
-            yLine.LineWidth = 1;
-            chart.Annotations.Add(yLine);
-
+            yLines.Clear();
+            foreach (ChartArea c in chart.ChartAreas)
+            {
+                HorizontalLineAnnotation yLine = new HorizontalLineAnnotation();
+                yLine.AxisX = c.AxisX;
+                yLine.AxisY = c.AxisY2;
+                yLine.IsSizeAlwaysRelative = false;
+                yLine.AnchorY = 0;
+                yLine.IsInfinitive = true;
+                yLine.ClipToChartArea = c.Name;
+                yLine.LineColor = Color.Gray;
+                yLine.LineWidth = 1;
+                chart.Annotations.Add(yLine);
+                yLines.Add(yLine);
+            }
             yLineLabel.Text = "";
             yLineLabel.Visible = false;
             yLineLabel.AutoSize = true;
@@ -512,12 +524,12 @@ namespace OM.Vikala.Controls.Charts
             yLineLabel.BorderStyle = BorderStyle.None;
             yLineLabel.Height = 15;
             yLineLabel.Font = new System.Drawing.Font("맑은 고딕", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-
             chart.Controls.Add(yLineLabel);
         }
         protected void createYXLineAnnotation()
-        { 
-            foreach(ChartArea c in chart.ChartAreas)
+        {
+            xLines.Clear();
+            foreach (ChartArea c in chart.ChartAreas)
             {
                 VerticalLineAnnotation xLine = new VerticalLineAnnotation();
                 xLine.AxisX = c.AxisX;
@@ -529,7 +541,6 @@ namespace OM.Vikala.Controls.Charts
                 xLine.LineColor = Color.Gray;
                 xLine.LineWidth = 1;
                 chart.Annotations.Add(xLine);
-
                 xLines.Add(xLine);
             }
 
@@ -541,7 +552,6 @@ namespace OM.Vikala.Controls.Charts
             xLineLabel.BorderStyle = BorderStyle.None;
             xLineLabel.Height = 15;
             xLineLabel.Font = new System.Drawing.Font("맑은 고딕", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-
             chart.Controls.Add(xLineLabel);
         }
         private void InitializeComponent()

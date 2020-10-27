@@ -186,6 +186,7 @@
             this.chart.DisplayPointCount = 120;
             this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chart.IsAutoScrollX = true;
+            this.chart.IsBalanceAverage = false;
             this.chart.IsEnabledDrawLine = true;
             this.chart.IsLoaded = false;
             this.chart.IsShowEightRule = false;
@@ -196,6 +197,7 @@
             this.chart.Location = new System.Drawing.Point(5, 30);
             this.chart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chart.Name = "chart";
+            this.chart.SelectedPType = "";
             this.chart.SelectedTrackBarValue = 1;
             this.chart.Size = new System.Drawing.Size(1231, 409);
             this.chart.TabIndex = 4;

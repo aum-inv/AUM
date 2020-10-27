@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -25,6 +26,9 @@ namespace OM.Vikala.Chakra.App.Mains
 
         protected int itemCnt = 60;
         protected int loadCnt = 120;
+
+        protected bool appendVirtualData = false;
+        protected string appendVirtualDataType = "";
 
         protected TimeIntervalEnum timeInterval = TimeIntervalEnum.Day;
 
@@ -71,6 +75,9 @@ namespace OM.Vikala.Chakra.App.Mains
             get; set;
         } = OriginSourceTypeEnum.Normal;
 
+
+        public DateTime? SearchRangeDateS { get; set; } = null;
+        public DateTime? SearchRangeDateE { get; set; } = null;
         public BaseForm()
         {
             this.FormClosing += BaseForm_FormClosing;
@@ -146,6 +153,8 @@ namespace OM.Vikala.Chakra.App.Mains
 
         public virtual void loadData() { }
 
+        public virtual void createVirtualData(string command) { }
+
         public void OnMdiOut()
         {
             if (MdiForm == null) return;
@@ -166,8 +175,27 @@ namespace OM.Vikala.Chakra.App.Mains
             this.userToolStrip.ItemCountChangedEvent += UserToolStrip1_ItemCountChangedEvent;
             this.userToolStrip.ScreenCaptureEvent += UserToolStrip1_ScreenCaptureEvent;
             this.userToolStrip.MdiChangedEvent += UserToolStrip_MdiChangedEvent;
-            this.userToolStrip.TableViewChangedEvent += UserToolStrip_TableViewChangedEvent;
+            this.userToolStrip.VirtualCandleCreateEvent += UserToolStrip_VirtualCandleCreateEvent;
             this.userToolStrip.LineChartWidthChangedEvent += UserToolStrip_LineChartWidthChangedEvent;
+            this.userToolStrip.SelectedDateTimePickerEvent += UserToolStrip_SelectedDateTimePickerEvent;
+        }
+
+        private void UserToolStrip_SelectedDateTimePickerEvent(object sender, EventArgs e)
+        {
+            var dtList = sender as List<DateTime>;
+
+            if (dtList.Count == 2)
+            {
+                SearchRangeDateS = dtList[0].Date;
+                SearchRangeDateE = dtList[1].Date;
+            }
+            Task.Factory.StartNew(() =>
+            {
+                loadData();
+
+                SearchRangeDateS = null;
+                SearchRangeDateE = null;
+            });
         }
 
         private void UserToolStrip_LineChartWidthChangedEvent(object sender, EventArgs e)
@@ -182,8 +210,11 @@ namespace OM.Vikala.Chakra.App.Mains
             }
         }
 
-        private void UserToolStrip_TableViewChangedEvent(object sender, EventArgs e)
-        {            
+        private void UserToolStrip_VirtualCandleCreateEvent(object sender, EventArgs e)
+        {
+            string command = sender as String;
+
+            createVirtualData(command);
         }
 
         private void UserToolStrip_MdiChangedEvent(object sender, EventArgs e)
@@ -244,12 +275,18 @@ namespace OM.Vikala.Chakra.App.Mains
         private void UserToolStrip1_ItemCountChangedEvent(object sender, EventArgs e)
         {
             loadCnt = Convert.ToInt32(sender);
-            loadData();
+            Task.Factory.StartNew(() =>
+            {
+                loadData();
+            });
         }
 
         private void UserToolStrip1_ReloadEvent(object sender, EventArgs e)
         {
-            loadData();
+            Task.Factory.StartNew(() =>
+            {
+                loadData();
+            });
         }
 
         private void UserToolStrip1_AutoReloadChangedEvent(object sender, EventArgs e)
@@ -268,7 +305,10 @@ namespace OM.Vikala.Chakra.App.Mains
         private void UserToolStrip1_TimerIntervalChangedEvent(object sender, EventArgs e)
         {
             timeInterval = (TimeIntervalEnum)sender;
-            loadData();
+            Task.Factory.StartNew(() =>
+            {
+                loadData();
+            });
         }
 
         private void UserToolStrip1_ItemCodeChangedEvent(object sender, EventArgs e)
@@ -360,30 +400,63 @@ namespace OM.Vikala.Chakra.App.Mains
             }
             else if (selectedType == "해외선물")
             {
-                if (timeInterval == TimeIntervalEnum.Day)
-                    sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "D");
-                else if (timeInterval == TimeIntervalEnum.Week)
-                    sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "W");
-                else if (timeInterval == TimeIntervalEnum.Hour_01)
-                    sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "H");
-                else if (timeInterval == TimeIntervalEnum.Hour_02)
-                    sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "2H");
-                else if (timeInterval == TimeIntervalEnum.Hour_04)
-                    sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "4H");
-                else if (timeInterval == TimeIntervalEnum.Minute_01)
-                    sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "M");
-                else if (timeInterval == TimeIntervalEnum.Minute_05)
-                    sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "5M");
-                else if (timeInterval == TimeIntervalEnum.Minute_15)
-                    sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "15M");
-                else if (timeInterval == TimeIntervalEnum.Minute_30)
-                    sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "30M");
+                if (SearchRangeDateS != null && SearchRangeDateE != null)
+                {
+                    if (timeInterval == TimeIntervalEnum.Day)
+                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(itemCode, "D", SearchRangeDateS.Value, SearchRangeDateE.Value);
+                    else if (timeInterval == TimeIntervalEnum.Week)
+                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(itemCode, "W", SearchRangeDateS.Value, SearchRangeDateE.Value);
+                    else if (timeInterval == TimeIntervalEnum.Hour_01)
+                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(itemCode, "H", SearchRangeDateS.Value, SearchRangeDateE.Value);
+                    else if (timeInterval == TimeIntervalEnum.Hour_02)
+                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(itemCode, "2H", SearchRangeDateS.Value, SearchRangeDateE.Value);
+                    else if (timeInterval == TimeIntervalEnum.Hour_04)
+                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(itemCode, "4H", SearchRangeDateS.Value, SearchRangeDateE.Value);
+                    else if (timeInterval == TimeIntervalEnum.Minute_01)
+                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(itemCode, "M", SearchRangeDateS.Value, SearchRangeDateE.Value);
+                    else if (timeInterval == TimeIntervalEnum.Minute_05)
+                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(itemCode, "5M", SearchRangeDateS.Value, SearchRangeDateE.Value);
+                    else if (timeInterval == TimeIntervalEnum.Minute_15)
+                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(itemCode, "15M", SearchRangeDateS.Value, SearchRangeDateE.Value);
+                    else if (timeInterval == TimeIntervalEnum.Minute_30)
+                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(itemCode, "30M", SearchRangeDateS.Value, SearchRangeDateE.Value);
+                }           
+                else
+                {
+                    if (timeInterval == TimeIntervalEnum.Day)
+                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "D");
+                    else if (timeInterval == TimeIntervalEnum.Week)
+                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "W");
+                    else if (timeInterval == TimeIntervalEnum.Hour_01)
+                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "H");
+                    else if (timeInterval == TimeIntervalEnum.Hour_02)
+                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "2H");
+                    else if (timeInterval == TimeIntervalEnum.Hour_04)
+                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "4H");
+                    else if (timeInterval == TimeIntervalEnum.Minute_01)
+                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "M");
+                    else if (timeInterval == TimeIntervalEnum.Minute_05)
+                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "5M");
+                    else if (timeInterval == TimeIntervalEnum.Minute_15)
+                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "15M");
+                    else if (timeInterval == TimeIntervalEnum.Minute_30)
+                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "30M");
+                }
             }
             else
                 sourceDatas = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                   itemCode
                 , timeInterval);
             return sourceDatas;
+        }
+
+        public void CreateVirtualData(List<S_CandleItemData> sourceDatas)
+        {
+            if (!appendVirtualData) return;
+            if (string.IsNullOrEmpty(appendVirtualDataType)) return;
+            var virtualList = PPUtils.GetVirtualCandle(appendVirtualDataType, sourceDatas.GetRange(sourceDatas.Count - 5, 5));
+            foreach (var m in virtualList)
+                sourceDatas.Add(m);
         }
 
         //protected void SetWhim(string itemCode

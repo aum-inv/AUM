@@ -27,8 +27,10 @@ namespace OM.Vikala.Chakra.App.Mains
         public event EventHandler ItemCountChangedEvent;
         public event EventHandler ScreenCaptureEvent;     
         public event EventHandler MdiChangedEvent;
-        public event EventHandler TableViewChangedEvent;
+        public event EventHandler VirtualCandleCreateEvent;
         public event EventHandler LineChartWidthChangedEvent;
+        public event EventHandler SelectedDateTimePickerEvent;
+        public event EventHandler TableViewChangedEvent;
         public bool IsVisibleAlignmentButton
         {
             get { return tsbSplit.Visible; }
@@ -199,6 +201,26 @@ namespace OM.Vikala.Chakra.App.Mains
             tscbCnt.SelectedIndex = 0;
 
             tscbType.SelectedItem = SharedData.SelectedType;
+
+            if (SharedData.SelectedType == "해외선물")
+            {
+                var datePickerS = new DateTimePicker();
+                var datePickerE = new DateTimePicker();
+                var chS = new ToolStripControlHost(datePickerS);
+                toolStrip1.Items.Add(chS);
+                var chE = new ToolStripControlHost(datePickerE);
+                toolStrip1.Items.Add(chE);
+
+                var searchButton = new ToolStripButton("SEARCH");                
+                searchButton.Click += (obj, evt) =>
+                {
+                    List<DateTime> dtList = new List<DateTime>();
+                    dtList.Add(datePickerS.Value.Date);
+                    dtList.Add(datePickerE.Value.Date);
+                    SelectedDateTimePickerEvent(dtList, null); 
+                };
+                toolStrip1.Items.Add(searchButton);
+            }
         }
 
         public void setProgressValue(int n)
@@ -523,32 +545,36 @@ namespace OM.Vikala.Chakra.App.Mains
         private void lblTableView_Click(object sender, EventArgs e)
         {
             ToolStripLabel lbl = sender as ToolStripLabel;
-
+            //↗  ↘ →
             tsl_0.ForeColor = SystemColors.ControlText;
             tsl_1.ForeColor = SystemColors.ControlText;
             tsl_2.ForeColor = SystemColors.ControlText;
             tsl_3.ForeColor = SystemColors.ControlText;
             tsl_4.ForeColor = SystemColors.ControlText;
+            tsl_5.ForeColor = SystemColors.ControlText;
 
             switch (lbl.Text) {
-                case "0": 
+                case "↗↗": 
                     tsl_0.ForeColor = Color.Coral;
                     break;
-                case "1":
+                case "↘↘":
                     tsl_1.ForeColor = Color.Coral;
                     break;
-                case "2":
+                case "↗↘":
                     tsl_2.ForeColor = Color.Coral;
                     break;
-                case "3":
+                case "↘↗":
                     tsl_3.ForeColor = Color.Coral;
                     break;
-                case "4": 
+                case "→→": 
                     tsl_4.ForeColor = Color.Coral;
                     break;
+                case "〓〓":
+                    tsl_5.ForeColor = Color.Coral;
+                    break;
             }
-            if (TableViewChangedEvent != null)
-                TableViewChangedEvent(lbl.Text, e);            
+            if (VirtualCandleCreateEvent != null)
+                VirtualCandleCreateEvent(lbl.Text, e);            
         }
 
         private void TsbLineBold_Click(object sender, EventArgs e)

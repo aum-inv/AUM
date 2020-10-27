@@ -113,6 +113,19 @@ namespace OM.PP.Chakra.Ctx
                 return null;
             }
         }
+        public List<S_CandleItemData> GetWorldFutureSiseDataByRange(string code, string gubun, DateTime sDT, DateTime eDT)
+        {
+            try
+            {
+                OM.PP.XingApp.Ex.Api.Api_WorldFuture api = new XingApp.Ex.Api.Api_WorldFuture();
+                return api.Query(code, gubun, sDT, eDT);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return null;
+            }
+        }
 
         public List<UpJongJongMokData> GetUpJongJongMokData(string upjongCode)
         {            

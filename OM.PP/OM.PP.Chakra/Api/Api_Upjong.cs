@@ -50,7 +50,7 @@ namespace OM.PP.XingApp.Ex.Api
             
                 TimeInterval = EnumUtil.GetTimeIntervalValue(gubun, ncnt);
                 string tdgb = "0";  //당일구분
-                string sdate = DateTime.Now.AddDays(Convert.ToInt32(qrycnt) * -1).ToString("yyyyMMdd");
+                string sdate = DateTime.Now.AddYears(Convert.ToInt32(qrycnt) * -1).ToString("yyyyMMdd");
                 string edate = DateTime.Now.ToString("yyyyMMdd"); ;
                 string cts_date = "";
                 string cts_time = "";

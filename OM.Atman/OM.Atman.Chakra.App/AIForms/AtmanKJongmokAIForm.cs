@@ -26,16 +26,16 @@ using System.Xml;
 
 namespace OM.Atman.Chakra.App.AIForms
 {
-    public partial class AtmanWorldFutureAIForm : MetroFramework.Forms.MetroForm
+    public partial class AtmanKJongmokAIForm : MetroFramework.Forms.MetroForm
     {
         List<SmartCandleData> scList = new List<SmartCandleData>();
 
         SmartCandleData selCandleData = null;
 
         int displayCnt = 30;
-        string itemCode = "CL";
+        string itemCode = "";
         TimeIntervalEnum timeInterval = TimeIntervalEnum.Day;
-        public AtmanWorldFutureAIForm()
+        public AtmanKJongmokAIForm()
         {
             InitializeComponent();           
             InitializeControls();
@@ -56,28 +56,7 @@ namespace OM.Atman.Chakra.App.AIForms
                 
         private void AtmanForm_Load(object sender, EventArgs e)
         {
-            serverInfo();
-            setItems();
-        }
-        private void setItems()
-        {
-            //ItemData[] itemDatas = new ItemData[ItemCodeSet.Items.Length];
-            //ItemCodeSet.Items.CopyTo(itemDatas, 0);
-
-            List<ItemData> list = new List<ItemData>();
-            foreach (var m in ItemCodeSet.Items)
-            {
-                if (m.Name.StartsWith("해선"))
-                    list.Add(m);
-
-                if(m.Code == "") 
-                    list.Add(m);
-            }
-
-            cbxItem.DataSource = list;
-            cbxItem.DisplayMember = "Name";
-            cbxItem.ValueMember = "Code";
-            cbxItem.SelectedIndex = 0;
+            serverInfo();           
         }
         private void serverInfo()
         {
@@ -98,15 +77,21 @@ namespace OM.Atman.Chakra.App.AIForms
         {
             this.timeInterval = timeInterval;
             List<S_CandleItemData> sourceDatas = null;
-           
+
             if (timeInterval == TimeIntervalEnum.Day)
-                sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "D");
+                sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(itemCode, "2", "0", "500");
             else if (timeInterval == TimeIntervalEnum.Week)
-                sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "W");
-            else if (timeInterval == TimeIntervalEnum.Hour_01)
-                sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "H");
+                sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(itemCode, "3", "0", "500");
+            else if (timeInterval == TimeIntervalEnum.Minute_01)
+                sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(itemCode, "1", "1", "500");
+            else if (timeInterval == TimeIntervalEnum.Minute_05)
+                sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(itemCode, "1", "5", "500");
+            else if (timeInterval == TimeIntervalEnum.Minute_10)
+                sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(itemCode, "1", "10", "500");
             else if (timeInterval == TimeIntervalEnum.Minute_30)
-                sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "30M");
+                sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(itemCode, "1", "30", "500");
+            else if (timeInterval == TimeIntervalEnum.Hour_01)
+                sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(itemCode, "1", "60", "500");
 
             if (sourceDatas == null || sourceDatas.Count == 0) return;
 
@@ -538,12 +523,15 @@ namespace OM.Atman.Chakra.App.AIForms
             Display();
         }
 
-        private void cbxItem_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbxItem.SelectedIndex <= 0) return;
 
-            itemCode = (cbxItem.SelectedItem as ItemData).Code;
-            loadSiseDataFromDaemon(timeInterval);
+        private void tbSelectedCode_TextChanged(object sender, EventArgs e)
+        {
+            itemCode = tbSelectedCode.Text;
+        }
+
+        private void tbSelectedCode_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

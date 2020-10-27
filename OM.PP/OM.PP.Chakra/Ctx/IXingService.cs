@@ -30,6 +30,8 @@ namespace OM.PP.Chakra.Ctx
         [OperationContract]
         List<S_CandleItemData> GetWorldFutureSiseData(string itemCode, string gubun);
 
+        [OperationContract]
+        List<S_CandleItemData> GetWorldFutureSiseDataByRange(string itemCode, string gubun, DateTime sdt, DateTime edt);
 
         [OperationContract]
         List<UpJongJongMokData> GetUpJongJongMokData(string upjongCode);

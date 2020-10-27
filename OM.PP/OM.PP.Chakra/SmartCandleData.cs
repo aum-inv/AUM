@@ -840,6 +840,21 @@ namespace OM.PP.Chakra
                 return Variance_ChartPrice2;
             }
         }
+        public double TimeEnergy3
+        {
+            get
+            {
+                //double energy1 = PPUtils.GetAvgRateOfChange(Variance_BasicPrice, VarianceTotalRate);
+                //double energy2 = PPUtils.GetAvgRateOfChange(Variance_ComparedPreviousDayPrice, VarianceTotalRate);
+                //double energy3 = PPUtils.GetAvgRateOfChange(Variance_QuantumPrice, VarianceTotalRate);
+                //double energy4 = PPUtils.GetAvgRateOfChange(Variance_ComparedPreviousDayQuantumPrice, VarianceTotalRate);
+
+                //return (energy1 + energy2 + energy3 + energy4) / 4.0;
+
+
+                return Variance_ChartPrice3;
+            }
+        }
 
         public double TotalEnergy
         {

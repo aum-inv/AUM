@@ -61,9 +61,9 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnSearch = new MetroFramework.Controls.MetroTile();
             this.metroPanel3 = new MetroFramework.Controls.MetroPanel();
             this.label5 = new System.Windows.Forms.Label();
-            this.btnSearch = new MetroFramework.Controls.MetroTile();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.chkMultiCandle = new MetroFramework.Controls.MetroCheckBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
@@ -75,12 +75,12 @@
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnlLeftTop = new MetroFramework.Controls.MetroPanel();
+            this.btnLoadDaemonM = new System.Windows.Forms.Button();
             this.lblCnt = new MetroFramework.Controls.MetroLabel();
             this.metroLabel10 = new MetroFramework.Controls.MetroLabel();
-            this.btnLoad = new System.Windows.Forms.Button();
-            this.btnLoadDaemon = new System.Windows.Forms.Button();
-            this.btnLoadDaemon2 = new System.Windows.Forms.Button();
-            this.btnLoadDaemon3 = new System.Windows.Forms.Button();
+            this.btnLoadDaemonH = new System.Windows.Forms.Button();
+            this.btnLoadDaemonD = new System.Windows.Forms.Button();
+            this.btnLoadDaemonW = new System.Windows.Forms.Button();
             this.pnlMain = new MetroFramework.Controls.MetroPanel();
             this.tlpChart = new System.Windows.Forms.TableLayoutPanel();
             this.chart1 = new OM.Vikala.Controls.Charts.SmartCandleChart();
@@ -183,6 +183,7 @@
             // 
             this.pnlLeftContent.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlLeftContent.Controls.Add(this.dgvList);
+            this.pnlLeftContent.Controls.Add(this.btnSearch);
             this.pnlLeftContent.Controls.Add(this.metroPanel3);
             this.pnlLeftContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlLeftContent.HorizontalScrollbarBarColor = true;
@@ -229,7 +230,7 @@
             this.dgvList.RowHeadersVisible = false;
             this.dgvList.RowTemplate.Height = 23;
             this.dgvList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvList.Size = new System.Drawing.Size(189, 466);
+            this.dgvList.Size = new System.Drawing.Size(189, 508);
             this.dgvList.TabIndex = 21;
             this.dgvList.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvList_CellContentDoubleClick);
             // 
@@ -279,18 +280,30 @@
             this.dataGridViewTextBoxColumn12.ReadOnly = true;
             this.dataGridViewTextBoxColumn12.Width = 80;
             // 
+            // btnSearch
+            // 
+            this.btnSearch.ActiveControl = null;
+            this.btnSearch.Location = new System.Drawing.Point(197, 543);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(132, 37);
+            this.btnSearch.TabIndex = 18;
+            this.btnSearch.Text = "매칭캔들찾기";
+            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.btnSearch.TileTextFontSize = MetroFramework.MetroTileTextSize.Small;
+            this.btnSearch.UseSelectable = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
             // metroPanel3
             // 
             this.metroPanel3.Controls.Add(this.label5);
-            this.metroPanel3.Controls.Add(this.btnSearch);
             this.metroPanel3.Controls.Add(this.tableLayoutPanel2);
             this.metroPanel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.metroPanel3.HorizontalScrollbarBarColor = true;
             this.metroPanel3.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel3.HorizontalScrollbarSize = 10;
-            this.metroPanel3.Location = new System.Drawing.Point(5, 471);
+            this.metroPanel3.Location = new System.Drawing.Point(5, 513);
             this.metroPanel3.Name = "metroPanel3";
-            this.metroPanel3.Size = new System.Drawing.Size(189, 215);
+            this.metroPanel3.Size = new System.Drawing.Size(189, 173);
             this.metroPanel3.TabIndex = 19;
             this.metroPanel3.VerticalScrollbarBarColor = true;
             this.metroPanel3.VerticalScrollbarHighlightOnWheel = false;
@@ -309,19 +322,6 @@
             this.label5.TabIndex = 19;
             this.label5.Text = "매칭설정정보";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.ActiveControl = null;
-            this.btnSearch.Location = new System.Drawing.Point(206, 151);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(132, 37);
-            this.btnSearch.TabIndex = 18;
-            this.btnSearch.Text = "매칭캔들찾기";
-            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.btnSearch.TileTextFontSize = MetroFramework.MetroTileTextSize.Small;
-            this.btnSearch.UseSelectable = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -349,6 +349,8 @@
             // 
             // chkMultiCandle
             // 
+            this.chkMultiCandle.Checked = true;
+            this.chkMultiCandle.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkMultiCandle.Location = new System.Drawing.Point(85, 106);
             this.chkMultiCandle.Name = "chkMultiCandle";
             this.chkMultiCandle.Size = new System.Drawing.Size(74, 29);
@@ -440,12 +442,12 @@
             // pnlLeftTop
             // 
             this.pnlLeftTop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlLeftTop.Controls.Add(this.btnLoadDaemonM);
             this.pnlLeftTop.Controls.Add(this.lblCnt);
             this.pnlLeftTop.Controls.Add(this.metroLabel10);
-            this.pnlLeftTop.Controls.Add(this.btnLoad);
-            this.pnlLeftTop.Controls.Add(this.btnLoadDaemon);
-            this.pnlLeftTop.Controls.Add(this.btnLoadDaemon2);
-            this.pnlLeftTop.Controls.Add(this.btnLoadDaemon3);
+            this.pnlLeftTop.Controls.Add(this.btnLoadDaemonH);
+            this.pnlLeftTop.Controls.Add(this.btnLoadDaemonD);
+            this.pnlLeftTop.Controls.Add(this.btnLoadDaemonW);
             this.pnlLeftTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlLeftTop.HorizontalScrollbarBarColor = true;
             this.pnlLeftTop.HorizontalScrollbarHighlightOnWheel = false;
@@ -457,6 +459,20 @@
             this.pnlLeftTop.VerticalScrollbarBarColor = true;
             this.pnlLeftTop.VerticalScrollbarHighlightOnWheel = false;
             this.pnlLeftTop.VerticalScrollbarSize = 10;
+            // 
+            // btnLoadDaemonM
+            // 
+            this.btnLoadDaemonM.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnLoadDaemonM.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnLoadDaemonM.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnLoadDaemonM.FlatAppearance.BorderSize = 0;
+            this.btnLoadDaemonM.Location = new System.Drawing.Point(83, 0);
+            this.btnLoadDaemonM.Name = "btnLoadDaemonM";
+            this.btnLoadDaemonM.Size = new System.Drawing.Size(29, 23);
+            this.btnLoadDaemonM.TabIndex = 10;
+            this.btnLoadDaemonM.Text = "분";
+            this.btnLoadDaemonM.UseVisualStyleBackColor = true;
+            this.btnLoadDaemonM.Click += new System.EventHandler(this.btnLoadDaemon_Click);
             // 
             // lblCnt
             // 
@@ -480,63 +496,47 @@
             this.metroLabel10.Text = " ♣ ";
             this.metroLabel10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // btnLoad
+            // btnLoadDaemonH
             // 
-            this.btnLoad.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnLoad.BackgroundImage")));
-            this.btnLoad.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnLoad.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnLoad.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnLoad.FlatAppearance.BorderSize = 0;
-            this.btnLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLoad.Location = new System.Drawing.Point(83, 0);
-            this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(29, 23);
-            this.btnLoad.TabIndex = 6;
-            this.btnLoad.UseVisualStyleBackColor = true;
-            this.btnLoad.Visible = false;
-            this.btnLoad.Click += new System.EventHandler(this.openFile_FileOk);
+            this.btnLoadDaemonH.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnLoadDaemonH.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnLoadDaemonH.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnLoadDaemonH.FlatAppearance.BorderSize = 0;
+            this.btnLoadDaemonH.Location = new System.Drawing.Point(112, 0);
+            this.btnLoadDaemonH.Name = "btnLoadDaemonH";
+            this.btnLoadDaemonH.Size = new System.Drawing.Size(29, 23);
+            this.btnLoadDaemonH.TabIndex = 9;
+            this.btnLoadDaemonH.Text = "시";
+            this.btnLoadDaemonH.UseVisualStyleBackColor = true;
+            this.btnLoadDaemonH.Click += new System.EventHandler(this.btnLoadDaemon_Click);
             // 
-            // btnLoadDaemon
+            // btnLoadDaemonD
             // 
-            this.btnLoadDaemon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnLoadDaemon.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnLoadDaemon.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnLoadDaemon.FlatAppearance.BorderSize = 0;
-            this.btnLoadDaemon.Location = new System.Drawing.Point(112, 0);
-            this.btnLoadDaemon.Name = "btnLoadDaemon";
-            this.btnLoadDaemon.Size = new System.Drawing.Size(29, 23);
-            this.btnLoadDaemon.TabIndex = 7;
-            this.btnLoadDaemon.Text = "일";
-            this.btnLoadDaemon.UseVisualStyleBackColor = true;
-            this.btnLoadDaemon.Click += new System.EventHandler(this.btnLoadDaemon_Click);
+            this.btnLoadDaemonD.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnLoadDaemonD.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnLoadDaemonD.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnLoadDaemonD.FlatAppearance.BorderSize = 0;
+            this.btnLoadDaemonD.Location = new System.Drawing.Point(141, 0);
+            this.btnLoadDaemonD.Name = "btnLoadDaemonD";
+            this.btnLoadDaemonD.Size = new System.Drawing.Size(29, 23);
+            this.btnLoadDaemonD.TabIndex = 7;
+            this.btnLoadDaemonD.Text = "일";
+            this.btnLoadDaemonD.UseVisualStyleBackColor = true;
+            this.btnLoadDaemonD.Click += new System.EventHandler(this.btnLoadDaemon_Click);
             // 
-            // btnLoadDaemon2
+            // btnLoadDaemonW
             // 
-            this.btnLoadDaemon2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnLoadDaemon2.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnLoadDaemon2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnLoadDaemon2.FlatAppearance.BorderSize = 0;
-            this.btnLoadDaemon2.Location = new System.Drawing.Point(141, 0);
-            this.btnLoadDaemon2.Name = "btnLoadDaemon2";
-            this.btnLoadDaemon2.Size = new System.Drawing.Size(29, 23);
-            this.btnLoadDaemon2.TabIndex = 8;
-            this.btnLoadDaemon2.Text = "주";
-            this.btnLoadDaemon2.UseVisualStyleBackColor = true;
-            this.btnLoadDaemon2.Click += new System.EventHandler(this.btnLoadDaemon2_Click);
-            // 
-            // btnLoadDaemon3
-            // 
-            this.btnLoadDaemon3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnLoadDaemon3.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnLoadDaemon3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnLoadDaemon3.FlatAppearance.BorderSize = 0;
-            this.btnLoadDaemon3.Location = new System.Drawing.Point(170, 0);
-            this.btnLoadDaemon3.Name = "btnLoadDaemon3";
-            this.btnLoadDaemon3.Size = new System.Drawing.Size(29, 23);
-            this.btnLoadDaemon3.TabIndex = 9;
-            this.btnLoadDaemon3.Text = "시";
-            this.btnLoadDaemon3.UseVisualStyleBackColor = true;
-            this.btnLoadDaemon3.Click += new System.EventHandler(this.btnLoadDaemon3_Click);
+            this.btnLoadDaemonW.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnLoadDaemonW.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnLoadDaemonW.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnLoadDaemonW.FlatAppearance.BorderSize = 0;
+            this.btnLoadDaemonW.Location = new System.Drawing.Point(170, 0);
+            this.btnLoadDaemonW.Name = "btnLoadDaemonW";
+            this.btnLoadDaemonW.Size = new System.Drawing.Size(29, 23);
+            this.btnLoadDaemonW.TabIndex = 8;
+            this.btnLoadDaemonW.Text = "주";
+            this.btnLoadDaemonW.UseVisualStyleBackColor = true;
+            this.btnLoadDaemonW.Click += new System.EventHandler(this.btnLoadDaemon_Click);
             // 
             // pnlMain
             // 
@@ -602,6 +602,7 @@
             this.chart2.ChartEventInstance = null;
             this.chart2.DisplayPointCount = 120;
             this.chart2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chart2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.chart2.IsAutoScrollX = true;
             this.chart2.IsEnabledDrawLine = true;
             this.chart2.IsLoaded = false;
@@ -936,14 +937,13 @@
             // 
             this.cbxItem.Dock = System.Windows.Forms.DockStyle.Right;
             this.cbxItem.DropDownHeight = 120;
-            this.cbxItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbxItem.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbxItem.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbxItem.FormattingEnabled = true;
             this.cbxItem.IntegralHeight = false;
-            this.cbxItem.ItemHeight = 13;
-            this.cbxItem.Location = new System.Drawing.Point(896, 0);
+            this.cbxItem.ItemHeight = 16;
+            this.cbxItem.Location = new System.Drawing.Point(1024, 0);
             this.cbxItem.Name = "cbxItem";
-            this.cbxItem.Size = new System.Drawing.Size(242, 21);
+            this.cbxItem.Size = new System.Drawing.Size(114, 24);
             this.cbxItem.TabIndex = 24;
             this.cbxItem.SelectedIndexChanged += new System.EventHandler(this.cbxItem_SelectedIndexChanged);
             // 
@@ -1081,10 +1081,8 @@
         private MetroFramework.Controls.MetroLabel metroLabel10;
         private System.Windows.Forms.OpenFileDialog openFile;
         private MetroFramework.Controls.MetroLabel lblCnt;
-        private System.Windows.Forms.Button btnLoad;
         private MetroFramework.Controls.MetroPanel metroPanel3;
         private System.Windows.Forms.Label label5;
-        private MetroFramework.Controls.MetroTile btnSearch;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private MetroFramework.Controls.MetroLabel metroLabel11;
         private MetroFramework.Controls.MetroLabel metroLabel3;
@@ -1097,9 +1095,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
-        private System.Windows.Forms.Button btnLoadDaemon;
-        private System.Windows.Forms.Button btnLoadDaemon2;
-        private System.Windows.Forms.Button btnLoadDaemon3;
+        private System.Windows.Forms.Button btnLoadDaemonD;
+        private System.Windows.Forms.Button btnLoadDaemonW;
+        private System.Windows.Forms.Button btnLoadDaemonH;
         private MetroFramework.Controls.MetroPanel pnlMain;
         private MetroFramework.Controls.MetroPanel pnlResultView;
         private MetroFramework.Controls.MetroLabel lbNoResult;
@@ -1135,5 +1133,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn yday1;
         private System.Windows.Forms.DataGridViewTextBoxColumn tday1;
         private System.Windows.Forms.DataGridViewTextBoxColumn tday2;
+        private System.Windows.Forms.Button btnLoadDaemonM;
+        private MetroFramework.Controls.MetroTile btnSearch;
     }
 }
