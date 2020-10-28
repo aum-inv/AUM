@@ -419,6 +419,7 @@ namespace OM.Vikala.Controls.Charts
             if (bodyColor != null) dataPoint.SetCustomProperty("PriceDownColor", bodyColor.Value.Name);
             dataPoint.BorderWidth = borderWidth;
         }
+        
         private void Chart_MouseMove(object sender, MouseEventArgs e)
         {
             if (chart.Annotations.Count == 0)

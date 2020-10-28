@@ -105,7 +105,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.pnlLeft);
-            this.splitContainer1.Size = new System.Drawing.Size(1340, 645);
+            this.splitContainer1.Size = new System.Drawing.Size(1169, 645);
             this.splitContainer1.SplitterDistance = 400;
             this.splitContainer1.TabIndex = 3;
             // 
@@ -119,7 +119,7 @@
             this.pnlResultView.HorizontalScrollbarSize = 10;
             this.pnlResultView.Location = new System.Drawing.Point(0, 0);
             this.pnlResultView.Name = "pnlResultView";
-            this.pnlResultView.Padding = new System.Windows.Forms.Padding(5);
+            this.pnlResultView.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.pnlResultView.Size = new System.Drawing.Size(400, 645);
             this.pnlResultView.TabIndex = 11;
             this.pnlResultView.VerticalScrollbarBarColor = true;
@@ -226,7 +226,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(5, 508);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(5);
+            this.panel1.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.panel1.Size = new System.Drawing.Size(390, 132);
             this.panel1.TabIndex = 24;
             // 
@@ -366,7 +366,7 @@
             this.pnlLeft.HorizontalScrollbarSize = 10;
             this.pnlLeft.Location = new System.Drawing.Point(0, 0);
             this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.Size = new System.Drawing.Size(936, 645);
+            this.pnlLeft.Size = new System.Drawing.Size(765, 645);
             this.pnlLeft.TabIndex = 7;
             this.pnlLeft.VerticalScrollbarBarColor = true;
             this.pnlLeft.VerticalScrollbarHighlightOnWheel = false;
@@ -383,8 +383,8 @@
             this.pnlLeftContent.HorizontalScrollbarSize = 10;
             this.pnlLeftContent.Location = new System.Drawing.Point(0, 0);
             this.pnlLeftContent.Name = "pnlLeftContent";
-            this.pnlLeftContent.Padding = new System.Windows.Forms.Padding(5);
-            this.pnlLeftContent.Size = new System.Drawing.Size(936, 645);
+            this.pnlLeftContent.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.pnlLeftContent.Size = new System.Drawing.Size(765, 645);
             this.pnlLeftContent.TabIndex = 5;
             this.pnlLeftContent.VerticalScrollbarBarColor = true;
             this.pnlLeftContent.VerticalScrollbarHighlightOnWheel = false;
@@ -412,7 +412,7 @@
             this.chart.Name = "chart";
             this.chart.SelectedPType = "";
             this.chart.SelectedTrackBarValue = 1;
-            this.chart.Size = new System.Drawing.Size(924, 608);
+            this.chart.Size = new System.Drawing.Size(753, 608);
             this.chart.TabIndex = 4;
             this.chart.TimeInterval = OM.Lib.Base.Enums.TimeIntervalEnum.Day;
             this.chart.Title = null;
@@ -433,7 +433,7 @@
             this.pnlTitle.HorizontalScrollbarSize = 10;
             this.pnlTitle.Location = new System.Drawing.Point(5, 5);
             this.pnlTitle.Name = "pnlTitle";
-            this.pnlTitle.Size = new System.Drawing.Size(924, 25);
+            this.pnlTitle.Size = new System.Drawing.Size(753, 25);
             this.pnlTitle.TabIndex = 3;
             this.pnlTitle.VerticalScrollbarBarColor = true;
             this.pnlTitle.VerticalScrollbarHighlightOnWheel = false;
@@ -444,7 +444,7 @@
             this.chkTD.AutoSize = true;
             this.chkTD.Checked = true;
             this.chkTD.Dock = System.Windows.Forms.DockStyle.Right;
-            this.chkTD.Location = new System.Drawing.Point(707, 0);
+            this.chkTD.Location = new System.Drawing.Point(536, 0);
             this.chkTD.Name = "chkTD";
             this.chkTD.Size = new System.Drawing.Size(31, 25);
             this.chkTD.TabIndex = 35;
@@ -456,7 +456,7 @@
             // 
             this.chkTW.AutoSize = true;
             this.chkTW.Dock = System.Windows.Forms.DockStyle.Right;
-            this.chkTW.Location = new System.Drawing.Point(738, 0);
+            this.chkTW.Location = new System.Drawing.Point(567, 0);
             this.chkTW.Name = "chkTW";
             this.chkTW.Size = new System.Drawing.Size(33, 25);
             this.chkTW.TabIndex = 34;
@@ -501,7 +501,7 @@
             // 
             this.btnDel.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDel.Location = new System.Drawing.Point(771, 0);
+            this.btnDel.Location = new System.Drawing.Point(600, 0);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(153, 25);
             this.btnDel.TabIndex = 28;
@@ -515,9 +515,9 @@
             // 
             // 
             this.tbSelectedName2.CustomButton.Image = null;
-            this.tbSelectedName2.CustomButton.Location = new System.Drawing.Point(183, 1);
+            this.tbSelectedName2.CustomButton.Location = new System.Drawing.Point(128, 1);
             this.tbSelectedName2.CustomButton.Name = "";
-            this.tbSelectedName2.CustomButton.Size = new System.Drawing.Size(23, 23);
+            this.tbSelectedName2.CustomButton.Size = new System.Drawing.Size(16, 15);
             this.tbSelectedName2.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.tbSelectedName2.CustomButton.TabIndex = 1;
             this.tbSelectedName2.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -547,9 +547,9 @@
             // 
             // 
             this.tbSelectedCode2.CustomButton.Image = null;
-            this.tbSelectedCode2.CustomButton.Location = new System.Drawing.Point(58, 1);
+            this.tbSelectedCode2.CustomButton.Location = new System.Drawing.Point(41, 1);
             this.tbSelectedCode2.CustomButton.Name = "";
-            this.tbSelectedCode2.CustomButton.Size = new System.Drawing.Size(23, 23);
+            this.tbSelectedCode2.CustomButton.Size = new System.Drawing.Size(16, 15);
             this.tbSelectedCode2.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.tbSelectedCode2.CustomButton.TabIndex = 1;
             this.tbSelectedCode2.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -591,7 +591,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1380, 725);
+            this.ClientSize = new System.Drawing.Size(1209, 725);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

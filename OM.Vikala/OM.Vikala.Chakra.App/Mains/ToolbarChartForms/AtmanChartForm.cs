@@ -82,6 +82,15 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
 
             if (sourceDatas == null || sourceDatas.Count == 0) return;
 
+            for (int i = 0; i < sourceDatas.Count - 1; i++)
+            {
+                int pIdx = i - 1 < 0 ? 0 : i - 1;
+                int nIdx = i + 1 > sourceDatas.Count - 1 ? sourceDatas.Count - 1 : i + 1;
+
+                sourceDatas[i].PreCandleItem = sourceDatas[pIdx];
+                sourceDatas[i].NextCandleItem = sourceDatas[nIdx];
+            }
+
             //표시할 갯수를 맞춘다.
             RemoveSourceData(sourceDatas);
 
@@ -107,7 +116,7 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
             var averageBDatas = PPUtils.GetBalancedAverageDatas(itemCode, sourceDatas, averageBCount, false);
             sourceDatas = PPUtils.GetCutDatas(sourceDatas, averageDatas[0].DTime);
             averageBDatas = PPUtils.GetCutDatas(averageBDatas, averageDatas[0].DTime);
-
+            
             chart.LoadDataAndApply(itemCode, sourceDatas, averageDatas, averageBDatas, base.timeInterval, 5);                 
         }
 

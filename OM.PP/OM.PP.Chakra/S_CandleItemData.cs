@@ -10,6 +10,9 @@ namespace OM.PP.Chakra
     public class S_CandleItemData : A_HLOC
     {
         List<S_CandleItemData> sourceItems;
+
+        public S_CandleItemData PreCandleItem = null;
+        public S_CandleItemData NextCandleItem = null;
         public S_CandleItemData() { }
         
         public S_CandleItemData(
@@ -31,6 +34,7 @@ namespace OM.PP.Chakra
             base.DTime = dt;
             this.VirtualData = virtualData;
         }
+
         public S_CandleItemData(
              string itemCode
            , List<S_CandleItemData> sourceItems)
@@ -247,6 +251,124 @@ namespace OM.PP.Chakra
 
             base.DTime = sourceItems.Max(t => t.DTime);
             base.Volume = sourceItems.Sum(t => t.Volume);
-        }        
+        }
+
+        #region CandleType_Space
+        public CandleSpaceTypeEnum SpaceType_P
+        {
+            get 
+            {
+                return getSpaceType(PreCandleItem);
+            }
+        }
+        public CandleSpaceTypeEnum SpaceType_C
+        {
+            get
+            {
+                return getSpaceType(this);
+            }
+        }
+        public CandleSpaceTypeEnum SpaceType_N
+        {
+            get
+            {
+                return getSpaceType(NextCandleItem);
+            }
+        }
+        private CandleSpaceTypeEnum getSpaceType(S_CandleItemData item)
+        {
+            double totalLength = TotalLength;
+            double headLength = HeadLength;
+            double legLength = LegLength;
+            double bodyLength = BodyLength;
+
+            int headLengthRate = (int)Math.Round((headLength / totalLength * 100.0), 0);
+            int bodyLengthRate = (int)Math.Round((bodyLength / totalLength * 100.0), 0);
+            int legLengthRate = (int)Math.Round((legLength / totalLength * 100.0), 0);
+
+            CandleSpaceTypeEnum type = CandleSpaceTypeEnum.None;
+            if (bodyLengthRate >= 98)
+                type = CandleSpaceTypeEnum.Marubozu;
+            else if (bodyLengthRate >= 70 && headLengthRate >= 10 && legLengthRate >= 10)
+                type = CandleSpaceTypeEnum.LongBody;
+            else if (bodyLengthRate >= 30 && headLengthRate >= 30 && legLengthRate >= 30)
+                type = CandleSpaceTypeEnum.ShortBody;
+            else if (bodyLengthRate >= 10 && headLengthRate >= 40 && legLengthRate >= 40)
+                type = CandleSpaceTypeEnum.Spinning;
+            else if (bodyLengthRate >= 20 && ((headLengthRate >= 60 && legLengthRate < 5) || (headLengthRate < 5 && legLengthRate >= 60)))
+                type = CandleSpaceTypeEnum.Hammer;
+            else if (bodyLengthRate < 20 && ((headLengthRate >= 80 && legLengthRate < 5) || (headLengthRate < 5 && legLengthRate >= 80)))
+                type = CandleSpaceTypeEnum.SmallHammer;
+            else if (bodyLengthRate < 5 && headLengthRate >= 45 && legLengthRate >= 45)
+                type = CandleSpaceTypeEnum.Dogi;
+            else
+                type = CandleSpaceTypeEnum.Unknown;
+
+            return type;
+        }
+        #endregion
+
+        #region CandleType_Time
+        public virtual PlusMinusTypeEnum PlusMinusType_P
+        {
+            get
+            {
+                if (PreCandleItem.OpenPrice < PreCandleItem.ClosePrice) return PlusMinusTypeEnum.양;
+                else if (PreCandleItem.OpenPrice > PreCandleItem.ClosePrice) return PlusMinusTypeEnum.음;
+                else return PlusMinusTypeEnum.무;
+            }
+        }
+        
+        public virtual PlusMinusTypeEnum PlusMinusType_N
+        {
+            get
+            {
+                if (NextCandleItem.OpenPrice < NextCandleItem.ClosePrice) return PlusMinusTypeEnum.양;
+                else if (NextCandleItem.OpenPrice > NextCandleItem.ClosePrice) return PlusMinusTypeEnum.음;
+                else return PlusMinusTypeEnum.무;
+            }
+        }
+
+        public CandleTimeTypeEnum TimeType_P
+        {
+            get
+            {
+                if (PreCandleItem == null) return CandleTimeTypeEnum.모름;
+                else
+                {
+                    if (PreCandleItem.ClosePrice < this.ClosePrice) return CandleTimeTypeEnum.양;
+                    else if (PreCandleItem.ClosePrice > this.ClosePrice) return CandleTimeTypeEnum.음;
+                    else return CandleTimeTypeEnum.무;
+                }
+            }
+        }
+        public CandleTimeTypeEnum TimeType_PN
+        {
+            get
+            {
+                if (PreCandleItem == null) return CandleTimeTypeEnum.모름;
+                if (NextCandleItem == null) return CandleTimeTypeEnum.모름;
+                else
+                {
+                    if (PreCandleItem.ClosePrice < NextCandleItem.ClosePrice) return CandleTimeTypeEnum.양;
+                    else if (PreCandleItem.ClosePrice > NextCandleItem.ClosePrice) return CandleTimeTypeEnum.음;
+                    else return CandleTimeTypeEnum.무;
+                }
+            }
+        }
+        public CandleTimeTypeEnum TimeType_N
+        {
+            get
+            {
+                if (NextCandleItem == null) return CandleTimeTypeEnum.모름;
+                else
+                {
+                    if (NextCandleItem.ClosePrice < this.ClosePrice) return CandleTimeTypeEnum.음;
+                    else if (NextCandleItem.ClosePrice > this.ClosePrice) return CandleTimeTypeEnum.양;
+                    else return CandleTimeTypeEnum.무;
+                }
+            }
+        }
+        #endregion
     }
 }

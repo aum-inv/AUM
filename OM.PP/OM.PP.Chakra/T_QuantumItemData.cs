@@ -97,6 +97,9 @@ namespace OM.PP.Chakra
                 DTime = sourceData.DTime;
                 VirtualData = sourceData.VirtualData;
 
+                PreCandleItem = sourceData.PreCandleItem;
+                NextCandleItem = sourceData.NextCandleItem;
+
                 //t_openAvg = OpenPriceAvg = (Single)sourceDataArray.Average(t => t.OpenPrice);
                 t_closeAvg = ClosePriceAvg = (Single)sourceDataArray.Average(t => t.ClosePrice);
                 //t_highAvg = HighPriceAvg = (Single)sourceDataArray.Average(t => t.HighPrice);

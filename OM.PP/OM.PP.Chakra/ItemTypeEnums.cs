@@ -15,4 +15,28 @@ namespace OM.PP.Chakra
     {
         양, 음, 무
     }
+    public enum CandleTimeTypeEnum
+    {
+        양, 음, 무, 모름
+    }
+
+    public enum CandleSpaceTypeEnum
+    {
+        None = 0, 
+        Marubozu = 1,
+        LongBody = 2,
+        ShortBody = 3,
+        Spinning = 4,
+        Hammer = 5,
+        SmallHammer = 6,
+        Dogi = 7,
+        Unknown = 9
+    }
+
+    public enum CandlePatternTypeEnum
+    {
+        Unknown,
+        Up,
+        Down
+    }
 }

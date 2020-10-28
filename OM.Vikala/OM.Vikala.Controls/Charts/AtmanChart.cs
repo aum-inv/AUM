@@ -13,6 +13,7 @@ using OM.Lib.Base.Utils;
 using OM.Vikala.Controls.Properties;
 using OM.Lib.Base.Enums;
 using OM.Lib.Base;
+using OM.PP.Chakra.Patterns;
 
 namespace OM.Vikala.Controls.Charts
 {
@@ -132,6 +133,8 @@ namespace OM.Vikala.Controls.Charts
             int dItemCount = 0;
             LimitedList<double> dList1 = new LimitedList<double>(5);
             LimitedList<double> dList2 = new LimitedList<double>(5);
+
+            ThreeCandlePattern threePatttern = new ThreeCandlePattern();
             for (int i = 4; i < ChartData.Count; i++)
             {
                 var item = ChartData[i];
@@ -315,19 +318,52 @@ namespace OM.Vikala.Controls.Charts
                 preMassAvg = itemAvg.T_MassAvg;
                 preQuantumAvg = itemAvg.T_QuantumAvg;
 
-                var dataPoint = chart.Series[0].Points[idx];
+                var dataPoint = chart.Series["candleBasic"].Points[idx];
+                var dataPointAvg = chart.Series["candleAverage"].Points[idx];
                 dataPoint.Tag = item;
-            }        
-            
+
+                if (item.PlusMinusType == PlusMinusTypeEnum.양)
+                    SetDataPointColor(dataPoint, Color.Red, Color.Red, Color.White, 2);
+                else if (item.PlusMinusType == PlusMinusTypeEnum.음)
+                    SetDataPointColor(dataPoint, Color.Blue, Color.Blue, Color.White, 2);
+                else
+                    SetDataPointColor(dataPoint, Color.Black, Color.Black, Color.White, 2);
+
+                if (itemAvg.PlusMinusType == PlusMinusTypeEnum.양)
+                    SetDataPointColor(dataPointAvg, Color.Red, Color.Red, Color.White, 2);
+                else if (itemAvg.PlusMinusType == PlusMinusTypeEnum.음)
+                    SetDataPointColor(dataPointAvg, Color.Blue, Color.Blue, Color.White, 2);
+                else
+                    SetDataPointColor(dataPointAvg, Color.Black, Color.Black, Color.White, 2);                                
+            }
             SetScrollBar();
             SetTrackBar();
             DisplayView();
-
+            DisplayPattern();
             IsLoaded = true;
 
             base.View();
         }
-       
+
+        public void DisplayPattern()
+        {
+            ThreeCandlePattern threePatttern = new ThreeCandlePattern();
+            for (int i = 10; i < ChartData.Count; i++)
+            {
+                var item = ChartData[i];
+
+                var patternRet = threePatttern.CheckAllPattern(item);
+
+                if (patternRet == CandlePatternTypeEnum.Down)
+                {
+                    DisplayChartLabel(item.DTime, Color.Blue, "ⓟ", "ⓟ");
+                }
+                if (patternRet == CandlePatternTypeEnum.Up)
+                {
+                    DisplayChartLabel(item.DTime, Color.Red, "ⓟ", "ⓟ");
+                }
+            }
+        }
         public void SetScrollBar()
         {
             int trackView = trackBar.Value;
@@ -500,24 +536,6 @@ namespace OM.Vikala.Controls.Charts
         private void chart_MouseClick(object sender, MouseEventArgs e)
         {
         }
-
-        private void SetDataPointColor(
-                  DataPoint dataPoint
-              , Color? headlegColor = null
-              , Color? bodyLineColor = null
-              , Color? bodyColor = null
-              , int? borderWidth = null)
-        {
-            if (headlegColor != null) dataPoint.Color = headlegColor.Value;
-
-            if (bodyLineColor != null) dataPoint.BorderColor = bodyLineColor.Value;
-
-            if (bodyColor != null) dataPoint.SetCustomProperty("PriceUpColor", bodyColor.Value.Name);
-            if (bodyColor != null) dataPoint.SetCustomProperty("PriceDownColor", bodyColor.Value.Name);
-
-            if (borderWidth != null) dataPoint.BorderWidth = borderWidth.Value;
-        }
-
 
         #region Chart Util
         public void ClearChartLabel(string type)
