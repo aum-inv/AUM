@@ -109,6 +109,9 @@ namespace OM.Upaya.Chakra.App
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             isRun = isRunKr = false;
+
+            Process currentProcess = Process.GetCurrentProcess();
+            currentProcess.Kill();
         }
         private void btnStart_Click(object sender, EventArgs e)
         {
@@ -334,9 +337,6 @@ namespace OM.Upaya.Chakra.App
         private void chkSise_CheckedChanged(object sender, EventArgs e)
         {
             isSiseBinding = chkSise.Checked;
-
-            Process currentProcess = Process.GetCurrentProcess();
-            currentProcess.Kill();
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)

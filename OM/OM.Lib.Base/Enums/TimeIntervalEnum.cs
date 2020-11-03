@@ -8,24 +8,24 @@ namespace OM.Lib.Base.Enums
 {
     public enum TimeIntervalEnum
     {
-            Minute_01
-        ,   Minute_05
-        ,   Minute_10
-        ,   Minute_15
-        ,   Minute_30
-        ,   Hour_01 
-        ,   Hour_02
-        ,   Hour_03
-        ,   Hour_04
-        ,   Hour_05
-        ,   Hour_06
-        ,   Hour_08
-        ,   Hour_12
-        ,   Day 
-        ,   Week
-        ,   Month      
+            Minute_01 = 1
+        ,   Minute_05 = 2
+        ,   Minute_10 = 3
+        ,   Minute_15 = 4
+        ,   Minute_30 = 5
+        ,   Hour_01 = 11
+        ,   Hour_02 = 12
+        ,   Hour_03 = 13
+        ,   Hour_04 = 14
+        ,   Hour_05 = 15
+        ,   Hour_06 = 16
+        ,   Hour_08 = 17
+        ,   Hour_12 = 18
+        ,   Day = 20
+        ,   Week = 30
+        ,   Month = 40     
           
-        ,   None
+        ,   None = 0
     }
 }
 

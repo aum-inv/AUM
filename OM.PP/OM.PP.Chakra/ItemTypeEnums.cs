@@ -8,18 +8,21 @@ namespace OM.PP.Chakra
 {
     public enum PlusMinusTypeEnum
     {
-         양, 음, 무
+         양 = 1, 음 = 2, 무 = 0
     }
 
     public enum CandleColorTypeEnum
     {
-        양, 음, 무
+        양 = 1, 음 = 2, 무 = 0
     }
     public enum CandleTimeTypeEnum
     {
-        양, 음, 무, 모름
+        양 = 1, 음 = 2, 무 = 0, 모름 = 9
     }
-
+    public enum CandleSizeTypeEnum
+    { 
+        Big = 1, Small = 2, NoMatter = 9
+    }
     public enum CandleSpaceTypeEnum
     {
         None = 0, 
@@ -35,8 +38,10 @@ namespace OM.PP.Chakra
 
     public enum CandlePatternTypeEnum
     {
-        Unknown,
-        Up,
-        Down
+        Unknown = 9,
+        Up = 1,
+        Down = 2,
+        StrongUp = 3,
+        StrongDown = 4
     }
 }

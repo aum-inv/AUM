@@ -82,7 +82,7 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
 
             if (sourceDatas == null || sourceDatas.Count == 0) return;
 
-            for (int i = 0; i < sourceDatas.Count - 1; i++)
+            for (int i = 0; i < sourceDatas.Count; i++)
             {
                 int pIdx = i - 1 < 0 ? 0 : i - 1;
                 int nIdx = i + 1 > sourceDatas.Count - 1 ? sourceDatas.Count - 1 : i + 1;

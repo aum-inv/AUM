@@ -47,6 +47,7 @@ namespace OM.PP.XingApp.Ex.Api
             , string qrycnt = "500"
             )
         {
+                this.ItemCode = shcode;
             
                 TimeInterval = EnumUtil.GetTimeIntervalValue(gubun, ncnt);
                 string tdgb = "0";  //당일구분

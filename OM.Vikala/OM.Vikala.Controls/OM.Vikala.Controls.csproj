@@ -78,6 +78,12 @@
     <Compile Include="Charts\BuySellLineChart.Designer.cs">
       <DependentUpon>BuySellLineChart.cs</DependentUpon>
     </Compile>
+    <Compile Include="Charts\PatternCandleChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Charts\PatternCandleChart.Designer.cs">
+      <DependentUpon>PatternCandleChart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Charts\WisdomCandleChart.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -240,6 +246,10 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\OM.Jiva\OM.Jiva.Chakra\OM.Jiva.Chakra.csproj">
+      <Project>{6d2babd8-0e3a-4a26-a771-f34e440c89db}</Project>
+      <Name>OM.Jiva.Chakra</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\OM.PP\OM.PP.Chakra\OM.PP.Chakra.csproj">
       <Project>{2c4aa241-5c13-4abf-9eb3-5903308cb439}</Project>
       <Name>OM.PP.Chakra</Name>
@@ -265,6 +275,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Charts\BuySellLineChart.resx">
       <DependentUpon>BuySellLineChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Charts\PatternCandleChart.resx">
+      <DependentUpon>PatternCandleChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Charts\WisdomCandleChart.resx">
       <DependentUpon>WisdomCandleChart.cs</DependentUpon>

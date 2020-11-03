@@ -277,32 +277,88 @@ namespace OM.PP.Chakra
         }
         private CandleSpaceTypeEnum getSpaceType(S_CandleItemData item)
         {
-            double totalLength = TotalLength;
-            double headLength = HeadLength;
-            double legLength = LegLength;
-            double bodyLength = BodyLength;
+            double totalLength = item.TotalLength;
+            double headLength = item.HeadLength;
+            double legLength = item.LegLength;
+            double bodyLength = item.BodyLength;
 
             int headLengthRate = (int)Math.Round((headLength / totalLength * 100.0), 0);
             int bodyLengthRate = (int)Math.Round((bodyLength / totalLength * 100.0), 0);
             int legLengthRate = (int)Math.Round((legLength / totalLength * 100.0), 0);
 
-            CandleSpaceTypeEnum type = CandleSpaceTypeEnum.None;
-            if (bodyLengthRate >= 98)
+            CandleSpaceTypeEnum type = CandleSpaceTypeEnum.Unknown;
+            if (bodyLengthRate >= 80)
                 type = CandleSpaceTypeEnum.Marubozu;
-            else if (bodyLengthRate >= 70 && headLengthRate >= 10 && legLengthRate >= 10)
+
+            else if (bodyLengthRate >= 60)
                 type = CandleSpaceTypeEnum.LongBody;
-            else if (bodyLengthRate >= 30 && headLengthRate >= 30 && legLengthRate >= 30)
-                type = CandleSpaceTypeEnum.ShortBody;
-            else if (bodyLengthRate >= 10 && headLengthRate >= 40 && legLengthRate >= 40)
+
+            else if ((bodyLengthRate >= 10 && bodyLengthRate < 25) && headLengthRate >= 35 && legLengthRate >= 35)
                 type = CandleSpaceTypeEnum.Spinning;
-            else if (bodyLengthRate >= 20 && ((headLengthRate >= 60 && legLengthRate < 5) || (headLengthRate < 5 && legLengthRate >= 60)))
+
+            else if ((bodyLengthRate <= 50 && bodyLengthRate >= 20) && (headLengthRate >= 45 || legLengthRate >= 45))
                 type = CandleSpaceTypeEnum.Hammer;
-            else if (bodyLengthRate < 20 && ((headLengthRate >= 80 && legLengthRate < 5) || (headLengthRate < 5 && legLengthRate >= 80)))
+
+            else if (bodyLengthRate < 20 && (headLengthRate >= 75 || legLengthRate >= 75))
                 type = CandleSpaceTypeEnum.SmallHammer;
-            else if (bodyLengthRate < 5 && headLengthRate >= 45 && legLengthRate >= 45)
-                type = CandleSpaceTypeEnum.Dogi;
-            else
-                type = CandleSpaceTypeEnum.Unknown;
+
+            if (type == CandleSpaceTypeEnum.Unknown)
+            {
+                if (bodyLengthRate < 10)
+                    type = CandleSpaceTypeEnum.Dogi;
+
+                else if (bodyLengthRate >= 25 && bodyLengthRate < 60 && headLengthRate >= 3 && legLengthRate >= 3)
+                    type = CandleSpaceTypeEnum.ShortBody;
+            }
+
+            return type;
+        }
+
+        public string GetSpaceType(S_CandleItemData item)
+        {
+            double totalLength = item.TotalLength;
+            double headLength = item.HeadLength;
+            double legLength = item.LegLength;
+            double bodyLength = item.BodyLength;
+
+            int headLengthRate = (int)Math.Round((headLength / totalLength * 100.0), 0);
+            int bodyLengthRate = (int)Math.Round((bodyLength / totalLength * 100.0), 0);
+            int legLengthRate = (int)Math.Round((legLength / totalLength * 100.0), 0);
+
+            string type = "";
+            //Marubozu
+            if (bodyLengthRate >= 80)
+                type = "➀";
+
+            //Long Body
+            else if (bodyLengthRate >= 60)
+                type = "➁";            
+
+            //Spinning
+            else if ((bodyLengthRate >= 10 && bodyLengthRate < 25) && headLengthRate >= 35 && legLengthRate >= 35)
+                type = "➃";
+
+            //Hammer
+            else if ((bodyLengthRate <= 50 && bodyLengthRate >= 20) && (headLengthRate >= 45 || legLengthRate >= 45))
+                type = "➄";
+
+            //Small Hammer
+            else if (bodyLengthRate < 20 && (headLengthRate >= 75 || legLengthRate >= 75))
+                type = "➅";
+
+            if (type == "")
+            {
+                //Doji
+                if (bodyLengthRate < 10)
+                    type = "⑦";
+
+                //Short Body
+                else if (bodyLengthRate >= 25 && bodyLengthRate < 60)
+                    type = "➂";
+
+                else
+                    type = "★";
+            }
 
             return type;
         }
@@ -329,7 +385,20 @@ namespace OM.PP.Chakra
             }
         }
 
-        public CandleTimeTypeEnum TimeType_P
+        public CandleTimeTypeEnum TimeType_OpenPrice_P
+        {
+            get
+            {
+                if (PreCandleItem == null) return CandleTimeTypeEnum.모름;
+                else
+                {
+                    if (PreCandleItem.OpenPrice < this.OpenPrice) return CandleTimeTypeEnum.양;
+                    else if (PreCandleItem.OpenPrice > this.OpenPrice) return CandleTimeTypeEnum.음;
+                    else return CandleTimeTypeEnum.무;
+                }
+            }
+        }
+        public CandleTimeTypeEnum TimeType_ClosePrice_P
         {
             get
             {
@@ -342,7 +411,47 @@ namespace OM.PP.Chakra
                 }
             }
         }
-        public CandleTimeTypeEnum TimeType_PN
+        public CandleTimeTypeEnum TimeType_HighPrice_P
+        {
+            get
+            {
+                if (PreCandleItem == null) return CandleTimeTypeEnum.모름;
+                else
+                {
+                    if (PreCandleItem.HighPrice < this.HighPrice) return CandleTimeTypeEnum.양;
+                    else if (PreCandleItem.HighPrice > this.HighPrice) return CandleTimeTypeEnum.음;
+                    else return CandleTimeTypeEnum.무;
+                }
+            }
+        }
+        public CandleTimeTypeEnum TimeType_LowPrice_P
+        {
+            get
+            {
+                if (PreCandleItem == null) return CandleTimeTypeEnum.모름;
+                else
+                {
+                    if (PreCandleItem.LowPrice < this.LowPrice) return CandleTimeTypeEnum.양;
+                    else if (PreCandleItem.LowPrice > this.LowPrice) return CandleTimeTypeEnum.음;
+                    else return CandleTimeTypeEnum.무;
+                }
+            }
+        }
+        public CandleTimeTypeEnum TimeType_OpenPrice_PN
+        {
+            get
+            {
+                if (PreCandleItem == null) return CandleTimeTypeEnum.모름;
+                if (NextCandleItem == null) return CandleTimeTypeEnum.모름;
+                else
+                {
+                    if (PreCandleItem.OpenPrice < NextCandleItem.OpenPrice) return CandleTimeTypeEnum.양;
+                    else if (PreCandleItem.OpenPrice > NextCandleItem.OpenPrice) return CandleTimeTypeEnum.음;
+                    else return CandleTimeTypeEnum.무;
+                }
+            }
+        }
+        public CandleTimeTypeEnum TimeType_ClosePrice_PN
         {
             get
             {
@@ -356,7 +465,48 @@ namespace OM.PP.Chakra
                 }
             }
         }
-        public CandleTimeTypeEnum TimeType_N
+        public CandleTimeTypeEnum TimeType_HighPrice_PN
+        {
+            get
+            {
+                if (PreCandleItem == null) return CandleTimeTypeEnum.모름;
+                if (NextCandleItem == null) return CandleTimeTypeEnum.모름;
+                else
+                {
+                    if (PreCandleItem.HighPrice < NextCandleItem.HighPrice) return CandleTimeTypeEnum.양;
+                    else if (PreCandleItem.HighPrice > NextCandleItem.HighPrice) return CandleTimeTypeEnum.음;
+                    else return CandleTimeTypeEnum.무;
+                }
+            }
+        }
+        public CandleTimeTypeEnum TimeType_LowPrice_PN
+        {
+            get
+            {
+                if (PreCandleItem == null) return CandleTimeTypeEnum.모름;
+                if (NextCandleItem == null) return CandleTimeTypeEnum.모름;
+                else
+                {
+                    if (PreCandleItem.LowPrice < NextCandleItem.LowPrice) return CandleTimeTypeEnum.양;
+                    else if (PreCandleItem.LowPrice > NextCandleItem.LowPrice) return CandleTimeTypeEnum.음;
+                    else return CandleTimeTypeEnum.무;
+                }
+            }
+        }
+        public CandleTimeTypeEnum TimeType_OpenPrice_N
+        {
+            get
+            {
+                if (NextCandleItem == null) return CandleTimeTypeEnum.모름;
+                else
+                {
+                    if (NextCandleItem.OpenPrice < this.OpenPrice) return CandleTimeTypeEnum.음;
+                    else if (NextCandleItem.OpenPrice > this.OpenPrice) return CandleTimeTypeEnum.양;
+                    else return CandleTimeTypeEnum.무;
+                }
+            }
+        }
+        public CandleTimeTypeEnum TimeType_ClosePrice_N
         {
             get
             {
@@ -365,6 +515,32 @@ namespace OM.PP.Chakra
                 {
                     if (NextCandleItem.ClosePrice < this.ClosePrice) return CandleTimeTypeEnum.음;
                     else if (NextCandleItem.ClosePrice > this.ClosePrice) return CandleTimeTypeEnum.양;
+                    else return CandleTimeTypeEnum.무;
+                }
+            }
+        }
+        public CandleTimeTypeEnum TimeType_HighPrice_N
+        {
+            get
+            {
+                if (NextCandleItem == null) return CandleTimeTypeEnum.모름;
+                else
+                {
+                    if (NextCandleItem.HighPrice < this.HighPrice) return CandleTimeTypeEnum.음;
+                    else if (NextCandleItem.HighPrice > this.HighPrice) return CandleTimeTypeEnum.양;
+                    else return CandleTimeTypeEnum.무;
+                }
+            }
+        }
+        public CandleTimeTypeEnum TimeType_LowPrice_N
+        {
+            get
+            {
+                if (NextCandleItem == null) return CandleTimeTypeEnum.모름;
+                else
+                {
+                    if (NextCandleItem.LowPrice < this.LowPrice) return CandleTimeTypeEnum.음;
+                    else if (NextCandleItem.LowPrice > this.LowPrice) return CandleTimeTypeEnum.양;
                     else return CandleTimeTypeEnum.무;
                 }
             }

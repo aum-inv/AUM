@@ -62,7 +62,6 @@
     <Compile Include="Api\BaseApi.cs" />
     <Compile Include="Api\BaseTradeApi.cs" />
     <Compile Include="A_CLOSE.cs" />
-    <Compile Include="Patterns\ThreeCandlePattern.cs" />
     <Compile Include="UpJongJongMokData.cs" />
     <Compile Include="WisdomCandleData.cs" />
     <Compile Include="SmartCandleData.cs" />

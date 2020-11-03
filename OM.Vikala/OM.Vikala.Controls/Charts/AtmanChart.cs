@@ -13,7 +13,7 @@ using OM.Lib.Base.Utils;
 using OM.Vikala.Controls.Properties;
 using OM.Lib.Base.Enums;
 using OM.Lib.Base;
-using OM.PP.Chakra.Patterns;
+using OM.Jiva.Chakra.Patterns;
 
 namespace OM.Vikala.Controls.Charts
 {
@@ -162,7 +162,8 @@ namespace OM.Vikala.Controls.Charts
                 }
 
                 int idx = chart.Series["candleBasic"].Points.AddXY(item.DTime, item.HighPrice, item.LowPrice, item.OpenPrice, item.ClosePrice);
-                string diceChar = getDiceChar(itemAvg);
+                string diceChar = item.GetSpaceType(item);
+                //string diceChar = getDiceChar(itemAvg);
                 chart.Series["candleBasic"].Points[idx].Label = diceChar;
 
                 if (item.VirtualData)
@@ -177,6 +178,11 @@ namespace OM.Vikala.Controls.Charts
                 chart.Series["lineQuantumB"].Points.AddXY(itemAvg2.DTime, item.T_QuantumAvg2);
 
                 chart.Series["candleAverage"].Points.AddXY(itemAvg.DTime, itemAvg.HighPrice, itemAvg.LowPrice, itemAvg.OpenPrice, itemAvg.ClosePrice);
+                diceChar = itemAvg.GetSpaceType(itemAvg);
+                chart.Series["candleAverage"].Points[idx].Label = diceChar;
+                if (diceChar == "★")
+                    chart.Series["candleAverage"].Points[idx].LabelForeColor = Color.Red;
+
                 chart.Series["candleBAverage"].Points.AddXY(itemAvg2.DTime, itemAvg2.HighPrice, itemAvg2.LowPrice, itemAvg2.OpenPrice, itemAvg2.ClosePrice);
 
                 chart.Series["lineSmartEnergy1"].Points.AddXY(smart.DTime, smart.Variance_ChartPrice1);
@@ -190,8 +196,7 @@ namespace OM.Vikala.Controls.Charts
 
                 chart.Series["lineSmartBEnergy2"].Points.AddXY(smartB.DTime, smartB.Variance_ChartPrice2);
                 chart.Series["lineWisdomBEnergy"].Points.AddXY(wisdomB.DTime, wisdomB.Variance_ChartPrice);
-                chart.Series["lineSmartBEnergy"].Points.AddXY(smartB.DTime, smartB.Variance_ChartPrice1);
-
+                
                 var bitem = ChartData[i - 1];
                 chart.Series["stackHL"].Points.AddXY(item.DTime, item.TotalLength);
                 chart.Series["stackHL2"].Points.AddXY(item.DTime, (bitem.TotalLength - item.TotalLength) <=0 ? 0 : (bitem.TotalLength - item.TotalLength));
@@ -339,28 +344,32 @@ namespace OM.Vikala.Controls.Charts
             SetScrollBar();
             SetTrackBar();
             DisplayView();
-            DisplayPattern();
+            //ViewPattern();
             IsLoaded = true;
 
             base.View();
         }
 
-        public void DisplayPattern()
+        public void ViewPattern(bool isLast = false)
         {
             ThreeCandlePattern threePatttern = new ThreeCandlePattern();
-            for (int i = 10; i < ChartData.Count; i++)
-            {
+
+            int idx = isLast ? ChartData.Count - 10 : 10;
+
+            for (int i = idx; i < ChartData.Count; i++)
+            {              
+
                 var item = ChartData[i];
 
                 var patternRet = threePatttern.CheckAllPattern(item);
 
-                if (patternRet == CandlePatternTypeEnum.Down)
+                if (patternRet.patternType == CandlePatternTypeEnum.Down)
                 {
-                    DisplayChartLabel(item.DTime, Color.Blue, "ⓟ", "ⓟ");
+                    DisplayPattern(item, Color.Blue, "ⓟ", patternRet.patternName);
                 }
-                if (patternRet == CandlePatternTypeEnum.Up)
+                if (patternRet.patternType == CandlePatternTypeEnum.Up)
                 {
-                    DisplayChartLabel(item.DTime, Color.Red, "ⓟ", "ⓟ");
+                    DisplayPattern(item, Color.Red, "ⓟ", patternRet.patternName);
                 }
             }
         }
@@ -550,6 +559,27 @@ namespace OM.Vikala.Controls.Charts
 
             chart.Update();
         }
+        public void DisplayPattern(T_QuantumItemData item, Color color, string type, string title = "")
+        {
+            int idx = 0;
+            foreach (var p in chart.Series[0].Points)
+            {
+                var pItem = p.Tag as T_QuantumItemData;
+
+                if (pItem == item)
+                {                    
+                    //if (item.PlusMinusType == PlusMinusTypeEnum.양)
+                    //    SetDataPointColor(p, color, color, color, 2);
+                    //else if (item.PlusMinusType == PlusMinusTypeEnum.음)
+                    //    SetDataPointColor(p, color, color, color, 2);
+
+                    p.Label += Environment.NewLine + title;
+                    p.LabelForeColor = color;
+                    break;
+                }
+                idx++;
+            }
+        }
         public void DisplayChartLabel(DateTime dt, Color color, string type, string title = "★")
         {
             foreach (var p in chart.Series[0].Points)
@@ -570,13 +600,11 @@ namespace OM.Vikala.Controls.Charts
                     a.AnchorAlignment = ContentAlignment.TopCenter;
                     a.AnchorDataPoint = p;
                     a.Tag = type;
-                    a.AnchorOffsetY = -5;
+                    a.AnchorOffsetY = -5;                  
                     chart.Annotations.Add(a);
                     break;
                 }
             }
-
-            chart.Update();
         }
         #endregion
 
@@ -618,7 +646,7 @@ namespace OM.Vikala.Controls.Charts
             if (item.DiceNum == 4) return "➃";
             if (item.DiceNum == 5) return "➄";
             if (item.DiceNum == 6) return "➅";
-
+            if (item.DiceNum == 7) return "⑦";
             return "★";
         }
     }
