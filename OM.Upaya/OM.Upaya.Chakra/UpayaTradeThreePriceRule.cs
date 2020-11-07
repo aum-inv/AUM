@@ -13,7 +13,7 @@ namespace OM.Upaya.Chakra
     public class UpayaTradeThreePriceRule : UpayaBaseTradeRule
     {
         #region 속성      
-        public string TradeType { get; set; } = "1";
+        public string TradeType { get; set; } = "시장가";
        
         #region P2 Properties
         public double P2BuyPrice1 { get; set; } = 0;
@@ -122,7 +122,7 @@ namespace OM.Upaya.Chakra
                 {
                     if (CPrice == P2BuyPrice1)
                     {
-                        SellBuy("2", P2BuyQty1.ToString(), TradeType);
+                        SellBuy("매도", P2BuyQty1.ToString(), TradeType);
 
                         IsBuyP2Done1 = true;
                     }
@@ -133,7 +133,7 @@ namespace OM.Upaya.Chakra
                 {
                     if (CPrice == P2BuyPrice2)
                     {
-                        SellBuy("2", P2BuyQty2.ToString(), TradeType);
+                        SellBuy("매도", P2BuyQty2.ToString(), TradeType);
 
                         IsBuyP2Done2 = true;
                     }
@@ -144,7 +144,7 @@ namespace OM.Upaya.Chakra
                 {
                     if (CPrice == P2BuyPrice3)
                     {
-                        SellBuy("2", P2BuyQty3.ToString(), TradeType);
+                        SellBuy("매도", P2BuyQty3.ToString(), TradeType);
 
                         IsBuyP2Done3 = true;
                     }
@@ -157,7 +157,7 @@ namespace OM.Upaya.Chakra
                 {
                     if (CPrice == P2RevenuePrice1)
                     {
-                        SellBuy("1", P2RevenueQty1.ToString(), TradeType);
+                        SellBuy("매수", P2RevenueQty1.ToString(), TradeType);
                         IsRevenueP2Done1 = true;
                     }
                 }
@@ -167,7 +167,7 @@ namespace OM.Upaya.Chakra
                 {
                     if (CPrice == P2RevenuePrice2)
                     {
-                        SellBuy("1", P2RevenueQty2.ToString(), TradeType);
+                        SellBuy("매수", P2RevenueQty2.ToString(), TradeType);
                         IsRevenueP2Done2 = true;
                     }
                 }
@@ -177,7 +177,7 @@ namespace OM.Upaya.Chakra
                 {
                     if (CPrice == P2RevenuePrice3)
                     {
-                        SellBuy("1", P2RevenueQty3.ToString(), TradeType);
+                        SellBuy("매수", P2RevenueQty3.ToString(), TradeType);
                         IsRevenueP2Done3 = true;
                     }
                 }
@@ -189,7 +189,7 @@ namespace OM.Upaya.Chakra
                 {
                     if (CPrice == P2LosscutPrice1)
                     {
-                        SellBuy("1", P2LosscutQty1.ToString(), TradeType);
+                        SellBuy("매수", P2LosscutQty1.ToString(), TradeType);
                         IsLosscutP2Done1 = true;
                     }
                 }
@@ -199,7 +199,7 @@ namespace OM.Upaya.Chakra
                 {
                     if (CPrice == P2LosscutPrice2)
                     {
-                        SellBuy("1", P2LosscutQty2.ToString(), TradeType);
+                        SellBuy("매수", P2LosscutQty2.ToString(), TradeType);
                         IsLosscutP2Done2 = true;
                     }
                 }
@@ -209,7 +209,7 @@ namespace OM.Upaya.Chakra
                 {
                     if (CPrice == P2LosscutPrice3)
                     {
-                        SellBuy("1", P2LosscutQty3.ToString(), TradeType);
+                        SellBuy("매수", P2LosscutQty3.ToString(), TradeType);
                         IsLosscutP2Done3 = true;
                     }
                 }
@@ -223,7 +223,7 @@ namespace OM.Upaya.Chakra
                 {
                     if (CPrice == P1BuyPrice1)
                     {
-                        SellBuy("1", P1BuyQty1.ToString(), TradeType);
+                        SellBuy("매수", P1BuyQty1.ToString(), TradeType);
 
                         IsBuyP1Done1 = true;
                     }
@@ -234,7 +234,7 @@ namespace OM.Upaya.Chakra
                 {
                     if (CPrice == P1BuyPrice2)
                     {
-                        SellBuy("1", P1BuyQty2.ToString(), TradeType);
+                        SellBuy("매수", P1BuyQty2.ToString(), TradeType);
 
                         IsBuyP1Done2 = true;
                     }
@@ -245,7 +245,7 @@ namespace OM.Upaya.Chakra
                 {
                     if (CPrice == P1BuyPrice3)
                     {
-                        SellBuy("1", P1BuyQty3.ToString(), TradeType);
+                        SellBuy("매수", P1BuyQty3.ToString(), TradeType);
 
                         IsBuyP1Done3 = true;
                     }
@@ -258,7 +258,7 @@ namespace OM.Upaya.Chakra
                 {
                     if (CPrice == P1RevenuePrice1)
                     {
-                        SellBuy("2", P1RevenueQty1.ToString(), TradeType);
+                        SellBuy("매도", P1RevenueQty1.ToString(), TradeType);
                         IsRevenueP1Done1 = true;
                     }
                 }
@@ -268,7 +268,7 @@ namespace OM.Upaya.Chakra
                 {
                     if (CPrice == P1RevenuePrice2)
                     {
-                        SellBuy("2", P1RevenueQty2.ToString(), TradeType);
+                        SellBuy("매도", P1RevenueQty2.ToString(), TradeType);
                         IsRevenueP1Done2 = true;
                     }
                 }
@@ -278,7 +278,7 @@ namespace OM.Upaya.Chakra
                 {
                     if (CPrice == P1RevenuePrice3)
                     {
-                        SellBuy("2", P1RevenueQty3.ToString(), TradeType);
+                        SellBuy("매도", P1RevenueQty3.ToString(), TradeType);
                         IsRevenueP1Done3 = true;
                     }
                 }
@@ -290,7 +290,7 @@ namespace OM.Upaya.Chakra
                 {
                     if (CPrice == P1LosscutPrice1)
                     {
-                        SellBuy("2", P1LosscutQty1.ToString(), TradeType);
+                        SellBuy("매도", P1LosscutQty1.ToString(), TradeType);
                         IsLosscutP1Done1 = true;
                     }
                 }
@@ -300,7 +300,7 @@ namespace OM.Upaya.Chakra
                 {
                     if (CPrice == P1LosscutPrice2)
                     {
-                        SellBuy("2", P1LosscutQty2.ToString(), TradeType);
+                        SellBuy("매도", P1LosscutQty2.ToString(), TradeType);
                         IsLosscutP1Done2 = true;
                     }
                 }
@@ -310,7 +310,7 @@ namespace OM.Upaya.Chakra
                 {
                     if (CPrice == P1LosscutPrice3)
                     {
-                        SellBuy("2", P1LosscutQty3.ToString(), TradeType);
+                        SellBuy("매도", P1LosscutQty3.ToString(), TradeType);
                         IsLosscutP1Done3 = true;
                     }
                 }

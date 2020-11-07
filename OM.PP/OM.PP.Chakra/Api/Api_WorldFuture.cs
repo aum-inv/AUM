@@ -62,7 +62,7 @@ namespace OM.PP.XingApp.Ex.Api
                     else if (itemCode == "NQ") symbol = "8874";
                     else if (itemCode == "URO") symbol = "8830";
                     else if (itemCode == "ES") symbol = "8839";
-
+                    else if (itemCode == "DI") symbol = "8827";
 
                     string resolution = gubun;
                     if (gubun == "H" || gubun == "1H") resolution = "60";

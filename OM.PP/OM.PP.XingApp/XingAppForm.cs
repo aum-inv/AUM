@@ -52,7 +52,7 @@ namespace OM.PP.XingApp
             Control.CheckForIllegalCrossThreadCalls = false;
             this.Load += XingAppForm_Load;
             serverInfo();
-            cbLogin.SelectedIndex = 0;
+            cbLogin.SelectedIndex = 1;
         }
 
         public XingAppForm(string loginIndex)

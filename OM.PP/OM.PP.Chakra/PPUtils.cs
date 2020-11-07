@@ -1468,6 +1468,7 @@ namespace OM.PP.Chakra
             return list;
         }
         #endregion
+
         #region ETC
         public static double GetRateOfChange(double changeValue, double standardValue)
         {
@@ -1612,6 +1613,103 @@ namespace OM.PP.Chakra
 
             return modifyDatas;
         }
-        # endregion        
+        #endregion
+
+        #region Resistance
+        public static List<double> GetResistancePrices(List<S_CandleItemData> sourcList, double deviation = 0.1, int limitCnt = 7)
+        {
+            List<double> returnList = new List<double>();
+
+            Dictionary<double, int> list = new Dictionary<double, int>();
+
+            foreach (var m in sourcList)
+            {
+                var c = System.Math.Truncate(m.ClosePrice / deviation) * deviation;
+                var h = System.Math.Truncate(m.HighPrice / deviation) * deviation;
+
+                if (list.ContainsKey(c)) list[c]++;
+                else list.Add(c, 1);
+
+                if (list.ContainsKey(h)) list[h]++;
+                else list.Add(h, 1);
+            }
+
+            foreach (var m in list.Where(t => t.Value >= limitCnt).OrderByDescending(t => t.Value).ToList())
+                returnList.Add(m.Key);
+
+            return returnList;
+        }
+        public static List<double> GetResistancePrices(List<T_QuantumItemData> sourcList, double deviation = 0.1, int limitCnt = 7)
+        {
+            List<double> returnList = new List<double>();
+
+            Dictionary<double, int> list = new Dictionary<double, int>();
+
+            foreach (var m in sourcList)
+            {
+                var c = System.Math.Truncate(m.ClosePrice / deviation) * deviation;
+                var h = System.Math.Truncate(m.HighPrice / deviation) * deviation;
+
+                if (list.ContainsKey(c)) list[c]++;
+                else list.Add(c, 1);
+
+                if (list.ContainsKey(h)) list[h]++;
+                else list.Add(h, 1);
+            }
+
+            foreach (var m in list.Where(t => t.Value >= limitCnt).OrderByDescending(t => t.Value).ToList())
+                returnList.Add(m.Key);
+
+            return returnList;
+        }
+        #endregion
+        #region Support
+        public static List<double> GetSupportPrices(List<S_CandleItemData> sourcList, double deviation = 0.1, int limitCnt = 7)
+        {
+            List<double> returnList = new List<double>();
+
+            Dictionary<double, int> list = new Dictionary<double, int>();
+
+            foreach (var m in sourcList)
+            {
+                var c = System.Math.Truncate(m.ClosePrice / deviation) * deviation;
+                var l = System.Math.Truncate(m.LowPrice / deviation) * deviation;
+
+                if (list.ContainsKey(c)) list[c]++;
+                else list.Add(c, 1);
+
+                if (list.ContainsKey(l)) list[l]++;
+                else list.Add(l, 1);
+            }
+
+            foreach (var m in list.Where(t => t.Value >= limitCnt).OrderByDescending(t => t.Value).ToList())
+                returnList.Add(m.Key);
+
+            return returnList;
+        }
+        public static List<double> GetSupportPrices(List<T_QuantumItemData> sourcList, double deviation = 0.1, int limitCnt = 7)
+        {
+            List<double> returnList = new List<double>();
+
+            Dictionary<double, int> list = new Dictionary<double, int>();
+
+            foreach (var m in sourcList)
+            {
+                var c = System.Math.Truncate(m.ClosePrice / deviation) * deviation;
+                var l = System.Math.Truncate(m.LowPrice / deviation) * deviation;
+
+                if (list.ContainsKey(c)) list[c]++;
+                else list.Add(c, 1);
+
+                if (list.ContainsKey(l)) list[l]++;
+                else list.Add(l, 1);
+            }
+            
+            foreach (var m in list.Where(t => t.Value >= limitCnt).OrderByDescending(t => t.Value).ToList())
+                returnList.Add(m.Key);
+
+            return returnList;
+        }
+        #endregion
     }
 }

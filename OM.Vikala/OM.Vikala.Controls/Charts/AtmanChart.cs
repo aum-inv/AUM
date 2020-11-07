@@ -76,6 +76,10 @@ namespace OM.Vikala.Controls.Charts
         List<SmartCandleData> smartBDataList = new List<SmartCandleData>();
         List<WisdomCandleData> wisdomBDataList = new List<WisdomCandleData>();
 
+        List<double> resistanceList = new List<double>();
+        List<double> supportList = new List<double>(); 
+        List<double> resistanceAvgList = new List<double>();
+        List<double> supportAvgList = new List<double>();
         public AtmanChart() 
         {
             InitializeComponent();
@@ -86,6 +90,12 @@ namespace OM.Vikala.Controls.Charts
         {
             pnlScroll.Visible = IsAutoScrollX;
             if (ChartData == null) return;
+
+            double devation = ItemCodeSet.GetDeviation(ItemCode);
+            resistanceList = PPUtils.GetResistancePrices(ChartData, devation, 2);
+            supportList = PPUtils.GetSupportPrices(ChartData, devation, 2);            
+            resistanceAvgList = PPUtils.GetResistancePrices(ChartDataSub, devation, 2);
+            supportAvgList = PPUtils.GetSupportPrices(ChartDataSub, devation, 2);
 
             smartDataList.Clear(); 
             wisdomDataList.Clear(); 
@@ -344,6 +354,8 @@ namespace OM.Vikala.Controls.Charts
             SetScrollBar();
             SetTrackBar();
             DisplayView();
+            DisplayResistanceAndSupportLine();
+            DisplayAvgResistanceAndSupportLine();
             //ViewPattern();
             IsLoaded = true;
 
@@ -577,6 +589,88 @@ namespace OM.Vikala.Controls.Charts
                     p.LabelForeColor = color;
                     break;
                 }
+                idx++;
+            }
+        }
+        public void DisplayResistanceAndSupportLine()
+        {
+            int idx = 1;
+            int max = 1;
+            foreach (var p in resistanceList)
+            {
+                HorizontalLineAnnotation yLine = new HorizontalLineAnnotation();
+                yLine.AxisX = chart.ChartAreas[0].AxisX;
+                yLine.AxisY = chart.ChartAreas[0].AxisY2;
+                yLine.AnchorY = p;
+                yLine.ToolTip = p.ToString();
+                yLine.IsSizeAlwaysRelative = false;              
+                yLine.IsInfinitive = true;
+                yLine.ClipToChartArea = chart.ChartAreas[0].Name;
+                yLine.LineColor = Color.Red;
+                yLine.LineWidth = 1;
+                chart.Annotations.Add(yLine);
+
+                if (idx >= max) break;
+                idx++;
+            }
+
+            idx = 1;
+            foreach (var p in supportList)
+            {
+                HorizontalLineAnnotation yLine = new HorizontalLineAnnotation();
+                yLine.AxisX = chart.ChartAreas[0].AxisX;
+                yLine.AxisY = chart.ChartAreas[0].AxisY2;
+                yLine.AnchorY = p;
+                yLine.IsSizeAlwaysRelative = false;
+                yLine.ToolTip = p.ToString();
+                yLine.IsInfinitive = true;
+                yLine.ClipToChartArea = chart.ChartAreas[0].Name;
+                yLine.LineColor = Color.Blue ;
+                yLine.LineWidth = 1;
+                chart.Annotations.Add(yLine);
+
+                if (idx >= max) break;
+                idx++;
+            }
+        }
+        public void DisplayAvgResistanceAndSupportLine()
+        {
+            int idx = 1;
+            int max = 1;
+            foreach (var p in resistanceAvgList)
+            {
+                HorizontalLineAnnotation yLine = new HorizontalLineAnnotation();
+                yLine.AxisX = chart.ChartAreas[1].AxisX;
+                yLine.AxisY = chart.ChartAreas[1].AxisY2;
+                yLine.AnchorY = p;
+                yLine.IsSizeAlwaysRelative = false;
+                yLine.ToolTip = p.ToString();
+                yLine.IsInfinitive = true;
+                yLine.ClipToChartArea = chart.ChartAreas[1].Name;
+                yLine.LineColor = Color.Red;
+                yLine.LineWidth = 1;
+                chart.Annotations.Add(yLine);
+
+                if (idx >= max) break;
+                idx++;
+            }
+
+            idx = 1;
+            foreach (var p in supportAvgList)
+            {
+                HorizontalLineAnnotation yLine = new HorizontalLineAnnotation();
+                yLine.AxisX = chart.ChartAreas[1].AxisX;
+                yLine.AxisY = chart.ChartAreas[1].AxisY2;
+                yLine.AnchorY = p;
+                yLine.IsSizeAlwaysRelative = false;
+                yLine.ToolTip = p.ToString();
+                yLine.IsInfinitive = true;
+                yLine.ClipToChartArea = chart.ChartAreas[1].Name;
+                yLine.LineColor = Color.Blue;
+                yLine.LineWidth = 1;
+                chart.Annotations.Add(yLine);
+
+                if (idx >= max) break;
                 idx++;
             }
         }

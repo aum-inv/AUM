@@ -292,6 +292,9 @@ namespace OM.Vikala.Controls.Charts
             IsLoaded = false;
             hScrollBar.Minimum = hScrollBar.Maximum = hScrollBar.Value = 1;
             trackBar.Minimum = trackBar.Maximum = trackBar.Value = 1;
+
+            createXYLineAnnotation();
+            createYXLineAnnotation();
         }
 
         public virtual void Summary()
@@ -422,11 +425,11 @@ namespace OM.Vikala.Controls.Charts
         
         private void Chart_MouseMove(object sender, MouseEventArgs e)
         {
-            if (chart.Annotations.Count == 0)
-            {
-                createXYLineAnnotation();
-                createYXLineAnnotation();
-            }
+            //if (chart.Annotations.Count == 0)
+            //{
+            //    createXYLineAnnotation();
+            //    createYXLineAnnotation();
+            //}
 
             HitTestResult result = chart.HitTest(e.X, e.Y);
             if (result.ChartArea == null) return;

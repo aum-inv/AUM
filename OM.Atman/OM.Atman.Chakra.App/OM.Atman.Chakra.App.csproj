@@ -175,6 +175,12 @@
     <Compile Include="Config\ShareData.cs" />
     <Compile Include="Events\SiseListSelectedEvents.cs" />
     <Compile Include="Events\InvestmentPlanSelectedEvents.cs" />
+    <Compile Include="Forms\AtmanInvTechnical2Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AtmanInvTechnical2Form.Designer.cs">
+      <DependentUpon>AtmanInvTechnical2Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AtmanInvTechnicalForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -423,6 +429,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CandleSignalForm.resx">
       <DependentUpon>CandleSignalForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AtmanInvTechnical2Form.resx">
+      <DependentUpon>AtmanInvTechnical2Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AtmanInvTechnicalForm.resx">
       <DependentUpon>AtmanInvTechnicalForm.cs</DependentUpon>

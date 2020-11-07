@@ -36,7 +36,7 @@ namespace OM.Jiva.Chakra.Patterns
                 if (s.TimeInterval == 30 && p.TimeInterval != 30) continue;
 
                 if (
-                    s.Product == p.Product 
+                    s.Product == p.Product && s.Item == p.Item
                     && s.PlusMinusType_P1 == p.PlusMinusType_P1
                     && s.PlusMinusType_P0 == p.PlusMinusType_P0
                     && s.CandleSpaceType_P1 == p.CandleSpaceType_P1

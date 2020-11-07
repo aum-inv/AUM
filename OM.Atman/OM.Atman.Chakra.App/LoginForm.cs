@@ -79,10 +79,10 @@ namespace OM.Atman.Chakra.App
                     form = new AtmanKospiForm();
                     break;
                 case "국내지수기술분석계산기":
-                    form = new AtmanInvTechnicalForm();
+                    form = new AtmanInvTechnical2Form();
                     break;
                 case "해외선물기술분석계산기":
-                    form = new AtmanInvTechnicalForm();
+                    form = new AtmanInvTechnical2Form();
                     break;
                 case "매수매도수량계산기":
                     form = new AtmanInvCalculatorForm();

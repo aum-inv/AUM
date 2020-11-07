@@ -23,10 +23,18 @@ namespace OM.Upaya.Chakra.App.TradingRule
             InitializeComponent();
 
             this.Load += TradeRuleForm_Load;
-
+            this.FormClosing += TradeV1ThreePricesForm_FormClosing;
             SiseEvents.Instance.SiseHandler += Instance_SiseHandler;
-
             UpayaTradeEvents.Instance.TradeRuleHandler += Instance_TradeRuleHandler;
+        }
+
+        private void TradeV1ThreePricesForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SiseEvents.Instance.SiseHandler -= Instance_SiseHandler;
+            UpayaTradeEvents.Instance.TradeRuleHandler -= Instance_TradeRuleHandler;
+            rule.IsUse = false;
+            rule.Item = "";
+            rule.ItemCode = "";
         }
 
         private void TradeRuleForm_Load(object sender, EventArgs e)
@@ -78,11 +86,11 @@ namespace OM.Upaya.Chakra.App.TradingRule
         }
         private void rdoTradeType1_CheckedChanged(object sender, EventArgs e)
         {
-            rule.TradeType = "1";
+            rule.TradeType = "시장가";
         }
         private void rdoTradeType2_CheckedChanged(object sender, EventArgs e)
         {
-            rule.TradeType = "2";
+            rule.TradeType = "지정가";
         }
 
         #region P2
