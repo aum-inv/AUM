@@ -36,6 +36,7 @@
             this.btnLogin4 = new System.Windows.Forms.Button();
             this.btnLogin2 = new System.Windows.Forms.Button();
             this.btnLogin6 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbPwd
@@ -59,7 +60,7 @@
             this.btnLogin.ForeColor = System.Drawing.Color.Green;
             this.btnLogin.Location = new System.Drawing.Point(12, 151);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(90, 49);
+            this.btnLogin.Size = new System.Drawing.Size(75, 45);
             this.btnLogin.TabIndex = 4;
             this.btnLogin.Text = "국내지수";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -70,9 +71,9 @@
             this.btnLogin3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin3.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnLogin3.ForeColor = System.Drawing.Color.Fuchsia;
-            this.btnLogin3.Location = new System.Drawing.Point(302, 151);
+            this.btnLogin3.Location = new System.Drawing.Point(252, 151);
             this.btnLogin3.Name = "btnLogin3";
-            this.btnLogin3.Size = new System.Drawing.Size(80, 49);
+            this.btnLogin3.Size = new System.Drawing.Size(75, 45);
             this.btnLogin3.TabIndex = 5;
             this.btnLogin3.Text = "국내업종";
             this.btnLogin3.UseVisualStyleBackColor = true;
@@ -103,9 +104,9 @@
             this.btnLogin4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin4.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnLogin4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnLogin4.Location = new System.Drawing.Point(387, 151);
+            this.btnLogin4.Location = new System.Drawing.Point(331, 151);
             this.btnLogin4.Name = "btnLogin4";
-            this.btnLogin4.Size = new System.Drawing.Size(80, 49);
+            this.btnLogin4.Size = new System.Drawing.Size(75, 45);
             this.btnLogin4.TabIndex = 7;
             this.btnLogin4.Text = "국내종목";
             this.btnLogin4.UseVisualStyleBackColor = true;
@@ -116,9 +117,9 @@
             this.btnLogin2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnLogin2.ForeColor = System.Drawing.Color.Navy;
-            this.btnLogin2.Location = new System.Drawing.Point(108, 151);
+            this.btnLogin2.Location = new System.Drawing.Point(92, 151);
             this.btnLogin2.Name = "btnLogin2";
-            this.btnLogin2.Size = new System.Drawing.Size(90, 49);
+            this.btnLogin2.Size = new System.Drawing.Size(75, 45);
             this.btnLogin2.TabIndex = 8;
             this.btnLogin2.Text = "해외지수";
             this.btnLogin2.UseVisualStyleBackColor = true;
@@ -129,19 +130,33 @@
             this.btnLogin6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin6.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnLogin6.ForeColor = System.Drawing.Color.Navy;
-            this.btnLogin6.Location = new System.Drawing.Point(204, 151);
+            this.btnLogin6.Location = new System.Drawing.Point(172, 151);
             this.btnLogin6.Name = "btnLogin6";
-            this.btnLogin6.Size = new System.Drawing.Size(90, 49);
+            this.btnLogin6.Size = new System.Drawing.Size(75, 45);
             this.btnLogin6.TabIndex = 9;
             this.btnLogin6.Text = "해외선물";
             this.btnLogin6.UseVisualStyleBackColor = true;
             this.btnLogin6.Click += new System.EventHandler(this.btnLogin_Click);
             // 
+            // button1
+            // 
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.button1.Location = new System.Drawing.Point(412, 151);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 45);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "암호화폐";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnLogin_Click);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(477, 210);
+            this.ClientSize = new System.Drawing.Size(496, 210);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnLogin6);
             this.Controls.Add(this.btnLogin2);
             this.Controls.Add(this.btnLogin4);
@@ -169,5 +184,6 @@
         private System.Windows.Forms.Button btnLogin4;
         private System.Windows.Forms.Button btnLogin2;
         private System.Windows.Forms.Button btnLogin6;
+        private System.Windows.Forms.Button button1;
     }
 }

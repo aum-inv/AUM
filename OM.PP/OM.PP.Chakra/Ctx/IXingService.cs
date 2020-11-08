@@ -38,6 +38,12 @@ namespace OM.PP.Chakra.Ctx
 
         [OperationContract]
         List<UpJongJongMokData> GetJongMokRankData(string gubun, string sdiff, string ediff);
+
+        [OperationContract]
+        List<S_CandleItemData> GetCryptoSiseData(string itemCode, string gubun);
+
+        [OperationContract]
+        List<S_CandleItemData> GetCryptoSiseDataByRange(string itemCode, string gubun, DateTime sdt, DateTime edt);
     }
 
 }

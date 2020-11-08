@@ -72,9 +72,9 @@
             this.tscbType = new System.Windows.Forms.ToolStripComboBox();
             this.tsbTime04 = new System.Windows.Forms.ToolStripButton();
             this.tsl_0 = new System.Windows.Forms.ToolStripLabel();
-            this.tsbWeb2 = new System.Windows.Forms.ToolStripButton();
             this.tsl_2 = new System.Windows.Forms.ToolStripLabel();
             this.tsl_5 = new System.Windows.Forms.ToolStripLabel();
+            this.tsbWeb2 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -512,7 +512,8 @@
             "해외지수",
             "해외선물",
             "국내업종",
-            "국내종목"});
+            "국내종목",
+            "암호화폐"});
             this.tscbType.Name = "tscbType";
             this.tscbType.Size = new System.Drawing.Size(121, 23);
             this.tscbType.SelectedIndexChanged += new System.EventHandler(this.tscbType_SelectedIndexChanged);
@@ -537,16 +538,6 @@
             this.tsl_0.Text = "↗↗";
             this.tsl_0.Click += new System.EventHandler(this.lblTableView_Click);
             // 
-            // tsbWeb2
-            // 
-            this.tsbWeb2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbWeb2.Image = ((System.Drawing.Image)(resources.GetObject("tsbWeb2.Image")));
-            this.tsbWeb2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbWeb2.Name = "tsbWeb2";
-            this.tsbWeb2.Size = new System.Drawing.Size(28, 28);
-            this.tsbWeb2.Text = "toolStripButton1";
-            this.tsbWeb2.Click += new System.EventHandler(this.tsbWeb2_Click);
-            // 
             // tsl_2
             // 
             this.tsl_2.Name = "tsl_2";
@@ -561,6 +552,16 @@
             this.tsl_5.Size = new System.Drawing.Size(31, 20);
             this.tsl_5.Text = "〓〓";
             this.tsl_5.Click += new System.EventHandler(this.lblTableView_Click);
+            // 
+            // tsbWeb2
+            // 
+            this.tsbWeb2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbWeb2.Image = ((System.Drawing.Image)(resources.GetObject("tsbWeb2.Image")));
+            this.tsbWeb2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbWeb2.Name = "tsbWeb2";
+            this.tsbWeb2.Size = new System.Drawing.Size(28, 28);
+            this.tsbWeb2.Text = "toolStripButton1";
+            this.tsbWeb2.Click += new System.EventHandler(this.tsbWeb2_Click);
             // 
             // UserToolStrip
             // 

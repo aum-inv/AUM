@@ -443,6 +443,51 @@ namespace OM.Vikala.Chakra.App.Mains
                         sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "30M");
                 }
             }
+            else if (selectedType == "암호화폐")
+            {
+                if (SearchRangeDateS != null && SearchRangeDateE != null)
+                {
+                    if (timeInterval == TimeIntervalEnum.Day)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(itemCode, "D", SearchRangeDateS.Value, SearchRangeDateE.Value);
+                    else if (timeInterval == TimeIntervalEnum.Week)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(itemCode, "W", SearchRangeDateS.Value, SearchRangeDateE.Value);
+                    else if (timeInterval == TimeIntervalEnum.Hour_01)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(itemCode, "H", SearchRangeDateS.Value, SearchRangeDateE.Value);
+                    else if (timeInterval == TimeIntervalEnum.Hour_02)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(itemCode, "2H", SearchRangeDateS.Value, SearchRangeDateE.Value);
+                    else if (timeInterval == TimeIntervalEnum.Hour_04)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(itemCode, "4H", SearchRangeDateS.Value, SearchRangeDateE.Value);
+                    else if (timeInterval == TimeIntervalEnum.Minute_01)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(itemCode, "M", SearchRangeDateS.Value, SearchRangeDateE.Value);
+                    else if (timeInterval == TimeIntervalEnum.Minute_05)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(itemCode, "5M", SearchRangeDateS.Value, SearchRangeDateE.Value);
+                    else if (timeInterval == TimeIntervalEnum.Minute_15)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(itemCode, "15M", SearchRangeDateS.Value, SearchRangeDateE.Value);
+                    else if (timeInterval == TimeIntervalEnum.Minute_30)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(itemCode, "30M", SearchRangeDateS.Value, SearchRangeDateE.Value);
+                }
+                else
+                {
+                    if (timeInterval == TimeIntervalEnum.Day)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(itemCode, "D");
+                    else if (timeInterval == TimeIntervalEnum.Week)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(itemCode, "W");
+                    else if (timeInterval == TimeIntervalEnum.Hour_01)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(itemCode, "H");
+                    else if (timeInterval == TimeIntervalEnum.Hour_02)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(itemCode, "2H");
+                    else if (timeInterval == TimeIntervalEnum.Hour_04)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(itemCode, "4H");
+                    else if (timeInterval == TimeIntervalEnum.Minute_01)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(itemCode, "M");
+                    else if (timeInterval == TimeIntervalEnum.Minute_05)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(itemCode, "5M");
+                    else if (timeInterval == TimeIntervalEnum.Minute_15)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(itemCode, "15M");
+                    else if (timeInterval == TimeIntervalEnum.Minute_30)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(itemCode, "30M");
+                }
+            }
             else
                 sourceDatas = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                   itemCode

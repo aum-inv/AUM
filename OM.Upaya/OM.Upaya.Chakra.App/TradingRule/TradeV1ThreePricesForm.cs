@@ -60,6 +60,11 @@ namespace OM.Upaya.Chakra.App.TradingRule
                 if (rule.Item != item) return;
 
                 rule.Analysis(price);
+
+                tbLog.Invoke(new MethodInvoker(() =>
+                {
+                    tbCurrPrice.Text = price.price;
+                }));                
             }
             catch (Exception ex)
             {

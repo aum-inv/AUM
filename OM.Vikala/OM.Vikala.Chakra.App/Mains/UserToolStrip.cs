@@ -102,7 +102,7 @@ namespace OM.Vikala.Chakra.App.Mains
                 tsbTime17.Visible =
                 tsbTime18.Visible = false;
             }
-            else if (SharedData.SelectedType == "해외지수")
+            else if (SharedData.SelectedType == "해외지수" || SharedData.SelectedType == "암호화폐")
             {
                 tsbTime01.Visible =
                 tsbTime02.Visible =
@@ -273,6 +273,18 @@ namespace OM.Vikala.Chakra.App.Mains
                 foreach (var m in ItemCodeSet.Items)
                 {
                     if (m.Name.StartsWith("해선") || m.Code.Length == 0)
+                        itemDatas.Add(m);
+                }
+                tscbItem.ComboBox.DataSource = itemDatas;
+                tscbItem.ComboBox.DisplayMember = "Name";
+                tscbItem.ComboBox.ValueMember = "Code";
+            }
+            else if (SharedData.SelectedType == "암호화폐")
+            {
+                this.tscbItem.SelectedIndexChanged += new System.EventHandler(this.tscbItem_SelectedIndexChanged);
+                foreach (var m in ItemCodeSet.Items)
+                {
+                    if (m.Name.StartsWith("암호") || m.Code.Length == 0)
                         itemDatas.Add(m);
                 }
                 tscbItem.ComboBox.DataSource = itemDatas;

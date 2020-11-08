@@ -118,6 +118,8 @@
             this.rdoTradeType1 = new System.Windows.Forms.RadioButton();
             this.rdoTradeType2 = new System.Windows.Forms.RadioButton();
             this.chkIsUse = new System.Windows.Forms.CheckBox();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.tbCurrPrice = new System.Windows.Forms.TextBox();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -128,6 +130,7 @@
             this.groupBox8.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox11.SuspendLayout();
+            this.groupBox9.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox3
@@ -290,7 +293,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.groupBox2.Size = new System.Drawing.Size(91, 50);
+            this.groupBox2.Size = new System.Drawing.Size(78, 50);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "상품코드";
@@ -301,7 +304,7 @@
             this.tbItem.Location = new System.Drawing.Point(6, 19);
             this.tbItem.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.tbItem.Name = "tbItem";
-            this.tbItem.Size = new System.Drawing.Size(79, 21);
+            this.tbItem.Size = new System.Drawing.Size(66, 21);
             this.tbItem.TabIndex = 0;
             this.tbItem.Text = "CL";
             this.tbItem.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -335,11 +338,11 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.tbItemCode);
-            this.groupBox4.Location = new System.Drawing.Point(111, 4);
+            this.groupBox4.Location = new System.Drawing.Point(90, 4);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.groupBox4.Size = new System.Drawing.Size(91, 50);
+            this.groupBox4.Size = new System.Drawing.Size(85, 50);
             this.groupBox4.TabIndex = 18;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "종목코드";
@@ -351,7 +354,7 @@
             this.tbItemCode.Location = new System.Drawing.Point(6, 19);
             this.tbItemCode.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.tbItemCode.Name = "tbItemCode";
-            this.tbItemCode.Size = new System.Drawing.Size(79, 21);
+            this.tbItemCode.Size = new System.Drawing.Size(73, 21);
             this.tbItemCode.TabIndex = 0;
             this.tbItemCode.Text = "CL";
             this.tbItemCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1134,7 +1137,7 @@
             // 
             this.groupBox11.Controls.Add(this.rdoTradeType1);
             this.groupBox11.Controls.Add(this.rdoTradeType2);
-            this.groupBox11.Location = new System.Drawing.Point(214, 4);
+            this.groupBox11.Location = new System.Drawing.Point(179, 4);
             this.groupBox11.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.groupBox11.Name = "groupBox11";
             this.groupBox11.Padding = new System.Windows.Forms.Padding(6, 5, 6, 5);
@@ -1170,7 +1173,7 @@
             // chkIsUse
             // 
             this.chkIsUse.AutoSize = true;
-            this.chkIsUse.Location = new System.Drawing.Point(378, 28);
+            this.chkIsUse.Location = new System.Drawing.Point(344, 28);
             this.chkIsUse.Name = "chkIsUse";
             this.chkIsUse.Size = new System.Drawing.Size(72, 16);
             this.chkIsUse.TabIndex = 28;
@@ -1178,12 +1181,37 @@
             this.chkIsUse.UseVisualStyleBackColor = true;
             this.chkIsUse.CheckedChanged += new System.EventHandler(this.chkIsUse_CheckedChanged);
             // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.tbCurrPrice);
+            this.groupBox9.Location = new System.Drawing.Point(425, 4);
+            this.groupBox9.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Padding = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.groupBox9.Size = new System.Drawing.Size(129, 50);
+            this.groupBox9.TabIndex = 29;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "현재가";
+            this.groupBox9.Visible = false;
+            // 
+            // tbCurrPrice
+            // 
+            this.tbCurrPrice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbCurrPrice.Location = new System.Drawing.Point(6, 19);
+            this.tbCurrPrice.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.tbCurrPrice.Name = "tbCurrPrice";
+            this.tbCurrPrice.Size = new System.Drawing.Size(117, 21);
+            this.tbCurrPrice.TabIndex = 0;
+            this.tbCurrPrice.Text = "0.0";
+            this.tbCurrPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // TradeV1ThreePricesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(558, 494);
+            this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.chkIsUse);
             this.Controls.Add(this.groupBox11);
             this.Controls.Add(this.panel1);
@@ -1222,6 +1250,8 @@
             this.groupBox10.PerformLayout();
             this.groupBox11.ResumeLayout(false);
             this.groupBox11.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1317,5 +1347,7 @@
         private System.Windows.Forms.RadioButton rdoTradeType1;
         private System.Windows.Forms.RadioButton rdoTradeType2;
         private System.Windows.Forms.CheckBox chkIsUse;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.TextBox tbCurrPrice;
     }
 }

@@ -1,4 +1,5 @@
-﻿using OM.Lib.Base;
+﻿using Accord.MachineLearning;
+using OM.Lib.Base;
 using OM.Lib.Base.Enums;
 using OM.Lib.Base.Utils;
 using OM.Lib.Framework.Utility;
@@ -17,17 +18,42 @@ namespace ConsoleTest
     {
         static void Main(string[] args)
         {
-            double d1 = 45.02;
-            double d2 = 45.05;
-            double d3 = 45.55;
-            double d4 = 45.65;
-            double d5 = 45.67;
-            
-            Console.WriteLine(System.Math.Truncate(d1 / 0.1) * 0.1);
-            Console.WriteLine(System.Math.Truncate(d2 / 0.1) * 0.1);
-            Console.WriteLine(System.Math.Truncate(d3 / 0.1) * 0.1);
-            Console.WriteLine(System.Math.Truncate(d4 / 0.1) * 0.1);
-            Console.WriteLine(System.Math.Truncate(d5 / 0.1) * 0.1);
+         
+            // Declare some observations
+            double[][] observations =
+            {
+                new double[] { 101} ,
+                new double[] { 102},
+                new double[] { 102},
+                new double[] { 103},
+                new double[] { 104},
+                new double[] { 106},
+                new double[] { 103},
+                new double[] { 102},
+                new double[] { 101},
+            };
+
+            // Create a new K-Means algorithm
+            KMeans kmeans = new KMeans(k: 5);
+
+            // Compute and retrieve the data centroids
+            var clusters = kmeans.Learn(observations);
+
+            // Use the centroids to parition all the data
+            int[] labels = clusters.Decide(observations);
+            Dictionary<int, int> results = new Dictionary<int, int>();
+            foreach (var m in labels)
+            {
+                Console.WriteLine(m);
+                if (results.ContainsKey(m))
+                    results[m]++;
+                else
+                    results.Add(m, 1);              
+            }
+            int firstGroup = results.OrderByDescending(t => t.Value).First().Key;
+
+            Console.WriteLine(firstGroup);
+
             Console.ReadLine();      
         }
 

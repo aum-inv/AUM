@@ -153,5 +153,32 @@ namespace OM.PP.Chakra.Ctx
                 return null;
             }
         }
+
+        public List<S_CandleItemData> GetCryptoSiseData(string code, string gubun)
+        {
+            try
+            {
+                OM.PP.XingApp.Ex.Api.Api_Crypto api = new XingApp.Ex.Api.Api_Crypto();
+                return api.Query(code, gubun);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return null;
+            }
+        }
+        public List<S_CandleItemData> GetCryptoSiseDataByRange(string code, string gubun, DateTime sDT, DateTime eDT)
+        {
+            try
+            {
+                OM.PP.XingApp.Ex.Api.Api_Crypto api = new XingApp.Ex.Api.Api_Crypto();
+                return api.Query(code, gubun, sDT, eDT);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return null;
+            }
+        }
     }
 }
