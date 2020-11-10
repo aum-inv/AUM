@@ -124,5 +124,10 @@ namespace OM.Atman.Chakra.App
 
             form.Show();            
         }
+
+        private void metroButton1_Click_1(object sender, EventArgs e)
+        {
+            new PlanForms.StrategyPlanHtmlCreationForm().Show();
+        }
     }
 }

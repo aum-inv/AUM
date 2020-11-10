@@ -51,6 +51,7 @@
             this.chkItemFinder1 = new MetroFramework.Controls.MetroCheckBox();
             this.label8 = new System.Windows.Forms.Label();
             this.metroCheckBox1 = new MetroFramework.Controls.MetroCheckBox();
+            this.metroButton1 = new MetroFramework.Controls.MetroButton();
             this.SuspendLayout();
             // 
             // label5
@@ -391,12 +392,25 @@
             this.metroCheckBox1.UseSelectable = true;
             this.metroCheckBox1.CheckedChanged += new System.EventHandler(this.RadioButton_Click);
             // 
+            // metroButton1
+            // 
+            this.metroButton1.AutoSize = true;
+            this.metroButton1.BackColor = System.Drawing.Color.Transparent;
+            this.metroButton1.Location = new System.Drawing.Point(487, 375);
+            this.metroButton1.Name = "metroButton1";
+            this.metroButton1.Size = new System.Drawing.Size(71, 23);
+            this.metroButton1.TabIndex = 49;
+            this.metroButton1.Text = "LOGIN";
+            this.metroButton1.UseSelectable = true;
+            this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click_1);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(587, 412);
+            this.Controls.Add(this.metroButton1);
             this.Controls.Add(this.metroCheckBox1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.chkItemFinder2);
@@ -456,5 +470,6 @@
         private MetroFramework.Controls.MetroCheckBox chkItemFinder1;
         private System.Windows.Forms.Label label8;
         private MetroFramework.Controls.MetroCheckBox metroCheckBox1;
+        private MetroFramework.Controls.MetroButton metroButton1;
     }
 }

@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(JivaCreateForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dgv = new System.Windows.Forms.DataGridView();
@@ -75,6 +75,8 @@
             this.rdoTypeWFuture = new System.Windows.Forms.RadioButton();
             this.rdoTypeWIndex = new System.Windows.Forms.RadioButton();
             this.rdoTypeKIndex = new System.Windows.Forms.RadioButton();
+            this.button1 = new System.Windows.Forms.Button();
+            this.rdoTypeCrypto = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
@@ -88,9 +90,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(459, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(656, 18);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(47, 43);
+            this.pictureBox1.Size = new System.Drawing.Size(67, 64);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
@@ -101,9 +104,10 @@
             this.panel1.Controls.Add(this.dgv);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(20, 60);
+            this.panel1.Location = new System.Drawing.Point(29, 90);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(801, 659);
+            this.panel1.Size = new System.Drawing.Size(1294, 988);
             this.panel1.TabIndex = 3;
             // 
             // dgv
@@ -114,14 +118,14 @@
             this.dgv.AllowUserToResizeRows = false;
             this.dgv.BackgroundColor = System.Drawing.Color.White;
             this.dgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dgv.ColumnHeadersHeight = 25;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -133,17 +137,18 @@
             this.sdt,
             this.edt,
             this.pattern});
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle20;
             this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv.GridColor = System.Drawing.Color.LightGray;
-            this.dgv.Location = new System.Drawing.Point(0, 94);
+            this.dgv.Location = new System.Drawing.Point(0, 141);
+            this.dgv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
@@ -153,24 +158,25 @@
             this.dgv.RowTemplate.Height = 23;
             this.dgv.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgv.Size = new System.Drawing.Size(799, 563);
+            this.dgv.Size = new System.Drawing.Size(1292, 845);
             this.dgv.TabIndex = 6;
             // 
             // name
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.name.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.name.DefaultCellStyle = dataGridViewCellStyle12;
             this.name.Frozen = true;
             this.name.HeaderText = "Item";
             this.name.MinimumWidth = 8;
             this.name.Name = "name";
             this.name.ReadOnly = true;
+            this.name.Width = 150;
             // 
             // 시가
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.시가.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle13.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
+            this.시가.DefaultCellStyle = dataGridViewCellStyle13;
             this.시가.Frozen = true;
             this.시가.HeaderText = "open";
             this.시가.MinimumWidth = 8;
@@ -180,9 +186,9 @@
             // 
             // 고가
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.고가.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle14.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
+            this.고가.DefaultCellStyle = dataGridViewCellStyle14;
             this.고가.Frozen = true;
             this.고가.HeaderText = "high";
             this.고가.MinimumWidth = 8;
@@ -192,9 +198,9 @@
             // 
             // 저가
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.저가.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle15.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
+            this.저가.DefaultCellStyle = dataGridViewCellStyle15;
             this.저가.Frozen = true;
             this.저가.HeaderText = "low";
             this.저가.MinimumWidth = 8;
@@ -204,9 +210,9 @@
             // 
             // 종가
             // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.종가.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle16.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
+            this.종가.DefaultCellStyle = dataGridViewCellStyle16;
             this.종가.Frozen = true;
             this.종가.HeaderText = "close";
             this.종가.MinimumWidth = 8;
@@ -216,28 +222,32 @@
             // 
             // sdt
             // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.sdt.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.sdt.DefaultCellStyle = dataGridViewCellStyle17;
             this.sdt.Frozen = true;
             this.sdt.HeaderText = "sdt";
+            this.sdt.MinimumWidth = 8;
             this.sdt.Name = "sdt";
             this.sdt.ReadOnly = true;
+            this.sdt.Width = 150;
             // 
             // edt
             // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.edt.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.edt.DefaultCellStyle = dataGridViewCellStyle18;
             this.edt.Frozen = true;
             this.edt.HeaderText = "edt";
+            this.edt.MinimumWidth = 8;
             this.edt.Name = "edt";
             this.edt.ReadOnly = true;
+            this.edt.Width = 150;
             // 
             // pattern
             // 
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle9.Format = "N0";
-            dataGridViewCellStyle9.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.pattern.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle19.Format = "N0";
+            dataGridViewCellStyle19.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
+            this.pattern.DefaultCellStyle = dataGridViewCellStyle19;
             this.pattern.Frozen = true;
             this.pattern.HeaderText = "pattern";
             this.pattern.MinimumWidth = 8;
@@ -247,6 +257,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.panel6);
             this.panel2.Controls.Add(this.dtpE);
             this.panel2.Controls.Add(this.dtpS);
@@ -261,8 +272,9 @@
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(799, 94);
+            this.panel2.Size = new System.Drawing.Size(1292, 141);
             this.panel2.TabIndex = 0;
             // 
             // panel6
@@ -271,18 +283,20 @@
             this.panel6.Controls.Add(this.rdoCandle4);
             this.panel6.Controls.Add(this.rdoCandle3);
             this.panel6.Controls.Add(this.rdoCandle2);
-            this.panel6.Location = new System.Drawing.Point(4, 57);
+            this.panel6.Location = new System.Drawing.Point(6, 86);
+            this.panel6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(138, 31);
+            this.panel6.Size = new System.Drawing.Size(196, 46);
             this.panel6.TabIndex = 7;
             // 
             // rdoCandle4
             // 
             this.rdoCandle4.AutoSize = true;
             this.rdoCandle4.Checked = true;
-            this.rdoCandle4.Location = new System.Drawing.Point(90, 7);
+            this.rdoCandle4.Location = new System.Drawing.Point(129, 10);
+            this.rdoCandle4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rdoCandle4.Name = "rdoCandle4";
-            this.rdoCandle4.Size = new System.Drawing.Size(41, 16);
+            this.rdoCandle4.Size = new System.Drawing.Size(61, 22);
             this.rdoCandle4.TabIndex = 6;
             this.rdoCandle4.TabStop = true;
             this.rdoCandle4.Text = "4개";
@@ -292,9 +306,10 @@
             // rdoCandle3
             // 
             this.rdoCandle3.AutoSize = true;
-            this.rdoCandle3.Location = new System.Drawing.Point(49, 7);
+            this.rdoCandle3.Location = new System.Drawing.Point(70, 10);
+            this.rdoCandle3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rdoCandle3.Name = "rdoCandle3";
-            this.rdoCandle3.Size = new System.Drawing.Size(41, 16);
+            this.rdoCandle3.Size = new System.Drawing.Size(61, 22);
             this.rdoCandle3.TabIndex = 5;
             this.rdoCandle3.TabStop = true;
             this.rdoCandle3.Text = "3개";
@@ -304,9 +319,10 @@
             // rdoCandle2
             // 
             this.rdoCandle2.AutoSize = true;
-            this.rdoCandle2.Location = new System.Drawing.Point(8, 7);
+            this.rdoCandle2.Location = new System.Drawing.Point(11, 10);
+            this.rdoCandle2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rdoCandle2.Name = "rdoCandle2";
-            this.rdoCandle2.Size = new System.Drawing.Size(41, 16);
+            this.rdoCandle2.Size = new System.Drawing.Size(61, 22);
             this.rdoCandle2.TabIndex = 4;
             this.rdoCandle2.TabStop = true;
             this.rdoCandle2.Text = "2개";
@@ -317,27 +333,30 @@
             // 
             this.dtpE.Checked = false;
             this.dtpE.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpE.Location = new System.Drawing.Point(276, 62);
+            this.dtpE.Location = new System.Drawing.Point(394, 93);
+            this.dtpE.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtpE.Name = "dtpE";
             this.dtpE.ShowCheckBox = true;
-            this.dtpE.Size = new System.Drawing.Size(115, 21);
+            this.dtpE.Size = new System.Drawing.Size(163, 28);
             this.dtpE.TabIndex = 10;
             // 
             // dtpS
             // 
             this.dtpS.Checked = false;
             this.dtpS.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpS.Location = new System.Drawing.Point(148, 62);
+            this.dtpS.Location = new System.Drawing.Point(211, 93);
+            this.dtpS.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtpS.Name = "dtpS";
             this.dtpS.ShowCheckBox = true;
-            this.dtpS.Size = new System.Drawing.Size(115, 21);
+            this.dtpS.Size = new System.Drawing.Size(163, 28);
             this.dtpS.TabIndex = 9;
             // 
             // btnAutoCreateKItem
             // 
-            this.btnAutoCreateKItem.Location = new System.Drawing.Point(696, 57);
+            this.btnAutoCreateKItem.Location = new System.Drawing.Point(994, 86);
+            this.btnAutoCreateKItem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAutoCreateKItem.Name = "btnAutoCreateKItem";
-            this.btnAutoCreateKItem.Size = new System.Drawing.Size(100, 31);
+            this.btnAutoCreateKItem.Size = new System.Drawing.Size(143, 46);
             this.btnAutoCreateKItem.TabIndex = 8;
             this.btnAutoCreateKItem.Text = "자동(국내종목)";
             this.btnAutoCreateKItem.UseVisualStyleBackColor = true;
@@ -345,9 +364,10 @@
             // 
             // btnAutoCreateWFuture
             // 
-            this.btnAutoCreateWFuture.Location = new System.Drawing.Point(596, 57);
+            this.btnAutoCreateWFuture.Location = new System.Drawing.Point(851, 86);
+            this.btnAutoCreateWFuture.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAutoCreateWFuture.Name = "btnAutoCreateWFuture";
-            this.btnAutoCreateWFuture.Size = new System.Drawing.Size(100, 31);
+            this.btnAutoCreateWFuture.Size = new System.Drawing.Size(143, 46);
             this.btnAutoCreateWFuture.TabIndex = 7;
             this.btnAutoCreateWFuture.Text = "자동(해외선물)";
             this.btnAutoCreateWFuture.UseVisualStyleBackColor = true;
@@ -355,9 +375,10 @@
             // 
             // btnAutoCreateWIndex
             // 
-            this.btnAutoCreateWIndex.Location = new System.Drawing.Point(496, 57);
+            this.btnAutoCreateWIndex.Location = new System.Drawing.Point(709, 86);
+            this.btnAutoCreateWIndex.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAutoCreateWIndex.Name = "btnAutoCreateWIndex";
-            this.btnAutoCreateWIndex.Size = new System.Drawing.Size(100, 31);
+            this.btnAutoCreateWIndex.Size = new System.Drawing.Size(143, 46);
             this.btnAutoCreateWIndex.TabIndex = 6;
             this.btnAutoCreateWIndex.Text = "자동(해외지수)";
             this.btnAutoCreateWIndex.UseVisualStyleBackColor = true;
@@ -365,9 +386,10 @@
             // 
             // btnAutoCreateKIndex
             // 
-            this.btnAutoCreateKIndex.Location = new System.Drawing.Point(395, 57);
+            this.btnAutoCreateKIndex.Location = new System.Drawing.Point(564, 86);
+            this.btnAutoCreateKIndex.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAutoCreateKIndex.Name = "btnAutoCreateKIndex";
-            this.btnAutoCreateKIndex.Size = new System.Drawing.Size(100, 31);
+            this.btnAutoCreateKIndex.Size = new System.Drawing.Size(143, 46);
             this.btnAutoCreateKIndex.TabIndex = 5;
             this.btnAutoCreateKIndex.Text = "자동(국내지수)";
             this.btnAutoCreateKIndex.UseVisualStyleBackColor = true;
@@ -375,9 +397,10 @@
             // 
             // btnCreate
             // 
-            this.btnCreate.Location = new System.Drawing.Point(736, 5);
+            this.btnCreate.Location = new System.Drawing.Point(1192, 8);
+            this.btnCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(60, 46);
+            this.btnCreate.Size = new System.Drawing.Size(89, 69);
             this.btnCreate.TabIndex = 4;
             this.btnCreate.Text = "Create";
             this.btnCreate.UseVisualStyleBackColor = true;
@@ -387,9 +410,10 @@
             // 
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel5.Controls.Add(this.cbxItem);
-            this.panel5.Location = new System.Drawing.Point(501, 4);
+            this.panel5.Location = new System.Drawing.Point(857, 6);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(184, 46);
+            this.panel5.Size = new System.Drawing.Size(262, 68);
             this.panel5.TabIndex = 3;
             // 
             // cbxItem
@@ -398,17 +422,19 @@
             this.cbxItem.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbxItem.FormattingEnabled = true;
             this.cbxItem.IntegralHeight = false;
-            this.cbxItem.ItemHeight = 13;
-            this.cbxItem.Location = new System.Drawing.Point(13, 12);
+            this.cbxItem.ItemHeight = 20;
+            this.cbxItem.Location = new System.Drawing.Point(19, 18);
+            this.cbxItem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbxItem.Name = "cbxItem";
-            this.cbxItem.Size = new System.Drawing.Size(156, 21);
+            this.cbxItem.Size = new System.Drawing.Size(221, 28);
             this.cbxItem.TabIndex = 27;
             // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(691, 5);
+            this.btnLoad.Location = new System.Drawing.Point(1128, 8);
+            this.btnLoad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(44, 46);
+            this.btnLoad.Size = new System.Drawing.Size(63, 69);
             this.btnLoad.TabIndex = 2;
             this.btnLoad.Text = "Load";
             this.btnLoad.UseVisualStyleBackColor = true;
@@ -421,17 +447,19 @@
             this.panel4.Controls.Add(this.rdoTIntervalD);
             this.panel4.Controls.Add(this.rdoTIntervalH);
             this.panel4.Controls.Add(this.rdoTIntervalM);
-            this.panel4.Location = new System.Drawing.Point(307, 5);
+            this.panel4.Location = new System.Drawing.Point(580, 8);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(192, 46);
+            this.panel4.Size = new System.Drawing.Size(273, 68);
             this.panel4.TabIndex = 1;
             // 
             // rdoTIntervalW
             // 
             this.rdoTIntervalW.AutoSize = true;
-            this.rdoTIntervalW.Location = new System.Drawing.Point(152, 15);
+            this.rdoTIntervalW.Location = new System.Drawing.Point(217, 22);
+            this.rdoTIntervalW.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rdoTIntervalW.Name = "rdoTIntervalW";
-            this.rdoTIntervalW.Size = new System.Drawing.Size(35, 16);
+            this.rdoTIntervalW.Size = new System.Drawing.Size(51, 22);
             this.rdoTIntervalW.TabIndex = 7;
             this.rdoTIntervalW.TabStop = true;
             this.rdoTIntervalW.Text = "주";
@@ -441,9 +469,10 @@
             // 
             this.rdoTIntervalD.AutoSize = true;
             this.rdoTIntervalD.Checked = true;
-            this.rdoTIntervalD.Location = new System.Drawing.Point(115, 15);
+            this.rdoTIntervalD.Location = new System.Drawing.Point(164, 22);
+            this.rdoTIntervalD.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rdoTIntervalD.Name = "rdoTIntervalD";
-            this.rdoTIntervalD.Size = new System.Drawing.Size(35, 16);
+            this.rdoTIntervalD.Size = new System.Drawing.Size(51, 22);
             this.rdoTIntervalD.TabIndex = 6;
             this.rdoTIntervalD.TabStop = true;
             this.rdoTIntervalD.Text = "일";
@@ -452,9 +481,10 @@
             // rdoTIntervalH
             // 
             this.rdoTIntervalH.AutoSize = true;
-            this.rdoTIntervalH.Location = new System.Drawing.Point(58, 15);
+            this.rdoTIntervalH.Location = new System.Drawing.Point(83, 22);
+            this.rdoTIntervalH.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rdoTIntervalH.Name = "rdoTIntervalH";
-            this.rdoTIntervalH.Size = new System.Drawing.Size(53, 16);
+            this.rdoTIntervalH.Size = new System.Drawing.Size(79, 22);
             this.rdoTIntervalH.TabIndex = 5;
             this.rdoTIntervalH.TabStop = true;
             this.rdoTIntervalH.Text = "1시간";
@@ -463,9 +493,10 @@
             // rdoTIntervalM
             // 
             this.rdoTIntervalM.AutoSize = true;
-            this.rdoTIntervalM.Location = new System.Drawing.Point(10, 15);
+            this.rdoTIntervalM.Location = new System.Drawing.Point(14, 22);
+            this.rdoTIntervalM.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rdoTIntervalM.Name = "rdoTIntervalM";
-            this.rdoTIntervalM.Size = new System.Drawing.Size(47, 16);
+            this.rdoTIntervalM.Size = new System.Drawing.Size(71, 22);
             this.rdoTIntervalM.TabIndex = 4;
             this.rdoTIntervalM.TabStop = true;
             this.rdoTIntervalM.Text = "30분";
@@ -474,21 +505,24 @@
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.rdoTypeCrypto);
             this.panel3.Controls.Add(this.rdoTypeKItem);
             this.panel3.Controls.Add(this.rdoTypeWFuture);
             this.panel3.Controls.Add(this.rdoTypeWIndex);
             this.panel3.Controls.Add(this.rdoTypeKIndex);
-            this.panel3.Location = new System.Drawing.Point(4, 5);
+            this.panel3.Location = new System.Drawing.Point(6, 8);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(301, 46);
+            this.panel3.Size = new System.Drawing.Size(566, 68);
             this.panel3.TabIndex = 0;
             // 
             // rdoTypeKItem
             // 
             this.rdoTypeKItem.AutoSize = true;
-            this.rdoTypeKItem.Location = new System.Drawing.Point(222, 15);
+            this.rdoTypeKItem.Location = new System.Drawing.Point(326, 22);
+            this.rdoTypeKItem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rdoTypeKItem.Name = "rdoTypeKItem";
-            this.rdoTypeKItem.Size = new System.Drawing.Size(71, 16);
+            this.rdoTypeKItem.Size = new System.Drawing.Size(105, 22);
             this.rdoTypeKItem.TabIndex = 3;
             this.rdoTypeKItem.TabStop = true;
             this.rdoTypeKItem.Text = "국내종목";
@@ -498,9 +532,10 @@
             // rdoTypeWFuture
             // 
             this.rdoTypeWFuture.AutoSize = true;
-            this.rdoTypeWFuture.Location = new System.Drawing.Point(151, 15);
+            this.rdoTypeWFuture.Location = new System.Drawing.Point(218, 22);
+            this.rdoTypeWFuture.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rdoTypeWFuture.Name = "rdoTypeWFuture";
-            this.rdoTypeWFuture.Size = new System.Drawing.Size(71, 16);
+            this.rdoTypeWFuture.Size = new System.Drawing.Size(105, 22);
             this.rdoTypeWFuture.TabIndex = 2;
             this.rdoTypeWFuture.TabStop = true;
             this.rdoTypeWFuture.Text = "해외선물";
@@ -510,9 +545,10 @@
             // rdoTypeWIndex
             // 
             this.rdoTypeWIndex.AutoSize = true;
-            this.rdoTypeWIndex.Location = new System.Drawing.Point(79, 15);
+            this.rdoTypeWIndex.Location = new System.Drawing.Point(113, 22);
+            this.rdoTypeWIndex.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rdoTypeWIndex.Name = "rdoTypeWIndex";
-            this.rdoTypeWIndex.Size = new System.Drawing.Size(71, 16);
+            this.rdoTypeWIndex.Size = new System.Drawing.Size(105, 22);
             this.rdoTypeWIndex.TabIndex = 1;
             this.rdoTypeWIndex.TabStop = true;
             this.rdoTypeWIndex.Text = "해외지수";
@@ -523,26 +559,52 @@
             // 
             this.rdoTypeKIndex.AutoSize = true;
             this.rdoTypeKIndex.Checked = true;
-            this.rdoTypeKIndex.Location = new System.Drawing.Point(5, 15);
+            this.rdoTypeKIndex.Location = new System.Drawing.Point(7, 22);
+            this.rdoTypeKIndex.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rdoTypeKIndex.Name = "rdoTypeKIndex";
-            this.rdoTypeKIndex.Size = new System.Drawing.Size(71, 16);
+            this.rdoTypeKIndex.Size = new System.Drawing.Size(105, 22);
             this.rdoTypeKIndex.TabIndex = 0;
             this.rdoTypeKIndex.TabStop = true;
             this.rdoTypeKIndex.Text = "국내지수";
             this.rdoTypeKIndex.UseVisualStyleBackColor = true;
             this.rdoTypeKIndex.CheckedChanged += new System.EventHandler(this.rdoTypeKIndex_CheckedChanged);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1138, 86);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(143, 46);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "자동(해외선물)";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // rdoTypeCrypto
+            // 
+            this.rdoTypeCrypto.AutoSize = true;
+            this.rdoTypeCrypto.Location = new System.Drawing.Point(439, 22);
+            this.rdoTypeCrypto.Margin = new System.Windows.Forms.Padding(4);
+            this.rdoTypeCrypto.Name = "rdoTypeCrypto";
+            this.rdoTypeCrypto.Size = new System.Drawing.Size(105, 22);
+            this.rdoTypeCrypto.TabIndex = 4;
+            this.rdoTypeCrypto.TabStop = true;
+            this.rdoTypeCrypto.Text = "암호화폐";
+            this.rdoTypeCrypto.UseVisualStyleBackColor = true;
+            this.rdoTypeCrypto.CheckedChanged += new System.EventHandler(this.rdoTypeCrypto_CheckedChanged);
+            // 
             // JivaCreateForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
-            this.ClientSize = new System.Drawing.Size(841, 739);
+            this.ClientSize = new System.Drawing.Size(1352, 1108);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "JivaCreateForm";
+            this.Padding = new System.Windows.Forms.Padding(29, 90, 29, 30);
             this.Resizable = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "ATMAN INV. F PATTERN DATA CREATION";
@@ -599,5 +661,7 @@
         private System.Windows.Forms.RadioButton rdoCandle4;
         private System.Windows.Forms.RadioButton rdoCandle3;
         private System.Windows.Forms.RadioButton rdoCandle2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.RadioButton rdoTypeCrypto;
     }
 }

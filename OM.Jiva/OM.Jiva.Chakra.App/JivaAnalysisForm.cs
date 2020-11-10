@@ -108,7 +108,18 @@ namespace OM.Jiva.Chakra.App
                 cbxItem.DisplayMember = "Name";
                 cbxItem.ValueMember = "Code";
             }
-            
+            else if (selectedType == "암호화폐")
+            {
+                foreach (var m in ItemCodeSet.Items)
+                {
+                    if (m.Name.StartsWith("암호") || m.Code.Length == 0)
+                        itemDatas.Add(m);
+                }
+                cbxItem.DataSource = itemDatas;
+                cbxItem.DisplayMember = "Name";
+                cbxItem.ValueMember = "Code";
+            }
+
             else if (selectedType == "국내종목")
             {
                 string path = System.IO.Path.Combine(Environment.CurrentDirectory, "krItems.txt");

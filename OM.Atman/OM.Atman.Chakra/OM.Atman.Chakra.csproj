@@ -70,6 +70,7 @@
     <Compile Include="BasicPatternTradeRule.cs" />
     <Compile Include="BasicPatternTradeRule2.cs" />
     <Compile Include="BasicTradeRule.cs" />
+    <Compile Include="Entities\StrategyPlan.cs" />
     <Compile Include="ExApi\TelegramBotApi.cs" />
     <Compile Include="ExApi\XingApi.cs" />
     <Compile Include="MessTradeRule.cs" />

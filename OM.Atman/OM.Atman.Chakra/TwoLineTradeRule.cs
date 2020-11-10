@@ -322,7 +322,7 @@ namespace OM.Atman.Chakra
                 pp.DisplayCount = 5;
                 try
                 {
-                    Entities entities = (Entities)pp.Collect(new Query("USP_PP_SIMPLE_LST"));
+                    var entities = (OM.Lib.Framework.Db.Entities)pp.Collect(new Query("USP_PP_SIMPLE_LST"));
                     List<PurushaPrakriti> list = entities.Cast<PurushaPrakriti>().ToList();
 
                     List<int> ticks = new List<int>();

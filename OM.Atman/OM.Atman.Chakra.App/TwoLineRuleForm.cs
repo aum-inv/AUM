@@ -56,7 +56,7 @@ namespace OM.Atman.Chakra.App
         private void btnLoad_Click(object sender, EventArgs e)
         {
             AtmanRule rule = new AtmanRule();
-            Entities entities = (Entities)rule.Collect();
+            var entities = (OM.Lib.Framework.Db.Entities)rule.Collect();
 
             dgv.Rows.Clear();
 

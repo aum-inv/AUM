@@ -96,7 +96,17 @@ namespace OM.Jiva.Chakra.App
                 cbxItem.DisplayMember = "Name";
                 cbxItem.ValueMember = "Code";
             }
-
+            else if (selectedType == "암호화폐")
+            {
+                foreach (var m in ItemCodeSet.Items)
+                {
+                    if (m.Name.StartsWith("암호") || m.Code.Length == 0)
+                        itemDatas.Add(m);
+                }
+                cbxItem.DataSource = itemDatas;
+                cbxItem.DisplayMember = "Name";
+                cbxItem.ValueMember = "Code";
+            }
             else if (selectedType == "국내종목")
             {
                 var lines = System.IO.File.ReadAllLines(Environment.CurrentDirectory + "\\kritems.txt");
@@ -491,6 +501,51 @@ namespace OM.Jiva.Chakra.App
                         sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(selectedItem, "30M");
                 }
             }
+            else if (selectedType == "암호화폐")
+            {
+                if (dtpS.Checked && dtpE.Checked)
+                {
+                    if (selectedTimeInterval == TimeIntervalEnum.Day)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(selectedItem, "D", dtpS.Value, dtpE.Value);
+                    else if (selectedTimeInterval == TimeIntervalEnum.Week)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(selectedItem, "W", dtpS.Value, dtpE.Value);
+                    else if (selectedTimeInterval == TimeIntervalEnum.Hour_01)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(selectedItem, "H", dtpS.Value, dtpE.Value);
+                    else if (selectedTimeInterval == TimeIntervalEnum.Hour_02)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(selectedItem, "2H", dtpS.Value, dtpE.Value);
+                    else if (selectedTimeInterval == TimeIntervalEnum.Hour_04)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(selectedItem, "4H", dtpS.Value, dtpE.Value);
+                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_01)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(selectedItem, "M", dtpS.Value, dtpE.Value);
+                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_05)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(selectedItem, "5M", dtpS.Value, dtpE.Value);
+                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_15)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(selectedItem, "15M", dtpS.Value, dtpE.Value);
+                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_30)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(selectedItem, "30M", dtpS.Value, dtpE.Value);
+                }
+                else
+                {
+                    if (selectedTimeInterval == TimeIntervalEnum.Day)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(selectedItem, "D");
+                    else if (selectedTimeInterval == TimeIntervalEnum.Week)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(selectedItem, "W");
+                    else if (selectedTimeInterval == TimeIntervalEnum.Hour_01)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(selectedItem, "H");
+                    else if (selectedTimeInterval == TimeIntervalEnum.Hour_02)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(selectedItem, "2H");
+                    else if (selectedTimeInterval == TimeIntervalEnum.Hour_04)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(selectedItem, "4H");
+                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_01)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(selectedItem, "M");
+                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_05)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(selectedItem, "5M");
+                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_15)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(selectedItem, "15M");
+                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_30)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(selectedItem, "30M");
+                }
+            }
             else
                 sourceDatas = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
                   selectedItem
@@ -785,7 +840,11 @@ namespace OM.Jiva.Chakra.App
             selectedType = "해외선물";
             setItems(); 
         }
-
+        private void rdoTypeCrypto_CheckedChanged(object sender, EventArgs e)
+        {
+            selectedType = "암호화폐";
+            setItems();
+        }
         private void rdoTypeKItem_CheckedChanged(object sender, EventArgs e)
         {
             selectedType = "국내종목";
@@ -806,5 +865,7 @@ namespace OM.Jiva.Chakra.App
         {
             selectedCandleType = "4";
         }
+
+        
     }
 }
