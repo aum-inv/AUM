@@ -19,6 +19,7 @@ namespace ConsoleTest
         static void Main(string[] args)
         {
          
+           
             // Declare some observations
             double[][] observations =
             {
@@ -54,6 +55,16 @@ namespace ConsoleTest
 
             Console.WriteLine(firstGroup);
 
+            List<double> resultList = new List<double>();
+
+            int idx = 0;
+            foreach (var m in labels)
+            {
+                if (m == firstGroup)
+                    resultList.Add(observations[idx][0]);
+                idx++;
+            }
+            Console.WriteLine(resultList.Average());
             Console.ReadLine();      
         }
 

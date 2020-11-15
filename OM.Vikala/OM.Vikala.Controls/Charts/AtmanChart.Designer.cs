@@ -426,7 +426,7 @@
             series3.BorderWidth = 2;
             series3.ChartArea = "ca1";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series3.Color = System.Drawing.Color.Maroon;
+            series3.Color = System.Drawing.Color.Black;
             series3.IsXValueIndexed = true;
             series3.Name = "lineMessB";
             series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;

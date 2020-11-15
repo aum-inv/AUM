@@ -91,11 +91,21 @@ namespace OM.Vikala.Controls.Charts
             pnlScroll.Visible = IsAutoScrollX;
             if (ChartData == null) return;
 
-            double devation = ItemCodeSet.GetDeviation(ItemCode);
-            resistanceList = PPUtils.GetResistancePrices(ChartData, devation, 2);
-            supportList = PPUtils.GetSupportPrices(ChartData, devation, 2);            
-            resistanceAvgList = PPUtils.GetResistancePrices(ChartDataSub, devation, 2);
-            supportAvgList = PPUtils.GetSupportPrices(ChartDataSub, devation, 2);
+            resistanceList.Clear();
+            supportList.Clear();
+            resistanceAvgList.Clear();
+            supportAvgList.Clear();
+
+            //double devation = ItemCodeSet.GetDeviation(ItemCode);
+            //resistanceList = PPUtils.GetResistancePrices(ChartData, devation, 2, 3);
+            //supportList = PPUtils.GetSupportPrices(ChartData, devation, 2, 3);
+            //resistanceAvgList = PPUtils.GetResistancePrices(ChartDataSub, devation, 2, 3);
+            //supportAvgList = PPUtils.GetSupportPrices(ChartDataSub, devation, 2, 3);
+
+            resistanceList.Add(PPUtils.GetResistancePrice(ChartData, 3));
+            supportList.Add(PPUtils.GetSupportPrice(ChartData, 3));
+            resistanceAvgList.Add(PPUtils.GetResistancePrice(ChartDataSub, 3));
+            supportAvgList.Add(PPUtils.GetSupportPrice(ChartDataSub, 3));
 
             smartDataList.Clear(); 
             wisdomDataList.Clear(); 
@@ -184,7 +194,10 @@ namespace OM.Vikala.Controls.Charts
 
                 chart.Series["lineMess"].Points.AddXY(itemAvg.DTime, itemAvg.T_MassAvg);
                 chart.Series["lineQuantum"].Points.AddXY(itemAvg.DTime, itemAvg.T_QuantumAvg);
-                chart.Series["lineMessB"].Points.AddXY(itemAvg2.DTime, item.T_MassAvg2);
+                
+                chart.Series["lineMessB"].Points.AddXY(itemAvg.DTime
+                    , itemAvg.T_MassAvg + (Math.Abs(itemAvg.T_MassAvg - itemAvg.HighPrice) - Math.Abs(itemAvg.T_MassAvg - itemAvg.LowPrice)));
+
                 chart.Series["lineQuantumB"].Points.AddXY(itemAvg2.DTime, item.T_QuantumAvg2);
 
                 chart.Series["candleAverage"].Points.AddXY(itemAvg.DTime, itemAvg.HighPrice, itemAvg.LowPrice, itemAvg.OpenPrice, itemAvg.ClosePrice);
@@ -607,7 +620,7 @@ namespace OM.Vikala.Controls.Charts
                 yLine.IsInfinitive = true;
                 yLine.ClipToChartArea = chart.ChartAreas[0].Name;
                 yLine.LineColor = Color.Red;
-                yLine.LineWidth = 1;
+                yLine.LineWidth = 2;
                 chart.Annotations.Add(yLine);
 
                 if (idx >= max) break;
@@ -626,7 +639,7 @@ namespace OM.Vikala.Controls.Charts
                 yLine.IsInfinitive = true;
                 yLine.ClipToChartArea = chart.ChartAreas[0].Name;
                 yLine.LineColor = Color.Blue ;
-                yLine.LineWidth = 1;
+                yLine.LineWidth = 2;
                 chart.Annotations.Add(yLine);
 
                 if (idx >= max) break;

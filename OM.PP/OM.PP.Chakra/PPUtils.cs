@@ -1,4 +1,5 @@
-﻿using OM.Lib.Base;
+﻿using Accord.MachineLearning;
+using OM.Lib.Base;
 using OM.Lib.Base.Enums;
 using OM.Lib.Base.Utils;
 using System;
@@ -1616,13 +1617,13 @@ namespace OM.PP.Chakra
         #endregion
 
         #region Resistance
-        public static List<double> GetResistancePrices(List<S_CandleItemData> sourcList, double deviation = 0.1, int limitCnt = 7)
+        public static List<double> GetResistancePrices(List<S_CandleItemData> sourcList, double deviation = 0.1, int limitCnt = 7, int removalCnt = 0)
         {
             List<double> returnList = new List<double>();
 
             Dictionary<double, int> list = new Dictionary<double, int>();
 
-            foreach (var m in sourcList)
+            foreach (var m in sourcList.GetRange(0, sourcList.Count - removalCnt))
             {
                 var c = System.Math.Truncate(m.ClosePrice / deviation) * deviation;
                 var h = System.Math.Truncate(m.HighPrice / deviation) * deviation;
@@ -1639,13 +1640,13 @@ namespace OM.PP.Chakra
 
             return returnList;
         }
-        public static List<double> GetResistancePrices(List<T_QuantumItemData> sourcList, double deviation = 0.1, int limitCnt = 7)
+        public static List<double> GetResistancePrices(List<T_QuantumItemData> sourcList, double deviation = 0.1, int limitCnt = 7, int removalCnt = 0)
         {
             List<double> returnList = new List<double>();
 
             Dictionary<double, int> list = new Dictionary<double, int>();
 
-            foreach (var m in sourcList)
+            foreach (var m in sourcList.GetRange(0, sourcList.Count - removalCnt))
             {
                 var c = System.Math.Truncate(m.ClosePrice / deviation) * deviation;
                 var h = System.Math.Truncate(m.HighPrice / deviation) * deviation;
@@ -1664,13 +1665,13 @@ namespace OM.PP.Chakra
         }
         #endregion
         #region Support
-        public static List<double> GetSupportPrices(List<S_CandleItemData> sourcList, double deviation = 0.1, int limitCnt = 7)
+        public static List<double> GetSupportPrices(List<S_CandleItemData> sourcList, double deviation = 0.1, int limitCnt = 7, int removalCnt = 0)
         {
             List<double> returnList = new List<double>();
 
             Dictionary<double, int> list = new Dictionary<double, int>();
 
-            foreach (var m in sourcList)
+            foreach (var m in sourcList.GetRange(0, sourcList.Count - removalCnt))
             {
                 var c = System.Math.Truncate(m.ClosePrice / deviation) * deviation;
                 var l = System.Math.Truncate(m.LowPrice / deviation) * deviation;
@@ -1687,13 +1688,13 @@ namespace OM.PP.Chakra
 
             return returnList;
         }
-        public static List<double> GetSupportPrices(List<T_QuantumItemData> sourcList, double deviation = 0.1, int limitCnt = 7)
+        public static List<double> GetSupportPrices(List<T_QuantumItemData> sourcList, double deviation = 0.1, int limitCnt = 7, int removalCnt = 0)
         {
             List<double> returnList = new List<double>();
 
             Dictionary<double, int> list = new Dictionary<double, int>();
 
-            foreach (var m in sourcList)
+            foreach (var m in sourcList.GetRange(0, sourcList.Count - removalCnt))
             {
                 var c = System.Math.Truncate(m.ClosePrice / deviation) * deviation;
                 var l = System.Math.Truncate(m.LowPrice / deviation) * deviation;
@@ -1709,6 +1710,87 @@ namespace OM.PP.Chakra
                 returnList.Add(m.Key);
 
             return returnList;
+        }
+        #endregion
+
+        #region ResistanceByKMeans
+        public static double GetResistancePrice(List<T_QuantumItemData> sourcList, int removalCnt = 0)
+        {
+            double[][] observations = new double[sourcList.Count - removalCnt][];
+            Dictionary<int, int> results = new Dictionary<int, int>();
+
+            for (int i = 0; i < sourcList.Count - removalCnt; i++)
+            {
+                var m = sourcList[i];
+                var c = Convert.ToDouble(m.ClosePrice);
+                var h = Convert.ToDouble(m.HighPrice);
+
+                observations[i] = new double[] { h };
+            }
+
+            KMeans kmeans = new KMeans(k: sourcList.Count / 2);
+            var clusters = kmeans.Learn(observations);
+            int[] labels = clusters.Decide(observations);
+            foreach (var m in labels)
+            {
+                if (results.ContainsKey(m))
+                    results[m]++;
+                else
+                    results.Add(m, 1);
+            }
+            
+            int firstGroup = results.OrderByDescending(t => t.Value).First().Key;
+
+            List<double> resultList = new List<double>();
+            
+            int idx = 0;
+            foreach (var m in labels)
+            {
+                if (m == firstGroup)
+                    resultList.Add(observations[idx][0]);
+                idx++;
+            }
+            return resultList.Average();
+        }
+        #endregion
+        #region SupportByKMeans
+        public static double GetSupportPrice(List<T_QuantumItemData> sourcList, int removalCnt = 0)
+        {
+            double[][] observations  = new double[sourcList.Count - removalCnt][];          
+            Dictionary<int, int> results = new Dictionary<int, int>();
+
+            for(int i = 0; i < sourcList.Count - removalCnt; i++)
+            {
+                var m = sourcList[i];
+                var c = Convert.ToDouble(m.ClosePrice);
+                var l = Convert.ToDouble(m.LowPrice);
+
+                observations[i] = new double[] { l };
+            }
+
+            KMeans kmeans = new KMeans(k: sourcList.Count / 2);
+            var clusters = kmeans.Learn(observations);
+            int[] labels = clusters.Decide(observations);
+            foreach (var m in labels)
+            {
+                if (results.ContainsKey(m))
+                    results[m]++;
+                else
+                    results.Add(m, 1);
+            }
+           
+            int firstGroup = results.OrderByDescending(t => t.Value).First().Key;
+
+            List<double> resultList = new List<double>();
+            
+            int idx = 0;
+            foreach (var m in labels)
+            {
+                if (m == firstGroup)
+                    resultList.Add(observations[idx][0]);
+                idx++;
+            }
+            return resultList.Average();
         }
         #endregion
     }

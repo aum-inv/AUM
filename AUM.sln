@@ -84,6 +84,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OM.Atman.Chakra.Plans.StrategyPlan", "OM.Atman\OM.Atman.Chakra.Plans.StrategyPlan\OM.Atman.Chakra.Plans.StrategyPlan.csproj", "{2DDAFDF0-B198-4EF9-B512-F421120BEAB1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -236,6 +238,14 @@ Global
 		{6D2BABD8-0E3A-4A26-A771-F34E440C89DB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6D2BABD8-0E3A-4A26-A771-F34E440C89DB}.Release|x86.ActiveCfg = Release|Any CPU
 		{6D2BABD8-0E3A-4A26-A771-F34E440C89DB}.Release|x86.Build.0 = Release|Any CPU
+		{2DDAFDF0-B198-4EF9-B512-F421120BEAB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DDAFDF0-B198-4EF9-B512-F421120BEAB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DDAFDF0-B198-4EF9-B512-F421120BEAB1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2DDAFDF0-B198-4EF9-B512-F421120BEAB1}.Debug|x86.Build.0 = Debug|Any CPU
+		{2DDAFDF0-B198-4EF9-B512-F421120BEAB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DDAFDF0-B198-4EF9-B512-F421120BEAB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DDAFDF0-B198-4EF9-B512-F421120BEAB1}.Release|x86.ActiveCfg = Release|Any CPU
+		{2DDAFDF0-B198-4EF9-B512-F421120BEAB1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -259,10 +269,11 @@ Global
 		{B062FAD8-D764-4678-A061-3E768F1F4B38} = {46C860CE-4782-4537-AEEC-7F653DCB9CEA}
 		{3D6F016E-CEC1-4546-B1D2-EAF9B766F1F3} = {D5FABF8A-AB3C-4F1C-8663-1CB15E7D8496}
 		{6D2BABD8-0E3A-4A26-A771-F34E440C89DB} = {D5FABF8A-AB3C-4F1C-8663-1CB15E7D8496}
+		{2DDAFDF0-B198-4EF9-B512-F421120BEAB1} = {E3D13311-C1EF-4534-8093-DE6A8FBB0221}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {52E07AD0-FB7F-4B3D-A93D-C27D36E06B4F}
 		VisualSVNWorkingCopyRoot = .
+		SolutionGuid = {52E07AD0-FB7F-4B3D-A93D-C27D36E06B4F}
 	EndGlobalSection
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True

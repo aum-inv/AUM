@@ -62,7 +62,9 @@
     <Compile Include="Charts\ANodeLineChart.Designer.cs">
       <DependentUpon>ANodeLineChart.cs</DependentUpon>
     </Compile>
-    <Compile Include="Charts\ChakraChart.cs" />
+    <Compile Include="Charts\ChakraChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Charts\ChakraChart.Designer.cs">
       <DependentUpon>ChakraChart.cs</DependentUpon>
     </Compile>
@@ -362,6 +364,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Charts\Chart.txt" />
+    <None Include="app.config" />
     <None Include="Resources\000.png" />
     <None Include="Resources\111.png" />
     <None Include="Resources\110.png" />
