@@ -194,11 +194,16 @@ namespace OM.Vikala.Controls.Charts
 
                 chart.Series["lineMess"].Points.AddXY(itemAvg.DTime, itemAvg.T_MassAvg);
                 chart.Series["lineQuantum"].Points.AddXY(itemAvg.DTime, itemAvg.T_QuantumAvg);
-                
-                chart.Series["lineMessB"].Points.AddXY(itemAvg.DTime
+
+                chart.Series["lineMessHL"].Points.AddXY(itemAvg.DTime
                     , itemAvg.T_MassAvg + (Math.Abs(itemAvg.T_MassAvg - itemAvg.HighPrice) - Math.Abs(itemAvg.T_MassAvg - itemAvg.LowPrice)));
 
-                chart.Series["lineQuantumB"].Points.AddXY(itemAvg2.DTime, item.T_QuantumAvg2);
+                if(itemAvg.PlusMinusType == PlusMinusTypeEnum.양)
+                    chart.Series["lineMessHLAvg"].Points.AddXY(itemAvg.DTime, itemAvg.T_MassAvg + itemAvg.HeadLength - itemAvg.LegLength);
+                else if (itemAvg.PlusMinusType == PlusMinusTypeEnum.음)
+                    chart.Series["lineMessHLAvg"].Points.AddXY(itemAvg.DTime, itemAvg.T_MassAvg - itemAvg.HeadLength + itemAvg.LegLength);
+                else 
+                    chart.Series["lineMessHLAvg"].Points.AddXY(itemAvg.DTime, itemAvg.T_MassAvg);
 
                 chart.Series["candleAverage"].Points.AddXY(itemAvg.DTime, itemAvg.HighPrice, itemAvg.LowPrice, itemAvg.OpenPrice, itemAvg.ClosePrice);
                 diceChar = itemAvg.GetSpaceType(itemAvg);
@@ -620,7 +625,7 @@ namespace OM.Vikala.Controls.Charts
                 yLine.IsInfinitive = true;
                 yLine.ClipToChartArea = chart.ChartAreas[0].Name;
                 yLine.LineColor = Color.Red;
-                yLine.LineWidth = 2;
+                yLine.LineWidth = 1;
                 chart.Annotations.Add(yLine);
 
                 if (idx >= max) break;
@@ -639,7 +644,7 @@ namespace OM.Vikala.Controls.Charts
                 yLine.IsInfinitive = true;
                 yLine.ClipToChartArea = chart.ChartAreas[0].Name;
                 yLine.LineColor = Color.Blue ;
-                yLine.LineWidth = 2;
+                yLine.LineWidth = 1;
                 chart.Annotations.Add(yLine);
 
                 if (idx >= max) break;

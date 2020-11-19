@@ -30,9 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cbxItem = new System.Windows.Forms.ComboBox();
             this.btnLoad = new System.Windows.Forms.Button();
             this.pnlContent = new System.Windows.Forms.Panel();
-            this.cbxItem = new System.Windows.Forms.ComboBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,30 +44,9 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.panel1.Size = new System.Drawing.Size(704, 37);
+            this.panel1.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panel1.Size = new System.Drawing.Size(821, 34);
             this.panel1.TabIndex = 0;
-            // 
-            // btnLoad
-            // 
-            this.btnLoad.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnLoad.Location = new System.Drawing.Point(4, 5);
-            this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(64, 27);
-            this.btnLoad.TabIndex = 0;
-            this.btnLoad.Text = "Load";
-            this.btnLoad.UseVisualStyleBackColor = true;
-            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
-            // 
-            // pnlContent
-            // 
-            this.pnlContent.AutoScroll = true;
-            this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContent.Location = new System.Drawing.Point(0, 37);
-            this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pnlContent.Size = new System.Drawing.Size(704, 582);
-            this.pnlContent.TabIndex = 1;
             // 
             // cbxItem
             // 
@@ -80,17 +60,49 @@
             "NQ",
             "URO",
             "ALL"});
-            this.cbxItem.Location = new System.Drawing.Point(74, 8);
+            this.cbxItem.Location = new System.Drawing.Point(86, 7);
             this.cbxItem.Name = "cbxItem";
-            this.cbxItem.Size = new System.Drawing.Size(79, 21);
+            this.cbxItem.Size = new System.Drawing.Size(91, 20);
             this.cbxItem.TabIndex = 2;
+            // 
+            // btnLoad
+            // 
+            this.btnLoad.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnLoad.Location = new System.Drawing.Point(5, 5);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(75, 24);
+            this.btnLoad.TabIndex = 0;
+            this.btnLoad.Text = "Load";
+            this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+            // 
+            // pnlContent
+            // 
+            this.pnlContent.AutoScroll = true;
+            this.pnlContent.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlContent.Location = new System.Drawing.Point(0, 34);
+            this.pnlContent.Name = "pnlContent";
+            this.pnlContent.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.pnlContent.Size = new System.Drawing.Size(821, 248);
+            this.pnlContent.TabIndex = 1;
+            // 
+            // panel2
+            // 
+            this.panel2.AutoScroll = true;
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 282);
+            this.panel2.Name = "panel2";
+            this.panel2.Padding = new System.Windows.Forms.Padding(5);
+            this.panel2.Size = new System.Drawing.Size(821, 248);
+            this.panel2.TabIndex = 2;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(704, 619);
+            this.ClientSize = new System.Drawing.Size(821, 571);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.pnlContent);
             this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;
@@ -110,6 +122,7 @@
         private System.Windows.Forms.Panel pnlContent;
         private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.ComboBox cbxItem;
+        private System.Windows.Forms.Panel panel2;
     }
 }
 
