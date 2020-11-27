@@ -65,6 +65,8 @@ namespace OM.Vikala.Controls.Charts
             ChartDataSub = chartDataSub;
             ChartDataSub2 = chartDataSub2;
 
+            TotalPointCount = ChartData.Count - 4;
+
             this.Invoke(new MethodInvoker(() => {
                 Reset();
                 View();                
@@ -96,16 +98,21 @@ namespace OM.Vikala.Controls.Charts
             resistanceAvgList.Clear();
             supportAvgList.Clear();
 
-            //double devation = ItemCodeSet.GetDeviation(ItemCode);
-            //resistanceList = PPUtils.GetResistancePrices(ChartData, devation, 2, 3);
-            //supportList = PPUtils.GetSupportPrices(ChartData, devation, 2, 3);
-            //resistanceAvgList = PPUtils.GetResistancePrices(ChartDataSub, devation, 2, 3);
-            //supportAvgList = PPUtils.GetSupportPrices(ChartDataSub, devation, 2, 3);
+            var pList = PPUtils.GetExceptPlusMinusList(ChartData, PlusMinusTypeEnum.양);
+            var mList = PPUtils.GetExceptPlusMinusList(ChartData, PlusMinusTypeEnum.음);
 
-            resistanceList.Add(PPUtils.GetResistancePrice(ChartData, 3));
-            supportList.Add(PPUtils.GetSupportPrice(ChartData, 3));
-            resistanceAvgList.Add(PPUtils.GetResistancePrice(ChartDataSub, 3));
-            supportAvgList.Add(PPUtils.GetSupportPrice(ChartDataSub, 3));
+            double devation = ItemCodeSet.GetDeviation(ItemCode);
+            resistanceList = PPUtils.GetResistancePrices(pList, devation, 3, 9);
+            supportList = PPUtils.GetSupportPrices(mList, devation, 3, 9);
+            resistanceAvgList = PPUtils.GetResistancePrices(ChartDataSub, devation, 5, 9);
+            supportAvgList = PPUtils.GetSupportPrices(ChartDataSub, devation, 5, 9);
+
+            //resistanceList.Add(PPUtils.GetResistancePrice(pList, 3));
+            //resistanceList.Add(PPUtils.GetResistancePrice(mList, 3));
+            //supportList.Add(PPUtils.GetSupportPrice(pList, 3));
+            //supportList.Add(PPUtils.GetSupportPrice(mList, 3));
+            //resistanceAvgList.Add(PPUtils.GetResistancePrice(ChartDataSub, 3));
+            //supportAvgList.Add(PPUtils.GetSupportPrice(ChartDataSub, 3));
 
             smartDataList.Clear(); 
             wisdomDataList.Clear(); 
@@ -290,6 +297,8 @@ namespace OM.Vikala.Controls.Charts
                         bool isRange = false;                       
                         if (TimeInterval == TimeIntervalEnum.Minute_30 && smart.Variance_ChartPrice3 >= -30) isRange = true;
                         if (TimeInterval == TimeIntervalEnum.Hour_01 && smart.Variance_ChartPrice3 >= -50) isRange = true;
+                        if (TimeInterval == TimeIntervalEnum.Hour_02 && smart.Variance_ChartPrice3 >= -60) isRange = true;
+                        if (TimeInterval == TimeIntervalEnum.Hour_05 && smart.Variance_ChartPrice3 >= -70) isRange = true;
                         if (TimeInterval == TimeIntervalEnum.Day && smart.Variance_ChartPrice3 <= -100) isRange = true;
                         if (TimeInterval == TimeIntervalEnum.Week && smart.Variance_ChartPrice3 <= -300) isRange = true;
 
@@ -306,6 +315,8 @@ namespace OM.Vikala.Controls.Charts
                         bool isRange = false;                      
                         if (TimeInterval == TimeIntervalEnum.Minute_30 && smart.Variance_ChartPrice3 <= 30) isRange = true;
                         if (TimeInterval == TimeIntervalEnum.Hour_01 && smart.Variance_ChartPrice3 <= 50) isRange = true;
+                        if (TimeInterval == TimeIntervalEnum.Hour_02 && smart.Variance_ChartPrice3 <= 60) isRange = true;
+                        if (TimeInterval == TimeIntervalEnum.Hour_05 && smart.Variance_ChartPrice3 <= 70) isRange = true;
                         if (TimeInterval == TimeIntervalEnum.Day && smart.Variance_ChartPrice3 >= 100) isRange = true;
                         if (TimeInterval == TimeIntervalEnum.Week && smart.Variance_ChartPrice3 >= 300) isRange = true;
 
@@ -368,9 +379,9 @@ namespace OM.Vikala.Controls.Charts
                     SetDataPointColor(dataPointAvg, Color.Blue, Color.Blue, Color.White, 2);
                 else
                     SetDataPointColor(dataPointAvg, Color.Black, Color.Black, Color.White, 2);                                
-            }
-            SetScrollBar();
+            }         
             SetTrackBar();
+            SetScrollBar();
             DisplayView();
             DisplayResistanceAndSupportLine();
             DisplayAvgResistanceAndSupportLine();
@@ -403,34 +414,7 @@ namespace OM.Vikala.Controls.Charts
                 }
             }
         }
-        public void SetScrollBar()
-        {
-            int trackView = trackBar.Value;
-            int displayItemCount = DisplayPointCount * trackView;
-
-            int maxScrollValue = (int)Math.Ceiling((Convert.ToDouble(ChartData.Count) / Convert.ToDouble(displayItemCount)));
-            int minScrollValue = 1;
-
-            hScrollBar.Minimum = minScrollValue;
-            hScrollBar.Maximum = maxScrollValue;
-            hScrollBar.Value = maxScrollValue;
-            hScrollBar.LargeChange = 1;
-            hScrollBar.SmallChange = 1;
-        }
-
-        public void SetTrackBar()
-        {
-            pnlScroll.Visible = IsAutoScrollX;
-            int maxScrollValue = (int)Math.Ceiling((Convert.ToDouble(ChartData.Count) / Convert.ToDouble(DisplayPointCount)));
-            int minScrollValue = 1;
-
-            trackBar.Minimum = minScrollValue;
-            trackBar.Maximum = maxScrollValue;
-            trackBar.Value = minScrollValue;
-            trackBar.LargeChange = 1;
-            trackBar.SmallChange = 1;
-        }
-
+ 
         public void DisplayView()
         {
             chart.Update();
@@ -477,7 +461,8 @@ namespace OM.Vikala.Controls.Charts
             }
             else
             {
-                int currentIndex = (scrollVal - 1) * displayItemCount;
+                //int currentIndex = (scrollVal - 1) * displayItemCount;
+                int currentIndex = (scrollVal - 1);
                 if (ChartData.Count < currentIndex + displayItemCount)
                     displayItemCount = ChartData.Count - currentIndex;
 
@@ -490,6 +475,7 @@ namespace OM.Vikala.Controls.Charts
                 maxDisplayIndex = currentIndex + displayItemCount;
                 minDisplayIndex = currentIndex;
             }
+
             if (viewLists != null)
             {
                 foreach (var ca in chart.ChartAreas)

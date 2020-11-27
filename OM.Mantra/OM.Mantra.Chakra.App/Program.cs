@@ -16,7 +16,16 @@ namespace OM.Mantra.Chakra.App
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TradingDiaryForm());
+            LoginForm login_form = new LoginForm();
+            if (login_form.ShowDialog() == DialogResult.OK)
+            {
+                if (login_form.LoginType == "SWING")
+                    Application.Run(new MantraForm());
+                if (login_form.LoginType == "SHORT")
+                    Application.Run(new MantraForm());
+                if (login_form.LoginType == "LONG")
+                    Application.Run(new MantraForm());
+            }
         }
     }
 }

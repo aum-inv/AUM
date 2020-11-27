@@ -8,7 +8,7 @@
     <NoStandardLibraries>false</NoStandardLibraries>
     <RootNamespace>OM.Atman.Chakra.Plans.StrategyPlan</RootNamespace>
     <AssemblyName>OM.Atman.Chakra.Plans.StrategyPlan</AssemblyName>
-    <VSTO_HostDocumentName>OM.Atman.Chakra.Plans.StrategyPlan.docx</VSTO_HostDocumentName>
+    <VSTO_HostDocumentName>AtmanStrategyInvForFF.docx</VSTO_HostDocumentName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <DefineConstants>VSTO40</DefineConstants>
     <OfficeApplication>Word</OfficeApplication>
@@ -104,9 +104,9 @@
     <EmbeddedResource Include="ThisDocument.resx">
       <DependentUpon>ThisDocument.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="OM.Atman.Chakra.Plans.StrategyPlan.docx" />
+    <None Include="AtmanStrategyInvForFF.docx" />
     <Compile Include="ThisDocument.cs">
-      <DependentUpon>OM.Atman.Chakra.Plans.StrategyPlan.docx</DependentUpon>
+      <DependentUpon>AtmanStrategyInvForFF.docx</DependentUpon>
     </Compile>
     <None Include="OM.Atman.Chakra.Plans.StrategyPlan_TemporaryKey.pfx" />
     <None Include="ThisDocument.Designer.xml">
@@ -153,8 +153,8 @@
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{BAA0C2D2-18E2-41B9-852F-F413020CAA33}">
-        <ProjectProperties HostName="OM.Atman.Chakra.Plans.StrategyPlan.docx" HostPackage="{18A3A5AC-5778-4778-901C-ADAAC08E910A}" OfficeVersion="15.0" VstxVersion="4.0" ApplicationType="DOC" Language="CS" TemplatesPath="VSTOTemplates" DebugInfoExeName="C:\Program Files (x86)\Microsoft Office\root\Office16\winword.exe" DebugInfoCommandLine="/w &quot;[$OUTPUT]OM.Atman.Chakra.Plans.StrategyPlan.docx&quot;" />
-        <Host Name="Word Document" Path=".\OM.Atman.Chakra.Plans.StrategyPlan.docx" GeneratedCodeNamespace="OM.Atman.Chakra.Plans.StrategyPlan">
+        <ProjectProperties HostName="AtmanStrategyInvForFF.docx" HostPackage="{18A3A5AC-5778-4778-901C-ADAAC08E910A}" OfficeVersion="15.0" VstxVersion="4.0" ApplicationType="DOC" Language="CS" TemplatesPath="VSTOTemplates" DebugInfoExeName="C:\Program Files (x86)\Microsoft Office\root\Office16\winword.exe" DebugInfoCommandLine="/w &quot;[$OUTPUT]AtmanStrategyInvForFF.docx&quot;" />
+        <Host Name="Word Document" Path=".\AtmanStrategyInvForFF.docx" GeneratedCodeNamespace="OM.Atman.Chakra.Plans.StrategyPlan">
           <HostItem Name="ThisDocument" Code="ThisDocument.cs" CanonicalName="ThisDocument" Blueprint="ThisDocument.Designer.xml" GeneratedCode="ThisDocument.Designer.cs" />
         </Host>
       </FlavorProperties>

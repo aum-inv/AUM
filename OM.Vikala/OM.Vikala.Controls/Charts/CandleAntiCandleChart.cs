@@ -56,6 +56,8 @@ namespace OM.Vikala.Controls.Charts
             ChartData = chartData;
             ChartDataSub = chartDataSub;
 
+            TotalPointCount = ChartData.Count;
+
             this.Invoke(new MethodInvoker(() => {
                 Reset();
                 View();
@@ -105,9 +107,10 @@ namespace OM.Vikala.Controls.Charts
             minPrice1 = minPrice1 - SpaceMaxMin;
             chart.ChartAreas[0].AxisY2.Maximum = maxPrice1;
             chart.ChartAreas[0].AxisY2.Minimum = minPrice1;
-
-            SetScrollBar();
+ 
             SetTrackBar();
+            SetScrollBar();
+           
             DisplayView();
 
             IsLoaded = true;
@@ -115,33 +118,33 @@ namespace OM.Vikala.Controls.Charts
             base.View();
         }
         
-        public void SetScrollBar()
-        {
-            int trackView = trackBar.Value;
-            int displayItemCount = DisplayPointCount * trackView;
+        //public void SetScrollBar()
+        //{
+        //    int trackView = trackBar.Value;
+        //    int displayItemCount = DisplayPointCount * trackView;
 
-            int maxScrollValue = (int)Math.Ceiling((Convert.ToDouble(ChartData.Count) / Convert.ToDouble(displayItemCount))) ;
-            int minScrollValue = 1;
+        //    int maxScrollValue = (int)Math.Ceiling((Convert.ToDouble(ChartData.Count) / Convert.ToDouble(displayItemCount))) ;
+        //    int minScrollValue = 1;
 
-            hScrollBar.Minimum = minScrollValue;
-            hScrollBar.Maximum = maxScrollValue;
-            hScrollBar.Value = maxScrollValue;
-            hScrollBar.LargeChange = 1;
-            hScrollBar.SmallChange = 1;
-        }
+        //    hScrollBar.Minimum = minScrollValue;
+        //    hScrollBar.Maximum = maxScrollValue;
+        //    hScrollBar.Value = maxScrollValue;
+        //    hScrollBar.LargeChange = 1;
+        //    hScrollBar.SmallChange = 1;
+        //}
 
-        public void SetTrackBar()
-        {
-            pnlScroll.Visible = IsAutoScrollX;
-            int maxScrollValue = (int)Math.Ceiling((Convert.ToDouble(ChartData.Count) / Convert.ToDouble(DisplayPointCount)));
-            int minScrollValue = 1;
+        //public void SetTrackBar()
+        //{
+        //    pnlScroll.Visible = IsAutoScrollX;
+        //    int maxScrollValue = (int)Math.Ceiling((Convert.ToDouble(ChartData.Count) / Convert.ToDouble(DisplayPointCount)));
+        //    int minScrollValue = 1;
 
-            trackBar.Minimum = minScrollValue;
-            trackBar.Maximum = maxScrollValue;
-            trackBar.Value = minScrollValue;
-            trackBar.LargeChange = 1;
-            trackBar.SmallChange = 1;
-        }
+        //    trackBar.Minimum = minScrollValue;
+        //    trackBar.Maximum = maxScrollValue;
+        //    trackBar.Value = minScrollValue;
+        //    trackBar.LargeChange = 1;
+        //    trackBar.SmallChange = 1;
+        //}
 
         public void DisplayView()
         {
@@ -176,7 +179,8 @@ namespace OM.Vikala.Controls.Charts
             }
             else
             {
-                int currentIndex = (scrollVal - 1) * displayItemCount;
+                int currentIndex = (scrollVal - 1);
+
                 if (ChartData.Count < currentIndex + displayItemCount)
                     displayItemCount = ChartData.Count - currentIndex;
 

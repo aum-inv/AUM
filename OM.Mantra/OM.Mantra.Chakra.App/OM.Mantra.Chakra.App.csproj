@@ -20,6 +20,8 @@
     </SccAuxPath>
     <SccProvider>
     </SccProvider>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -44,6 +46,28 @@
     <ApplicationIcon>mantra.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MaterialSkin.0.2.1\lib\MaterialSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MetroFramework.RunTime.1.2.0.3\lib\net40-Client\MetroFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Design, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MetroFramework.Design.1.2.0.3\lib\net40\MetroFramework.Design.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MetroFramework.Fonts.1.2.0.3\lib\net40\MetroFramework.Fonts.dll</HintPath>
+    </Reference>
+    <Reference Include="NetSpell.SpellChecker, Version=2.1.7.41329, Culture=neutral, PublicKeyToken=318b389f0db66e46">
+      <HintPath>..\..\packages\NetSpell.2.1.7\lib\NetSpell.SpellChecker.dll</HintPath>
+    </Reference>
+    <Reference Include="PrintRichTextBox, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\RichTextBoxEx.1.0.0\lib\PrintRichTextBox.dll</HintPath>
+    </Reference>
+    <Reference Include="RichTextBoxEx, Version=1.0.6541.36291, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\RichTextBoxEx.1.0.0\lib\RichTextBoxEx.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -57,11 +81,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MantraInputForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MantraInputForm.Designer.cs">
+      <DependentUpon>MantraInputForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MantraForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MantraForm.Designer.cs">
+      <DependentUpon>MantraForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,14 +113,77 @@
     <Compile Include="TradingDiaryForm.Designer.cs">
       <DependentUpon>TradingDiaryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucs\ucBaseLine.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucs\ucBaseLine.Designer.cs">
+      <DependentUpon>ucBaseLine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucs\ucBuy.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucs\ucBuy.Designer.cs">
+      <DependentUpon>ucBuy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucs\ucRisk.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucs\ucRisk.Designer.cs">
+      <DependentUpon>ucRisk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucs\ucSell.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucs\ucSell.Designer.cs">
+      <DependentUpon>ucSell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucs\ucDiary.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucs\ucDiary.Designer.cs">
+      <DependentUpon>ucDiary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucs\ucTradeSheet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucs\ucTradeSheet.Designer.cs">
+      <DependentUpon>ucTradeSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucs\ucTechView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucs\ucTechView.Designer.cs">
+      <DependentUpon>ucTechView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucs\ucTechScore.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucs\ucTechScore.Designer.cs">
+      <DependentUpon>ucTechScore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucs\ucBasicInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucs\ucBasicInfo.Designer.cs">
+      <DependentUpon>ucBasicInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="uc_MantraHistory.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="uc_MantraHistory.Designer.cs">
       <DependentUpon>uc_MantraHistory.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantraInputForm.resx">
+      <DependentUpon>MantraInputForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantraForm.resx">
+      <DependentUpon>MantraForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -92,9 +197,37 @@
     <EmbeddedResource Include="TradingDiaryForm.resx">
       <DependentUpon>TradingDiaryForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ucs\ucBaseLine.resx">
+      <DependentUpon>ucBaseLine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucs\ucBuy.resx">
+      <DependentUpon>ucBuy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucs\ucRisk.resx">
+      <DependentUpon>ucRisk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucs\ucSell.resx">
+      <DependentUpon>ucSell.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucs\ucDiary.resx">
+      <DependentUpon>ucDiary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucs\ucTradeSheet.resx">
+      <DependentUpon>ucTradeSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucs\ucTechView.resx">
+      <DependentUpon>ucTechView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucs\ucTechScore.resx">
+      <DependentUpon>ucTechScore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucs\ucBasicInfo.resx">
+      <DependentUpon>ucBasicInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="uc_MantraHistory.resx">
       <DependentUpon>uc_MantraHistory.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -110,6 +243,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="mantra.ico" />
+    <Content Include="MetroFramework.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\OM\OM.Lib.Base\OM.Lib.Base.csproj">

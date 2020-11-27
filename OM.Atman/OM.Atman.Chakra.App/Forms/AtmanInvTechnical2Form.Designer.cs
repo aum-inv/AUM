@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AtmanInvTechnical2Form));
-            this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
+            this.pnl = new MetroFramework.Controls.MetroPanel();
             this.tbMemo = new System.Windows.Forms.TextBox();
             this.chk46 = new MetroFramework.Controls.MetroCheckBox();
             this.chk45 = new MetroFramework.Controls.MetroCheckBox();
@@ -79,76 +80,80 @@
             this.tbS2 = new System.Windows.Forms.TextBox();
             this.tbS1 = new System.Windows.Forms.TextBox();
             this.chk11 = new MetroFramework.Controls.MetroCheckBox();
-            this.metroPanel2.SuspendLayout();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pnl.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // metroPanel2
+            // pnl
             // 
-            this.metroPanel2.BackColor = System.Drawing.Color.White;
-            this.metroPanel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("metroPanel2.BackgroundImage")));
-            this.metroPanel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.metroPanel2.Controls.Add(this.tbMemo);
-            this.metroPanel2.Controls.Add(this.chk46);
-            this.metroPanel2.Controls.Add(this.chk45);
-            this.metroPanel2.Controls.Add(this.chk44);
-            this.metroPanel2.Controls.Add(this.chk43);
-            this.metroPanel2.Controls.Add(this.chk42);
-            this.metroPanel2.Controls.Add(this.chk66);
-            this.metroPanel2.Controls.Add(this.chk41);
-            this.metroPanel2.Controls.Add(this.chk65);
-            this.metroPanel2.Controls.Add(this.chk36);
-            this.metroPanel2.Controls.Add(this.chk64);
-            this.metroPanel2.Controls.Add(this.chk35);
-            this.metroPanel2.Controls.Add(this.chk63);
-            this.metroPanel2.Controls.Add(this.chk34);
-            this.metroPanel2.Controls.Add(this.chk62);
-            this.metroPanel2.Controls.Add(this.chk33);
-            this.metroPanel2.Controls.Add(this.chk61);
-            this.metroPanel2.Controls.Add(this.chk32);
-            this.metroPanel2.Controls.Add(this.chk56);
-            this.metroPanel2.Controls.Add(this.chk31);
-            this.metroPanel2.Controls.Add(this.chk55);
-            this.metroPanel2.Controls.Add(this.chk26);
-            this.metroPanel2.Controls.Add(this.chk54);
-            this.metroPanel2.Controls.Add(this.chk25);
-            this.metroPanel2.Controls.Add(this.chk53);
-            this.metroPanel2.Controls.Add(this.chk24);
-            this.metroPanel2.Controls.Add(this.chk52);
-            this.metroPanel2.Controls.Add(this.chk23);
-            this.metroPanel2.Controls.Add(this.chk51);
-            this.metroPanel2.Controls.Add(this.chk22);
-            this.metroPanel2.Controls.Add(this.chk21);
-            this.metroPanel2.Controls.Add(this.chk16);
-            this.metroPanel2.Controls.Add(this.chk15);
-            this.metroPanel2.Controls.Add(this.chk14);
-            this.metroPanel2.Controls.Add(this.chk13);
-            this.metroPanel2.Controls.Add(this.chk12);
-            this.metroPanel2.Controls.Add(this.tbT6);
-            this.metroPanel2.Controls.Add(this.tbT5);
-            this.metroPanel2.Controls.Add(this.tbT4);
-            this.metroPanel2.Controls.Add(this.tbT3);
-            this.metroPanel2.Controls.Add(this.tbT2);
-            this.metroPanel2.Controls.Add(this.tbT1);
-            this.metroPanel2.Controls.Add(this.tbS6);
-            this.metroPanel2.Controls.Add(this.tbS5);
-            this.metroPanel2.Controls.Add(this.tbS4);
-            this.metroPanel2.Controls.Add(this.tbS3);
-            this.metroPanel2.Controls.Add(this.tbS2);
-            this.metroPanel2.Controls.Add(this.tbS1);
-            this.metroPanel2.Controls.Add(this.chk11);
-            this.metroPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroPanel2.HorizontalScrollbarBarColor = true;
-            this.metroPanel2.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroPanel2.HorizontalScrollbarSize = 10;
-            this.metroPanel2.Location = new System.Drawing.Point(20, 30);
-            this.metroPanel2.Name = "metroPanel2";
-            this.metroPanel2.Size = new System.Drawing.Size(760, 659);
-            this.metroPanel2.TabIndex = 1;
-            this.metroPanel2.UseCustomBackColor = true;
-            this.metroPanel2.UseCustomForeColor = true;
-            this.metroPanel2.VerticalScrollbarBarColor = true;
-            this.metroPanel2.VerticalScrollbarHighlightOnWheel = false;
-            this.metroPanel2.VerticalScrollbarSize = 10;
+            this.pnl.BackColor = System.Drawing.Color.White;
+            this.pnl.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnl.BackgroundImage")));
+            this.pnl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pnl.ContextMenuStrip = this.contextMenuStrip1;
+            this.pnl.Controls.Add(this.tbMemo);
+            this.pnl.Controls.Add(this.chk46);
+            this.pnl.Controls.Add(this.chk45);
+            this.pnl.Controls.Add(this.chk44);
+            this.pnl.Controls.Add(this.chk43);
+            this.pnl.Controls.Add(this.chk42);
+            this.pnl.Controls.Add(this.chk66);
+            this.pnl.Controls.Add(this.chk41);
+            this.pnl.Controls.Add(this.chk65);
+            this.pnl.Controls.Add(this.chk36);
+            this.pnl.Controls.Add(this.chk64);
+            this.pnl.Controls.Add(this.chk35);
+            this.pnl.Controls.Add(this.chk63);
+            this.pnl.Controls.Add(this.chk34);
+            this.pnl.Controls.Add(this.chk62);
+            this.pnl.Controls.Add(this.chk33);
+            this.pnl.Controls.Add(this.chk61);
+            this.pnl.Controls.Add(this.chk32);
+            this.pnl.Controls.Add(this.chk56);
+            this.pnl.Controls.Add(this.chk31);
+            this.pnl.Controls.Add(this.chk55);
+            this.pnl.Controls.Add(this.chk26);
+            this.pnl.Controls.Add(this.chk54);
+            this.pnl.Controls.Add(this.chk25);
+            this.pnl.Controls.Add(this.chk53);
+            this.pnl.Controls.Add(this.chk24);
+            this.pnl.Controls.Add(this.chk52);
+            this.pnl.Controls.Add(this.chk23);
+            this.pnl.Controls.Add(this.chk51);
+            this.pnl.Controls.Add(this.chk22);
+            this.pnl.Controls.Add(this.chk21);
+            this.pnl.Controls.Add(this.chk16);
+            this.pnl.Controls.Add(this.chk15);
+            this.pnl.Controls.Add(this.chk14);
+            this.pnl.Controls.Add(this.chk13);
+            this.pnl.Controls.Add(this.chk12);
+            this.pnl.Controls.Add(this.tbT6);
+            this.pnl.Controls.Add(this.tbT5);
+            this.pnl.Controls.Add(this.tbT4);
+            this.pnl.Controls.Add(this.tbT3);
+            this.pnl.Controls.Add(this.tbT2);
+            this.pnl.Controls.Add(this.tbT1);
+            this.pnl.Controls.Add(this.tbS6);
+            this.pnl.Controls.Add(this.tbS5);
+            this.pnl.Controls.Add(this.tbS4);
+            this.pnl.Controls.Add(this.tbS3);
+            this.pnl.Controls.Add(this.tbS2);
+            this.pnl.Controls.Add(this.tbS1);
+            this.pnl.Controls.Add(this.chk11);
+            this.pnl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl.HorizontalScrollbarBarColor = true;
+            this.pnl.HorizontalScrollbarHighlightOnWheel = false;
+            this.pnl.HorizontalScrollbarSize = 10;
+            this.pnl.Location = new System.Drawing.Point(20, 30);
+            this.pnl.Name = "pnl";
+            this.pnl.Size = new System.Drawing.Size(760, 659);
+            this.pnl.TabIndex = 1;
+            this.pnl.UseCustomBackColor = true;
+            this.pnl.UseCustomForeColor = true;
+            this.pnl.VerticalScrollbarBarColor = true;
+            this.pnl.VerticalScrollbarHighlightOnWheel = false;
+            this.pnl.VerticalScrollbarSize = 10;
             // 
             // tbMemo
             // 
@@ -700,12 +705,26 @@
             this.chk11.UseSelectable = true;
             this.chk11.CheckedChanged += new System.EventHandler(this.chk_CheckedChanged);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(103, 26);
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.copyToolStripMenuItem.Text = "Copy";
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
+            // 
             // AtmanInvTechnical2Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 709);
-            this.Controls.Add(this.metroPanel2);
+            this.Controls.Add(this.pnl);
             this.DisplayHeader = false;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -714,15 +733,16 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Style = MetroFramework.MetroColorStyle.Brown;
             this.Text = "ATMAN INV. F TECHNICAL C-TABLE";
-            this.metroPanel2.ResumeLayout(false);
-            this.metroPanel2.PerformLayout();
+            this.pnl.ResumeLayout(false);
+            this.pnl.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private MetroFramework.Controls.MetroPanel metroPanel2;
+        private MetroFramework.Controls.MetroPanel pnl;
         private MetroFramework.Controls.MetroCheckBox chk11;
         private System.Windows.Forms.TextBox tbS1;
         private System.Windows.Forms.TextBox tbT6;
@@ -772,5 +792,7 @@
         private MetroFramework.Controls.MetroCheckBox chk52;
         private MetroFramework.Controls.MetroCheckBox chk51;
         private System.Windows.Forms.TextBox tbMemo;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
     }
 }

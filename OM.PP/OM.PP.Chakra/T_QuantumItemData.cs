@@ -105,14 +105,14 @@ namespace OM.PP.Chakra
                 //t_highAvg = HighPriceAvg = (Single)sourceDataArray.Average(t => t.HighPrice);
                 //t_lowAvg = LowPriceAvg = (Single)sourceDataArray.Average(t => t.LowPrice);
 
-                t_quantumAvg = (Single)sourceDataArray.Average(t => t.QuantumBasePrice);
-                t_quantumHighAvg = (Single)sourceDataArray.Average(t => t.QuantumHighPrice);
-                t_quantumLowAvg = (Single)sourceDataArray.Average(t => t.QuantumLowPrice);
+                t_quantumAvg = (Single)sourceDataArray.Average(t => t.QuantumBasePrice);             
+                t_quantumHighAvg = (Single)sourceDataArray.Average(t => (t.QuantumBaseHighPrice + t.TotalLength));
+                t_quantumLowAvg = (Single)sourceDataArray.Average(t => (t.QuantumBaseLowPrice - t.TotalLength));
                 t_massAvg = (Single)sourceDataArray.Average(t => t.MassPrice);
 
                 //t_VikalaAvg = (Single)sourceDataArray.Average(t => t.VikalaPrice);
-                //t_vikalaHighAvg = (Single)sourceDataArray.Average(t => t.VikalaHighPrice);
-                //t_vikalaLowAvg = (Single)sourceDataArray.Average(t => t.VikalaLowPrice);
+                //t_vikalaHighAvg = (Single)sourceDataArray.Average(t => t.VikalaHighPrice + t.HeadLength + t.LegLength);
+                //t_vikalaLowAvg = (Single)sourceDataArray.Average(t => t.VikalaLowPrice - t.HeadLength - t.LegLength);
 
                 //t_TotalCenterAvg = (Single)sourceDataArray.Average(t => t.TotalCenterPrice);
             }

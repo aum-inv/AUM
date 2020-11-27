@@ -69,6 +69,8 @@ namespace OM.Vikala.Controls.Charts
             ChartData = chartData;
             ChartDataSub = chartDataSub;
 
+            TotalPointCount = ChartData.Count;
+
             this.Invoke(new MethodInvoker(() => {
                 Reset();
                 View();

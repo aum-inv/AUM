@@ -64,7 +64,7 @@ namespace OM.Atman.Chakra.App.Forms
         {
             checkCnt = 0;
             totalPoint = 0;
-            foreach (var c in metroPanel2.Controls)
+            foreach (var c in pnl.Controls)
             { 
                 if(c is MetroCheckBox) 
                 {
@@ -79,6 +79,23 @@ namespace OM.Atman.Chakra.App.Forms
                         }
                     }
                 }
+            }
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Bitmap bmp = new Bitmap(pnl.Width, pnl.Height);
+                pnl.DrawToBitmap(bmp, new Rectangle(0, 0, pnl.Width, pnl.Height));
+
+                Clipboard.SetImage(bmp);
+
+                MessageBox.Show("저장되었습니다.");
+            }
+            catch (Exception ex)
+            {
+                string err = ex.Message;
             }
         }
     }

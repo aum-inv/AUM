@@ -86,6 +86,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OM.Atman.Chakra.Plans.StrategyPlan", "OM.Atman\OM.Atman.Chakra.Plans.StrategyPlan\OM.Atman.Chakra.Plans.StrategyPlan.csproj", "{2DDAFDF0-B198-4EF9-B512-F421120BEAB1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OM.Atman.Chakra.Plans.StrategyPlan2", "OM.Atman\OM.Atman.Chakra.Plans.StrategyPlan2\OM.Atman.Chakra.Plans.StrategyPlan2.csproj", "{9CF0081E-6236-4082-89DC-FE0A569BC6FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -246,6 +248,14 @@ Global
 		{2DDAFDF0-B198-4EF9-B512-F421120BEAB1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2DDAFDF0-B198-4EF9-B512-F421120BEAB1}.Release|x86.ActiveCfg = Release|Any CPU
 		{2DDAFDF0-B198-4EF9-B512-F421120BEAB1}.Release|x86.Build.0 = Release|Any CPU
+		{9CF0081E-6236-4082-89DC-FE0A569BC6FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CF0081E-6236-4082-89DC-FE0A569BC6FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CF0081E-6236-4082-89DC-FE0A569BC6FE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9CF0081E-6236-4082-89DC-FE0A569BC6FE}.Debug|x86.Build.0 = Debug|Any CPU
+		{9CF0081E-6236-4082-89DC-FE0A569BC6FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CF0081E-6236-4082-89DC-FE0A569BC6FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CF0081E-6236-4082-89DC-FE0A569BC6FE}.Release|x86.ActiveCfg = Release|Any CPU
+		{9CF0081E-6236-4082-89DC-FE0A569BC6FE}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -270,10 +280,11 @@ Global
 		{3D6F016E-CEC1-4546-B1D2-EAF9B766F1F3} = {D5FABF8A-AB3C-4F1C-8663-1CB15E7D8496}
 		{6D2BABD8-0E3A-4A26-A771-F34E440C89DB} = {D5FABF8A-AB3C-4F1C-8663-1CB15E7D8496}
 		{2DDAFDF0-B198-4EF9-B512-F421120BEAB1} = {E3D13311-C1EF-4534-8093-DE6A8FBB0221}
+		{9CF0081E-6236-4082-89DC-FE0A569BC6FE} = {E3D13311-C1EF-4534-8093-DE6A8FBB0221}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		VisualSVNWorkingCopyRoot = .
 		SolutionGuid = {52E07AD0-FB7F-4B3D-A93D-C27D36E06B4F}
+		VisualSVNWorkingCopyRoot = .
 	EndGlobalSection
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True

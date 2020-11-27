@@ -63,6 +63,7 @@ namespace OM.PP.XingApp.Ex.Api
                     if (gubun == "H" || gubun == "1H") resolution = "60";
                     else if (gubun == "2H") resolution = "120";
                     else if (gubun == "4H") resolution = "240";
+                    else if (gubun == "5H") resolution = "300";
                     else if (gubun == "M" || gubun == "1M") resolution = "1";
                     else if (gubun == "5M") resolution = "5";
                     else if (gubun == "15M") resolution = "15";
@@ -104,6 +105,11 @@ namespace OM.PP.XingApp.Ex.Api
                     else if (gubun == "4H")
                     {
                         from = (Int32)(DateTime.UtcNow.AddMonths(-8).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                        to = (Int32)(DateTime.UtcNow.AddDays(10).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                    }
+                    else if (gubun == "5H")
+                    {
+                        from = (Int32)(DateTime.UtcNow.AddMonths(-10).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                         to = (Int32)(DateTime.UtcNow.AddDays(10).Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                     }
                     else if (gubun == "W")
@@ -192,7 +198,8 @@ namespace OM.PP.XingApp.Ex.Api
                     string resolution = gubun;
                     if (gubun == "H" || gubun == "1H") resolution = "60";
                     else if (gubun == "2H") resolution = "120";
-                    else if (gubun == "4H") resolution = "240";                    
+                    else if (gubun == "4H") resolution = "240";
+                    else if (gubun == "5H") resolution = "300";
                     else if (gubun == "M" || gubun == "1M") resolution = "1";
                     else if (gubun == "5M") resolution = "5";
                     else if (gubun == "15M") resolution = "15";

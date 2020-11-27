@@ -102,7 +102,7 @@ namespace OM.Vikala.Chakra.App.Mains
                 tsbTime17.Visible =
                 tsbTime18.Visible = false;
             }
-            else if (SharedData.SelectedType == "해외지수" || SharedData.SelectedType == "암호화폐")
+            else if (SharedData.SelectedType == "해외지수")
             {
                 tsbTime01.Visible =
                 tsbTime02.Visible =
@@ -118,14 +118,12 @@ namespace OM.Vikala.Chakra.App.Mains
                 tsbTime17.Visible =
                 tsbTime18.Visible = false;
             }
-            else if (SharedData.SelectedType == "해외선물")
+            else if (SharedData.SelectedType == "해외선물" || SharedData.SelectedType == "암호화폐")
             {
                 tsbTime01.Visible =
                 tsbTime03.Visible =
-                tsbTime12.Visible =
                 tsbTime13.Visible =
                 tsbTime14.Visible =
-                tsbTime15.Visible =
                 tsbTime16.Visible =
                 tsbTime17.Visible =
                 tsbTime18.Visible = false;
@@ -538,7 +536,11 @@ namespace OM.Vikala.Chakra.App.Mains
             if (ScreenCaptureEvent != null)
                 ScreenCaptureEvent("Draw", e);
         }
-
+        private void tsbCopy_Click(object sender, EventArgs e)
+        {
+            if (ScreenCaptureEvent != null)
+                ScreenCaptureEvent("Copy", e);
+        }
         private void tsbMdiOut_Click(object sender, EventArgs e)
         {
             if (MdiChangedEvent != null)
@@ -547,6 +549,7 @@ namespace OM.Vikala.Chakra.App.Mains
                 tsbMdiOut.Visible = false;
             }
         }
+       
 
         private void tsbMdiIn_Click(object sender, EventArgs e)
         {
@@ -627,6 +630,8 @@ namespace OM.Vikala.Chakra.App.Mains
             setTimeIntervalButton();
             setInterval();
         }
+
+      
     }
 
     public enum FlowDirectionTypeEnum

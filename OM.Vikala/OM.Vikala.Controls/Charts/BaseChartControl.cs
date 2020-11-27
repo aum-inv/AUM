@@ -77,7 +77,11 @@ namespace OM.Vikala.Controls.Charts
             get;
             set;
         } = 120;
-
+        public int TotalPointCount
+        {
+            get;
+            set;
+        } = 0;
         public string ItemCode
         {
             get;
@@ -91,6 +95,7 @@ namespace OM.Vikala.Controls.Charts
                 return ItemCodeSet.GetItemRoundNum(ItemCode);
             }
         }
+        
         public bool IsLoaded
         {
             get;
@@ -290,8 +295,12 @@ namespace OM.Vikala.Controls.Charts
                 s.Points.Clear();
 
             IsLoaded = false;
-            hScrollBar.Minimum = hScrollBar.Maximum = hScrollBar.Value = 1;
-            trackBar.Minimum = trackBar.Maximum = trackBar.Value = 1;
+            hScrollBar.Minimum = 1;
+            hScrollBar.Maximum = 1;
+            hScrollBar.Value = 1;
+            trackBar.Minimum = 1;
+            trackBar.Maximum = 1;
+            trackBar.Value = 1;
 
             createXYLineAnnotation();
             createYXLineAnnotation();
@@ -568,6 +577,33 @@ namespace OM.Vikala.Controls.Charts
             this.Size = new System.Drawing.Size(1083, 749);
             this.ResumeLayout(false);
 
+        }
+
+        public void SetScrollBar()
+        {
+            int trackView = trackBar.Value;
+            int displayItemCount = DisplayPointCount * trackView;
+
+            int maxScrollValue = TotalPointCount - displayItemCount;
+            int minScrollValue = 1;
+
+            hScrollBar.Minimum = minScrollValue;
+            hScrollBar.Maximum = maxScrollValue;
+            hScrollBar.Value = maxScrollValue;
+            hScrollBar.LargeChange = 1;
+            hScrollBar.SmallChange = 1;
+        }
+
+        public void SetTrackBar()
+        {
+            int maxScrollValue = (int)Math.Ceiling((Convert.ToDouble(TotalPointCount) / Convert.ToDouble(DisplayPointCount)));
+            int minScrollValue = 1;
+
+            trackBar.Minimum = minScrollValue;
+            trackBar.Maximum = maxScrollValue;
+            trackBar.Value = minScrollValue;
+            trackBar.LargeChange = 1;
+            trackBar.SmallChange = 1;
         }
     }
 }

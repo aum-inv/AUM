@@ -656,5 +656,22 @@ namespace OM.Jiva.Chakra.App
                 }
             }
         }
+
+        private void btnCopy_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Bitmap bmp = new Bitmap(tlpChart.Width, tlpChart.Height);
+                tlpChart.DrawToBitmap(bmp, new Rectangle(0, 0, tlpChart.Width, tlpChart.Height));
+
+                Clipboard.SetImage(bmp);
+
+                MessageBox.Show("저장되었습니다.");
+            }
+            catch (Exception ex)
+            {
+                string err = ex.Message;
+            }
+        }
     }
 }

@@ -43,7 +43,8 @@ namespace OM.Lib.Base.Enums
             , new ItemData(){ Name = "해선-유로FX" , Code = "URO", Length = 5, SHCode = "UROM20", Tick=0.00005, Deviation=0.0005} //6-17
             , new ItemData(){ Name = "해선-SNP" , Code = "ES", Length = 2, SHCode = "ESM20", Tick=0.25, Deviation=2.5} //6-21
             , new ItemData(){ Name = "해선-달러인덱스" , Code = "DI", Length = 3, SHCode = "", Tick=0.001, Deviation=0.01} //6-21
-           
+            , new ItemData(){ Name = "해선-SNPVIX" , Code = "ESVIX", Length = 2, SHCode = "", Tick=0.01, Deviation=0.1} //6-21
+
             , new ItemData(){ Name = "암호-BTC/USD" , Code = "BTC", Length = 1, SHCode = "", Tick=0.1, Deviation=10.0}
             , new ItemData(){ Name = "암호-ETH/USD" , Code = "ETH", Length = 2, SHCode = "", Tick=0.01, Deviation=1}
             , new ItemData(){ Name = "암호-BCH/USD" , Code = "BCH", Length = 2, SHCode = "", Tick=0.01, Deviation=1}

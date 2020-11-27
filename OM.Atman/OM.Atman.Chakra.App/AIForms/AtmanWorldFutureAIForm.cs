@@ -545,5 +545,22 @@ namespace OM.Atman.Chakra.App.AIForms
             itemCode = (cbxItem.SelectedItem as ItemData).Code;
             loadSiseDataFromDaemon(timeInterval);
         }
+
+        private void btnCopy_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Bitmap bmp = new Bitmap(pnlMain.Width, pnlMain.Height);
+                pnlMain.DrawToBitmap(bmp, new Rectangle(0, 0, pnlMain.Width, pnlMain.Height));
+
+                Clipboard.SetImage(bmp);
+
+                MessageBox.Show("저장되었습니다.");
+            }
+            catch (Exception ex)
+            {
+                string err = ex.Message;
+            }
+        }
     }
 }

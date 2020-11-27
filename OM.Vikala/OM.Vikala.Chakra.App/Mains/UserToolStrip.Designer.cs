@@ -75,6 +75,7 @@
             this.tsl_2 = new System.Windows.Forms.ToolStripLabel();
             this.tsl_5 = new System.Windows.Forms.ToolStripLabel();
             this.tsbWeb2 = new System.Windows.Forms.ToolStripButton();
+            this.tsbCopy = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -429,8 +430,8 @@
             this.tsbDraw.Image = ((System.Drawing.Image)(resources.GetObject("tsbDraw.Image")));
             this.tsbDraw.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbDraw.Name = "tsbDraw";
-            this.tsbDraw.Size = new System.Drawing.Size(28, 20);
-            this.tsbDraw.Text = "toolStripButton1";
+            this.tsbDraw.Size = new System.Drawing.Size(28, 28);
+            this.tsbDraw.Text = "Draw";
             this.tsbDraw.Click += new System.EventHandler(this.tsbDraw_Click);
             // 
             // toolStripSeparator7
@@ -445,7 +446,7 @@
             this.tsbWeb1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbWeb1.Name = "tsbWeb1";
             this.tsbWeb1.Size = new System.Drawing.Size(28, 28);
-            this.tsbWeb1.Text = "toolStripButton1";
+            this.tsbWeb1.Text = "Go Naver";
             this.tsbWeb1.Click += new System.EventHandler(this.tsbWeb1_Click);
             // 
             // toolStrip1
@@ -495,6 +496,7 @@
             this.tsbLineBold2,
             this.toolStripSeparator4,
             this.tsbPrint,
+            this.tsbCopy,
             this.tsbDraw,
             this.toolStripSeparator7,
             this.tsbWeb1,
@@ -560,8 +562,18 @@
             this.tsbWeb2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbWeb2.Name = "tsbWeb2";
             this.tsbWeb2.Size = new System.Drawing.Size(28, 28);
-            this.tsbWeb2.Text = "toolStripButton1";
+            this.tsbWeb2.Text = "Go Apha";
             this.tsbWeb2.Click += new System.EventHandler(this.tsbWeb2_Click);
+            // 
+            // tsbCopy
+            // 
+            this.tsbCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbCopy.Image = ((System.Drawing.Image)(resources.GetObject("tsbCopy.Image")));
+            this.tsbCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbCopy.Name = "tsbCopy";
+            this.tsbCopy.Size = new System.Drawing.Size(28, 20);
+            this.tsbCopy.Text = "Copy";
+            this.tsbCopy.Click += new System.EventHandler(this.tsbCopy_Click);
             // 
             // UserToolStrip
             // 
@@ -626,5 +638,6 @@
         private System.Windows.Forms.ToolStripLabel tsl_0;
         private System.Windows.Forms.ToolStripLabel tsl_2;
         private System.Windows.Forms.ToolStripLabel tsl_5;
+        private System.Windows.Forms.ToolStripButton tsbCopy;
     }
 }

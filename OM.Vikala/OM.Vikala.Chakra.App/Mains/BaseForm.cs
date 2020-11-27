@@ -252,7 +252,19 @@ namespace OM.Vikala.Chakra.App.Mains
                 df.Text = this.Text + "(EDIT IMAGE)";
                 df.Show();
             }
-            else
+            else if (sender.ToString().Equals("Copy"))
+            {
+                try
+                {                  
+                    Clipboard.SetImage(bmp);
+                    MessageBox.Show("저장되었습니다.");
+                }
+                catch (Exception ex)
+                {
+                    string err = ex.Message;
+                }
+            }
+            else if (sender.ToString().Equals("Save"))
             {
                 SaveFileDialog saveFileDialog1 = new SaveFileDialog();
                 saveFileDialog1.Filter = "JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif";
@@ -412,6 +424,8 @@ namespace OM.Vikala.Chakra.App.Mains
                         sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(itemCode, "2H", SearchRangeDateS.Value, SearchRangeDateE.Value);
                     else if (timeInterval == TimeIntervalEnum.Hour_04)
                         sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(itemCode, "4H", SearchRangeDateS.Value, SearchRangeDateE.Value);
+                    else if (timeInterval == TimeIntervalEnum.Hour_05)
+                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(itemCode, "5H", SearchRangeDateS.Value, SearchRangeDateE.Value);
                     else if (timeInterval == TimeIntervalEnum.Minute_01)
                         sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(itemCode, "M", SearchRangeDateS.Value, SearchRangeDateE.Value);
                     else if (timeInterval == TimeIntervalEnum.Minute_05)
@@ -433,6 +447,8 @@ namespace OM.Vikala.Chakra.App.Mains
                         sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "2H");
                     else if (timeInterval == TimeIntervalEnum.Hour_04)
                         sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "4H");
+                    else if (timeInterval == TimeIntervalEnum.Hour_05)
+                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "5H");
                     else if (timeInterval == TimeIntervalEnum.Minute_01)
                         sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(itemCode, "M");
                     else if (timeInterval == TimeIntervalEnum.Minute_05)
@@ -457,6 +473,8 @@ namespace OM.Vikala.Chakra.App.Mains
                         sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(itemCode, "2H", SearchRangeDateS.Value, SearchRangeDateE.Value);
                     else if (timeInterval == TimeIntervalEnum.Hour_04)
                         sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(itemCode, "4H", SearchRangeDateS.Value, SearchRangeDateE.Value);
+                    else if (timeInterval == TimeIntervalEnum.Hour_05)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(itemCode, "5H", SearchRangeDateS.Value, SearchRangeDateE.Value);
                     else if (timeInterval == TimeIntervalEnum.Minute_01)
                         sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(itemCode, "M", SearchRangeDateS.Value, SearchRangeDateE.Value);
                     else if (timeInterval == TimeIntervalEnum.Minute_05)
@@ -478,6 +496,8 @@ namespace OM.Vikala.Chakra.App.Mains
                         sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(itemCode, "2H");
                     else if (timeInterval == TimeIntervalEnum.Hour_04)
                         sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(itemCode, "4H");
+                    else if (timeInterval == TimeIntervalEnum.Hour_05)
+                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(itemCode, "5H");
                     else if (timeInterval == TimeIntervalEnum.Minute_01)
                         sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(itemCode, "M");
                     else if (timeInterval == TimeIntervalEnum.Minute_05)

@@ -63,11 +63,11 @@ namespace OM.PP.Chakra
 
                 if (sourceDataArray != null)
                 {
-                    u_HighAvg = (Single)sourceDataArray.Average(t => t.U_HighPrice);
-                    u_LowAvg = (Single)sourceDataArray.Average(t => t.U_LowPrice);
+                    u_HighAvg = (Single)sourceDataArray.Average(t => t.U_HighPrice + HeadLength + LegLength);
+                    u_LowAvg = (Single)sourceDataArray.Average(t => t.U_LowPrice + HeadLength + LegLength);
 
-                    d_HighAvg = (Single)sourceDataArray.Average(t => t.D_HighPrice);
-                    d_LowAvg = (Single)sourceDataArray.Average(t => t.D_LowPrice);
+                    d_HighAvg = (Single)sourceDataArray.Average(t => t.D_HighPrice - HeadLength - LegLength);
+                    d_LowAvg = (Single)sourceDataArray.Average(t => t.D_LowPrice - HeadLength - LegLength);
                 }
             }
             catch (Exception ex)

@@ -469,28 +469,31 @@ namespace OM.PP.Chakra
         {
             get
             {
-                if (PlusMinusType == PlusMinusTypeEnum.음)
-                {
-                    return QuantumBaseHighPrice;
-                }
-                else
-                {
-                    return HighPrice;
-                }
+                //if (PlusMinusType == PlusMinusTypeEnum.음)
+                //{
+                //    return QuantumBaseHighPrice;
+                //}
+                //else
+                //{
+                //    return HighPrice;
+                //}
+
+                return HighPrice + TotalLength;
             }
         }
         public Single U_LowPrice
         {
             get
             {
-                if (PlusMinusType == PlusMinusTypeEnum.음)
-                {
-                    return QuantumBaseLowPrice;
-                }
-                else
-                {
-                    return LowPrice;
-                }
+                //if (PlusMinusType == PlusMinusTypeEnum.음)
+                //{
+                //    return QuantumBaseLowPrice;
+                //}
+                //else
+                //{
+                //    return LowPrice;
+                //}
+                return HighPrice;
             }
         }
 
@@ -499,28 +502,30 @@ namespace OM.PP.Chakra
         {
             get
             {
-                if (PlusMinusType == PlusMinusTypeEnum.음)
-                {
-                    return HighPrice;
-                }
-                else
-                {
-                    return QuantumBaseHighPrice;
-                }
+                //if (PlusMinusType == PlusMinusTypeEnum.음)
+                //{
+                //    return HighPrice;
+                //}
+                //else
+                //{
+                //    return QuantumBaseHighPrice;
+                //}
+                return LowPrice;
             }
         }
         public Single D_LowPrice
         {
             get
             {
-                if (PlusMinusType == PlusMinusTypeEnum.음)
-                {
-                    return LowPrice;
-                }
-                else
-                {
-                    return QuantumBaseLowPrice;
-                }
+                //if (PlusMinusType == PlusMinusTypeEnum.음)
+                //{
+                //    return LowPrice;
+                //}
+                //else
+                //{
+                //    return QuantumBaseLowPrice;
+                //}
+                return LowPrice - TotalLength;
             }
         }
 

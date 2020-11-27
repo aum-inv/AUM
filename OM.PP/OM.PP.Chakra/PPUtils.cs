@@ -1628,8 +1628,8 @@ namespace OM.PP.Chakra
                 var c = System.Math.Truncate(m.ClosePrice / deviation) * deviation;
                 var h = System.Math.Truncate(m.HighPrice / deviation) * deviation;
 
-                if (list.ContainsKey(c)) list[c]++;
-                else list.Add(c, 1);
+                //if (list.ContainsKey(c)) list[c]++;
+                //else list.Add(c, 1);
 
                 if (list.ContainsKey(h)) list[h]++;
                 else list.Add(h, 1);
@@ -1651,8 +1651,8 @@ namespace OM.PP.Chakra
                 var c = System.Math.Truncate(m.ClosePrice / deviation) * deviation;
                 var h = System.Math.Truncate(m.HighPrice / deviation) * deviation;
 
-                if (list.ContainsKey(c)) list[c]++;
-                else list.Add(c, 1);
+                //if (list.ContainsKey(c)) list[c]++;
+                //else list.Add(c, 1);
 
                 if (list.ContainsKey(h)) list[h]++;
                 else list.Add(h, 1);
@@ -1676,8 +1676,8 @@ namespace OM.PP.Chakra
                 var c = System.Math.Truncate(m.ClosePrice / deviation) * deviation;
                 var l = System.Math.Truncate(m.LowPrice / deviation) * deviation;
 
-                if (list.ContainsKey(c)) list[c]++;
-                else list.Add(c, 1);
+                //if (list.ContainsKey(c)) list[c]++;
+                //else list.Add(c, 1);
 
                 if (list.ContainsKey(l)) list[l]++;
                 else list.Add(l, 1);
@@ -1699,8 +1699,8 @@ namespace OM.PP.Chakra
                 var c = System.Math.Truncate(m.ClosePrice / deviation) * deviation;
                 var l = System.Math.Truncate(m.LowPrice / deviation) * deviation;
 
-                if (list.ContainsKey(c)) list[c]++;
-                else list.Add(c, 1);
+                //if (list.ContainsKey(c)) list[c]++;
+                //else list.Add(c, 1);
 
                 if (list.ContainsKey(l)) list[l]++;
                 else list.Add(l, 1);
@@ -1791,6 +1791,19 @@ namespace OM.PP.Chakra
                 idx++;
             }
             return resultList.Average();
+        }
+        #endregion
+
+        #region GetExceptPlusMinusList
+        public static List<T_QuantumItemData> GetExceptPlusMinusList(List<T_QuantumItemData> sourcList, PlusMinusTypeEnum plusMinusType = PlusMinusTypeEnum.양)
+        {
+            var list = new List<T_QuantumItemData>();
+            foreach (var m in sourcList)
+            {
+                if (m.PlusMinusType == plusMinusType)
+                    list.Add(m);
+            }
+            return list;
         }
         #endregion
     }
