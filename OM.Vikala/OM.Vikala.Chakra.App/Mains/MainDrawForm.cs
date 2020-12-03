@@ -51,7 +51,7 @@ namespace OM.Vikala.Chakra.App.Mains
         private string selectedDrawType = "L";
         private List<DrawedInfo> drawedInfos = new List<DrawedInfo>();
         string dashStyle = "Solid";
-        string widthStyle = "1.0";
+        string widthStyle = "2.0";
 
         private bool IsCanDraw = false;
         private void picCanvas_MouseMove_NotDown(object sender, MouseEventArgs e)
@@ -298,21 +298,39 @@ namespace OM.Vikala.Chakra.App.Mains
 
         private void MainDrawForm_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode == Keys.S && e.Modifiers == Keys.Control)
+            {
+                tsbSave.PerformClick();
+            }
+            if (e.KeyCode == Keys.C && e.Modifiers == Keys.Control)
+            {
+                Bitmap bmp = new Bitmap(pnlContent.Width, pnlContent.Height);
+                pnlContent.DrawToBitmap(bmp, new Rectangle(0, 0, pnlContent.Width, pnlContent.Height));
+                Clipboard.SetImage(bmp);
+            }
         }
 
         private void MainDrawForm_KeyUp(object sender, KeyEventArgs e)
-        {            
-            if (MovingSegment < 0) return;
-
+        {    
             if (e.KeyCode == Keys.Delete)
             {
+                if (MovingSegment < 0) return;
+
                 if (MessageBox.Show("선택된 도형 삭제.", "삭제하시겠습니까?", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     drawedInfos.RemoveAt(MovingSegment);
+                    picCanvas.Refresh();
                 }
             }
-            picCanvas.Refresh();
+
+            if (e.KeyCode == Keys.Escape)
+            {
+                if (drawedInfos.Count > 0)
+                {
+                    drawedInfos.RemoveAt(drawedInfos.Count - 1);
+                    picCanvas.Refresh();
+                }
+            }        
         }
 
         private void tsbSave_Click(object sender, EventArgs e)

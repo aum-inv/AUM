@@ -172,7 +172,6 @@
             this.chart.Size = new System.Drawing.Size(723, 299);
             this.chart.TabIndex = 2;
             this.chart.PostPaint += new System.EventHandler<System.Windows.Forms.DataVisualization.Charting.ChartPaintEventArgs>(this.chart_PostPaint);
-            this.chart.MouseDown += new System.Windows.Forms.MouseEventHandler(this.chart_MouseDown);
             // 
             // pnlScroll
             // 

@@ -59,6 +59,9 @@ namespace OM.PP.Chakra
                     LowPrice = sourceData.LowPrice;
                     ClosePrice = sourceData.ClosePrice;
                     DTime = sourceData.DTime;
+
+                    VirtualData = sourceData.VirtualData;
+                    VirtualDepth = sourceData.VirtualDepth;
                 }
 
                 if (sourceDataArray != null)

@@ -897,6 +897,186 @@ namespace OM.PP.Chakra
             }
         }
 
+
+        public static List<S_CandleItemData> SetMergeByTime(List<S_CandleItemData> pList
+            , List<S_CandleItemData> cList
+            , TimeIntervalEnum timeInterval)
+        {
+            List<S_CandleItemData> list = new List<S_CandleItemData>();
+            foreach (S_CandleItemData item in pList)
+            {
+                List<S_CandleItemData> subList = new List<S_CandleItemData>();
+
+                if (timeInterval == TimeIntervalEnum.Week)
+                {
+                    var diffDT = item.DTime.AddDays(7);
+                    subList = cList.Where(t => (t.DTime >= item.DTime && t.DTime < diffDT)).ToList();
+                }
+                else if (timeInterval == TimeIntervalEnum.Day)
+                {
+                    var diffDT = item.DTime.AddDays(1);
+                    subList = cList.Where(t => (t.DTime >= item.DTime && t.DTime < diffDT)).ToList();
+                }
+                else if (timeInterval == TimeIntervalEnum.Hour_05)
+                {
+                    var diffDT = item.DTime.AddHours(5);
+                    subList = cList.Where(t => (t.DTime >= item.DTime && t.DTime < diffDT)).ToList();
+                }
+                else if (timeInterval == TimeIntervalEnum.Hour_02)
+                {
+                    var diffDT = item.DTime.AddHours(2);
+                    subList = cList.Where(t => (t.DTime >= item.DTime && t.DTime < diffDT)).ToList();
+                }
+                else if (timeInterval == TimeIntervalEnum.Hour_01)
+                {
+                    var diffDT = item.DTime.AddHours(1);
+                    subList = cList.Where(t => (t.DTime >= item.DTime && t.DTime < diffDT)).ToList();
+                }
+
+                //if (subList.Count < 4) continue;
+
+                item.VirtualDepth = 0;
+                list.Add(item);
+
+                foreach (var subItem in subList)
+                {
+                    subItem.VirtualDepth = 1;
+                    list.Add(subItem);
+                }
+            }
+
+            return list;
+        }
+
+        public static List<S_CandleItemData> SetMergeByTime(List<S_CandleItemData> pList
+            , List<S_CandleItemData> cList
+            , List<S_CandleItemData> ccList
+            , TimeIntervalEnum timeInterval)
+        {
+            List<S_CandleItemData> list = new List<S_CandleItemData>();
+
+            foreach (S_CandleItemData item in pList)
+            {
+                List<S_CandleItemData> subList = new List<S_CandleItemData>();
+
+                if (timeInterval == TimeIntervalEnum.Week)
+                {
+                    var diffDT = item.DTime.AddDays(7);
+                    subList = cList.Where(t => (t.DTime >= item.DTime && t.DTime < diffDT)).ToList();
+                }
+                else if (timeInterval == TimeIntervalEnum.Day)
+                {
+                    var diffDT = item.DTime.AddDays(1);
+                    subList = cList.Where(t => (t.DTime >= item.DTime && t.DTime < diffDT)).ToList();
+                }
+                else if (timeInterval == TimeIntervalEnum.Hour_05)
+                {
+                    var diffDT = item.DTime.AddHours(5);
+                    subList = cList.Where(t => (t.DTime >= item.DTime && t.DTime < diffDT)).ToList();
+                }
+                else if (timeInterval == TimeIntervalEnum.Hour_02)
+                {
+                    var diffDT = item.DTime.AddHours(2);
+                    subList = cList.Where(t => (t.DTime >= item.DTime && t.DTime < diffDT)).ToList();
+                }
+                else if (timeInterval == TimeIntervalEnum.Hour_01)
+                {
+                    var diffDT = item.DTime.AddHours(1);
+                    subList = cList.Where(t => (t.DTime >= item.DTime && t.DTime < diffDT)).ToList();
+                }
+                item.VirtualDepth = 0;
+                list.Add(item);
+
+                foreach (var subItem in subList)
+                {
+                    List<S_CandleItemData> subList2 = new List<S_CandleItemData>();
+
+                    if (timeInterval == TimeIntervalEnum.Week)
+                    {
+                        var diffDT = subItem.DTime.AddDays(1);
+                        subList2 = ccList.Where(t => (t.DTime >= subItem.DTime && t.DTime < diffDT)).ToList();
+                    }
+                    else if (timeInterval == TimeIntervalEnum.Day)
+                    {
+                        var diffDT = subItem.DTime.AddHours(5);
+                        subList2 = ccList.Where(t => (t.DTime >= subItem.DTime && t.DTime < diffDT)).ToList();
+                    }
+                    else if (timeInterval == TimeIntervalEnum.Hour_05)
+                    {
+                        var diffDT = subItem.DTime.AddHours(1);
+                        subList2 = ccList.Where(t => (t.DTime >= subItem.DTime && t.DTime < diffDT)).ToList();
+                    }
+                    else if (timeInterval == TimeIntervalEnum.Hour_02)
+                    {
+                        var diffDT = subItem.DTime.AddMinutes(30);
+                        subList2 = ccList.Where(t => (t.DTime >= subItem.DTime && t.DTime < diffDT)).ToList();
+                    }
+                    else if (timeInterval == TimeIntervalEnum.Hour_01)
+                    {
+                        var diffDT = subItem.DTime.AddMinutes(15);
+                        subList2 = ccList.Where(t => (t.DTime >= subItem.DTime && t.DTime < diffDT)).ToList();
+                    }
+                    subItem.VirtualDepth = 1;
+                    list.Add(subItem);
+
+                    foreach (var subItem2 in subList2)
+                    {
+                        subItem2.VirtualDepth = 2;
+                        list.Add(subItem2);
+                    }
+                }
+            }
+
+            return list;
+        }
+
+        public static List<S_CandleItemData> SetMergeByNextTime(List<S_CandleItemData> pList, List<S_CandleItemData> cList, TimeIntervalEnum timeInterval)
+        {
+            List<S_CandleItemData> list = new List<S_CandleItemData>();
+            foreach (S_CandleItemData item in pList)
+            {
+                List<S_CandleItemData> subList = new List<S_CandleItemData>();
+
+                if (timeInterval == TimeIntervalEnum.Week)
+                {
+                    var diffSDT = item.DTime.AddDays(7);
+                    var diffEDT = item.DTime.AddDays(14);
+                    subList = cList.Where(t => (t.DTime >= diffSDT && t.DTime < diffEDT)).ToList();
+                }
+                else if (timeInterval == TimeIntervalEnum.Day)
+                {                    
+                    var diffSDT = item.DTime.AddDays(1);
+                    var diffEDT = item.DTime.AddDays(2);
+                    subList = cList.Where(t => (t.DTime >= diffSDT && t.DTime < diffEDT)).ToList();
+                }
+                else if (timeInterval == TimeIntervalEnum.Hour_05)
+                {
+                    var diffSDT = item.DTime.AddHours(5);
+                    var diffEDT = item.DTime.AddHours(10);
+                    subList = cList.Where(t => (t.DTime >= diffSDT && t.DTime < diffEDT)).ToList();
+                }
+                else if (timeInterval == TimeIntervalEnum.Hour_02)
+                {
+                    var diffSDT = item.DTime.AddHours(2);
+                    var diffEDT = item.DTime.AddHours(4);
+                    subList = cList.Where(t => (t.DTime >= diffSDT && t.DTime < diffEDT)).ToList();
+                }
+
+                //if (subList.Count < 4) continue;
+
+                item.VirtualDepth = 0;
+                list.Add(item);
+
+                foreach (var subItem in subList)
+                {
+                    subItem.DTime = item.DTime;
+                    subItem.VirtualDepth = 1;
+                    list.Add(subItem);
+                }
+            }
+
+            return list;
+        }
         #endregion
 
         #region Renko
@@ -1806,5 +1986,7 @@ namespace OM.PP.Chakra
             return list;
         }
         #endregion
+
+        
     }
 }

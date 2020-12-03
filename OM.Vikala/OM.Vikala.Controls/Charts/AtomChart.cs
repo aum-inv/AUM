@@ -27,6 +27,11 @@ namespace OM.Vikala.Controls.Charts
             get;
             set;
         } = false;
+        public bool IsShowVirtualDepth
+        {
+            get;
+            set;
+        } = false;
         public List<T_AtomItemData> ChartData
         {
             get;
@@ -80,40 +85,97 @@ namespace OM.Vikala.Controls.Charts
             if (ChartData == null) return;
             if (ChartDataSub == null) return;
             //foreach (T_AtomItemData item in ChartData)
+
+            int diffCnt = ChartData.Count - ChartDataSub.Count;
+            for (int i = 0; i < diffCnt; i++)
+                ChartData.RemoveAt(0); 
+            
+            diffCnt = ChartDataSub.Count - ChartData.Count;
+            for (int i = 0; i < diffCnt; i++)
+                ChartDataSub.RemoveAt(0);
+
             for (int i = 0; i < ChartData.Count; i++)
             {
                 var item = ChartData[i];
              
                 int idx = chart.Series[0].Points.AddXY(item.DTime, item.HighPrice, item.LowPrice, item.OpenPrice, item.ClosePrice);
-                chart.Series[1].Points.AddXY(item.DTime, item.VikalaPrice, item.VikalaPrice, item.ClosePrice, item.VikalaPrice);
-                chart.Series[2].Points.AddXY(item.DTime, item.QuantumPrice, item.QuantumPrice, item.OpenPrice, item.QuantumPrice);
-                
-                item = ChartDataSub[i];
-                //빨강
-                chart.Series[3].Points.AddXY(item.DTime, item.T_QuantumAvg);
-                //주황
-                chart.Series[4].Points.AddXY(item.DTime, item.T_MassAvg);
-                //파랑
-                chart.Series[5].Points.AddXY(item.DTime, item.T_VikalaAvg);
-                //검정
-                chart.Series[6].Points.AddXY(item.DTime, item.T_Avg);
+                                
+                if (item.VirtualDepth == 2)
+                {
+                    chart.Series[1].Points.AddXY(item.DTime, double.NaN, double.NaN, double.NaN, double.NaN);
+                    chart.Series[2].Points.AddXY(item.DTime, double.NaN, double.NaN, double.NaN, double.NaN);
+                }
+                else if (item.VirtualDepth == 1)
+                {
+                    chart.Series[1].Points.AddXY(item.DTime, item.VikalaPrice, item.VikalaPrice, item.ClosePrice, item.VikalaPrice);
+                    chart.Series[2].Points.AddXY(item.DTime, item.QuantumPrice, item.QuantumPrice, item.OpenPrice, item.QuantumPrice);
+                }
+                else if (item.VirtualDepth == 0)
+                {
+                    chart.Series[1].Points.AddXY(item.DTime, item.VikalaPrice, item.VikalaPrice, item.ClosePrice, item.VikalaPrice);
+                    chart.Series[2].Points.AddXY(item.DTime, item.QuantumPrice, item.QuantumPrice, item.OpenPrice, item.QuantumPrice);
+                }
 
-                var dataPoint = chart.Series[1].Points[idx];
+                if (IsShowVirtualDepth)
+                {
+                    var dataPoint = chart.Series[0].Points[idx];
+                    if (item.VirtualDepth == 0)
+                    {
+                        if (item.PlusMinusType == PlusMinusTypeEnum.양)
+                            SetDataPointColor(dataPoint, Color.Red, Color.Red, Color.Red, 2);
+                        else if (item.PlusMinusType == PlusMinusTypeEnum.음)
+                            SetDataPointColor(dataPoint, Color.Blue, Color.Blue, Color.Blue, 2);
+                        else
+                            SetDataPointColor(dataPoint, Color.Black, Color.Black, Color.Black, 2);
+
+                        dataPoint.Label = "●";
+                    }
+                    else if (item.VirtualDepth == 1)
+                    {
+                        if (item.PlusMinusType == PlusMinusTypeEnum.양)
+                            SetDataPointColor(dataPoint, Color.Red, Color.Red, Color.LightGray, 1);
+                        else if (item.PlusMinusType == PlusMinusTypeEnum.음)
+                            SetDataPointColor(dataPoint, Color.Blue, Color.Blue, Color.LightGray, 1);
+                        else
+                            SetDataPointColor(dataPoint, Color.Black, Color.Black, Color.LightGray, 1);
+                    }
+                    else if (item.VirtualDepth == 2)
+                    {
+                        if (item.PlusMinusType == PlusMinusTypeEnum.양)
+                            SetDataPointColor(dataPoint, Color.Red, Color.Red, Color.White, 1);
+                        else if (item.PlusMinusType == PlusMinusTypeEnum.음)
+                            SetDataPointColor(dataPoint, Color.Blue, Color.Blue, Color.White, 1);
+                        else
+                            SetDataPointColor(dataPoint, Color.Black, Color.Black, Color.White, 1);
+                    }
+                }
+
+                var itemAvg = ChartDataSub[i];
+                //빨강
+                chart.Series[3].Points.AddXY(item.DTime, itemAvg.T_QuantumAvg);
+                //주황
+                chart.Series[4].Points.AddXY(item.DTime, itemAvg.T_MassAvg);
+                //파랑
+                chart.Series[5].Points.AddXY(item.DTime, itemAvg.T_VikalaAvg);
+                //검정
+                chart.Series[6].Points.AddXY(item.DTime, itemAvg.T_Avg);
+                               
                 bool isSignal = false;
                 bool isUpPosition = false;
                 bool isDownPosition = false;
-                if (item.HighPrice < item.T_MassAvg
-                    && item.HighPrice < item.T_QuantumAvg
-                    && item.HighPrice < item.T_VikalaAvg
-                    && item.HighPrice < item.T_TotalCenterAvg)
+               
+                if (itemAvg.HighPrice < itemAvg.T_MassAvg
+                    && itemAvg.HighPrice < itemAvg.T_QuantumAvg
+                    && itemAvg.HighPrice < itemAvg.T_VikalaAvg
+                    && itemAvg.HighPrice < itemAvg.T_TotalCenterAvg)
                 {
                     isSignal = true;
                     isDownPosition = true;
                 }
-                if (item.LowPrice > item.T_MassAvg
-                   && item.LowPrice > item.T_QuantumAvg
-                   && item.LowPrice > item.T_VikalaAvg
-                   && item.LowPrice > item.T_TotalCenterAvg)
+                if (itemAvg.LowPrice > itemAvg.T_MassAvg
+                   && itemAvg.LowPrice > itemAvg.T_QuantumAvg
+                   && itemAvg.LowPrice > itemAvg.T_VikalaAvg
+                   && itemAvg.LowPrice > itemAvg.T_TotalCenterAvg)
                 {
                     isSignal = true;
                     isUpPosition = true;
@@ -125,9 +187,9 @@ namespace OM.Vikala.Controls.Charts
                     bool isUpPosition2 = false;
                     bool isDownPosition2 = false;
                     if (bitem.HighPrice < bitem.T_MassAvg
-                   && bitem.HighPrice < bitem.T_QuantumAvg
-                   && bitem.HighPrice < bitem.T_VikalaAvg
-                   && bitem.HighPrice < bitem.T_TotalCenterAvg)
+                       && bitem.HighPrice < bitem.T_QuantumAvg
+                       && bitem.HighPrice < bitem.T_VikalaAvg
+                       && bitem.HighPrice < bitem.T_TotalCenterAvg)
                     {
                         isDownPosition2 = true;
                     }
@@ -143,12 +205,12 @@ namespace OM.Vikala.Controls.Charts
                     {                       
                         bool isFirst = false;
                         bool isSecond = false;
-                        if (bitem.QuantumPrice > item.ClosePrice)
+                        if (bitem.QuantumPrice > itemAvg.ClosePrice)
                         {
                             chart.Series[1].Points[idx - 1].Label = "▼";
                             isFirst = true;
                         }
-                        if (bitem.VikalaPrice > item.ClosePrice)
+                        if (bitem.VikalaPrice > itemAvg.ClosePrice)
                         {
                             chart.Series[2].Points[idx - 1].Label = "▼";
                             isSecond = true;
@@ -165,12 +227,12 @@ namespace OM.Vikala.Controls.Charts
                     {
                         bool isFirst = false;
                         bool isSecond = false;
-                        if (bitem.QuantumPrice < item.ClosePrice)
+                        if (bitem.QuantumPrice < itemAvg.ClosePrice)
                         {
                             chart.Series[1].Points[idx - 1].Label = "▲";
                             isFirst = true;
                         }
-                        if (bitem.VikalaPrice < item.ClosePrice)
+                        if (bitem.VikalaPrice < itemAvg.ClosePrice)
                         {
                             chart.Series[2].Points[idx - 1].Label = "▲";
                             isSecond = true;
@@ -185,25 +247,6 @@ namespace OM.Vikala.Controls.Charts
                 }
             }
 
-            //double maxPrice1 = ChartData.Max(m => m.HighPrice);
-            //double minPrice1 = ChartData.Min(m => m.LowPrice);
-            //double maxPrice2 = ChartData.Max(m => m.QuantumHighPrice);
-            //double minPrice2 = ChartData.Min(m => m.QuantumLowPrice);
-            //double maxPrice3 = ChartData.Max(m => m.VikalaHighPrice);
-            //double minPrice3 = ChartData.Min(m => m.VikalaLowPrice);
-
-            //double maxPrice = maxPrice1 > maxPrice2 ? maxPrice1 : maxPrice2;
-            //double minPrice = minPrice1 < minPrice2 ? minPrice1 : minPrice2;
-            //maxPrice = maxPrice > maxPrice3 ? maxPrice : maxPrice3;
-            //minPrice = minPrice < minPrice3 ? minPrice : minPrice3;
-
-            //maxPrice = maxPrice + SpaceMaxMin;
-            //minPrice = minPrice - SpaceMaxMin;
-            //chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
-            //chart.ChartAreas[0].AxisY2.Minimum = minPrice;
-
-            //SetYInterval(chart.ChartAreas[0].AxisY2, minPrice, maxPrice);
-
             SetTrackBar();
             SetScrollBar();
             
@@ -213,34 +256,6 @@ namespace OM.Vikala.Controls.Charts
 
             base.View();
         }        
-
-        //public void SetScrollBar()
-        //{
-        //    int trackView = trackBar.Value;
-        //    int displayItemCount = DisplayPointCount * trackView;
-
-        //    int maxScrollValue = (int)Math.Ceiling((Convert.ToDouble(ChartData.Count) / Convert.ToDouble(displayItemCount))) ;
-        //    int minScrollValue = 1;
-
-        //    hScrollBar.Minimum = minScrollValue;
-        //    hScrollBar.Maximum = maxScrollValue;
-        //    hScrollBar.Value = maxScrollValue;
-        //    hScrollBar.LargeChange = 1;
-        //    hScrollBar.SmallChange = 1;
-        //}
-
-        //public void SetTrackBar()
-        //{
-        //    pnlScroll.Visible = IsAutoScrollX;
-        //    int maxScrollValue = (int)Math.Ceiling((Convert.ToDouble(ChartData.Count) / Convert.ToDouble(DisplayPointCount)));
-        //    int minScrollValue = 1;
-
-        //    trackBar.Minimum = minScrollValue;
-        //    trackBar.Maximum = maxScrollValue;
-        //    trackBar.Value = minScrollValue;
-        //    trackBar.LargeChange = 1;
-        //    trackBar.SmallChange = 1;
-        //}
 
         public void DisplayView()
         {
@@ -333,14 +348,14 @@ namespace OM.Vikala.Controls.Charts
 
         private void chart_MouseDown(object sender, MouseEventArgs e)
         {  
-            chart.Annotations.Clear();
-            lblQPrice.Visible = false;
-            HitTestResult result = chart.HitTest(e.X, e.Y);           
-            if (result.ChartElementType == ChartElementType.DataPoint
-                && result.Series == chart.Series[0])
-            {
-                setLineAnnotation(result.PointIndex, e.Location);
-            }
+            //chart.Annotations.Clear();
+            //lblQPrice.Visible = false;
+            //HitTestResult result = chart.HitTest(e.X, e.Y);           
+            //if (result.ChartElementType == ChartElementType.DataPoint
+            //    && result.Series == chart.Series[0])
+            //{
+            //    setLineAnnotation(result.PointIndex, e.Location);
+            //}
         }
 
         private void setLineAnnotation(int index, Point p)

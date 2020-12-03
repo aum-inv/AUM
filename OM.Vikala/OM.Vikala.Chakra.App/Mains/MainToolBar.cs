@@ -97,7 +97,12 @@ namespace OM.Vikala.Chakra.App.Mains
             f.Text = "ATMAN INV. F ATOM CHART";
             f.Show();
         }
-
+        private void tsb_Atom2_Click(object sender, EventArgs e)
+        {
+            var f = new ToolbarChartForms.AtomMixedChartForm();
+            f.Text = "ATMAN INV. F ATOM CHART";
+            f.Show();
+        }
         private void tsb_Quantum_Click(object sender, EventArgs e)
         {
             var f = new ToolbarChartForms.QuantumChartHLForm();
@@ -107,8 +112,8 @@ namespace OM.Vikala.Chakra.App.Mains
 
         private void tsb_Velocity_Click(object sender, EventArgs e)
         {
-            var f = new ToolbarChartForms.VelocityChartForm();
-            f.Text = "ATMAN INV. F VELOCITY CHART";
+            var f = new ToolbarChartForms.AntiMatterMixedChartForm();
+            f.Text = "ATMAN INV. F ANTIMATTER MIXED CHART";
             f.Show();
         }
 
@@ -270,7 +275,9 @@ namespace OM.Vikala.Chakra.App.Mains
             this.WindowState = FormWindowState.Minimized;
         }
 
-        
+       
+
+
         //private void tsb_Minimize_Click(object sender, EventArgs e)
         //{
         //    foreach (var f in lstWindows)

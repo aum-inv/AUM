@@ -288,19 +288,19 @@ namespace OM.Vikala.Controls.Charts
                 //    }
                 //}
 
-                if (SelectedPType == "해외선물")
+                if (SelectedPType == "해외선물" || SelectedPType == "암호화폐")
                 {
                     uItemCount++;
                     dItemCount++;
                     if (smart.Variance_ChartPrice3 < 0 && preSPrice3 >= smart.Variance_ChartPrice3 && (nextSPrice3 != 0 && nextSPrice3 >= smart.Variance_ChartPrice3))
                     {
-                        bool isRange = false;                       
-                        if (TimeInterval == TimeIntervalEnum.Minute_30 && smart.Variance_ChartPrice3 >= -30) isRange = true;
-                        if (TimeInterval == TimeIntervalEnum.Hour_01 && smart.Variance_ChartPrice3 >= -50) isRange = true;
-                        if (TimeInterval == TimeIntervalEnum.Hour_02 && smart.Variance_ChartPrice3 >= -60) isRange = true;
-                        if (TimeInterval == TimeIntervalEnum.Hour_05 && smart.Variance_ChartPrice3 >= -70) isRange = true;
-                        if (TimeInterval == TimeIntervalEnum.Day && smart.Variance_ChartPrice3 <= -100) isRange = true;
-                        if (TimeInterval == TimeIntervalEnum.Week && smart.Variance_ChartPrice3 <= -300) isRange = true;
+                        bool isRange = true;                       
+                        //if (TimeInterval == TimeIntervalEnum.Minute_30 && smart.Variance_ChartPrice3 <= -30) isRange = true;
+                        //if (TimeInterval == TimeIntervalEnum.Hour_01 && smart.Variance_ChartPrice3 <= -50) isRange = true;
+                        //if (TimeInterval == TimeIntervalEnum.Hour_02 && smart.Variance_ChartPrice3 <= -60) isRange = true;
+                        //if (TimeInterval == TimeIntervalEnum.Hour_05 && smart.Variance_ChartPrice3 <= -70) isRange = true;
+                        //if (TimeInterval == TimeIntervalEnum.Day && smart.Variance_ChartPrice3 <= -100) isRange = true;
+                        //if (TimeInterval == TimeIntervalEnum.Week && smart.Variance_ChartPrice3 <= -300) isRange = true;
 
                         if (uItemCount >= 5 && isRange)
                         {
@@ -312,13 +312,13 @@ namespace OM.Vikala.Controls.Charts
                     }
                     if (smart.Variance_ChartPrice3 > 0 && preSPrice3 <= smart.Variance_ChartPrice3 && (nextSPrice3 != 0 && nextSPrice3 <= smart.Variance_ChartPrice3))
                     {
-                        bool isRange = false;                      
-                        if (TimeInterval == TimeIntervalEnum.Minute_30 && smart.Variance_ChartPrice3 <= 30) isRange = true;
-                        if (TimeInterval == TimeIntervalEnum.Hour_01 && smart.Variance_ChartPrice3 <= 50) isRange = true;
-                        if (TimeInterval == TimeIntervalEnum.Hour_02 && smart.Variance_ChartPrice3 <= 60) isRange = true;
-                        if (TimeInterval == TimeIntervalEnum.Hour_05 && smart.Variance_ChartPrice3 <= 70) isRange = true;
-                        if (TimeInterval == TimeIntervalEnum.Day && smart.Variance_ChartPrice3 >= 100) isRange = true;
-                        if (TimeInterval == TimeIntervalEnum.Week && smart.Variance_ChartPrice3 >= 300) isRange = true;
+                        bool isRange = true;                      
+                        //if (TimeInterval == TimeIntervalEnum.Minute_30 && smart.Variance_ChartPrice3 >= 30) isRange = true;
+                        //if (TimeInterval == TimeIntervalEnum.Hour_01 && smart.Variance_ChartPrice3 >= 50) isRange = true;
+                        //if (TimeInterval == TimeIntervalEnum.Hour_02 && smart.Variance_ChartPrice3 >= 60) isRange = true;
+                        //if (TimeInterval == TimeIntervalEnum.Hour_05 && smart.Variance_ChartPrice3 >= 70) isRange = true;
+                        //if (TimeInterval == TimeIntervalEnum.Day && smart.Variance_ChartPrice3 >= 100) isRange = true;
+                        //if (TimeInterval == TimeIntervalEnum.Week && smart.Variance_ChartPrice3 >= 300) isRange = true;
 
                         if (dItemCount >= 5 && isRange)
                         {

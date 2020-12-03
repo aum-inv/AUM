@@ -150,6 +150,7 @@
             this.tsbPrint.Name = "tsbPrint";
             this.tsbPrint.Size = new System.Drawing.Size(50, 30);
             this.tsbPrint.Text = "Print";
+            this.tsbPrint.Visible = false;
             this.tsbPrint.Click += new System.EventHandler(this.tsbPrint_Click);
             // 
             // toolStripSeparator6

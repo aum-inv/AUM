@@ -78,6 +78,12 @@ namespace OM.PP.Chakra
         {
             get; set;
         } = false;
+
+        public int VirtualDepth
+        {
+            get; set;
+        } = 0;
+
         public Single OpenPriceAvg
         {
             get; set;

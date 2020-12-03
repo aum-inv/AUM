@@ -32,11 +32,11 @@ namespace OM.Vikala.Controls.Charts
         {
             get
             {
-                return chart.Series[3].Enabled;
+                return chart.Series[4].Enabled;
             }
             set
             {
-                chart.Series[3].Enabled = value;
+                chart.Series[4].Enabled = value;
             }
         }
 
@@ -103,22 +103,26 @@ namespace OM.Vikala.Controls.Charts
 
                 var itemAvg = ChartDataSub[i];
                 chart.Series[1].Points.AddXY(item.DTime, item.T_QuantumHighAvg + itemAvg.HeadLength + itemAvg.LegLength);
-                chart.Series[2].Points.AddXY(item.DTime, item.T_QuantumLowAvg - itemAvg.HeadLength - itemAvg.LegLength);       
-                
+                chart.Series[2].Points.AddXY(item.DTime, item.T_QuantumLowAvg - itemAvg.HeadLength - itemAvg.LegLength);
+                chart.Series[3].Points.AddXY(item.DTime, 
+                    ((item.T_QuantumHighAvg + itemAvg.HeadLength + itemAvg.LegLength)
+                    +   (item.T_QuantumLowAvg - itemAvg.HeadLength - itemAvg.LegLength)) / 2.0
+                );
+              
                 int d = PriceTick.GetTickDiff(ItemCode, itemAvg.MassPrice, itemAvg.TotalCenterPrice);
-                chart.Series[3].Points.AddXY(item.DTime, d);             
+                chart.Series[4].Points.AddXY(item.DTime, d);             
                 
                 if (bDistance != -1)
                 {
-                    if (d > bDistance) chart.Series[3].Points[idx].Color = Color.DarkRed;
-                    else chart.Series[3].Points[idx].Color = Color.DarkBlue;
+                    if (d > bDistance) chart.Series[4].Points[idx].Color = Color.DarkRed;
+                    else chart.Series[4].Points[idx].Color = Color.DarkBlue;
 
                 }
 
                 if (d == 0)
                 {
                     if(itemAvg.T_HighAvg < itemAvg.LowPrice || itemAvg.T_LowAvg > item.HighPrice)
-                        chart.Series[3].Points[idx].Label = "↑";
+                        chart.Series[4].Points[idx].Label = "↑";
                 }
                 bDistance = d;       
             }

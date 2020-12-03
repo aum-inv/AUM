@@ -74,8 +74,8 @@
             this.tsl_0 = new System.Windows.Forms.ToolStripLabel();
             this.tsl_2 = new System.Windows.Forms.ToolStripLabel();
             this.tsl_5 = new System.Windows.Forms.ToolStripLabel();
-            this.tsbWeb2 = new System.Windows.Forms.ToolStripButton();
             this.tsbCopy = new System.Windows.Forms.ToolStripButton();
+            this.tsbWeb2 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,7 +91,7 @@
             this.tscbItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.tscbItem.MaxDropDownItems = 30;
             this.tscbItem.Name = "tscbItem";
-            this.tscbItem.Size = new System.Drawing.Size(150, 23);
+            this.tscbItem.Size = new System.Drawing.Size(120, 23);
             // 
             // lblName
             // 
@@ -280,8 +280,11 @@
             // 
             // tscbCnt
             // 
+            this.tscbCnt.AutoSize = false;
             this.tscbCnt.DropDownHeight = 100;
             this.tscbCnt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.tscbCnt.DropDownWidth = 50;
+            this.tscbCnt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.tscbCnt.IntegralHeight = false;
             this.tscbCnt.Items.AddRange(new object[] {
             "120",
@@ -394,8 +397,8 @@
             this.tsbLineBold.Image = ((System.Drawing.Image)(resources.GetObject("tsbLineBold.Image")));
             this.tsbLineBold.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbLineBold.Name = "tsbLineBold";
-            this.tsbLineBold.Size = new System.Drawing.Size(43, 20);
-            this.tsbLineBold.Text = "Bold+";
+            this.tsbLineBold.Size = new System.Drawing.Size(25, 20);
+            this.tsbLineBold.Text = "L+";
             this.tsbLineBold.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.tsbLineBold.Click += new System.EventHandler(this.TsbLineBold_Click);
             // 
@@ -405,8 +408,8 @@
             this.tsbLineBold2.Image = ((System.Drawing.Image)(resources.GetObject("tsbLineBold2.Image")));
             this.tsbLineBold2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbLineBold2.Name = "tsbLineBold2";
-            this.tsbLineBold2.Size = new System.Drawing.Size(40, 20);
-            this.tsbLineBold2.Text = "Bold-";
+            this.tsbLineBold2.Size = new System.Drawing.Size(23, 20);
+            this.tsbLineBold2.Text = "L-";
             this.tsbLineBold2.Click += new System.EventHandler(this.TsbLineBold2_Click);
             // 
             // toolStripSeparator4
@@ -416,22 +419,21 @@
             // 
             // tsbPrint
             // 
-            this.tsbPrint.AutoSize = false;
-            this.tsbPrint.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbPrint.Image = ((System.Drawing.Image)(resources.GetObject("tsbPrint.Image")));
+            this.tsbPrint.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsbPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbPrint.Name = "tsbPrint";
-            this.tsbPrint.Size = new System.Drawing.Size(40, 40);
+            this.tsbPrint.Size = new System.Drawing.Size(23, 20);
+            this.tsbPrint.Text = "P";
             this.tsbPrint.Click += new System.EventHandler(this.tsbPrint_Click);
             // 
             // tsbDraw
             // 
-            this.tsbDraw.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbDraw.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsbDraw.Image = ((System.Drawing.Image)(resources.GetObject("tsbDraw.Image")));
             this.tsbDraw.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbDraw.Name = "tsbDraw";
-            this.tsbDraw.Size = new System.Drawing.Size(28, 28);
-            this.tsbDraw.Text = "Draw";
+            this.tsbDraw.Size = new System.Drawing.Size(23, 19);
+            this.tsbDraw.Text = "D";
             this.tsbDraw.Click += new System.EventHandler(this.tsbDraw_Click);
             // 
             // toolStripSeparator7
@@ -441,12 +443,12 @@
             // 
             // tsbWeb1
             // 
-            this.tsbWeb1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbWeb1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsbWeb1.Image = ((System.Drawing.Image)(resources.GetObject("tsbWeb1.Image")));
             this.tsbWeb1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbWeb1.Name = "tsbWeb1";
-            this.tsbWeb1.Size = new System.Drawing.Size(28, 28);
-            this.tsbWeb1.Text = "Go Naver";
+            this.tsbWeb1.Size = new System.Drawing.Size(23, 19);
+            this.tsbWeb1.Text = "N";
             this.tsbWeb1.Click += new System.EventHandler(this.tsbWeb1_Click);
             // 
             // toolStrip1
@@ -509,6 +511,7 @@
             // 
             // tscbType
             // 
+            this.tscbType.DropDownWidth = 100;
             this.tscbType.Items.AddRange(new object[] {
             "국내지수",
             "해외지수",
@@ -517,7 +520,7 @@
             "국내종목",
             "암호화폐"});
             this.tscbType.Name = "tscbType";
-            this.tscbType.Size = new System.Drawing.Size(121, 23);
+            this.tscbType.Size = new System.Drawing.Size(100, 23);
             this.tscbType.SelectedIndexChanged += new System.EventHandler(this.tscbType_SelectedIndexChanged);
             // 
             // tsbTime04
@@ -555,25 +558,24 @@
             this.tsl_5.Text = "〓〓";
             this.tsl_5.Click += new System.EventHandler(this.lblTableView_Click);
             // 
+            // tsbCopy
+            // 
+            this.tsbCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbCopy.Name = "tsbCopy";
+            this.tsbCopy.Size = new System.Drawing.Size(23, 20);
+            this.tsbCopy.Text = "C";
+            this.tsbCopy.Click += new System.EventHandler(this.tsbCopy_Click);
+            // 
             // tsbWeb2
             // 
-            this.tsbWeb2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbWeb2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsbWeb2.Image = ((System.Drawing.Image)(resources.GetObject("tsbWeb2.Image")));
             this.tsbWeb2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbWeb2.Name = "tsbWeb2";
-            this.tsbWeb2.Size = new System.Drawing.Size(28, 28);
-            this.tsbWeb2.Text = "Go Apha";
+            this.tsbWeb2.Size = new System.Drawing.Size(23, 19);
+            this.tsbWeb2.Text = "A";
             this.tsbWeb2.Click += new System.EventHandler(this.tsbWeb2_Click);
-            // 
-            // tsbCopy
-            // 
-            this.tsbCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbCopy.Image = ((System.Drawing.Image)(resources.GetObject("tsbCopy.Image")));
-            this.tsbCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbCopy.Name = "tsbCopy";
-            this.tsbCopy.Size = new System.Drawing.Size(28, 20);
-            this.tsbCopy.Text = "Copy";
-            this.tsbCopy.Click += new System.EventHandler(this.tsbCopy_Click);
             // 
             // UserToolStrip
             // 

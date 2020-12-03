@@ -100,6 +100,12 @@
     <Compile Include="OrderMITForm.Designer.cs">
       <DependentUpon>OrderMITForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="OrderRule\BasicOrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderRule\BasicOrderForm.Designer.cs">
+      <DependentUpon>BasicOrderForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="OrderSimpleForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -210,6 +216,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OrderMITForm.resx">
       <DependentUpon>OrderMITForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderRule\BasicOrderForm.resx">
+      <DependentUpon>BasicOrderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OrderSimpleForm.resx">
       <DependentUpon>OrderSimpleForm.cs</DependentUpon>

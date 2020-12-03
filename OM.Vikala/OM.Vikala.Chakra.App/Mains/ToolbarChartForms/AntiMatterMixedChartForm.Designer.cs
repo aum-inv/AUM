@@ -1,10 +1,10 @@
 ﻿namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
 {
-    partial class QuantumChartHLForm
+    partial class AntiMatterMixedChartForm
     {
         /// <summary>
         /// Required designer variable.
-        /// </summary>
+        /// </summary>      
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuantumChartHLForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AntiMatterChartForm));
             this.pnlContent = new System.Windows.Forms.Panel();
-            this.chart = new OM.Vikala.Controls.Charts.QuantumLineChartHL();
             this.userToolStrip1 = new OM.Vikala.Chakra.App.Mains.UserToolStrip();
+            this.chart = new OM.Vikala.Controls.Charts.AntiMatterChart();
             this.pnlContent.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,36 +43,8 @@
             this.pnlContent.Location = new System.Drawing.Point(0, 23);
             this.pnlContent.Margin = new System.Windows.Forms.Padding(2);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(1127, 676);
+            this.pnlContent.Size = new System.Drawing.Size(1127, 691);
             this.pnlContent.TabIndex = 4;
-            // 
-            // chart
-            // 
-            this.chart.CandleChartType = OM.Vikala.Controls.Charts.CandleChartTypeEnum.기본;
-            this.chart.ChartData = null;
-            this.chart.ChartDataSub = null;
-            this.chart.ChartEventInstance = null;
-            this.chart.DisplayPointCount = 60;
-            this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chart.IsAutoScrollX = true;
-            this.chart.IsEnabledDrawLine = true;
-            this.chart.IsLoaded = false;
-            this.chart.IsShowCandle = true;
-            this.chart.IsShowMassVolumn = false;
-            this.chart.IsShowXLine = true;
-            this.chart.IsShowYLine = true;
-            this.chart.ItemCode = "";
-            this.chart.LineChartType = OM.Vikala.Controls.Charts.LineChartTypeEnum.기본;
-            this.chart.Location = new System.Drawing.Point(0, 0);
-            this.chart.Margin = new System.Windows.Forms.Padding(4);
-            this.chart.Name = "chart";
-            this.chart.SelectedPType = "";
-            this.chart.SelectedTrackBarValue = 1;
-            this.chart.Size = new System.Drawing.Size(1127, 676);
-            this.chart.TabIndex = 2;
-            this.chart.TimeInterval = OM.Lib.Base.Enums.TimeIntervalEnum.Day;
-            this.chart.Title = null;
-            this.chart.TotalPointCount = 0;
             // 
             // userToolStrip1
             // 
@@ -88,18 +60,42 @@
             this.userToolStrip1.Size = new System.Drawing.Size(1127, 23);
             this.userToolStrip1.TabIndex = 0;
             // 
-            // QuantumChartHLForm
+            // chart
+            // 
+            this.chart.CandleChartType = OM.Vikala.Controls.Charts.CandleChartTypeEnum.기본;
+            this.chart.ChartData = null;
+            this.chart.ChartDataSub = null;
+            this.chart.ChartEventInstance = null;
+            this.chart.DisplayPointCount = 60;
+            this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chart.IsAutoScrollX = true;
+            this.chart.IsLoaded = false;
+            this.chart.IsShowCandle = false;
+            this.chart.IsShowLine = false;
+            this.chart.IsShowXLine = false;
+            this.chart.IsShowYLine = true;
+            this.chart.ItemCode = "";
+            this.chart.LineChartType = OM.Vikala.Controls.Charts.LineChartTypeEnum.기본;
+            this.chart.Location = new System.Drawing.Point(0, 0);
+            this.chart.Name = "chart";
+            this.chart.SelectedTrackBarValue = 1;
+            this.chart.Size = new System.Drawing.Size(1127, 691);
+            this.chart.TabIndex = 1;
+            this.chart.TimeInterval = OM.Lib.Base.Enums.TimeIntervalEnum.Day;
+            this.chart.Title = null;
+            // 
+            // AntiMatterChartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1127, 699);
+            this.ClientSize = new System.Drawing.Size(1127, 714);
             this.Controls.Add(this.pnlContent);
             this.Controls.Add(this.userToolStrip1);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "QuantumChartHLForm";
+            this.Name = "AntiMatterChartForm";
             this.Text = "VIKALA CHAKRA";
             this.pnlContent.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -111,6 +107,6 @@
 
         private UserToolStrip userToolStrip1;
         private System.Windows.Forms.Panel pnlContent;
-        private Controls.Charts.QuantumLineChartHL chart;
+        private Controls.Charts.AntiMatterChart chart;
     }
 }

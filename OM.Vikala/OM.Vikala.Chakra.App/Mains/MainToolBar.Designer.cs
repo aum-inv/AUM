@@ -65,6 +65,7 @@
             this.tsbAutoLoad = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.tsb_Atom2 = new System.Windows.Forms.ToolStripButton();
             this.tsMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,11 +86,12 @@
             this.toolStripSeparator3,
             this.toolStripSeparator1,
             this.tsb_Atom,
+            this.tsb_Atom2,
             this.toolStripSeparator7,
             this.tsb_Quantum,
             this.toolStripSeparator8,
-            this.tsb_Velocity,
             this.toolStripSeparator9,
+            this.tsb_Velocity,
             this.tsb_AntiMatter,
             this.toolStripSeparator10,
             this.tsb_Dice,
@@ -246,6 +248,7 @@
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
             this.toolStripSeparator8.Size = new System.Drawing.Size(32, 6);
+            this.toolStripSeparator8.Visible = false;
             // 
             // tsb_Velocity
             // 
@@ -284,6 +287,7 @@
             // 
             this.toolStripSeparator10.Name = "toolStripSeparator10";
             this.toolStripSeparator10.Size = new System.Drawing.Size(32, 6);
+            this.toolStripSeparator10.Visible = false;
             // 
             // tsb_Dice
             // 
@@ -297,6 +301,7 @@
             this.tsb_Dice.Size = new System.Drawing.Size(30, 30);
             this.tsb_Dice.Text = "주사";
             this.tsb_Dice.ToolTipText = "주사위챠트";
+            this.tsb_Dice.Visible = false;
             this.tsb_Dice.Click += new System.EventHandler(this.tsb_Dice_Click);
             // 
             // toolStripSeparator11
@@ -316,6 +321,7 @@
             this.tsb_ANode.Size = new System.Drawing.Size(30, 30);
             this.tsb_ANode.Text = "양극";
             this.tsb_ANode.ToolTipText = "양극챠트";
+            this.tsb_ANode.Visible = false;
             this.tsb_ANode.Click += new System.EventHandler(this.tsb_ANode_Click);
             // 
             // toolStripSeparator12
@@ -335,12 +341,14 @@
             this.tsb_TimeSpace.Size = new System.Drawing.Size(30, 30);
             this.tsb_TimeSpace.Text = "시공";
             this.tsb_TimeSpace.ToolTipText = "비교챠트";
+            this.tsb_TimeSpace.Visible = false;
             this.tsb_TimeSpace.Click += new System.EventHandler(this.tsb_TimeSpace_Click);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             this.toolStripSeparator6.Size = new System.Drawing.Size(32, 6);
+            this.toolStripSeparator6.Visible = false;
             // 
             // tsb_Atman
             // 
@@ -431,6 +439,20 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // tsb_Atom2
+            // 
+            this.tsb_Atom2.AutoSize = false;
+            this.tsb_Atom2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.tsb_Atom2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsb_Atom2.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold);
+            this.tsb_Atom2.ForeColor = System.Drawing.Color.White;
+            this.tsb_Atom2.ImageTransparentColor = System.Drawing.Color.White;
+            this.tsb_Atom2.Name = "tsb_Atom2";
+            this.tsb_Atom2.Size = new System.Drawing.Size(30, 30);
+            this.tsb_Atom2.Text = "원자";
+            this.tsb_Atom2.ToolTipText = "원자챠트";
+            this.tsb_Atom2.Click += new System.EventHandler(this.tsb_Atom2_Click);
+            // 
             // MainToolBar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -485,5 +507,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripButton tsbHidden;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
+        private System.Windows.Forms.ToolStripButton tsb_Atom2;
     }
 }

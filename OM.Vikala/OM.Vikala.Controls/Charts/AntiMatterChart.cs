@@ -26,6 +26,13 @@ namespace OM.Vikala.Controls.Charts
             get;
             set;
         } = false;
+
+        public bool IsShowVirtualDepth
+        {
+            get;
+            set;
+        } = false;
+
         public List<T_AntiMatterItemData> ChartData
         {
             get;
@@ -76,11 +83,50 @@ namespace OM.Vikala.Controls.Charts
         {
             if (ChartData == null) return;
 
+            int diffCnt = ChartData.Count - ChartDataSub.Count;
+            for (int i = 0; i < diffCnt; i++)
+                ChartData.RemoveAt(0);
+
             for (int i = 0; i < ChartData.Count; i++)
             {
                 var item = ChartData[i];
 
                 int idx = chart.Series[0].Points.AddXY(item.DTime, item.HighPrice, item.LowPrice, item.OpenPrice, item.ClosePrice);
+
+                if (IsShowVirtualDepth)
+                {
+                    var dataPoint = chart.Series[0].Points[idx];
+                    if (item.VirtualDepth == 0)
+                    {
+                        if (item.PlusMinusType == PlusMinusTypeEnum.양)
+                            SetDataPointColor(dataPoint, Color.Red, Color.Red, Color.Red, 2);
+                        else if (item.PlusMinusType == PlusMinusTypeEnum.음)
+                            SetDataPointColor(dataPoint, Color.Blue, Color.Blue, Color.Blue, 2);
+                        else
+                            SetDataPointColor(dataPoint, Color.Black, Color.Black, Color.Black, 2);
+
+                        if (IsShowVirtualDepth)
+                            dataPoint.Label = "●";
+                    }
+                    else if (item.VirtualDepth == 1)
+                    {
+                        if (item.PlusMinusType == PlusMinusTypeEnum.양)
+                            SetDataPointColor(dataPoint, Color.Red, Color.Red, Color.LightGray, 1);
+                        else if (item.PlusMinusType == PlusMinusTypeEnum.음)
+                            SetDataPointColor(dataPoint, Color.Blue, Color.Blue, Color.LightGray, 1);
+                        else
+                            SetDataPointColor(dataPoint, Color.Black, Color.Black, Color.LightGray, 1);
+                    }
+                    else if (item.VirtualDepth == 2)
+                    {
+                        if (item.PlusMinusType == PlusMinusTypeEnum.양)
+                            SetDataPointColor(dataPoint, Color.Red, Color.Red, Color.White, 1);
+                        else if (item.PlusMinusType == PlusMinusTypeEnum.음)
+                            SetDataPointColor(dataPoint, Color.Blue, Color.Blue, Color.White, 1);
+                        else
+                            SetDataPointColor(dataPoint, Color.Black, Color.Black, Color.White, 1);
+                    }
+                }
 
                 item = ChartDataSub[i];
                 chart.Series[1].Points.AddXY(item.DTime, item.U_HighAvg);
@@ -89,23 +135,6 @@ namespace OM.Vikala.Controls.Charts
                 chart.Series[4].Points.AddXY(item.DTime, item.D_LowAvg);
             }
 
-            //double maxPrice1 = ChartData.Max(m => m.HighPrice);
-            //double minPrice1 = ChartData.Min(m => m.LowPrice);
-            //double maxPrice2 = ChartData.Max(m => m.U_HighAvg);
-            //double minPrice2 = ChartData.Min(m => m.U_LowAvg);
-            //double maxPrice3 = ChartData.Max(m => m.D_HighAvg);
-            //double minPrice3 = ChartData.Min(m => m.D_LowAvg);
-
-            //double maxPrice = maxPrice1 > maxPrice2 ? maxPrice1 : maxPrice2;
-            //double minPrice = minPrice1 < minPrice2 ? minPrice1 : minPrice2;
-            //maxPrice = maxPrice > maxPrice3 ? maxPrice : maxPrice3;
-            //minPrice = minPrice < minPrice3 ? minPrice : minPrice3;
-
-            //maxPrice = maxPrice + SpaceMaxMin;
-            //minPrice = minPrice - SpaceMaxMin;
-            //chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
-            //chart.ChartAreas[0].AxisY2.Minimum = minPrice; 
-           
             SetTrackBar();
             SetScrollBar();
             
@@ -116,34 +145,6 @@ namespace OM.Vikala.Controls.Charts
             base.View();
         }
         
-        //public void SetScrollBar()
-        //{
-        //    int trackView = trackBar.Value;
-        //    int displayItemCount = DisplayPointCount * trackView;
-
-        //    int maxScrollValue = (int)Math.Ceiling((Convert.ToDouble(ChartData.Count) / Convert.ToDouble(displayItemCount))) ;
-        //    int minScrollValue = 1;
-
-        //    hScrollBar.Minimum = minScrollValue;
-        //    hScrollBar.Maximum = maxScrollValue;
-        //    hScrollBar.Value = maxScrollValue;
-        //    hScrollBar.LargeChange = 1;
-        //    hScrollBar.SmallChange = 1;
-        //}
-
-        //public void SetTrackBar()
-        //{
-        //    pnlScroll.Visible = IsAutoScrollX;
-        //    int maxScrollValue = (int)Math.Ceiling((Convert.ToDouble(ChartData.Count) / Convert.ToDouble(DisplayPointCount)));
-        //    int minScrollValue = 1;
-
-        //    trackBar.Minimum = minScrollValue;
-        //    trackBar.Maximum = maxScrollValue;
-        //    trackBar.Value = minScrollValue;
-        //    trackBar.LargeChange = 1;
-        //    trackBar.SmallChange = 1;
-        //}
-
         public void DisplayView()
         {
             chart.Update();
