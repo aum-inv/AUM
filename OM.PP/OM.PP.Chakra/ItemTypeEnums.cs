@@ -38,10 +38,61 @@ namespace OM.PP.Chakra
 
     public enum CandlePatternTypeEnum
     {
-        Unknown = 9,
-        Up = 1,
-        Down = 2,
-        StrongUp = 3,
-        StrongDown = 4
+        Unknown = 0,
+     
+        WeakUp = 1,
+        WeakDown = 2,
+
+        Up = 3,
+        Down = 4,
+
+        StrongUp = 5,
+        StrongDown = 6,
+
+        WeakSide = 7,
+        NormalSide = 8,
+        StrongSide = 9
+    }
+
+    public enum CandleGravitationalForceTypeEnum
+    {
+        Unknown = 0,
+
+        MarubozuT = 1,
+        MarubozuB = 2,
+
+        LongBodyT = 3,
+        LongBodyC = 4,
+        LongBodyB = 5,
+       
+        ShortBodyT = 6,
+        ShortBodyC = 7,
+        ShortBodyB = 8,
+        
+        SpinningT = 9,
+        SpinningC = 10,
+        SpinningB = 11,
+      
+        HammerT = 12,
+        HammerB = 13,
+
+        SmallHammerT = 14,
+        SmallHammerB = 15,
+
+        DogiC = 16,
+        DogiT = 17,
+        DogiB = 18
+    }
+    public enum CandleElectromagneticForceTypeEnum
+    {
+        양 = 1, 음 = 2, 무 = 0
+    }
+    public enum CandleStrongForceTypeEnum
+    {
+       High = 1, Low = 2, Same = 3 
+    }
+    public enum CandleWeakForceTypeEnum
+    {
+       Big = 1, Small = 2, Same = 3
     }
 }

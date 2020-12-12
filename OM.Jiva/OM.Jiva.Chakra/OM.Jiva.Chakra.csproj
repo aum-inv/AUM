@@ -66,9 +66,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\CandleHistoryData.cs" />
+    <Compile Include="Entities\CandleForcePatternData.cs" />
+    <Compile Include="Entities\CandlePatternData.cs" />
     <Compile Include="Entities\CandlePattern_Four.cs" />
     <Compile Include="Entities\CandlePattern_Two.cs" />
     <Compile Include="Entities\CandlePattern_Three.cs" />
+    <Compile Include="Patterns\ForceCandlePattern.cs" />
+    <Compile Include="Patterns\BasicCandlePattern.cs" />
     <Compile Include="Patterns\PatternUtil.cs" />
     <Compile Include="Patterns\FourCandlePattern.cs" />
     <Compile Include="Patterns\TwoCandlePattern.cs" />

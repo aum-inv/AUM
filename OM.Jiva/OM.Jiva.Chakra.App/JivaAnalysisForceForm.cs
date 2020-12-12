@@ -22,7 +22,7 @@ using System.Windows.Forms;
 
 namespace OM.Jiva.Chakra.App
 {
-    public partial class JivaAnalysisForm : MetroFramework.Forms.MetroForm
+    public partial class JivaAnalysisForceForm : MetroFramework.Forms.MetroForm
     {
         List<S_CandleItemData> sourceDatas = null;
 
@@ -32,10 +32,10 @@ namespace OM.Jiva.Chakra.App
 
         S_CandleItemData selCandleData = null;
 
-        Dictionary<string, BasicCandlePattern> basicPatterns = new Dictionary<string, BasicCandlePattern>();        
-      
+        Dictionary<string, ForceCandlePattern> forcePatterns = new Dictionary<string, ForceCandlePattern>();
+              
         int displayCnt = 60;
-        public JivaAnalysisForm()
+        public JivaAnalysisForceForm()
         {
             InitializeComponent();           
             InitializeControls();
@@ -132,7 +132,7 @@ namespace OM.Jiva.Chakra.App
              
         void loadSiseDataFromDaemon()
         {
-            BasicCandlePattern basicPattern = basicPatterns[selectedType];
+            ForceCandlePattern forcePattern = forcePatterns[selectedType];
 
             if (cbxProduct.SelectedIndex < 3)
                 selectedItem = (cbxItem.SelectedItem as ItemData).Code;
@@ -167,26 +167,25 @@ namespace OM.Jiva.Chakra.App
                     int index = dgvList.Rows.Add(date, "찾기2", "찾기3", "찾기4");
 
                     dgvList.Rows[index].Tag = data;
-
-                    var pInfo = PatternUtil.GetCandlePatternInfo(data);
+                    var pInfo = PatternUtil.GetForcePatternInfo(data);
                     pInfo.TimeInterval = Convert.ToInt32(selectedTimeInterval);
                     pInfo.Product = selectedType;
                     pInfo.Item = selectedItem;
 
                     {
-                        var pList = basicPattern.GetMatchPatterns2(pInfo);
+                        var pList = forcePattern.GetMatchPatterns2(pInfo);
                         if (pList.Count == 0)
                             ((DataGridViewButtonCell)dgvList.Rows[index].Cells[1]).Value = "";
                     }
 
                     {
-                        var pList = basicPattern.GetMatchPatterns3(pInfo);
+                        var pList = forcePattern.GetMatchPatterns3(pInfo);
                         if (pList.Count == 0)
                             ((DataGridViewButtonCell)dgvList.Rows[index].Cells[2]).Value = "";
                     }
 
                     {
-                        var pList = basicPattern.GetMatchPatterns4(pInfo);
+                        var pList = forcePattern.GetMatchPatterns4(pInfo);
                         if (pList.Count == 0)
                             ((DataGridViewButtonCell)dgvList.Rows[index].Cells[3]).Value = "";
                     }
@@ -366,19 +365,18 @@ namespace OM.Jiva.Chakra.App
             if (e.ColumnIndex < 0 || e.RowIndex < 0)
                 return;
 
-            BasicCandlePattern basicPattern = basicPatterns[selectedType];
+            ForceCandlePattern forcePattern = forcePatterns[selectedType];
 
             S_CandleItemData data = dgvList.Rows[e.RowIndex].Tag as S_CandleItemData;
             selCandleData = data;
 
-            var pInfo = PatternUtil.GetCandlePatternInfo(selCandleData);
-            pInfo.TimeInterval = Convert.ToInt32(selectedTimeInterval);
-            pInfo.Product = selectedType;
-            pInfo.Item = selectedItem;
-
             if (e.ColumnIndex == 1)
-            {                
-                var pList= basicPattern.GetMatchPatterns2(pInfo);
+            {
+                var pInfo = PatternUtil.GetForcePatternInfo(selCandleData);
+                pInfo.TimeInterval = Convert.ToInt32(selectedTimeInterval);
+                pInfo.Product = selectedType;
+                pInfo.Item = selectedItem;
+                var pList= forcePattern.GetMatchPatterns2(pInfo);
 
                 dgv.Rows.Clear();
                 if(pList.Count > 0) lbNoResult.Visible = false;
@@ -411,7 +409,13 @@ namespace OM.Jiva.Chakra.App
             }
             if (e.ColumnIndex == 2)
             {
-                var pList = basicPattern.GetMatchPatterns3(pInfo);
+                var pInfo = PatternUtil.GetForcePatternInfo(selCandleData);
+                pInfo.TimeInterval = Convert.ToInt32(selectedTimeInterval);
+                pInfo.Product = selectedType;
+                pInfo.Item = selectedItem;
+
+                var pList = forcePattern.GetMatchPatterns3(pInfo);               
+
                 dgv.Rows.Clear();
                 if (pList.Count > 0) lbNoResult.Visible = false;
                 else lbNoResult.Visible = true;
@@ -443,7 +447,12 @@ namespace OM.Jiva.Chakra.App
             }
             if (e.ColumnIndex == 3)
             {
-                var pList = basicPattern.GetMatchPatterns4(pInfo);
+                var pInfo = PatternUtil.GetForcePatternInfo(selCandleData);
+                pInfo.TimeInterval = Convert.ToInt32(selectedTimeInterval);
+                pInfo.Product = selectedType;
+                pInfo.Item = selectedItem;
+
+                var pList = forcePattern.GetMatchPatterns4(pInfo);
 
                 dgv.Rows.Clear();
                 if (pList.Count > 0) lbNoResult.Visible = false;
@@ -486,13 +495,12 @@ namespace OM.Jiva.Chakra.App
                 return;
             string product = "";
             string item = "";
-
             TimeIntervalEnum interval = TimeIntervalEnum.Day;
             DateTime? searchRangeDateS = null;
             DateTime? searchRangeDateE = null;
             DateTime selectedDTime = DateTime.Now;
-            
-            var chooseData = dgv.Rows[e.RowIndex].Tag as CandlePatternData;
+
+            var chooseData = dgv.Rows[e.RowIndex].Tag as CandleForcePatternData;
             product = chooseData.Product;
             item = chooseData.Item;
             interval = (TimeIntervalEnum)chooseData.TimeInterval;
@@ -531,7 +539,7 @@ namespace OM.Jiva.Chakra.App
                     searchRangeDateE = chooseData.EndDT.AddYears(2);
                 }
             }
-            
+
             var sourceDatas2 = loadData(product, item, interval, searchRangeDateS, searchRangeDateE);
             chart2.DisplayPointCount = displayCnt;
             chart2.LoadData(item, sourceDatas2, interval);
@@ -608,7 +616,7 @@ namespace OM.Jiva.Chakra.App
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            if (!basicPatterns.ContainsKey(selectedType))
+            if (!forcePatterns.ContainsKey(selectedType))
             {
                 MessageBox.Show("Load Data First!!!");
                 return;
@@ -679,15 +687,15 @@ namespace OM.Jiva.Chakra.App
 
         private void btnLoadDB_Click(object sender, EventArgs e)
         {
-            if (!basicPatterns.ContainsKey(selectedType))
-                basicPatterns.Add(selectedType, new BasicCandlePattern());
+            if (!forcePatterns.ContainsKey(selectedType))
+                forcePatterns.Add(selectedType, new ForceCandlePattern());
 
-            BasicCandlePattern basicPattern = basicPatterns[selectedType];
+            ForceCandlePattern forcePattern = forcePatterns[selectedType];
 
             Task.Factory.StartNew(() => {
-                basicPattern.LoadPatternData(selectedType);               
+                forcePattern.LoadPatternData(selectedType);
                 this.Invoke(new Action(() => { btnLoad.Enabled = true; }));
-            });            
+            });
         }
     }
 }

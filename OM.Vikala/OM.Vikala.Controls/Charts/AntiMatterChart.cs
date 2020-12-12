@@ -43,6 +43,11 @@ namespace OM.Vikala.Controls.Charts
             get;
             set;
         }
+        public override void InitializeControl()
+        {
+            //if (IsShowXLine) createXYLineAnnotation();
+            //if (IsShowYLine) createYXLineAnnotation();            
+        }
         public void LoadData(string itemCode = ""
             , List<T_AntiMatterItemData> chartData = null
             , Lib.Base.Enums.TimeIntervalEnum timeInterval = Lib.Base.Enums.TimeIntervalEnum.Day)
@@ -133,6 +138,7 @@ namespace OM.Vikala.Controls.Charts
                 chart.Series[2].Points.AddXY(item.DTime, item.D_HighAvg);
                 chart.Series[3].Points.AddXY(item.DTime, item.U_LowAvg);
                 chart.Series[4].Points.AddXY(item.DTime, item.D_LowAvg);
+                chart.Series[5].Points.AddXY(item.DTime, (item.D_HighAvg - item.D_LowAvg) / (item.D_HighAvg + item.D_LowAvg));
             }
 
             SetTrackBar();
@@ -207,7 +213,14 @@ namespace OM.Vikala.Controls.Charts
                 chart.ChartAreas[0].AxisY2.Maximum = maxPrice;
                 chart.ChartAreas[0].AxisY2.Minimum = minPrice;
                 chart.ChartAreas[0].AxisX.Maximum = maxDisplayIndex + 1;
-                chart.ChartAreas[0].AxisX.Minimum = minDisplayIndex - 1;               
+                chart.ChartAreas[0].AxisX.Minimum = minDisplayIndex - 1;
+
+                maxPrice = viewLists.Max(m => (m.D_HighAvg - m.D_LowAvg) / (m.D_HighAvg + m.D_LowAvg));
+                minPrice = viewLists.Min(m => (m.D_HighAvg - m.D_LowAvg) / (m.D_HighAvg + m.D_LowAvg));
+                chart.ChartAreas[1].AxisY2.Maximum = maxPrice;
+                chart.ChartAreas[1].AxisY2.Minimum = minPrice;
+                chart.ChartAreas[1].AxisX.Maximum = maxDisplayIndex + 1;
+                chart.ChartAreas[1].AxisX.Minimum = minDisplayIndex - 1;
             }
         }
 

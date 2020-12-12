@@ -1,6 +1,5 @@
 ﻿using MetroFramework;
 using MetroFramework.Controls;
-using OM.Jiva.Chakra.Entities;
 using OM.Jiva.Chakra.Patterns;
 using OM.Lib.Base.Enums;
 using OM.Lib.Framework.Utility;
@@ -23,7 +22,7 @@ using System.Xml;
 
 namespace OM.Jiva.Chakra.App
 {
-    public partial class JivaCreateForm : MetroFramework.Forms.MetroForm
+    public partial class JivaHistoryCreateForm : MetroFramework.Forms.MetroForm
     {
         List<S_CandleItemData> sourceDatas = null;
 
@@ -34,7 +33,7 @@ namespace OM.Jiva.Chakra.App
 
         bool isAuto = false;
         bool isNoData = false;
-        public JivaCreateForm()
+        public JivaHistoryCreateForm()
         {
             InitializeComponent();
             InitializeEvents();
@@ -148,333 +147,48 @@ namespace OM.Jiva.Chakra.App
             dgv.Rows.Clear();
             foreach (var item in sourceDatas)
             {
-                dgv.Rows.Add(selectedItem
+                dgv.Rows.Add(selectedType
+                    , selectedItem
+                    , selectedTimeInterval
+                    , item.DTime.ToString("yy.MM.dd HH:mm")
                     , item.OpenPrice.ToString()
                     , item.HighPrice.ToString()
                     , item.LowPrice.ToString()
                     , item.ClosePrice.ToString()
-                    , item.PreCandleItem.DTime.ToString("yy.MM.dd HH:mm")
-                    , item.DTime.ToString("yy.MM.dd HH:mm")
-                    , ""
-                    , ""
-                    , ""); ;
+                    , item.Volume.ToString()
+                    ); ;
             }            
-        }
-        private void btnLoad2_Click(object sender, EventArgs e)
-        {
-            if (rdoTIntervalM.Checked) selectedTimeInterval = TimeIntervalEnum.Minute_30;
-            else if (rdoTIntervalH.Checked) selectedTimeInterval = TimeIntervalEnum.Hour_01;
-            else if (rdoTInterval2H.Checked) selectedTimeInterval = TimeIntervalEnum.Hour_02;
-            else if (rdoTInterval5H.Checked) selectedTimeInterval = TimeIntervalEnum.Hour_05;
-            else if (rdoTIntervalD.Checked) selectedTimeInterval = TimeIntervalEnum.Day;
-            else if (rdoTIntervalW.Checked) selectedTimeInterval = TimeIntervalEnum.Week;
-
-            if (selectedType == "국내종목")
-                selectedItem = cbxItem.SelectedItem.ToString().Substring(0, 6);
-            else
-                selectedItem = (cbxItem.SelectedItem as ItemData).Code;
-
-            sourceDatas = loadDBData();
-
-            for (int i = 0; i < sourceDatas.Count; i++)
-            {
-                int pIdx = i - 1 < 0 ? 0 : i - 1;
-                int nIdx = i + 1 == sourceDatas.Count ? i : i + 1;
-
-                sourceDatas[i].PreCandleItem = sourceDatas[pIdx];
-                sourceDatas[i].NextCandleItem = sourceDatas[nIdx];
-            }
-
-            dgv.Rows.Clear();
-            var item = sourceDatas.First();
-            dgv.Rows.Add(selectedItem
-                    , item.OpenPrice.ToString()
-                    , item.HighPrice.ToString()
-                    , item.LowPrice.ToString()
-                    , item.ClosePrice.ToString()
-                    , item.PreCandleItem.DTime.ToString("yy.MM.dd HH:mm")
-                    , item.DTime.ToString("yy.MM.dd HH:mm")
-                    , ""
-                    , ""
-                    , "");
-
-            item = sourceDatas.Last();
-            dgv.Rows.Add(selectedItem
-                   , item.OpenPrice.ToString()
-                   , item.HighPrice.ToString()
-                   , item.LowPrice.ToString()
-                   , item.ClosePrice.ToString()
-                   , item.PreCandleItem.DTime.ToString("yy.MM.dd HH:mm")
-                   , item.DTime.ToString("yy.MM.dd HH:mm")
-                   , ""
-                   , ""
-                   , "");
         }
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            int idx = -1;
-
             if (isAuto == true && sourceDatas.Count == 0)
             {
                 isNoData = true;
                 return;
             }
 
-           
+            foreach (var item in sourceDatas)
             {
-                foreach (var item in sourceDatas)
+
+                try
                 {
-                    idx++;
-                    if (idx < 4) continue;
-                    if (item.PreCandleItem == null) continue;
-                    if (item.PreCandleItem.PreCandleItem == null) continue;
-                    if (item.PreCandleItem.PreCandleItem.PreCandleItem == null) continue;
-                    if (item.PreCandleItem.PreCandleItem.PreCandleItem.PreCandleItem == null) continue;
-                 
-                    var p3 = item.PreCandleItem.PreCandleItem.PreCandleItem;
-                    var p2 = item.PreCandleItem.PreCandleItem;
-                    var p1 = item.PreCandleItem;
-                    var p0 = item;
-
-                    var n1 = item.NextCandleItem;
-                    var n2 = item.NextCandleItem.NextCandleItem;
-                    var n3 = item.NextCandleItem.NextCandleItem.NextCandleItem;
-
-                    var pList4 = new List<S_CandleItemData>() { p3, p2, p1, p0 };
-                    var nList4 = new List<S_CandleItemData>() { n1, n2, n3 };
-                    var cpType4 = PatternUtil.GetCandlePatternType(p0, pList4, nList4);
-
-                    var pList3 = new List<S_CandleItemData>() { p2, p1, p0 };
-                    var nList3 = new List<S_CandleItemData>() { n1, n2, n3 };
-                    var cpType3 = PatternUtil.GetCandlePatternType(p0, pList3, nList3);
-
-                    var pList2 = new List<S_CandleItemData>() { p1, p0 };
-                    var nList2 = new List<S_CandleItemData>() { n1, n2, n3 };
-                    var cpType2 = PatternUtil.GetCandlePatternType(p0, pList2, nList2);
-                    if (idx < dgv.Rows.Count)
-                    {
-                        dgv.Rows[idx].Cells["pattern4"].Value = Convert.ToString(cpType4);
-                        dgv.Rows[idx].Cells["pattern3"].Value = Convert.ToString(cpType3);
-                        dgv.Rows[idx].Cells["pattern2"].Value = Convert.ToString(cpType2);
-                    }
-                    //dgv.Rows[idx].Cells["pattern"].Value = Convert.ToString(p0.GForceType);
-
                     if (item.OpenPrice == 0 || item.HighPrice == 0 || item.LowPrice == 0 || item.ClosePrice == 0)
                         continue;
-
-                    try
-                    {
-                        var data = new Entities.CandleForcePatternData();                      
-                        data.Item = selectedItem;
-                        data.Product = selectedType;
-                        data.TimeInterval = Convert.ToInt32(selectedTimeInterval);
-
-                        data.CandlePatternType4 = Convert.ToInt32(cpType4).ToString();
-                        data.CandlePatternType3 = Convert.ToInt32(cpType3).ToString();
-                        data.CandlePatternType2 = Convert.ToInt32(cpType2).ToString();
-
-                        data.GForceType_P3 = Convert.ToInt32(p3.GForceType).ToString();
-                        data.GForceType_P2 = Convert.ToInt32(p2.GForceType).ToString();
-                        data.GForceType_P1 = Convert.ToInt32(p1.GForceType).ToString();
-                        data.GForceType_P0 = Convert.ToInt32(p0.GForceType).ToString();
-
-                        data.EForceType_OC_P3 = Convert.ToInt32(p3.EForceType_OC).ToString();
-                        data.EForceType_OC_P2 = Convert.ToInt32(p2.EForceType_OC).ToString();
-                        data.EForceType_OC_P1 = Convert.ToInt32(p1.EForceType_OC).ToString();
-                        data.EForceType_OC_P0 = Convert.ToInt32(p0.EForceType_OC).ToString();
-
-                        data.EForceType_CC_P3 = Convert.ToInt32(p3.EForceType_CC).ToString();
-                        data.EForceType_CC_P2 = Convert.ToInt32(p2.EForceType_CC).ToString();
-                        data.EForceType_CC_P1 = Convert.ToInt32(p1.EForceType_CC).ToString();
-                        data.EForceType_CC_P0 = Convert.ToInt32(p0.EForceType_CC).ToString();
-
-                        data.SForceType_O_P3 = Convert.ToInt32(p3.SForceType_O).ToString();
-                        data.SForceType_O_P2 = Convert.ToInt32(p2.SForceType_O).ToString();
-                        data.SForceType_O_P1 = Convert.ToInt32(p1.SForceType_O).ToString();
-                        data.SForceType_O_P0 = Convert.ToInt32(p0.SForceType_O).ToString();
-
-                        data.SForceType_H_P3 = Convert.ToInt32(p3.SForceType_H).ToString();
-                        data.SForceType_H_P2 = Convert.ToInt32(p2.SForceType_H).ToString();
-                        data.SForceType_H_P1 = Convert.ToInt32(p1.SForceType_H).ToString();
-                        data.SForceType_H_P0 = Convert.ToInt32(p0.SForceType_H).ToString();
-
-                        data.SForceType_L_P3 = Convert.ToInt32(p3.SForceType_L).ToString();
-                        data.SForceType_L_P2 = Convert.ToInt32(p2.SForceType_L).ToString();
-                        data.SForceType_L_P1 = Convert.ToInt32(p1.SForceType_L).ToString();
-                        data.SForceType_L_P0 = Convert.ToInt32(p0.SForceType_L).ToString();
-
-                        data.SForceType_C_P3 = Convert.ToInt32(p3.SForceType_C).ToString();
-                        data.SForceType_C_P2 = Convert.ToInt32(p2.SForceType_C).ToString();
-                        data.SForceType_C_P1 = Convert.ToInt32(p1.SForceType_C).ToString();
-                        data.SForceType_C_P0 = Convert.ToInt32(p0.SForceType_C).ToString();
-
-                        data.WForceType_T_P3 = Convert.ToInt32(p3.WForceType_T).ToString();
-                        data.WForceType_T_P2 = Convert.ToInt32(p2.WForceType_T).ToString();
-                        data.WForceType_T_P1 = Convert.ToInt32(p1.WForceType_T).ToString();
-                        data.WForceType_T_P0 = Convert.ToInt32(p0.WForceType_T).ToString();
-
-                        data.WForceType_H_P3 = Convert.ToInt32(p3.WForceType_H).ToString();
-                        data.WForceType_H_P2 = Convert.ToInt32(p2.WForceType_H).ToString();
-                        data.WForceType_H_P1 = Convert.ToInt32(p1.WForceType_H).ToString();
-                        data.WForceType_H_P0 = Convert.ToInt32(p0.WForceType_H).ToString();
-
-                        data.WForceType_B_P3 = Convert.ToInt32(p3.WForceType_B).ToString();
-                        data.WForceType_B_P2 = Convert.ToInt32(p2.WForceType_B).ToString();
-                        data.WForceType_B_P1 = Convert.ToInt32(p1.WForceType_B).ToString();
-                        data.WForceType_B_P0 = Convert.ToInt32(p0.WForceType_B).ToString();
-
-                        data.WForceType_L_P3 = Convert.ToInt32(p3.WForceType_L).ToString();
-                        data.WForceType_L_P2 = Convert.ToInt32(p2.WForceType_L).ToString();
-                        data.WForceType_L_P1 = Convert.ToInt32(p1.WForceType_L).ToString();
-                        data.WForceType_L_P0 = Convert.ToInt32(p0.WForceType_L).ToString();
-
-                        data.StartDT = p0.DTime;
-                        data.EndDT = p0.DTime;
-
-                        data.Create();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
+                    var data = new Entities.CandleHistoryData();
+                    data.Item = selectedItem;
+                    data.Product = selectedType;
+                    data.TimeInterval = Convert.ToInt32(selectedTimeInterval);
+                    data.DTime = item.DTime;
+                    data.OpenPrice = item.OpenPrice.ToString();
+                    data.HighPrice = item.HighPrice.ToString();
+                    data.LowPrice = item.LowPrice.ToString();
+                    data.ClosePrice = item.ClosePrice.ToString();
+                    data.Volume = item.Volume.ToString();
+                    data.Create();
                 }
-            }
-            
-            {
-                idx = -1;
-                foreach (var item in sourceDatas)
+                catch (Exception ex)
                 {
-                    idx++;
-                    if (idx < 3) continue;
-                    if (item.PreCandleItem == null) continue;
-                    if (item.PreCandleItem.PreCandleItem == null) continue;
-                    if (item.PreCandleItem.PreCandleItem.PreCandleItem == null) continue;
-                    if (item.NextCandleItem == null) continue;
-                    if (item.NextCandleItem.NextCandleItem == null) continue;
-                    if (item.NextCandleItem.NextCandleItem.NextCandleItem == null) continue;
-
-                    var p3 = item.PreCandleItem.PreCandleItem.PreCandleItem;
-                    var p2 = item.PreCandleItem.PreCandleItem;
-                    var p1 = item.PreCandleItem;
-                    var p0 = item;
-                    var n1 = item.NextCandleItem;
-                    var n2 = item.NextCandleItem.NextCandleItem;
-                    var n3 = item.NextCandleItem.NextCandleItem.NextCandleItem;
-
-                    {
-                        var pList4 = new List<S_CandleItemData>() { p3, p2, p1, p0 };
-                        var nList4 = new List<S_CandleItemData>() { n1, n2, n3 };
-                        var cpType4 = PatternUtil.GetCandlePatternType(p0, pList4, nList4);
-
-                        var pList3 = new List<S_CandleItemData>() { p2, p1, p0 };
-                        var nList3 = new List<S_CandleItemData>() { n1, n2, n3 };
-                        var cpType3 = PatternUtil.GetCandlePatternType(p0, pList3, nList3);
-
-                        var pList2 = new List<S_CandleItemData>() { p1, p0 };
-                        var nList2 = new List<S_CandleItemData>() { n1, n2, n3 };
-                        var cpType2 = PatternUtil.GetCandlePatternType(p0, pList2, nList2);
-                        if (idx < dgv.Rows.Count)
-                        {
-                            dgv.Rows[idx].Cells["pattern4"].Value = Convert.ToString(cpType4);
-                            dgv.Rows[idx].Cells["pattern3"].Value = Convert.ToString(cpType3);
-                            dgv.Rows[idx].Cells["pattern2"].Value = Convert.ToString(cpType2);
-                        }
-
-                        if (item.OpenPrice == 0 || item.HighPrice == 0 || item.LowPrice == 0 || item.ClosePrice == 0)
-                            continue;
-
-                        try
-                        {
-                            var data = new Entities.CandlePatternData();                            
-                            data.Item = selectedItem;
-                            data.Product = selectedType;
-                            data.TimeInterval = Convert.ToInt32(selectedTimeInterval);
-                            data.CandlePatternType4 = Convert.ToInt32(cpType4).ToString();
-                            data.CandlePatternType3 = Convert.ToInt32(cpType3).ToString();
-                            data.CandlePatternType2 = Convert.ToInt32(cpType2).ToString();
-
-                            data.PlusMinusType_P3 = Convert.ToInt32(p3.PlusMinusType).ToString();
-                            data.PlusMinusType_P2 = Convert.ToInt32(p2.PlusMinusType).ToString();
-                            data.PlusMinusType_P1 = Convert.ToInt32(p1.PlusMinusType).ToString();
-                            data.PlusMinusType_P0 = Convert.ToInt32(p0.PlusMinusType).ToString();
-
-                            data.CandleSpaceType_P3 = Convert.ToInt32(p3.SpaceType_C).ToString();
-                            data.CandleSpaceType_P2 = Convert.ToInt32(p2.SpaceType_C).ToString();
-                            data.CandleSpaceType_P1 = Convert.ToInt32(p1.SpaceType_C).ToString();
-                            data.CandleSpaceType_P0 = Convert.ToInt32(p0.SpaceType_C).ToString();
-
-                            var timeType = PatternUtil.GetCandleTimeType(p2, p1);
-                            data.CandleTimeType_O_P21 = Convert.ToInt32(timeType.openType).ToString();
-                            data.CandleTimeType_C_P21 = Convert.ToInt32(timeType.closeType).ToString();
-                            data.CandleTimeType_H_P21 = Convert.ToInt32(timeType.highType).ToString();
-                            data.CandleTimeType_L_P21 = Convert.ToInt32(timeType.lowType).ToString();
-
-                            timeType = PatternUtil.GetCandleTimeType(p1, p0);
-                            data.CandleTimeType_O_P10 = Convert.ToInt32(timeType.openType).ToString();
-                            data.CandleTimeType_C_P10 = Convert.ToInt32(timeType.closeType).ToString();
-                            data.CandleTimeType_H_P10 = Convert.ToInt32(timeType.highType).ToString();
-                            data.CandleTimeType_L_P10 = Convert.ToInt32(timeType.lowType).ToString();
-
-                            timeType = PatternUtil.GetCandleTimeType(p2, p0);
-                            data.CandleTimeType_O_P20 = Convert.ToInt32(timeType.openType).ToString();
-                            data.CandleTimeType_C_P20 = Convert.ToInt32(timeType.closeType).ToString();
-                            data.CandleTimeType_H_P20 = Convert.ToInt32(timeType.highType).ToString();
-                            data.CandleTimeType_L_P20 = Convert.ToInt32(timeType.lowType).ToString();
-
-                            timeType = PatternUtil.GetCandleTimeType(p3, p2);
-                            data.CandleTimeType_O_P32 = Convert.ToInt32(timeType.openType).ToString();
-                            data.CandleTimeType_C_P32 = Convert.ToInt32(timeType.closeType).ToString();
-                            data.CandleTimeType_H_P32 = Convert.ToInt32(timeType.highType).ToString();
-                            data.CandleTimeType_L_P32 = Convert.ToInt32(timeType.lowType).ToString();
-                            timeType = PatternUtil.GetCandleTimeType(p3, p1);
-                            data.CandleTimeType_O_P31 = Convert.ToInt32(timeType.openType).ToString();
-                            data.CandleTimeType_C_P31 = Convert.ToInt32(timeType.closeType).ToString();
-                            data.CandleTimeType_H_P31 = Convert.ToInt32(timeType.highType).ToString();
-                            data.CandleTimeType_L_P31 = Convert.ToInt32(timeType.lowType).ToString();
-                            timeType = PatternUtil.GetCandleTimeType(p3, p0);
-                            data.CandleTimeType_O_P30 = Convert.ToInt32(timeType.openType).ToString();
-                            data.CandleTimeType_C_P30 = Convert.ToInt32(timeType.closeType).ToString();
-                            data.CandleTimeType_H_P30 = Convert.ToInt32(timeType.highType).ToString();
-                            data.CandleTimeType_L_P30 = Convert.ToInt32(timeType.lowType).ToString();
-
-                            var sizeType = PatternUtil.GetCandleBodySizeType(p2, p1);
-                            data.CandleSizeType_B_P21 = Convert.ToInt32(sizeType).ToString();
-                            sizeType = PatternUtil.GetCandleBodySizeType(p1, p0);
-                            data.CandleSizeType_B_P10 = Convert.ToInt32(sizeType).ToString();
-                            sizeType = PatternUtil.GetCandleBodySizeType(p2, p0);
-                            data.CandleSizeType_B_P20 = Convert.ToInt32(sizeType).ToString();
-
-                            sizeType = PatternUtil.GetCandleBodySizeType(p3, p2);
-                            data.CandleSizeType_B_P32 = Convert.ToInt32(sizeType).ToString();
-                            sizeType = PatternUtil.GetCandleBodySizeType(p3, p1);
-                            data.CandleSizeType_B_P31 = Convert.ToInt32(sizeType).ToString();
-                            sizeType = PatternUtil.GetCandleBodySizeType(p3, p0);
-                            data.CandleSizeType_B_P30 = Convert.ToInt32(sizeType).ToString();
-
-                            sizeType = PatternUtil.GetCandleTotalSizeType(p2, p1);
-                            data.CandleSizeType_T_P21 = Convert.ToInt32(sizeType).ToString();
-                            sizeType = PatternUtil.GetCandleTotalSizeType(p1, p0);
-                            data.CandleSizeType_T_P10 = Convert.ToInt32(sizeType).ToString();
-                            sizeType = PatternUtil.GetCandleTotalSizeType(p2, p0);
-                            data.CandleSizeType_T_P20 = Convert.ToInt32(sizeType).ToString();
-
-                            sizeType = PatternUtil.GetCandleTotalSizeType(p3, p2);
-                            data.CandleSizeType_T_P32 = Convert.ToInt32(sizeType).ToString();
-                            sizeType = PatternUtil.GetCandleTotalSizeType(p3, p1);
-                            data.CandleSizeType_T_P31 = Convert.ToInt32(sizeType).ToString();
-                            sizeType = PatternUtil.GetCandleTotalSizeType(p3, p0);
-                            data.CandleSizeType_T_P30 = Convert.ToInt32(sizeType).ToString();
-
-                            data.StartDT = p0.DTime;
-                            data.EndDT = p0.DTime;
-
-                            data.Create();
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
-                    }
+                    MessageBox.Show(ex.Message);
                 }
             }
         }
@@ -627,30 +341,7 @@ namespace OM.Jiva.Chakra.App
                 , selectedTimeInterval);
             return sourceDatas;
         }
-        protected List<S_CandleItemData> loadDBData()
-        {
-            List<S_CandleItemData> sourceDatas = new List<S_CandleItemData>();
-            CandleHistoryData history = new CandleHistoryData();
-            history.Product = selectedType;
-            history.Item = selectedItem;
-            history.TimeInterval = Convert.ToInt32(selectedTimeInterval);
 
-            var list = history.Collect().Cast<CandleHistoryData>().ToList();
-            foreach (var m in list)
-            {
-                var item = new S_CandleItemData();                
-                item.ItemCode = m.Item;
-                item.DTime = m.DTime;
-                item.OpenPrice = Convert.ToSingle( m.OpenPrice);
-                item.HighPrice = Convert.ToSingle(m.HighPrice);
-                item.LowPrice = Convert.ToSingle(m.LowPrice);
-                item.ClosePrice = Convert.ToSingle(m.ClosePrice);              
-                item.Volume = Convert.ToSingle(m.Volume);
-
-                sourceDatas.Add(item);
-            }           
-            return sourceDatas;
-        }
         private void btnAutoCreateKIndex_Click(object sender, EventArgs e)
         {
             rdoTypeKIndex.Checked = true;
@@ -1182,7 +873,5 @@ namespace OM.Jiva.Chakra.App
         {
             selectedCandleType = "F";
         }
-
-        
     }
 }

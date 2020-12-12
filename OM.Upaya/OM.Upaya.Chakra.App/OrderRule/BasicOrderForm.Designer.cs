@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TradeV1ThreePricesForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BasicOrderForm));
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.chkIsUseP2Buy3 = new System.Windows.Forms.CheckBox();
             this.chkIsUseP2Buy2 = new System.Windows.Forms.CheckBox();

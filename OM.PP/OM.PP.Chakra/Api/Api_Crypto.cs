@@ -54,10 +54,10 @@ namespace OM.PP.XingApp.Ex.Api
                 try
                 {
                     string symbol = "945629";
-                    if (itemCode == "BTC") symbol = "945629";
-                    else if (itemCode == "ETH") symbol = "997650";
-                    else if (itemCode == "BCH") symbol = "1058255";
-                    else if (itemCode == "LTC") symbol = "1057982";
+                    if (itemCode == "BTCUSD") symbol = "945629";
+                    else if (itemCode == "ETHUSD") symbol = "997650";
+                    else if (itemCode == "BCHUSD") symbol = "1058255";
+                    else if (itemCode == "LTCUSD") symbol = "1057982";
 
                     string resolution = gubun;
                     if (gubun == "H" || gubun == "1H") resolution = "60";
@@ -190,10 +190,10 @@ namespace OM.PP.XingApp.Ex.Api
                 try
                 {
                     string symbol = "945629";
-                    if (itemCode == "BTC") symbol = "945629";
-                    else if (itemCode == "ETH") symbol = "997650";
-                    else if (itemCode == "BCH") symbol = "1058255";
-                    else if (itemCode == "LTC") symbol = "1057982";
+                    if (itemCode == "BTCUSD") symbol = "945629";
+                    else if (itemCode == "ETHUSD") symbol = "997650";
+                    else if (itemCode == "BCHUSD") symbol = "1058255";
+                    else if (itemCode == "LTCUSD") symbol = "1057982";
 
                     string resolution = gubun;
                     if (gubun == "H" || gubun == "1H") resolution = "60";

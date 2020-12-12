@@ -552,5 +552,197 @@ namespace OM.PP.Chakra
             }
         }
         #endregion
+
+        #region Candle_Force
+        public CandleGravitationalForceTypeEnum GForceType
+        {
+            //캔들중력힘 (캔들종류)
+            get
+            {
+                var type = CandleGravitationalForceTypeEnum.Unknown;
+
+                double totalLength = this.TotalLength;
+                double headLength = this.HeadLength;
+                double legLength = this.LegLength;
+                double bodyLength = this.BodyLength;
+                
+                int headLengthRate = (int)Math.Ceiling((headLength / totalLength * 100.0));
+                int bodyLengthRate = (int)Math.Ceiling((bodyLength / totalLength * 100.0));
+                int legLengthRate = (int)Math.Ceiling((legLength / totalLength * 100.0));
+                               
+                if (bodyLengthRate >= 90)
+                {
+                    if(bodyLengthRate >= 95)
+                        type = CandleGravitationalForceTypeEnum.MarubozuT;
+                    else
+                        type = CandleGravitationalForceTypeEnum.MarubozuB;
+                }
+
+                else if (bodyLengthRate >= 60 && bodyLengthRate < 90)
+                {
+                    if(bodyLengthRate + legLengthRate > 95)
+                        type = CandleGravitationalForceTypeEnum.LongBodyT;
+                    else if (bodyLengthRate + headLengthRate > 95)
+                        type = CandleGravitationalForceTypeEnum.LongBodyB;
+                    else
+                        type = CandleGravitationalForceTypeEnum.LongBodyC;
+                }
+
+                else if (bodyLengthRate >= 30 && bodyLengthRate < 60)
+                {
+                    if (bodyLengthRate + legLengthRate > 95)
+                        type = CandleGravitationalForceTypeEnum.ShortBodyT;
+                    else if (bodyLengthRate + headLengthRate > 95)
+                        type = CandleGravitationalForceTypeEnum.ShortBodyB;
+                    else
+                        type = CandleGravitationalForceTypeEnum.ShortBodyC;
+                }
+
+                else if (bodyLengthRate >= 20 && bodyLengthRate < 30)
+                {
+                    if (bodyLengthRate + legLengthRate > 90)
+                        type = CandleGravitationalForceTypeEnum.HammerT;
+                    else if (bodyLengthRate + headLengthRate > 90)
+                        type = CandleGravitationalForceTypeEnum.HammerB;
+                    else 
+                    {
+                        if (bodyLengthRate + legLengthRate > 70)
+                            type = CandleGravitationalForceTypeEnum.SpinningT;
+                        else if (bodyLengthRate + headLengthRate > 70)
+                            type = CandleGravitationalForceTypeEnum.SpinningB;
+                        else
+                            type = CandleGravitationalForceTypeEnum.SpinningC;
+                    }
+                }
+                else if (bodyLengthRate >= 10 && bodyLengthRate < 20)
+                {
+                    if (bodyLengthRate + legLengthRate > 90)
+                        type = CandleGravitationalForceTypeEnum.SmallHammerT;
+                    else if (bodyLengthRate + headLengthRate > 90)
+                        type = CandleGravitationalForceTypeEnum.SmallHammerB;
+                    else
+                    {
+                        if (bodyLengthRate + legLengthRate > 70)
+                            type = CandleGravitationalForceTypeEnum.SpinningT;
+                        else if (bodyLengthRate + headLengthRate > 70)
+                            type = CandleGravitationalForceTypeEnum.SpinningB;
+                        else
+                            type = CandleGravitationalForceTypeEnum.SpinningC;
+                    }
+                }
+
+                else if (bodyLengthRate < 10)
+                {
+                    if (bodyLengthRate + legLengthRate > 70)
+                        type = CandleGravitationalForceTypeEnum.DogiT;
+                    else if (bodyLengthRate + headLengthRate > 70)
+                        type = CandleGravitationalForceTypeEnum.DogiB;
+                    else
+                        type = CandleGravitationalForceTypeEnum.DogiC;
+                }
+                return type;
+            }
+        }
+        public CandleElectromagneticForceTypeEnum EForceType_OC
+        {
+            //캔들전자기력힘 (음양무)
+            get 
+            {
+                if (this.OpenPrice < this.ClosePrice) return CandleElectromagneticForceTypeEnum.양;
+                else if (this.OpenPrice > this.ClosePrice) return CandleElectromagneticForceTypeEnum.음;
+                else return CandleElectromagneticForceTypeEnum.무;
+            }
+        }
+        public CandleElectromagneticForceTypeEnum EForceType_CC
+        {
+            //캔들전자기력힘 (음양무)
+            get
+            {
+                if (PreCandleItem.ClosePrice < this.ClosePrice) return CandleElectromagneticForceTypeEnum.양;
+                else if (PreCandleItem.ClosePrice > this.ClosePrice) return CandleElectromagneticForceTypeEnum.음;
+                else return CandleElectromagneticForceTypeEnum.무;
+            }
+        }
+        public CandleStrongForceTypeEnum SForceType_O
+        {
+            //캔들강력 (시고저종 이전가격 비교)
+            get
+            {
+                if (PreCandleItem.OpenPrice < this.OpenPrice) return CandleStrongForceTypeEnum.High;
+                else if (PreCandleItem.OpenPrice > this.OpenPrice) return CandleStrongForceTypeEnum.Low;
+                else return CandleStrongForceTypeEnum.Same;
+            }
+        }
+        public CandleStrongForceTypeEnum SForceType_H
+        {
+            //캔들강력 (시고저종 이전가격 비교)
+            get
+            {
+                if (PreCandleItem.HighPrice < this.HighPrice) return CandleStrongForceTypeEnum.High;
+                else if (PreCandleItem.HighPrice > this.HighPrice) return CandleStrongForceTypeEnum.Low;
+                else return CandleStrongForceTypeEnum.Same;
+            }
+        }
+        public CandleStrongForceTypeEnum SForceType_L
+        {
+            //캔들강력 (시고저종 이전가격 비교)
+            get
+            {
+                if (PreCandleItem.LowPrice < this.LowPrice) return CandleStrongForceTypeEnum.High;
+                else if (PreCandleItem.LowPrice > this.LowPrice) return CandleStrongForceTypeEnum.Low;
+                else return CandleStrongForceTypeEnum.Same;
+            }
+        }
+        public CandleStrongForceTypeEnum SForceType_C
+        {
+            //캔들강력 (시고저종 이전가격 비교)
+            get
+            {
+                if (PreCandleItem.ClosePrice < this.ClosePrice) return CandleStrongForceTypeEnum.High;
+                else if (PreCandleItem.ClosePrice > this.ClosePrice) return CandleStrongForceTypeEnum.Low;
+                else return CandleStrongForceTypeEnum.Same;
+            }
+        }
+        public CandleWeakForceTypeEnum WForceType_T
+        {
+            //캔들약력 (머리, 몸통, 꼬리 길이 비교)
+            get
+            {
+                if (PreCandleItem.TotalLength < this.TotalLength) return CandleWeakForceTypeEnum.Big;
+                else if (PreCandleItem.TotalLength > this.TotalLength) return CandleWeakForceTypeEnum.Small;
+                else return CandleWeakForceTypeEnum.Same;
+            }
+        }
+        public CandleWeakForceTypeEnum WForceType_H
+        {
+            //캔들약력 (머리, 몸통, 꼬리 길이 비교)
+            get
+            {
+                if (PreCandleItem.HeadLength < this.HeadLength) return CandleWeakForceTypeEnum.Big;
+                else if (PreCandleItem.HeadLength > this.HeadLength) return CandleWeakForceTypeEnum.Small;
+                else return CandleWeakForceTypeEnum.Same;
+            }
+        }
+        public CandleWeakForceTypeEnum WForceType_B
+        {
+            //캔들약력 (머리, 몸통, 꼬리 길이 비교)
+            get
+            {
+                if (PreCandleItem.BodyLength < this.BodyLength) return CandleWeakForceTypeEnum.Big;
+                else if (PreCandleItem.BodyLength > this.BodyLength) return CandleWeakForceTypeEnum.Small;
+                else return CandleWeakForceTypeEnum.Same;
+            }
+        }
+        public CandleWeakForceTypeEnum WForceType_L
+        {
+            //캔들약력 (머리, 몸통, 꼬리 길이 비교)
+            get
+            {
+                if (PreCandleItem.LegLength < this.LegLength) return CandleWeakForceTypeEnum.Big;
+                else if (PreCandleItem.LegLength > this.LegLength) return CandleWeakForceTypeEnum.Small;
+                else return CandleWeakForceTypeEnum.Same;
+            }
+        }
+        #endregion
     }
 }

@@ -1,6 +1,5 @@
 ﻿using MetroFramework;
 using MetroFramework.Controls;
-using OM.Jiva.Chakra.Entities;
 using OM.Jiva.Chakra.Patterns;
 using OM.Lib.Base.Enums;
 using OM.Lib.Framework.Utility;
@@ -31,9 +30,6 @@ namespace OM.Jiva.Chakra.App
         TimeIntervalEnum selectedTimeInterval = TimeIntervalEnum.Day;
         string selectedItem = "101";
         string selectedCandleType = "F";
-
-        bool isAuto = false;
-        bool isNoData = false;
         public JivaCreateForm()
         {
             InitializeComponent();
@@ -153,74 +149,17 @@ namespace OM.Jiva.Chakra.App
                     , item.HighPrice.ToString()
                     , item.LowPrice.ToString()
                     , item.ClosePrice.ToString()
-                    , item.PreCandleItem.DTime.ToString("yy.MM.dd HH:mm")
+                    , item.PreCandleItem.PreCandleItem.DTime.ToString("yy.MM.dd HH:mm")
                     , item.DTime.ToString("yy.MM.dd HH:mm")
                     , ""
                     , ""
                     , ""); ;
             }            
         }
-        private void btnLoad2_Click(object sender, EventArgs e)
-        {
-            if (rdoTIntervalM.Checked) selectedTimeInterval = TimeIntervalEnum.Minute_30;
-            else if (rdoTIntervalH.Checked) selectedTimeInterval = TimeIntervalEnum.Hour_01;
-            else if (rdoTInterval2H.Checked) selectedTimeInterval = TimeIntervalEnum.Hour_02;
-            else if (rdoTInterval5H.Checked) selectedTimeInterval = TimeIntervalEnum.Hour_05;
-            else if (rdoTIntervalD.Checked) selectedTimeInterval = TimeIntervalEnum.Day;
-            else if (rdoTIntervalW.Checked) selectedTimeInterval = TimeIntervalEnum.Week;
-
-            if (selectedType == "국내종목")
-                selectedItem = cbxItem.SelectedItem.ToString().Substring(0, 6);
-            else
-                selectedItem = (cbxItem.SelectedItem as ItemData).Code;
-
-            sourceDatas = loadDBData();
-
-            for (int i = 0; i < sourceDatas.Count; i++)
-            {
-                int pIdx = i - 1 < 0 ? 0 : i - 1;
-                int nIdx = i + 1 == sourceDatas.Count ? i : i + 1;
-
-                sourceDatas[i].PreCandleItem = sourceDatas[pIdx];
-                sourceDatas[i].NextCandleItem = sourceDatas[nIdx];
-            }
-
-            dgv.Rows.Clear();
-            var item = sourceDatas.First();
-            dgv.Rows.Add(selectedItem
-                    , item.OpenPrice.ToString()
-                    , item.HighPrice.ToString()
-                    , item.LowPrice.ToString()
-                    , item.ClosePrice.ToString()
-                    , item.PreCandleItem.DTime.ToString("yy.MM.dd HH:mm")
-                    , item.DTime.ToString("yy.MM.dd HH:mm")
-                    , ""
-                    , ""
-                    , "");
-
-            item = sourceDatas.Last();
-            dgv.Rows.Add(selectedItem
-                   , item.OpenPrice.ToString()
-                   , item.HighPrice.ToString()
-                   , item.LowPrice.ToString()
-                   , item.ClosePrice.ToString()
-                   , item.PreCandleItem.DTime.ToString("yy.MM.dd HH:mm")
-                   , item.DTime.ToString("yy.MM.dd HH:mm")
-                   , ""
-                   , ""
-                   , "");
-        }
         private void btnCreate_Click(object sender, EventArgs e)
         {
             int idx = -1;
-
-            if (isAuto == true && sourceDatas.Count == 0)
-            {
-                isNoData = true;
-                return;
-            }
-
-           
+            if (selectedCandleType == "F")
             {
                 foreach (var item in sourceDatas)
                 {
@@ -251,20 +190,16 @@ namespace OM.Jiva.Chakra.App
                     var pList2 = new List<S_CandleItemData>() { p1, p0 };
                     var nList2 = new List<S_CandleItemData>() { n1, n2, n3 };
                     var cpType2 = PatternUtil.GetCandlePatternType(p0, pList2, nList2);
-                    if (idx < dgv.Rows.Count)
-                    {
-                        dgv.Rows[idx].Cells["pattern4"].Value = Convert.ToString(cpType4);
-                        dgv.Rows[idx].Cells["pattern3"].Value = Convert.ToString(cpType3);
-                        dgv.Rows[idx].Cells["pattern2"].Value = Convert.ToString(cpType2);
-                    }
-                    //dgv.Rows[idx].Cells["pattern"].Value = Convert.ToString(p0.GForceType);
 
-                    if (item.OpenPrice == 0 || item.HighPrice == 0 || item.LowPrice == 0 || item.ClosePrice == 0)
-                        continue;
+                    dgv.Rows[idx].Cells["pattern4"].Value = Convert.ToString(cpType4);
+                    dgv.Rows[idx].Cells["pattern3"].Value = Convert.ToString(cpType3);
+                    dgv.Rows[idx].Cells["pattern2"].Value = Convert.ToString(cpType2);
+
+                    //dgv.Rows[idx].Cells["pattern"].Value = Convert.ToString(p0.GForceType);
 
                     try
                     {
-                        var data = new Entities.CandleForcePatternData();                      
+                        var data = new Entities.CandleForcePattern();                      
                         data.Item = selectedItem;
                         data.Product = selectedType;
                         data.TimeInterval = Convert.ToInt32(selectedTimeInterval);
@@ -339,9 +274,8 @@ namespace OM.Jiva.Chakra.App
                     }
                 }
             }
-            
+            else
             {
-                idx = -1;
                 foreach (var item in sourceDatas)
                 {
                     idx++;
@@ -362,113 +296,204 @@ namespace OM.Jiva.Chakra.App
                     var n3 = item.NextCandleItem.NextCandleItem.NextCandleItem;
 
                     {
-                        var pList4 = new List<S_CandleItemData>() { p3, p2, p1, p0 };
-                        var nList4 = new List<S_CandleItemData>() { n1, n2, n3 };
-                        var cpType4 = PatternUtil.GetCandlePatternType(p0, pList4, nList4);
+                        var pList = new List<S_CandleItemData>() { p3, p2, p1, p0 };
+                        var nList = new List<S_CandleItemData>() { n1, n2, n3 };
 
-                        var pList3 = new List<S_CandleItemData>() { p2, p1, p0 };
-                        var nList3 = new List<S_CandleItemData>() { n1, n2, n3 };
-                        var cpType3 = PatternUtil.GetCandlePatternType(p0, pList3, nList3);
+                        var cpType = PatternUtil.GetCandlePatternType(p0, pList, nList);
 
-                        var pList2 = new List<S_CandleItemData>() { p1, p0 };
-                        var nList2 = new List<S_CandleItemData>() { n1, n2, n3 };
-                        var cpType2 = PatternUtil.GetCandlePatternType(p0, pList2, nList2);
-                        if (idx < dgv.Rows.Count)
-                        {
-                            dgv.Rows[idx].Cells["pattern4"].Value = Convert.ToString(cpType4);
-                            dgv.Rows[idx].Cells["pattern3"].Value = Convert.ToString(cpType3);
-                            dgv.Rows[idx].Cells["pattern2"].Value = Convert.ToString(cpType2);
-                        }
-
-                        if (item.OpenPrice == 0 || item.HighPrice == 0 || item.LowPrice == 0 || item.ClosePrice == 0)
-                            continue;
+                        dgv.Rows[idx].Cells["pattern4"].Value = Convert.ToString(cpType);
 
                         try
                         {
-                            var data = new Entities.CandlePatternData();                            
-                            data.Item = selectedItem;
-                            data.Product = selectedType;
-                            data.TimeInterval = Convert.ToInt32(selectedTimeInterval);
-                            data.CandlePatternType4 = Convert.ToInt32(cpType4).ToString();
-                            data.CandlePatternType3 = Convert.ToInt32(cpType3).ToString();
-                            data.CandlePatternType2 = Convert.ToInt32(cpType2).ToString();
+                            var data4 = new Entities.CandlePattern_Four();
+                            data4.CandlePatternType = Convert.ToInt32(cpType).ToString();
+                            data4.Item = selectedItem;
+                            data4.Product = selectedType;
+                            data4.TimeInterval = Convert.ToInt32(selectedTimeInterval);
 
-                            data.PlusMinusType_P3 = Convert.ToInt32(p3.PlusMinusType).ToString();
-                            data.PlusMinusType_P2 = Convert.ToInt32(p2.PlusMinusType).ToString();
-                            data.PlusMinusType_P1 = Convert.ToInt32(p1.PlusMinusType).ToString();
-                            data.PlusMinusType_P0 = Convert.ToInt32(p0.PlusMinusType).ToString();
+                            data4.PlusMinusType_P3 = Convert.ToInt32(p3.PlusMinusType).ToString();
+                            data4.PlusMinusType_P2 = Convert.ToInt32(p2.PlusMinusType).ToString();
+                            data4.PlusMinusType_P1 = Convert.ToInt32(p1.PlusMinusType).ToString();
+                            data4.PlusMinusType_P0 = Convert.ToInt32(p0.PlusMinusType).ToString();
 
-                            data.CandleSpaceType_P3 = Convert.ToInt32(p3.SpaceType_C).ToString();
-                            data.CandleSpaceType_P2 = Convert.ToInt32(p2.SpaceType_C).ToString();
-                            data.CandleSpaceType_P1 = Convert.ToInt32(p1.SpaceType_C).ToString();
-                            data.CandleSpaceType_P0 = Convert.ToInt32(p0.SpaceType_C).ToString();
+                            data4.CandleSpaceType_P3 = Convert.ToInt32(p3.SpaceType_C).ToString();
+                            data4.CandleSpaceType_P2 = Convert.ToInt32(p2.SpaceType_C).ToString();
+                            data4.CandleSpaceType_P1 = Convert.ToInt32(p1.SpaceType_C).ToString();
+                            data4.CandleSpaceType_P0 = Convert.ToInt32(p0.SpaceType_C).ToString();
 
                             var timeType = PatternUtil.GetCandleTimeType(p2, p1);
-                            data.CandleTimeType_O_P21 = Convert.ToInt32(timeType.openType).ToString();
-                            data.CandleTimeType_C_P21 = Convert.ToInt32(timeType.closeType).ToString();
-                            data.CandleTimeType_H_P21 = Convert.ToInt32(timeType.highType).ToString();
-                            data.CandleTimeType_L_P21 = Convert.ToInt32(timeType.lowType).ToString();
+                            data4.CandleTimeType_O_P21 = Convert.ToInt32(timeType.openType).ToString();
+                            data4.CandleTimeType_C_P21 = Convert.ToInt32(timeType.closeType).ToString();
+                            data4.CandleTimeType_H_P21 = Convert.ToInt32(timeType.highType).ToString();
+                            data4.CandleTimeType_L_P21 = Convert.ToInt32(timeType.lowType).ToString();
 
                             timeType = PatternUtil.GetCandleTimeType(p1, p0);
-                            data.CandleTimeType_O_P10 = Convert.ToInt32(timeType.openType).ToString();
-                            data.CandleTimeType_C_P10 = Convert.ToInt32(timeType.closeType).ToString();
-                            data.CandleTimeType_H_P10 = Convert.ToInt32(timeType.highType).ToString();
-                            data.CandleTimeType_L_P10 = Convert.ToInt32(timeType.lowType).ToString();
+                            data4.CandleTimeType_O_P10 = Convert.ToInt32(timeType.openType).ToString();
+                            data4.CandleTimeType_C_P10 = Convert.ToInt32(timeType.closeType).ToString();
+                            data4.CandleTimeType_H_P10 = Convert.ToInt32(timeType.highType).ToString();
+                            data4.CandleTimeType_L_P10 = Convert.ToInt32(timeType.lowType).ToString();
 
                             timeType = PatternUtil.GetCandleTimeType(p2, p0);
-                            data.CandleTimeType_O_P20 = Convert.ToInt32(timeType.openType).ToString();
-                            data.CandleTimeType_C_P20 = Convert.ToInt32(timeType.closeType).ToString();
-                            data.CandleTimeType_H_P20 = Convert.ToInt32(timeType.highType).ToString();
-                            data.CandleTimeType_L_P20 = Convert.ToInt32(timeType.lowType).ToString();
+                            data4.CandleTimeType_O_P20 = Convert.ToInt32(timeType.openType).ToString();
+                            data4.CandleTimeType_C_P20 = Convert.ToInt32(timeType.closeType).ToString();
+                            data4.CandleTimeType_H_P20 = Convert.ToInt32(timeType.highType).ToString();
+                            data4.CandleTimeType_L_P20 = Convert.ToInt32(timeType.lowType).ToString();
 
                             timeType = PatternUtil.GetCandleTimeType(p3, p2);
-                            data.CandleTimeType_O_P32 = Convert.ToInt32(timeType.openType).ToString();
-                            data.CandleTimeType_C_P32 = Convert.ToInt32(timeType.closeType).ToString();
-                            data.CandleTimeType_H_P32 = Convert.ToInt32(timeType.highType).ToString();
-                            data.CandleTimeType_L_P32 = Convert.ToInt32(timeType.lowType).ToString();
+                            data4.CandleTimeType_O_P32 = Convert.ToInt32(timeType.openType).ToString();
+                            data4.CandleTimeType_C_P32 = Convert.ToInt32(timeType.closeType).ToString();
+                            data4.CandleTimeType_H_P32 = Convert.ToInt32(timeType.highType).ToString();
+                            data4.CandleTimeType_L_P32 = Convert.ToInt32(timeType.lowType).ToString();
                             timeType = PatternUtil.GetCandleTimeType(p3, p1);
-                            data.CandleTimeType_O_P31 = Convert.ToInt32(timeType.openType).ToString();
-                            data.CandleTimeType_C_P31 = Convert.ToInt32(timeType.closeType).ToString();
-                            data.CandleTimeType_H_P31 = Convert.ToInt32(timeType.highType).ToString();
-                            data.CandleTimeType_L_P31 = Convert.ToInt32(timeType.lowType).ToString();
+                            data4.CandleTimeType_O_P31 = Convert.ToInt32(timeType.openType).ToString();
+                            data4.CandleTimeType_C_P31 = Convert.ToInt32(timeType.closeType).ToString();
+                            data4.CandleTimeType_H_P31 = Convert.ToInt32(timeType.highType).ToString();
+                            data4.CandleTimeType_L_P31 = Convert.ToInt32(timeType.lowType).ToString();
                             timeType = PatternUtil.GetCandleTimeType(p3, p0);
-                            data.CandleTimeType_O_P30 = Convert.ToInt32(timeType.openType).ToString();
-                            data.CandleTimeType_C_P30 = Convert.ToInt32(timeType.closeType).ToString();
-                            data.CandleTimeType_H_P30 = Convert.ToInt32(timeType.highType).ToString();
-                            data.CandleTimeType_L_P30 = Convert.ToInt32(timeType.lowType).ToString();
+                            data4.CandleTimeType_O_P30 = Convert.ToInt32(timeType.openType).ToString();
+                            data4.CandleTimeType_C_P30 = Convert.ToInt32(timeType.closeType).ToString();
+                            data4.CandleTimeType_H_P30 = Convert.ToInt32(timeType.highType).ToString();
+                            data4.CandleTimeType_L_P30 = Convert.ToInt32(timeType.lowType).ToString();
 
                             var sizeType = PatternUtil.GetCandleBodySizeType(p2, p1);
-                            data.CandleSizeType_B_P21 = Convert.ToInt32(sizeType).ToString();
+                            data4.CandleSizeType_B_P21 = Convert.ToInt32(sizeType).ToString();
                             sizeType = PatternUtil.GetCandleBodySizeType(p1, p0);
-                            data.CandleSizeType_B_P10 = Convert.ToInt32(sizeType).ToString();
+                            data4.CandleSizeType_B_P10 = Convert.ToInt32(sizeType).ToString();
                             sizeType = PatternUtil.GetCandleBodySizeType(p2, p0);
-                            data.CandleSizeType_B_P20 = Convert.ToInt32(sizeType).ToString();
+                            data4.CandleSizeType_B_P20 = Convert.ToInt32(sizeType).ToString();
 
                             sizeType = PatternUtil.GetCandleBodySizeType(p3, p2);
-                            data.CandleSizeType_B_P32 = Convert.ToInt32(sizeType).ToString();
+                            data4.CandleSizeType_B_P32 = Convert.ToInt32(sizeType).ToString();
                             sizeType = PatternUtil.GetCandleBodySizeType(p3, p1);
-                            data.CandleSizeType_B_P31 = Convert.ToInt32(sizeType).ToString();
+                            data4.CandleSizeType_B_P31 = Convert.ToInt32(sizeType).ToString();
                             sizeType = PatternUtil.GetCandleBodySizeType(p3, p0);
-                            data.CandleSizeType_B_P30 = Convert.ToInt32(sizeType).ToString();
+                            data4.CandleSizeType_B_P30 = Convert.ToInt32(sizeType).ToString();
 
                             sizeType = PatternUtil.GetCandleTotalSizeType(p2, p1);
-                            data.CandleSizeType_T_P21 = Convert.ToInt32(sizeType).ToString();
+                            data4.CandleSizeType_T_P21 = Convert.ToInt32(sizeType).ToString();
                             sizeType = PatternUtil.GetCandleTotalSizeType(p1, p0);
-                            data.CandleSizeType_T_P10 = Convert.ToInt32(sizeType).ToString();
+                            data4.CandleSizeType_T_P10 = Convert.ToInt32(sizeType).ToString();
                             sizeType = PatternUtil.GetCandleTotalSizeType(p2, p0);
-                            data.CandleSizeType_T_P20 = Convert.ToInt32(sizeType).ToString();
+                            data4.CandleSizeType_T_P20 = Convert.ToInt32(sizeType).ToString();
 
                             sizeType = PatternUtil.GetCandleTotalSizeType(p3, p2);
-                            data.CandleSizeType_T_P32 = Convert.ToInt32(sizeType).ToString();
+                            data4.CandleSizeType_T_P32 = Convert.ToInt32(sizeType).ToString();
                             sizeType = PatternUtil.GetCandleTotalSizeType(p3, p1);
-                            data.CandleSizeType_T_P31 = Convert.ToInt32(sizeType).ToString();
+                            data4.CandleSizeType_T_P31 = Convert.ToInt32(sizeType).ToString();
                             sizeType = PatternUtil.GetCandleTotalSizeType(p3, p0);
-                            data.CandleSizeType_T_P30 = Convert.ToInt32(sizeType).ToString();
+                            data4.CandleSizeType_T_P30 = Convert.ToInt32(sizeType).ToString();
 
-                            data.StartDT = p0.DTime;
-                            data.EndDT = p0.DTime;
+                            data4.StartDT = p3.DTime;
+                            data4.EndDT = p0.DTime;
 
-                            data.Create();
+                            data4.Create();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                    }                  
+                    {
+                        var pList = new List<S_CandleItemData>() { p2, p1, p0 };
+                        var nList = new List<S_CandleItemData>() { n1, n2, n3 };
+
+                        var cpType = PatternUtil.GetCandlePatternType(p0, pList, nList);
+
+                        dgv.Rows[idx].Cells["pattern3"].Value = Convert.ToString(cpType);
+
+                        try
+                        {
+                            var data3 = new Entities.CandlePattern_Three();
+                            data3.CandlePatternType = Convert.ToInt32(cpType).ToString();
+                            data3.Item = selectedItem;
+                            data3.Product = selectedType;
+                            data3.TimeInterval = Convert.ToInt32(selectedTimeInterval);
+                            data3.PlusMinusType_P2 = Convert.ToInt32(p2.PlusMinusType).ToString();
+                            data3.PlusMinusType_P1 = Convert.ToInt32(p1.PlusMinusType).ToString();
+                            data3.PlusMinusType_P0 = Convert.ToInt32(p0.PlusMinusType).ToString();
+                            data3.CandleSpaceType_P2 = Convert.ToInt32(p2.SpaceType_C).ToString();
+                            data3.CandleSpaceType_P1 = Convert.ToInt32(p1.SpaceType_C).ToString();
+                            data3.CandleSpaceType_P0 = Convert.ToInt32(p0.SpaceType_C).ToString();
+
+                            var timeType = PatternUtil.GetCandleTimeType(p2, p1);
+                            data3.CandleTimeType_O_P21 = Convert.ToInt32(timeType.openType).ToString();
+                            data3.CandleTimeType_C_P21 = Convert.ToInt32(timeType.closeType).ToString();
+                            data3.CandleTimeType_H_P21 = Convert.ToInt32(timeType.highType).ToString();
+                            data3.CandleTimeType_L_P21 = Convert.ToInt32(timeType.lowType).ToString();
+
+                            timeType = PatternUtil.GetCandleTimeType(p1, p0);
+                            data3.CandleTimeType_O_P10 = Convert.ToInt32(timeType.openType).ToString();
+                            data3.CandleTimeType_C_P10 = Convert.ToInt32(timeType.closeType).ToString();
+                            data3.CandleTimeType_H_P10 = Convert.ToInt32(timeType.highType).ToString();
+                            data3.CandleTimeType_L_P10 = Convert.ToInt32(timeType.lowType).ToString();
+
+                            timeType = PatternUtil.GetCandleTimeType(p2, p0);
+                            data3.CandleTimeType_O_P20 = Convert.ToInt32(timeType.openType).ToString();
+                            data3.CandleTimeType_C_P20 = Convert.ToInt32(timeType.closeType).ToString();
+                            data3.CandleTimeType_H_P20 = Convert.ToInt32(timeType.highType).ToString();
+                            data3.CandleTimeType_L_P20 = Convert.ToInt32(timeType.lowType).ToString();
+
+                            var sizeType = PatternUtil.GetCandleBodySizeType(p2, p1);
+                            data3.CandleSizeType_B_P21 = Convert.ToInt32(sizeType).ToString();
+                            sizeType = PatternUtil.GetCandleBodySizeType(p1, p0);
+                            data3.CandleSizeType_B_P10 = Convert.ToInt32(sizeType).ToString();
+                            sizeType = PatternUtil.GetCandleBodySizeType(p2, p0);
+                            data3.CandleSizeType_B_P20 = Convert.ToInt32(sizeType).ToString();
+
+                            sizeType = PatternUtil.GetCandleTotalSizeType(p2, p1);
+                            data3.CandleSizeType_T_P21 = Convert.ToInt32(sizeType).ToString();
+                            sizeType = PatternUtil.GetCandleTotalSizeType(p1, p0);
+                            data3.CandleSizeType_T_P10 = Convert.ToInt32(sizeType).ToString();
+                            sizeType = PatternUtil.GetCandleTotalSizeType(p2, p0);
+                            data3.CandleSizeType_T_P20 = Convert.ToInt32(sizeType).ToString();
+
+                            data3.StartDT = p2.DTime;
+                            data3.EndDT = p0.DTime;
+
+                            data3.Create();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                    }
+                   
+                    {
+                        var pList = new List<S_CandleItemData>() { p1, p0 };
+                        var nList = new List<S_CandleItemData>() { n1, n2, n3 };
+
+                        var cpType = PatternUtil.GetCandlePatternType(p0, pList, nList);
+
+                        dgv.Rows[idx].Cells["pattern"].Value = Convert.ToString(cpType);
+
+                        try
+                        {
+                            var data2 = new Entities.CandlePattern_Two();
+                            data2.CandlePatternType = Convert.ToInt32(cpType).ToString();
+                            data2.Item = selectedItem;
+                            data2.Product = selectedType;
+                            data2.TimeInterval = Convert.ToInt32(selectedTimeInterval);
+                            data2.PlusMinusType_P1 = Convert.ToInt32(p1.PlusMinusType).ToString();
+                            data2.PlusMinusType_P0 = Convert.ToInt32(p0.PlusMinusType).ToString();
+                            data2.CandleSpaceType_P1 = Convert.ToInt32(p1.SpaceType_C).ToString();
+                            data2.CandleSpaceType_P0 = Convert.ToInt32(p0.SpaceType_C).ToString();
+
+                            var timeType = PatternUtil.GetCandleTimeType(p1, p0);
+                            data2.CandleTimeType_O_P10 = Convert.ToInt32(timeType.openType).ToString();
+                            data2.CandleTimeType_C_P10 = Convert.ToInt32(timeType.closeType).ToString();
+                            data2.CandleTimeType_H_P10 = Convert.ToInt32(timeType.highType).ToString();
+                            data2.CandleTimeType_L_P10 = Convert.ToInt32(timeType.lowType).ToString();
+
+                            var sizeType = PatternUtil.GetCandleBodySizeType(p1, p0);
+                            data2.CandleSizeType_B_P10 = Convert.ToInt32(sizeType).ToString();
+
+                            sizeType = PatternUtil.GetCandleTotalSizeType(p1, p0);
+                            data2.CandleSizeType_T_P10 = Convert.ToInt32(sizeType).ToString();
+
+                            data2.StartDT = p1.DTime;
+                            data2.EndDT = p0.DTime;
+
+                            data2.Create();
                         }
                         catch (Exception ex)
                         {
@@ -627,30 +652,7 @@ namespace OM.Jiva.Chakra.App
                 , selectedTimeInterval);
             return sourceDatas;
         }
-        protected List<S_CandleItemData> loadDBData()
-        {
-            List<S_CandleItemData> sourceDatas = new List<S_CandleItemData>();
-            CandleHistoryData history = new CandleHistoryData();
-            history.Product = selectedType;
-            history.Item = selectedItem;
-            history.TimeInterval = Convert.ToInt32(selectedTimeInterval);
 
-            var list = history.Collect().Cast<CandleHistoryData>().ToList();
-            foreach (var m in list)
-            {
-                var item = new S_CandleItemData();                
-                item.ItemCode = m.Item;
-                item.DTime = m.DTime;
-                item.OpenPrice = Convert.ToSingle( m.OpenPrice);
-                item.HighPrice = Convert.ToSingle(m.HighPrice);
-                item.LowPrice = Convert.ToSingle(m.LowPrice);
-                item.ClosePrice = Convert.ToSingle(m.ClosePrice);              
-                item.Volume = Convert.ToSingle(m.Volume);
-
-                sourceDatas.Add(item);
-            }           
-            return sourceDatas;
-        }
         private void btnAutoCreateKIndex_Click(object sender, EventArgs e)
         {
             rdoTypeKIndex.Checked = true;
@@ -660,42 +662,45 @@ namespace OM.Jiva.Chakra.App
 
             Task.Factory.StartNew(() =>
             {
-                isAuto = true;
-               
-                System.Threading.Thread.Sleep(1 * 1000);        
-                
-                for (int i = startIdx; i < itemCnt; i++)
+                for (int t = 1; t <= 2; t++)
                 {
-                    System.Threading.Thread.Sleep(1 * 1000);
-
-                    this.Invoke(new Action(() => { cbxItem.SelectedIndex = i; }));
-
-                    this.Invoke(new Action(() => { rdoTIntervalD.Checked = true; }));
-
-                    System.Threading.Thread.Sleep(1 * 1000);
-
-                    this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
-
-                    System.Threading.Thread.Sleep(3 * 1000);
-                    
-                    this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
-
-                    System.Threading.Thread.Sleep(3 * 1000);
-
-                    this.Invoke(new Action(() => { rdoTIntervalW.Checked = true; }));
+                    if (t == 1)
+                        this.Invoke(new Action(() => { rdoCandle4.Checked = true; }));
+                    if (t == 2)
+                        this.Invoke(new Action(() => { rdoCandleF.Checked = true; }));
 
                     System.Threading.Thread.Sleep(1 * 1000);
 
-                    this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
+                    for (int i = startIdx; i < itemCnt; i++)
+                    {
+                        System.Threading.Thread.Sleep(1 * 1000);
 
-                    System.Threading.Thread.Sleep(3 * 1000);
+                        this.Invoke(new Action(() => { cbxItem.SelectedIndex = i; }));
 
-                    this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
+                        this.Invoke(new Action(() => { rdoTIntervalD.Checked = true; }));
 
-                    System.Threading.Thread.Sleep(3 * 1000);
+                        System.Threading.Thread.Sleep(1 * 1000);
+
+                        this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
+
+                        System.Threading.Thread.Sleep(3 * 1000);
+                        this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
+
+                        System.Threading.Thread.Sleep(3 * 1000);
+
+                        this.Invoke(new Action(() => { rdoTIntervalW.Checked = true; }));
+
+                        System.Threading.Thread.Sleep(1 * 1000);
+
+                        this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
+
+                        System.Threading.Thread.Sleep(3 * 1000);
+
+                        this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
+
+                        System.Threading.Thread.Sleep(3 * 1000);
+                    }
                 }
-                
-                isAuto = false;
             });
         }
         private void btnAutoCreateWIndex_Click(object sender, EventArgs e)
@@ -707,41 +712,45 @@ namespace OM.Jiva.Chakra.App
 
             Task.Factory.StartNew(() =>
             {
-                isAuto = true;
-
-                System.Threading.Thread.Sleep(1 * 1000);
-
-                for (int i = startIdx; i < itemCnt; i++)
+                for (int t = 1; t <= 2; t++)
                 {
-                    System.Threading.Thread.Sleep(1 * 1000);
-
-                    this.Invoke(new Action(() => { cbxItem.SelectedIndex = i; }));
-
-                    this.Invoke(new Action(() => { rdoTIntervalD.Checked = true; }));
-
-                    System.Threading.Thread.Sleep(1 * 1000);
-
-                    this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
-
-                    System.Threading.Thread.Sleep(3 * 1000);
-                    this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
-
-                    System.Threading.Thread.Sleep(3 * 1000);
-
-                    this.Invoke(new Action(() => { rdoTIntervalW.Checked = true; }));
+                    if (t == 1)
+                        this.Invoke(new Action(() => { rdoCandle4.Checked = true; }));
+                    if (t == 2)
+                        this.Invoke(new Action(() => { rdoCandleF.Checked = true; }));
 
                     System.Threading.Thread.Sleep(1 * 1000);
 
-                    this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
+                    for (int i = startIdx; i < itemCnt; i++)
+                    {
+                        System.Threading.Thread.Sleep(1 * 1000);
 
-                    System.Threading.Thread.Sleep(3 * 1000);
+                        this.Invoke(new Action(() => { cbxItem.SelectedIndex = i; }));
 
-                    this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
+                        this.Invoke(new Action(() => { rdoTIntervalD.Checked = true; }));
 
-                    System.Threading.Thread.Sleep(3 * 1000);
+                        System.Threading.Thread.Sleep(1 * 1000);
+
+                        this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
+
+                        System.Threading.Thread.Sleep(3 * 1000);
+                        this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
+
+                        System.Threading.Thread.Sleep(3 * 1000);
+
+                        this.Invoke(new Action(() => { rdoTIntervalW.Checked = true; }));
+
+                        System.Threading.Thread.Sleep(1 * 1000);
+
+                        this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
+
+                        System.Threading.Thread.Sleep(3 * 1000);
+
+                        this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
+
+                        System.Threading.Thread.Sleep(3 * 1000);
+                    }
                 }
-
-                isAuto = false;
             });
         }
         private void btnAutoCreateWFuture_Click(object sender, EventArgs e)
@@ -749,173 +758,141 @@ namespace OM.Jiva.Chakra.App
             rdoTypeWFuture.Checked = true;
             Task.Factory.StartNew(() =>
             {
-                isAuto = true;
-                
-                System.Threading.Thread.Sleep(1 * 1000);
-
-                int itemCnt = 20;
-                for (int i = 0; i < itemCnt; i++)
+                for (int t = 1; t <= 2; t++)
                 {
-                    System.Threading.Thread.Sleep(1 * 1000);
-
-                    this.Invoke(new Action(() =>
-                    {
-                        rdoTIntervalD.Checked = true;
-                        dtpS.Value = DateTime.Today.AddYears((i + 1) * -1);
-                        dtpE.Value = DateTime.Today.AddYears((i + 0) * -1);
-                    }));
+                    if (t == 1)
+                        this.Invoke(new Action(() => { rdoCandle4.Checked = true; }));
+                    if (t == 2)
+                        this.Invoke(new Action(() => { rdoCandleF.Checked = true; }));
 
                     System.Threading.Thread.Sleep(1 * 1000);
 
-                    this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
-                    System.Threading.Thread.Sleep(5 * 1000);
-
-                    this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
-                    System.Threading.Thread.Sleep(5 * 1000);
-
-                    if (isNoData)
+                    int itemCnt = 20;
+                    for (int i = 0; i < itemCnt; i++)
                     {
-                        isNoData = false;
-                        break;
+                        System.Threading.Thread.Sleep(1 * 1000);
+
+                        this.Invoke(new Action(() =>
+                        {
+                            rdoTIntervalD.Checked = true;
+                            dtpS.Value = DateTime.Today.AddYears((i + 1) * -1);
+                            dtpE.Value = DateTime.Today.AddYears((i + 0) * -1);
+                        }));
+
+                        System.Threading.Thread.Sleep(1 * 1000);
+
+                        this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
+                        System.Threading.Thread.Sleep(5 * 1000);
+
+                        this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
+                        System.Threading.Thread.Sleep(5 * 1000);
                     }
-                }
 
-                itemCnt = 10 * 12 * 2;
-                for (int i = 0; i < itemCnt; i++)
-                {
-                    System.Threading.Thread.Sleep(1 * 1000);
-
-                    this.Invoke(new Action(() =>
+                    itemCnt = 10 * 12 * 2;
+                    for (int i = 0; i < itemCnt; i++)
                     {
-                        rdoTIntervalM.Checked = true;
-                        dtpS.Value = DateTime.Today.AddDays((i + 1) * -15);
-                        dtpE.Value = DateTime.Today.AddDays((i + 0) * -15);
-                    }));
+                        System.Threading.Thread.Sleep(1 * 1000);
 
-                    System.Threading.Thread.Sleep(1 * 1000);
+                        this.Invoke(new Action(() =>
+                        {
+                            rdoTIntervalM.Checked = true;
+                            dtpS.Value = DateTime.Today.AddDays((i + 1) * -15);
+                            dtpE.Value = DateTime.Today.AddDays((i + 0) * -15);
+                        }));
 
-                    this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
-                    System.Threading.Thread.Sleep(5 * 1000);
+                        System.Threading.Thread.Sleep(1 * 1000);
 
-                    this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
-                    System.Threading.Thread.Sleep(5 * 1000);
+                        this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
+                        System.Threading.Thread.Sleep(5 * 1000);
 
-                    if (isNoData)
-                    {
-                        isNoData = false;
-                        break;
+                        this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
+                        System.Threading.Thread.Sleep(5 * 1000);
                     }
-                }
-
-                itemCnt = 10 * 12;
-                for (int i = 0; i < itemCnt; i++)
-                {
-                    System.Threading.Thread.Sleep(1 * 1000);
-
-                    this.Invoke(new Action(() =>
-                    {
-                        rdoTIntervalH.Checked = true;
-                        dtpS.Value = DateTime.Today.AddMonths((i + 1) * -1);
-                        dtpE.Value = DateTime.Today.AddMonths((i + 0) * -1);
-                    }));
-
-                    System.Threading.Thread.Sleep(1 * 1000);
-
-                    this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
-                    System.Threading.Thread.Sleep(5 * 1000);
-
-                    this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
-                    System.Threading.Thread.Sleep(5 * 1000);
-
-                    if (isNoData)
-                    {
-                        isNoData = false;
-                        break;
-                    }
-                }
-
-                //itemCnt = 10 * 12;
-                //for (int i = 0; i < itemCnt; i++)
-                //{
-                //    System.Threading.Thread.Sleep(1 * 1000);
-
-                //    this.Invoke(new Action(() =>
-                //    {
-                //        rdoTInterval2H.Checked = true;
-                //        dtpS.Value = DateTime.Today.AddMonths((i + 1) * -1);
-                //        dtpE.Value = DateTime.Today.AddMonths((i + 0) * -1);
-                //    }));
-
-                //    System.Threading.Thread.Sleep(1 * 1000);
-
-                //    this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
-                //    System.Threading.Thread.Sleep(5 * 1000);
-
-                //    this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
-                //    System.Threading.Thread.Sleep(5 * 1000);
-
-                //    if (isNoData)
-                //    {
-                //        isNoData = false;
-                //        break;
-                //    }
-                //}
 
                     itemCnt = 10 * 12;
-                for (int i = 0; i < itemCnt; i++)
-                {
-                    System.Threading.Thread.Sleep(1 * 1000);
-
-                    this.Invoke(new Action(() =>
+                    for (int i = 0; i < itemCnt; i++)
                     {
-                        rdoTInterval5H.Checked = true;
-                        dtpS.Value = DateTime.Today.AddMonths((i + 1) * -1);
-                        dtpE.Value = DateTime.Today.AddMonths((i + 0) * -1);
-                    }));
+                        System.Threading.Thread.Sleep(1 * 1000);
 
-                    System.Threading.Thread.Sleep(1 * 1000);
+                        this.Invoke(new Action(() =>
+                        {
+                            rdoTIntervalH.Checked = true;
+                            dtpS.Value = DateTime.Today.AddMonths((i + 1) * -1);
+                            dtpE.Value = DateTime.Today.AddMonths((i + 0) * -1);
+                        }));
 
-                    this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
-                    System.Threading.Thread.Sleep(5 * 1000);
+                        System.Threading.Thread.Sleep(1 * 1000);
 
-                    this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
-                    System.Threading.Thread.Sleep(5 * 1000);
+                        this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
+                        System.Threading.Thread.Sleep(5 * 1000);
 
-                    if (isNoData)
+                        this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
+                        System.Threading.Thread.Sleep(5 * 1000);
+                    }
+
+                    itemCnt = 10 * 12;
+                    for (int i = 0; i < itemCnt; i++)
                     {
-                        isNoData = false;
-                        break;
+                        System.Threading.Thread.Sleep(1 * 1000);
+
+                        this.Invoke(new Action(() =>
+                        {
+                            rdoTInterval2H.Checked = true;
+                            dtpS.Value = DateTime.Today.AddMonths((i + 1) * -1);
+                            dtpE.Value = DateTime.Today.AddMonths((i + 0) * -1);
+                        }));
+
+                        System.Threading.Thread.Sleep(1 * 1000);
+
+                        this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
+                        System.Threading.Thread.Sleep(5 * 1000);
+
+                        this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
+                        System.Threading.Thread.Sleep(5 * 1000);
+                    }
+
+                    itemCnt = 10 * 12;
+                    for (int i = 0; i < itemCnt; i++)
+                    {
+                        System.Threading.Thread.Sleep(1 * 1000);
+
+                        this.Invoke(new Action(() =>
+                        {
+                            rdoTInterval5H.Checked = true;
+                            dtpS.Value = DateTime.Today.AddMonths((i + 1) * -1);
+                            dtpE.Value = DateTime.Today.AddMonths((i + 0) * -1);
+                        }));
+
+                        System.Threading.Thread.Sleep(1 * 1000);
+
+                        this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
+                        System.Threading.Thread.Sleep(5 * 1000);
+
+                        this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
+                        System.Threading.Thread.Sleep(5 * 1000);
+                    }
+
+                    itemCnt = 20;
+                    for (int i = 0; i < itemCnt; i++)
+                    {
+                        System.Threading.Thread.Sleep(1 * 1000);
+
+                        this.Invoke(new Action(() =>
+                        {
+                            rdoTIntervalW.Checked = true;
+                            dtpS.Value = DateTime.Today.AddYears((i + 1) * -2);
+                            dtpE.Value = DateTime.Today.AddYears((i + 0) * -2);
+                        }));
+
+                        System.Threading.Thread.Sleep(1 * 1000);
+
+                        this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
+                        System.Threading.Thread.Sleep(5 * 1000);
+
+                        this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
+                        System.Threading.Thread.Sleep(5 * 1000);
                     }
                 }
-
-                itemCnt = 20;
-                for (int i = 0; i < itemCnt; i++)
-                {
-                    System.Threading.Thread.Sleep(1 * 1000);
-
-                    this.Invoke(new Action(() =>
-                    {
-                        rdoTIntervalW.Checked = true;
-                        dtpS.Value = DateTime.Today.AddYears((i + 1) * -2);
-                        dtpE.Value = DateTime.Today.AddYears((i + 0) * -2);
-                    }));
-
-                    System.Threading.Thread.Sleep(1 * 1000);
-
-                    this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
-                    System.Threading.Thread.Sleep(5 * 1000);
-
-                    this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
-                    System.Threading.Thread.Sleep(5 * 1000);
-
-                    if (isNoData)
-                    {
-                        isNoData = false;
-                        break;
-                    }
-                }
-                
-                isAuto = false;
             });
         }
         private void btnAutoCreateCrypto_Click(object sender, EventArgs e)
@@ -923,175 +900,141 @@ namespace OM.Jiva.Chakra.App
             rdoTypeCrypto.Checked = true;
             Task.Factory.StartNew(() =>
             {
-                isAuto = true;
-
-                System.Threading.Thread.Sleep(1 * 1000);
-
-                int itemCnt = 20;
-                for (int i = 0; i < itemCnt; i++)
+                for (int t = 1; t <= 2; t++)
                 {
-                    System.Threading.Thread.Sleep(1 * 1000);
-
-                    this.Invoke(new Action(() =>
-                    {
-                        rdoTIntervalD.Checked = true;
-                        dtpS.Value = DateTime.Today.AddYears((i + 1) * -1);
-                        dtpE.Value = DateTime.Today.AddYears((i + 0) * -1);
-                    }));
-
-                   if (dtpS.Value < Convert.ToDateTime("2017-01-01")) break;
+                    if (t == 1)
+                        this.Invoke(new Action(() => { rdoCandle4.Checked = true; }));
+                    if (t == 2)
+                        this.Invoke(new Action(() => { rdoCandleF.Checked = true; }));
 
                     System.Threading.Thread.Sleep(1 * 1000);
 
-                    this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
-                    System.Threading.Thread.Sleep(5 * 1000);
-
-                    this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
-                    System.Threading.Thread.Sleep(5 * 1000);
-
-                    if (isNoData)
+                    int itemCnt = 20;
+                    for (int i = 0; i < itemCnt; i++)
                     {
-                        isNoData = false;
-                        break;
+                        System.Threading.Thread.Sleep(1 * 1000);
+
+                        this.Invoke(new Action(() =>
+                        {
+                            rdoTIntervalD.Checked = true;
+                            dtpS.Value = DateTime.Today.AddYears((i + 1) * -1);
+                            dtpE.Value = DateTime.Today.AddYears((i + 0) * -1);
+                        }));
+
+                        System.Threading.Thread.Sleep(1 * 1000);
+
+                        this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
+                        System.Threading.Thread.Sleep(5 * 1000);
+
+                        this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
+                        System.Threading.Thread.Sleep(5 * 1000);
+                    }
+
+                    itemCnt = 10 * 12 * 2;
+                    for (int i = 0; i < itemCnt; i++)
+                    {
+                        System.Threading.Thread.Sleep(1 * 1000);
+                        
+                        this.Invoke(new Action(() =>
+                        {
+                            rdoTIntervalM.Checked = true;
+                            dtpS.Value = DateTime.Today.AddDays((i + 1) * -15);
+                            dtpE.Value = DateTime.Today.AddDays((i + 0) * -15);
+                        }));
+
+                        System.Threading.Thread.Sleep(1 * 1000);
+
+                        this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
+                        System.Threading.Thread.Sleep(5 * 1000);
+
+                        this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
+                        System.Threading.Thread.Sleep(5 * 1000);
+                    }
+
+                    itemCnt = 10 * 12;
+                    for (int i = 0; i < itemCnt; i++)
+                    {
+                        System.Threading.Thread.Sleep(1 * 1000);
+
+                        this.Invoke(new Action(() =>
+                        {
+                            rdoTIntervalH.Checked = true;
+                            dtpS.Value = DateTime.Today.AddMonths((i + 1) * -1);
+                            dtpE.Value = DateTime.Today.AddMonths((i + 0) * -1);
+                        }));
+
+                        System.Threading.Thread.Sleep(1 * 1000);
+
+                        this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
+                        System.Threading.Thread.Sleep(5 * 1000);
+
+                        this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
+                        System.Threading.Thread.Sleep(5 * 1000);
+                    }
+
+                    itemCnt = 10 * 12;
+                    for (int i = 0; i < itemCnt; i++)
+                    {
+                        System.Threading.Thread.Sleep(1 * 1000);
+
+                        this.Invoke(new Action(() =>
+                        {
+                            rdoTInterval2H.Checked = true;
+                            dtpS.Value = DateTime.Today.AddMonths((i + 1) * -1);
+                            dtpE.Value = DateTime.Today.AddMonths((i + 0) * -1);
+                        }));
+
+                        System.Threading.Thread.Sleep(1 * 1000);
+
+                        this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
+                        System.Threading.Thread.Sleep(5 * 1000);
+
+                        this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
+                        System.Threading.Thread.Sleep(5 * 1000);
+                    }
+
+                    itemCnt = 10 * 12;
+                    for (int i = 0; i < itemCnt; i++)
+                    {
+                        System.Threading.Thread.Sleep(1 * 1000);
+
+                        this.Invoke(new Action(() =>
+                        {
+                            rdoTInterval5H.Checked = true;
+                            dtpS.Value = DateTime.Today.AddMonths((i + 1) * -1);
+                            dtpE.Value = DateTime.Today.AddMonths((i + 0) * -1);
+                        }));
+
+                        System.Threading.Thread.Sleep(1 * 1000);
+
+                        this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
+                        System.Threading.Thread.Sleep(5 * 1000);
+
+                        this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
+                        System.Threading.Thread.Sleep(5 * 1000);
+                    }
+
+                    itemCnt = 20;
+                    for (int i = 0; i < itemCnt; i++)
+                    {
+                        System.Threading.Thread.Sleep(1 * 1000);
+
+                        this.Invoke(new Action(() =>
+                        {
+                            rdoTIntervalW.Checked = true;
+                            dtpS.Value = DateTime.Today.AddYears((i + 1) * -2);
+                            dtpE.Value = DateTime.Today.AddYears((i + 0) * -2);
+                        }));
+
+                        System.Threading.Thread.Sleep(1 * 1000);
+
+                        this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
+                        System.Threading.Thread.Sleep(5 * 1000);
+
+                        this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
+                        System.Threading.Thread.Sleep(5 * 1000);
                     }
                 }
-
-                itemCnt = 10 * 12 * 2;
-                for (int i = 0; i < itemCnt; i++)
-                {
-                    System.Threading.Thread.Sleep(1 * 1000);
-
-                    this.Invoke(new Action(() =>
-                    {
-                        rdoTIntervalM.Checked = true;
-                        dtpS.Value = DateTime.Today.AddDays((i + 1) * -15);
-                        dtpE.Value = DateTime.Today.AddDays((i + 0) * -15);
-                    }));
-                    if (dtpS.Value < Convert.ToDateTime("2017-01-01")) break;
-                    System.Threading.Thread.Sleep(1 * 1000);
-
-                    this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
-                    System.Threading.Thread.Sleep(5 * 1000);
-
-                    this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
-                    System.Threading.Thread.Sleep(5 * 1000);
-
-                    if (isNoData)
-                    {
-                        isNoData = false;
-                        break;
-                    }
-                }
-
-                itemCnt = 10 * 12;
-                for (int i = 0; i < itemCnt; i++)
-                {
-                    System.Threading.Thread.Sleep(1 * 1000);
-
-                    this.Invoke(new Action(() =>
-                    {
-                        rdoTIntervalH.Checked = true;
-                        dtpS.Value = DateTime.Today.AddMonths((i + 1) * -1);
-                        dtpE.Value = DateTime.Today.AddMonths((i + 0) * -1);
-                    }));
-                    if (dtpS.Value < Convert.ToDateTime("2017-01-01")) break;
-                    System.Threading.Thread.Sleep(1 * 1000);
-
-                    this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
-                    System.Threading.Thread.Sleep(5 * 1000);
-
-                    this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
-                    System.Threading.Thread.Sleep(5 * 1000);
-
-                    if (isNoData)
-                    {
-                        isNoData = false;
-                        break;
-                    }
-                }
-
-                //itemCnt = 10 * 12;
-                //for (int i = 0; i < itemCnt; i++)
-                //{
-                //    System.Threading.Thread.Sleep(1 * 1000);
-
-                //    this.Invoke(new Action(() =>
-                //    {
-                //        rdoTInterval2H.Checked = true;
-                //        dtpS.Value = DateTime.Today.AddMonths((i + 1) * -1);
-                //        dtpE.Value = DateTime.Today.AddMonths((i + 0) * -1);
-                //    }));
-
-                //    System.Threading.Thread.Sleep(1 * 1000);
-
-                //    this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
-                //    System.Threading.Thread.Sleep(5 * 1000);
-
-                //    this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
-                //    System.Threading.Thread.Sleep(5 * 1000);
-
-                //    if (isNoData)
-                //    {
-                //        isNoData = false;
-                //        break;
-                //    }
-                //}
-
-                itemCnt = 10 * 12;
-                for (int i = 0; i < itemCnt; i++)
-                {
-                    System.Threading.Thread.Sleep(1 * 1000);
-
-                    this.Invoke(new Action(() =>
-                    {
-                        rdoTInterval5H.Checked = true;
-                        dtpS.Value = DateTime.Today.AddMonths((i + 1) * -1);
-                        dtpE.Value = DateTime.Today.AddMonths((i + 0) * -1);
-                    }));
-                    if (dtpS.Value < Convert.ToDateTime("2017-01-01")) break;
-                    System.Threading.Thread.Sleep(1 * 1000);
-
-                    this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
-                    System.Threading.Thread.Sleep(5 * 1000);
-
-                    this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
-                    System.Threading.Thread.Sleep(5 * 1000);
-
-                    if (isNoData)
-                    {
-                        isNoData = false;
-                        break;
-                    }
-                }
-
-                itemCnt = 20;
-                for (int i = 0; i < itemCnt; i++)
-                {
-                    System.Threading.Thread.Sleep(1 * 1000);
-
-                    this.Invoke(new Action(() =>
-                    {
-                        rdoTIntervalW.Checked = true;
-                        dtpS.Value = DateTime.Today.AddYears((i + 1) * -2);
-                        dtpE.Value = DateTime.Today.AddYears((i + 0) * -2);
-                    }));
-                    if (dtpS.Value < Convert.ToDateTime("2017-01-01")) break;
-                    System.Threading.Thread.Sleep(1 * 1000);
-
-                    this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
-                    System.Threading.Thread.Sleep(5 * 1000);
-
-                    this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
-                    System.Threading.Thread.Sleep(5 * 1000);
-
-                    if (isNoData)
-                    {
-                        isNoData = false;
-                        break;
-                    }
-                }
-
-                isAuto = false;
             });
         }
         private void btnAutoCreateKItem_Click(object sender, EventArgs e)
@@ -1099,43 +1042,47 @@ namespace OM.Jiva.Chakra.App
             rdoTypeKItem.Checked = true;
             int itemCnt = cbxItem.Items.Count;
             int startIdx = cbxItem.SelectedIndex;
-            Task.Factory.StartNew(() =>
+            Task.Factory.StartNew(() => 
             {
-                isAuto = true;
-
-                System.Threading.Thread.Sleep(1 * 1000);
-
-                for (int i = startIdx; i < itemCnt; i++)
-                {
-                    System.Threading.Thread.Sleep(1 * 1000);
-
-                    this.Invoke(new Action(() => { cbxItem.SelectedIndex = i; }));
-
-                    this.Invoke(new Action(() => { rdoTIntervalD.Checked = true; }));
+                for (int t = 1; t <= 2; t++)
+                {                   
+                    if (t == 1)
+                        this.Invoke(new Action(() => { rdoCandle4.Checked = true; }));
+                    if (t == 2)
+                        this.Invoke(new Action(() => { rdoCandleF.Checked = true; }));
 
                     System.Threading.Thread.Sleep(1 * 1000);
 
-                    this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
+                    for (int i = startIdx; i < itemCnt; i++)
+                    {
+                        System.Threading.Thread.Sleep(1 * 1000);
 
-                    System.Threading.Thread.Sleep(3 * 1000);
-                    this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
+                        this.Invoke(new Action(() => { cbxItem.SelectedIndex = i; }));
 
-                    System.Threading.Thread.Sleep(3 * 1000);
+                        this.Invoke(new Action(() => { rdoTIntervalD.Checked = true; }));
 
-                    this.Invoke(new Action(() => { rdoTIntervalW.Checked = true; }));
+                        System.Threading.Thread.Sleep(1 * 1000);
 
-                    System.Threading.Thread.Sleep(1 * 1000);
+                        this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
 
-                    this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
+                        System.Threading.Thread.Sleep(3 * 1000);
+                        this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
 
-                    System.Threading.Thread.Sleep(3 * 1000);
+                        System.Threading.Thread.Sleep(3 * 1000);
 
-                    this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
+                        this.Invoke(new Action(() => { rdoTIntervalW.Checked = true; }));
 
-                    System.Threading.Thread.Sleep(3 * 1000);
+                        System.Threading.Thread.Sleep(1 * 1000);
+
+                        this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
+
+                        System.Threading.Thread.Sleep(3 * 1000);
+
+                        this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
+
+                        System.Threading.Thread.Sleep(3 * 1000);
+                    }
                 }
-
-                isAuto = false;
             });
         }
 
@@ -1182,7 +1129,5 @@ namespace OM.Jiva.Chakra.App
         {
             selectedCandleType = "F";
         }
-
-        
     }
 }

@@ -32,7 +32,9 @@ namespace OM.Jiva.Chakra.App
 
         S_CandleItemData selCandleData = null;
 
-        Dictionary<string, BasicCandlePattern> basicPatterns = new Dictionary<string, BasicCandlePattern>();        
+        FourCandlePattern fourPatterns = new FourCandlePattern();
+        ThreeCandlePattern threePatterns = new ThreeCandlePattern();
+        TwoCandlePattern twoPatterns = new TwoCandlePattern();
       
         int displayCnt = 60;
         public JivaAnalysisForm()
@@ -59,6 +61,14 @@ namespace OM.Jiva.Chakra.App
             serverInfo();
             cbxProduct.SelectedIndex = 0;
             setItems();
+          
+            Task.Factory.StartNew(() => {
+                fourPatterns.LoadPatternData();
+                threePatterns.LoadPatternData();
+                twoPatterns.LoadPatternData();
+
+                this.Invoke(new Action(() => { btnLoad.Enabled = true;}));
+            });
         }
         private void setItems()
         {
@@ -132,8 +142,6 @@ namespace OM.Jiva.Chakra.App
              
         void loadSiseDataFromDaemon()
         {
-            BasicCandlePattern basicPattern = basicPatterns[selectedType];
-
             if (cbxProduct.SelectedIndex < 3)
                 selectedItem = (cbxItem.SelectedItem as ItemData).Code;
             else
@@ -168,25 +176,33 @@ namespace OM.Jiva.Chakra.App
 
                     dgvList.Rows[index].Tag = data;
 
-                    var pInfo = PatternUtil.GetCandlePatternInfo(data);
-                    pInfo.TimeInterval = Convert.ToInt32(selectedTimeInterval);
-                    pInfo.Product = selectedType;
-                    pInfo.Item = selectedItem;
-
                     {
-                        var pList = basicPattern.GetMatchPatterns2(pInfo);
+                        var pInfo = PatternUtil.GetTwoPatternInfo(data);
+                        pInfo.TimeInterval = Convert.ToInt32(selectedTimeInterval);
+                        pInfo.Product = selectedType;
+                        pInfo.Item = selectedItem;
+                        var pList = twoPatterns.GetMatchPatterns(pInfo);
                         if (pList.Count == 0)
                             ((DataGridViewButtonCell)dgvList.Rows[index].Cells[1]).Value = "";
                     }
 
                     {
-                        var pList = basicPattern.GetMatchPatterns3(pInfo);
+                        var pInfo = PatternUtil.GetThreePatternInfo(data);
+                        pInfo.TimeInterval = Convert.ToInt32(selectedTimeInterval);
+                        pInfo.Product = selectedType;
+                        pInfo.Item = selectedItem;
+
+                        var pList = threePatterns.GetMatchPatterns(pInfo);
                         if (pList.Count == 0)
                             ((DataGridViewButtonCell)dgvList.Rows[index].Cells[2]).Value = "";
                     }
 
                     {
-                        var pList = basicPattern.GetMatchPatterns4(pInfo);
+                        var pInfo = PatternUtil.GetFourPatternInfo(data);
+                        pInfo.TimeInterval = Convert.ToInt32(selectedTimeInterval);
+                        pInfo.Product = selectedType;
+                        pInfo.Item = selectedItem;
+                        var pList = fourPatterns.GetMatchPatterns(pInfo);
                         if (pList.Count == 0)
                             ((DataGridViewButtonCell)dgvList.Rows[index].Cells[3]).Value = "";
                     }
@@ -366,110 +382,106 @@ namespace OM.Jiva.Chakra.App
             if (e.ColumnIndex < 0 || e.RowIndex < 0)
                 return;
 
-            BasicCandlePattern basicPattern = basicPatterns[selectedType];
-
             S_CandleItemData data = dgvList.Rows[e.RowIndex].Tag as S_CandleItemData;
             selCandleData = data;
 
-            var pInfo = PatternUtil.GetCandlePatternInfo(selCandleData);
-            pInfo.TimeInterval = Convert.ToInt32(selectedTimeInterval);
-            pInfo.Product = selectedType;
-            pInfo.Item = selectedItem;
-
             if (e.ColumnIndex == 1)
-            {                
-                var pList= basicPattern.GetMatchPatterns2(pInfo);
+            {
+                var pInfo = PatternUtil.GetTwoPatternInfo(selCandleData);
+                pInfo.TimeInterval = Convert.ToInt32(selectedTimeInterval);
+                pInfo.Product = selectedType;
+                pInfo.Item = selectedItem;
+                var pList= twoPatterns.GetMatchPatterns(pInfo);
 
                 dgv.Rows.Clear();
                 if(pList.Count > 0) lbNoResult.Visible = false;
                 else lbNoResult.Visible = true;
 
-                foreach (var p in pList.OrderByDescending(t => t.CandlePatternType2))
+                foreach (var p in pList.OrderByDescending(t => t.CandlePatternType))
                 {
                     int idx = dgv.Rows.Add(p.Item
                         , getIntervalToString(p.TimeInterval)
                         , p.EndDT.ToString("yy.MM.dd HH:mm")
-                        , Convert.ToString((CandlePatternTypeEnum)Convert.ToInt32(p.CandlePatternType2)));
+                        , Convert.ToString((CandlePatternTypeEnum)Convert.ToInt32(p.CandlePatternType)));
 
-                    var type = ((CandlePatternTypeEnum)Convert.ToInt32(p.CandlePatternType2));
+                    var type = ((CandlePatternTypeEnum)Convert.ToInt32(p.CandlePatternType));
 
                     if (type == CandlePatternTypeEnum.Up)
                         dgv.Rows[idx].Cells[3].Style.ForeColor = Color.Red;
                     else if (type == CandlePatternTypeEnum.Down)
                         dgv.Rows[idx].Cells[3].Style.ForeColor = Color.Blue;
                     else if (type == CandlePatternTypeEnum.StrongUp)
-                        dgv.Rows[idx].Cells[3].Style.ForeColor = Color.Red;
+                        dgv.Rows[idx].Cells[3].Style.ForeColor = Color.DarkRed;
                     else if (type == CandlePatternTypeEnum.StrongDown)
-                        dgv.Rows[idx].Cells[3].Style.ForeColor = Color.Blue;
-                    else if (type == CandlePatternTypeEnum.WeakUp)
-                        dgv.Rows[idx].Cells[3].Style.ForeColor = Color.Red;
-                    else if (type == CandlePatternTypeEnum.WeakDown)
-                        dgv.Rows[idx].Cells[3].Style.ForeColor = Color.Blue;
+                        dgv.Rows[idx].Cells[3].Style.ForeColor = Color.DarkBlue;
 
                     dgv.Rows[idx].Tag = p;
                 }
             }
             if (e.ColumnIndex == 2)
             {
-                var pList = basicPattern.GetMatchPatterns3(pInfo);
+                var pInfo = PatternUtil.GetThreePatternInfo(selCandleData);
+                pInfo.TimeInterval = Convert.ToInt32(selectedTimeInterval);
+                pInfo.Product = selectedType;
+                pInfo.Item = selectedItem;
+
+                var pList = threePatterns.GetMatchPatterns(pInfo);               
+
                 dgv.Rows.Clear();
                 if (pList.Count > 0) lbNoResult.Visible = false;
                 else lbNoResult.Visible = true;
 
-                foreach (var p in pList.OrderByDescending(t => t.CandlePatternType3))
+                foreach (var p in pList.OrderByDescending(t => t.CandlePatternType))
                 {
                     int idx = dgv.Rows.Add(p.Item
                         , getIntervalToString(p.TimeInterval)
                         , p.EndDT.ToString("yy.MM.dd HH:mm")
-                        , Convert.ToString((CandlePatternTypeEnum)Convert.ToInt32(p.CandlePatternType3)));
+                        , Convert.ToString((CandlePatternTypeEnum)Convert.ToInt32(p.CandlePatternType)));
 
-                    var type = ((CandlePatternTypeEnum)Convert.ToInt32(p.CandlePatternType3));
+                    var type = ((CandlePatternTypeEnum)Convert.ToInt32(p.CandlePatternType));
 
                     if (type == CandlePatternTypeEnum.Up)
                         dgv.Rows[idx].Cells[3].Style.ForeColor = Color.Red;
                     else if (type == CandlePatternTypeEnum.Down)
                         dgv.Rows[idx].Cells[3].Style.ForeColor = Color.Blue;
                     else if (type == CandlePatternTypeEnum.StrongUp)
-                        dgv.Rows[idx].Cells[3].Style.ForeColor = Color.Red;
+                        dgv.Rows[idx].Cells[3].Style.ForeColor = Color.DarkRed;
                     else if (type == CandlePatternTypeEnum.StrongDown)
-                        dgv.Rows[idx].Cells[3].Style.ForeColor = Color.Blue;
-                    else if (type == CandlePatternTypeEnum.WeakUp)
-                        dgv.Rows[idx].Cells[3].Style.ForeColor = Color.Red;
-                    else if (type == CandlePatternTypeEnum.WeakDown)
-                        dgv.Rows[idx].Cells[3].Style.ForeColor = Color.Blue;
+                        dgv.Rows[idx].Cells[3].Style.ForeColor = Color.DarkBlue;
 
                     dgv.Rows[idx].Tag = p;
                 }
             }
             if (e.ColumnIndex == 3)
             {
-                var pList = basicPattern.GetMatchPatterns4(pInfo);
+                var pInfo = PatternUtil.GetFourPatternInfo(selCandleData);
+                pInfo.TimeInterval = Convert.ToInt32(selectedTimeInterval);
+                pInfo.Product = selectedType;
+                pInfo.Item = selectedItem;
+
+                var pList = fourPatterns.GetMatchPatterns(pInfo);
 
                 dgv.Rows.Clear();
                 if (pList.Count > 0) lbNoResult.Visible = false;
                 else lbNoResult.Visible = true;
 
-                foreach (var p in pList.OrderByDescending(t => t.CandlePatternType4))
+                foreach (var p in pList.OrderByDescending(t => t.CandlePatternType))
                 {
                     int idx = dgv.Rows.Add(p.Item
                         , getIntervalToString(p.TimeInterval)
                         , p.EndDT.ToString("yy.MM.dd HH:mm")
-                        , Convert.ToString((CandlePatternTypeEnum)Convert.ToInt32(p.CandlePatternType4)));
+                        , Convert.ToString((CandlePatternTypeEnum)Convert.ToInt32(p.CandlePatternType)));
 
-                    var type = ((CandlePatternTypeEnum)Convert.ToInt32(p.CandlePatternType4));
+                    var type = ((CandlePatternTypeEnum)Convert.ToInt32(p.CandlePatternType));
 
                     if (type == CandlePatternTypeEnum.Up)
                         dgv.Rows[idx].Cells[3].Style.ForeColor = Color.Red;
                     else if (type == CandlePatternTypeEnum.Down)
                         dgv.Rows[idx].Cells[3].Style.ForeColor = Color.Blue;
                     else if (type == CandlePatternTypeEnum.StrongUp)
-                        dgv.Rows[idx].Cells[3].Style.ForeColor = Color.Red;
+                        dgv.Rows[idx].Cells[3].Style.ForeColor = Color.DarkRed;
                     else if (type == CandlePatternTypeEnum.StrongDown)
-                        dgv.Rows[idx].Cells[3].Style.ForeColor = Color.Blue;
-                    else if (type == CandlePatternTypeEnum.WeakUp)
-                        dgv.Rows[idx].Cells[3].Style.ForeColor = Color.Red;
-                    else if (type == CandlePatternTypeEnum.WeakDown)
-                        dgv.Rows[idx].Cells[3].Style.ForeColor = Color.Blue;
+                        dgv.Rows[idx].Cells[3].Style.ForeColor = Color.DarkBlue;
 
                     dgv.Rows[idx].Tag = p;
                 }
@@ -486,52 +498,134 @@ namespace OM.Jiva.Chakra.App
                 return;
             string product = "";
             string item = "";
-
             TimeIntervalEnum interval = TimeIntervalEnum.Day;
             DateTime? searchRangeDateS = null;
             DateTime? searchRangeDateE = null;
             DateTime selectedDTime = DateTime.Now;
-            
-            var chooseData = dgv.Rows[e.RowIndex].Tag as CandlePatternData;
-            product = chooseData.Product;
-            item = chooseData.Item;
-            interval = (TimeIntervalEnum)chooseData.TimeInterval;
-            selectedDTime = chooseData.EndDT;
-
-            if (product == "해외선물" || product == "암호화폐")
+            if (dgv.Rows[e.RowIndex].Tag is CandlePattern_Two)
             {
-                if (interval == TimeIntervalEnum.Minute_30)
+                var chooseData = dgv.Rows[e.RowIndex].Tag as CandlePattern_Two;
+                product = chooseData.Product;
+                item = chooseData.Item;
+                interval = (TimeIntervalEnum)chooseData.TimeInterval;
+                selectedDTime = chooseData.EndDT;
+                if (product == "해외선물" || product == "암호화폐")
                 {
-                    searchRangeDateS = chooseData.StartDT.AddDays(-2);
-                    searchRangeDateE = chooseData.EndDT.AddDays(2);
-                }
-                if (interval == TimeIntervalEnum.Hour_01)
-                {
-                    searchRangeDateS = chooseData.StartDT.AddDays(-5);
-                    searchRangeDateE = chooseData.EndDT.AddDays(5);
-                }
-                if (interval == TimeIntervalEnum.Hour_02)
-                {
-                    searchRangeDateS = chooseData.StartDT.AddDays(-10);
-                    searchRangeDateE = chooseData.EndDT.AddDays(1);
-                }
-                if (interval == TimeIntervalEnum.Hour_05)
-                {
-                    searchRangeDateS = chooseData.StartDT.AddDays(-15);
-                    searchRangeDateE = chooseData.EndDT.AddDays(1);
-                }
-                if (interval == TimeIntervalEnum.Day)
-                {
-                    searchRangeDateS = chooseData.StartDT.AddMonths(-2);
-                    searchRangeDateE = chooseData.EndDT.AddMonths(2);
-                }
-                if (interval == TimeIntervalEnum.Week)
-                {
-                    searchRangeDateS = chooseData.StartDT.AddYears(-1);
-                    searchRangeDateE = chooseData.EndDT.AddYears(2);
+                    if (interval == TimeIntervalEnum.Minute_30)
+                    {
+                        searchRangeDateS = chooseData.StartDT.AddDays(-2);
+                        searchRangeDateE = chooseData.EndDT.AddDays(2);
+                    }
+                    if (interval == TimeIntervalEnum.Hour_01)
+                    {
+                        searchRangeDateS = chooseData.StartDT.AddDays(-5);
+                        searchRangeDateE = chooseData.EndDT.AddDays(5);
+                    }
+                    if (interval == TimeIntervalEnum.Hour_02)
+                    {
+                        searchRangeDateS = chooseData.StartDT.AddDays(-10);
+                        searchRangeDateE = chooseData.EndDT.AddDays(1);
+                    }
+                    if (interval == TimeIntervalEnum.Hour_05)
+                    {
+                        searchRangeDateS = chooseData.StartDT.AddDays(-15);
+                        searchRangeDateE = chooseData.EndDT.AddDays(1);
+                    }
+                    if (interval == TimeIntervalEnum.Day)
+                    {
+                        searchRangeDateS = chooseData.StartDT.AddMonths(-2);
+                        searchRangeDateE = chooseData.EndDT.AddMonths(2);
+                    }
+                    if (interval == TimeIntervalEnum.Week)
+                    {
+                        searchRangeDateS = chooseData.StartDT.AddYears(-1);
+                        searchRangeDateE = chooseData.EndDT.AddYears(2);
+                    }
                 }
             }
-            
+            if (dgv.Rows[e.RowIndex].Tag is CandlePattern_Three)
+            {
+                var chooseData = dgv.Rows[e.RowIndex].Tag as CandlePattern_Three;
+                product = chooseData.Product;
+                item = chooseData.Item;
+                interval = (TimeIntervalEnum)chooseData.TimeInterval;
+                selectedDTime = chooseData.EndDT;
+                if (product == "해외선물" || product == "암호화폐")
+                {
+                    if (interval == TimeIntervalEnum.Minute_30)
+                    {
+                        searchRangeDateS = chooseData.StartDT.AddDays(-2);
+                        searchRangeDateE = chooseData.EndDT.AddDays(2);
+                    }
+                    if (interval == TimeIntervalEnum.Hour_01)
+                    {
+                        searchRangeDateS = chooseData.StartDT.AddDays(-5);
+                        searchRangeDateE = chooseData.EndDT.AddDays(5);
+                    }
+                    if (interval == TimeIntervalEnum.Hour_02)
+                    {
+                        searchRangeDateS = chooseData.StartDT.AddDays(-10);
+                        searchRangeDateE = chooseData.EndDT.AddDays(1);
+                    }
+                    if (interval == TimeIntervalEnum.Hour_05)
+                    {
+                        searchRangeDateS = chooseData.StartDT.AddDays(-15);
+                        searchRangeDateE = chooseData.EndDT.AddDays(1);
+                    }
+                    if (interval == TimeIntervalEnum.Day)
+                    {
+                        searchRangeDateS = chooseData.StartDT.AddMonths(-2);
+                        searchRangeDateE = chooseData.EndDT.AddMonths(2);
+                    }
+                    if (interval == TimeIntervalEnum.Week)
+                    {
+                        searchRangeDateS = chooseData.StartDT.AddYears(-1);
+                        searchRangeDateE = chooseData.EndDT.AddYears(2);
+                    }
+                }
+            }
+            if (dgv.Rows[e.RowIndex].Tag is CandlePattern_Four)
+            {
+                var chooseData = dgv.Rows[e.RowIndex].Tag as CandlePattern_Four;
+                product = chooseData.Product;
+                item = chooseData.Item;
+                interval = (TimeIntervalEnum)chooseData.TimeInterval;
+                selectedDTime = chooseData.EndDT;
+                if (product == "해외선물" || product == "암호화폐")
+                {
+                    if (interval == TimeIntervalEnum.Minute_30)
+                    {
+                        searchRangeDateS = chooseData.StartDT.AddDays(-2);
+                        searchRangeDateE = chooseData.EndDT.AddDays(1);
+                    }
+                    if (interval == TimeIntervalEnum.Hour_01)
+                    {
+                        searchRangeDateS = chooseData.StartDT.AddDays(-5);
+                        searchRangeDateE = chooseData.EndDT.AddDays(1);
+                    }
+                    if (interval == TimeIntervalEnum.Hour_02)
+                    {
+                        searchRangeDateS = chooseData.StartDT.AddDays(-10);
+                        searchRangeDateE = chooseData.EndDT.AddDays(1);
+                    }
+                    if (interval == TimeIntervalEnum.Hour_05)
+                    {
+                        searchRangeDateS = chooseData.StartDT.AddDays(-15);
+                        searchRangeDateE = chooseData.EndDT.AddDays(1);
+                    }
+                    if (interval == TimeIntervalEnum.Day)
+                    {
+                        searchRangeDateS = chooseData.StartDT.AddMonths(-2);
+                        searchRangeDateE = chooseData.EndDT.AddMonths(1);
+                    }
+                    if (interval == TimeIntervalEnum.Week)
+                    {
+                        searchRangeDateS = chooseData.StartDT.AddYears(-1);
+                        searchRangeDateE = chooseData.EndDT.AddYears(1);
+                    }
+                }
+            }
+
             var sourceDatas2 = loadData(product, item, interval, searchRangeDateS, searchRangeDateE);
             chart2.DisplayPointCount = displayCnt;
             chart2.LoadData(item, sourceDatas2, interval);
@@ -607,12 +701,7 @@ namespace OM.Jiva.Chakra.App
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
-        {
-            if (!basicPatterns.ContainsKey(selectedType))
-            {
-                MessageBox.Show("Load Data First!!!");
-                return;
-            }
+        {            
             loadSiseDataFromDaemon();            
         }
 
@@ -675,19 +764,6 @@ namespace OM.Jiva.Chakra.App
             {
                 string err = ex.Message;
             }
-        }
-
-        private void btnLoadDB_Click(object sender, EventArgs e)
-        {
-            if (!basicPatterns.ContainsKey(selectedType))
-                basicPatterns.Add(selectedType, new BasicCandlePattern());
-
-            BasicCandlePattern basicPattern = basicPatterns[selectedType];
-
-            Task.Factory.StartNew(() => {
-                basicPattern.LoadPatternData(selectedType);               
-                this.Invoke(new Action(() => { btnLoad.Enabled = true; }));
-            });            
         }
     }
 }
