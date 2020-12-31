@@ -149,6 +149,23 @@ namespace OM.Vikala.Controls.Charts
                             SetDataPointColor(dataPoint, Color.Black, Color.Black, Color.White, 1);
                     }
                 }
+                else
+                {
+                    var dataPoint = chart.Series[0].Points[idx];
+
+                    if (item.PlusMinusType == PlusMinusTypeEnum.양 && item.YinAndYang == PlusMinusTypeEnum.양)
+                        SetDataPointColor(dataPoint, Color.Red, Color.Red, Color.Red, 2);
+                    else if (item.PlusMinusType == PlusMinusTypeEnum.음 && item.YinAndYang == PlusMinusTypeEnum.양)
+                        SetDataPointColor(dataPoint, Color.Blue, Color.Blue, Color.Blue, 2);
+
+                    else if (item.PlusMinusType == PlusMinusTypeEnum.양)
+                        SetDataPointColor(dataPoint, Color.Red, Color.Red, Color.White, 2);
+                    else if (item.PlusMinusType == PlusMinusTypeEnum.음)
+                        SetDataPointColor(dataPoint, Color.Blue, Color.Blue, Color.White, 2);
+
+                    else
+                        SetDataPointColor(dataPoint, Color.Black, Color.Black, Color.White, 2);
+                }
 
                 var itemAvg = ChartDataSub[i];
                 //빨강
@@ -270,6 +287,7 @@ namespace OM.Vikala.Controls.Charts
             int displayItemCount = DisplayPointCount * trackView;
 
             List<T_AtomItemData> viewLists = null;
+            List<T_AtomItemData> viewSubLists = null;
             int maxDisplayIndex = 0;
             int minDisplayIndex = 0;
             if (scrollVal == hScrollBar.Minimum)
@@ -277,6 +295,7 @@ namespace OM.Vikala.Controls.Charts
                 int maxIndex = ChartData.Count > displayItemCount ? displayItemCount - 1 : ChartData.Count;
                 if (displayItemCount > ChartData.Count) displayItemCount = ChartData.Count;
                 viewLists = ChartData.GetRange(0, maxIndex);
+                viewSubLists  = ChartDataSub.GetRange(0, maxIndex);
                 maxDisplayIndex = displayItemCount;
                 minDisplayIndex = 0;
             }
@@ -285,6 +304,7 @@ namespace OM.Vikala.Controls.Charts
                 int minIndex = ChartData.Count < displayItemCount ? 0 : ChartData.Count - displayItemCount;
                 if (displayItemCount > ChartData.Count) displayItemCount = ChartData.Count;
                 viewLists = ChartData.GetRange(minIndex, ChartData.Count < displayItemCount ? ChartData.Count : displayItemCount);
+                viewSubLists = ChartDataSub.GetRange(minIndex, ChartData.Count < displayItemCount ? ChartData.Count : displayItemCount);
                 maxDisplayIndex = ChartData.Count;
                 minDisplayIndex = minIndex;
             }
@@ -295,6 +315,7 @@ namespace OM.Vikala.Controls.Charts
                     displayItemCount = ChartData.Count - currentIndex;
 
                 viewLists = ChartData.GetRange(currentIndex, displayItemCount);
+                viewSubLists = ChartDataSub.GetRange(currentIndex, displayItemCount);
 
                 maxDisplayIndex = currentIndex + displayItemCount;
                 minDisplayIndex = currentIndex;
@@ -303,10 +324,10 @@ namespace OM.Vikala.Controls.Charts
             {                
                 double maxPrice1 = viewLists.Max(m => m.HighPrice);
                 double minPrice1 = viewLists.Min(m => m.LowPrice);
-                double maxPrice2 = viewLists.Max(m => m.HighPrice);
-                double minPrice2 = viewLists.Min(m => m.LowPrice);
-                double maxPrice3 = viewLists.Max(m => m.HighPrice);
-                double minPrice3 = viewLists.Min(m => m.LowPrice);
+                double maxPrice2 = viewSubLists.Max(m => m.T_QuantumAvg);
+                double minPrice2 = viewSubLists.Min(m => m.T_QuantumAvg);
+                double maxPrice3 = viewSubLists.Max(m => m.T_VikalaAvg);
+                double minPrice3 = viewSubLists.Min(m => m.T_VikalaAvg);
 
                 double maxPrice = maxPrice1 > maxPrice2 ? maxPrice1 : maxPrice2;
                 double minPrice = minPrice1 < minPrice2 ? minPrice1 : minPrice2;

@@ -74,6 +74,8 @@ namespace OM.PP.Chakra
                     LowPrice = sourceData.LowPrice;
                     ClosePrice = sourceData.ClosePrice;
                     DTime = sourceData.DTime;
+                    PreCandleItem = sourceData.PreCandleItem;
+                    NextCandleItem = sourceData.NextCandleItem;
                     VirtualData = sourceData.VirtualData;
                     VirtualDepth = sourceData.VirtualDepth;
                 }

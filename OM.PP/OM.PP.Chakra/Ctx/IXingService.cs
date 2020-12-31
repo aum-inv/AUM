@@ -28,6 +28,9 @@ namespace OM.PP.Chakra.Ctx
         List<S_CandleItemData> GetWorldIndexSiseData(string itemCode, string gubun);
 
         [OperationContract]
+        List<S_CandleItemData> GetWorldIndexSiseDataByRange(string itemCode, string gubun, DateTime sdt, DateTime edt);
+
+        [OperationContract]
         List<S_CandleItemData> GetWorldFutureSiseData(string itemCode, string gubun);
 
         [OperationContract]
@@ -44,6 +47,13 @@ namespace OM.PP.Chakra.Ctx
 
         [OperationContract]
         List<S_CandleItemData> GetCryptoSiseDataByRange(string itemCode, string gubun, DateTime sdt, DateTime edt);
+
+        [OperationContract]
+        List<S_CandleItemData> GetKoreaIndexSiseData(string itemCode, string gubun);
+
+        [OperationContract]
+        List<S_CandleItemData> GetKoreaIndexSiseDataByRange(string itemCode, string gubun, DateTime sdt, DateTime edt);
+        
     }
 
 }

@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(JivaAnalysisForceForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle56 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle61 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle57 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle58 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle59 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle60 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle62 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle63 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle64 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle65 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle66 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnLoadDaemonM = new System.Windows.Forms.Button();
             this.btnLoadDaemonH = new System.Windows.Forms.Button();
@@ -49,6 +49,7 @@
             this.openFile = new System.Windows.Forms.OpenFileDialog();
             this.cbxProduct = new System.Windows.Forms.ComboBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnLoadDB = new System.Windows.Forms.Button();
             this.btnLoadDaemon5H = new System.Windows.Forms.Button();
             this.btnLoadDaemon2H = new System.Windows.Forms.Button();
             this.btnCopy = new MetroFramework.Controls.MetroTile();
@@ -70,7 +71,6 @@
             this.tlpChart = new System.Windows.Forms.TableLayoutPanel();
             this.chart2 = new OM.Vikala.Controls.Charts.PatternCandleChart();
             this.chart1 = new OM.Vikala.Controls.Charts.PatternCandleChart();
-            this.btnLoadDB = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudDisplay)).BeginInit();
@@ -205,8 +205,21 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(20, 60);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1169, 32);
+            this.panel3.Size = new System.Drawing.Size(1251, 32);
             this.panel3.TabIndex = 4;
+            // 
+            // btnLoadDB
+            // 
+            this.btnLoadDB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnLoadDB.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnLoadDB.FlatAppearance.BorderSize = 0;
+            this.btnLoadDB.Location = new System.Drawing.Point(457, 4);
+            this.btnLoadDB.Name = "btnLoadDB";
+            this.btnLoadDB.Size = new System.Drawing.Size(94, 23);
+            this.btnLoadDB.TabIndex = 33;
+            this.btnLoadDB.Text = "Load Data";
+            this.btnLoadDB.UseVisualStyleBackColor = true;
+            this.btnLoadDB.Click += new System.EventHandler(this.btnLoadDB_Click);
             // 
             // btnLoadDaemon5H
             // 
@@ -240,7 +253,7 @@
             // 
             this.btnCopy.ActiveControl = null;
             this.btnCopy.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnCopy.Location = new System.Drawing.Point(1143, 0);
+            this.btnCopy.Location = new System.Drawing.Point(1225, 0);
             this.btnCopy.Name = "btnCopy";
             this.btnCopy.Size = new System.Drawing.Size(24, 30);
             this.btnCopy.Style = MetroFramework.MetroColorStyle.Brown;
@@ -304,7 +317,7 @@
             this.pnlLeftContent.Location = new System.Drawing.Point(20, 92);
             this.pnlLeftContent.Name = "pnlLeftContent";
             this.pnlLeftContent.Padding = new System.Windows.Forms.Padding(5);
-            this.pnlLeftContent.Size = new System.Drawing.Size(380, 549);
+            this.pnlLeftContent.Size = new System.Drawing.Size(380, 698);
             this.pnlLeftContent.TabIndex = 12;
             this.pnlLeftContent.VerticalScrollbarBarColor = true;
             this.pnlLeftContent.VerticalScrollbarHighlightOnWheel = false;
@@ -318,14 +331,14 @@
             this.dgvList.AllowUserToResizeRows = false;
             this.dgvList.BackgroundColor = System.Drawing.Color.White;
             this.dgvList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle56.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle56.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle56.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle56.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle56.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle56.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle56.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle56;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvList.ColumnHeadersHeight = 25;
             this.dgvList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -333,14 +346,14 @@
             this.dataGridViewTextBoxColumn5,
             this.Column1,
             this.패턴4});
-            dataGridViewCellStyle61.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle61.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle61.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle61.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle61.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle61.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle61.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvList.DefaultCellStyle = dataGridViewCellStyle61;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvList.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvList.GridColor = System.Drawing.Color.LightGray;
             this.dgvList.Location = new System.Drawing.Point(5, 5);
@@ -351,16 +364,16 @@
             this.dgvList.RowHeadersWidth = 62;
             this.dgvList.RowTemplate.Height = 23;
             this.dgvList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvList.Size = new System.Drawing.Size(368, 262);
+            this.dgvList.Size = new System.Drawing.Size(368, 411);
             this.dgvList.TabIndex = 23;
             this.dgvList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvList_CellContentDoubleClick);
             // 
             // dataGridViewTextBoxColumn1
             // 
-            dataGridViewCellStyle57.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle57.Format = "d";
-            dataGridViewCellStyle57.NullValue = "yy.MM.dd HH:mm";
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle57;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = "yy.MM.dd HH:mm";
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTextBoxColumn1.Frozen = true;
             this.dataGridViewTextBoxColumn1.HeaderText = "시간";
             this.dataGridViewTextBoxColumn1.MinimumWidth = 8;
@@ -370,9 +383,9 @@
             // 
             // dataGridViewTextBoxColumn5
             // 
-            dataGridViewCellStyle58.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle58.Padding = new System.Windows.Forms.Padding(1);
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle58;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(1);
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewTextBoxColumn5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.dataGridViewTextBoxColumn5.Frozen = true;
             this.dataGridViewTextBoxColumn5.HeaderText = "패턴 2";
@@ -386,9 +399,9 @@
             // 
             // Column1
             // 
-            dataGridViewCellStyle59.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle59.Padding = new System.Windows.Forms.Padding(1);
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle59;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(1);
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle4;
             this.Column1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Column1.HeaderText = "패턴 3";
             this.Column1.MinimumWidth = 8;
@@ -399,9 +412,9 @@
             // 
             // 패턴4
             // 
-            dataGridViewCellStyle60.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle60.Padding = new System.Windows.Forms.Padding(1);
-            this.패턴4.DefaultCellStyle = dataGridViewCellStyle60;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(1);
+            this.패턴4.DefaultCellStyle = dataGridViewCellStyle5;
             this.패턴4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.패턴4.HeaderText = "패턴 4";
             this.패턴4.MinimumWidth = 8;
@@ -417,7 +430,7 @@
             this.pnlResultView.HorizontalScrollbarBarColor = true;
             this.pnlResultView.HorizontalScrollbarHighlightOnWheel = false;
             this.pnlResultView.HorizontalScrollbarSize = 10;
-            this.pnlResultView.Location = new System.Drawing.Point(5, 267);
+            this.pnlResultView.Location = new System.Drawing.Point(5, 416);
             this.pnlResultView.Name = "pnlResultView";
             this.pnlResultView.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
             this.pnlResultView.Size = new System.Drawing.Size(368, 275);
@@ -444,14 +457,14 @@
             this.dgv.AllowUserToResizeRows = false;
             this.dgv.BackgroundColor = System.Drawing.Color.White;
             this.dgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle62.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle62.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle62.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle62.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle62.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle62.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle62.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle62;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgv.ColumnHeadersHeight = 25;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -476,8 +489,8 @@
             // 
             // 시간
             // 
-            dataGridViewCellStyle63.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.시간.DefaultCellStyle = dataGridViewCellStyle63;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.시간.DefaultCellStyle = dataGridViewCellStyle8;
             this.시간.Frozen = true;
             this.시간.HeaderText = "종목";
             this.시간.MinimumWidth = 8;
@@ -487,8 +500,8 @@
             // 
             // 구분
             // 
-            dataGridViewCellStyle64.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.구분.DefaultCellStyle = dataGridViewCellStyle64;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.구분.DefaultCellStyle = dataGridViewCellStyle9;
             this.구분.Frozen = true;
             this.구분.HeaderText = "구분";
             this.구분.MinimumWidth = 8;
@@ -498,9 +511,9 @@
             // 
             // ColorEnergy
             // 
-            dataGridViewCellStyle65.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle65.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.ColorEnergy.DefaultCellStyle = dataGridViewCellStyle65;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
+            this.ColorEnergy.DefaultCellStyle = dataGridViewCellStyle10;
             this.ColorEnergy.Frozen = true;
             this.ColorEnergy.HeaderText = "시간";
             this.ColorEnergy.MinimumWidth = 8;
@@ -510,9 +523,9 @@
             // 
             // 고가
             // 
-            dataGridViewCellStyle66.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle66.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.고가.DefaultCellStyle = dataGridViewCellStyle66;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
+            this.고가.DefaultCellStyle = dataGridViewCellStyle11;
             this.고가.Frozen = true;
             this.고가.HeaderText = "방향";
             this.고가.MinimumWidth = 8;
@@ -533,7 +546,7 @@
             this.tlpChart.RowCount = 2;
             this.tlpChart.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpChart.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpChart.Size = new System.Drawing.Size(789, 549);
+            this.tlpChart.Size = new System.Drawing.Size(871, 698);
             this.tlpChart.TabIndex = 14;
             // 
             // chart2
@@ -550,12 +563,12 @@
             this.chart2.IsShowYLine = true;
             this.chart2.ItemCode = "";
             this.chart2.LineChartType = OM.Vikala.Controls.Charts.LineChartTypeEnum.기본;
-            this.chart2.Location = new System.Drawing.Point(3, 278);
+            this.chart2.Location = new System.Drawing.Point(3, 353);
             this.chart2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chart2.Name = "chart2";
             this.chart2.SelectedPType = "";
             this.chart2.SelectedTrackBarValue = 1;
-            this.chart2.Size = new System.Drawing.Size(783, 267);
+            this.chart2.Size = new System.Drawing.Size(865, 341);
             this.chart2.TabIndex = 1;
             this.chart2.TimeInterval = OM.Lib.Base.Enums.TimeIntervalEnum.Day;
             this.chart2.Title = null;
@@ -580,30 +593,17 @@
             this.chart1.Name = "chart1";
             this.chart1.SelectedPType = "";
             this.chart1.SelectedTrackBarValue = 1;
-            this.chart1.Size = new System.Drawing.Size(783, 266);
+            this.chart1.Size = new System.Drawing.Size(865, 341);
             this.chart1.TabIndex = 0;
             this.chart1.TimeInterval = OM.Lib.Base.Enums.TimeIntervalEnum.Day;
             this.chart1.Title = null;
             this.chart1.TotalPointCount = 0;
             // 
-            // btnLoadDB
-            // 
-            this.btnLoadDB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnLoadDB.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnLoadDB.FlatAppearance.BorderSize = 0;
-            this.btnLoadDB.Location = new System.Drawing.Point(457, 4);
-            this.btnLoadDB.Name = "btnLoadDB";
-            this.btnLoadDB.Size = new System.Drawing.Size(94, 23);
-            this.btnLoadDB.TabIndex = 33;
-            this.btnLoadDB.Text = "Load Data";
-            this.btnLoadDB.UseVisualStyleBackColor = true;
-            this.btnLoadDB.Click += new System.EventHandler(this.btnLoadDB_Click);
-            // 
             // JivaAnalysisForceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1209, 661);
+            this.ClientSize = new System.Drawing.Size(1291, 810);
             this.Controls.Add(this.tlpChart);
             this.Controls.Add(this.pnlLeftContent);
             this.Controls.Add(this.pictureBox1);

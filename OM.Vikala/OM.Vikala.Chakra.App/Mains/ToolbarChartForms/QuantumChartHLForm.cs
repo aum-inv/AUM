@@ -88,7 +88,14 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
             isLoading = false;
 
             if (sourceDatas == null || sourceDatas.Count == 0) return;
+            for (int i = 0; i < sourceDatas.Count; i++)
+            {
+                int pIdx = i - 1 < 0 ? 0 : i - 1;
+                int nIdx = i + 1 > sourceDatas.Count - 1 ? sourceDatas.Count - 1 : i + 1;
 
+                sourceDatas[i].PreCandleItem = sourceDatas[pIdx];
+                sourceDatas[i].NextCandleItem = sourceDatas[nIdx];
+            }
             //표시할 갯수를 맞춘다.
             RemoveSourceData(sourceDatas);
             //국내지수인 경우 시간갭이 크기 때문에.. 전일종가를 당일시가로 해야한다. 

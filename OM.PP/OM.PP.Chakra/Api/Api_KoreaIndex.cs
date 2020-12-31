@@ -1,4 +1,5 @@
-﻿using OM.Lib.Base.Enums;
+﻿using Microsoft.SqlServer.Server;
+using OM.Lib.Base.Enums;
 using OM.Lib.Base.Utils;
 using OM.Lib.Framework.Utility;
 using OM.PP.Chakra;
@@ -18,9 +19,10 @@ using XA_DATASETLib;
 
 namespace OM.PP.XingApp.Ex.Api
 {
-    class Api_WorldIndex : BaseApi
+    class Api_KoreaIndex : BaseApi
     {
         public ManualResetEvent manualEvent = new ManualResetEvent(false);
+
         public string ItemCode
         {
             get;
@@ -33,7 +35,7 @@ namespace OM.PP.XingApp.Ex.Api
             set;
         }
 
-        public Api_WorldIndex() : base("t3518")
+        public Api_KoreaIndex() : base("o3103")
         {
         }
 
@@ -42,7 +44,7 @@ namespace OM.PP.XingApp.Ex.Api
         #region Query Http
         public List<S_CandleItemData> Query(
              string itemCode
-           , string gubun = "D" //M : 15Min, H : Hour, D : Day, W : Week, M : Month        
+           , string gubun = "D" //M : 15Min, H : Hour, D : Day, W : Week, M : Month
            )
         {
             this.ItemCode = itemCode;
@@ -51,15 +53,8 @@ namespace OM.PP.XingApp.Ex.Api
             Task.Factory.StartNew(() => {
                 try
                 {
-                    string symbol = "169";
-                    if (itemCode == "DJI@DJI") symbol = "169";
-                    else if (itemCode == "NAS@IXIC") symbol = "14958";
-                    else if (itemCode == "SPI@SPX") symbol = "166";
-
-                    else if (itemCode == "HSI@HSI") symbol = "179";
-                    else if (itemCode == "SHS@000002") symbol = "40820";
-                    else if (itemCode == "NII@NI225") symbol = "178";
-                    
+                    string symbol = "37427";
+                    if (itemCode == "301") symbol = "38016";                    
 
                     string resolution = gubun;
                     if (gubun == "H" || gubun == "1H") resolution = "60";
@@ -176,10 +171,10 @@ namespace OM.PP.XingApp.Ex.Api
         }
 
         public List<S_CandleItemData> Query(
-                string itemCode
-            , string gubun//M : 15Min, H : Hour, D : Day, W : Week, M : Month
-            , DateTime sDT
-            , DateTime dDT
+                string itemCode           
+            ,   string gubun//M : 15Min, H : Hour, D : Day, W : Week, M : Month
+            ,   DateTime sDT
+            ,   DateTime dDT
            )
         {
             this.ItemCode = itemCode;
@@ -191,14 +186,8 @@ namespace OM.PP.XingApp.Ex.Api
             Task.Factory.StartNew(() => {
                 try
                 {
-                    string symbol = "169";
-                    if (itemCode == "DJI@DJI") symbol = "169";
-                    else if (itemCode == "NAS@IXIC") symbol = "14958";
-                    else if (itemCode == "SPI@SPX") symbol = "166";
-
-                    else if (itemCode == "HSI@HSI") symbol = "179";
-                    else if (itemCode == "SHS@000002") symbol = "40820";
-                    else if (itemCode == "NII@NI225") symbol = "178";
+                    string symbol = "37427";
+                    if (itemCode == "301") symbol = "38016";
 
                     string resolution = gubun;
                     if (gubun == "H" || gubun == "1H") resolution = "60";
@@ -209,7 +198,7 @@ namespace OM.PP.XingApp.Ex.Api
                     else if (gubun == "5M") resolution = "5";
                     else if (gubun == "15M") resolution = "15";
                     else if (gubun == "30M") resolution = "30";
-
+                                       
                     string urlPath = $"https://tvc4.forexpros.com/1cc1f0b6f392b9fad2b50b7aebef1f7c/1601866558/18/18/88/history?symbol={symbol}&resolution={resolution}&from={from}&to={to}";
                     HttpWebRequest request = (HttpWebRequest)WebRequest.Create(urlPath);
                     request.MaximumAutomaticRedirections = 4;
@@ -260,90 +249,82 @@ namespace OM.PP.XingApp.Ex.Api
             return returnList;
         }
         #endregion
-
         #region Query
-        /// <summary>
-        /// 분 쿼리일때는 qrycnt
-        /// 일 이상 쿼리일때는 날짜로 가져온다.
-        /// </summary>
+            /// <summary>
+            /// 분 쿼리일때는 qrycnt
+            /// 일 이상 쿼리일때는 날짜로 가져온다.
+            /// </summary>
+            /// <param name="shcode">101</param>
+            /// <param name="ncnt"></param>
+            /// <param name="qrycnt"></param>
+            /// <param name="cts_date"></param>
+            /// <param name="cts_time"></param>
+            /// <param name="cts_daygb">연속당일구분(0. 연속전체, 1.연속당)</param>
+            public void Query(
+              string shcode
+            , string gubun = "1"
+            , string ncnt = "1"
+            , string qrycnt = "100"
+            , string cts_date = ""
+            , string cts_time = "")
+        {  
+            ItemCode = shcode;
 
-        //public List<S_CandleItemData> Query(
-        //      string symbol = ""
-        //    , string gubun = "0" //0:일 1:주 2:월           
-        //    )
-        //{
-        //    ItemCode = symbol;
+            TimeInterval = EnumUtil.GetTimeIntervalValue(gubun, ncnt);
+            if (cts_date == "") cts_date = DateTime.Now.ToString("yyyyMMdd");
+            query.SetFieldData(inBlock, "shcode", 0, shcode + ".1");     
+            query.SetFieldData(inBlock, "ncnt", 0, ncnt);
+            query.SetFieldData(inBlock, "readcnt", 0, qrycnt);
+            query.SetFieldData(inBlock, "cts_date", 0, cts_date);
+            query.SetFieldData(inBlock, "cts_time", 0, cts_time);
 
-        //    if (gubun == "0")
-        //        TimeInterval = TimeIntervalEnum.Day;
-        //    else if (gubun == "1")
-        //        TimeInterval = TimeIntervalEnum.Week;
-        //    else if (gubun == "2")
-        //        TimeInterval = TimeIntervalEnum.Month;
-        //    string kind = "S";
-        //    string qrycnt = "500"; //건수
-        //    string cts_date = "";
-        //    string cts_time = "";
+            query.Request(false);
+        }
 
-        //    query.SetFieldData(inBlock, "kind", 0, kind);
-        //    query.SetFieldData(inBlock, "symbol", 0, symbol);
-        //    query.SetFieldData(inBlock, "cnt", 0, qrycnt);
-        //    query.SetFieldData(inBlock, "jgbn", 0, gubun);
-        //    query.SetFieldData(inBlock, "nmin", 0, "");
-        //    query.SetFieldData(inBlock, "cts_date", 0, cts_date);
-        //    query.SetFieldData(inBlock, "cts_time", 0, cts_time);
-        //    query.Request(false);
-        //    manualEvent.WaitOne();
+        protected override void query_ReceiveData(string szTrCode)
+        {
+            Task.Factory.StartNew(() =>
+            {
+                int blockCnt = Convert.ToInt32(query.GetBlockCount(outBlock1));
 
-        //    return returnList.OrderBy(t => t.DTime).ToList();
-        //}
+                for (int idx = 0; idx < blockCnt; idx++)
+                {
+                    string date = query.GetFieldData(outBlock1, "date", idx);
+                    string time = query.GetFieldData(outBlock1, "time", idx);
+                    string open = query.GetFieldData(outBlock1, "open", idx);
+                    string high = query.GetFieldData(outBlock1, "high", idx);
+                    string low = query.GetFieldData(outBlock1, "low", idx);
+                    string close = query.GetFieldData(outBlock1, "close", idx);
+                    //string jdiff_vol = query.GetFieldData(outBlock1, "jdiff_vol", idx);
+                    //string value = query.GetFieldData(outBlock1, "value", idx);
 
-        //protected override void query_ReceiveData(string szTrCode)
-        //{
-        //    try
-        //    {
-        //        int blockCnt = Convert.ToInt32(query.GetBlockCount(outBlock1));
-        //        int round = ItemCodeUtil.GetItemCodeRoundNum(ItemCode);
+                    if (date.Length == 0) continue;
 
-        //        for (int idx = 0; idx < blockCnt; idx++)
-        //        {
-        //            string date = query.GetFieldData(outBlock1, "date", idx);
-        //            string time = query.GetFieldData(outBlock1, "time", idx);
-        //            string open = query.GetFieldData(outBlock1, "open", idx);
-        //            string high = query.GetFieldData(outBlock1, "high", idx);
-        //            string low = query.GetFieldData(outBlock1, "low", idx);
-        //            string close = query.GetFieldData(outBlock1, "price", idx);
-        //            string volume = query.GetFieldData(outBlock1, "volume", idx);
+                    OM.Lib.Entity.LitePurushaPrakriti data = new Lib.Entity.LitePurushaPrakriti();
 
-        //            if (date.Length == 0) continue;
+                    string format = "yyyyMMdd" + (time.Length > 0 ? "HHmmss" : "");
 
-        //            //string format = "yyyyMMdd" + (time.Length > 0 ? "HHmmss" : "");
-        //            string format = "yyyyMMdd";
-        //            var dt = DateTime.ParseExact(date, format, CultureInfo.InvariantCulture);
+                    var dt = DateTime.ParseExact(date + time, format, CultureInfo.InvariantCulture);
 
-        //            S_CandleItemData data = new S_CandleItemData();
-        //            data.DTime = dt;
-        //            data.ItemCode = ItemCode;
-        //            data.OpenPrice = (Single)Math.Round(Convert.ToDouble(open) * 100, round);
-        //            data.HighPrice = (Single)Math.Round(Convert.ToDouble(high) * 100, round);
-        //            data.LowPrice = (Single)Math.Round(Convert.ToDouble(low) * 100, round);
-        //            data.ClosePrice = (Single)Math.Round(Convert.ToDouble(close) * 100, round);
-        //            data.Volume = Convert.ToSingle(volume);
+                    data.DT = dt;
+                    data.Item = ItemCode;
+                    data.OpenVal = Convert.ToSingle(open);
+                    data.HighVal = Convert.ToSingle(high);
+                    data.LowVal = Convert.ToSingle(low);
+                    data.CloseVal = Convert.ToSingle(close);
+                    data.Volume = 0;
+                    data.Interval = (int)TimeInterval;
 
-        //            returnList.Add(data);
-        //        }
-        //        OnApiLog("Api_WorldIndex ::: query_ReceiveData");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        OnApiLog("Error ::: " + ex.Message);
-        //    }
-        //    finally
-        //    {
-        //        manualEvent.Set();
-        //    }
-        //}       
+                    PPContext.Instance.ClientContext.SetSourceData(
+                          ItemCode
+                        , TimeInterval
+                        , data);
+
+                    OnApiLog($"date : {date} time : {time} opne : {open} high : {high} low : {low} close : {close} ");
+                }
+                OnApiLog("Api_WorldFuture ::: query_ReceiveData");
+            });
+        }
+        #endregion
     }
-
-    #endregion
 }

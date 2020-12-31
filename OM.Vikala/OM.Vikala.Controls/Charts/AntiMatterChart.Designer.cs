@@ -89,7 +89,7 @@
             chartArea1.InnerPlotPosition.Width = 95F;
             chartArea1.InnerPlotPosition.X = 2F;
             chartArea1.InnerPlotPosition.Y = 2F;
-            chartArea1.Name = "cArea1";
+            chartArea1.Name = "ca1";
             chartArea1.Position.Auto = false;
             chartArea1.Position.Height = 80F;
             chartArea1.Position.Width = 100F;
@@ -144,7 +144,7 @@
             chartArea2.InnerPlotPosition.Width = 95F;
             chartArea2.InnerPlotPosition.X = 2F;
             chartArea2.InnerPlotPosition.Y = 2F;
-            chartArea2.Name = "cArea2";
+            chartArea2.Name = "ca2";
             chartArea2.Position.Auto = false;
             chartArea2.Position.Height = 20F;
             chartArea2.Position.Width = 100F;
@@ -156,7 +156,7 @@
             this.chart.Name = "chart";
             this.chart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             series1.BorderColor = System.Drawing.Color.Transparent;
-            series1.ChartArea = "cArea1";
+            series1.ChartArea = "ca1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Candlestick;
             series1.Color = System.Drawing.Color.Black;
             series1.CustomProperties = "PriceDownColor=Blue, PriceUpColor=Red";
@@ -167,28 +167,28 @@
             series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             series1.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             series1.YValuesPerPoint = 4;
-            series2.ChartArea = "cArea1";
+            series2.ChartArea = "ca1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series2.Color = System.Drawing.Color.Red;
             series2.IsXValueIndexed = true;
             series2.Name = "lineUH";
             series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             series2.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
-            series3.ChartArea = "cArea1";
+            series3.ChartArea = "ca1";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             series3.IsXValueIndexed = true;
             series3.Name = "lineDH";
             series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             series3.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
-            series4.ChartArea = "cArea1";
+            series4.ChartArea = "ca1";
             series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series4.Color = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             series4.IsXValueIndexed = true;
             series4.Name = "lineUL";
             series4.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             series4.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
-            series5.ChartArea = "cArea1";
+            series5.ChartArea = "ca1";
             series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series5.Color = System.Drawing.Color.Blue;
             series5.IsXValueIndexed = true;
@@ -196,7 +196,7 @@
             series5.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             series5.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             series6.BorderWidth = 2;
-            series6.ChartArea = "cArea2";
+            series6.ChartArea = "ca2";
             series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             series6.Color = System.Drawing.Color.Fuchsia;
             series6.IsXValueIndexed = true;
@@ -212,7 +212,6 @@
             this.chart.Size = new System.Drawing.Size(1102, 576);
             this.chart.TabIndex = 2;
             this.chart.PostPaint += new System.EventHandler<System.Windows.Forms.DataVisualization.Charting.ChartPaintEventArgs>(this.chart_PostPaint);
-            this.chart.MouseDown += new System.Windows.Forms.MouseEventHandler(this.chart_MouseDown);
             // 
             // pnlScroll
             // 

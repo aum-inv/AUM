@@ -30,7 +30,11 @@ namespace OM.Jiva.Chakra.Patterns
             {
                 if (s.Product == p.Product && s.Item == p.Item && s.StartDT == p.StartDT)
                     continue;
-                
+
+                if (s.Product != p.Product) continue;
+                if (s.Item != p.Item) continue;
+                if (s.TimeInterval != p.TimeInterval) continue;
+
                 if (s.TimeInterval < 20 && p.TimeInterval >= 20) continue;
                 if (s.TimeInterval == 20 && p.TimeInterval != 20) continue;
                 if (s.TimeInterval == 30 && p.TimeInterval != 30) continue;
@@ -101,6 +105,10 @@ namespace OM.Jiva.Chakra.Patterns
                 if (s.Product == p.Product && s.Item == p.Item && s.StartDT == p.StartDT)
                     continue;
 
+                if (s.Product != p.Product) continue;
+                if (s.Item != p.Item) continue;
+                if (s.TimeInterval != p.TimeInterval) continue;
+
                 if (s.TimeInterval < 20 && p.TimeInterval >= 20) continue;
                 if (s.TimeInterval == 20 && p.TimeInterval != 20) continue;
                 if (s.TimeInterval == 30 && p.TimeInterval != 30) continue;
@@ -170,6 +178,11 @@ namespace OM.Jiva.Chakra.Patterns
             {
                 if (s.Product == p.Product && s.Item == p.Item && s.StartDT == p.StartDT)
                     continue;
+
+
+                if (s.Product != p.Product) continue;
+                if (s.Item != p.Item) continue;
+                if (s.TimeInterval != p.TimeInterval) continue;
 
                 if (s.TimeInterval < 20 && p.TimeInterval >= 20) continue;
                 if (s.TimeInterval == 20 && p.TimeInterval != 20) continue;

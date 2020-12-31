@@ -195,241 +195,406 @@ namespace OM.Jiva.Chakra.App
 
         protected List<S_CandleItemData> loadData()
         {
-            List<S_CandleItemData> sourceDatas = null;
+            DateTime? dtS = null; 
+            if(dtpS.Checked) dtS = dtpS.Value;
+            DateTime? dtE = null;
+            if (dtpE.Checked) dtE = dtpE.Value;
+            return PPUtils.LoadData(selectedType, selectedTimeInterval, selectedItem, dtS, dtE);
 
-            if (selectedType == "국내업종")
-            {
-                if (selectedTimeInterval == TimeIntervalEnum.Day)
-                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(selectedItem, "2", "0", "500");
-                else if (selectedTimeInterval == TimeIntervalEnum.Week)
-                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(selectedItem, "3", "0", "500");
-            }
-            else if (selectedType == "국내지수")
-            {
-                if (selectedTimeInterval == TimeIntervalEnum.Day)
-                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(selectedItem, "2", "0", "500");
-                else if (selectedTimeInterval == TimeIntervalEnum.Week)
-                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(selectedItem, "3", "0", "500");
-                else if (selectedTimeInterval == TimeIntervalEnum.Minute_01)
-                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(selectedItem, "1", "1", "500");
-                else if (selectedTimeInterval == TimeIntervalEnum.Minute_05)
-                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(selectedItem, "1", "5", "500");
-                else if (selectedTimeInterval == TimeIntervalEnum.Minute_10)
-                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(selectedItem, "1", "10", "500");
-                else if (selectedTimeInterval == TimeIntervalEnum.Minute_30)
-                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(selectedItem, "1", "30", "500");
-                else if (selectedTimeInterval == TimeIntervalEnum.Hour_01)
-                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(selectedItem, "1", "60", "500");
-            }
-            else if (selectedType == "국내종목")
-            {
-                if (selectedTimeInterval == TimeIntervalEnum.Day)
-                    sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(selectedItem, "2", "0", "500");
-                else if (selectedTimeInterval == TimeIntervalEnum.Week)
-                    sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(selectedItem, "3", "0", "500");
-                else if (selectedTimeInterval == TimeIntervalEnum.Minute_01)
-                    sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(selectedItem, "1", "1", "500");
-                else if (selectedTimeInterval == TimeIntervalEnum.Minute_05)
-                    sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(selectedItem, "1", "5", "500");
-                else if (selectedTimeInterval == TimeIntervalEnum.Minute_10)
-                    sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(selectedItem, "1", "10", "500");
-                else if (selectedTimeInterval == TimeIntervalEnum.Minute_30)
-                    sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(selectedItem, "1", "30", "500");
-                else if (selectedTimeInterval == TimeIntervalEnum.Hour_01)
-                    sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(selectedItem, "1", "60", "500");
-            }
-            else if (selectedType == "해외지수")
-            {
-                if (selectedTimeInterval == TimeIntervalEnum.Day)
-                    sourceDatas = XingContext.Instance.ClientContext.GetWorldIndexSiseData(selectedItem, "0");
-                else if (selectedTimeInterval == TimeIntervalEnum.Week)
-                    sourceDatas = XingContext.Instance.ClientContext.GetWorldIndexSiseData(selectedItem, "1");
-            }
-            else if (selectedType == "해외선물")
-            {
-                if (dtpS.Checked && dtpE.Checked)
-                {
-                    if (selectedTimeInterval == TimeIntervalEnum.Day)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(selectedItem, "D", dtpS.Value, dtpE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Week)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(selectedItem, "W", dtpS.Value, dtpE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Hour_01)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(selectedItem, "H", dtpS.Value, dtpE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Hour_02)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(selectedItem, "2H", dtpS.Value, dtpE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Hour_05)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(selectedItem, "5H", dtpS.Value, dtpE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_01)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(selectedItem, "M", dtpS.Value, dtpE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_05)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(selectedItem, "5M", dtpS.Value, dtpE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_15)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(selectedItem, "15M", dtpS.Value, dtpE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_30)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(selectedItem, "30M", dtpS.Value, dtpE.Value);
-                }
-                else
-                {
-                    if (selectedTimeInterval == TimeIntervalEnum.Day)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(selectedItem, "D");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Week)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(selectedItem, "W");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Hour_01)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(selectedItem, "H");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Hour_02)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(selectedItem, "2H");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Hour_05)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(selectedItem, "5H");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_01)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(selectedItem, "M");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_05)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(selectedItem, "5M");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_15)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(selectedItem, "15M");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_30)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(selectedItem, "30M");
-                }
-            }
-            else if (selectedType == "암호화폐")
-            {
-                if (dtpS.Checked && dtpE.Checked)
-                {
-                    if (selectedTimeInterval == TimeIntervalEnum.Day)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(selectedItem, "D", dtpS.Value, dtpE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Week)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(selectedItem, "W", dtpS.Value, dtpE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Hour_01)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(selectedItem, "H", dtpS.Value, dtpE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Hour_02)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(selectedItem, "2H", dtpS.Value, dtpE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Hour_05)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(selectedItem, "5H", dtpS.Value, dtpE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_01)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(selectedItem, "M", dtpS.Value, dtpE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_05)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(selectedItem, "5M", dtpS.Value, dtpE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_15)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(selectedItem, "15M", dtpS.Value, dtpE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_30)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(selectedItem, "30M", dtpS.Value, dtpE.Value);
-                }
-                else
-                {
-                    if (selectedTimeInterval == TimeIntervalEnum.Day)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(selectedItem, "D");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Week)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(selectedItem, "W");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Hour_01)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(selectedItem, "H");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Hour_02)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(selectedItem, "2H");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Hour_05)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(selectedItem, "5H");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_01)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(selectedItem, "M");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_05)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(selectedItem, "5M");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_15)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(selectedItem, "15M");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_30)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(selectedItem, "30M");
-                }
-            }
-            else
-                sourceDatas = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
-                  selectedItem
-                , selectedTimeInterval);
-            return sourceDatas;
+            //List<S_CandleItemData> sourceDatas = null;
+
+            //if (selectedType == "국내업종")
+            //{
+            //    if (selectedTimeInterval == TimeIntervalEnum.Day)
+            //        sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(selectedItem, "2", "0", "500");
+            //    else if (selectedTimeInterval == TimeIntervalEnum.Week)
+            //        sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(selectedItem, "3", "0", "500");
+            //}
+            //else if (selectedType == "국내지수")
+            //{
+            //    //if (selectedTimeInterval == TimeIntervalEnum.Day)
+            //    //    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(selectedItem, "2", "0", "500");
+            //    //else if (selectedTimeInterval == TimeIntervalEnum.Week)
+            //    //    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(selectedItem, "3", "0", "500");
+            //    //else if (selectedTimeInterval == TimeIntervalEnum.Minute_01)
+            //    //    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(selectedItem, "1", "1", "500");
+            //    //else if (selectedTimeInterval == TimeIntervalEnum.Minute_05)
+            //    //    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(selectedItem, "1", "5", "500");
+            //    //else if (selectedTimeInterval == TimeIntervalEnum.Minute_10)
+            //    //    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(selectedItem, "1", "10", "500");
+            //    //else if (selectedTimeInterval == TimeIntervalEnum.Minute_30)
+            //    //    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(selectedItem, "1", "30", "500");
+            //    //else if (selectedTimeInterval == TimeIntervalEnum.Hour_01)
+            //    //    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(selectedItem, "1", "60", "500");
+
+
+            //    if (dtpS.Checked && dtpE.Checked)
+            //    {
+            //        if (selectedTimeInterval == TimeIntervalEnum.Day)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetKoreaIndexSiseDataByRange(selectedItem, "D", dtpS.Value, dtpE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Week)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetKoreaIndexSiseDataByRange(selectedItem, "W", dtpS.Value, dtpE.Value);                    
+            //    }
+            //    else
+            //    {
+            //        if (selectedTimeInterval == TimeIntervalEnum.Day)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetKoreaIndexSiseData(selectedItem, "D");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Week)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetKoreaIndexSiseData(selectedItem, "W");                   
+            //    }
+            //}
+            //else if (selectedType == "국내종목")
+            //{
+            //    if (selectedTimeInterval == TimeIntervalEnum.Day)
+            //        sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(selectedItem, "2", "0", "500");
+            //    else if (selectedTimeInterval == TimeIntervalEnum.Week)
+            //        sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(selectedItem, "3", "0", "500");
+            //    else if (selectedTimeInterval == TimeIntervalEnum.Minute_01)
+            //        sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(selectedItem, "1", "1", "500");
+            //    else if (selectedTimeInterval == TimeIntervalEnum.Minute_05)
+            //        sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(selectedItem, "1", "5", "500");
+            //    else if (selectedTimeInterval == TimeIntervalEnum.Minute_10)
+            //        sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(selectedItem, "1", "10", "500");
+            //    else if (selectedTimeInterval == TimeIntervalEnum.Minute_30)
+            //        sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(selectedItem, "1", "30", "500");
+            //    else if (selectedTimeInterval == TimeIntervalEnum.Hour_01)
+            //        sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(selectedItem, "1", "60", "500");
+            //}
+            //else if (selectedType == "해외지수")
+            //{
+            //    //if (selectedTimeInterval == TimeIntervalEnum.Day)
+            //    //    sourceDatas = XingContext.Instance.ClientContext.GetWorldIndexSiseData(selectedItem, "0");
+            //    //else if (selectedTimeInterval == TimeIntervalEnum.Week)
+            //    //    sourceDatas = XingContext.Instance.ClientContext.GetWorldIndexSiseData(selectedItem, "1");
+
+            //    if (dtpS.Checked && dtpE.Checked)
+            //    {
+            //        if (selectedTimeInterval == TimeIntervalEnum.Day)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldIndexSiseDataByRange(selectedItem, "D", dtpS.Value, dtpE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Week)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldIndexSiseDataByRange(selectedItem, "W", dtpS.Value, dtpE.Value);
+            //    }
+            //    else
+            //    {
+            //        if (selectedTimeInterval == TimeIntervalEnum.Day)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldIndexSiseData(selectedItem, "D");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Week)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldIndexSiseData(selectedItem, "W");
+            //    }
+            //}
+            //else if (selectedType == "해외선물")
+            //{
+            //    if (dtpS.Checked && dtpE.Checked)
+            //    {
+            //        if (selectedTimeInterval == TimeIntervalEnum.Day)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(selectedItem, "D", dtpS.Value, dtpE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Week)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(selectedItem, "W", dtpS.Value, dtpE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Hour_01)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(selectedItem, "H", dtpS.Value, dtpE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Hour_02)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(selectedItem, "2H", dtpS.Value, dtpE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Hour_05)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(selectedItem, "5H", dtpS.Value, dtpE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_01)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(selectedItem, "M", dtpS.Value, dtpE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_05)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(selectedItem, "5M", dtpS.Value, dtpE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_15)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(selectedItem, "15M", dtpS.Value, dtpE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_30)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(selectedItem, "30M", dtpS.Value, dtpE.Value);
+            //    }
+            //    else
+            //    {
+            //        if (selectedTimeInterval == TimeIntervalEnum.Day)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(selectedItem, "D");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Week)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(selectedItem, "W");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Hour_01)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(selectedItem, "H");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Hour_02)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(selectedItem, "2H");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Hour_05)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(selectedItem, "5H");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_01)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(selectedItem, "M");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_05)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(selectedItem, "5M");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_15)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(selectedItem, "15M");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_30)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(selectedItem, "30M");
+            //    }
+            //}
+            //else if (selectedType == "암호화폐")
+            //{
+            //    if (dtpS.Checked && dtpE.Checked)
+            //    {
+            //        if (selectedTimeInterval == TimeIntervalEnum.Day)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(selectedItem, "D", dtpS.Value, dtpE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Week)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(selectedItem, "W", dtpS.Value, dtpE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Hour_01)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(selectedItem, "H", dtpS.Value, dtpE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Hour_02)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(selectedItem, "2H", dtpS.Value, dtpE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Hour_05)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(selectedItem, "5H", dtpS.Value, dtpE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_01)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(selectedItem, "M", dtpS.Value, dtpE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_05)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(selectedItem, "5M", dtpS.Value, dtpE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_15)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(selectedItem, "15M", dtpS.Value, dtpE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_30)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(selectedItem, "30M", dtpS.Value, dtpE.Value);
+            //    }
+            //    else
+            //    {
+            //        if (selectedTimeInterval == TimeIntervalEnum.Day)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(selectedItem, "D");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Week)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(selectedItem, "W");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Hour_01)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(selectedItem, "H");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Hour_02)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(selectedItem, "2H");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Hour_05)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(selectedItem, "5H");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_01)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(selectedItem, "M");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_05)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(selectedItem, "5M");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_15)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(selectedItem, "15M");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_30)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(selectedItem, "30M");
+            //    }
+            //}
+            //else
+            //    sourceDatas = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
+            //      selectedItem
+            //    , selectedTimeInterval);
+            //return sourceDatas;
         }
 
         private void btnAutoCreateKIndex_Click(object sender, EventArgs e)
         {
+            //rdoTypeKIndex.Checked = true;
+            //int itemCnt = cbxItem.Items.Count;
+            //int startIdx = cbxItem.SelectedIndex;
+            //if (startIdx == 0) startIdx = 1;
+
+            //Task.Factory.StartNew(() =>
+            //{
+            //    isAuto = true;
+
+            //    System.Threading.Thread.Sleep(1 * 1000);        
+
+            //    for (int i = startIdx; i < itemCnt; i++)
+            //    {
+            //        System.Threading.Thread.Sleep(1 * 1000);
+
+            //        this.Invoke(new Action(() => { cbxItem.SelectedIndex = i; }));
+
+            //        this.Invoke(new Action(() => { rdoTIntervalD.Checked = true; }));
+
+            //        System.Threading.Thread.Sleep(1 * 1000);
+
+            //        this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
+
+            //        System.Threading.Thread.Sleep(3 * 1000);
+
+            //        this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
+
+            //        System.Threading.Thread.Sleep(3 * 1000);
+
+            //        this.Invoke(new Action(() => { rdoTIntervalW.Checked = true; }));
+
+            //        System.Threading.Thread.Sleep(1 * 1000);
+
+            //        this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
+
+            //        System.Threading.Thread.Sleep(3 * 1000);
+
+            //        this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
+
+            //        System.Threading.Thread.Sleep(3 * 1000);
+            //    }
+
+            //    isAuto = false;
+            //});
+
             rdoTypeKIndex.Checked = true;
-            int itemCnt = cbxItem.Items.Count;
-            int startIdx = cbxItem.SelectedIndex;
-            if (startIdx == 0) startIdx = 1;
-
-            Task.Factory.StartNew(() =>
-            {
-                isAuto = true;
-               
-                System.Threading.Thread.Sleep(1 * 1000);        
-                
-                for (int i = startIdx; i < itemCnt; i++)
-                {
-                    System.Threading.Thread.Sleep(1 * 1000);
-
-                    this.Invoke(new Action(() => { cbxItem.SelectedIndex = i; }));
-
-                    this.Invoke(new Action(() => { rdoTIntervalD.Checked = true; }));
-
-                    System.Threading.Thread.Sleep(1 * 1000);
-
-                    this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
-
-                    System.Threading.Thread.Sleep(3 * 1000);
-                    
-                    this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
-
-                    System.Threading.Thread.Sleep(3 * 1000);
-
-                    this.Invoke(new Action(() => { rdoTIntervalW.Checked = true; }));
-
-                    System.Threading.Thread.Sleep(1 * 1000);
-
-                    this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
-
-                    System.Threading.Thread.Sleep(3 * 1000);
-
-                    this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
-
-                    System.Threading.Thread.Sleep(3 * 1000);
-                }
-                
-                isAuto = false;
-            });
-        }
-        private void btnAutoCreateWIndex_Click(object sender, EventArgs e)
-        {
-            rdoTypeWIndex.Checked = true;
-            int itemCnt = cbxItem.Items.Count;
-            int startIdx = cbxItem.SelectedIndex;
-            if (startIdx == 0) startIdx = 1;
-
             Task.Factory.StartNew(() =>
             {
                 isAuto = true;
 
                 System.Threading.Thread.Sleep(1 * 1000);
 
-                for (int i = startIdx; i < itemCnt; i++)
+                int itemCnt = 20;
+                for (int i = 0; i < itemCnt; i++)
                 {
                     System.Threading.Thread.Sleep(1 * 1000);
 
-                    this.Invoke(new Action(() => { cbxItem.SelectedIndex = i; }));
-
-                    this.Invoke(new Action(() => { rdoTIntervalD.Checked = true; }));
-
-                    System.Threading.Thread.Sleep(1 * 1000);
-
-                    this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
-
-                    System.Threading.Thread.Sleep(3 * 1000);
-                    this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
-
-                    System.Threading.Thread.Sleep(3 * 1000);
-
-                    this.Invoke(new Action(() => { rdoTIntervalW.Checked = true; }));
+                    this.Invoke(new Action(() =>
+                    {
+                        rdoTIntervalD.Checked = true;
+                        dtpS.Value = DateTime.Today.AddYears((i + 1) * -1);
+                        dtpE.Value = DateTime.Today.AddYears((i + 0) * -1);
+                    }));
 
                     System.Threading.Thread.Sleep(1 * 1000);
 
                     this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
-
-                    System.Threading.Thread.Sleep(3 * 1000);
+                    System.Threading.Thread.Sleep(5 * 1000);
 
                     this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
+                    System.Threading.Thread.Sleep(5 * 1000);
 
-                    System.Threading.Thread.Sleep(3 * 1000);
+                    if (isNoData)
+                    {
+                        isNoData = false;
+                        break;
+                    }
+                }
+
+                itemCnt = 20;
+                for (int i = 0; i < itemCnt; i++)
+                {
+                    System.Threading.Thread.Sleep(1 * 1000);
+
+                    this.Invoke(new Action(() =>
+                    {
+                        rdoTIntervalW.Checked = true;
+                        dtpS.Value = DateTime.Today.AddYears((i + 1) * -2);
+                        dtpE.Value = DateTime.Today.AddYears((i + 0) * -2);
+                    }));
+
+                    System.Threading.Thread.Sleep(1 * 1000);
+
+                    this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
+                    System.Threading.Thread.Sleep(5 * 1000);
+
+                    this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
+                    System.Threading.Thread.Sleep(5 * 1000);
+
+                    if (isNoData)
+                    {
+                        isNoData = false;
+                        break;
+                    }
+                }
+
+                isAuto = false;
+            });
+        }
+        private void btnAutoCreateWIndex_Click(object sender, EventArgs e)
+        {
+            //rdoTypeWIndex.Checked = true;
+            //int itemCnt = cbxItem.Items.Count;
+            //int startIdx = cbxItem.SelectedIndex;
+            //if (startIdx == 0) startIdx = 1;
+
+            //Task.Factory.StartNew(() =>
+            //{
+            //    isAuto = true;
+
+            //    System.Threading.Thread.Sleep(1 * 1000);
+
+            //    for (int i = startIdx; i < itemCnt; i++)
+            //    {
+            //        System.Threading.Thread.Sleep(1 * 1000);
+
+            //        this.Invoke(new Action(() => { cbxItem.SelectedIndex = i; }));
+
+            //        this.Invoke(new Action(() => { rdoTIntervalD.Checked = true; }));
+
+            //        System.Threading.Thread.Sleep(1 * 1000);
+
+            //        this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
+
+            //        System.Threading.Thread.Sleep(3 * 1000);
+            //        this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
+
+            //        System.Threading.Thread.Sleep(3 * 1000);
+
+            //        this.Invoke(new Action(() => { rdoTIntervalW.Checked = true; }));
+
+            //        System.Threading.Thread.Sleep(1 * 1000);
+
+            //        this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
+
+            //        System.Threading.Thread.Sleep(3 * 1000);
+
+            //        this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
+
+            //        System.Threading.Thread.Sleep(3 * 1000);
+            //    }
+
+            //    isAuto = false;
+            //});
+
+            rdoTypeWIndex.Checked = true;
+            Task.Factory.StartNew(() =>
+            {
+                isAuto = true;
+
+                System.Threading.Thread.Sleep(1 * 1000);
+
+                int itemCnt = 20;
+                for (int i = 0; i < itemCnt; i++)
+                {
+                    System.Threading.Thread.Sleep(1 * 1000);
+
+                    this.Invoke(new Action(() =>
+                    {
+                        rdoTIntervalD.Checked = true;
+                        dtpS.Value = DateTime.Today.AddYears((i + 1) * -1);
+                        dtpE.Value = DateTime.Today.AddYears((i + 0) * -1);
+                    }));
+
+                    System.Threading.Thread.Sleep(1 * 1000);
+
+                    this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
+                    System.Threading.Thread.Sleep(5 * 1000);
+
+                    this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
+                    System.Threading.Thread.Sleep(5 * 1000);
+
+                    if (isNoData)
+                    {
+                        isNoData = false;
+                        break;
+                    }
+                }
+
+                itemCnt = 20;
+                for (int i = 0; i < itemCnt; i++)
+                {
+                    System.Threading.Thread.Sleep(1 * 1000);
+
+                    this.Invoke(new Action(() =>
+                    {
+                        rdoTIntervalW.Checked = true;
+                        dtpS.Value = DateTime.Today.AddYears((i + 1) * -2);
+                        dtpE.Value = DateTime.Today.AddYears((i + 0) * -2);
+                    }));
+
+                    System.Threading.Thread.Sleep(1 * 1000);
+
+                    this.Invoke(new Action(() => { btnLoad.PerformClick(); }));
+                    System.Threading.Thread.Sleep(5 * 1000);
+
+                    this.Invoke(new Action(() => { btnCreate.PerformClick(); }));
+                    System.Threading.Thread.Sleep(5 * 1000);
+
+                    if (isNoData)
+                    {
+                        isNoData = false;
+                        break;
+                    }
                 }
 
                 isAuto = false;

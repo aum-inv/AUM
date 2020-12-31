@@ -74,6 +74,7 @@
     <Compile Include="Api\Api_JongmokRank.cs" />
     <Compile Include="Api\Api_UpjongJongmok.cs" />
     <Compile Include="Api\Api_Crypto.cs" />
+    <Compile Include="Api\Api_KoreaIndex.cs" />
     <Compile Include="Api\Api_WorldFuture.cs" />
     <Compile Include="Api\Api_WorldFutureTrade.cs" />
     <Compile Include="Api\Api_WorldIndex.cs" />

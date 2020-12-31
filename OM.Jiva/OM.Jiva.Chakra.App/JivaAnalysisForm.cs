@@ -202,155 +202,158 @@ namespace OM.Jiva.Chakra.App
             , TimeIntervalEnum timeInterval = TimeIntervalEnum.Day
             , DateTime? searchRangeDateS = null
             , DateTime? searchRangeDateE = null)
-        {            
-            List<S_CandleItemData> sourceDatas = null;
+        {
 
-            if (selectedType.Length == 0) return sourceDatas;
-            if (selectedType.Length == 0) return sourceDatas;
+            return PPUtils.LoadData(product, timeInterval, item, searchRangeDateS, searchRangeDateE);
 
-            if (product == "국내업종")
-            {
-                if (selectedTimeInterval == TimeIntervalEnum.Day)
-                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(item, "2", "0", "500");
-                else if (selectedTimeInterval == TimeIntervalEnum.Week)
-                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(item, "3", "0", "500");
-            }
-            else if (product == "국내지수")
-            {
-                if (timeInterval == TimeIntervalEnum.Day)
-                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(item, "2", "0", "500");
-                else if (timeInterval == TimeIntervalEnum.Week)
-                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(item, "3", "0", "500");
-                else if (selectedTimeInterval == TimeIntervalEnum.Minute_01)
-                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(item, "1", "1", "500");
-                else if (selectedTimeInterval == TimeIntervalEnum.Minute_05)
-                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(item, "1", "5", "500");
-                else if (selectedTimeInterval == TimeIntervalEnum.Minute_10)
-                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(item, "1", "10", "500");
-                else if (selectedTimeInterval == TimeIntervalEnum.Minute_30)
-                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(item, "1", "30", "500");
-                else if (selectedTimeInterval == TimeIntervalEnum.Hour_01)
-                    sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(item, "1", "60", "500");
-            }
-            else if (product == "국내종목")
-            {
-                if (selectedTimeInterval == TimeIntervalEnum.Day)
-                    sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(item, "2", "0", "500");
-                else if (selectedTimeInterval == TimeIntervalEnum.Week)
-                    sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(item, "3", "0", "500");
-                else if (selectedTimeInterval == TimeIntervalEnum.Minute_01)
-                    sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(item, "1", "1", "500");
-                else if (selectedTimeInterval == TimeIntervalEnum.Minute_05)
-                    sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(item, "1", "5", "500");
-                else if (selectedTimeInterval == TimeIntervalEnum.Minute_10)
-                    sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(item, "1", "10", "500");
-                else if (selectedTimeInterval == TimeIntervalEnum.Minute_30)
-                    sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(item, "1", "30", "500");
-                else if (selectedTimeInterval == TimeIntervalEnum.Hour_01)
-                    sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(item, "1", "60", "500");
-            }
-            else if (product == "해외지수")
-            {
-                if (selectedTimeInterval == TimeIntervalEnum.Day)
-                    sourceDatas = XingContext.Instance.ClientContext.GetWorldIndexSiseData(item, "0");
-                else if (selectedTimeInterval == TimeIntervalEnum.Week)
-                    sourceDatas = XingContext.Instance.ClientContext.GetWorldIndexSiseData(item, "1");
-            }
-            else if (product == "해외선물")
-            {
-                if (searchRangeDateS != null && searchRangeDateE != null)
-                {
-                    if (selectedTimeInterval == TimeIntervalEnum.Day)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(item, "D", searchRangeDateS.Value, searchRangeDateE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Week)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(item, "W", searchRangeDateS.Value, searchRangeDateE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Hour_01)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(item, "H", searchRangeDateS.Value, searchRangeDateE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Hour_02)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(item, "2H", searchRangeDateS.Value, searchRangeDateE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Hour_05)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(item, "5H", searchRangeDateS.Value, searchRangeDateE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_01)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(item, "M", searchRangeDateS.Value, searchRangeDateE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_05)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(item, "5M", searchRangeDateS.Value, searchRangeDateE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_15)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(item, "15M", searchRangeDateS.Value, searchRangeDateE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_30)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(item, "30M", searchRangeDateS.Value, searchRangeDateE.Value);
-                }
-                else
-                {
-                    if (selectedTimeInterval == TimeIntervalEnum.Day)
-                    sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(item, "D");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Week)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(item, "W");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Hour_01)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(item, "H");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Hour_02)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(item, "2H");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Hour_05)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(item, "5H");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_01)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(item, "M");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_05)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(item, "5M");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_15)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(item, "15M");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_30)
-                        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(item, "30M");
-                }
-            }
-            else if (product == "암호화폐")
-            {
-                if (searchRangeDateS != null && searchRangeDateE != null)
-                {
-                    if (selectedTimeInterval == TimeIntervalEnum.Day)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(item, "D", searchRangeDateS.Value, searchRangeDateE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Week)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(item, "W", searchRangeDateS.Value, searchRangeDateE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Hour_01)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(item, "H", searchRangeDateS.Value, searchRangeDateE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Hour_02)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(item, "2H", searchRangeDateS.Value, searchRangeDateE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Hour_05)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(item, "5H", searchRangeDateS.Value, searchRangeDateE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_01)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(item, "M", searchRangeDateS.Value, searchRangeDateE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_05)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(item, "5M", searchRangeDateS.Value, searchRangeDateE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_15)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(item, "15M", searchRangeDateS.Value, searchRangeDateE.Value);
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_30)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(item, "30M", searchRangeDateS.Value, searchRangeDateE.Value);
-                }
-                else
-                {
-                    if (selectedTimeInterval == TimeIntervalEnum.Day)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(item, "D");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Week)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(item, "W");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Hour_01)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(item, "H");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Hour_02)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(item, "2H");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Hour_05)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(item, "5H");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_01)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(item, "M");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_05)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(item, "5M");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_15)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(item, "15M");
-                    else if (selectedTimeInterval == TimeIntervalEnum.Minute_30)
-                        sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(item, "30M");
-                }
-            }
-            else
-                sourceDatas = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
-                  item
-                , timeInterval);
-            return sourceDatas;
+            //List<S_CandleItemData> sourceDatas = null;
+
+            //if (selectedType.Length == 0) return sourceDatas;
+            //if (selectedType.Length == 0) return sourceDatas;
+
+            //if (product == "국내업종")
+            //{
+            //    if (selectedTimeInterval == TimeIntervalEnum.Day)
+            //        sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(item, "2", "0", "500");
+            //    else if (selectedTimeInterval == TimeIntervalEnum.Week)
+            //        sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(item, "3", "0", "500");
+            //}
+            //else if (product == "국내지수")
+            //{
+            //    if (timeInterval == TimeIntervalEnum.Day)
+            //        sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(item, "2", "0", "500");
+            //    else if (timeInterval == TimeIntervalEnum.Week)
+            //        sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(item, "3", "0", "500");
+            //    else if (selectedTimeInterval == TimeIntervalEnum.Minute_01)
+            //        sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(item, "1", "1", "500");
+            //    else if (selectedTimeInterval == TimeIntervalEnum.Minute_05)
+            //        sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(item, "1", "5", "500");
+            //    else if (selectedTimeInterval == TimeIntervalEnum.Minute_10)
+            //        sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(item, "1", "10", "500");
+            //    else if (selectedTimeInterval == TimeIntervalEnum.Minute_30)
+            //        sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(item, "1", "30", "500");
+            //    else if (selectedTimeInterval == TimeIntervalEnum.Hour_01)
+            //        sourceDatas = XingContext.Instance.ClientContext.GetUpJongSiseData(item, "1", "60", "500");
+            //}
+            //else if (product == "국내종목")
+            //{
+            //    if (selectedTimeInterval == TimeIntervalEnum.Day)
+            //        sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(item, "2", "0", "500");
+            //    else if (selectedTimeInterval == TimeIntervalEnum.Week)
+            //        sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(item, "3", "0", "500");
+            //    else if (selectedTimeInterval == TimeIntervalEnum.Minute_01)
+            //        sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(item, "1", "1", "500");
+            //    else if (selectedTimeInterval == TimeIntervalEnum.Minute_05)
+            //        sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(item, "1", "5", "500");
+            //    else if (selectedTimeInterval == TimeIntervalEnum.Minute_10)
+            //        sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(item, "1", "10", "500");
+            //    else if (selectedTimeInterval == TimeIntervalEnum.Minute_30)
+            //        sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(item, "1", "30", "500");
+            //    else if (selectedTimeInterval == TimeIntervalEnum.Hour_01)
+            //        sourceDatas = XingContext.Instance.ClientContext.GetJongmokSiseData(item, "1", "60", "500");
+            //}
+            //else if (product == "해외지수")
+            //{
+            //    if (selectedTimeInterval == TimeIntervalEnum.Day)
+            //        sourceDatas = XingContext.Instance.ClientContext.GetWorldIndexSiseData(item, "0");
+            //    else if (selectedTimeInterval == TimeIntervalEnum.Week)
+            //        sourceDatas = XingContext.Instance.ClientContext.GetWorldIndexSiseData(item, "1");
+            //}
+            //else if (product == "해외선물")
+            //{
+            //    if (searchRangeDateS != null && searchRangeDateE != null)
+            //    {
+            //        if (selectedTimeInterval == TimeIntervalEnum.Day)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(item, "D", searchRangeDateS.Value, searchRangeDateE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Week)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(item, "W", searchRangeDateS.Value, searchRangeDateE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Hour_01)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(item, "H", searchRangeDateS.Value, searchRangeDateE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Hour_02)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(item, "2H", searchRangeDateS.Value, searchRangeDateE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Hour_05)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(item, "5H", searchRangeDateS.Value, searchRangeDateE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_01)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(item, "M", searchRangeDateS.Value, searchRangeDateE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_05)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(item, "5M", searchRangeDateS.Value, searchRangeDateE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_15)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(item, "15M", searchRangeDateS.Value, searchRangeDateE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_30)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseDataByRange(item, "30M", searchRangeDateS.Value, searchRangeDateE.Value);
+            //    }
+            //    else
+            //    {
+            //        if (selectedTimeInterval == TimeIntervalEnum.Day)
+            //        sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(item, "D");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Week)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(item, "W");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Hour_01)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(item, "H");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Hour_02)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(item, "2H");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Hour_05)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(item, "5H");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_01)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(item, "M");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_05)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(item, "5M");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_15)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(item, "15M");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_30)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetWorldFutureSiseData(item, "30M");
+            //    }
+            //}
+            //else if (product == "암호화폐")
+            //{
+            //    if (searchRangeDateS != null && searchRangeDateE != null)
+            //    {
+            //        if (selectedTimeInterval == TimeIntervalEnum.Day)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(item, "D", searchRangeDateS.Value, searchRangeDateE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Week)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(item, "W", searchRangeDateS.Value, searchRangeDateE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Hour_01)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(item, "H", searchRangeDateS.Value, searchRangeDateE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Hour_02)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(item, "2H", searchRangeDateS.Value, searchRangeDateE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Hour_05)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(item, "5H", searchRangeDateS.Value, searchRangeDateE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_01)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(item, "M", searchRangeDateS.Value, searchRangeDateE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_05)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(item, "5M", searchRangeDateS.Value, searchRangeDateE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_15)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(item, "15M", searchRangeDateS.Value, searchRangeDateE.Value);
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_30)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseDataByRange(item, "30M", searchRangeDateS.Value, searchRangeDateE.Value);
+            //    }
+            //    else
+            //    {
+            //        if (selectedTimeInterval == TimeIntervalEnum.Day)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(item, "D");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Week)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(item, "W");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Hour_01)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(item, "H");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Hour_02)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(item, "2H");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Hour_05)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(item, "5H");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_01)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(item, "M");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_05)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(item, "5M");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_15)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(item, "15M");
+            //        else if (selectedTimeInterval == TimeIntervalEnum.Minute_30)
+            //            sourceDatas = XingContext.Instance.ClientContext.GetCryptoSiseData(item, "30M");
+            //    }
+            //}
+            //else
+            //    sourceDatas = PPContext.Instance.ClientContext.GetCandleSourceDataOrderByAsc(
+            //      item
+            //    , timeInterval);
+            //return sourceDatas;
         }
         private void Display()
         {
@@ -498,31 +501,31 @@ namespace OM.Jiva.Chakra.App
             interval = (TimeIntervalEnum)chooseData.TimeInterval;
             selectedDTime = chooseData.EndDT;
 
-            if (product == "해외선물" || product == "암호화폐")
+            if (product == "해외선물" || product == "암호화폐" || product == "국내지수" || product == "해외지수")
             {
                 if (interval == TimeIntervalEnum.Minute_30)
                 {
-                    searchRangeDateS = chooseData.StartDT.AddDays(-2);
+                    searchRangeDateS = chooseData.StartDT.AddDays(-1);
                     searchRangeDateE = chooseData.EndDT.AddDays(2);
                 }
                 if (interval == TimeIntervalEnum.Hour_01)
                 {
-                    searchRangeDateS = chooseData.StartDT.AddDays(-5);
+                    searchRangeDateS = chooseData.StartDT.AddDays(-2);
                     searchRangeDateE = chooseData.EndDT.AddDays(5);
                 }
                 if (interval == TimeIntervalEnum.Hour_02)
                 {
-                    searchRangeDateS = chooseData.StartDT.AddDays(-10);
+                    searchRangeDateS = chooseData.StartDT.AddDays(-3);
                     searchRangeDateE = chooseData.EndDT.AddDays(1);
                 }
                 if (interval == TimeIntervalEnum.Hour_05)
                 {
-                    searchRangeDateS = chooseData.StartDT.AddDays(-15);
+                    searchRangeDateS = chooseData.StartDT.AddDays(-4);
                     searchRangeDateE = chooseData.EndDT.AddDays(1);
                 }
                 if (interval == TimeIntervalEnum.Day)
                 {
-                    searchRangeDateS = chooseData.StartDT.AddMonths(-2);
+                    searchRangeDateS = chooseData.StartDT.AddMonths(-1);
                     searchRangeDateE = chooseData.EndDT.AddMonths(2);
                 }
                 if (interval == TimeIntervalEnum.Week)
@@ -531,7 +534,7 @@ namespace OM.Jiva.Chakra.App
                     searchRangeDateE = chooseData.EndDT.AddYears(2);
                 }
             }
-            
+
             var sourceDatas2 = loadData(product, item, interval, searchRangeDateS, searchRangeDateE);
             chart2.DisplayPointCount = displayCnt;
             chart2.LoadData(item, sourceDatas2, interval);
@@ -564,12 +567,12 @@ namespace OM.Jiva.Chakra.App
                 if (btn.Text == "2H")
                 {
                     selectedTimeInterval = TimeIntervalEnum.Hour_02;
-                    btnLoadDaemonH.BackColor = Color.Red;
+                    btnLoadDaemon2H.BackColor = Color.Red;
                 }
                 if (btn.Text == "5H")
                 {
                     selectedTimeInterval = TimeIntervalEnum.Hour_05;
-                    btnLoadDaemonH.BackColor = Color.Red;
+                    btnLoadDaemon5H.BackColor = Color.Red;
                 }
                 if (btn.Text == "D")
                 {

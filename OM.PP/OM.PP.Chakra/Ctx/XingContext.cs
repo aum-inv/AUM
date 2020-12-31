@@ -92,7 +92,7 @@ namespace OM.PP.Chakra.Ctx
 
                 return clientService;
 
-                //return GetClientService();
+                //return new XingService();
             }
         }
 

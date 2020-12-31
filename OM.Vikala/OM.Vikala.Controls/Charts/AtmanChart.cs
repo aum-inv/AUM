@@ -19,6 +19,8 @@ namespace OM.Vikala.Controls.Charts
 {
     public partial class AtmanChart : BaseChartControl
     {
+        List<double> pmForceList = new List<double>();
+
         public override CandleChartTypeEnum CandleChartType
         {
             get;
@@ -98,14 +100,10 @@ namespace OM.Vikala.Controls.Charts
             resistanceAvgList.Clear();
             supportAvgList.Clear();
 
-            var pList = PPUtils.GetExceptPlusMinusList(ChartData, PlusMinusTypeEnum.양);
-            var mList = PPUtils.GetExceptPlusMinusList(ChartData, PlusMinusTypeEnum.음);
-
-            double devation = ItemCodeSet.GetDeviation(ItemCode);
-            resistanceList = PPUtils.GetResistancePrices(pList, devation, 3, 9);
-            supportList = PPUtils.GetSupportPrices(mList, devation, 3, 9);
-            resistanceAvgList = PPUtils.GetResistancePrices(ChartDataSub, devation, 5, 9);
-            supportAvgList = PPUtils.GetSupportPrices(ChartDataSub, devation, 5, 9);
+            pmForceList.Clear();
+                       
+            PPUtils.SetRangeHighLowPrice(ChartData, 18);
+            PPUtils.SetRangeHighLowPrice(ChartDataSub, 18);
 
             //resistanceList.Add(PPUtils.GetResistancePrice(pList, 3));
             //resistanceList.Add(PPUtils.GetResistancePrice(mList, 3));
@@ -162,6 +160,13 @@ namespace OM.Vikala.Controls.Charts
             LimitedList<double> dList2 = new LimitedList<double>(5);
 
             ThreeCandlePattern threePatttern = new ThreeCandlePattern();
+
+            double pmForce = 0;
+            double prePMForce = 0;
+            pmForceList.Add(0);
+            pmForceList.Add(0);
+            pmForceList.Add(0);
+            pmForceList.Add(0);
             for (int i = 4; i < ChartData.Count; i++)
             {
                 var item = ChartData[i];
@@ -205,18 +210,17 @@ namespace OM.Vikala.Controls.Charts
                 chart.Series["lineMessHL"].Points.AddXY(itemAvg.DTime
                     , itemAvg.T_MassAvg + (Math.Abs(itemAvg.T_MassAvg - itemAvg.HighPrice) - Math.Abs(itemAvg.T_MassAvg - itemAvg.LowPrice)));
 
-                if(itemAvg.PlusMinusType == PlusMinusTypeEnum.양)
-                    chart.Series["lineMessHLAvg"].Points.AddXY(itemAvg.DTime, itemAvg.T_MassAvg + itemAvg.HeadLength - itemAvg.LegLength);
-                else if (itemAvg.PlusMinusType == PlusMinusTypeEnum.음)
-                    chart.Series["lineMessHLAvg"].Points.AddXY(itemAvg.DTime, itemAvg.T_MassAvg - itemAvg.HeadLength + itemAvg.LegLength);
-                else 
-                    chart.Series["lineMessHLAvg"].Points.AddXY(itemAvg.DTime, itemAvg.T_MassAvg);
+                chart.Series["lineCandleRangeH"].Points.AddXY(item.DTime, Math.Round(item.RangeHighPrice, RoundLength));
+                chart.Series["lineCandleRangeL"].Points.AddXY(item.DTime, Math.Round(item.RangeLowPrice, RoundLength));
 
                 chart.Series["candleAverage"].Points.AddXY(itemAvg.DTime, itemAvg.HighPrice, itemAvg.LowPrice, itemAvg.OpenPrice, itemAvg.ClosePrice);
                 diceChar = itemAvg.GetSpaceType(itemAvg);
                 chart.Series["candleAverage"].Points[idx].Label = diceChar;
                 if (diceChar == "★")
                     chart.Series["candleAverage"].Points[idx].LabelForeColor = Color.Red;
+
+                chart.Series["lineCandleAvgRangeH"].Points.AddXY(itemAvg.DTime, Math.Round(itemAvg.RangeHighPrice, RoundLength));
+                chart.Series["lineCandleAvgRangeL"].Points.AddXY(itemAvg.DTime, Math.Round(itemAvg.RangeLowPrice, RoundLength));
 
                 chart.Series["candleBAverage"].Points.AddXY(itemAvg2.DTime, itemAvg2.HighPrice, itemAvg2.LowPrice, itemAvg2.OpenPrice, itemAvg2.ClosePrice);
 
@@ -236,6 +240,29 @@ namespace OM.Vikala.Controls.Charts
                 chart.Series["stackHL"].Points.AddXY(item.DTime, item.TotalLength);
                 chart.Series["stackHL2"].Points.AddXY(item.DTime, (bitem.TotalLength - item.TotalLength) <=0 ? 0 : (bitem.TotalLength - item.TotalLength));
 
+                if (itemAvg.PlusMinusType == PlusMinusTypeEnum.양)
+                    pmForce += itemAvg.HeadLength;
+                else if (itemAvg.PlusMinusType == PlusMinusTypeEnum.음)
+                    pmForce -= itemAvg.LegLength;
+                //else
+                //{
+                //    if (itemAvg.PreCandleItem.PlusMinusType == PlusMinusTypeEnum.양)
+                //        pmForce -= itemAvg.PreCandleItem.BodyLength;
+                //    else if (itemAvg.PreCandleItem.PlusMinusType == PlusMinusTypeEnum.음)
+                //        pmForce += itemAvg.PreCandleItem.BodyLength;
+                //}
+
+                chart.Series["linePlusMinusForce"].Points.AddXY(itemAvg.DTime, pmForce);
+                chart.Series["linePlusMinusZero"].Points.AddXY(itemAvg.DTime, 0);
+                if (pmForce > prePMForce)
+                    chart.Series["linePlusMinusForce"].Points[idx].Color = Color.Red;
+                else if (pmForce < prePMForce)
+                    chart.Series["linePlusMinusForce"].Points[idx].Color = Color.Blue;
+                else
+                    chart.Series["linePlusMinusForce"].Points[idx].Color = Color.Black;
+
+                pmForceList.Add(pmForce);
+                prePMForce = pmForce;
                 //if (SelectedPType == "국내지수")
                 //{
                 //    if (preSPrice1 > preSPrice2 && preSPrice2 > preSPrice3)
@@ -366,10 +393,16 @@ namespace OM.Vikala.Controls.Charts
                 var dataPointAvg = chart.Series["candleAverage"].Points[idx];
                 dataPoint.Tag = item;
 
-                if (item.PlusMinusType == PlusMinusTypeEnum.양)
+                if (item.PlusMinusType == PlusMinusTypeEnum.양 && item.YinAndYang == PlusMinusTypeEnum.양)
+                    SetDataPointColor(dataPoint, Color.Red, Color.Red, Color.Red, 2);
+                else if (item.PlusMinusType == PlusMinusTypeEnum.음 && item.YinAndYang == PlusMinusTypeEnum.양)
+                    SetDataPointColor(dataPoint, Color.Blue, Color.Blue, Color.Blue, 2);
+
+                else if (item.PlusMinusType == PlusMinusTypeEnum.양)
                     SetDataPointColor(dataPoint, Color.Red, Color.Red, Color.White, 2);
                 else if (item.PlusMinusType == PlusMinusTypeEnum.음)
                     SetDataPointColor(dataPoint, Color.Blue, Color.Blue, Color.White, 2);
+                
                 else
                     SetDataPointColor(dataPoint, Color.Black, Color.Black, Color.White, 2);
 
@@ -383,8 +416,6 @@ namespace OM.Vikala.Controls.Charts
             SetTrackBar();
             SetScrollBar();
             DisplayView();
-            DisplayResistanceAndSupportLine();
-            DisplayAvgResistanceAndSupportLine();
             //ViewPattern();
             IsLoaded = true;
 
@@ -431,6 +462,7 @@ namespace OM.Vikala.Controls.Charts
             List<T_QuantumItemData> viewAvgBLists = null;
             List<SmartCandleData> viewSmartLists = null;
             List<SmartCandleData> viewSmartBLists = null;
+            List<double> viewPMForceLists = null;
             int maxDisplayIndex = 0;
             int minDisplayIndex = 0;
             if (scrollVal == hScrollBar.Minimum)
@@ -442,7 +474,7 @@ namespace OM.Vikala.Controls.Charts
                 viewAvgBLists = ChartDataSub2.GetRange(0, maxIndex);
                 viewSmartLists = smartDataList.GetRange(0, maxIndex);
                 viewSmartBLists = smartBDataList.GetRange(0, maxIndex);
-
+                viewPMForceLists = pmForceList.GetRange(0, maxIndex);
                 maxDisplayIndex = displayItemCount;
                 minDisplayIndex = 0;
             }
@@ -455,6 +487,7 @@ namespace OM.Vikala.Controls.Charts
                 viewAvgBLists = ChartDataSub2.GetRange(minIndex, ChartData.Count < displayItemCount ? ChartData.Count : displayItemCount);
                 viewSmartLists = smartDataList.GetRange(minIndex, ChartData.Count < displayItemCount ? ChartData.Count : displayItemCount);
                 viewSmartBLists = smartBDataList.GetRange(minIndex, ChartData.Count < displayItemCount ? ChartData.Count : displayItemCount);
+                viewPMForceLists = pmForceList.GetRange(minIndex, ChartData.Count < displayItemCount ? ChartData.Count : displayItemCount);
 
                 maxDisplayIndex = ChartData.Count;
                 minDisplayIndex = minIndex;
@@ -471,6 +504,7 @@ namespace OM.Vikala.Controls.Charts
                 viewAvgBLists = ChartDataSub2.GetRange(currentIndex, displayItemCount);
                 viewSmartLists = smartDataList.GetRange(currentIndex, displayItemCount);
                 viewSmartBLists = smartBDataList.GetRange(currentIndex, displayItemCount);
+                viewPMForceLists = pmForceList.GetRange(currentIndex, displayItemCount);
 
                 maxDisplayIndex = currentIndex + displayItemCount;
                 minDisplayIndex = currentIndex;
@@ -485,7 +519,7 @@ namespace OM.Vikala.Controls.Charts
                 }
                 double maxPrice = viewLists.Max(m => m.HighPrice);
                 double minPrice = viewLists.Min(m => m.LowPrice);
-
+                double devation = (maxPrice - minPrice) / 10.0;
                 maxPrice = maxPrice + SpaceMaxMin;
                 minPrice = minPrice - SpaceMaxMin;
                 chart.ChartAreas["ca1"].AxisY2.Maximum = maxPrice;
@@ -493,10 +527,12 @@ namespace OM.Vikala.Controls.Charts
 
                 maxPrice = viewAvgLists.Max(m => m.HighPrice);
                 minPrice = viewAvgLists.Min(m => m.LowPrice);
+                double devationAvg = (maxPrice - minPrice) / 10.0;
                 maxPrice = maxPrice + SpaceMaxMin;
                 minPrice = minPrice - SpaceMaxMin;
                 chart.ChartAreas["ca2"].AxisY2.Maximum = maxPrice;
                 chart.ChartAreas["ca2"].AxisY2.Minimum = minPrice;
+
 
                 maxPrice = viewAvgBLists.Max(m => m.HighPrice);
                 minPrice = viewAvgBLists.Min(m => m.LowPrice);
@@ -522,6 +558,22 @@ namespace OM.Vikala.Controls.Charts
                 //maxPrice = smartBDataList.GetRange(2, smartBDataList.Count - 3).Min(m => m.Variance_ChartPrice2);
                 chart.ChartAreas["ca5"].AxisY2.Maximum = maxPrice;
                 chart.ChartAreas["ca5"].AxisY2.Minimum = minPrice;
+
+                chart.ChartAreas["ca6"].AxisY2.Maximum = viewPMForceLists.Max();
+                chart.ChartAreas["ca6"].AxisY2.Minimum = viewPMForceLists.Min();
+
+                var pList = PPUtils.GetExceptPlusMinusList(ChartData, PlusMinusTypeEnum.양);
+                var mList = PPUtils.GetExceptPlusMinusList(ChartData, PlusMinusTypeEnum.음);
+                //double devation = ItemCodeSet.GetDeviation(ItemCode);
+                               
+                resistanceList = PPUtils.GetResistancePrices(pList, devation, 3, 3);
+                supportList = PPUtils.GetSupportPrices(mList, devation, 3, 3);
+                resistanceAvgList = PPUtils.GetResistancePrices(ChartDataSub, devationAvg, 3, 3);
+                supportAvgList = PPUtils.GetSupportPrices(ChartDataSub, devationAvg, 3, 3);
+              
+                RemoveAnnotationsByTag("RS");
+                DisplayResistanceAndSupportLine();
+                DisplayAvgResistanceAndSupportLine();
             }
         }
 
@@ -596,6 +648,7 @@ namespace OM.Vikala.Controls.Charts
                 idx++;
             }
         }
+       
         public void DisplayResistanceAndSupportLine()
         {
             int idx = 1;
@@ -612,6 +665,7 @@ namespace OM.Vikala.Controls.Charts
                 yLine.ClipToChartArea = chart.ChartAreas[0].Name;
                 yLine.LineColor = Color.Red;
                 yLine.LineWidth = 1;
+                yLine.Tag = "RS";
                 chart.Annotations.Add(yLine);
 
                 if (idx >= max) break;
@@ -631,6 +685,7 @@ namespace OM.Vikala.Controls.Charts
                 yLine.ClipToChartArea = chart.ChartAreas[0].Name;
                 yLine.LineColor = Color.Blue ;
                 yLine.LineWidth = 1;
+                yLine.Tag = "RS";
                 chart.Annotations.Add(yLine);
 
                 if (idx >= max) break;
@@ -653,6 +708,7 @@ namespace OM.Vikala.Controls.Charts
                 yLine.ClipToChartArea = chart.ChartAreas[1].Name;
                 yLine.LineColor = Color.Red;
                 yLine.LineWidth = 1;
+                yLine.Tag = "RS";
                 chart.Annotations.Add(yLine);
 
                 if (idx >= max) break;
@@ -672,6 +728,7 @@ namespace OM.Vikala.Controls.Charts
                 yLine.ClipToChartArea = chart.ChartAreas[1].Name;
                 yLine.LineColor = Color.Blue;
                 yLine.LineWidth = 1;
+                yLine.Tag = "RS";
                 chart.Annotations.Add(yLine);
 
                 if (idx >= max) break;

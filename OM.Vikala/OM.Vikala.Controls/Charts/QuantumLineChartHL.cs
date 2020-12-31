@@ -124,7 +124,24 @@ namespace OM.Vikala.Controls.Charts
                     if(itemAvg.T_HighAvg < itemAvg.LowPrice || itemAvg.T_LowAvg > item.HighPrice)
                         chart.Series[4].Points[idx].Label = "↑";
                 }
-                bDistance = d;       
+                bDistance = d;
+
+                {
+                    var dataPoint = chart.Series[0].Points[idx];
+
+                    if (item.PlusMinusType == PlusMinusTypeEnum.양 && item.YinAndYang == PlusMinusTypeEnum.양)
+                        SetDataPointColor(dataPoint, Color.Red, Color.Red, Color.Red, 2);
+                    else if (item.PlusMinusType == PlusMinusTypeEnum.음 && item.YinAndYang == PlusMinusTypeEnum.양)
+                        SetDataPointColor(dataPoint, Color.Blue, Color.Blue, Color.Blue, 2);
+
+                    else if (item.PlusMinusType == PlusMinusTypeEnum.양)
+                        SetDataPointColor(dataPoint, Color.Red, Color.Red, Color.White, 2);
+                    else if (item.PlusMinusType == PlusMinusTypeEnum.음)
+                        SetDataPointColor(dataPoint, Color.Blue, Color.Blue, Color.White, 2);
+
+                    else
+                        SetDataPointColor(dataPoint, Color.Black, Color.Black, Color.White, 2);
+                }
             }
             
 

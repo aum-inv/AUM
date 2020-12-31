@@ -12,7 +12,7 @@ namespace OM.Lib.Base.Enums
         {
               new ItemData(){ Name = "선택하세요" , Code = ""}           
             , new ItemData(){ Name = "지수-국내-코스피200" , Code = "101", Length = 2, SHCode = "101", Tick=0.01, Deviation=1}
-            , new ItemData(){ Name = "지수-국내-코스피" , Code = "001", Length = 2, SHCode = "001", Tick=0.01, Deviation=10}
+            //, new ItemData(){ Name = "지수-국내-코스피" , Code = "001", Length = 2, SHCode = "001", Tick=0.01, Deviation=10}
             , new ItemData(){ Name = "지수-국내-코스닥" , Code = "301", Length = 2, SHCode = "301", Tick=0.01, Deviation=10}
 
 //DJI@DJI       : 다우산업

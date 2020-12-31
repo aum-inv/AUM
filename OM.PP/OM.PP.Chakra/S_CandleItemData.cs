@@ -185,6 +185,15 @@ namespace OM.PP.Chakra
             get; set;
         } = 0;
 
+        public Double RangeHighPrice
+        {
+            get; set;
+        } = Double.NaN;         
+        public Double RangeLowPrice
+        {
+            get; set;
+        } = Double.NaN;
+      
         public Int32 Index
         {
             get;
@@ -744,5 +753,33 @@ namespace OM.PP.Chakra
             }
         }
         #endregion
+
+
+        public PlusMinusTypeEnum YinAndYang
+        {
+            get
+            {
+                if (PreCandleItem == null)
+                {
+                    if (OpenPrice < ClosePrice) return PlusMinusTypeEnum.양;
+                    else if (OpenPrice > ClosePrice) return PlusMinusTypeEnum.음;
+                    else return PlusMinusTypeEnum.무;
+                }
+                else
+                {
+                    if (LowPrice > PreCandleItem.MiddlePrice || HighPrice < PreCandleItem.MiddlePrice)
+                        return PlusMinusTypeEnum.양;
+                   
+                    else if (HighPrice > PreCandleItem.HighPrice && LowPrice < PreCandleItem.LowPrice)
+                        return PlusMinusTypeEnum.양;
+                 
+                    else if (HighPrice <= PreCandleItem.HighPrice && LowPrice >= PreCandleItem.LowPrice)
+                        return PlusMinusTypeEnum.음;
+                    else
+                        return PlusMinusTypeEnum.무;
+
+                }
+            }
+        }
     }
 }

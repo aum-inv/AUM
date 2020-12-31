@@ -46,7 +46,8 @@ namespace OM.Vikala.Controls.Charts
         public override void InitializeControl()
         {
             //if (IsShowXLine) createXYLineAnnotation();
-            //if (IsShowYLine) createYXLineAnnotation();            
+            //if (IsShowYLine) createYXLineAnnotation();        
+            
         }
         public void LoadData(string itemCode = ""
             , List<T_AntiMatterItemData> chartData = null
@@ -132,6 +133,23 @@ namespace OM.Vikala.Controls.Charts
                             SetDataPointColor(dataPoint, Color.Black, Color.Black, Color.White, 1);
                     }
                 }
+                else 
+                {
+                    var dataPoint = chart.Series[0].Points[idx];
+
+                    if (item.PlusMinusType == PlusMinusTypeEnum.양 && item.YinAndYang == PlusMinusTypeEnum.양)
+                        SetDataPointColor(dataPoint, Color.Red, Color.Red, Color.Red, 2);
+                    else if (item.PlusMinusType == PlusMinusTypeEnum.음 && item.YinAndYang == PlusMinusTypeEnum.양)
+                        SetDataPointColor(dataPoint, Color.Blue, Color.Blue, Color.Blue, 2);
+
+                    else if (item.PlusMinusType == PlusMinusTypeEnum.양)
+                        SetDataPointColor(dataPoint, Color.Red, Color.Red, Color.White, 2);
+                    else if (item.PlusMinusType == PlusMinusTypeEnum.음)
+                        SetDataPointColor(dataPoint, Color.Blue, Color.Blue, Color.White, 2);
+
+                    else
+                        SetDataPointColor(dataPoint, Color.Black, Color.Black, Color.White, 2);
+                }
 
                 item = ChartDataSub[i];
                 chart.Series[1].Points.AddXY(item.DTime, item.U_HighAvg);
@@ -149,6 +167,8 @@ namespace OM.Vikala.Controls.Charts
             IsLoaded = true;
 
             base.View();
+
+            //chart.ChartAreas["ca2"].AxisY2.LabelStyle.Format = "{N3}";
         }
         
         public void DisplayView()
@@ -247,61 +267,7 @@ namespace OM.Vikala.Controls.Charts
         #region Chart Util
 
         #endregion
-
-        private void chart_MouseDown(object sender, MouseEventArgs e)
-        {  
-            chart.Annotations.Clear();
-            lblQPrice.Visible = false;
-            HitTestResult result = chart.HitTest(e.X, e.Y);           
-            if (result.ChartElementType == ChartElementType.DataPoint
-                && (result.Series == chart.Series[0] || result.Series == chart.Series[1]))
-            {
-                setLineAnnotation(result.PointIndex, e.Location);
-            }
-        }
-
-        private void setLineAnnotation(int index, Point p)
-        {           
-            double highPoint = 0;
-            double lowPoint = 0;
-
-            highPoint = Math.Round(ChartData[index].QuantumHighPrice, RoundLength);
-            lowPoint = Math.Round(ChartData[index].QuantumLowPrice, RoundLength);
-
-            if (ChartData[index].OpenPrice < ChartData[index].QuantumPrice)
-            {
-                HorizontalLineAnnotation annH = new HorizontalLineAnnotation();
-                annH.AxisX = chart.ChartAreas[0].AxisX;
-                annH.AxisY = chart.ChartAreas[0].AxisY2;
-                annH.IsSizeAlwaysRelative = false;
-                annH.AnchorY = highPoint;
-                annH.IsInfinitive = true;
-                annH.ClipToChartArea = chart.ChartAreas[0].Name;
-                annH.LineColor = lblQPrice.ForeColor = Color.Red;
-                annH.LineWidth = 1;
-                chart.Annotations.Add(annH);
-                lblQPrice.Text = highPoint.ToString("N"+ RoundLength);
-                lblQPrice.Visible = true;
-                lblQPrice.Location = p;
-            }
-            if (ChartData[index].OpenPrice > ChartData[index].QuantumPrice)
-            {
-                HorizontalLineAnnotation annL = new HorizontalLineAnnotation();
-                annL.AxisX = chart.ChartAreas[0].AxisX;
-                annL.AxisY = chart.ChartAreas[0].AxisY2;
-                annL.IsSizeAlwaysRelative = false;
-                annL.AnchorY = lowPoint;
-                annL.IsInfinitive = true;
-                annL.ClipToChartArea = chart.ChartAreas[0].Name;
-                annL.LineColor = lblQPrice.ForeColor = Color.Blue;
-                annL.LineWidth = 1;
-                chart.Annotations.Add(annL);
-                lblQPrice.Text = lowPoint.ToString("N" + RoundLength);
-                lblQPrice.Visible = true;
-                lblQPrice.Location = p;
-            }
-        }
-       
+              
         private void chart_PostPaint(object sender, ChartPaintEventArgs e)
         {
             DrawChartTitle(e);

@@ -191,7 +191,8 @@ namespace OM.Vikala.Controls.Charts
             minDisplayIndex = (maxDisplayIndex - displayItemCount);
             if (minDisplayIndex < 0) minDisplayIndex = 0;
 
-            viewLists = ChartData.GetRange(minDisplayIndex, displayItemCount);
+            int displayCnt = (ChartData.Count - minDisplayIndex) < displayItemCount ? (ChartData.Count - minDisplayIndex) : displayItemCount;
+            viewLists = ChartData.GetRange(minDisplayIndex, displayCnt);
 
             chart.ChartAreas[0].AxisX.Maximum = maxDisplayIndex + 7;
             chart.ChartAreas[0].AxisX.Minimum = minDisplayIndex - 1;
@@ -228,7 +229,8 @@ namespace OM.Vikala.Controls.Charts
             minDisplayIndex = (maxDisplayIndex - displayItemCount);
             if (minDisplayIndex < 0) minDisplayIndex = 0;
 
-            viewLists = ChartData.GetRange(minDisplayIndex, displayItemCount);
+            int displayCnt = (ChartData.Count - minDisplayIndex) < displayItemCount ? (ChartData.Count - minDisplayIndex) : displayItemCount;
+            viewLists = ChartData.GetRange(minDisplayIndex, displayCnt);
 
             chart.ChartAreas[0].AxisX.Maximum = maxDisplayIndex;
             chart.ChartAreas[0].AxisX.Minimum = minDisplayIndex - 1;

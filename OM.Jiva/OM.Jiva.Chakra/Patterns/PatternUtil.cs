@@ -53,25 +53,60 @@ namespace OM.Jiva.Chakra.Patterns
 
         public static CandlePatternTypeEnum GetCandlePatternType(S_CandleItemData p, List<S_CandleItemData> pList, List<S_CandleItemData> nList)
         {
+            //CandlePatternTypeEnum type = CandlePatternTypeEnum.Unknown;
+
+            //double minPPrice = pList.Min((t => t.LowPrice));
+            //double maxPPrice = pList.Max((t => t.HighPrice));
+
+            //double minNPrice = nList.Min((t => t.LowPrice));
+            //double maxNPrice = nList.Max((t => t.HighPrice));
+
+            //double pDiff = (maxPPrice - minPPrice);
+            //double sUPrice = p.ClosePrice + (pDiff * 1.0);
+            //double sDPrice = p.ClosePrice - (pDiff * 1.0);
+            //double mUPrice = p.ClosePrice + (pDiff * 0.7);
+            //double mDPrice = p.ClosePrice - (pDiff * 0.7);
+            //double wUPrice = p.ClosePrice + (pDiff * 0.3);
+            //double wDPrice = p.ClosePrice - (pDiff * 0.3);
+
+            //if (maxNPrice > sUPrice && minNPrice < sDPrice) type = CandlePatternTypeEnum.StrongSide;
+            //else if (maxNPrice > mUPrice && minNPrice < mDPrice) type = CandlePatternTypeEnum.NormalSide;
+            //else if (maxNPrice > wUPrice && minNPrice < wDPrice) type = CandlePatternTypeEnum.WeakSide;
+
+            //else if (maxNPrice > sUPrice) type = CandlePatternTypeEnum.StrongUp;
+            //else if (minNPrice < sDPrice) type = CandlePatternTypeEnum.StrongDown;
+
+            //else if (maxNPrice > mUPrice) type = CandlePatternTypeEnum.Up;
+            //else if (minNPrice < mDPrice) type = CandlePatternTypeEnum.Down;
+
+            //else if (maxNPrice > wUPrice) type = CandlePatternTypeEnum.WeakUp;
+            //else if (minNPrice < wDPrice) type = CandlePatternTypeEnum.WeakDown;
+
+            //return type;
+
+
             CandlePatternTypeEnum type = CandlePatternTypeEnum.Unknown;
 
-            double minPPrice = pList.Min((t => t.LowPrice));
-            double maxPPrice = pList.Max((t => t.HighPrice));
-            
+            double minPPrice = p.LowPrice;
+            double maxPPrice = p.HighPrice;
+
             double minNPrice = nList.Min((t => t.LowPrice));
             double maxNPrice = nList.Max((t => t.HighPrice));
 
             double pDiff = (maxPPrice - minPPrice);
-            double sUPrice = p.ClosePrice + (pDiff * 1.0);
-            double sDPrice = p.ClosePrice - (pDiff * 1.0);
-            double mUPrice = p.ClosePrice + (pDiff * 0.7);
-            double mDPrice = p.ClosePrice - (pDiff * 0.7);
-            double wUPrice = p.ClosePrice + (pDiff * 0.3);
-            double wDPrice = p.ClosePrice - (pDiff * 0.3);
+            double sUPrice = p.ClosePrice + (pDiff * 3.0);
+            double sDPrice = p.ClosePrice - (pDiff * 3.0);
+            double mUPrice = p.ClosePrice + (pDiff * 2.0);
+            double mDPrice = p.ClosePrice - (pDiff * 2.0);
+            double wUPrice = p.ClosePrice + (pDiff * 1.0);
+            double wDPrice = p.ClosePrice - (pDiff * 1.0);
 
-            if (maxNPrice > sUPrice && minNPrice < sDPrice) type = CandlePatternTypeEnum.StrongSide;
-            else if (maxNPrice > mUPrice && minNPrice < mDPrice) type = CandlePatternTypeEnum.NormalSide;
-            else if (maxNPrice > wUPrice && minNPrice < wDPrice) type = CandlePatternTypeEnum.WeakSide;
+            if (maxNPrice > mUPrice && minNPrice < mDPrice && maxNPrice < sUPrice && minNPrice > sDPrice) 
+                type = CandlePatternTypeEnum.StrongSide;         
+            else if (maxNPrice > wUPrice && minNPrice < wDPrice && maxNPrice < mUPrice && minNPrice > mDPrice) 
+                type = CandlePatternTypeEnum.NormalSide;
+            else if (maxNPrice < wUPrice && minNPrice > wDPrice) 
+                type = CandlePatternTypeEnum.WeakSide;
 
             else if (maxNPrice > sUPrice) type = CandlePatternTypeEnum.StrongUp;
             else if (minNPrice < sDPrice) type = CandlePatternTypeEnum.StrongDown;
@@ -89,19 +124,18 @@ namespace OM.Jiva.Chakra.Patterns
         {
             CandlePatternTypeEnum type = CandlePatternTypeEnum.Unknown;
 
-            double minPPrice = p1.LowPrice;
-            double maxPPrice = p1.HighPrice;
+            double minPPrice = p.LowPrice;
+            double maxPPrice = p.HighPrice;
             double minNPrice = n1.LowPrice;
             double maxNPrice = n1.HighPrice;
 
             double pDiff = (maxPPrice - minPPrice);
-
-            double sUPrice = p.ClosePrice + (pDiff * 1.0);
-            double sDPrice = p.ClosePrice - (pDiff * 1.0);
-            double mUPrice = p.ClosePrice + (pDiff * 0.7);
-            double mDPrice = p.ClosePrice - (pDiff * 0.7);
-            double wUPrice = p.ClosePrice + (pDiff * 0.3);
-            double wDPrice = p.ClosePrice - (pDiff * 0.3);
+            double sUPrice = p.ClosePrice + (pDiff * 3.0);
+            double sDPrice = p.ClosePrice - (pDiff * 3.0);
+            double mUPrice = p.ClosePrice + (pDiff * 2.0);
+            double mDPrice = p.ClosePrice - (pDiff * 2.0);
+            double wUPrice = p.ClosePrice + (pDiff * 1.0);
+            double wDPrice = p.ClosePrice - (pDiff * 1.0);
 
             if (maxNPrice > sUPrice && minNPrice < sDPrice) type = CandlePatternTypeEnum.StrongSide;
             else if (maxNPrice > mUPrice && minNPrice < mDPrice) type = CandlePatternTypeEnum.NormalSide;

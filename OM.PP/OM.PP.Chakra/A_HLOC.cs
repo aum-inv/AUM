@@ -458,7 +458,7 @@ namespace OM.PP.Chakra
         public virtual PlusMinusTypeEnum PlusMinusType
         {
             get
-            {
+            {   
                 if (OpenPrice < ClosePrice) return PlusMinusTypeEnum.양;
                 else if (OpenPrice > ClosePrice) return PlusMinusTypeEnum.음;
                 else return PlusMinusTypeEnum.무;

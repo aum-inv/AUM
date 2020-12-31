@@ -100,6 +100,20 @@ namespace OM.PP.Chakra.Ctx
                 return null;
             }
         }
+        public List<S_CandleItemData> GetWorldIndexSiseDataByRange(string code, string gubun, DateTime sDT, DateTime eDT)
+        {
+            try
+            {
+                OM.PP.XingApp.Ex.Api.Api_WorldIndex api = new XingApp.Ex.Api.Api_WorldIndex();
+                return api.Query(code, gubun, sDT, eDT);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
         public List<S_CandleItemData> GetWorldFutureSiseData(string code, string gubun)
         {
             try
@@ -172,6 +186,33 @@ namespace OM.PP.Chakra.Ctx
             try
             {
                 OM.PP.XingApp.Ex.Api.Api_Crypto api = new XingApp.Ex.Api.Api_Crypto();
+                return api.Query(code, gubun, sDT, eDT);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
+        public List<S_CandleItemData> GetKoreaIndexSiseData(string code, string gubun)
+        {
+            try
+            {
+                var api = new XingApp.Ex.Api.Api_KoreaIndex();
+                return api.Query(code, gubun);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return null;
+            }
+        }
+        public List<S_CandleItemData> GetKoreaIndexSiseDataByRange(string code, string gubun, DateTime sDT, DateTime eDT)
+        {
+            try
+            {
+                var api = new XingApp.Ex.Api.Api_KoreaIndex();
                 return api.Query(code, gubun, sDT, eDT);
             }
             catch (Exception ex)

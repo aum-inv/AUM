@@ -605,5 +605,18 @@ namespace OM.Vikala.Controls.Charts
             trackBar.LargeChange = 1;
             trackBar.SmallChange = 1;
         }
+
+        public void RemoveAnnotationsByTag(string tag)
+        {
+            for (int i = chart.Annotations.Count - 1; i >= 0; i--)
+            {
+                var line = chart.Annotations[i];
+
+                if (line.Tag != null && line.Tag.ToString() == tag)
+                {
+                    chart.Annotations.RemoveAt(i);
+                }
+            }
+        }
     }
 }
