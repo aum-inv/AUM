@@ -114,6 +114,24 @@ namespace OM.Vikala.Chakra.App.Mains.ToolbarChartForms
 
             var averageDatas = PPUtils.GetAverageDatas(itemCode, sourceDatas, averageCount, false);        
             var averageBDatas = PPUtils.GetBalancedAverageDatas(itemCode, sourceDatas, averageBCount, false);
+
+            for (int i = 0; i < averageDatas.Count; i++)
+            {
+                int pIdx = i - 1 < 0 ? 0 : i - 1;
+                int nIdx = i + 1 > averageDatas.Count - 1 ? averageDatas.Count - 1 : i + 1;
+
+                averageDatas[i].PreCandleItem = averageDatas[pIdx];
+                averageDatas[i].NextCandleItem = averageDatas[nIdx];
+            }
+            for (int i = 0; i < averageBDatas.Count; i++)
+            {
+                int pIdx = i - 1 < 0 ? 0 : i - 1;
+                int nIdx = i + 1 > averageBDatas.Count - 1 ? averageBDatas.Count - 1 : i + 1;
+
+                averageBDatas[i].PreCandleItem = averageBDatas[pIdx];
+                averageBDatas[i].NextCandleItem = averageBDatas[nIdx];
+            }
+
             sourceDatas = PPUtils.GetCutDatas(sourceDatas, averageDatas[0].DTime);
             averageBDatas = PPUtils.GetCutDatas(averageBDatas, averageDatas[0].DTime);
             

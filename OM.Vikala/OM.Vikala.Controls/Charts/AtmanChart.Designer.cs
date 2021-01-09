@@ -56,6 +56,8 @@
             System.Windows.Forms.DataVisualization.Charting.Series series20 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series21 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series22 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series23 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series24 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pnlScroll = new System.Windows.Forms.Panel();
             this.hScrollBar = new System.Windows.Forms.HScrollBar();
@@ -406,7 +408,7 @@
             this.chart.ChartAreas.Add(chartArea6);
             this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chart.Location = new System.Drawing.Point(0, 0);
-            this.chart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.chart.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.chart.Name = "chart";
             this.chart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             series1.BorderColor = System.Drawing.Color.Transparent;
@@ -593,6 +595,19 @@
             series22.Name = "linePlusMinusZero";
             series22.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             series22.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
+            series23.BorderWidth = 2;
+            series23.ChartArea = "ca1";
+            series23.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series23.Color = System.Drawing.Color.Purple;
+            series23.IsXValueIndexed = true;
+            series23.Name = "lineElectronForce1";
+            series23.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            series24.ChartArea = "ca1";
+            series24.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series24.Color = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            series24.IsXValueIndexed = true;
+            series24.Name = "lineElectronForce2";
+            series24.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             this.chart.Series.Add(series1);
             this.chart.Series.Add(series2);
             this.chart.Series.Add(series3);
@@ -615,7 +630,9 @@
             this.chart.Series.Add(series20);
             this.chart.Series.Add(series21);
             this.chart.Series.Add(series22);
-            this.chart.Size = new System.Drawing.Size(1203, 754);
+            this.chart.Series.Add(series23);
+            this.chart.Series.Add(series24);
+            this.chart.Size = new System.Drawing.Size(1719, 1131);
             this.chart.TabIndex = 2;
             this.chart.PostPaint += new System.EventHandler<System.Windows.Forms.DataVisualization.Charting.ChartPaintEventArgs>(this.chart_PostPaint);
             this.chart.MouseClick += new System.Windows.Forms.MouseEventHandler(this.chart_MouseClick);
@@ -625,10 +642,9 @@
             this.pnlScroll.Controls.Add(this.hScrollBar);
             this.pnlScroll.Controls.Add(this.trackBar);
             this.pnlScroll.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlScroll.Location = new System.Drawing.Point(0, 754);
-            this.pnlScroll.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlScroll.Location = new System.Drawing.Point(0, 1131);
             this.pnlScroll.Name = "pnlScroll";
-            this.pnlScroll.Size = new System.Drawing.Size(1203, 14);
+            this.pnlScroll.Size = new System.Drawing.Size(1719, 21);
             this.pnlScroll.TabIndex = 4;
             // 
             // hScrollBar
@@ -638,7 +654,7 @@
             this.hScrollBar.Location = new System.Drawing.Point(0, 0);
             this.hScrollBar.Maximum = 1;
             this.hScrollBar.Name = "hScrollBar";
-            this.hScrollBar.Size = new System.Drawing.Size(1131, 14);
+            this.hScrollBar.Size = new System.Drawing.Size(1616, 21);
             this.hScrollBar.TabIndex = 4;
             this.hScrollBar.Value = 1;
             this.hScrollBar.ValueChanged += new System.EventHandler(this.hScrollBar_ValueChanged);
@@ -647,23 +663,22 @@
             // 
             this.trackBar.Dock = System.Windows.Forms.DockStyle.Right;
             this.trackBar.LargeChange = 1;
-            this.trackBar.Location = new System.Drawing.Point(1131, 0);
-            this.trackBar.Margin = new System.Windows.Forms.Padding(2);
+            this.trackBar.Location = new System.Drawing.Point(1616, 0);
             this.trackBar.Name = "trackBar";
-            this.trackBar.Size = new System.Drawing.Size(72, 14);
+            this.trackBar.Size = new System.Drawing.Size(103, 21);
             this.trackBar.TabIndex = 5;
             this.trackBar.ValueChanged += new System.EventHandler(this.trackBar_ValueChanged);
             // 
             // AtmanChart
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.chart);
             this.Controls.Add(this.pnlScroll);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.Name = "AtmanChart";
-            this.Size = new System.Drawing.Size(1203, 768);
+            this.Size = new System.Drawing.Size(1719, 1152);
             ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
             this.pnlScroll.ResumeLayout(false);
             this.pnlScroll.PerformLayout();

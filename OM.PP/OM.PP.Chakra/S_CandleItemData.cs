@@ -14,7 +14,7 @@ namespace OM.PP.Chakra
         public S_CandleItemData PreCandleItem = null;
         public S_CandleItemData NextCandleItem = null;
         public S_CandleItemData() { }
-        
+
         public S_CandleItemData(
              string itemCode
            , Single open
@@ -60,7 +60,7 @@ namespace OM.PP.Chakra
         {
             base.ItemCode = itemCode;
             this.sourceItems = sourceItems;
-            calculateAvgEx(isAccum);           
+            calculateAvgEx(isAccum);
         }
         public S_CandleItemData(
            string itemCode
@@ -188,12 +188,12 @@ namespace OM.PP.Chakra
         public Double RangeHighPrice
         {
             get; set;
-        } = Double.NaN;         
+        } = Double.NaN;
         public Double RangeLowPrice
         {
             get; set;
         } = Double.NaN;
-      
+
         public Int32 Index
         {
             get;
@@ -213,7 +213,7 @@ namespace OM.PP.Chakra
             if (this.sourceItems == null) return;
             if (isAccumulate)
             {
-                
+
                 var list1 = sourceItems.GetRange(Convert.ToInt32(sourceItems.Count * 0.7), Convert.ToInt32(sourceItems.Count * 0.3));
                 var list2 = sourceItems.GetRange(Convert.ToInt32(sourceItems.Count * 0.3), Convert.ToInt32(sourceItems.Count * 0.7));
                 var list3 = sourceItems.GetRange(0, Convert.ToInt32(sourceItems.Count * 1.0));
@@ -258,7 +258,7 @@ namespace OM.PP.Chakra
             VikalaCenterPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.VikalaCenterPrice), RoundLength);
             VikalaMiddlePriceAvg = (Single)Math.Round(sourceItems.Average(t => t.VikalaMiddlePrice), RoundLength);
             TotalCenterPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.TotalCenterPrice), RoundLength);
-        
+
             MassPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.MassPrice), RoundLength);
             HMassPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.HMassPrice), RoundLength);
             QMassPriceAvg = (Single)Math.Round(sourceItems.Average(t => t.QMassPrice), RoundLength);
@@ -271,7 +271,7 @@ namespace OM.PP.Chakra
         #region CandleType_Space
         public CandleSpaceTypeEnum SpaceType_P
         {
-            get 
+            get
             {
                 return getSpaceType(PreCandleItem);
             }
@@ -347,7 +347,7 @@ namespace OM.PP.Chakra
 
             //Long Body
             else if (bodyLengthRate >= 60)
-                type = "➁";            
+                type = "➁";
 
             //Spinning
             else if ((bodyLengthRate >= 10 && bodyLengthRate < 25) && headLengthRate >= 35 && legLengthRate >= 35)
@@ -389,7 +389,7 @@ namespace OM.PP.Chakra
                 else return PlusMinusTypeEnum.무;
             }
         }
-        
+
         public virtual PlusMinusTypeEnum PlusMinusType_N
         {
             get
@@ -574,14 +574,14 @@ namespace OM.PP.Chakra
                 double headLength = this.HeadLength;
                 double legLength = this.LegLength;
                 double bodyLength = this.BodyLength;
-                
+
                 int headLengthRate = (int)Math.Ceiling((headLength / totalLength * 100.0));
                 int bodyLengthRate = (int)Math.Ceiling((bodyLength / totalLength * 100.0));
                 int legLengthRate = (int)Math.Ceiling((legLength / totalLength * 100.0));
-                               
+
                 if (bodyLengthRate >= 90)
                 {
-                    if(bodyLengthRate >= 95)
+                    if (bodyLengthRate >= 95)
                         type = CandleGravitationalForceTypeEnum.MarubozuT;
                     else
                         type = CandleGravitationalForceTypeEnum.MarubozuB;
@@ -589,7 +589,7 @@ namespace OM.PP.Chakra
 
                 else if (bodyLengthRate >= 60 && bodyLengthRate < 90)
                 {
-                    if(bodyLengthRate + legLengthRate > 95)
+                    if (bodyLengthRate + legLengthRate > 95)
                         type = CandleGravitationalForceTypeEnum.LongBodyT;
                     else if (bodyLengthRate + headLengthRate > 95)
                         type = CandleGravitationalForceTypeEnum.LongBodyB;
@@ -613,7 +613,7 @@ namespace OM.PP.Chakra
                         type = CandleGravitationalForceTypeEnum.HammerT;
                     else if (bodyLengthRate + headLengthRate > 90)
                         type = CandleGravitationalForceTypeEnum.HammerB;
-                    else 
+                    else
                     {
                         if (bodyLengthRate + legLengthRate > 70)
                             type = CandleGravitationalForceTypeEnum.SpinningT;
@@ -655,7 +655,7 @@ namespace OM.PP.Chakra
         public CandleElectromagneticForceTypeEnum EForceType_OC
         {
             //캔들전자기력힘 (음양무)
-            get 
+            get
             {
                 if (this.OpenPrice < this.ClosePrice) return CandleElectromagneticForceTypeEnum.양;
                 else if (this.OpenPrice > this.ClosePrice) return CandleElectromagneticForceTypeEnum.음;
@@ -754,7 +754,6 @@ namespace OM.PP.Chakra
         }
         #endregion
 
-
         public PlusMinusTypeEnum YinAndYang
         {
             get
@@ -769,15 +768,112 @@ namespace OM.PP.Chakra
                 {
                     if (LowPrice > PreCandleItem.MiddlePrice || HighPrice < PreCandleItem.MiddlePrice)
                         return PlusMinusTypeEnum.양;
-                   
+
                     else if (HighPrice > PreCandleItem.HighPrice && LowPrice < PreCandleItem.LowPrice)
                         return PlusMinusTypeEnum.양;
-                 
+
                     else if (HighPrice <= PreCandleItem.HighPrice && LowPrice >= PreCandleItem.LowPrice)
                         return PlusMinusTypeEnum.음;
                     else
                         return PlusMinusTypeEnum.무;
 
+                }
+            }
+        }
+
+        public int ElectronForce
+        {
+            get
+            {
+                if (PreCandleItem == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    double pTotalLength = PreCandleItem.TotalLength;
+                    double pHigh = PreCandleItem.HighPrice;
+                    double pLow = PreCandleItem.LowPrice;
+                    double pClose = PreCandleItem.ClosePrice;
+
+                    double high = this.HighPrice;
+                    double low = this.LowPrice;
+
+                    int force = 0;
+                    int pforce = 0;
+                    int mforce = 0;
+                    if (PreCandleItem.PlusMinusType == PlusMinusTypeEnum.양)
+                    {
+                        //if (this.PlusMinusType == PlusMinusTypeEnum.양)
+                        //{
+                            if ((pClose + (pTotalLength * 2.0)) <= high) pforce = 5;
+                            else if ((pClose + (pTotalLength * 1.5)) <= high) pforce = 4;
+                            else if ((pClose + (pTotalLength * 1.0)) <= high) pforce = 3;
+                            else if ((pClose + (pTotalLength * 0.5)) <= high) pforce = 2;
+                            else if ((pClose + (pTotalLength * 0.5)) > high) pforce = 1;
+                        //}
+                        //else if (this.PlusMinusType == PlusMinusTypeEnum.음)
+                        //{
+                            if ((pClose - (pTotalLength * 2.0)) >= low) mforce = -5;
+                            else if ((pClose - (pTotalLength * 1.5)) >= low) mforce = -4;
+                            else if ((pClose - (pTotalLength * 1.0)) >= low) mforce = -3;
+                            else if ((pClose - (pTotalLength * 0.5)) >= low) mforce = -2;
+                            else if ((pClose - (pTotalLength * 0.5)) < low) mforce = -1;
+                        //}
+                        //else if (this.PlusMinusType == PlusMinusTypeEnum.무)
+                        //{
+                        //    force = 0;
+                        //}
+                    }
+                    else if (PreCandleItem.PlusMinusType == PlusMinusTypeEnum.음)
+                    {
+                        //if (this.PlusMinusType == PlusMinusTypeEnum.음)
+                        //{
+                            if ((pClose - (pTotalLength * 2.0)) >= low) mforce = -5;
+                            else if ((pClose - (pTotalLength * 1.5)) >= low) mforce = -4;
+                            else if ((pClose - (pTotalLength * 1.0)) >= low) mforce = -3;
+                            else if ((pClose - (pTotalLength * 0.5)) >= low) mforce = -2;
+                            else if ((pClose - (pTotalLength * 0.5)) < low) mforce = -1;
+                        //}
+                        //else if (this.PlusMinusType == PlusMinusTypeEnum.양)
+                        //{
+                            if ((pClose + (pTotalLength * 2.0)) <= high) pforce = 5;
+                            else if ((pClose + (pTotalLength * 1.5)) <= high) pforce = 4;
+                            else if ((pClose + (pTotalLength * 1.0)) <= high) pforce = 3;
+                            else if ((pClose + (pTotalLength * 0.5)) <= high) pforce = 2;
+                            else if ((pClose + (pTotalLength * 0.5)) > high) pforce = 1;
+                        //}                        
+                        //else if (this.PlusMinusType == PlusMinusTypeEnum.무)
+                        //{
+                        //    force = 0;
+                        //}
+                    }
+                    else if (PreCandleItem.PlusMinusType == PlusMinusTypeEnum.무)
+                    {
+                        //if (this.PlusMinusType == PlusMinusTypeEnum.음)
+                        //{
+                        if ((pClose - (pTotalLength * 2.0)) >= low) mforce = -5;
+                        else if ((pClose - (pTotalLength * 1.5)) >= low) mforce = -4;
+                        else if ((pClose - (pTotalLength * 1.0)) >= low) mforce = -3;
+                        else if ((pClose - (pTotalLength * 0.5)) >= low) mforce = -2;
+                        else if ((pClose - (pTotalLength * 0.5)) < low) mforce = -1;
+                        //}
+                        //else if (this.PlusMinusType == PlusMinusTypeEnum.양)
+                        //{
+                        if ((pClose + (pTotalLength * 2.0)) <= high) pforce = 5;
+                        else if ((pClose + (pTotalLength * 1.5)) <= high) pforce = 4;
+                        else if ((pClose + (pTotalLength * 1.0)) <= high) pforce = 3;
+                        else if ((pClose + (pTotalLength * 0.5)) <= high) pforce = 2;
+                        else if ((pClose + (pTotalLength * 0.5)) > high) pforce = 1;
+                        //}                        
+                        //else if (this.PlusMinusType == PlusMinusTypeEnum.무)
+                        //{
+                        //    force = 0;
+                        //}
+                    }
+                    force = pforce + mforce;
+
+                    return force;
                 }
             }
         }

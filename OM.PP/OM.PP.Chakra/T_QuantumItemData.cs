@@ -22,10 +22,13 @@ namespace OM.PP.Chakra
         public Single t_VikalaAvg = 0;
         public Single t_TotalCenterAvg = 0;
 
+        public Single t_ElectronForceAvg = 0;
+
         public Single T_OpenAvg { get { return (Single)Math.Round(t_openAvg, RoundLength); } }
         public Single T_CloseAvg { get { return (Single)Math.Round(t_closeAvg, RoundLength); } }
         public Single T_HighAvg { get { return (Single)Math.Round(t_highAvg, RoundLength); } }
         public Single T_LowAvg { get { return (Single)Math.Round(t_lowAvg, RoundLength); } }
+        public Single T_ElectronForceAvg { get { return (Single)Math.Round(t_ElectronForceAvg, RoundLength); } }
 
 
         private Single t_massAvg = 0;
@@ -109,6 +112,8 @@ namespace OM.PP.Chakra
                 t_quantumHighAvg = (Single)sourceDataArray.Average(t => (t.QuantumBaseHighPrice + t.TotalLength));
                 t_quantumLowAvg = (Single)sourceDataArray.Average(t => (t.QuantumBaseLowPrice - t.TotalLength));
                 t_massAvg = (Single)sourceDataArray.Average(t => t.MassPrice);
+
+                t_ElectronForceAvg = (Single)sourceDataArray.Average(t => t.ElectronForce);
 
                 //t_VikalaAvg = (Single)sourceDataArray.Average(t => t.VikalaPrice);
                 //t_vikalaHighAvg = (Single)sourceDataArray.Average(t => t.VikalaHighPrice + t.HeadLength + t.LegLength);

@@ -198,6 +198,10 @@ namespace OM.Vikala.Controls.Charts
                 //string diceChar = getDiceChar(itemAvg);
                 chart.Series["candleBasic"].Points[idx].Label = diceChar;
 
+                //chart.Series["lineElectronForce1"].Points.AddXY(item.DTime, item.T_ElectronForceAvg);
+                chart.Series["lineElectronForce1"].Points.AddXY(itemAvg.DTime, itemAvg.T_ElectronForceAvg);
+                chart.Series["lineElectronForce2"].Points.AddXY(itemAvg.DTime, 0);
+
                 if (item.VirtualData)
                     SetDataPointColor(chart.Series["candleBasic"].Points[idx], Color.Black, Color.Transparent, Color.Black, 1);
 
@@ -221,7 +225,7 @@ namespace OM.Vikala.Controls.Charts
 
                 chart.Series["lineCandleAvgRangeH"].Points.AddXY(itemAvg.DTime, Math.Round(itemAvg.RangeHighPrice, RoundLength));
                 chart.Series["lineCandleAvgRangeL"].Points.AddXY(itemAvg.DTime, Math.Round(itemAvg.RangeLowPrice, RoundLength));
-
+              
                 chart.Series["candleBAverage"].Points.AddXY(itemAvg2.DTime, itemAvg2.HighPrice, itemAvg2.LowPrice, itemAvg2.OpenPrice, itemAvg2.ClosePrice);
 
                 chart.Series["lineSmartEnergy1"].Points.AddXY(smart.DTime, smart.Variance_ChartPrice1);
@@ -524,6 +528,9 @@ namespace OM.Vikala.Controls.Charts
                 minPrice = minPrice - SpaceMaxMin;
                 chart.ChartAreas["ca1"].AxisY2.Maximum = maxPrice;
                 chart.ChartAreas["ca1"].AxisY2.Minimum = minPrice;
+                chart.ChartAreas["ca1"].AxisY.Maximum = viewAvgLists.Max(m => m.T_ElectronForceAvg) + 0.5;
+                chart.ChartAreas["ca1"].AxisY.Minimum = viewAvgLists.Min(m => m.T_ElectronForceAvg) - 0.5;
+
 
                 maxPrice = viewAvgLists.Max(m => m.HighPrice);
                 minPrice = viewAvgLists.Min(m => m.LowPrice);
@@ -532,8 +539,7 @@ namespace OM.Vikala.Controls.Charts
                 minPrice = minPrice - SpaceMaxMin;
                 chart.ChartAreas["ca2"].AxisY2.Maximum = maxPrice;
                 chart.ChartAreas["ca2"].AxisY2.Minimum = minPrice;
-
-
+               
                 maxPrice = viewAvgBLists.Max(m => m.HighPrice);
                 minPrice = viewAvgBLists.Min(m => m.LowPrice);
                 maxPrice = maxPrice + SpaceMaxMin + 1;
